@@ -1,0 +1,43 @@
+{
+  "name": "guess-image",
+  "version": "0.0.1",
+  "description": "Guess Image",
+  "main": "index.js",
+  "scripts": {
+    "dev-server": "vite --open",
+    "dev": "npm run dev-server",
+    "dev-task": "vite",
+    "deploy": "npx @azure/static-web-apps-cli login --no-use-keychain && npx @azure/static-web-apps-cli deploy",
+    "build": "tsc && vite build",
+    "start": "npm run dev",
+    "start-remote": "vite --host",
+    "pretty": "npx prettier . --write"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lit/context": "^1.1.0",
+    "@shoelace-style/shoelace": "^2.4.0",
+    "@thepassle/app-tools": "^0.9.9",
+    "firebase": "^10.6.0",
+    "firebaseui": "^6.1.0",
+    "leaflet": "^1.9.4",
+    "lit": "^2.7.2",
+    "urlpattern-polyfill": "^7.0.0",
+    "workbox-build": "^6.5.2",
+    "workbox-core": "^6.5.2",
+    "workbox-precaching": "^6.5.2"
+  },
+  "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/leaflet": "^1.9.8",
+    "@types/node": "^20.10.0",
+    "eslint-plugin-lit": "^1.10.1",
+    "eslint-plugin-wc": "^2.0.4",
+    "prettier": "^3.1.0",
+    "typescript": "^5.0.4",
+    "vite": "^5.0.2",
+    "vite-plugin-pwa": "^0.17.0",
+    "vite-plugin-static-copy": "^1.0.0"
+  }
+}
