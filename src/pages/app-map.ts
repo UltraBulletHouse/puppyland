@@ -191,6 +191,8 @@ export class AppMap extends LitElement {
     let map = L.map(mapEl);
     this.map = map;
 
+    map.locate({setView: true,enableHighAccuracy: true})
+
     let urlTemplate = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
     map.addLayer(L.tileLayer(urlTemplate, { minZoom: 1, attribution: '© OpenStreetMap' }));
 
