@@ -6,7 +6,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { userContext } from '../contexts/user-context';
 import { styles } from '../styles/shared-styles';
 import { UserFirebase } from '../utils/firebase';
-import { watchUserPosition } from '../utils/geolocation';
+import { getUserPostion, watchUserPosition } from '../utils/geolocation';
 
 // const corsAny = 'https://cors-anywhere.herokuapp.com/'
 const apiUrl = 'https://testaccount1rif-001-site1.anytempurl.com/';
@@ -27,20 +27,14 @@ export class AppMap extends LitElement {
       #controls {
         position: relative;
         display: flex;
-        width: 100%;
+        justify-content: space-between;
         height: 60px;
-        bottom: 60px;
+        bottom: 70px;
+        padding: 0 10px;
         z-index: 9999;
-
-        justify-content: end;
       }
       #add-doghouse {
         font-size: 32px;
-        margin-right: 10px;
-      }
-      #add-doghouse .btn-icon {
-        border-radius: 50%;
-        background: #fff;
       }
       .leaflet-control-attribution.leaflet-control {
         pointer-events: none;
@@ -69,22 +63,58 @@ export class AppMap extends LitElement {
   @property({ attribute: false })
   userFirebase?: UserFirebase;
 
-  getUserPostion() {
+  constructor() {
+    super();
+    this.getUserPosition();
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.watchUserPostion();
+  }
+
+  getUserPosition() {
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {
       const lat = pos.coords.latitude;
       const lng = pos.coords.longitude;
-      // const accuracy = pos.coords.accuracy; // Accuracy in metres
-
       this.lat = lat;
       this.lng = lng;
+      console.log('getUserPosition', lat, lng);
+
+      if (this.map && this.lat && this.lng) {
+        this.map.setView([this.lat, this.lng], 20);
+      }
+    };
+    getUserPostion(watchUserPositionSuccess);
+  }
+
+  watchUserPostion() {
+    const watchUserPositionSuccess = (pos: GeolocationPosition) => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      this.lat = lat;
+      this.lng = lng;
+
+      if (!this.map) return;
+      L.circle([lat, lng], {
+        color: '#0284c7',
+        fillColor: '#0284c7',
+        fillOpacity: 0.8,
+        radius: 4,
+      }).addTo(this.map);
     };
     /* Get user location */
     watchUserPosition(watchUserPositionSuccess);
   }
 
+  centerPosition() {
+    if (this.map && this.lat && this.lng) {
+      this.map.setView([this.lat, this.lng], 20);
+    }
+  }
+
   async addDoghouse() {
     const accesToken = await this.userFirebase?.getIdToken();
-    console.log('POST',accesToken);
     if (!accesToken) return;
 
     const headers = {
@@ -104,26 +134,15 @@ export class AppMap extends LitElement {
     });
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.getUserPostion();
+  async attackDoghouse() {
+    console.log('ATTACK');
   }
 
   async updated() {
-        // console.log(this.lat, this.lng);
-    if ((!this.map || !this.lat || !this.lng)) return
-
-      this.map.setView([this.lat, this.lng], 20);
-      L.circle([this.lat, this.lng], {
-        color: '#0284c7',
-        fillColor: '#0284c7',
-        fillOpacity: 0.8,
-        radius: 4,
-      }).addTo(this.map);
+    if (!this.map || !this.lat || !this.lng) return;
 
     // GET
     const accesToken = await this.userFirebase?.getIdToken();
-    // console.log('GET',accesToken);
     if (!accesToken) return;
 
     const headers = {
@@ -133,10 +152,11 @@ export class AppMap extends LitElement {
     };
 
     const response = await fetch(
-      apiUrl + 'DogHouses/NearUser' +
+      apiUrl +
+        'DogHouses/NearUser' +
         '?' +
         new URLSearchParams({
-          lat: this.lat.toString() ,
+          lat: this.lat.toString(),
           lng: this.lng.toString(),
         }),
       {
@@ -146,8 +166,8 @@ export class AppMap extends LitElement {
     );
     const houses = await response.json();
     console.log(houses);
+    if (!houses) return;
 
-    if (!houses) return
     var myIcon = L.icon({
       iconUrl: '../assets/icons/192x192.png',
       iconSize: [192, 192],
@@ -157,12 +177,11 @@ export class AppMap extends LitElement {
       shadowAnchor: [22, 94],
     });
 
-    houses.forEach((house: { lat: any; lng: any; }) => {
-      const {lat, lng} = house
-      if (!this.map) return
-      L.marker([lat, lng],  { icon: myIcon }).addTo(this.map)
+    houses.forEach((house: { lat: any; lng: any }) => {
+      const { lat, lng } = house;
+      if (!this.map) return;
+      L.marker([lat, lng], { icon: myIcon }).addTo(this.map);
     });
-
   }
 
   firstUpdated() {
@@ -172,10 +191,8 @@ export class AppMap extends LitElement {
     let map = L.map(mapEl);
     this.map = map;
 
-    map.setView([51.505, -0.09], 13);
-
     let urlTemplate = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
-    map.addLayer(L.tileLayer(urlTemplate, { minZoom: 10, attribution: '© OpenStreetMap' }));
+    map.addLayer(L.tileLayer(urlTemplate, { minZoom: 1, attribution: '© OpenStreetMap' }));
 
     const newDiv = document.createElement('input');
     const newContent = document.createTextNode('Hi there and greetings!');
@@ -188,8 +205,20 @@ export class AppMap extends LitElement {
       <div id="container">
         <div id="map"></div>
         <div id="controls">
+          <div id="attack-doghouse" @click=${this.attackDoghouse}>
+            <sl-button variant="default" size="large" circle>
+              <sl-icon name="lightning-charge"></sl-icon>
+            </sl-button>
+          </div>
+          <div id="center-position" @click=${this.centerPosition}>
+            <sl-button variant="default" size="large" circle>
+              <sl-icon name="record-circle"></sl-icon>
+            </sl-button>
+          </div>
           <div id="add-doghouse" @click=${this.addDoghouse}>
-            <sl-icon-button name="house" class="btn-icon"></sl-icon-button>
+            <sl-button variant="default" size="large" circle>
+              <sl-icon name="house-add"></sl-icon>
+            </sl-button>
           </div>
         </div>
       </div>
@@ -198,6 +227,18 @@ export class AppMap extends LitElement {
 }
 
 // TODO: Remove
+
+// #add-doghouse .btn-icon {
+//   border-radius: 50%;
+//   background: #fff;
+//   border: 1px solid var(--sl-color-amber-600);
+//   color: var(--sl-color-amber-600);
+// }
+// #add-doghouse sl-button::part(base),
+// #add-doghouse sl-button::part(base):hover,
+// #add-doghouse sl-button::part(base):active {
+//   color: var(--sl-color-amber-600);
+// }
 
 //     const mapEl = this.shadowRoot?.querySelector('#map') as HTMLDivElement;
 //     if (!mapEl) return;
@@ -229,3 +270,6 @@ export class AppMap extends LitElement {
 // map.on('click', function (ev) {
 //   L.marker([ev.latlng.lat, ev.latlng.lng], { icon: myIcon }).addTo(map);
 // });
+
+// Set veiw to London
+//     map.setView([51.505, -0.09], 13);

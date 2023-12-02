@@ -10,13 +10,14 @@ export const watchPositionOptions: PositionOptions = {
 // const watchUserPositionSuccess = (pos: GeolocationPosition) => {
 //   const lat = pos.coords.latitude;
 //   const lng = pos.coords.longitude;
-//   const accuracy = pos.coords.accuracy; // Accuracy in metres
+// const heading = pos.coords.heading // Where device is pointing
+// const accuracy = pos.coords.accuracy; // Accuracy in metres
 // };
 
 export const watchPositionError = (err: GeolocationPositionError) => {
   if (err.code === 1) {
     // Runs if user refuses access
-    alert('Please allow geolocation access');
+    console.log('Please allow geolocation access');
   } else {
     console.log(err);
   }
@@ -25,6 +26,14 @@ export const watchPositionError = (err: GeolocationPositionError) => {
 export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) => {
   navigator.geolocation.watchPosition(
     watchUserPositionSuccess,
+    watchPositionError,
+    watchPositionOptions
+  );
+};
+
+export const getUserPostion = (getUserPositionSuccess: PositionCallback) => {
+  navigator.geolocation.getCurrentPosition(
+    getUserPositionSuccess,
     watchPositionError,
     watchPositionOptions
   );
