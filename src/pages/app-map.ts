@@ -8,6 +8,7 @@ import { styles } from '../styles/shared-styles';
 import { UserFirebase } from '../utils/firebase';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
 import { generatePulsatingMarker } from '../utils/map-utils';
+import { apiCall } from '../utils/api-utils';
 
 // const corsAny = 'https://cors-anywhere.herokuapp.com/'
 const apiUrl = 'https://testaccount1rif-001-site1.anytempurl.com/';
@@ -116,7 +117,7 @@ export class AppMap extends LitElement {
       const lng = pos.coords.longitude;
       this.lat = lat;
       this.lng = lng;
-
+      console.log('watchUserPostion',  lat, lng);
       if (!this.map) return;
 
       if (this.userPosMarker) {
@@ -142,21 +143,10 @@ export class AppMap extends LitElement {
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
 
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Authorization': 'Bearer ' + accesToken,
-    };
-
-    // POST
-    await fetch(apiUrl + 'DogHouses', {
-      method: 'post',
-      headers: headers,
-      body: JSON.stringify({
+    await apiCall(accesToken).post('User/DogHouse', {
         lat: this.lat,
         lng: this.lng,
-      }),
-    });
+    })
   }
 
   async attackDoghouse() {
@@ -165,50 +155,35 @@ export class AppMap extends LitElement {
 
   async updated() {
     if (!this.map || !this.lat || !this.lng) return;
-
-    // GET
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
 
-    const headers = {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Authorization': 'Bearer ' + accesToken,
-    };
-
-    const response = await fetch(
-      apiUrl +
-        'DogHouses/NearUser' +
-        '?' +
-        new URLSearchParams({
-          lat: this.lat.toString(),
+    // GET
+    const {data: houses} = await apiCall(accesToken).get('DogHouses/NearUser', {
+      params: {
+        lat: this.lat.toString(),
           lng: this.lng.toString(),
-        }),
-      {
-        method: 'get',
-        headers: headers,
-      }
-    );
-    const houses = await response.json();
-    console.log(houses);
+      },
+    })
+    console.log('houses',houses);
     if (!houses) return;
+
     const cssStyle = `
-    font-size: 20px;
-    color: green;
-    box-shadow: 0 0 0 green;
-    background: #01903b17;
-    border-radius: 50%;
-  `;
+      font-size: 20px;
+      color: var(--sl-color-primary-600);
+      background: #15803d20;
+      border-radius: 50%;
+    `;
     var myIcon = L.divIcon({
       html: `<sl-icon name="house" style="${cssStyle}"></sl-icon>`,
       className: '',
     });
 
-    houses.forEach((house: { lat: any; lng: any; hp: any }) => {
-      const { lat, lng, hp } = house;
+    houses.forEach((house: { lat: any; lng: any; hp: any, power: any }) => {
+      const { lat, lng, hp, power } = house;
       if (!this.map) return;
       L.marker([lat, lng], { icon: myIcon })
-        .bindPopup(`HP: ${hp} Position: ${lat}, ${lng}`)
+        .bindPopup(`HP: ${hp} Power: ${power}`)
         .addTo(this.map);
     });
   }
