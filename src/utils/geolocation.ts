@@ -1,9 +1,9 @@
 export const watchPositionOptions: PositionOptions = {
   enableHighAccuracy: true,
   // Get high accuracy reading, if available (default false)
-  timeout: 5000,
+  timeout: 10000,
   // Time to return a position successfully before error (default infinity)
-  maximumAge: 2000,
+  maximumAge: 5000,
   // Milliseconds for which it is acceptable to use cached position (default 0)
 };
 
@@ -32,9 +32,13 @@ export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) =>
 };
 
 export const getUserPostion = (getUserPositionSuccess: PositionCallback) => {
-  navigator.geolocation.getCurrentPosition(
-    getUserPositionSuccess,
-    watchPositionError,
-    watchPositionOptions
-  );
+  if ("geolocation" in navigator) { 
+    navigator.geolocation.getCurrentPosition(
+      getUserPositionSuccess,
+      watchPositionError,
+      watchPositionOptions
+      );
+    } else { 
+      console.log('Please allow geolocation access');
+  }
 };
