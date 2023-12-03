@@ -1,4 +1,4 @@
-export  const generatePulsatingMarker = (L: any,radius: number, color: string) => {
+export const generatePulsatingMarker = (L: any, radius: number, color: string) => {
   const cssStyle = `
     width: ${radius}px;
     height: ${radius}px;

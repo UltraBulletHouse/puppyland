@@ -110,8 +110,6 @@ export class AppMap extends LitElement {
     getUserPostion(watchUserPositionSuccess);
   }
 
-
-
   watchUserPostion() {
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {
       const lat = pos.coords.latitude;
@@ -125,7 +123,10 @@ export class AppMap extends LitElement {
         this.map.removeLayer(this.userPosMarker);
       }
       const pulsatingIcon = generatePulsatingMarker(L, 10, 'red');
-      this.userPosMarker = L.marker([lat, lng], { icon: pulsatingIcon }).addTo(this.map);
+      this.userPosMarker = L.marker([lat, lng], {
+        icon: pulsatingIcon,
+        zIndexOffset: 999999,
+      }).addTo(this.map);
     };
     /* Get user location */
     watchUserPosition(watchUserPositionSuccess);
