@@ -7,6 +7,7 @@ import { userContext } from '../contexts/user-context';
 import { styles } from '../styles/shared-styles';
 import { UserFirebase } from '../utils/firebase';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
+import { generatePulsatingMarker } from '../utils/map-utils';
 
 // const corsAny = 'https://cors-anywhere.herokuapp.com/'
 const apiUrl = 'https://testaccount1rif-001-site1.anytempurl.com/';
@@ -47,11 +48,32 @@ export class AppMap extends LitElement {
       .leaflet-touch .leaflet-bar {
         box-shadow: 0px 0px 12px 0px #0000002b;
       }
+      #pulse {
+        display: block;
+        border-radius: 50%;
+        cursor: pointer;
+        animation: pulse 4s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0;
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+        }
+      }
     `,
   ];
 
   @state()
   map?: L.Map;
+
+  @state()
+  userPosMarker?: L.Marker;
 
   @state()
   lat?: number;
@@ -82,11 +104,13 @@ export class AppMap extends LitElement {
       console.log('getUserPosition', lat, lng);
 
       if (this.map && this.lat && this.lng) {
-        this.map.setView([this.lat, this.lng], 20);
+        this.map.setView([this.lat, this.lng], 17);
       }
     };
     getUserPostion(watchUserPositionSuccess);
   }
+
+
 
   watchUserPostion() {
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {
@@ -96,12 +120,12 @@ export class AppMap extends LitElement {
       this.lng = lng;
 
       if (!this.map) return;
-      L.circle([lat, lng], {
-        color: '#0284c7',
-        fillColor: '#0284c7',
-        fillOpacity: 0.8,
-        radius: 4,
-      }).addTo(this.map);
+
+      if (this.userPosMarker) {
+        this.map.removeLayer(this.userPosMarker);
+      }
+      const pulsatingIcon = generatePulsatingMarker(L, 10, 'red');
+      this.userPosMarker = L.marker([lat, lng], { icon: pulsatingIcon }).addTo(this.map);
     };
     /* Get user location */
     watchUserPosition(watchUserPositionSuccess);
@@ -109,7 +133,7 @@ export class AppMap extends LitElement {
 
   centerPosition() {
     if (this.map && this.lat && this.lng) {
-      this.map.setView([this.lat, this.lng], 20);
+      this.map.setView([this.lat, this.lng], 17);
     }
   }
 
@@ -191,7 +215,7 @@ export class AppMap extends LitElement {
     let map = L.map(mapEl);
     this.map = map;
 
-    map.locate({setView: true,enableHighAccuracy: true})
+    // map.locate({setView: true,enableHighAccuracy: true})
 
     let urlTemplate = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
     map.addLayer(L.tileLayer(urlTemplate, { minZoom: 1, attribution: '© OpenStreetMap' }));
