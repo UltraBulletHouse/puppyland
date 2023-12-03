@@ -204,10 +204,12 @@ export class AppMap extends LitElement {
       className: '',
     });
 
-    houses.forEach((house: { lat: any; lng: any }) => {
-      const { lat, lng } = house;
+    houses.forEach((house: { lat: any; lng: any; hp: any }) => {
+      const { lat, lng, hp } = house;
       if (!this.map) return;
-      L.marker([lat, lng], { icon: myIcon }).addTo(this.map);
+      L.marker([lat, lng], { icon: myIcon })
+        .bindPopup(`HP: ${hp} Position: ${lat}, ${lng}`)
+        .addTo(this.map);
     });
   }
 
