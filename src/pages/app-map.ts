@@ -191,14 +191,16 @@ export class AppMap extends LitElement {
     const houses = await response.json();
     console.log(houses);
     if (!houses) return;
-
-    var myIcon = L.icon({
-      iconUrl: '../assets/icons/192x192.png',
-      iconSize: [192, 192],
-      iconAnchor: [100, 94],
-      popupAnchor: [-3, -76],
-      shadowSize: [68, 95],
-      shadowAnchor: [22, 94],
+    const cssStyle = `
+    font-size: 20px;
+    color: green;
+    box-shadow: 0 0 0 green;
+    background: #01903b17;
+    border-radius: 50%;
+  `;
+    var myIcon = L.divIcon({
+      html: `<sl-icon name="house" style="${cssStyle}"></sl-icon>`,
+      className: '',
     });
 
     houses.forEach((house: { lat: any; lng: any }) => {
