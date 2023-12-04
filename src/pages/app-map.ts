@@ -10,9 +10,6 @@ import { getUserPostion, watchUserPosition } from '../utils/geolocation';
 import { generatePulsatingMarker } from '../utils/map-utils';
 import { apiCall } from '../utils/api-utils';
 
-// const corsAny = 'https://cors-anywhere.herokuapp.com/'
-const apiUrl = 'https://testaccount1rif-001-site1.anytempurl.com/';
-
 @customElement('app-map')
 export class AppMap extends LitElement {
   static styles = [
