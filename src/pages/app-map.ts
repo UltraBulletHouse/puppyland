@@ -5,11 +5,15 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import { userContext } from '../contexts/user-context';
 import { styles } from '../styles/shared-styles';
+import { DogHouse } from '../types/dogHouses';
 import { apiCall } from '../utils/api-utils';
 import { UserFirebase } from '../utils/firebase';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
-import { generateDogHouseIcon, generatePulsatingMarker, getClosestDogHouse } from '../utils/map-utils';
-import { DogHouse } from '../types/dogHouses';
+import {
+  generateDogHouseIcon,
+  generatePulsatingMarker,
+  getClosestDogHouse,
+} from '../utils/map-utils';
 
 @customElement('app-map')
 export class AppMap extends LitElement {
@@ -134,7 +138,7 @@ export class AppMap extends LitElement {
       }).addTo(this.map);
 
       const closestDogHouse = getClosestDogHouse(lat, lng, this.dogHouses);
-        this.closestDogHouse = closestDogHouse
+      this.closestDogHouse = closestDogHouse;
     };
 
     watchUserPosition(watchUserPositionSuccess);
@@ -162,7 +166,7 @@ export class AppMap extends LitElement {
     if (!accesToken) return;
 
     const closestDogHouse = getClosestDogHouse(this.lat, this.lng, this.dogHouses);
-    if (!closestDogHouse) return
+    if (!closestDogHouse) return;
     await apiCall(accesToken).patch('User/DogHouse/Attack', {
       dogHouseId: closestDogHouse.id,
     });
@@ -180,23 +184,23 @@ export class AppMap extends LitElement {
         lng: this.lng.toString(),
       },
     });
-    
+
     console.log('dogHouses', houses);
     if (!houses) return;
     this.dogHouses = houses;
 
-    const closestDogHouse = getClosestDogHouse(this.lat , this.lng, houses);
-    this.closestDogHouse = closestDogHouse
+    const closestDogHouse = getClosestDogHouse(this.lat, this.lng, houses);
+    this.closestDogHouse = closestDogHouse;
 
-    houses.forEach((dogHouse: DogHouse)=> {
+    houses.forEach((dogHouse: DogHouse) => {
       const { lat, lng, hp, userId, id } = dogHouse;
       if (!this.map) return;
 
       if (id === closestDogHouse?.id) {
         L.marker([lat, lng], { icon: generateDogHouseIcon(true) })
-        .bindPopup(`HP: ${hp} userId: ${userId}`)
-        .addTo(this.map);
-        return
+          .bindPopup(`HP: ${hp} userId: ${userId}`)
+          .addTo(this.map);
+        return;
       }
 
       L.marker([lat, lng], { icon: generateDogHouseIcon() })
