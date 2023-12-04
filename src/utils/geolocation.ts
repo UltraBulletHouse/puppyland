@@ -32,13 +32,13 @@ export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) =>
 };
 
 export const getUserPostion = (getUserPositionSuccess: PositionCallback) => {
-  if ("geolocation" in navigator) { 
+  if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
       getUserPositionSuccess,
       watchPositionError,
       watchPositionOptions
-      );
-    } else { 
-      console.log('Please allow geolocation access');
+    );
+  } else {
+    console.log('Please allow geolocation access');
   }
 };
