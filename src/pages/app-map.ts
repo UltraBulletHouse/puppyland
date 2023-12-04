@@ -8,7 +8,7 @@ import { styles } from '../styles/shared-styles';
 import { apiCall } from '../utils/api-utils';
 import { UserFirebase } from '../utils/firebase';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
-import { generateDogHouse, generatePulsatingMarker, getClosestDogHouse } from '../utils/map-utils';
+import { generateDogHouseIcon, generatePulsatingMarker, getClosestDogHouse } from '../utils/map-utils';
 import { DogHouse } from '../types/dogHouses';
 
 @customElement('app-map')
@@ -185,16 +185,24 @@ export class AppMap extends LitElement {
     if (!houses) return;
     this.dogHouses = houses;
 
+    const closestDogHouse = getClosestDogHouse(this.lat , this.lng, houses);
+    this.closestDogHouse = closestDogHouse
+
     houses.forEach((dogHouse: DogHouse)=> {
-      const { lat, lng, hp, userId } = dogHouse;
+      const { lat, lng, hp, userId, id } = dogHouse;
       if (!this.map) return;
-      L.marker([lat, lng], { icon: generateDogHouse() })
+
+      if (id === closestDogHouse?.id) {
+        L.marker([lat, lng], { icon: generateDogHouseIcon(true) })
+        .bindPopup(`HP: ${hp} userId: ${userId}`)
+        .addTo(this.map);
+        return
+      }
+
+      L.marker([lat, lng], { icon: generateDogHouseIcon() })
         .bindPopup(`HP: ${hp} userId: ${userId}`)
         .addTo(this.map);
     });
-    const closestDogHouse = getClosestDogHouse(this.lat , this.lng, this.dogHouses);
-    this.closestDogHouse = closestDogHouse
-  
   }
 
   firstUpdated() {

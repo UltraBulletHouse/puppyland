@@ -16,11 +16,11 @@ export const generatePulsatingMarker = (L: any, radius: number, color: string) =
   });
 };
 
-export const generateDogHouse = () => {
+export const generateDogHouseIcon = (isClosest?: boolean) => {
   const cssStyle = `
   font-size: 20px;
   color: var(--sl-color-primary-600);
-  background: #15803d20;
+  background: ${isClosest ? '#e1ff00b3' : '#15803d20'};
   border-radius: 50%;
 `;
   const dogHouseIcon = L.divIcon({
