@@ -99,11 +99,6 @@ export class AppMap extends LitElement {
     this.getUserPosition();
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    this.watchUserPostion();
-  }
-
   getUserPosition() {
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {
       const lat = pos.coords.latitude;
@@ -131,7 +126,7 @@ export class AppMap extends LitElement {
       if (this.userPosMarker) {
         this.map.removeLayer(this.userPosMarker);
       }
-      const pulsatingIcon = generatePulsatingMarker(L, 10, 'red');
+      const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--sl-color-primary-600)');
       this.userPosMarker = L.marker([lat, lng], {
         icon: pulsatingIcon,
         zIndexOffset: 999999,
@@ -154,7 +149,7 @@ export class AppMap extends LitElement {
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
 
-    await apiCall(accesToken).post('User/DogHouse', {
+    await apiCall(accesToken).post('User/DogHouse/Create', {
       lat: this.lat,
       lng: this.lng,
     });
@@ -173,11 +168,10 @@ export class AppMap extends LitElement {
   }
 
   async updated() {
-    if (this.dogHouses) return;
-    if (!this.map || !this.lat || !this.lng) return;
+    if (!this.map || !this.lat || !this.lng || this.dogHouses) return;
+
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
-
     const { data: houses } = await apiCall(accesToken).get('DogHouses/NearUser', {
       params: {
         lat: this.lat.toString(),
@@ -185,28 +179,24 @@ export class AppMap extends LitElement {
       },
     });
 
-    console.log('dogHouses', houses);
+    console.log('DogHouses', houses);
     if (!houses) return;
     this.dogHouses = houses;
-
-    const closestDogHouse = getClosestDogHouse(this.lat, this.lng, houses);
-    this.closestDogHouse = closestDogHouse;
+    this.closestDogHouse = getClosestDogHouse(this.lat, this.lng, houses);
 
     houses.forEach((dogHouse: DogHouse) => {
-      const { lat, lng, hp, userId, id } = dogHouse;
       if (!this.map) return;
-
-      if (id === closestDogHouse?.id) {
-        L.marker([lat, lng], { icon: generateDogHouseIcon(true) })
-          .bindPopup(`HP: ${hp} userId: ${userId}`)
-          .addTo(this.map);
-        return;
-      }
+      const { lat, lng, hp, maxHp } = dogHouse;
 
       L.marker([lat, lng], { icon: generateDogHouseIcon() })
-        .bindPopup(`HP: ${hp} userId: ${userId}`)
+        .bindPopup(`Hp: ${hp} MaxHp: ${maxHp}`)
         .addTo(this.map);
     });
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.watchUserPostion();
   }
 
   firstUpdated() {

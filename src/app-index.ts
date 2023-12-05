@@ -20,20 +20,17 @@ export class AppIndex extends LitElement {
   @property({ attribute: false })
   userFirebase: UserFirebase = null;
 
-  connectedCallback() {
-    super.connectedCallback();
+  firstUpdated() {
     auth.onAuthStateChanged(async (user) => {
       if (user) {
-        console.log('userFirebase', user);
+        console.log('UserFirebase', user);
         this.userFirebase = user;
-        router.navigate('home');
+        router.navigate('map-view');
       } else {
         router.navigate('');
       }
     });
-  }
 
-  firstUpdated() {
     router.addEventListener('route-changed', () => {
       if ('startViewTransition' in document) {
         (document as any).startViewTransition(() => this.requestUpdate());

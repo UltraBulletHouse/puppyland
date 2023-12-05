@@ -8,7 +8,7 @@ import { lazy } from '@thepassle/app-tools/router/plugins/lazy.js';
 import { title } from '@thepassle/app-tools/router/plugins/title.js';
 import { html } from 'lit';
 
-import '../pages/app-signin.js';
+import '../views/app-signin-view.js';
 
 const baseURL: string = (import.meta as any).env.BASE_URL;
 
@@ -17,14 +17,14 @@ export const router = new Router({
   routes: [
     {
       path: resolveRouterPath(),
-      title: 'Sign-in',
-      render: () => html`<app-signin></app-signin>`,
+      title: 'Signin-view',
+      render: () => html`<app-signin-view></app-signin-view>`,
     },
     {
-      path: resolveRouterPath('home'),
-      title: 'Home',
-      plugins: [lazy(() => import('../pages/app-home.js'))],
-      render: () => html`<app-home></app-home>`,
+      path: resolveRouterPath('map-view'),
+      title: 'Map-view',
+      plugins: [lazy(() => import('../views/app-map-view.js'))],
+      render: () => html`<app-map-view></app-map-view>`,
     },
   ],
 });

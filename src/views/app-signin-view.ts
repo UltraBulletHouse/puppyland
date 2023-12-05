@@ -5,12 +5,12 @@ import '../components/app-firebase';
 import { styles } from '../styles/shared-styles';
 import { resolveRouterPath } from '../utils/router';
 
-@customElement('app-signin')
+@customElement('app-signin-view')
 export class AppSignin extends LitElement {
   static styles = [
     styles,
     css`
-      #home {
+      #container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -23,9 +23,9 @@ export class AppSignin extends LitElement {
   render() {
     return html`
       <main>
-        <div id="home">
+        <div id="container">
           <app-firebase></app-firebase>
-          <sl-button href="${resolveRouterPath('home')}" pill>Visit as guest</sl-button>
+          <sl-button href="${resolveRouterPath('map-view')}" pill>Visit as guest</sl-button>
         </div>
       </main>
     `;

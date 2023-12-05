@@ -23,7 +23,7 @@ export class AppHFooter extends LitElement {
       border-radius: 100%;
     }
     .btn-icon {
-      font-size: 32px;
+      font-size: 24px;
     }
   `;
 
@@ -34,7 +34,7 @@ export class AppHFooter extends LitElement {
           <sl-icon-button name="piggy-bank" class="btn-icon"></sl-icon-button>
           <sl-icon-button name="house-heart" class="btn-icon"></sl-icon-button>
           <div>
-            <sl-icon-button name="globe-americas" style="font-size: 42px;"></sl-icon-button>
+            <sl-icon-button name="globe-americas" style="font-size: 32px;"></sl-icon-button>
             <div id="wave"></div>
           </div>
           <sl-icon-button name="person-circle" class="btn-icon"></sl-icon-button>
