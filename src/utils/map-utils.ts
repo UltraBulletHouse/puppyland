@@ -28,7 +28,7 @@ export const generateDogHouseIcon = () => {
   border-radius: 50%;
   `;
   const cssStyleIcon = `
-  font-size: 16px;
+  font-size: 14px;
   color: var(--sl-color-orange-800);
   `;
 
