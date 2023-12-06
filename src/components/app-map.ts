@@ -95,7 +95,6 @@ export class AppMap extends LitElement {
   closestDogHouse: DogHouse | null = null;
 
   getUserPosition() {
-    console.log('getUserPosition');
     const getUserPositionSuccess = (pos: GeolocationPosition) => {
       const lat = pos.coords.latitude;
       const lng = pos.coords.longitude;

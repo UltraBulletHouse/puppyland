@@ -17,14 +17,23 @@ export const generatePulsatingMarker = (L: any, radius: number, color: string) =
 };
 
 export const generateDogHouseIcon = () => {
-  const cssStyle = `
-  font-size: 20px;
-  color: var(--sl-color-orange-500);
+  const cssStyleWrapper = `
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+    width: 20px;
+  background-color: var(--sl-color-orange-400);
+  opacity: 0.7;
   border-radius: 50%;
+  `;
+  const cssStyleIcon = `
+  font-size: 16px;
+  color: var(--sl-color-orange-800);
   `;
 
   const dogHouseIcon = L.divIcon({
-    html: `<sl-icon name="house-fill" style="${cssStyle}"></sl-icon>`,
+    html: `<div style="${cssStyleWrapper}"><sl-icon name="house-door-fill" style="${cssStyleIcon}"></sl-icon></div>`,
     className: '',
   });
 
