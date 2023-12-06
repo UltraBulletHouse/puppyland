@@ -1,6 +1,6 @@
 import L from 'leaflet';
 
-import { ClosestDogHouse, DogHouse } from '../types/dogHouses';
+import { ClosestDogHouse, DogHouse } from '../types/dogHouse';
 
 export const generatePulsatingMarker = (L: any, radius: number, color: string) => {
   const cssStyle = `
@@ -22,14 +22,15 @@ export const generateDogHouseIcon = () => {
   justify-content: center;
   align-items: center;
   height: 20px;
-    width: 20px;
-  background-color: var(--sl-color-orange-400);
-  opacity: 0.7;
+  width: 20px;
+  opacity: 0.9;
   border-radius: 50%;
+  background: rgb(253,119,29);
+  background: linear-gradient(90deg, rgb(255 102 0) 0%, rgba(252,176,69,1) 100%);
   `;
   const cssStyleIcon = `
   font-size: 14px;
-  color: var(--sl-color-orange-800);
+  color: var(--sl-color-orange-900);
   `;
 
   const dogHouseIcon = L.divIcon({

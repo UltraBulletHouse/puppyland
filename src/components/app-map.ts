@@ -1,19 +1,19 @@
 import { consume } from '@lit/context';
 import L from 'leaflet';
-import { LitElement, css, html } from 'lit';
+import { LitElement, PropertyValues, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
-import { userContext } from '../contexts/user-context';
+import { userFirebaseContext } from '../contexts/userFirebaseContext';
 import { styles } from '../styles/shared-styles';
-import { DogHouse } from '../types/dogHouses';
-import { apiCall } from '../utils/api-utils';
+import { DogHouse } from '../types/dogHouse';
+import { apiCall } from '../utils/apiUtils';
 import { UserFirebase } from '../utils/firebase';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
 import {
   generateDogHouseIcon,
   generatePulsatingMarker,
   getClosestDogHouse,
-} from '../utils/map-utils';
+} from '../utils/mapUtils';
 
 @customElement('app-map')
 export class AppMap extends LitElement {
@@ -72,7 +72,7 @@ export class AppMap extends LitElement {
     `,
   ];
 
-  @consume({ context: userContext, subscribe: true })
+  @consume({ context: userFirebaseContext, subscribe: true })
   @property({ attribute: false })
   userFirebase?: UserFirebase;
 
@@ -197,7 +197,7 @@ export class AppMap extends LitElement {
     });
   }
 
-  async updated(changedProperties: any) {
+  async updated(changedProperties: PropertyValues<this>) {
     const userFirebaseChanged = changedProperties.has('userFirebase');
     const accesToken = await this.userFirebase?.getIdToken();
 
