@@ -94,27 +94,31 @@ export class AppMap extends LitElement {
   @state()
   closestDogHouse: DogHouse | null = null;
 
-  constructor() {
-    super();
-    this.getUserPosition();
-  }
-
   getUserPosition() {
-    const watchUserPositionSuccess = (pos: GeolocationPosition) => {
+    console.log('getUserPosition');
+    const getUserPositionSuccess = (pos: GeolocationPosition) => {
       const lat = pos.coords.latitude;
       const lng = pos.coords.longitude;
       this.lat = lat;
       this.lng = lng;
 
-      if (this.map && this.lat && this.lng) {
-        this.map.setView([this.lat, this.lng], 17);
+      if (this.map) {
+        this.map.setView([lat, lng], 17);
       }
+
+      this.setDogHousesMarkers()
     };
 
-    getUserPostion(watchUserPositionSuccess);
+    getUserPostion(getUserPositionSuccess);
   }
 
   watchUserPostion() {
+    console.log('watchUserPostion');
+
+    if (!this.dogHouses) {
+      this.setDogHousesMarkers()
+    }
+
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {
       const lat = pos.coords.latitude;
       const lng = pos.coords.longitude;
@@ -145,31 +149,8 @@ export class AppMap extends LitElement {
     }
   }
 
-  async addDoghouse() {
-    const accesToken = await this.userFirebase?.getIdToken();
-    if (!accesToken) return;
-
-    await apiCall(accesToken).post('User/DogHouse/Create', {
-      lat: this.lat,
-      lng: this.lng,
-    });
-  }
-
-  async attackDoghouse() {
-    if (!this.lat || !this.lng || !this.dogHouses) return;
-    const accesToken = await this.userFirebase?.getIdToken();
-    if (!accesToken) return;
-
-    const closestDogHouse = getClosestDogHouse(this.lat, this.lng, this.dogHouses);
-    if (!closestDogHouse) return;
-    await apiCall(accesToken).patch('User/DogHouse/Attack', {
-      dogHouseId: closestDogHouse.id,
-    });
-  }
-
-  async updated() {
-    if (!this.map || !this.lat || !this.lng || this.dogHouses) return;
-
+  async setDogHousesMarkers () {
+    if (!this.map || !this.lat || !this.lng) return
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
     const { data: houses } = await apiCall(accesToken).get('DogHouses/NearUser', {
@@ -194,8 +175,58 @@ export class AppMap extends LitElement {
     });
   }
 
+  async addDoghouse() {
+    const accesToken = await this.userFirebase?.getIdToken();
+    if (!accesToken) return;
+
+    await apiCall(accesToken).post('User/DogHouse/Create', {
+      lat: this.lat,
+      lng: this.lng,
+    });
+  }
+
+  async attackDoghouse() {
+    if (!this.lat || !this.lng || !this.dogHouses) return;
+    const accesToken = await this.userFirebase?.getIdToken();
+    if (!accesToken) return;
+
+    const closestDogHouse = getClosestDogHouse(this.lat, this.lng, this.dogHouses);
+    if (!closestDogHouse) return;
+    await apiCall(accesToken).patch('User/DogHouse/Attack', {
+      dogHouseId: closestDogHouse.id,
+    });
+  }
+
+  async updated() {
+    // if (!this.map || !this.lat || !this.lng || this.dogHouses) return;
+
+    // const accesToken = await this.userFirebase?.getIdToken();
+    // if (!accesToken) return;
+    // const { data: houses } = await apiCall(accesToken).get('DogHouses/NearUser', {
+    //   params: {
+    //     lat: this.lat.toString(),
+    //     lng: this.lng.toString(),
+    //   },
+    // });
+
+    // console.log('DogHouses', houses);
+    // if (!houses) return;
+    // this.dogHouses = houses;
+    // this.closestDogHouse = getClosestDogHouse(this.lat, this.lng, houses);
+
+    // houses.forEach((dogHouse: DogHouse) => {
+    //   if (!this.map) return;
+    //   const { lat, lng, hp, maxHp } = dogHouse;
+
+    //   L.marker([lat, lng], { icon: generateDogHouseIcon() })
+    //     .bindPopup(`Hp: ${hp} MaxHp: ${maxHp}`)
+    //     .addTo(this.map);
+    // });
+  }
+
   connectedCallback() {
     super.connectedCallback();
+    this.getUserPosition();
     this.watchUserPostion();
   }
 
@@ -207,7 +238,7 @@ export class AppMap extends LitElement {
     this.map = map;
     // map.locate({setView: true,enableHighAccuracy: true})
 
-    let urlTemplate = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png';
+    let urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
     map.addLayer(L.tileLayer(urlTemplate, { minZoom: 1, attribution: '© OpenStreetMap' }));
   }
 

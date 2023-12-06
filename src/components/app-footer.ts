@@ -16,7 +16,7 @@ export class AppHFooter extends LitElement {
     }
     #wave {
       height: 12px;
-      width: 58px;
+      width: 48px;
       background: rgb(255, 255, 255);
       position: absolute;
       top: -4px;
@@ -24,6 +24,9 @@ export class AppHFooter extends LitElement {
     }
     .btn-icon {
       font-size: 24px;
+    }
+    .btn-icon--big {
+      font-size: 32px;
     }
   `;
 
@@ -34,7 +37,7 @@ export class AppHFooter extends LitElement {
           <sl-icon-button name="piggy-bank" class="btn-icon"></sl-icon-button>
           <sl-icon-button name="house-heart" class="btn-icon"></sl-icon-button>
           <div>
-            <sl-icon-button name="globe-americas" style="font-size: 32px;"></sl-icon-button>
+            <sl-icon-button name="globe-americas" class="btn-icon--big"></sl-icon-button>
             <div id="wave"></div>
           </div>
           <sl-icon-button name="person-circle" class="btn-icon"></sl-icon-button>
