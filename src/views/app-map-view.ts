@@ -3,8 +3,8 @@ import { customElement } from 'lit/decorators.js';
 
 import '../components/app-footer';
 import '../components/app-header';
-import { styles } from '../styles/shared-styles';
 import '../components/app-map';
+import { styles } from '../styles/shared-styles';
 
 @customElement('app-map-view')
 export class AppMapView extends LitElement {

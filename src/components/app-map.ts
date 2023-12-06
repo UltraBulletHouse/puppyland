@@ -104,19 +104,16 @@ export class AppMap extends LitElement {
 
       if (this.map) {
         this.map.setView([lat, lng], 17);
+        this.setDogHousesMarkers();
       }
-
-      this.setDogHousesMarkers()
     };
 
     getUserPostion(getUserPositionSuccess);
   }
 
   watchUserPostion() {
-    console.log('watchUserPostion');
-
     if (!this.dogHouses) {
-      this.setDogHousesMarkers()
+      this.setDogHousesMarkers();
     }
 
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {
@@ -149,8 +146,8 @@ export class AppMap extends LitElement {
     }
   }
 
-  async setDogHousesMarkers () {
-    if (!this.map || !this.lat || !this.lng) return
+  async setDogHousesMarkers() {
+    if (!this.map || !this.lat || !this.lng) return;
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
     const { data: houses } = await apiCall(accesToken).get('DogHouses/NearUser', {
@@ -179,10 +176,14 @@ export class AppMap extends LitElement {
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
 
-    await apiCall(accesToken).post('User/DogHouse/Create', {
+    const finished = await apiCall(accesToken).post('User/DogHouse/Create', {
       lat: this.lat,
       lng: this.lng,
     });
+
+    if (finished.status === 200) {
+      this.setDogHousesMarkers();
+    }
   }
 
   async attackDoghouse() {
@@ -197,31 +198,13 @@ export class AppMap extends LitElement {
     });
   }
 
-  async updated() {
-    // if (!this.map || !this.lat || !this.lng || this.dogHouses) return;
+  async updated(changedProperties: any) {
+    const userFirebaseChanged = changedProperties.has('userFirebase');
+    const accesToken = await this.userFirebase?.getIdToken();
 
-    // const accesToken = await this.userFirebase?.getIdToken();
-    // if (!accesToken) return;
-    // const { data: houses } = await apiCall(accesToken).get('DogHouses/NearUser', {
-    //   params: {
-    //     lat: this.lat.toString(),
-    //     lng: this.lng.toString(),
-    //   },
-    // });
-
-    // console.log('DogHouses', houses);
-    // if (!houses) return;
-    // this.dogHouses = houses;
-    // this.closestDogHouse = getClosestDogHouse(this.lat, this.lng, houses);
-
-    // houses.forEach((dogHouse: DogHouse) => {
-    //   if (!this.map) return;
-    //   const { lat, lng, hp, maxHp } = dogHouse;
-
-    //   L.marker([lat, lng], { icon: generateDogHouseIcon() })
-    //     .bindPopup(`Hp: ${hp} MaxHp: ${maxHp}`)
-    //     .addTo(this.map);
-    // });
+    if (userFirebaseChanged && accesToken && !this.dogHouses) {
+      this.setDogHousesMarkers();
+    }
   }
 
   connectedCallback() {

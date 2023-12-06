@@ -19,7 +19,7 @@ export const generatePulsatingMarker = (L: any, radius: number, color: string) =
 export const generateDogHouseIcon = () => {
   const cssStyle = `
   font-size: 20px;
-  color: var(--sl-color-amber-600);
+  color: var(--sl-color-orange-500);
   border-radius: 50%;
   `;
 
