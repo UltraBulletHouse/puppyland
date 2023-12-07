@@ -40,8 +40,8 @@ export class AppHFooter extends LitElement {
             <sl-icon-button name="globe-americas" class="btn-icon--big"></sl-icon-button>
             <div id="wave"></div>
           </div>
+          <sl-icon-button name="cart" class="btn-icon"> </sl-icon-button>
           <sl-icon-button name="person-circle" class="btn-icon"></sl-icon-button>
-          <sl-icon-button name="gear" class="btn-icon"> </sl-icon-button>
         </div>
       </footer>
     `;

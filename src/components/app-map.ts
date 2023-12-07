@@ -5,15 +5,16 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import { userFirebaseContext } from '../contexts/userFirebaseContext';
 import { styles } from '../styles/shared-styles';
-import { DogHouse } from '../types/dogHouse';
+import { Doghouse } from '../types/doghouse';
 import { apiCall } from '../utils/apiUtils';
 import { UserFirebase } from '../utils/firebase';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
 import {
-  generateDogHouseIcon,
+  generateDoghouseIcon,
   generatePulsatingMarker,
-  getClosestDogHouse,
+  getClosestDoghouse,
 } from '../utils/mapUtils';
+import { DOGHOUSES_NEAR_USER, DOGHOUSE_ATTACK, DOGHOUSE_CREATE } from '../constants/apiConstants';
 
 @customElement('app-map')
 export class AppMap extends LitElement {
@@ -89,10 +90,10 @@ export class AppMap extends LitElement {
   userPosMarker?: L.Marker;
 
   @state()
-  dogHouses?: DogHouse[];
+  doghouses?: Doghouse[];
 
   @state()
-  closestDogHouse: DogHouse | null = null;
+  closestDoghouse: Doghouse | null = null;
 
   getUserPosition() {
     const getUserPositionSuccess = (pos: GeolocationPosition) => {
@@ -103,7 +104,7 @@ export class AppMap extends LitElement {
 
       if (this.map) {
         this.map.setView([lat, lng], 17);
-        this.setDogHousesMarkers();
+        this.setDoghousesMarkers();
       }
     };
 
@@ -111,8 +112,8 @@ export class AppMap extends LitElement {
   }
 
   watchUserPostion() {
-    if (!this.dogHouses) {
-      this.setDogHousesMarkers();
+    if (!this.doghouses) {
+      this.setDoghousesMarkers();
     }
 
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {
@@ -132,8 +133,8 @@ export class AppMap extends LitElement {
         zIndexOffset: 999999,
       }).addTo(this.map);
 
-      const closestDogHouse = getClosestDogHouse(lat, lng, this.dogHouses);
-      this.closestDogHouse = closestDogHouse;
+      const closestDoghouse = getClosestDoghouse(lat, lng, this.doghouses);
+      this.closestDoghouse = closestDoghouse;
     };
 
     watchUserPosition(watchUserPositionSuccess);
@@ -145,28 +146,28 @@ export class AppMap extends LitElement {
     }
   }
 
-  async setDogHousesMarkers() {
+  async setDoghousesMarkers() {
     if (!this.map || !this.lat || !this.lng) return;
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
-    const { data: houses } = await apiCall(accesToken).get('DogHouses/NearUser', {
+    const { data: {doghousesList} } = await apiCall(accesToken).get(DOGHOUSES_NEAR_USER, {
       params: {
         lat: this.lat.toString(),
         lng: this.lng.toString(),
       },
     });
 
-    console.log('DogHouses', houses);
-    if (!houses) return;
-    this.dogHouses = houses;
-    this.closestDogHouse = getClosestDogHouse(this.lat, this.lng, houses);
+    console.log('doghousesList', doghousesList);
+    if (!doghousesList) return;
+    this.doghouses = doghousesList;
+    this.closestDoghouse = getClosestDoghouse(this.lat, this.lng, doghousesList);
 
-    houses.forEach((dogHouse: DogHouse) => {
+    doghousesList.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
-      const { lat, lng, hp, maxHp } = dogHouse;
+      const { name, lat, lng, hp, maxHp } = doghouse;
 
-      L.marker([lat, lng], { icon: generateDogHouseIcon() })
-        .bindPopup(`Hp: ${hp} MaxHp: ${maxHp}`)
+      L.marker([lat, lng], { icon: generateDoghouseIcon() })
+        .bindPopup(`${name} Hp: ${hp}/${maxHp}`)
         .addTo(this.map);
     });
   }
@@ -175,25 +176,25 @@ export class AppMap extends LitElement {
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
 
-    const finished = await apiCall(accesToken).post('User/DogHouse/Create', {
+    const finished = await apiCall(accesToken).post(DOGHOUSE_CREATE, {
       lat: this.lat,
       lng: this.lng,
     });
 
     if (finished.status === 200) {
-      this.setDogHousesMarkers();
+      this.setDoghousesMarkers();
     }
   }
 
   async attackDoghouse() {
-    if (!this.lat || !this.lng || !this.dogHouses) return;
+    if (!this.lat || !this.lng || !this.doghouses) return;
     const accesToken = await this.userFirebase?.getIdToken();
     if (!accesToken) return;
 
-    const closestDogHouse = getClosestDogHouse(this.lat, this.lng, this.dogHouses);
-    if (!closestDogHouse) return;
-    await apiCall(accesToken).patch('User/DogHouse/Attack', {
-      dogHouseId: closestDogHouse.id,
+    const closestDoghouse = getClosestDoghouse(this.lat, this.lng, this.doghouses);
+    if (!closestDoghouse) return;
+    await apiCall(accesToken).patch(DOGHOUSE_ATTACK, {
+      doghouseId: closestDoghouse.id,
     });
   }
 
@@ -201,8 +202,8 @@ export class AppMap extends LitElement {
     const userFirebaseChanged = changedProperties.has('userFirebase');
     const accesToken = await this.userFirebase?.getIdToken();
 
-    if (userFirebaseChanged && accesToken && !this.dogHouses) {
-      this.setDogHousesMarkers();
+    if (userFirebaseChanged && accesToken && !this.doghouses) {
+      this.setDoghousesMarkers();
     }
   }
 
@@ -231,7 +232,7 @@ export class AppMap extends LitElement {
         <div id="map"></div>
         <div id="controls">
           <div id="attack-doghouse" @click=${this.attackDoghouse}>
-            <sl-button variant="default" size="large" circle ?disabled=${!this.closestDogHouse}>
+            <sl-button variant="default" size="large" circle ?disabled=${!this.closestDoghouse}>
               <sl-icon name="lightning-charge"></sl-icon>
             </sl-button>
           </div>

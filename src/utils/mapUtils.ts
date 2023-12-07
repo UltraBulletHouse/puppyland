@@ -1,6 +1,6 @@
 import L from 'leaflet';
 
-import { ClosestDogHouse, DogHouse } from '../types/dogHouse';
+import { ClosestDoghouse, Doghouse } from '../types/doghouse';
 
 export const generatePulsatingMarker = (L: any, radius: number, color: string) => {
   const cssStyle = `
@@ -16,52 +16,52 @@ export const generatePulsatingMarker = (L: any, radius: number, color: string) =
   });
 };
 
-export const generateDogHouseIcon = () => {
+export const generateDoghouseIcon = () => {
   const cssStyleWrapper = `
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 20px;
-  width: 20px;
-  opacity: 0.9;
-  border-radius: 50%;
-  background: rgb(253,119,29);
-  background: linear-gradient(90deg, rgb(255 102 0) 0%, rgba(252,176,69,1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px;
+    width: 20px;
+    opacity: 0.9;
+    border-radius: 50%;
+    background: rgb(253,119,29);
+    background: linear-gradient(90deg, rgb(255 102 0) 0%, rgba(252,176,69,1) 100%);
   `;
   const cssStyleIcon = `
-  font-size: 14px;
-  color: var(--sl-color-orange-900);
+    font-size: 14px;
+    color: var(--sl-color-orange-900);
   `;
 
-  const dogHouseIcon = L.divIcon({
+  const doghouseIcon = L.divIcon({
     html: `<div style="${cssStyleWrapper}"><sl-icon name="house-door-fill" style="${cssStyleIcon}"></sl-icon></div>`,
     className: '',
   });
 
-  return dogHouseIcon;
+  return doghouseIcon;
 };
 
-export const getClosestDogHouse = (
+export const getClosestDoghouse = (
   lat: number,
   lng: number,
-  dogHouses?: DogHouse[]
-): DogHouse | null => {
-  if (!dogHouses || dogHouses?.length === 0) return null;
+  doghouses?: Doghouse[]
+): Doghouse | null => {
+  if (!doghouses || doghouses?.length === 0) return null;
 
   const userPos = new L.LatLng(lat, lng);
 
-  const closestDogHouse = dogHouses.reduce(
-    (closestDH: ClosestDogHouse, dogHouse) => {
-      const doghousePos = new L.LatLng(dogHouse.lat, dogHouse.lng);
+  const closestDogHouse = doghouses.reduce(
+    (closestDH: ClosestDoghouse, doghouse) => {
+      const doghousePos = new L.LatLng(doghouse.lat, doghouse.lng);
       const diff = userPos.distanceTo(doghousePos);
       const previousDiff = closestDH.diff;
       if (diff <= 20 && previousDiff > diff) {
-        return { dogHouse, diff };
+        return { doghouse, diff };
       }
       return closestDH;
     },
-    { dogHouse: null, diff: 99999 }
+    { doghouse: null, diff: 99999 }
   );
 
-  return closestDogHouse.dogHouse;
+  return closestDogHouse.doghouse;
 };

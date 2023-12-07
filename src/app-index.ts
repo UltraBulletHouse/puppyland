@@ -13,6 +13,7 @@ import { UserInfo } from './types/userInfo';
 import { apiCall } from './utils/apiUtils';
 import { UserFirebase, auth } from './utils/firebase';
 import { router } from './utils/router';
+import { USER_INFO } from './constants/apiConstants';
 
 setBasePath(import.meta.env.BASE_URL + 'shoelace/');
 
@@ -35,9 +36,9 @@ export class AppIndex extends LitElement {
         this.userFirebase = user;
 
         const accesToken = await user.getIdToken();
-        const userInfo: UserInfo = await apiCall(accesToken).get('User');
+        const userInfo: UserInfo = await apiCall(accesToken).get(USER_INFO);
         this.userInfo = userInfo;
-        console.log('UserInfo',userInfo);
+        console.log('UserInfo', userInfo);
 
         router.navigate('map-view');
       } else {
