@@ -2,7 +2,6 @@ export interface NearDoghousesResponse {
   doghousesList: Doghouse[];
 }
 
-
 export interface Doghouse {
   id: string;
   userId: string;
