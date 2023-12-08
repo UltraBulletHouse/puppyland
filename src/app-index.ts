@@ -43,12 +43,11 @@ export class AppIndex extends LitElement {
   firstUpdated() {
     auth.onAuthStateChanged(async (userFirebase) => {
       if (userFirebase) {
-        // this.userFirebase = userFirebase;
-
         const accessToken = await userFirebase.getIdToken();
         const userInfo: UserInfo = await apiCall(accessToken).get(API_USER_INFO);
         // console.log('User', userInfo,userFirebase);
-
+        
+        // this.userFirebase = userFirebase;
         this.userInfo = userInfo;
         this.accessToken = accessToken;
         this.view = Views.MAP_VIEW;
@@ -68,7 +67,7 @@ export class AppIndex extends LitElement {
     switch (this.view) {
       case Views.SINGIN_VIEW: {
         import('./views/app-signin-view');
-        return html`<app-sign-view></app-sign-view>`;
+        return html`<app-signin-view></app-signin-view>`;
       }
       case Views.MAP_VIEW: {
         import('./views/app-map-view');
