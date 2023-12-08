@@ -6,23 +6,34 @@ import { customElement, property } from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 
-import { userFirebaseContext } from './contexts/userFirebaseContext';
+import { USER_INFO } from './constants/apiConstants';
+import { Views } from './constants/viewsConstants';
+import { accessTokenContext } from './contexts/userFirebaseContext';
 import { userInfoContext } from './contexts/userInfoContext';
+import { viewsContext } from './contexts/viewsContext';
 import './styles/global.css';
 import { UserInfo } from './types/userInfo';
 import { apiCall } from './utils/apiUtils';
-import { UserFirebase, auth } from './utils/firebase';
-import { router } from './utils/router';
-import { USER_INFO } from './constants/apiConstants';
+import { auth } from './utils/firebase';
 
 setBasePath(import.meta.env.BASE_URL + 'shoelace/');
 
 @customElement('app-index')
 export class AppIndex extends LitElement {
-  /* UserFirebase context */
-  @provide({ context: userFirebaseContext })
+  /* Views context */
+  @provide({ context: viewsContext })
   @property({ attribute: false })
-  userFirebase: UserFirebase = null;
+  view: Views = Views.SINGIN_VIEW;
+
+  /* UserFirebase context */
+  // @provide({ context: userFirebaseContext })
+  // @property({ attribute: false })
+  // userFirebase: UserFirebase = null;
+
+  /* accessTokenContext context */
+  @provide({ context: accessTokenContext })
+  @property({ attribute: false })
+  accessToken: string | null = null;
 
   /* UserInfo context */
   @provide({ context: userInfoContext })
@@ -30,27 +41,19 @@ export class AppIndex extends LitElement {
   userInfo: UserInfo | null = null;
 
   firstUpdated() {
-    auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        console.log('UserFirebase', user);
-        this.userFirebase = user;
+    auth.onAuthStateChanged(async (userFirebase) => {
+      if (userFirebase) {
+        // this.userFirebase = userFirebase;
 
-        const accesToken = await user.getIdToken();
-        const userInfo: UserInfo = await apiCall(accesToken).get(USER_INFO);
+        const accessToken = await userFirebase.getIdToken();
+        const userInfo: UserInfo = await apiCall(accessToken).get(USER_INFO);
+        // console.log('User', userInfo,userFirebase);
+
         this.userInfo = userInfo;
-        console.log('UserInfo', userInfo);
-
-        router.navigate('map-view');
+        this.accessToken = accessToken;
+        this.view = Views.MAP_VIEW;
       } else {
-        router.navigate('');
-      }
-    });
-
-    router.addEventListener('route-changed', () => {
-      if ('startViewTransition' in document) {
-        (document as any).startViewTransition(() => this.requestUpdate());
-      } else {
-        this.requestUpdate();
+        console.log('NO USER');
       }
     });
   }
@@ -60,6 +63,19 @@ export class AppIndex extends LitElement {
   }
 
   render() {
-    return html` <div>${router.render()}</div>`;
+    console.log('RENDER VIEW===============', this.view);
+
+    switch (this.view) {
+      case Views.SINGIN_VIEW: {
+        import('./views/app-signin-view');
+        return html`<app-sign-view></app-sign-view>`;
+      }
+      case Views.MAP_VIEW: {
+        import('./views/app-map-view');
+        return html`<app-map-view></app-map-view>`;
+      }
+      default:
+        return html`<div>DEFUALT</div>`;
+    }
   }
 }

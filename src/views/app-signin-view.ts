@@ -3,7 +3,6 @@ import { customElement } from 'lit/decorators.js';
 
 import '../components/app-firebase';
 import { styles } from '../styles/shared-styles';
-import { resolveRouterPath } from '../utils/router';
 
 @customElement('app-signin-view')
 export class AppSignin extends LitElement {
@@ -25,7 +24,7 @@ export class AppSignin extends LitElement {
       <main>
         <div id="container">
           <app-firebase></app-firebase>
-          <sl-button href="${resolveRouterPath('map-view')}" pill>Visit as guest</sl-button>
+          <sl-button pill>Visit as guest</sl-button>
         </div>
       </main>
     `;

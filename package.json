@@ -18,13 +18,11 @@
   "dependencies": {
     "@lit/context": "^1.1.0",
     "@shoelace-style/shoelace": "^2.4.0",
-    "@thepassle/app-tools": "^0.9.9",
     "axios": "^1.6.2",
     "firebase": "^10.6.0",
     "firebaseui": "^6.1.0",
     "leaflet": "^1.9.4",
     "lit": "^2.7.2",
-    "urlpattern-polyfill": "^7.0.0",
     "workbox-build": "^6.5.2",
     "workbox-core": "^6.5.2",
     "workbox-precaching": "^6.5.2"

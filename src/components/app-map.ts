@@ -1,20 +1,21 @@
 import { consume } from '@lit/context';
 import L from 'leaflet';
-import { LitElement, PropertyValues, css, html } from 'lit';
+import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
-import { userFirebaseContext } from '../contexts/userFirebaseContext';
+import { DOGHOUSES_NEAR_USER, DOGHOUSE_ATTACK, DOGHOUSE_CREATE } from '../constants/apiConstants';
+import { accessTokenContext } from '../contexts/userFirebaseContext';
+import { userInfoContext } from '../contexts/userInfoContext';
 import { styles } from '../styles/shared-styles';
 import { Doghouse } from '../types/doghouse';
+import { UserInfo } from '../types/userInfo';
 import { apiCall } from '../utils/apiUtils';
-import { UserFirebase } from '../utils/firebase';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
 import {
   generateDoghouseIcon,
   generatePulsatingMarker,
   getClosestDoghouse,
 } from '../utils/mapUtils';
-import { DOGHOUSES_NEAR_USER, DOGHOUSE_ATTACK, DOGHOUSE_CREATE } from '../constants/apiConstants';
 
 @customElement('app-map')
 export class AppMap extends LitElement {
@@ -73,9 +74,13 @@ export class AppMap extends LitElement {
     `,
   ];
 
-  @consume({ context: userFirebaseContext, subscribe: true })
+  @consume({ context: accessTokenContext })
   @property({ attribute: false })
-  userFirebase?: UserFirebase;
+  accessToken: string | null = null;
+
+  @consume({ context: userInfoContext, subscribe: true })
+  @property({ attribute: false })
+  userInfo: UserInfo | null = null;
 
   @state()
   lat?: number;
@@ -148,20 +153,22 @@ export class AppMap extends LitElement {
 
   async setDoghousesMarkers() {
     if (!this.map || !this.lat || !this.lng) return;
-    const accesToken = await this.userFirebase?.getIdToken();
-    if (!accesToken) return;
-    const { data: {doghousesList} } = await apiCall(accesToken).get(DOGHOUSES_NEAR_USER, {
+    if (!this.accessToken) return;
+    const {
+      data: { doghousesList },
+    } = await apiCall(this.accessToken).get(DOGHOUSES_NEAR_USER, {
       params: {
         lat: this.lat.toString(),
         lng: this.lng.toString(),
       },
     });
 
-    console.log('doghousesList', doghousesList);
+    console.log('MAP-VIEW-DoghousesList', doghousesList);
     if (!doghousesList) return;
     this.doghouses = doghousesList;
     this.closestDoghouse = getClosestDoghouse(this.lat, this.lng, doghousesList);
 
+    console.log('MAP-VIEW-UserInfo', this.userInfo);
     doghousesList.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
       const { name, lat, lng, hp, maxHp } = doghouse;
@@ -173,10 +180,9 @@ export class AppMap extends LitElement {
   }
 
   async addDoghouse() {
-    const accesToken = await this.userFirebase?.getIdToken();
-    if (!accesToken) return;
+    if (!this.accessToken) return;
 
-    const finished = await apiCall(accesToken).post(DOGHOUSE_CREATE, {
+    const finished = await apiCall(this.accessToken).post(DOGHOUSE_CREATE, {
       lat: this.lat,
       lng: this.lng,
     });
@@ -188,24 +194,24 @@ export class AppMap extends LitElement {
 
   async attackDoghouse() {
     if (!this.lat || !this.lng || !this.doghouses) return;
-    const accesToken = await this.userFirebase?.getIdToken();
-    if (!accesToken) return;
+    if (!this.accessToken) return;
 
     const closestDoghouse = getClosestDoghouse(this.lat, this.lng, this.doghouses);
     if (!closestDoghouse) return;
-    await apiCall(accesToken).patch(DOGHOUSE_ATTACK, {
+    await apiCall(this.accessToken).patch(DOGHOUSE_ATTACK, {
       doghouseId: closestDoghouse.id,
     });
   }
 
-  async updated(changedProperties: PropertyValues<this>) {
-    const userFirebaseChanged = changedProperties.has('userFirebase');
-    const accesToken = await this.userFirebase?.getIdToken();
-
-    if (userFirebaseChanged && accesToken && !this.doghouses) {
-      this.setDoghousesMarkers();
-    }
-  }
+  // updated(changedProperties: PropertyValues<this>) {
+  // const userFirebaseChanged = changedProperties.has('accessToken');
+  // const accessToken = this.userFirebase?.getIdToken();
+  // console.log(!!this.accessToken);
+  // if (userFirebaseChanged && this.userInfo && accessToken && !this.doghouses) {
+  // if (this.userInfo && this.accessToken && !this.doghouses) {
+  //   this.setDoghousesMarkers();
+  // }
+  // }
 
   connectedCallback() {
     super.connectedCallback();
