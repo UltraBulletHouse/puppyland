@@ -6,7 +6,7 @@ import { customElement, property } from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 
-import { USER_INFO } from './constants/apiConstants';
+import { API_USER_INFO } from './constants/apiConstants';
 import { Views } from './constants/viewsConstants';
 import { accessTokenContext } from './contexts/userFirebaseContext';
 import { userInfoContext } from './contexts/userInfoContext';
@@ -46,7 +46,7 @@ export class AppIndex extends LitElement {
         // this.userFirebase = userFirebase;
 
         const accessToken = await userFirebase.getIdToken();
-        const userInfo: UserInfo = await apiCall(accessToken).get(USER_INFO);
+        const userInfo: UserInfo = await apiCall(accessToken).get(API_USER_INFO);
         // console.log('User', userInfo,userFirebase);
 
         this.userInfo = userInfo;
@@ -75,7 +75,7 @@ export class AppIndex extends LitElement {
         return html`<app-map-view></app-map-view>`;
       }
       default:
-        return html`<div>DEFUALT</div>`;
+        return html`<div><sl-spinner style="font-size: 3rem;"></sl-spinner></div>`;
     }
   }
 }

@@ -3,7 +3,11 @@ import L from 'leaflet';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
-import { DOGHOUSES_NEAR_USER, DOGHOUSE_ATTACK, DOGHOUSE_CREATE } from '../constants/apiConstants';
+import {
+  API_DOGHOUSES_NEAR_USER,
+  API_DOGHOUSE_ATTACK,
+  API_DOGHOUSE_CREATE,
+} from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
 import { styles } from '../styles/shared-styles';
@@ -156,7 +160,7 @@ export class AppMap extends LitElement {
     if (!this.accessToken) return;
     const {
       data: { doghousesList },
-    } = await apiCall(this.accessToken).get(DOGHOUSES_NEAR_USER, {
+    } = await apiCall(this.accessToken).get(API_DOGHOUSES_NEAR_USER, {
       params: {
         lat: this.lat.toString(),
         lng: this.lng.toString(),
@@ -182,7 +186,7 @@ export class AppMap extends LitElement {
   async addDoghouse() {
     if (!this.accessToken) return;
 
-    const finished = await apiCall(this.accessToken).post(DOGHOUSE_CREATE, {
+    const finished = await apiCall(this.accessToken).post(API_DOGHOUSE_CREATE, {
       lat: this.lat,
       lng: this.lng,
     });
@@ -198,7 +202,7 @@ export class AppMap extends LitElement {
 
     const closestDoghouse = getClosestDoghouse(this.lat, this.lng, this.doghouses);
     if (!closestDoghouse) return;
-    await apiCall(this.accessToken).patch(DOGHOUSE_ATTACK, {
+    await apiCall(this.accessToken).patch(API_DOGHOUSE_ATTACK, {
       doghouseId: closestDoghouse.id,
     });
   }

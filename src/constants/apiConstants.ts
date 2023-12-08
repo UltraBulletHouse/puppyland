@@ -1,7 +1,7 @@
 /* USER */
-export const USER_INFO = 'User';
-export const DOGHOUSES_NEAR_USER = 'Doghouses/NearUser';
+export const API_USER_INFO = 'User';
+export const API_DOGHOUSES_NEAR_USER = 'Doghouses/NearUser';
 
 /* DOGHOUSE */
-export const DOGHOUSE_CREATE = 'User/Doghouse/Create';
-export const DOGHOUSE_ATTACK = 'User/Doghouse/Attack';
+export const API_DOGHOUSE_CREATE = 'User/Doghouse/Create';
+export const API_DOGHOUSE_ATTACK = 'User/Doghouse/Attack';
