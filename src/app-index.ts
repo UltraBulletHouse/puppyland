@@ -3,6 +3,7 @@ import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.j
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
+/* Common components loaded here */
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
@@ -39,15 +40,15 @@ export class AppIndex extends LitElement {
     `,
   ];
 
-  /* Views context */
-  @provide({ context: viewsContext })
-  @property({ attribute: false })
-  view: View = View.SINGIN_VIEW;
-
   /* UserFirebase context */
   // @provide({ context: userFirebaseContext })
   // @property({ attribute: false })
   // userFirebase: UserFirebase = null;
+
+  /* Views context */
+  @provide({ context: viewsContext })
+  @property({ attribute: false })
+  view: View = View.SIGNIN_VIEW;
 
   /* AccessToken context */
   @provide({ context: accessTokenContext })
@@ -58,6 +59,11 @@ export class AppIndex extends LitElement {
   @provide({ context: userInfoContext })
   @property({ attribute: false })
   userInfo: UserInfo | null = null;
+
+  changeView(event: CustomEvent<View>) {
+    // console.log(event);
+    this.view = event.detail;
+  }
 
   firstUpdated() {
     auth.onAuthStateChanged(async (userFirebase) => {
@@ -78,13 +84,26 @@ export class AppIndex extends LitElement {
 
   renderContent(view: View) {
     switch (view) {
-      case View.SINGIN_VIEW: {
+      case View.SIGNIN_VIEW: {
         import('./views/app-signin-view');
         return html`<app-signin-view></app-signin-view>`;
       }
       case View.MAP_VIEW: {
         import('./views/app-map-view');
         return html`<app-map-view></app-map-view>`;
+      }
+      case View.USER_VIEW: {
+        import('./views/app-user-view');
+        return html`<app-user-view></app-user-view>`;
+      }
+      case View.SHOP_VIEW: {
+        return html`<div>SHOP VIEW</div>`;
+      }
+      case View.DOG_VIEW: {
+        return html`<div>DOG VIEW</div>`;
+      }
+      case View.DOGHOUSE_VIEW: {
+        return html`<div>DOGHOUSE VIEW</div>`;
       }
       default: {
         return html`<div><sl-spinner style="font-size: 3rem;"></sl-spinner></div>`;
@@ -93,13 +112,15 @@ export class AppIndex extends LitElement {
   }
 
   render() {
-    console.log('RENDER VIEW===============', this.view);
+    // console.log('RENDER VIEW===============', this.view);
 
-    const isSigninView = this.view === View.SINGIN_VIEW;
+    const isSigninView = this.view === View.SIGNIN_VIEW;
 
-    return html` <div id="main-container">
-      <div id="content">${this.renderContent(this.view)}</div>
-      <app-footer ?hidden=${isSigninView}></app-footer>
-    </div>`;
+    return html`
+      <div id="main-container" @change-view=${this.changeView}>
+        <div id="content">${this.renderContent(this.view)}</div>
+        <app-footer ?hidden=${isSigninView}></app-footer>
+      </div>
+    `;
   }
 }

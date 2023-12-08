@@ -78,7 +78,7 @@ export class AppMap extends LitElement {
     `,
   ];
 
-  @consume({ context: accessTokenContext })
+  @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;
 

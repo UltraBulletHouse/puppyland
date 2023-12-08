@@ -1,7 +1,10 @@
+import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
+import { viewsContext } from '../contexts/viewsContext';
 import { sharedStyles } from '../styles/shared-styles';
+import { View } from '../types/view';
 
 @customElement('app-footer')
 export class AppFooter extends LitElement {
@@ -29,24 +32,61 @@ export class AppFooter extends LitElement {
       .btn-icon {
         font-size: 24px;
       }
-      .btn-icon--big {
+      .btn-icon-big {
         font-size: 32px;
+      }
+      .btn-icon--active {
+        color: var(--sl-color-primary-500);
       }
     `,
   ];
 
+  @consume({ context: viewsContext, subscribe: true })
+  @property({ attribute: false })
+  view: View = View.SIGNIN_VIEW;
+
+  changeView(view: View) {
+    const options: CustomEventInit<View> = {
+      detail: view,
+      bubbles: true,
+    };
+    this.dispatchEvent(new CustomEvent<View>('change-view', options));
+  }
+
   render() {
+    // console.log('FOOTER', this.view);
     return html`
       <footer id="footer">
         <div id="container">
-          <sl-icon-button name="piggy-bank" class="btn-icon"></sl-icon-button>
-          <sl-icon-button name="house-heart" class="btn-icon"></sl-icon-button>
+          <sl-icon-button
+            name="piggy-bank"
+            class="btn-icon ${this.view === View.DOG_VIEW && 'btn-icon--active'}"
+            @click="${() => this.changeView(View.DOG_VIEW)}"
+          ></sl-icon-button>
+          <sl-icon-button
+            name="house-heart"
+            class="btn-icon ${this.view === View.DOGHOUSE_VIEW && 'btn-icon--active'}"
+            @click="${() => this.changeView(View.DOGHOUSE_VIEW)}"
+          ></sl-icon-button>
           <div>
-            <sl-icon-button name="globe-americas" class="btn-icon--big"></sl-icon-button>
+            <sl-icon-button
+              name="globe-americas"
+              class="btn-icon-big ${this.view === View.MAP_VIEW && 'btn-icon--active'}"
+              @click="${() => this.changeView(View.MAP_VIEW)}"
+            ></sl-icon-button>
             <div id="wave"></div>
           </div>
-          <sl-icon-button name="cart" class="btn-icon"> </sl-icon-button>
-          <sl-icon-button name="person-circle" class="btn-icon"></sl-icon-button>
+          <sl-icon-button
+            name="cart"
+            class="btn-icon ${this.view === View.SHOP_VIEW && 'btn-icon--active'}"
+            @click="${() => this.changeView(View.SHOP_VIEW)}"
+          >
+          </sl-icon-button>
+          <sl-icon-button
+            name="person-circle"
+            class="btn-icon ${this.view === View.USER_VIEW && 'btn-icon--active'}"
+            @click="${() => this.changeView(View.USER_VIEW)}"
+          ></sl-icon-button>
         </div>
       </footer>
     `;
