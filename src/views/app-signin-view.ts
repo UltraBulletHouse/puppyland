@@ -2,12 +2,12 @@ import { LitElement, css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 import '../components/app-firebase';
-import { styles } from '../styles/shared-styles';
+import { sharedStyles } from '../styles/shared-styles';
 
 @customElement('app-signin-view')
 export class AppSignin extends LitElement {
   static styles = [
-    styles,
+    sharedStyles,
     css`
       #container {
         display: flex;

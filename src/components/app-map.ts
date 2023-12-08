@@ -10,7 +10,7 @@ import {
 } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
-import { styles } from '../styles/shared-styles';
+import { sharedStyles } from '../styles/shared-styles';
 import { Doghouse } from '../types/doghouse';
 import { UserInfo } from '../types/userInfo';
 import { apiCall } from '../utils/apiUtils';
@@ -24,7 +24,7 @@ import {
 @customElement('app-map')
 export class AppMap extends LitElement {
   static styles = [
-    styles,
+    sharedStyles,
     css`
       #container {
         height: 100%;

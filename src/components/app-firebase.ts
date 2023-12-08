@@ -33,7 +33,7 @@ export class AppFirebase extends LitElement {
     // this.uiFirebase.start(container, { callbacks, privacyPolicyUrl, signInFlow, signInOptions, tosUrl });
     const uiConfig: firebaseui.auth.Config = {
       popupMode: true,
-      // signInSuccessUrl: self.location.href,
+      signInSuccessUrl: self.location.href,
       signInOptions: [firebase.auth.GoogleAuthProvider.GOOGLE_SIGN_IN_METHOD],
     };
     this.uiFirebase.start(container, uiConfig);

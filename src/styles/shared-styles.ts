@@ -1,14 +1,6 @@
 import { css } from 'lit';
 
-export const styles = css`
-  main {
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
-
+export const sharedStyles = css`
   h1,
   h2,
   h3,
