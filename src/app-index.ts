@@ -2,6 +2,7 @@ import { provide } from '@lit/context';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { cache } from 'lit/directives/cache.js';
 
 /* Common components loaded here */
 import '@shoelace-style/shoelace/dist/components/button/button.js';
@@ -118,7 +119,7 @@ export class AppIndex extends LitElement {
 
     return html`
       <div id="main-container" @change-view=${this.changeView}>
-        <div id="content">${this.renderContent(this.view)}</div>
+        <div id="content">${cache(this.renderContent(this.view))}</div>
         <app-footer ?hidden=${isSigninView}></app-footer>
       </div>
     `;

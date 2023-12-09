@@ -36,7 +36,7 @@ export class AppFooter extends LitElement {
         font-size: 32px;
       }
       .btn-icon--active {
-        color: var(--sl-color-primary-500);
+        color: #37a26e;
       }
     `,
   ];

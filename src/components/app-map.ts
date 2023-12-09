@@ -130,13 +130,14 @@ export class AppMap extends LitElement {
       const lng = pos.coords.longitude;
       this.lat = lat;
       this.lng = lng;
-
       if (!this.map) return;
 
       if (this.userPosMarker) {
         this.map.removeLayer(this.userPosMarker);
       }
-      const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--sl-color-primary-600)');
+      // this.map.setView([lat, lng], 17);
+
+      const pulsatingIcon = generatePulsatingMarker(L, 10, '#2e96f8');
       this.userPosMarker = L.marker([lat, lng], {
         icon: pulsatingIcon,
         zIndexOffset: 999999,

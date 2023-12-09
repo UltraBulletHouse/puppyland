@@ -1,7 +1,7 @@
 export const watchPositionOptions: PositionOptions = {
   enableHighAccuracy: true,
   // Get high accuracy reading, if available (default false)
-  timeout: 10000,
+  timeout: 5000,
   // Time to return a position successfully before error (default infinity)
   maximumAge: 5000,
   // Milliseconds for which it is acceptable to use cached position (default 0)
