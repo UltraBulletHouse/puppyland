@@ -12,7 +12,7 @@ import './components/app-footer';
 import { API_USER_INFO } from './constants/apiConstants';
 import { accessTokenContext } from './contexts/userFirebaseContext';
 import { userInfoContext } from './contexts/userInfoContext';
-import { viewsContext } from './contexts/viewsContext';
+import { viewContext } from './contexts/viewContext';
 import './styles/global.css';
 import { sharedStyles } from './styles/shared-styles';
 import { UserInfo } from './types/userInfo';
@@ -46,7 +46,7 @@ export class AppIndex extends LitElement {
   // userFirebase: UserFirebase = null;
 
   /* Views context */
-  @provide({ context: viewsContext })
+  @provide({ context: viewContext })
   @property({ attribute: false })
   view: View = View.SIGNIN_VIEW;
 

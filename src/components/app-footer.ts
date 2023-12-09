@@ -2,7 +2,7 @@ import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import { viewsContext } from '../contexts/viewsContext';
+import { viewContext } from '../contexts/viewContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { View } from '../types/view';
 
@@ -41,7 +41,7 @@ export class AppFooter extends LitElement {
     `,
   ];
 
-  @consume({ context: viewsContext, subscribe: true })
+  @consume({ context: viewContext, subscribe: true })
   @property({ attribute: false })
   view: View = View.SIGNIN_VIEW;
 
