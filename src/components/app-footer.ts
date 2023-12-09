@@ -23,17 +23,17 @@ export class AppFooter extends LitElement {
       }
       #wave {
         height: 12px;
-        width: 48px;
+        width: 50px;
         background: rgb(255, 255, 255);
         position: absolute;
         top: -4px;
         border-radius: 100%;
       }
       .btn-icon {
-        font-size: 24px;
+        font-size: 26px;
       }
       .btn-icon-big {
-        font-size: 32px;
+        font-size: 34px;
       }
       .btn-icon--active {
         color: #37a26e;

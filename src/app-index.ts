@@ -70,11 +70,10 @@ export class AppIndex extends LitElement {
     auth.onAuthStateChanged(async (userFirebase) => {
       if (userFirebase) {
         const accessToken = await userFirebase.getIdToken();
-        const userInfo: UserInfo = await apiCall(accessToken).get(API_USER_INFO);
-        // console.log('User', userInfo,userFirebase);
+        const userInfoResponse = await apiCall(accessToken).get<UserInfo>(API_USER_INFO);
 
         // this.userFirebase = userFirebase;
-        this.userInfo = userInfo;
+        this.userInfo = userInfoResponse.data;
         this.accessToken = accessToken;
         this.view = View.MAP_VIEW;
       } else {

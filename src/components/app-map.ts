@@ -173,12 +173,12 @@ export class AppMap extends LitElement {
     this.doghouses = doghousesList;
     this.closestDoghouse = getClosestDoghouse(this.lat, this.lng, doghousesList);
 
-    console.log('MAP-VIEW-UserInfo', this.userInfo);
+    const userInfoId = this.userInfo?.id;
     doghousesList.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
-      const { name, lat, lng, hp, maxHp } = doghouse;
+      const { name, lat, lng, hp, maxHp, userId } = doghouse;
 
-      L.marker([lat, lng], { icon: generateDoghouseIcon() })
+      L.marker([lat, lng], { icon: generateDoghouseIcon(userId === userInfoId) })
         .bindPopup(`${name} Hp: ${hp}/${maxHp}`)
         .addTo(this.map);
     });

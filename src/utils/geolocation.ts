@@ -24,11 +24,15 @@ export const watchPositionError = (err: GeolocationPositionError) => {
 };
 
 export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) => {
-  navigator.geolocation.watchPosition(
-    watchUserPositionSuccess,
-    watchPositionError,
-    watchPositionOptions
-  );
+  if ('geolocation' in navigator) {
+    navigator.geolocation.watchPosition(
+      watchUserPositionSuccess,
+      watchPositionError,
+      watchPositionOptions
+    );
+  } else {
+    console.log('No geolocation access');
+  }
 };
 
 export const getUserPostion = (getUserPositionSuccess: PositionCallback) => {
@@ -39,6 +43,6 @@ export const getUserPostion = (getUserPositionSuccess: PositionCallback) => {
       watchPositionOptions
     );
   } else {
-    console.log('Please allow geolocation access');
+    console.log('No geolocation access');
   }
 };

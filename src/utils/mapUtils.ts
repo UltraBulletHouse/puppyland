@@ -16,7 +16,7 @@ export const generatePulsatingMarker = (L: any, radius: number, color: string) =
   });
 };
 
-export const generateDoghouseIcon = () => {
+export const generateDoghouseIcon = (isOwn?: boolean) => {
   const cssStyleWrapper = `
     display: flex;
     justify-content: center;
@@ -30,7 +30,7 @@ export const generateDoghouseIcon = () => {
   `;
   const cssStyleIcon = `
     font-size: 14px;
-    color: var(--sl-color-orange-900);
+    color: ${isOwn ? 'var(--sl-color-green-700)' : 'var(--sl-color-orange-900)'};
   `;
 
   const doghouseIcon = L.divIcon({
