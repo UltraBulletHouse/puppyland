@@ -2,8 +2,8 @@ export interface UserInfo {
   id: string;
   email: string;
   name: string;
-  avaliableDogHouses: number;
-  avaliableAttacks: number;
+  availableDoghouses: number;
+  availableAttacks: number;
   ownedDogHouses: number;
 }
 

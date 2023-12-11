@@ -61,9 +61,12 @@ export class AppIndex extends LitElement {
   @property({ attribute: false })
   userInfo: UserInfo | null = null;
 
-  changeView(event: CustomEvent<View>) {
-    // console.log(event);
+  updateView(event: CustomEvent<View>) {
     this.view = event.detail;
+  }
+
+  updateUserInfo(event: CustomEvent<UserInfo>) {
+    this.userInfo = event.detail;
   }
 
   firstUpdated() {
@@ -72,7 +75,6 @@ export class AppIndex extends LitElement {
         const accessToken = await userFirebase.getIdToken();
         const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
 
-        // this.userFirebase = userFirebase;
         this.userInfo = userInfoResponse.data.user;
         this.accessToken = accessToken;
         this.view = View.MAP_VIEW;
@@ -90,7 +92,7 @@ export class AppIndex extends LitElement {
       }
       case View.MAP_VIEW: {
         import('./views/app-map-view');
-        return html`<app-map-view></app-map-view>`;
+        return html`<app-map-view @updateUserInfo=${this.updateUserInfo}></app-map-view>`;
       }
       case View.USER_VIEW: {
         import('./views/app-user-view');
@@ -117,7 +119,7 @@ export class AppIndex extends LitElement {
     const isSigninView = this.view === View.SIGNIN_VIEW;
 
     return html`
-      <div id="main-container" @change-view=${this.changeView}>
+      <div id="main-container">
         <div id="content">${cache(this.renderContent(this.view))}</div>
         <app-footer ?hidden=${isSigninView}></app-footer>
       </div>

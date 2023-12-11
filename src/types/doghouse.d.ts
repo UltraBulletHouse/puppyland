@@ -1,3 +1,5 @@
+import { UserInfo } from './userInfo';
+
 export interface NearDoghousesResponse {
   doghousesList: Doghouse[];
 }
@@ -15,4 +17,14 @@ export interface Doghouse {
 export interface ClosestDoghouse {
   doghouse: Doghouse | null;
   diff: number;
+}
+
+export interface CreateDoghouseResponse {
+  id: string;
+  user: UserInfo;
+  name: string;
+  hp: number;
+  maxHp: number;
+  lng: number;
+  lat: number;
 }

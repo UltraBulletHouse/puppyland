@@ -11,7 +11,7 @@ import {
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { Doghouse } from '../types/doghouse';
+import { CreateDoghouseResponse, Doghouse } from '../types/doghouse';
 import { UserInfo } from '../types/userInfo';
 import { apiCall } from '../utils/apiUtils';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
@@ -62,6 +62,11 @@ export class AppMap extends LitElement {
         border-radius: 50%;
         cursor: pointer;
         animation: pulse 4s infinite;
+      }
+      #add-doghouse-counter {
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
       }
 
       @keyframes pulse {
@@ -187,12 +192,22 @@ export class AppMap extends LitElement {
   async addDoghouse() {
     if (!this.accessToken) return;
 
-    const finished = await apiCall(this.accessToken).post(API_DOGHOUSE_CREATE, {
-      lat: this.lat,
-      lng: this.lng,
-    });
+    const createDoghouseResponse = await apiCall(this.accessToken).post<CreateDoghouseResponse>(
+      API_DOGHOUSE_CREATE,
+      {
+        lat: this.lat,
+        lng: this.lng,
+      }
+    );
 
-    if (finished.status === 200) {
+    const options: CustomEventInit<UserInfo> = {
+      detail: createDoghouseResponse.data.user,
+      bubbles: true,
+      composed: true,
+    };
+    this.dispatchEvent(new CustomEvent<UserInfo>('updateUserInfo', options));
+
+    if (createDoghouseResponse.status === 200) {
       this.setDoghousesMarkers();
     }
   }
@@ -255,6 +270,7 @@ export class AppMap extends LitElement {
             </sl-button>
           </div>
           <div id="add-doghouse" @click=${this.addDoghouse}>
+            <div id="add-doghouse-counter">${this.userInfo?.availableDoghouses}</div>
             <sl-button variant="default" size="large" circle>
               <sl-icon name="house-add"></sl-icon>
             </sl-button>
