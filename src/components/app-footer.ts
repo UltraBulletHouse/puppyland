@@ -49,7 +49,6 @@ export class AppFooter extends LitElement {
     const options: CustomEventInit<View> = {
       detail: view,
       bubbles: true,
-      composed: true,
     };
     this.dispatchEvent(new CustomEvent<View>('updateView', options));
   }

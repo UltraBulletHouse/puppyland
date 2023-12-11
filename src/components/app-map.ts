@@ -11,7 +11,7 @@ import {
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { CreateDoghouseResponse, Doghouse } from '../types/doghouse';
+import { AttackDoghouseResponse, CreateDoghouseResponse, Doghouse } from '../types/doghouse';
 import { UserInfo } from '../types/userInfo';
 import { apiCall } from '../utils/apiUtils';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
@@ -37,9 +37,10 @@ export class AppMap extends LitElement {
       #controls {
         position: relative;
         display: flex;
+        align-items: end;
         justify-content: space-between;
         height: 60px;
-        bottom: 70px;
+        bottom: 85px;
         padding: 0 10px;
         z-index: 9999;
       }
@@ -63,10 +64,12 @@ export class AppMap extends LitElement {
         cursor: pointer;
         animation: pulse 4s infinite;
       }
-      #add-doghouse-counter {
+      .control-counter {
         font-size: 16px;
         display: flex;
         justify-content: center;
+        background: #ffffff;
+        border-radius: 15px;
       }
 
       @keyframes pulse {
@@ -161,6 +164,15 @@ export class AppMap extends LitElement {
     }
   }
 
+  updateUserInfo(user: UserInfo) {
+    const options: CustomEventInit<UserInfo> = {
+      detail: user,
+      bubbles: true,
+      composed: true,
+    };
+    this.dispatchEvent(new CustomEvent<UserInfo>('updateUserInfo', options));
+  }
+
   async setDoghousesMarkers() {
     if (!this.map || !this.lat || !this.lng) return;
     if (!this.accessToken) return;
@@ -200,13 +212,10 @@ export class AppMap extends LitElement {
       }
     );
 
-    const options: CustomEventInit<UserInfo> = {
-      detail: createDoghouseResponse.data.user,
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent<UserInfo>('updateUserInfo', options));
-
+    const userInfoRes = createDoghouseResponse.data.user;
+    if (userInfoRes) {
+      this.updateUserInfo(userInfoRes);
+    }
     if (createDoghouseResponse.status === 200) {
       this.setDoghousesMarkers();
     }
@@ -220,20 +229,18 @@ export class AppMap extends LitElement {
     const closestDoghouse = getClosestDoghouse(this.lat, this.lng, this.doghouses, userInfoId);
 
     if (!closestDoghouse) return;
-    await apiCall(this.accessToken).patch(API_DOGHOUSE_ATTACK, {
-      doghouseId: closestDoghouse.id,
-    });
-  }
+    const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
+      API_DOGHOUSE_ATTACK,
+      {
+        doghouseId: closestDoghouse.id,
+      }
+    );
 
-  // updated(changedProperties: PropertyValues<this>) {
-  // const userFirebaseChanged = changedProperties.has('accessToken');
-  // const accessToken = this.userFirebase?.getIdToken();
-  // console.log(!!this.accessToken);
-  // if (userFirebaseChanged && this.userInfo && accessToken && !this.doghouses) {
-  // if (this.userInfo && this.accessToken && !this.doghouses) {
-  //   this.setDoghousesMarkers();
-  // }
-  // }
+    const userInfoRes = attackDoghouseResponse.data.user;
+    if (userInfoRes) {
+      this.updateUserInfo(userInfoRes);
+    }
+  }
 
   connectedCallback() {
     super.connectedCallback();
@@ -260,6 +267,7 @@ export class AppMap extends LitElement {
         <div id="map"></div>
         <div id="controls">
           <div id="attack-doghouse" @click=${this.attackDoghouse}>
+            <div class="control-counter">${this.userInfo?.availableAttacks ?? ''}</div>
             <sl-button variant="default" size="large" circle ?disabled=${!this.closestDoghouse}>
               <sl-icon name="lightning-charge"></sl-icon>
             </sl-button>
@@ -270,7 +278,7 @@ export class AppMap extends LitElement {
             </sl-button>
           </div>
           <div id="add-doghouse" @click=${this.addDoghouse}>
-            <div id="add-doghouse-counter">${this.userInfo?.availableDoghouses}</div>
+            <div class="control-counter">${this.userInfo?.availableDoghouses ?? ''}</div>
             <sl-button variant="default" size="large" circle>
               <sl-icon name="house-add"></sl-icon>
             </sl-button>
