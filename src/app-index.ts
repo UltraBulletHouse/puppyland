@@ -16,7 +16,7 @@ import { userInfoContext } from './contexts/userInfoContext';
 import { viewContext } from './contexts/viewContext';
 import './styles/global.css';
 import { sharedStyles } from './styles/shared-styles';
-import { UserInfo } from './types/userInfo';
+import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
 import { auth } from './utils/firebase';
@@ -70,10 +70,10 @@ export class AppIndex extends LitElement {
     auth.onAuthStateChanged(async (userFirebase) => {
       if (userFirebase) {
         const accessToken = await userFirebase.getIdToken();
-        const userInfoResponse = await apiCall(accessToken).get<UserInfo>(API_USER_INFO);
+        const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
 
         // this.userFirebase = userFirebase;
-        this.userInfo = userInfoResponse.data;
+        this.userInfo = userInfoResponse.data.user;
         this.accessToken = accessToken;
         this.view = View.MAP_VIEW;
       } else {

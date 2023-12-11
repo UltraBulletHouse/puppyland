@@ -6,3 +6,7 @@ export interface UserInfo {
   avaliableAttacks: number;
   ownedDogHouses: number;
 }
+
+export interface UserInfoResponse {
+  user: UserInfo;
+}
