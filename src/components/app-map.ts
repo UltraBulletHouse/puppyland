@@ -200,8 +200,10 @@ export class AppMap extends LitElement {
   async attackDoghouse() {
     if (!this.lat || !this.lng || !this.doghouses) return;
     if (!this.accessToken) return;
+    const userInfoId = this.userInfo?.id;
 
-    const closestDoghouse = getClosestDoghouse(this.lat, this.lng, this.doghouses);
+    const closestDoghouse = getClosestDoghouse(this.lat, this.lng, this.doghouses, userInfoId);
+
     if (!closestDoghouse) return;
     await apiCall(this.accessToken).patch(API_DOGHOUSE_ATTACK, {
       doghouseId: closestDoghouse.id,

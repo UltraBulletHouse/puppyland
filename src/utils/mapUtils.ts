@@ -44,7 +44,8 @@ export const generateDoghouseIcon = (isOwn?: boolean) => {
 export const getClosestDoghouse = (
   lat: number,
   lng: number,
-  doghouses?: Doghouse[]
+  doghouses?: Doghouse[],
+  userId?: string
 ): Doghouse | null => {
   if (!doghouses || doghouses?.length === 0) return null;
 
@@ -52,6 +53,8 @@ export const getClosestDoghouse = (
 
   const closestDogHouse = doghouses.reduce(
     (closestDH: ClosestDoghouse, doghouse) => {
+      if (userId === doghouse.userId) return closestDH;
+
       const doghousePos = new L.LatLng(doghouse.lat, doghouse.lng);
       const diff = userPos.distanceTo(doghousePos);
       const previousDiff = closestDH.diff;
