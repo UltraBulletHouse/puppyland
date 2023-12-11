@@ -121,7 +121,7 @@ export class AppIndex extends LitElement {
     return html`
       <div id="main-container">
         <div id="content">${cache(this.renderContent(this.view))}</div>
-        <app-footer ?hidden=${isSigninView}></app-footer>
+        <app-footer ?hidden=${isSigninView} @updateView=${this.updateView}></app-footer>
       </div>
     `;
   }
