@@ -34,19 +34,6 @@ export class AppMap extends LitElement {
         width: 100%;
         overflow: hidden;
       }
-      #controls {
-        position: relative;
-        display: flex;
-        align-items: end;
-        justify-content: space-between;
-        height: 60px;
-        bottom: 85px;
-        padding: 0 10px;
-        z-index: 9999;
-      }
-      #add-doghouse {
-        font-size: 32px;
-      }
       .leaflet-control-attribution.leaflet-control {
         pointer-events: none;
       }
@@ -57,6 +44,34 @@ export class AppMap extends LitElement {
       .leaflet-touch .leaflet-control-layers,
       .leaflet-touch .leaflet-bar {
         box-shadow: 0px 0px 12px 0px #0000002b;
+      }
+      #controls {
+        position: relative;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        height: 60px;
+        bottom: 85px;
+        padding: 0 10px;
+        z-index: 9999;
+      }
+      #add-doghouse-btn::part(base) {
+        border-color: var(--sl-color-green-300);
+      }
+      #add-doghouse-btn::part(base):hover {
+        border-color: var(--sl-color-green-300);
+      }
+      #add-doghouse-btn::part(base):active {
+        border-color: var(--sl-color-green-300);
+      }
+      #attack-doghouse-btn::part(base) {
+        border-color: var(--sl-color-red-300);
+      }
+      #attack-doghouse-btn::part(base):hover {
+        border-color: var(--sl-color-red-300);
+      }
+      #attack-doghouse-btn::part(base):active {
+        border-color: var(--sl-color-red-300);
       }
       #pulse {
         display: block;
@@ -152,7 +167,7 @@ export class AppMap extends LitElement {
       }).addTo(this.map);
 
       const userInfoId = this.userInfo?.id;
-      const closestDoghouse = getClosestDoghouse(lat, lng, this.doghouses,userInfoId);
+      const closestDoghouse = getClosestDoghouse(lat, lng, this.doghouses, userInfoId);
       this.closestDoghouse = closestDoghouse;
     };
 
@@ -191,7 +206,7 @@ export class AppMap extends LitElement {
     this.doghouses = doghousesList;
 
     const userInfoId = this.userInfo?.id;
-    this.closestDoghouse = getClosestDoghouse(this.lat, this.lng, doghousesList,userInfoId);
+    this.closestDoghouse = getClosestDoghouse(this.lat, this.lng, doghousesList, userInfoId);
 
     doghousesList.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
@@ -226,7 +241,7 @@ export class AppMap extends LitElement {
   async attackDoghouse() {
     if (!this.lat || !this.lng || !this.doghouses) return;
     if (!this.accessToken) return;
-    
+
     const userInfoId = this.userInfo?.id;
     const closestDoghouse = getClosestDoghouse(this.lat, this.lng, this.doghouses, userInfoId);
 
@@ -270,7 +285,13 @@ export class AppMap extends LitElement {
         <div id="controls">
           <div id="attack-doghouse" @click=${this.attackDoghouse}>
             <div class="control-counter">${this.userInfo?.availableAttacks ?? ''}</div>
-            <sl-button variant="default" size="large" circle ?disabled=${!this.closestDoghouse}>
+            <sl-button
+              id="attack-doghouse-btn"
+              variant="default"
+              size="large"
+              circle
+              ?disabled=${!this.closestDoghouse}
+            >
               <sl-icon name="lightning-charge"></sl-icon>
             </sl-button>
           </div>
@@ -281,7 +302,13 @@ export class AppMap extends LitElement {
           </div>
           <div id="add-doghouse" @click=${this.addDoghouse}>
             <div class="control-counter">${this.userInfo?.availableDoghouses ?? ''}</div>
-            <sl-button variant="default" size="large" circle>
+            <sl-button
+              id="add-doghouse-btn"
+              variant="default"
+              size="large"
+              circle
+              ?disabled=${!this.userInfo?.availableDoghouses}
+            >
               <sl-icon name="house-add"></sl-icon>
             </sl-button>
           </div>
