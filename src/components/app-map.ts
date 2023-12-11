@@ -151,7 +151,8 @@ export class AppMap extends LitElement {
         zIndexOffset: 999999,
       }).addTo(this.map);
 
-      const closestDoghouse = getClosestDoghouse(lat, lng, this.doghouses);
+      const userInfoId = this.userInfo?.id;
+      const closestDoghouse = getClosestDoghouse(lat, lng, this.doghouses,userInfoId);
       this.closestDoghouse = closestDoghouse;
     };
 
@@ -188,9 +189,10 @@ export class AppMap extends LitElement {
     console.log('MAP-VIEW-DoghousesList', doghousesList);
     if (!doghousesList) return;
     this.doghouses = doghousesList;
-    this.closestDoghouse = getClosestDoghouse(this.lat, this.lng, doghousesList);
 
     const userInfoId = this.userInfo?.id;
+    this.closestDoghouse = getClosestDoghouse(this.lat, this.lng, doghousesList,userInfoId);
+
     doghousesList.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
       const { name, lat, lng, hp, maxHp, userId } = doghouse;
@@ -224,8 +226,8 @@ export class AppMap extends LitElement {
   async attackDoghouse() {
     if (!this.lat || !this.lng || !this.doghouses) return;
     if (!this.accessToken) return;
+    
     const userInfoId = this.userInfo?.id;
-
     const closestDoghouse = getClosestDoghouse(this.lat, this.lng, this.doghouses, userInfoId);
 
     if (!closestDoghouse) return;
