@@ -20,6 +20,7 @@ import {
   generatePulsatingMarker,
   getClosestDoghouse,
 } from '../utils/mapUtils';
+import { alertNotifySuccess } from '../utils/alertsUtils';
 
 @customElement('app-map')
 export class AppMap extends LitElement {
@@ -33,6 +34,9 @@ export class AppMap extends LitElement {
         height: 100%;
         width: 100%;
         overflow: hidden;
+      }
+      .leaflet-top, .leaflet-bottom {
+        z-index: 400;
       }
       .leaflet-control-attribution.leaflet-control {
         pointer-events: none;
@@ -228,6 +232,8 @@ export class AppMap extends LitElement {
         lng: this.lng,
       }
     );
+    
+    alertNotifySuccess('Your doghouse was created')
 
     const userInfoRes = createDoghouseResponse.data.user;
     if (userInfoRes) {
