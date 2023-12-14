@@ -13,6 +13,7 @@ import { userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { AttackDoghouseResponse, CreateDoghouseResponse, Doghouse } from '../types/doghouse';
 import { UserInfo } from '../types/userInfo';
+import { alertNotifySuccess } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
 import { getUserPostion, watchUserPosition } from '../utils/geolocation';
 import {
@@ -20,7 +21,6 @@ import {
   generatePulsatingMarker,
   getClosestDoghouse,
 } from '../utils/mapUtils';
-import { alertNotifySuccess } from '../utils/alertsUtils';
 
 @customElement('app-map')
 export class AppMap extends LitElement {
@@ -35,7 +35,8 @@ export class AppMap extends LitElement {
         width: 100%;
         overflow: hidden;
       }
-      .leaflet-top, .leaflet-bottom {
+      .leaflet-top,
+      .leaflet-bottom {
         z-index: 400;
       }
       .leaflet-control-attribution.leaflet-control {
@@ -142,6 +143,8 @@ export class AppMap extends LitElement {
         this.map.setView([lat, lng], 17);
         this.setDoghousesMarkers();
       }
+
+      alertNotifySuccess(`We found your location ${lat}, ${lng}`);
     };
 
     getUserPostion(getUserPositionSuccess);
@@ -232,8 +235,8 @@ export class AppMap extends LitElement {
         lng: this.lng,
       }
     );
-    
-    alertNotifySuccess('Your doghouse was created')
+
+    alertNotifySuccess('Your doghouse was created');
 
     const userInfoRes = createDoghouseResponse.data.user;
     if (userInfoRes) {

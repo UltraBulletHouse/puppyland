@@ -1,3 +1,5 @@
+import { alertNotifyDanger } from './alertsUtils';
+
 export const watchPositionOptions: PositionOptions = {
   enableHighAccuracy: true,
   // Get high accuracy reading, if available (default false)
@@ -16,9 +18,9 @@ export const watchPositionOptions: PositionOptions = {
 
 export const watchPositionError = (err: GeolocationPositionError) => {
   if (err.code === 1) {
-    // Runs if user refuses access
-    console.log('Please allow geolocation access');
+    alertNotifyDanger('Please allow geolocation access');
   } else {
+    alertNotifyDanger('Geolocation error: ' + err.message);
     console.log(err);
   }
 };
@@ -31,7 +33,7 @@ export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) =>
       watchPositionOptions
     );
   } else {
-    console.log('No geolocation access');
+    alertNotifyDanger('No geolocation access');
   }
 };
 
@@ -43,6 +45,6 @@ export const getUserPostion = (getUserPositionSuccess: PositionCallback) => {
       watchPositionOptions
     );
   } else {
-    console.log('No geolocation access');
+    alertNotifyDanger('No geolocation access');
   }
 };
