@@ -131,7 +131,7 @@ export class AppMap extends LitElement {
   @state()
   closestDoghouse: Doghouse | null = null;
 
-  watchUserPostion() {
+  setUserPostion() {
     if (!this.map || !this.userPos) return;
     if (!this.doghouses) {
       this.setDoghousesMarkers();
@@ -141,8 +141,6 @@ export class AppMap extends LitElement {
     }
 
     const { lat, lng } = this.userPos;
-
-    this.map.setView([lat, lng], 17);
 
     const pulsatingIcon = generatePulsatingMarker(L, 10, '#2e96f8');
     this.userPosMarker = L.marker([lat, lng], {
@@ -157,13 +155,12 @@ export class AppMap extends LitElement {
 
   updated(changedProperties: PropertyValueMap<this>) {
     if (changedProperties.has('map') && this.map && this.userPos) {
-      console.log('SET-VIEW');
       const { lat, lng } = this.userPos;
 
       this.map.setView([lat, lng], 17);
     }
     if (changedProperties.has('userPos') && this.userPos && this.map) {
-      this.watchUserPostion();
+      this.setUserPostion();
     }
   }
 
@@ -184,7 +181,7 @@ export class AppMap extends LitElement {
 
   async setDoghousesMarkers() {
     if (!this.map || !this.userPos) return;
-    if (!this.accessToken) return; // Remove , allow without
+    if (!this.accessToken) return; // Remove, allow without
     const {
       data: { doghousesList },
     } = await apiCall(this.accessToken).get(API_DOGHOUSES_NEAR_USER, {
@@ -194,7 +191,7 @@ export class AppMap extends LitElement {
       },
     });
 
-    console.log('MAP-VIEW-DoghousesList', doghousesList);
+    console.log('DoghousesList = ', doghousesList);
     if (!doghousesList) return;
     this.doghouses = doghousesList;
     const userInfoId = this.userInfo?.id;
