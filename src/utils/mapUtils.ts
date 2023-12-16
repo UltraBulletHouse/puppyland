@@ -35,7 +35,11 @@ export const generateDoghouseIcon = (isOwn?: boolean) => {
   `;
 
   const doghouseIcon = L.divIcon({
-    html: `<div style="${cssStyleWrapper}"><sl-icon name="house-door-fill" style="${cssStyleIcon}"></sl-icon></div>`,
+    html: `
+      <div style="${cssStyleWrapper}">
+        <sl-icon name="house-door-fill" style="${cssStyleIcon}">
+      </sl-icon></div>
+    `,
     className: '',
   });
 
