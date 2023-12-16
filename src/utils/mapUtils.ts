@@ -1,6 +1,7 @@
 import L from 'leaflet';
 
 import { ClosestDoghouse, Doghouse } from '../types/doghouse';
+import { Coords } from '../types/geolocation';
 
 export const generatePulsatingMarker = (L: any, radius: number, color: string) => {
   const cssStyle = `
@@ -42,21 +43,20 @@ export const generateDoghouseIcon = (isOwn?: boolean) => {
 };
 
 export const getClosestDoghouse = (
-  lat: number,
-  lng: number,
+  userPos: Coords,
   doghouses?: Doghouse[],
   userId?: string
 ): Doghouse | null => {
   if (!doghouses || doghouses?.length === 0) return null;
 
-  const userPos = new L.LatLng(lat, lng);
+  const userPosition = new L.LatLng(userPos.lat, userPos.lng);
 
   const closestDogHouse = doghouses.reduce(
     (closestDH: ClosestDoghouse, doghouse) => {
       if (userId === doghouse.userId) return closestDH;
 
       const doghousePos = new L.LatLng(doghouse.lat, doghouse.lng);
-      const diff = userPos.distanceTo(doghousePos);
+      const diff = userPosition.distanceTo(doghousePos);
       const previousDiff = closestDH.diff;
       if (diff <= 20 && previousDiff > diff) {
         return { doghouse, diff };

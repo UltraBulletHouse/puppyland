@@ -13,9 +13,12 @@ import './components/app-footer';
 import { API_USER_INFO } from './constants/apiConstants';
 import { accessTokenContext } from './contexts/userFirebaseContext';
 import { userInfoContext } from './contexts/userInfoContext';
+import { userPosContext } from './contexts/userPosContext';
 import { viewContext } from './contexts/viewContext';
+import { GeolocationController } from './controllers/GeolocationController';
 import './styles/global.css';
 import { sharedStyles } from './styles/shared-styles';
+import { Coords } from './types/geolocation';
 import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
@@ -61,12 +64,27 @@ export class AppIndex extends LitElement {
   @property({ attribute: false })
   userInfo: UserInfo | null = null;
 
+  /* UserPosition context */
+  @provide({ context: userPosContext })
+  @property({ attribute: false })
+  userPos: Coords | null = null;
+
   updateView(event: CustomEvent<View>) {
     this.view = event.detail;
   }
 
   updateUserInfo(event: CustomEvent<UserInfo>) {
     this.userInfo = event.detail;
+  }
+
+  private geolocation = new GeolocationController(this);
+
+  connectedCallback() {
+    super.connectedCallback();
+    const watchUserPos = (coords: Coords) => {
+      this.userPos = coords;
+    };
+    this.geolocation.watchUserPostion(watchUserPos);
   }
 
   firstUpdated() {
@@ -114,8 +132,6 @@ export class AppIndex extends LitElement {
   }
 
   render() {
-    // console.log('RENDER VIEW===============', this.view);
-
     const isSigninView = this.view === View.SIGNIN_VIEW;
 
     return html`

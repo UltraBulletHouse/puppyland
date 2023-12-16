@@ -1,6 +1,6 @@
 import { consume } from '@lit/context';
 import L from 'leaflet';
-import { LitElement, css, html } from 'lit';
+import { LitElement, PropertyValueMap, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 import {
@@ -10,12 +10,13 @@ import {
 } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
+import { userPosContext } from '../contexts/userPosContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { AttackDoghouseResponse, CreateDoghouseResponse, Doghouse } from '../types/doghouse';
+import { Coords } from '../types/geolocation';
 import { UserInfo } from '../types/userInfo';
 import { alertNotifySuccess } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
-import { getUserPostion, watchUserPosition } from '../utils/geolocation';
 import {
   generateDoghouseIcon,
   generatePulsatingMarker,
@@ -114,11 +115,9 @@ export class AppMap extends LitElement {
   @property({ attribute: false })
   userInfo: UserInfo | null = null;
 
-  @state()
-  lat?: number;
-
-  @state()
-  lng?: number;
+  @consume({ context: userPosContext, subscribe: true })
+  @property({ attribute: false })
+  userPos: Coords | null = null;
 
   @state()
   map?: L.Map;
@@ -132,58 +131,45 @@ export class AppMap extends LitElement {
   @state()
   closestDoghouse: Doghouse | null = null;
 
-  getUserPosition() {
-    const getUserPositionSuccess = (pos: GeolocationPosition) => {
-      const lat = pos.coords.latitude;
-      const lng = pos.coords.longitude;
-      this.lat = lat;
-      this.lng = lng;
-
-      if (this.map) {
-        this.map.setView([lat, lng], 17);
-        this.setDoghousesMarkers();
-      }
-
-      alertNotifySuccess(`We found your location ${lat}, ${lng}`);
-    };
-
-    getUserPostion(getUserPositionSuccess);
-  }
-
   watchUserPostion() {
+    if (!this.map || !this.userPos) return;
     if (!this.doghouses) {
       this.setDoghousesMarkers();
     }
+    if (this.userPosMarker) {
+      this.map.removeLayer(this.userPosMarker);
+    }
 
-    const watchUserPositionSuccess = (pos: GeolocationPosition) => {
-      const lat = pos.coords.latitude;
-      const lng = pos.coords.longitude;
-      this.lat = lat;
-      this.lng = lng;
-      if (!this.map) return;
+    const { lat, lng } = this.userPos;
 
-      if (this.userPosMarker) {
-        this.map.removeLayer(this.userPosMarker);
-      }
-      // this.map.setView([lat, lng], 17);
+    this.map.setView([lat, lng], 17);
 
-      const pulsatingIcon = generatePulsatingMarker(L, 10, '#2e96f8');
-      this.userPosMarker = L.marker([lat, lng], {
-        icon: pulsatingIcon,
-        zIndexOffset: 999999,
-      }).addTo(this.map);
+    const pulsatingIcon = generatePulsatingMarker(L, 10, '#2e96f8');
+    this.userPosMarker = L.marker([lat, lng], {
+      icon: pulsatingIcon,
+      zIndexOffset: 999999,
+    }).addTo(this.map);
 
-      const userInfoId = this.userInfo?.id;
-      const closestDoghouse = getClosestDoghouse(lat, lng, this.doghouses, userInfoId);
-      this.closestDoghouse = closestDoghouse;
-    };
+    const userInfoId = this.userInfo?.id;
+    const closestDoghouse = getClosestDoghouse(this.userPos, this.doghouses, userInfoId);
+    this.closestDoghouse = closestDoghouse;
+  }
 
-    watchUserPosition(watchUserPositionSuccess);
+  updated(changedProperties: PropertyValueMap<this>) {
+    if (changedProperties.has('map') && this.map && this.userPos) {
+      console.log('SET-VIEW');
+      const { lat, lng } = this.userPos;
+
+      this.map.setView([lat, lng], 17);
+    }
+    if (changedProperties.has('userPos') && this.userPos && this.map) {
+      this.watchUserPostion();
+    }
   }
 
   centerPosition() {
-    if (this.map && this.lat && this.lng) {
-      this.map.setView([this.lat, this.lng], 17);
+    if (this.map && this.userPos) {
+      this.map.setView([this.userPos.lat, this.userPos.lng], 17);
     }
   }
 
@@ -197,28 +183,26 @@ export class AppMap extends LitElement {
   }
 
   async setDoghousesMarkers() {
-    if (!this.map || !this.lat || !this.lng) return;
-    if (!this.accessToken) return;
+    if (!this.map || !this.userPos) return;
+    if (!this.accessToken) return; // Remove , allow without
     const {
       data: { doghousesList },
     } = await apiCall(this.accessToken).get(API_DOGHOUSES_NEAR_USER, {
       params: {
-        lat: this.lat.toString(),
-        lng: this.lng.toString(),
+        lat: this.userPos.lat.toString(),
+        lng: this.userPos.lng.toString(),
       },
     });
 
     console.log('MAP-VIEW-DoghousesList', doghousesList);
     if (!doghousesList) return;
     this.doghouses = doghousesList;
-
     const userInfoId = this.userInfo?.id;
-    this.closestDoghouse = getClosestDoghouse(this.lat, this.lng, doghousesList, userInfoId);
 
+    this.closestDoghouse = getClosestDoghouse(this.userPos, doghousesList, userInfoId);
     doghousesList.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
       const { name, lat, lng, hp, maxHp, userId } = doghouse;
-
       L.marker([lat, lng], { icon: generateDoghouseIcon(userId === userInfoId) })
         .bindPopup(`${name} Hp: ${hp}/${maxHp}`)
         .addTo(this.map);
@@ -226,13 +210,12 @@ export class AppMap extends LitElement {
   }
 
   async addDoghouse() {
-    if (!this.accessToken) return;
-
+    if (!this.accessToken || !this.userPos) return;
     const createDoghouseResponse = await apiCall(this.accessToken).post<CreateDoghouseResponse>(
       API_DOGHOUSE_CREATE,
       {
-        lat: this.lat,
-        lng: this.lng,
+        lat: this.userPos.lat,
+        lng: this.userPos.lng,
       }
     );
 
@@ -248,11 +231,9 @@ export class AppMap extends LitElement {
   }
 
   async attackDoghouse() {
-    if (!this.lat || !this.lng || !this.doghouses) return;
-    if (!this.accessToken) return;
-
+    if (!this.accessToken || !this.userPos || !this.doghouses) return;
     const userInfoId = this.userInfo?.id;
-    const closestDoghouse = getClosestDoghouse(this.lat, this.lng, this.doghouses, userInfoId);
+    const closestDoghouse = getClosestDoghouse(this.userPos, this.doghouses, userInfoId);
 
     if (!closestDoghouse) return;
     const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
@@ -261,17 +242,10 @@ export class AppMap extends LitElement {
         doghouseId: closestDoghouse.id,
       }
     );
-
     const userInfoRes = attackDoghouseResponse.data.user;
     if (userInfoRes) {
       this.updateUserInfo(userInfoRes);
     }
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.getUserPosition();
-    this.watchUserPostion();
   }
 
   firstUpdated() {

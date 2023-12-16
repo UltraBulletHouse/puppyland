@@ -12,8 +12,8 @@ export const watchPositionOptions: PositionOptions = {
 // const watchUserPositionSuccess = (pos: GeolocationPosition) => {
 //   const lat = pos.coords.latitude;
 //   const lng = pos.coords.longitude;
-// const heading = pos.coords.heading // Where device is pointing
-// const accuracy = pos.coords.accuracy; // Accuracy in metres
+//   const heading = pos.coords.heading // Where device is pointing
+//   const accuracy = pos.coords.accuracy; // Accuracy in metres
 // };
 
 export const watchPositionError = (err: GeolocationPositionError) => {
@@ -33,7 +33,7 @@ export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) =>
       watchPositionOptions
     );
   } else {
-    alertNotifyDanger('No geolocation access');
+    alertNotifyDanger('Watch position: No geolocation access');
   }
 };
 
@@ -45,6 +45,6 @@ export const getUserPostion = (getUserPositionSuccess: PositionCallback) => {
       watchPositionOptions
     );
   } else {
-    alertNotifyDanger('No geolocation access');
+    alertNotifyDanger('Get position: No geolocation access');
   }
 };
