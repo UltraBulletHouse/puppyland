@@ -17,7 +17,13 @@ export const generatePulsatingMarker = (L: any, radius: number, color: string) =
   });
 };
 
-export const generateDoghouseIcon = (isOwn?: boolean) => {
+export const generateDoghouseIcon = ({
+  isOwn,
+  isClose,
+}: {
+  isOwn?: boolean;
+  isClose?: boolean;
+}) => {
   const cssStyleWrapper = `
     display: flex;
     justify-content: center;
@@ -31,7 +37,13 @@ export const generateDoghouseIcon = (isOwn?: boolean) => {
   `;
   const cssStyleIcon = `
     font-size: 14px;
-    color: ${isOwn ? 'var(--sl-color-green-700)' : 'var(--sl-color-orange-900)'};
+    color: ${
+      isOwn
+        ? 'var(--sl-color-green-700)'
+        : isClose
+          ? 'var(--sl-color-red-500)'
+          : 'var(--sl-color-orange-900)'
+    };
   `;
 
   const doghouseIcon = L.divIcon({
@@ -46,29 +58,25 @@ export const generateDoghouseIcon = (isOwn?: boolean) => {
   return doghouseIcon;
 };
 
-export const getClosestDoghouse = (
+export const getClosestDoghouses = (
   userPos: Coords,
-  doghouses?: Doghouse[],
+  doghouses: Doghouse[],
   userId?: string
-): Doghouse | null => {
+): Doghouse[] | null => {
+  const CLOSEST_DISTANCE = 20;
   if (!doghouses || doghouses?.length === 0) return null;
-
   const userPosition = new L.LatLng(userPos.lat, userPos.lng);
 
-  const closestDogHouse = doghouses.reduce(
-    (closestDH: ClosestDoghouse, doghouse) => {
-      if (userId === doghouse.userId) return closestDH;
+  const closestDogHouses = doghouses.reduce((closestDH: Doghouse[], doghouse) => {
+    if (userId === doghouse.userId) return closestDH;
 
-      const doghousePos = new L.LatLng(doghouse.lat, doghouse.lng);
-      const diff = userPosition.distanceTo(doghousePos);
-      const previousDiff = closestDH.diff;
-      if (diff <= 20 && previousDiff > diff) {
-        return { doghouse, diff };
-      }
-      return closestDH;
-    },
-    { doghouse: null, diff: 99999 }
-  );
+    const doghousePos = new L.LatLng(doghouse.lat, doghouse.lng);
+    const diff = userPosition.distanceTo(doghousePos);
+    if (diff <= CLOSEST_DISTANCE) {
+      return [...closestDH, doghouse];
+    }
+    return closestDH;
+  }, []);
 
-  return closestDogHouse.doghouse;
+  return closestDogHouses;
 };
