@@ -1,6 +1,6 @@
 import L from 'leaflet';
 
-import { ClosestDoghouse, Doghouse } from '../types/doghouse';
+import { Doghouse } from '../types/doghouse';
 import { Coords } from '../types/geolocation';
 
 export const generatePulsatingMarker = (L: any, radius: number, color: string) => {
