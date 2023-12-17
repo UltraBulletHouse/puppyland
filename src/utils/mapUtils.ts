@@ -64,6 +64,7 @@ export const getClosestDoghouses = (
   userId?: string
 ): Doghouse[] | null => {
   const CLOSEST_DISTANCE = 20;
+
   if (!doghouses || doghouses?.length === 0) return null;
   const userPosition = new L.LatLng(userPos.lat, userPos.lng);
 

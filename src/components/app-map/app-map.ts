@@ -3,10 +3,7 @@ import L from 'leaflet';
 import { LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
-import {
-  API_DOGHOUSES_NEAR_USER,
-  API_DOGHOUSE_CREATE,
-} from '../../constants/apiConstants';
+import { API_DOGHOUSES_NEAR_USER, API_DOGHOUSE_CREATE } from '../../constants/apiConstants';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { userInfoContext } from '../../contexts/userInfoContext';
 import { userPosContext } from '../../contexts/userPosContext';
@@ -51,12 +48,29 @@ export class AppMap extends LitElement {
   @state()
   markersList: MarkersList | null = null;
 
+  updateUserInfo(user: UserInfo) {
+    const options: CustomEventInit<UserInfo> = {
+      detail: user,
+      bubbles: true,
+      composed: true,
+    };
+    this.dispatchEvent(new CustomEvent<UserInfo>('updateUserInfo', options));
+  }
+
+  centerPosition() {
+    if (this.map && this.userPos) {
+      this.map.setView([this.userPos.lat, this.userPos.lng], 17);
+    }
+  }
+
   setUserPostion() {
     if (!this.map || !this.userPos) return;
-    
+
     if (!this.doghouses) {
-      this.setDoghousesMarkers();//TODO: Przeniesc gdzies na update tylko raz
+      this.setDoghousesMarkers(); //TODO: Przeniesc gdzies na update tylko raz
     }
+
+    this.updateDoghousesMarkers();
 
     // TODO: nie dodawac za kazdym razem tylko zmienaic pozcyje
     if (this.userPosMarker) {
@@ -64,7 +78,6 @@ export class AppMap extends LitElement {
     }
 
     const { lat, lng } = this.userPos;
-
     const pulsatingIcon = generatePulsatingMarker(L, 10, '#2e96f8');
     this.userPosMarker = L.marker([lat, lng], {
       icon: pulsatingIcon,
@@ -87,24 +100,24 @@ export class AppMap extends LitElement {
     }
   }
 
-  centerPosition() {
-    if (this.map && this.userPos) {
-      this.map.setView([this.userPos.lat, this.userPos.lng], 17);
-    }
-  }
+  updateDoghousesMarkers() {
+    if (!this.map || !this.userPos || !this.doghouses) return;
 
-  updateUserInfo(user: UserInfo) {
-    const options: CustomEventInit<UserInfo> = {
-      detail: user,
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent<UserInfo>('updateUserInfo', options));
+    const userInfoId = this.userInfo?.id;
+    const closestDoghouses = getClosestDoghouses(this.userPos, this.doghouses, userInfoId);
+    console.log('ClosestDoghouses = ', closestDoghouses);
+
+    /* Update Closest Markers */
+    closestDoghouses?.forEach((doghouse) => {
+      const mark = this.markersList?.get(doghouse.id);
+      const doghouseIcon = generateDoghouseIcon({ isClose: true });
+      mark?.setIcon(doghouseIcon).setPopupContent('ATACK');
+    });
   }
 
   async setDoghousesMarkers() {
     if (!this.map || !this.userPos) return;
-    if (!this.accessToken) return; // Remove, allow without
+    if (!this.accessToken) return; //TODO: Remove, allow without
     const {
       data: { doghousesList },
     } = await apiCall(this.accessToken).get(API_DOGHOUSES_NEAR_USER, {
@@ -118,8 +131,6 @@ export class AppMap extends LitElement {
     if (!doghousesList) return;
     this.doghouses = doghousesList;
     const userInfoId = this.userInfo?.id;
-    const closestDoghouses = getClosestDoghouses(this.userPos, doghousesList, userInfoId);
-    console.log('ClosestDoghouses = ', closestDoghouses);
 
     /* MarkersList Map */ //TODO: przerobic na reduce
     const markersList = new Map<string, L.Marker>();
@@ -136,12 +147,35 @@ export class AppMap extends LitElement {
     });
     this.markersList = markersList;
 
-    /* Update Closest Markers */
-    closestDoghouses?.forEach((doghouse) => {
-      const mark = markersList.get(doghouse.id);
-      const doghouseIcon = generateDoghouseIcon({ isClose: true });
-      mark?.setIcon(doghouseIcon).setPopupContent('ATACK');
-    });
+    this.updateDoghousesMarkers();
+
+    // const userInfoId = this.userInfo?.id;
+    // const closestDoghouses = getClosestDoghouses(this.userPos, doghousesList, userInfoId);
+    // console.log('ClosestDoghouses = ', closestDoghouses);
+
+    // /* MarkersList Map */ //TODO: przerobic na reduce
+    // const markersList = new Map<string, L.Marker>();
+    // doghousesList.forEach((doghouse: Doghouse) => {
+    //   if (!this.map) return;
+    //   const { id, userId, name, lat, lng, hp, maxHp } = doghouse;
+    //   const marker = L.marker([lat, lng], {
+    //     icon: generateDoghouseIcon({ isOwn: userId === userInfoId }),
+    //   })
+    //     .bindPopup(`${name} Hp: ${hp}/${maxHp} Coords: ${lat}, ${lng}`)
+    //     .addTo(this.map);
+
+    //   markersList.set(id, marker);
+    // });
+    // this.markersList = markersList;
+
+    // console.log(markersList);
+
+    // /* Update Closest Markers */
+    // closestDoghouses?.forEach((doghouse) => {
+    //   const mark = markersList.get(doghouse.id);
+    //   const doghouseIcon = generateDoghouseIcon({ isClose: true });
+    //   mark?.setIcon(doghouseIcon).setPopupContent('ATACK');
+    // });
   }
 
   async addDoghouse() {
@@ -190,7 +224,6 @@ export class AppMap extends LitElement {
     if (!mapEl) return;
     let map = L.map(mapEl);
     this.map = map;
-    // map.locate({setView: true,enableHighAccuracy: true})
 
     let urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
     map.addLayer(L.tileLayer(urlTemplate, { minZoom: 1, attribution: '© OpenStreetMap' }));
@@ -230,51 +263,3 @@ export class AppMap extends LitElement {
     `;
   }
 }
-
-// TODO: Remove
-
-// #add-doghouse .btn-icon {
-//   border-radius: 50%;
-//   background: #fff;
-//   border: 1px solid var(--sl-color-amber-600);
-//   color: var(--sl-color-amber-600);
-// }
-// #add-doghouse sl-button::part(base),
-// #add-doghouse sl-button::part(base):hover,
-// #add-doghouse sl-button::part(base):active {
-//   color: var(--sl-color-amber-600);
-// }
-
-//     const mapEl = this.shadowRoot?.querySelector('#map') as HTMLDivElement;
-//     if (!mapEl) return;
-//     let map = createMap(mapEl).setView([51.505, -0.09], 13);
-
-// L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-//     maxZoom: 19,
-//     attribution: '© OpenStreetMap'
-// }).addTo(map);
-
-// var myIcon = L.icon({
-//   iconUrl: '../assets/icons/192x192.png',
-//   iconSize: [192, 192],
-//   iconAnchor: [100, 94],
-//   popupAnchor: [-3, -76],
-//   shadowSize: [68, 95],
-//   shadowAnchor: [22, 94],
-// });
-
-// var circle = L.circle([51.5, -0.09], {
-//   color: 'red',
-//   fillColor: 'black',
-//   fillOpacity: 0.5,
-//   radius: 1000,
-// }).addTo(map);
-
-// L.marker([51.5, -0.09], { icon: myIcon }).addTo(map).bindPopup(newDiv).openPopup();
-
-// map.on('click', function (ev) {
-//   L.marker([ev.latlng.lat, ev.latlng.lng], { icon: myIcon }).addTo(map);
-// });
-
-// Set veiw to London
-//     map.setView([51.505, -0.09], 13);

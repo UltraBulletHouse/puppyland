@@ -56,12 +56,6 @@ export const AppMapStyles = [
     #attack-doghouse-btn::part(base):active {
       border-color: var(--sl-color-red-300);
     }
-    #pulse {
-      display: block;
-      border-radius: 50%;
-      cursor: pointer;
-      animation: pulse 4s infinite;
-    }
     .control-counter {
       font-size: 16px;
       display: flex;
@@ -69,7 +63,13 @@ export const AppMapStyles = [
       background: #ffffff;
       border-radius: 15px;
     }
-
+    
+    #pulse {
+      display: block;
+      border-radius: 50%;
+      cursor: pointer;
+      animation: pulse 4s infinite;
+    }
     @keyframes pulse {
       0% {
         box-shadow: 0 0 0 0;
