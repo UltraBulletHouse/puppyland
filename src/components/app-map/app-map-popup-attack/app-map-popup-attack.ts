@@ -9,7 +9,8 @@ import '@shoelace-style/shoelace/dist/components/card/card.js';
 import { API_DOGHOUSE_ATTACK } from '../../../constants/apiConstants';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { updateUserInfoEvent } from '../../../contexts/userInfoContext/userInfoContext';
-import { AttackDoghouseResponse, Doghouse } from '../../../types/doghouse';
+import { AttackDoghouseResponse } from '../../../types/doghouse';
+import { alertNotifySuccess } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
 
 @customElement('app-map-popup-attack')
@@ -35,6 +36,8 @@ export class AppMapPopupAttack extends LitElement {
     const userInfoRes = attackDoghouseResponse.data.user;
     if (userInfoRes) {
       updateUserInfoEvent(this, userInfoRes);
+
+      alertNotifySuccess(`You attacked ${this.doghouseName} HP: ${attackDoghouseResponse.data.hp}`);
     }
   }
 

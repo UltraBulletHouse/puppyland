@@ -65,23 +65,19 @@ export class AppMap extends LitElement {
       this.setDoghousesMarkers(); //TODO: Przeniesc gdzies na update tylko raz
     }
 
-    this.updateDoghousesMarkers();
-
-    // TODO: nie dodawac za kazdym razem tylko zmienaic pozcyje
+    const { lat, lng } = this.userPos;
     if (this.userPosMarker) {
-      this.map.removeLayer(this.userPosMarker);
+      this.userPosMarker.setLatLng([lat, lng]);
+    } else {
+      const pulsatingIcon = generatePulsatingMarker(L, 10, '#2e96f8');
+      this.userPosMarker = L.marker([lat, lng], {
+        icon: pulsatingIcon,
+        zIndexOffset: 999999,
+      }).addTo(this.map);
     }
 
-    const { lat, lng } = this.userPos;
-    const pulsatingIcon = generatePulsatingMarker(L, 10, '#2e96f8');
-    this.userPosMarker = L.marker([lat, lng], {
-      icon: pulsatingIcon,
-      zIndexOffset: 999999,
-    }).addTo(this.map);
-
-    // const userInfoId = this.userInfo?.id;
-    // const closestDoghouse = getClosestDoghouse(this.userPos, this.doghouses, userInfoId);
-    // this.closestDoghouse = closestDoghouse;
+    this.setDefaultDoghousesMarkers();
+    this.updateClosestDoghousesMarkers();
   }
 
   updated(changedProperties: PropertyValueMap<this>) {
@@ -95,7 +91,7 @@ export class AppMap extends LitElement {
     }
   }
 
-  updateDoghousesMarkers() {
+  updateClosestDoghousesMarkers() {
     if (!this.map || !this.userPos || !this.doghouses) return;
 
     const userInfoId = this.userInfo?.id;
@@ -113,26 +109,12 @@ export class AppMap extends LitElement {
     });
   }
 
-  async setDoghousesMarkers() {
-    if (!this.map || !this.userPos) return;
-    if (!this.accessToken) return; //TODO: Remove, allow without
-    const {
-      data: { doghousesList },
-    } = await apiCall(this.accessToken).get(API_DOGHOUSES_NEAR_USER, {
-      params: {
-        lat: this.userPos.lat.toString(),
-        lng: this.userPos.lng.toString(),
-      },
-    });
-    // console.log('DoghousesList = ', doghousesList);
-
-    if (!doghousesList) return;
-    this.doghouses = doghousesList;
+  setDefaultDoghousesMarkers() {
     const userInfoId = this.userInfo?.id;
 
     /* MarkersList Map */ //TODO: przerobic na reduce
     const markersList = new Map<string, L.Marker>();
-    doghousesList.forEach((doghouse: Doghouse) => {
+    this.doghouses?.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
       const { id, userId, name, lat, lng, hp, maxHp } = doghouse;
       const marker = L.marker([lat, lng], {
@@ -145,7 +127,25 @@ export class AppMap extends LitElement {
     });
     this.markersList = markersList;
 
-    this.updateDoghousesMarkers();
+    this.updateClosestDoghousesMarkers();
+  }
+
+  async setDoghousesMarkers() {
+    if (!this.map || !this.userPos) return;
+    if (!this.accessToken) return; //TODO: Remove, allow without
+    const {
+      data: { doghousesList },
+    } = await apiCall(this.accessToken).get(API_DOGHOUSES_NEAR_USER, {
+      params: {
+        lat: this.userPos.lat.toString(),
+        lng: this.userPos.lng.toString(),
+      },
+    });
+
+    if (!doghousesList) return;
+    this.doghouses = doghousesList;
+
+    this.setDefaultDoghousesMarkers();
   }
 
   async addDoghouse() {
