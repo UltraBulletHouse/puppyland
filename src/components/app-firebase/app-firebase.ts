@@ -2,6 +2,7 @@ import firebase from 'firebase/compat/app';
 import * as firebaseui from 'firebaseui';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+
 import { auth } from '../../utils/firebase';
 
 // import { auth } from '../../utils/firebase';
@@ -17,7 +18,7 @@ export class AppFirebase extends LitElement {
   ];
 
   @property({ type: Boolean }) stylesLoaded = false;
-  @property({ type: firebaseui.auth.AuthUI}) uiFirebase;
+  @property({ type: Object }) uiFirebase;
 
   constructor() {
     super();

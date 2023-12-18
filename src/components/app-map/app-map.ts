@@ -103,11 +103,13 @@ export class AppMap extends LitElement {
     console.log('ClosestDoghouses = ', closestDoghouses);
 
     /* Update Closest Markers */
-    closestDoghouses?.forEach(({ id }) => {
+    closestDoghouses?.forEach(({ id, name }) => {
       const mark = this.markersList?.get(id);
       const doghouseIcon = generateDoghouseIcon({ isClose: true });
-      const popupContent = `<app-map-popup-attack doghouseId=${id}>`;
-      mark?.setIcon(doghouseIcon).setPopupContent(popupContent);
+      const popupContent = `<app-map-popup-attack doghouseId=${id} doghouseName=${name}></app-map-popup-attack>`;
+      mark?.setIcon(doghouseIcon).bindPopup(popupContent, {
+        minWidth: 108,
+      });
     });
   }
 
@@ -144,34 +146,6 @@ export class AppMap extends LitElement {
     this.markersList = markersList;
 
     this.updateDoghousesMarkers();
-
-    // const userInfoId = this.userInfo?.id;
-    // const closestDoghouses = getClosestDoghouses(this.userPos, doghousesList, userInfoId);
-    // console.log('ClosestDoghouses = ', closestDoghouses);
-
-    // /* MarkersList Map */ //TODO: przerobic na reduce
-    // const markersList = new Map<string, L.Marker>();
-    // doghousesList.forEach((doghouse: Doghouse) => {
-    //   if (!this.map) return;
-    //   const { id, userId, name, lat, lng, hp, maxHp } = doghouse;
-    //   const marker = L.marker([lat, lng], {
-    //     icon: generateDoghouseIcon({ isOwn: userId === userInfoId }),
-    //   })
-    //     .bindPopup(`${name} Hp: ${hp}/${maxHp} Coords: ${lat}, ${lng}`)
-    //     .addTo(this.map);
-
-    //   markersList.set(id, marker);
-    // });
-    // this.markersList = markersList;
-
-    // console.log(markersList);
-
-    // /* Update Closest Markers */
-    // closestDoghouses?.forEach((doghouse) => {
-    //   const mark = markersList.get(doghouse.id);
-    //   const doghouseIcon = generateDoghouseIcon({ isClose: true });
-    //   mark?.setIcon(doghouseIcon).setPopupContent('ATACK');
-    // });
   }
 
   async addDoghouse() {
