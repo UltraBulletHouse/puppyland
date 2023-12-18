@@ -5,7 +5,10 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import { API_DOGHOUSES_NEAR_USER, API_DOGHOUSE_CREATE } from '../../constants/apiConstants';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
-import { userInfoContext } from '../../contexts/userInfoContext';
+import {
+  updateUserInfoEvent,
+  userInfoContext,
+} from '../../contexts/userInfoContext/userInfoContext';
 import { userPosContext } from '../../contexts/userPosContext';
 import { CreateDoghouseResponse, Doghouse } from '../../types/doghouse';
 import { Coords } from '../../types/geolocation';
@@ -18,6 +21,7 @@ import {
   generatePulsatingMarker,
   getClosestDoghouses,
 } from '../../utils/mapUtils';
+import './app-map-popup-attack/app-map-popup-attack';
 import { AppMapStyles } from './app-map-syles';
 
 @customElement('app-map')
@@ -47,15 +51,6 @@ export class AppMap extends LitElement {
 
   @state()
   markersList: MarkersList | null = null;
-
-  updateUserInfo(user: UserInfo) {
-    const options: CustomEventInit<UserInfo> = {
-      detail: user,
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent<UserInfo>('updateUserInfo', options));
-  }
 
   centerPosition() {
     if (this.map && this.userPos) {
@@ -108,10 +103,11 @@ export class AppMap extends LitElement {
     console.log('ClosestDoghouses = ', closestDoghouses);
 
     /* Update Closest Markers */
-    closestDoghouses?.forEach((doghouse) => {
-      const mark = this.markersList?.get(doghouse.id);
+    closestDoghouses?.forEach(({ id }) => {
+      const mark = this.markersList?.get(id);
       const doghouseIcon = generateDoghouseIcon({ isClose: true });
-      mark?.setIcon(doghouseIcon).setPopupContent('ATACK');
+      const popupContent = `<app-map-popup-attack doghouseId=${id}>`;
+      mark?.setIcon(doghouseIcon).setPopupContent(popupContent);
     });
   }
 
@@ -194,28 +190,11 @@ export class AppMap extends LitElement {
 
     const userInfoRes = createDoghouseResponse.data.user;
     if (userInfoRes) {
-      this.updateUserInfo(userInfoRes);
+      updateUserInfoEvent(this, userInfoRes);
     }
     if (createDoghouseResponse.status === 200) {
       this.setDoghousesMarkers();
     }
-  }
-
-  async attackDoghouse() {
-    // if (!this.accessToken || !this.userPos || !this.doghouses) return;
-    // const userInfoId = this.userInfo?.id;
-    // // const closestDoghouse = getClosestDoghouse(this.userPos, this.doghouses, userInfoId);
-    // if (!closestDoghouse) return;
-    // const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
-    //   API_DOGHOUSE_ATTACK,
-    //   {
-    //     doghouseId: closestDoghouse.id,
-    //   }
-    // );
-    // const userInfoRes = attackDoghouseResponse.data.user;
-    // if (userInfoRes) {
-    //   this.updateUserInfo(userInfoRes);
-    // }
   }
 
   firstUpdated() {
@@ -235,11 +214,10 @@ export class AppMap extends LitElement {
       <div id="container">
         <div id="map"></div>
         <div id="controls">
-          <div id="attack-doghouse" @click=${this.attackDoghouse}>
-            <div class="control-counter">${this.userInfo?.availableAttacks ?? ''}</div>
-            <sl-button id="attack-doghouse-btn" variant="default" size="large" circle>
-              <sl-icon name="lightning-charge"></sl-icon>
-            </sl-button>
+          <div id="attack-doghouse">
+            <div class="control-counter">
+              <sl-icon name="lightning-charge"></sl-icon> ${this.userInfo?.availableAttacks ?? ''}
+            </div>
           </div>
           <div id="center-position" @click=${this.centerPosition}>
             <sl-button variant="default" size="large" circle>

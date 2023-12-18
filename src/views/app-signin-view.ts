@@ -1,7 +1,7 @@
 import { LitElement, css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-import '../components/app-firebase';
+import '../components/app-firebase/app-firebase';
 import { sharedStyles } from '../styles/shared-styles';
 
 @customElement('app-signin-view')

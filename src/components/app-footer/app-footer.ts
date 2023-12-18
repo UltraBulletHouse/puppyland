@@ -2,9 +2,9 @@ import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import { viewContext } from '../contexts/viewContext';
-import { sharedStyles } from '../styles/shared-styles';
-import { View } from '../types/view';
+import { viewContext } from '../../contexts/viewContext';
+import { sharedStyles } from '../../styles/shared-styles';
+import { View } from '../../types/view';
 
 @customElement('app-footer')
 export class AppFooter extends LitElement {

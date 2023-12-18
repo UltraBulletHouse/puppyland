@@ -62,8 +62,9 @@ export const AppMapStyles = [
       justify-content: center;
       background: #ffffff;
       border-radius: 15px;
+      padding: 3px 5px;
     }
-    
+
     #pulse {
       display: block;
       border-radius: 50%;
