@@ -19,6 +19,7 @@ import {
   getClosestDoghouses,
 } from '../../utils/mapUtils';
 import './app-map-popup-attack/app-map-popup-attack';
+import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-syles';
 
 @customElement('app-map')
@@ -93,7 +94,7 @@ export class AppMap extends LitElement {
 
     const userInfoId = this.userInfo?.id;
     const closestDoghouses = getClosestDoghouses(this.userPos, this.doghouses, userInfoId);
-    console.log('ClosestDoghouses = ', closestDoghouses);
+    // console.log('ClosestDoghouses = ', closestDoghouses);
 
     /* Update Closest Markers */
     closestDoghouses?.forEach(({ id, name }) => {
@@ -114,10 +115,14 @@ export class AppMap extends LitElement {
     this.doghouses?.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
       const { id, userId, name, lat, lng, hp, maxHp } = doghouse;
+      const popupContent = `<app-map-popup dhId=${id} dhName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`;
+
       const marker = L.marker([lat, lng], {
         icon: generateDoghouseIcon({ isOwn: userId === userInfoId }),
       })
-        .bindPopup(`${name} Hp: ${hp}/${maxHp} Coords: ${lat}, ${lng}`)
+        .bindPopup(popupContent, {
+          minWidth: 108,
+        })
         .addTo(this.map);
 
       markersList.set(id, marker);

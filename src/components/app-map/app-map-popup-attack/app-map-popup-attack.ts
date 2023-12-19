@@ -41,6 +41,10 @@ export class AppMapPopupAttack extends LitElement {
     }
   }
 
+  protected createRenderRoot() {
+    return this;
+  }
+
   render() {
     return html` <div>
       <sl-card class="card-overview">
