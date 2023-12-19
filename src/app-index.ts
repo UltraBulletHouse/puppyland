@@ -135,7 +135,7 @@ export class AppIndex extends LitElement {
     const isSigninView = this.view === View.SIGNIN_VIEW;
 
     return html`
-      <div id="main-container">
+      <div id="main-container" @updateView=${this.updateView}>
         <div id="content">${cache(this.renderContent(this.view))}</div>
         <app-footer ?hidden=${isSigninView} @updateView=${this.updateView}></app-footer>
       </div>

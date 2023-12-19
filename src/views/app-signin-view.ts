@@ -20,6 +20,10 @@ export class AppSignin extends LitElement {
         flex-direction: column;
         height: 100%;
       }
+      #signpost-icon {
+        font-size: 50px;
+        margin-bottom: 40px;
+      }
       #google-btn {
         margin-bottom: 10px;
       }
@@ -39,6 +43,7 @@ export class AppSignin extends LitElement {
   render() {
     return html`
       <div id="container">
+        <div><sl-icon id="signpost-icon" name="signpost-split"></sl-icon></div>
         <sl-button id="google-btn" pill @click=${this.signInWithGoogle}>
           <sl-icon name="google"></sl-icon> Sign-in with Google</sl-button
         >
