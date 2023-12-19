@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
@@ -30,3 +31,4 @@ if (!firebase.apps.length) {
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
 export type UserFirebase = firebase.User | null;
+export const googleProvider = new GoogleAuthProvider();
