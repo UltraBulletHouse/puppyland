@@ -1,7 +1,7 @@
 import { createContext } from '@lit/context';
 import { LitElement } from 'lit';
 
-import { UserInfo } from '../../types/userInfo';
+import { UserInfo } from '../types/userInfo';
 
 export const userInfoContext = createContext<UserInfo | null>('userInfo');
 

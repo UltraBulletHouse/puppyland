@@ -12,7 +12,7 @@ import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import './components/app-footer/app-footer';
 import { API_USER_INFO } from './constants/apiConstants';
 import { accessTokenContext } from './contexts/userFirebaseContext';
-import { userInfoContext } from './contexts/userInfoContext/userInfoContext';
+import { userInfoContext } from './contexts/userInfoContext';
 import { userPosContext } from './contexts/userPosContext';
 import { viewContext } from './contexts/viewContext';
 import { GeolocationController } from './controllers/GeolocationController';

@@ -8,7 +8,7 @@ import '@shoelace-style/shoelace/dist/components/card/card.js';
 
 import { API_DOGHOUSE_ATTACK } from '../../../constants/apiConstants';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
-import { updateUserInfoEvent } from '../../../contexts/userInfoContext/userInfoContext';
+import { updateUserInfoEvent } from '../../../contexts/userInfoContext';
 import { AttackDoghouseResponse } from '../../../types/doghouse';
 import { alertNotifySuccess } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';

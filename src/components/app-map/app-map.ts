@@ -5,10 +5,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import { API_DOGHOUSES_NEAR_USER, API_DOGHOUSE_CREATE } from '../../constants/apiConstants';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
-import {
-  updateUserInfoEvent,
-  userInfoContext,
-} from '../../contexts/userInfoContext/userInfoContext';
+import { updateUserInfoEvent, userInfoContext } from '../../contexts/userInfoContext';
 import { userPosContext } from '../../contexts/userPosContext';
 import { CreateDoghouseResponse, Doghouse } from '../../types/doghouse';
 import { Coords } from '../../types/geolocation';
