@@ -11,6 +11,7 @@ import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 
 import './components/app-footer/app-footer';
 import { API_USER_INFO } from './constants/apiConstants';
+import { dogInfoContext } from './contexts/dogInfoContext';
 import { accessTokenContext } from './contexts/userFirebaseContext';
 import { userInfoContext } from './contexts/userInfoContext';
 import { userPosContext } from './contexts/userPosContext';
@@ -18,6 +19,7 @@ import { viewContext } from './contexts/viewContext';
 import { GeolocationController } from './controllers/GeolocationController';
 import './styles/global.css';
 import { sharedStyles } from './styles/shared-styles';
+import { DogInfo } from './types/dog';
 import { Coords } from './types/geolocation';
 import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
@@ -44,11 +46,6 @@ export class AppIndex extends LitElement {
     `,
   ];
 
-  /* UserFirebase context */
-  // @provide({ context: userFirebaseContext })
-  // @property({ attribute: false })
-  // userFirebase: UserFirebase = null;
-
   /* Views context */
   @provide({ context: viewContext })
   @property({ attribute: false })
@@ -64,6 +61,11 @@ export class AppIndex extends LitElement {
   @property({ attribute: false })
   userInfo: UserInfo | null = null;
 
+  /* DogInfo context */
+  @provide({ context: dogInfoContext })
+  @property({ attribute: false })
+  dogInfo: DogInfo | null = null;
+
   /* UserPosition context */
   @provide({ context: userPosContext })
   @property({ attribute: false })
@@ -75,6 +77,10 @@ export class AppIndex extends LitElement {
 
   updateUserInfo(event: CustomEvent<UserInfo>) {
     this.userInfo = event.detail;
+  }
+
+  updateDogInfo(event: CustomEvent<DogInfo>) {
+    this.dogInfo = event.detail;
   }
 
   private geolocation = new GeolocationController(this);
@@ -94,6 +100,7 @@ export class AppIndex extends LitElement {
         const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
 
         this.userInfo = userInfoResponse.data.user;
+        this.dogInfo = userInfoResponse.data.dog;
         this.accessToken = accessToken;
         this.view = View.MAP_VIEW;
       } else {
@@ -110,7 +117,7 @@ export class AppIndex extends LitElement {
       }
       case View.MAP_VIEW: {
         import('./views/app-map-view');
-        return html`<app-map-view @updateUserInfo=${this.updateUserInfo}></app-map-view>`;
+        return html`<app-map-view @updateDogInfo=${this.updateDogInfo}></app-map-view>`;
       }
       case View.USER_VIEW: {
         import('./views/app-user-view');

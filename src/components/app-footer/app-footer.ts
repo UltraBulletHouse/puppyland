@@ -50,7 +50,6 @@ export class AppFooter extends LitElement {
   }
 
   render() {
-    // console.log('FOOTER', this.view);
     return html`
       <footer id="footer">
         <div id="container">

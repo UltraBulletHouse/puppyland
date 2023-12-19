@@ -4,9 +4,11 @@ import { LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 import { API_DOGHOUSES_NEAR_USER, API_DOGHOUSE_CREATE } from '../../constants/apiConstants';
+import { dogInfoContext, updateDogInfoEvent } from '../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
-import { updateUserInfoEvent, userInfoContext } from '../../contexts/userInfoContext';
+import { userInfoContext } from '../../contexts/userInfoContext';
 import { userPosContext } from '../../contexts/userPosContext';
+import { DogInfo } from '../../types/dog';
 import { CreateDoghouseResponse, Doghouse } from '../../types/doghouse';
 import { Coords } from '../../types/geolocation';
 import { MarkersList } from '../../types/map';
@@ -33,6 +35,10 @@ export class AppMap extends LitElement {
   @consume({ context: userInfoContext, subscribe: true })
   @property({ attribute: false })
   userInfo: UserInfo | null = null;
+
+  @consume({ context: dogInfoContext, subscribe: true })
+  @property({ attribute: false })
+  dogInfo: DogInfo | null = null;
 
   @consume({ context: userPosContext, subscribe: true })
   @property({ attribute: false })
@@ -92,8 +98,8 @@ export class AppMap extends LitElement {
   updateClosestDoghousesMarkers() {
     if (!this.map || !this.userPos || !this.doghouses) return;
 
-    const userInfoId = this.userInfo?.id;
-    const closestDoghouses = getClosestDoghouses(this.userPos, this.doghouses, userInfoId);
+    const dogInfoId = this.dogInfo?.id;
+    const closestDoghouses = getClosestDoghouses(this.userPos, this.doghouses, dogInfoId);
     // console.log('ClosestDoghouses = ', closestDoghouses);
 
     /* Update Closest Markers */
@@ -108,17 +114,17 @@ export class AppMap extends LitElement {
   }
 
   setDefaultDoghousesMarkers() {
-    const userInfoId = this.userInfo?.id;
+    const dogInfoId = this.dogInfo?.id;
 
     /* MarkersList Map */ //TODO: przerobic na reduce
     const markersList = new Map<string, L.Marker>();
     this.doghouses?.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
-      const { id, userId, name, lat, lng, hp, maxHp } = doghouse;
+      const { id, dogId, name, lat, lng, hp, maxHp } = doghouse;
       const popupContent = `<app-map-popup dhId=${id} dhName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`;
 
       const marker = L.marker([lat, lng], {
-        icon: generateDoghouseIcon({ isOwn: userId === userInfoId }),
+        icon: generateDoghouseIcon({ isOwn: dogId === dogInfoId }),
       })
         .bindPopup(popupContent, {
           minWidth: 108,
@@ -151,10 +157,11 @@ export class AppMap extends LitElement {
   }
 
   async addDoghouse() {
-    if (!this.accessToken || !this.userPos) return;
+    if (!this.accessToken || !this.userPos || !this.dogInfo) return;
     const createDoghouseResponse = await apiCall(this.accessToken).post<CreateDoghouseResponse>(
       API_DOGHOUSE_CREATE,
       {
+        dogId: this.dogInfo.id,
         lat: this.userPos.lat,
         lng: this.userPos.lng,
       }
@@ -164,9 +171,9 @@ export class AppMap extends LitElement {
 
     alertNotifySuccess('Your doghouse was created');
 
-    const userInfoRes = createDoghouseResponse.data.user;
-    if (userInfoRes) {
-      updateUserInfoEvent(this, userInfoRes);
+    const userDogRes = createDoghouseResponse.data.dog;
+    if (userDogRes) {
+      updateDogInfoEvent(this, userDogRes);
     }
     if (createDoghouseResponse.status === 200) {
       this.setDoghousesMarkers();
@@ -192,7 +199,7 @@ export class AppMap extends LitElement {
         <div id="controls">
           <div id="attack-doghouse">
             <div class="control-counter">
-              <sl-icon name="lightning-charge"></sl-icon> ${this.userInfo?.availableAttacks ?? ''}
+              <sl-icon name="lightning-charge"></sl-icon> ${this.dogInfo?.availableAttacks ?? ''}
             </div>
           </div>
           <div id="center-position" @click=${this.centerPosition}>
@@ -201,13 +208,13 @@ export class AppMap extends LitElement {
             </sl-button>
           </div>
           <div id="add-doghouse" @click=${this.addDoghouse}>
-            <div class="control-counter">${this.userInfo?.availableDoghouses ?? ''}</div>
+            <div class="control-counter">${this.dogInfo?.availableDoghouses ?? ''}</div>
             <sl-button
               id="add-doghouse-btn"
               variant="default"
               size="large"
               circle
-              ?disabled=${!this.userInfo?.availableDoghouses}
+              ?disabled=${!this.dogInfo?.availableDoghouses}
             >
               <sl-icon name="house-add"></sl-icon>
             </sl-button>

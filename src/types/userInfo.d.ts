@@ -1,3 +1,5 @@
+import { DogInfo } from './dog';
+
 export interface UserInfo {
   id: string;
   email: string;
@@ -9,4 +11,5 @@ export interface UserInfo {
 
 export interface UserInfoResponse {
   user: UserInfo;
+  dog: DogInfo;
 }

@@ -1,8 +1,9 @@
+import { DogInfo } from './dog';
 import { UserInfo } from './userInfo';
 
 export interface Doghouse {
   id: string;
-  userId: string;
+  dogId: string;
   name: string;
   lat: number;
   lng: number;
@@ -21,7 +22,7 @@ export interface ClosestDoghouse {
 
 export interface CreateDoghouseResponse {
   id: string;
-  user: UserInfo;
+  dog: DogInfo;
   name: string;
   hp: number;
   maxHp: number;
