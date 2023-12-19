@@ -2,7 +2,10 @@ import { signInWithPopup } from 'firebase/auth';
 import { LitElement, css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
+import { updateViewEvent } from '../contexts/viewContext';
 import { sharedStyles } from '../styles/shared-styles';
+import { View } from '../types/view';
+import { alertNotifyDanger } from '../utils/alertsUtils';
 import { auth, googleProvider } from '../utils/firebase';
 
 @customElement('app-signin-view')
@@ -17,22 +20,32 @@ export class AppSignin extends LitElement {
         flex-direction: column;
         height: 100%;
       }
+      #google-btn {
+        margin-bottom: 10px;
+      }
     `,
   ];
 
   async signInWithGoogle() {
-    const result = await signInWithPopup(auth, googleProvider);
-    console.log(result);
+    await signInWithPopup(auth, googleProvider).catch((err) => {
+      alertNotifyDanger(err.message);
+    });
+  }
+
+  updateView() {
+    updateViewEvent(this, View.MAP_VIEW);
   }
 
   render() {
     return html`
-      <main>
-        <div id="container">
-          <sl-button pill @click=${this.signInWithGoogle}>GOOGLE</sl-button>
-          <sl-button pill>Visit as guest</sl-button>
-        </div>
-      </main>
+      <div id="container">
+        <sl-button id="google-btn" pill @click=${this.signInWithGoogle}>
+          <sl-icon name="google"></sl-icon> Sign-in with Google</sl-button
+        >
+        <sl-button pill @click=${this.updateView}>
+          <sl-icon name="incognito"></sl-icon> Visit as guest</sl-button
+        >
+      </div>
     `;
   }
 }

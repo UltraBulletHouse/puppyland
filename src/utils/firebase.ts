@@ -30,5 +30,6 @@ if (!firebase.apps.length) {
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
-export type UserFirebase = firebase.User | null;
 export const googleProvider = new GoogleAuthProvider();
+
+export type UserFirebase = firebase.User | null;

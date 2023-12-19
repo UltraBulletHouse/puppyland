@@ -106,7 +106,7 @@ export class AppIndex extends LitElement {
     switch (view) {
       case View.SIGNIN_VIEW: {
         import('./views/app-signin-view');
-        return html`<app-signin-view></app-signin-view>`;
+        return html`<app-signin-view @updateView=${this.updateView}></app-signin-view>`;
       }
       case View.MAP_VIEW: {
         import('./views/app-map-view');

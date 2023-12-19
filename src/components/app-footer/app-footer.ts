@@ -2,7 +2,7 @@ import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
-import { viewContext } from '../../contexts/viewContext';
+import { updateViewEvent, viewContext } from '../../contexts/viewContext';
 import { sharedStyles } from '../../styles/shared-styles';
 import { View } from '../../types/view';
 
@@ -46,11 +46,7 @@ export class AppFooter extends LitElement {
   view: View = View.SIGNIN_VIEW;
 
   changeView(view: View) {
-    const options: CustomEventInit<View> = {
-      detail: view,
-      bubbles: true,
-    };
-    this.dispatchEvent(new CustomEvent<View>('updateView', options));
+    updateViewEvent(this, view);
   }
 
   render() {
