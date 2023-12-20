@@ -1,11 +1,14 @@
 import { ReactiveController, ReactiveControllerHost } from 'lit';
 
 import { Coords } from '../types/geolocation';
+import { alertNotifyDanger } from '../utils/alertsUtils';
 import { watchUserPosition } from '../utils/geolocationUtils';
 
 export class GeolocationController implements ReactiveController {
   private host: ReactiveControllerHost;
+
   userPos: Coords | null = null;
+  permissionGeolocation: boolean | null = null;
 
   constructor(host: ReactiveControllerHost) {
     // Store a reference to the host
@@ -14,9 +17,30 @@ export class GeolocationController implements ReactiveController {
     this.host.addController(this);
   }
 
-  hostConnected() {}
+  hostConnected() {
+    this.checkPermissions();
+  }
 
   hostDisconnected() {}
+
+  checkPermissions() {
+    navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
+      if (permissionStatus.state == 'denied') {
+        alertNotifyDanger('Your geolocation is blocked');
+        this.permissionGeolocation = false;
+      }
+
+      permissionStatus.onchange = () => {
+        if (permissionStatus.state == 'granted') {
+          this.permissionGeolocation = true;
+        }
+        if (permissionStatus.state == 'denied') {
+          alertNotifyDanger('Your geolocation is blocked');
+          this.permissionGeolocation = false;
+        }
+      };
+    });
+  }
 
   watchUserPostion(watchUserPosSuccess: (userPos: Coords) => void) {
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {

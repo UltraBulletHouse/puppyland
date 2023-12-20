@@ -88,10 +88,18 @@ export class AppIndex extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+
     const watchUserPos = (coords: Coords) => {
+      console.log(coords);
       this.userPos = coords;
     };
     this.geolocation.watchUserPostion(watchUserPos);
+  }
+
+  updated() {
+    if (this.userPos && this.userInfo) {
+      this.view = View.MAP_VIEW;
+    }
   }
 
   firstUpdated() {
@@ -105,7 +113,6 @@ export class AppIndex extends LitElement {
         this.userInfo = userInfoResponse.data.user;
         this.dogInfo = userInfoResponse.data.dog;
         this.accessToken = accessToken;
-        this.view = View.MAP_VIEW;
       } else {
         console.log('NO USER');
         this.view = View.SIGNIN_VIEW;
