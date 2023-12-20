@@ -106,7 +106,7 @@ export class AppMap extends LitElement {
     closestDoghouses?.forEach(({ id, name }) => {
       const mark = this.markersList?.get(id);
       const doghouseIcon = generateDoghouseIcon({ isClose: true });
-      const popupContent = `<app-map-popup-attack doghouseId=${id} doghouseName=${name}></app-map-popup-attack>`;
+      const popupContent = `<app-map-popup-attack dogId=${dogInfoId} doghouseId=${id} doghouseName=${name}></app-map-popup-attack>`;
       mark?.setIcon(doghouseIcon).bindPopup(popupContent, {
         minWidth: 108,
       });

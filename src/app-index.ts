@@ -86,17 +86,26 @@ export class AppIndex extends LitElement {
 
   private geolocation = new GeolocationController(this);
 
+  watchUserPos() {
+    const watchUserPosCallback = (coords: Coords) => {
+      this.userPos = coords;
+    };
+    this.geolocation.watchUserPostion(watchUserPosCallback);
+  }
+
   connectedCallback() {
     super.connectedCallback();
 
-    const watchUserPos = (coords: Coords) => {
-      console.log(coords);
-      this.userPos = coords;
-    };
-    this.geolocation.watchUserPostion(watchUserPos);
+    this.watchUserPos();
   }
 
   updated(changedProperties: PropertyValueMap<this>) {
+    // console.log(
+    //   this.geolocation.permissionGeolocation,
+    //   this.userInfo,
+    //   this.userPos?.lat,
+    //   changedProperties
+    // );
     if (changedProperties.has('view')) {
       return;
     }

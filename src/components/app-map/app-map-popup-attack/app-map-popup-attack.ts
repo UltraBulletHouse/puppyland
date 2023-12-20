@@ -7,8 +7,8 @@ import { html } from 'lit/static-html.js';
 import '@shoelace-style/shoelace/dist/components/card/card.js';
 
 import { API_DOGHOUSE_ATTACK } from '../../../constants/apiConstants';
+import { updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
-import { updateUserInfoEvent } from '../../../contexts/userInfoContext';
 import { AttackDoghouseResponse } from '../../../types/doghouse';
 import { alertNotifySuccess } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
@@ -20,24 +20,33 @@ export class AppMapPopupAttack extends LitElement {
   accessToken: string | null = null;
 
   @property({ type: String })
+  dogId?: string;
+
+  @property({ type: String })
   doghouseId?: string;
 
   @property({ type: String })
   doghouseName?: string;
 
   async attackDoghouse() {
-    if (!this.accessToken || !this.doghouseId) return;
+    if (!this.accessToken || !this.doghouseId || !this.dogId) return;
 
     const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
       API_DOGHOUSE_ATTACK,
-      { doghouseId: this.doghouseId }
+      { doghouseId: this.doghouseId, dogId: this.dogId }
     );
 
-    const userInfoRes = attackDoghouseResponse.data.user;
-    if (userInfoRes) {
-      updateUserInfoEvent(this, userInfoRes);
+    const dogInfoResponse = attackDoghouseResponse?.data?.dog;
+    const experienceGained = attackDoghouseResponse?.data?.experienceGained;
 
-      alertNotifySuccess(`You attacked ${this.doghouseName} HP: ${attackDoghouseResponse.data.hp}`);
+    if (dogInfoResponse) {
+      updateDogInfoEvent(this, dogInfoResponse);
+
+      alertNotifySuccess(`
+        You attacked ${this.doghouseName} ||||
+        HP: ${attackDoghouseResponse.data.doghouse.hp} ||||
+        Experience gained:${experienceGained} ||||
+      `);
     }
   }
 

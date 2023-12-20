@@ -1,5 +1,4 @@
 import { DogInfo } from './dog';
-import { UserInfo } from './userInfo';
 
 export interface Doghouse {
   id: string;
@@ -31,9 +30,7 @@ export interface CreateDoghouseResponse {
 }
 
 export interface AttackDoghouseResponse {
-  attackDmg: number;
-  hp: number;
-  maxHp: number;
-  destroyed: boolean;
-  user: UserInfo;
+  doghouse: Doghouse;
+  dog: DogInfo;
+  experienceGained: number;
 }

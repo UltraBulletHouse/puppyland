@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { alertNotifyDanger } from './alertsUtils';
 
@@ -10,6 +10,10 @@ const baseHeaders = (accesToken: string) => ({
   'Authorization': 'Bearer ' + accesToken,
 });
 
+interface ApiError {
+  message: string;
+}
+
 export const apiCall = (accesToken: string) => {
   const api = axios.create({
     baseURL: apiUrl,
@@ -19,8 +23,10 @@ export const apiCall = (accesToken: string) => {
 
   api.interceptors.response.use(
     (response) => response,
-    (error) => {
-      alertNotifyDanger(error);
+    (error: AxiosError<ApiError>) => {
+      const msg = error.response?.data?.message;
+
+      alertNotifyDanger(msg ?? error.message);
     }
   );
 
