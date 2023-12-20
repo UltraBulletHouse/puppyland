@@ -84,7 +84,7 @@ export class AppMap extends LitElement {
     this.updateClosestDoghousesMarkers();
   }
 
-  updated(changedProperties: PropertyValueMap<this>) {
+  willUpdate(changedProperties: PropertyValueMap<this>) {
     if (changedProperties.has('map') && this.map && this.userPos) {
       const { lat, lng } = this.userPos;
       this.map.setView([lat, lng], 17);

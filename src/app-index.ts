@@ -26,6 +26,7 @@ import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
 import { auth } from './utils/firebase';
 import './views/app-loading-view';
+import { alertNotifyWarning } from './utils/alertsUtils';
 
 setBasePath(import.meta.env.BASE_URL + 'shoelace/');
 
@@ -88,6 +89,7 @@ export class AppIndex extends LitElement {
 
   watchUserPos() {
     const watchUserPosCallback = (coords: Coords) => {
+      alertNotifyWarning(coords.lat.toString());
       this.userPos = coords;
     };
     this.geolocation.watchUserPostion(watchUserPosCallback);
@@ -95,11 +97,12 @@ export class AppIndex extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    alertNotifyWarning('WATCH POSITION - index');
 
     this.watchUserPos();
   }
 
-  updated(changedProperties: PropertyValueMap<this>) {
+  willUpdate(changedProperties: PropertyValueMap<this>) {
     // console.log(
     //   this.geolocation.permissionGeolocation,
     //   this.userInfo,

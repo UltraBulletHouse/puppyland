@@ -1,7 +1,7 @@
 import { ReactiveController, ReactiveControllerHost } from 'lit';
 
 import { Coords } from '../types/geolocation';
-import { alertNotifyDanger } from '../utils/alertsUtils';
+import { alertNotifyDanger, alertNotifySuccess } from '../utils/alertsUtils';
 import { watchUserPosition } from '../utils/geolocationUtils';
 
 export class GeolocationController implements ReactiveController {
@@ -36,6 +36,7 @@ export class GeolocationController implements ReactiveController {
       permissionStatus.onchange = () => {
         if (permissionStatus.state == 'granted') {
           this.permissionGeolocation = true;
+          alertNotifySuccess('Permission granted')
         }
         if (permissionStatus.state == 'denied') {
           alertNotifyDanger('Your geolocation is blocked');

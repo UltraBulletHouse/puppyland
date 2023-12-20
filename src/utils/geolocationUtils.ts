@@ -1,4 +1,4 @@
-import { alertNotifyDanger } from './alertsUtils';
+import { alertNotifyDanger, alertNotifyWarning } from './alertsUtils';
 
 export const watchPositionOptions: PositionOptions = {
   enableHighAccuracy: true,
@@ -26,7 +26,9 @@ export const watchPositionError = (err: GeolocationPositionError) => {
 };
 
 export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) => {
+  alertNotifyWarning(navigator.geolocation.getCurrentPosition.toString())
   if ('geolocation' in navigator) {
+    alertNotifyWarning('WATCH USER - utils')
     navigator.geolocation.watchPosition(
       watchUserPositionSuccess,
       watchPositionError,
