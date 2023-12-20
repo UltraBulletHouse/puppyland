@@ -25,6 +25,7 @@ import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
 import { auth } from './utils/firebase';
+import './views/app-loading-view';
 
 setBasePath(import.meta.env.BASE_URL + 'shoelace/');
 
@@ -49,7 +50,11 @@ export class AppIndex extends LitElement {
   /* Views context */
   @provide({ context: viewContext })
   @property({ attribute: false })
-  view: View = View.SIGNIN_VIEW;
+  view: View = View.LOADING_VIEW;
+
+  updateView(event: CustomEvent<View>) {
+    this.view = event.detail;
+  }
 
   /* AccessToken context */
   @provide({ context: accessTokenContext })
@@ -61,27 +66,23 @@ export class AppIndex extends LitElement {
   @property({ attribute: false })
   userInfo: UserInfo | null = null;
 
+  updateUserInfo(event: CustomEvent<UserInfo>) {
+    this.userInfo = event.detail;
+  }
+
   /* DogInfo context */
   @provide({ context: dogInfoContext })
   @property({ attribute: false })
   dogInfo: DogInfo | null = null;
 
+  updateDogInfo(event: CustomEvent<DogInfo>) {
+    this.dogInfo = event.detail;
+  }
+
   /* UserPosition context */
   @provide({ context: userPosContext })
   @property({ attribute: false })
   userPos: Coords | null = null;
-
-  updateView(event: CustomEvent<View>) {
-    this.view = event.detail;
-  }
-
-  updateUserInfo(event: CustomEvent<UserInfo>) {
-    this.userInfo = event.detail;
-  }
-
-  updateDogInfo(event: CustomEvent<DogInfo>) {
-    this.dogInfo = event.detail;
-  }
 
   private geolocation = new GeolocationController(this);
 
@@ -95,6 +96,8 @@ export class AppIndex extends LitElement {
 
   firstUpdated() {
     auth.onAuthStateChanged(async (userFirebase) => {
+      this.view = View.LOADING_VIEW;
+
       if (userFirebase) {
         const accessToken = await userFirebase.getIdToken();
         const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
@@ -105,6 +108,7 @@ export class AppIndex extends LitElement {
         this.view = View.MAP_VIEW;
       } else {
         console.log('NO USER');
+        this.view = View.SIGNIN_VIEW;
       }
     });
   }
@@ -113,7 +117,7 @@ export class AppIndex extends LitElement {
     switch (view) {
       case View.SIGNIN_VIEW: {
         import('./views/app-signin-view');
-        return html`<app-signin-view @updateView=${this.updateView}></app-signin-view>`;
+        return html`<app-signin-view></app-signin-view>`;
       }
       case View.MAP_VIEW: {
         import('./views/app-map-view');
@@ -132,19 +136,23 @@ export class AppIndex extends LitElement {
       case View.DOGHOUSE_VIEW: {
         return html`<div>DOGHOUSE VIEW</div>`;
       }
+      case View.LOADING_VIEW: {
+        return html`<app-loading-view></app-loading-view>`;
+      }
       default: {
-        return html`<div><sl-spinner style="font-size: 3rem;"></sl-spinner></div>`;
+        return html`<div>NULL</div>`;
       }
     }
   }
 
   render() {
-    const isSigninView = this.view === View.SIGNIN_VIEW;
+    const isFooterHidden =
+      this.view === View.SIGNIN_VIEW || this.view === View.LOADING_VIEW || !this.view;
 
     return html`
       <div id="main-container" @updateView=${this.updateView}>
         <div id="content">${cache(this.renderContent(this.view))}</div>
-        <app-footer ?hidden=${isSigninView} @updateView=${this.updateView}></app-footer>
+        <app-footer ?hidden=${isFooterHidden}></app-footer>
       </div>
     `;
   }
