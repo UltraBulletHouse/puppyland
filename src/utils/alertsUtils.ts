@@ -33,34 +33,38 @@ export const alertNotify = ({
   return alert.toast();
 };
 
-export const alertNotifySuccess = (message: string) =>
+export const alertNotifySuccess = (message: string, options?: Partial<AlertNotifyProps>) =>
   alertNotify({
-    message,
     variant: 'success',
     icon: 'check2-circle',
     duration: 4000,
+    ...options,
+    message,
   });
 
-export const alertNotifyPrimary = (message: string) =>
+export const alertNotifyPrimary = (message: string, options?: Partial<AlertNotifyProps>) =>
   alertNotify({
-    message,
     variant: 'primary',
     icon: 'info-circle',
     duration: 4000,
+    ...options,
+    message,
   });
 
-export const alertNotifyDanger = (message: string) =>
+export const alertNotifyDanger = (message: string, options?: Partial<AlertNotifyProps>) =>
   alertNotify({
-    message,
     variant: 'danger',
     icon: 'exclamation-octagon',
     duration: 4000,
+    ...options,
+    message,
   });
 
-export const alertNotifyWarning = (message: string) =>
+export const alertNotifyWarning = (message: string, options?: Partial<AlertNotifyProps>) =>
   alertNotify({
-    message,
     variant: 'warning',
     icon: 'exclamation-triangle',
     duration: 4000,
+    ...options,
+    message,
   });

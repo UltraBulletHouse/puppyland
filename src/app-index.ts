@@ -1,6 +1,6 @@
 import { provide } from '@lit/context';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
-import { LitElement, css, html } from 'lit';
+import { LitElement, PropertyValueMap, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { cache } from 'lit/directives/cache.js';
 
@@ -96,8 +96,12 @@ export class AppIndex extends LitElement {
     this.geolocation.watchUserPostion(watchUserPos);
   }
 
-  updated() {
-    if (this.userPos && this.userInfo) {
+  updated(changedProperties: PropertyValueMap<this>) {
+    if (changedProperties.has('view')) {
+      return;
+    }
+
+    if (this.geolocation.permissionGeolocation && this.userPos && this.userInfo) {
       this.view = View.MAP_VIEW;
     }
   }
