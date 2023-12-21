@@ -39,7 +39,9 @@ export class AppDoghousesView extends LitElement {
   @state()
   doghouses: Doghouse[] | null = null;
 
-  async firstUpdated() {
+  async connectedCallback() {
+    super.connectedCallback()
+    
     if (!this.accessToken) return;
 
     const dogInfoResponse = await apiCall(this.accessToken).get<GetDoghouseResponse>(
