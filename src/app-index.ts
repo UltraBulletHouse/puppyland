@@ -90,7 +90,7 @@ export class AppIndex extends LitElement {
 
   watchUserPos() {
     const watchUserPosCallback = (coords: Coords) => {
-      alertNotifyWarning(coords.lat.toString());
+      // alertNotifyWarning(coords.lat.toString());
       this.userPos = coords;
     };
     this.geolocation.watchUserPostion(watchUserPosCallback);
@@ -158,7 +158,8 @@ export class AppIndex extends LitElement {
         return html`<div>SHOP VIEW</div>`;
       }
       case View.DOG_VIEW: {
-        return html`<div>DOG VIEW</div>`;
+        import('./views/app-dog-view');
+        return html`<app-dog-view></app-dog-view>`;
       }
       case View.DOGHOUSE_VIEW: {
         return html`<div>DOGHOUSE VIEW</div>`;

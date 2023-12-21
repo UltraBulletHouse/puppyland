@@ -6,4 +6,9 @@ export interface DogInfo {
   availableAttacks: number;
   ownedDoghouses: number;
   experience: number;
+  level: number;
+}
+
+export interface DogInfoResponse {
+  dog: DogInfo;
 }
