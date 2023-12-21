@@ -19,6 +19,10 @@ export interface ClosestDoghouse {
   diff: number;
 }
 
+export interface GetDoghouseResponse {
+  doghousesList: Doghouse[];
+}
+
 export interface CreateDoghouseResponse {
   id: string;
   dog: DogInfo;

@@ -161,7 +161,8 @@ export class AppIndex extends LitElement {
         return html`<app-dog-view></app-dog-view>`;
       }
       case View.DOGHOUSE_VIEW: {
-        return html`<div>DOGHOUSE VIEW</div>`;
+        import('./views/app-doghouses-view');
+        return html`<app-doghouses-view></app-doghouses-view>`;
       }
       case View.LOADING_VIEW: {
         return html`<app-loading-view></app-loading-view>`;
