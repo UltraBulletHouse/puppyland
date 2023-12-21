@@ -11,6 +11,7 @@ import { sharedStyles } from '../styles/shared-styles';
 import { DogInfo } from '../types/dog';
 import { Doghouse, GetDoghouseResponse } from '../types/doghouse';
 import { apiCall } from '../utils/apiUtils';
+import { when } from 'lit/directives/when.js';
 
 @customElement('app-doghouses-view')
 export class AppDoghousesView extends LitElement {
@@ -41,7 +42,7 @@ export class AppDoghousesView extends LitElement {
 
   async connectedCallback() {
     super.connectedCallback()
-    
+
     if (!this.accessToken) return;
 
     const dogInfoResponse = await apiCall(this.accessToken).get<GetDoghouseResponse>(
@@ -59,16 +60,18 @@ export class AppDoghousesView extends LitElement {
     return html`
       <div id="container">
         <div id="list">
-          ${this.doghouses?.map(
+        ${when(this.doghouses, () => 
+          this.doghouses?.map(
             (item) => html`
               <sl-details summary=${item.name}>
                 <ul>
-                  ----------------------------------
                   ${Object.entries(item).map(([key, value]) => html`<li>${key}: ${value}</li>`)}
                 </ul>
               </sl-details>
             `
-          )}
+          ), () => html`<sl-spinner style="font-size: 80px;"></sl-spinner>
+          `)}
+
         </div>
       </div>
     `;
