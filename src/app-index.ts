@@ -23,10 +23,11 @@ import { DogInfo } from './types/dog';
 import { Coords } from './types/geolocation';
 import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
+import { alertNotifyWarning } from './utils/alertsUtils';
 import { apiCall } from './utils/apiUtils';
 import { auth } from './utils/firebase';
+import './views/app-loading-map-view';
 import './views/app-loading-view';
-import { alertNotifyWarning } from './utils/alertsUtils';
 
 setBasePath(import.meta.env.BASE_URL + 'shoelace/');
 
@@ -95,25 +96,24 @@ export class AppIndex extends LitElement {
     this.geolocation.watchUserPostion(watchUserPosCallback);
   }
 
-  connectedCallback() {
-    super.connectedCallback();
-    alertNotifyWarning('WATCH POSITION - index');
-
-    this.watchUserPos();
-  }
-
   willUpdate(changedProperties: PropertyValueMap<this>) {
-    // console.log(
-    //   this.geolocation.permissionGeolocation,
-    //   this.userInfo,
-    //   this.userPos?.lat,
-    //   changedProperties
-    // );
     if (changedProperties.has('view')) {
       return;
     }
+    // console.log(
+    //   changedProperties,
+    //   this.view === View.LOADING_MAP_VIEW,
+    //   this.geolocation.permissionGeolocation,
+    //   this.userPos,
+    //   this.userInfo
+    // );
 
-    if (this.geolocation.permissionGeolocation && this.userPos && this.userInfo) {
+    if (
+      this.view === View.LOADING_MAP_VIEW &&
+      this.geolocation.permissionGeolocation &&
+      this.userPos &&
+      this.userInfo
+    ) {
       this.view = View.MAP_VIEW;
     }
   }
@@ -129,8 +129,11 @@ export class AppIndex extends LitElement {
         this.userInfo = userInfoResponse.data.user;
         this.dogInfo = userInfoResponse.data.dog;
         this.accessToken = accessToken;
+
+        this.watchUserPos();
+        this.view = View.LOADING_MAP_VIEW;
       } else {
-        console.log('NO USER');
+        console.log('Please sign-in');
         this.view = View.SIGNIN_VIEW;
       }
     });
@@ -162,6 +165,9 @@ export class AppIndex extends LitElement {
       case View.LOADING_VIEW: {
         return html`<app-loading-view></app-loading-view>`;
       }
+      case View.LOADING_MAP_VIEW: {
+        return html`<app-loading-map-view></app-loading-map-view>`;
+      }
       default: {
         return html`<div>NULL</div>`;
       }
@@ -170,7 +176,10 @@ export class AppIndex extends LitElement {
 
   render() {
     const isFooterHidden =
-      this.view === View.SIGNIN_VIEW || this.view === View.LOADING_VIEW || !this.view;
+      this.view === View.SIGNIN_VIEW ||
+      this.view === View.LOADING_VIEW ||
+      this.view === View.LOADING_MAP_VIEW ||
+      !this.view;
 
     return html`
       <div id="main-container" @updateView=${this.updateView}>

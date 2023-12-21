@@ -36,7 +36,7 @@ export class GeolocationController implements ReactiveController {
       permissionStatus.onchange = () => {
         if (permissionStatus.state == 'granted') {
           this.permissionGeolocation = true;
-          alertNotifySuccess('Permission granted')
+          alertNotifySuccess('Permission granted');
         }
         if (permissionStatus.state == 'denied') {
           alertNotifyDanger('Your geolocation is blocked');
@@ -48,8 +48,11 @@ export class GeolocationController implements ReactiveController {
 
   watchUserPostion(watchUserPosSuccess: (userPos: Coords) => void) {
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {
-      const lat = pos.coords.latitude;
-      const lng = pos.coords.longitude;
+      const numberToFixed = (number: number) => parseFloat(number.toFixed(5));
+
+      const lat = numberToFixed(pos.coords.latitude);
+      const lng = numberToFixed(pos.coords.longitude);
+
       this.userPos = { lat, lng };
       watchUserPosSuccess({ lat, lng });
     };

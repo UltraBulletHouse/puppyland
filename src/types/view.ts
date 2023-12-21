@@ -6,4 +6,5 @@ export enum View {
   DOG_VIEW = 'app-dog-view',
   DOGHOUSE_VIEW = 'app-doghouse-view',
   LOADING_VIEW = 'app-loading-view',
+  LOADING_MAP_VIEW = 'app-loading-map-view',
 }

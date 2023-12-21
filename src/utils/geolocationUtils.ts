@@ -1,4 +1,4 @@
-import { alertNotifyDanger, alertNotifyWarning } from './alertsUtils';
+import { alertNotifyDanger } from './alertsUtils';
 
 export const watchPositionOptions: PositionOptions = {
   enableHighAccuracy: true,
@@ -26,16 +26,18 @@ export const watchPositionError = (err: GeolocationPositionError) => {
 };
 
 export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) => {
-  alertNotifyWarning(navigator.geolocation.getCurrentPosition.toString())
+  // alertNotifyWarning(navigator.geolocation.getCurrentPosition.toString());
+
   if ('geolocation' in navigator) {
-    alertNotifyWarning('WATCH USER - utils')
+    // alertNotifyWarning('WATCH USER - utils');
+
     navigator.geolocation.watchPosition(
       watchUserPositionSuccess,
       watchPositionError,
       watchPositionOptions
     );
   } else {
-    alertNotifyDanger('Watch position: No geolocation access');
+    // alertNotifyDanger('Watch position: No geolocation access');
   }
 };
 
@@ -47,6 +49,6 @@ export const getUserPostion = (getUserPositionSuccess: PositionCallback) => {
       watchPositionOptions
     );
   } else {
-    alertNotifyDanger('Get position: No geolocation access');
+    // alertNotifyDanger('Get position: No geolocation access');
   }
 };
