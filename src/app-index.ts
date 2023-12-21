@@ -44,6 +44,7 @@ export class AppIndex extends LitElement {
       }
       #content {
         flex: 1;
+        overflow: hidden;
       }
     `,
   ];
