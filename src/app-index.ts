@@ -97,9 +97,6 @@ export class AppIndex extends LitElement {
   }
 
   willUpdate(changedProperties: PropertyValueMap<this>) {
-    if (changedProperties.has('view')) {
-      return;
-    }
     // console.log(
     //   changedProperties,
     //   this.view === View.LOADING_MAP_VIEW,
@@ -107,6 +104,10 @@ export class AppIndex extends LitElement {
     //   this.userPos,
     //   this.userInfo
     // );
+
+    if (changedProperties.has('view') && changedProperties.size === 1) {
+      return;
+    }
 
     if (
       this.view === View.LOADING_MAP_VIEW &&
