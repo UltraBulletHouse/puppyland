@@ -28,6 +28,9 @@ export class AppShopView extends LitElement {
       alertNotifyPrimary(JSON.stringify(skuDetails), {duration: Infinity})
       console.log(skuDetails);
 
+      const existingPurchases = await service.listPurchases();
+      console.log(existingPurchases);
+
       } catch (error) {
         // Google Play Billing is not available. Use another payment flow.
         return;
