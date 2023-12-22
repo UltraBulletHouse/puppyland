@@ -155,7 +155,8 @@ export class AppIndex extends LitElement {
         return html`<app-user-view></app-user-view>`;
       }
       case View.SHOP_VIEW: {
-        return html`<div>SHOP VIEW</div>`;
+        import('./views/app-shop-view');
+        return html`<app-shop-view></app-shop-view>`;
       }
       case View.DOG_VIEW: {
         import('./views/app-dog-view');
