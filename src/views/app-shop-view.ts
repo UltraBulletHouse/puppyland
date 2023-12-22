@@ -27,7 +27,7 @@ export class AppShopView extends LitElement {
       console.log(service);
 
       const skuDetails = await service.getDetails(['doghouse_3_pack']);
-      alertNotifyPrimary(skuDetails, {duration: Infinity})
+      alertNotifyPrimary(JSON.stringify(skuDetails), {duration: Infinity})
       console.log(skuDetails);
 
       } catch (error) {
