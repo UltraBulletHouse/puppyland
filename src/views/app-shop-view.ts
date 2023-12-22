@@ -24,7 +24,7 @@ export class AppShopView extends LitElement {
         const service = await (window as any).getDigitalGoodsService('https://play.google.com/billing');
         // Google Play Billing is supported!
 
-      const skuDetails = await service.getDetails(['item','doghouse_3_pack', 'shiny_sword']);
+      const skuDetails = await service.getDetails(['android.test.purchased','doghouse_3_pack', 'shiny_sword']);
       alertNotifyPrimary(JSON.stringify(skuDetails), {duration: Infinity})
       console.log(skuDetails);
 
