@@ -69,7 +69,7 @@ export class AppShopView extends LitElement {
       const skuDetails: GoogleBillingItem[] = await service.getDetails(['android.test.purchased','doghouse_3_pack']);
       console.log(skuDetails);
 
-      this.makePurchase('android.test.purchased')
+      this.makePurchase('doghouse_3_pack')
       
       // const existingPurchases = await service.listPurchases();
       // console.log(existingPurchases);
