@@ -26,7 +26,7 @@ export class GeolocationController implements ReactiveController {
   checkPermissions() {
     navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
       if (permissionStatus.state == 'denied') {
-        alertNotifyDanger('Your geolocation is blocked', { duration: undefined });
+        alertNotifyDanger('Your geolocation is blocked');
         this.permissionGeolocation = false;
       }
       if (permissionStatus.state == 'granted') {

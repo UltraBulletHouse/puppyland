@@ -25,8 +25,11 @@ export class AppLoadingMapView extends LitElement {
       #spinner {
         font-size: 80px;
       }
-      #find-loc-btn{
+      #find-loc-hint{
         margin-top: 40px;
+      }
+      #find-loc-btn{
+        margin-top: 10px;
       }
     `,
   ];
@@ -54,7 +57,7 @@ export class AppLoadingMapView extends LitElement {
         <sl-icon id="map-icon" name="map" label="Map"></sl-icon>
         <sl-spinner id="spinner"></sl-spinner>
 
-        <div>Please turn on location <sl-icon name="geo-alt"></sl-icon></div> and click Find your position
+        <div id="find-loc-hint">Please turn on location <sl-icon name="geo-alt"></sl-icon></div> and click button below
         <sl-button  ?hidden=${Boolean(this.userPos)} id="find-loc-btn" @click=${this.watchUserPosEvent}>Find your position</sl-button>
       </div>
     `;
