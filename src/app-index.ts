@@ -98,7 +98,6 @@ export class AppIndex extends LitElement {
 
   willUpdate(changedProperties: PropertyValueMap<this>) {
     console.log(     this.view === View.LOADING_MAP_VIEW,
-      this.geolocation.permissionGeolocation ,
       this.userPos ,
       this.userInfo);
     if (changedProperties.has('view') && changedProperties.size === 1) {
@@ -107,7 +106,6 @@ export class AppIndex extends LitElement {
 
     if (
       this.view === View.LOADING_MAP_VIEW &&
-      this.geolocation.permissionGeolocation &&
       this.userPos &&
       this.userInfo
     ) {
