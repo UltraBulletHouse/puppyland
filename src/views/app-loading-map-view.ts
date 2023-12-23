@@ -53,7 +53,9 @@ export class AppLoadingMapView extends LitElement {
       <div id="container">
         <sl-icon id="map-icon" name="map" label="Map"></sl-icon>
         <sl-spinner id="spinner"></sl-spinner>
-        <sl-button  id="find-loc-btn" @click=${this.watchUserPosEvent}>Find your location</sl-button>
+
+        <div>Please turn on location <sl-icon name="geo-alt"></sl-icon></div> and click Find your position
+        <sl-button  ?hidden=${Boolean(this.userPos)} id="find-loc-btn" @click=${this.watchUserPosEvent}>Find your position</sl-button>
       </div>
     `;
   }
