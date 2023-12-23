@@ -59,9 +59,7 @@ export class AppShopView extends LitElement {
     // }
   }
 
-  protected async firstUpdated(
-    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  ) {
+  async connectedCallback() {
     if ('getDigitalGoodsService' in window) {
       // Digital Goods API is supported!
       try {
@@ -76,7 +74,8 @@ export class AppShopView extends LitElement {
         ]);
         console.log(skuDetails);
 
-        this.makePurchase('doghouse_3_pack');
+        const result = await this.makePurchase('doghouse_3_pack');
+        console.log(result);
 
         // const existingPurchases = await service.listPurchases();
         // console.log(existingPurchases);
