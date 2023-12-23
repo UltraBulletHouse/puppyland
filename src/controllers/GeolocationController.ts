@@ -34,6 +34,7 @@ export class GeolocationController implements ReactiveController {
       }
 
       permissionStatus.onchange = () => {
+        console.log('permissionStatus',permissionStatus.state);
         if (permissionStatus.state == 'granted') {
           this.permissionGeolocation = true;
           alertNotifySuccess('Permission granted');

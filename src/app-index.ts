@@ -90,21 +90,13 @@ export class AppIndex extends LitElement {
 
   watchUserPos() {
     const watchUserPosCallback = (coords: Coords) => {
-      // alertNotifyWarning(coords.lat.toString());
+      console.log('watchUserPosCallback',coords);
       this.userPos = coords;
     };
     this.geolocation.watchUserPostion(watchUserPosCallback);
   }
 
   willUpdate(changedProperties: PropertyValueMap<this>) {
-    // console.log(
-    //   changedProperties,
-    //   this.view === View.LOADING_MAP_VIEW,
-    //   this.geolocation.permissionGeolocation,
-    //   this.userPos,
-    //   this.userInfo
-    // );
-
     if (changedProperties.has('view') && changedProperties.size === 1) {
       return;
     }
@@ -127,8 +119,8 @@ export class AppIndex extends LitElement {
         const accessToken = await userFirebase.getIdToken();
         const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
 
-        this.userInfo = userInfoResponse.data.user;
-        this.dogInfo = userInfoResponse.data.dog;
+        this.userInfo = userInfoResponse.data?.user;
+        this.dogInfo = userInfoResponse.data?.dog;
         this.accessToken = accessToken;
 
         this.watchUserPos();
