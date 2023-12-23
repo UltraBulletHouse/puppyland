@@ -1,8 +1,12 @@
-[{
-      "relation": ["delegate_permission/common.handle_all_urls"],
-      "target": {
-        "namespace": "android_app",
-        "package_name": "app.netlify.astounding_naiad_fc1ffa.twa",
-        "sha256_cert_fingerprints": ["C9:06:9B:B1:03:A8:5A:F0:EC:DA:02:63:48:96:74:73:63:94:2D:D7:B2:D2:E2:D6:99:98:E8:D8:15:41:AF:3C"]
-      }
-    }]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.netlify.astounding_naiad_fc1ffa.twa",
+      "sha256_cert_fingerprints": [
+        "C9:06:9B:B1:03:A8:5A:F0:EC:DA:02:63:48:96:74:73:63:94:2D:D7:B2:D2:E2:D6:99:98:E8:D8:15:41:AF:3C"
+      ]
+    }
+  }
+]

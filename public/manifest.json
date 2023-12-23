@@ -15,11 +15,16 @@
   "launch_handler": {
     "client_mode": "focus-existing"
   },
-  "features": ["Cross Platform", "fast", "simple",{
-    "playBilling": {
-      "enabled": true
+  "features": [
+    "Cross Platform",
+    "fast",
+    "simple",
+    {
+      "playBilling": {
+        "enabled": true
+      }
     }
-  }],
+  ],
   "categories": ["social"],
   "enableNotifications": true,
   "enableLocalization": true,

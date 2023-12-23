@@ -90,25 +90,19 @@ export class AppIndex extends LitElement {
 
   watchUserPos() {
     const watchUserPosCallback = (coords: Coords) => {
-      console.log('watchUserPosCallback',coords);
+      console.log('watchUserPosCallback', coords);
       this.userPos = coords;
     };
     this.geolocation.watchUserPostion(watchUserPosCallback);
   }
 
   willUpdate(changedProperties: PropertyValueMap<this>) {
-    console.log(     this.view === View.LOADING_MAP_VIEW,
-      this.userPos ,
-      this.userInfo);
+    console.log(this.view === View.LOADING_MAP_VIEW, this.userPos, this.userInfo);
     if (changedProperties.has('view') && changedProperties.size === 1) {
       return;
     }
 
-    if (
-      this.view === View.LOADING_MAP_VIEW &&
-      this.userPos &&
-      this.userInfo
-    ) {
+    if (this.view === View.LOADING_MAP_VIEW && this.userPos && this.userInfo) {
       this.view = View.MAP_VIEW;
     }
   }
@@ -180,7 +174,11 @@ export class AppIndex extends LitElement {
       !this.view;
 
     return html`
-      <div id="main-container" @updateView=${this.updateView} @watchUserPosEvent=${this.watchUserPos}>
+      <div
+        id="main-container"
+        @updateView=${this.updateView}
+        @watchUserPosEvent=${this.watchUserPos}
+      >
         <div id="content">${cache(this.renderContent(this.view))}</div>
         <app-footer ?hidden=${isFooterHidden}></app-footer>
       </div>

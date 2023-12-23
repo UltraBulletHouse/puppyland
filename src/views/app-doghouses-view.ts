@@ -1,6 +1,7 @@
 import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { when } from 'lit/directives/when.js';
 
 import '@shoelace-style/shoelace/dist/components/details/details.js';
 
@@ -11,7 +12,6 @@ import { sharedStyles } from '../styles/shared-styles';
 import { DogInfo } from '../types/dog';
 import { Doghouse, GetDoghouseResponse } from '../types/doghouse';
 import { apiCall } from '../utils/apiUtils';
-import { when } from 'lit/directives/when.js';
 
 @customElement('app-doghouses-view')
 export class AppDoghousesView extends LitElement {
@@ -41,7 +41,7 @@ export class AppDoghousesView extends LitElement {
   doghouses: Doghouse[] | null = null;
 
   async connectedCallback() {
-    super.connectedCallback()
+    super.connectedCallback();
 
     if (!this.accessToken) return;
 
@@ -60,18 +60,20 @@ export class AppDoghousesView extends LitElement {
     return html`
       <div id="container">
         <div id="list">
-        ${when(this.doghouses, () => 
-          this.doghouses?.map(
-            (item) => html`
-              <sl-details summary=${item.name}>
-                <ul>
-                  ${Object.entries(item).map(([key, value]) => html`<li>${key}: ${value}</li>`)}
-                </ul>
-              </sl-details>
-            `
-          ), () => html`<sl-spinner style="font-size: 80px;"></sl-spinner>
-          `)}
-
+          ${when(
+            this.doghouses,
+            () =>
+              this.doghouses?.map(
+                (item) => html`
+                  <sl-details summary=${item.name}>
+                    <ul>
+                      ${Object.entries(item).map(([key, value]) => html`<li>${key}: ${value}</li>`)}
+                    </ul>
+                  </sl-details>
+                `
+              ),
+            () => html`<sl-spinner style="font-size: 80px;"></sl-spinner> `
+          )}
         </div>
       </div>
     `;
