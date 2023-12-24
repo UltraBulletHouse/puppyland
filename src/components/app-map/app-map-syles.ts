@@ -36,7 +36,7 @@ export const AppMapStyles = [
       height: 60px;
       bottom: 85px;
       padding: 0 10px;
-      z-index: 9999;
+      z-index: 1000;
     }
     #add-doghouse-btn::part(base) {
       border-color: var(--sl-color-green-300);

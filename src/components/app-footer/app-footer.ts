@@ -13,7 +13,7 @@ export class AppFooter extends LitElement {
     css`
       #footer {
         position: relative;
-        z-index: 9999999999;
+        z-index: 1000;
         box-shadow: 3px -1px 20px 11px #0000002b;
       }
       #container {

@@ -17,6 +17,8 @@
   /* green: #37a26e */
   /* orange: #f97a2c */
   /* blue: #2e96f8 */
+
+  --sl-z-index-toast: 1009;
 }
 
 html,
@@ -32,4 +34,8 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+* {
+  box-sizing: border-box;
 }
