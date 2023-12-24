@@ -2,6 +2,7 @@ import { consume } from '@lit/context';
 import { LitElement } from 'lit';
 import { property } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
+import { createRef, ref } from 'lit/directives/ref.js';
 import { html } from 'lit/static-html.js';
 
 import '@shoelace-style/shoelace/dist/components/card/card.js';
@@ -10,8 +11,9 @@ import { API_DOGHOUSE_ATTACK } from '../../../constants/apiConstants';
 import { updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { AttackDoghouseResponse } from '../../../types/doghouse';
-import { alertNotifySuccess } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
+import '../../app-modal/app-modal';
+import { AppModal } from '../../app-modal/app-modal';
 
 @customElement('app-map-popup-attack')
 export class AppMapPopupAttack extends LitElement {
@@ -28,6 +30,13 @@ export class AppMapPopupAttack extends LitElement {
   @property({ type: String })
   doghouseName?: string;
 
+  modalRef = createRef();
+
+  updated(): void {
+    const modal = this.modalRef.value;
+    (modal as AppModal).openModal();
+  }
+
   async attackDoghouse() {
     if (!this.accessToken || !this.doghouseId || !this.dogId) return;
 
@@ -37,16 +46,11 @@ export class AppMapPopupAttack extends LitElement {
     );
 
     const dogInfoResponse = attackDoghouseResponse?.data?.dog;
-    const experienceGained = attackDoghouseResponse?.data?.experienceGained;
+    const attackResult = attackDoghouseResponse?.data?.attackResult;
+    console.log(attackResult);
 
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
-
-      alertNotifySuccess(`
-        You attacked ${this.doghouseName} ||||
-        HP: ${attackDoghouseResponse.data.doghouse.hp} ||||
-        Experience gained:${experienceGained} ||||
-      `);
     }
   }
 
@@ -62,6 +66,10 @@ export class AppMapPopupAttack extends LitElement {
           <sl-button id="attack-btn" @click=${this.attackDoghouse}>Attack</sl-button>
         </div>
       </sl-card>
+
+      <app-modal ${ref(this.modalRef)}>
+        <div>ATTACK 1</div>
+      </app-modal>
     </div>`;
   }
 }
