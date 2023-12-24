@@ -90,14 +90,14 @@ export class AppIndex extends LitElement {
 
   watchUserPos() {
     const watchUserPosCallback = (coords: Coords) => {
-      console.log('watchUserPosCallback', coords);
+      // console.log('watchUserPosCallback', coords);
       this.userPos = coords;
     };
     this.geolocation.watchUserPostion(watchUserPosCallback);
   }
 
   willUpdate(changedProperties: PropertyValueMap<this>) {
-    console.log(this.view === View.LOADING_MAP_VIEW, this.userPos, this.userInfo);
+    // console.log(this.view === View.LOADING_MAP_VIEW, this.userPos, this.userInfo);
     if (changedProperties.has('view') && changedProperties.size === 1) {
       return;
     }

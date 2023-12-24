@@ -1,5 +1,5 @@
 import { consume } from '@lit/context';
-import { LitElement, PropertyValueMap, css, html } from 'lit';
+import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import { userPosContext } from '../contexts/userPosContext';
@@ -22,10 +22,10 @@ export class AppLoadingMapView extends LitElement {
         font-size: 80px;
         margin-bottom: 40px;
       }
-      #find-loc-hint{
+      #find-loc-hint {
         margin-top: 40px;
       }
-      #find-loc-btn{
+      #find-loc-btn {
         margin-top: 10px;
       }
     `,
@@ -35,9 +35,9 @@ export class AppLoadingMapView extends LitElement {
   @property({ attribute: false })
   userPos: Coords | null = null;
 
-  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    console.log(this.userPos, _changedProperties);
-  }
+  // protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+  //   console.log(this.userPos, _changedProperties);
+  // }
 
   watchUserPosEvent = () => {
     const options: CustomEventInit = {
@@ -52,8 +52,14 @@ export class AppLoadingMapView extends LitElement {
     return html`
       <div id="container">
         <sl-icon id="map-icon" name="map" label="Map"></sl-icon>
-        <div id="find-loc-hint">Please turn on location <sl-icon name="geo-alt"></sl-icon></div> and click button below
-        <sl-button  ?hidden=${Boolean(this.userPos)} id="find-loc-btn" @click=${this.watchUserPosEvent}>Find your position</sl-button>
+        <div id="find-loc-hint">Please turn on location <sl-icon name="geo-alt"></sl-icon></div>
+        and click button below
+        <sl-button
+          ?hidden=${Boolean(this.userPos)}
+          id="find-loc-btn"
+          @click=${this.watchUserPosEvent}
+          >Find your position</sl-button
+        >
       </div>
     `;
   }

@@ -35,13 +35,13 @@ export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) =>
     navigator.geolocation.clearWatch(2);
     navigator.geolocation.clearWatch(3);
 
-    const id = navigator.geolocation.watchPosition(
+    navigator.geolocation.watchPosition(
       watchUserPositionSuccess,
       watchPositionError,
       watchPositionOptions
     );
 
-    console.log('id', id);
+    // console.log('id', id);
   } else {
     // alertNotifyDanger('Watch position: No geolocation access');
   }

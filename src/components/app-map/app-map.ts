@@ -89,7 +89,8 @@ export class AppMap extends LitElement {
       const { lat, lng } = this.userPos;
       this.map.setView([lat, lng], 17);
     }
-    if (changedProperties.has('userPos') && this.userPos && this.map) {
+
+    if (this.userPos && this.map) {
       // TODO: nie ustaiwac od nowa tylko iterowac po liscie i udate closest
       this.setUserPostion();
     }

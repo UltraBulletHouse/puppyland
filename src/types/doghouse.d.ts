@@ -33,8 +33,14 @@ export interface CreateDoghouseResponse {
   lat: number;
 }
 
+export interface AttackResult {
+  experienceGained: number;
+  damageDealt: number;
+  isDoghouseDestroyed: boolean;
+}
+
 export interface AttackDoghouseResponse {
   doghouse: Doghouse;
   dog: DogInfo;
-  experienceGained: number;
+  attackResult: AttackResult;
 }
