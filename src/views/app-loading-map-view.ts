@@ -35,10 +35,6 @@ export class AppLoadingMapView extends LitElement {
   @property({ attribute: false })
   userPos: Coords | null = null;
 
-  // protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-  //   console.log(this.userPos, _changedProperties);
-  // }
-
   watchUserPosEvent = () => {
     const options: CustomEventInit = {
       detail: true,
