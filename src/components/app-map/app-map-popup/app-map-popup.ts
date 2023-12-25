@@ -1,8 +1,7 @@
 import { consume } from '@lit/context';
-import { LitElement } from 'lit';
+import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
-import { html } from 'lit/static-html.js';
 
 import '@shoelace-style/shoelace/dist/components/card/card.js';
 
