@@ -11,6 +11,9 @@ import { UserInfo } from '../types/userInfo';
 import { View } from '../types/view';
 import { auth } from '../utils/firebase';
 
+/**
+ * @fires updateView
+ */
 @customElement('app-user-view')
 export class AppUserView extends LitElement {
   static styles = [

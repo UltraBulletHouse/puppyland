@@ -1,39 +1,20 @@
 import { LitElement, TemplateResult, html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 @customElement('app-modal')
 export class AppModal extends LitElement {
   @property({ type: Object })
   element?: TemplateResult<1>;
 
-  @state()
-  isOpen: boolean = false;
-
-  // @state()
-  // header?: string;
-
-  openModal(/* header */) {
-    // this.header = header
-
-    console.log('OPEN MODAL');
-    this.isOpen = true;
-    // this.requestUpdate();
-  }
-
-  closeModal() {
-    console.log('CLOSE MODAL');
-    this.isOpen = false;
-    this.requestUpdate();
-  }
+  @property({ type: Boolean })
+  open: boolean = false;
 
   protected createRenderRoot() {
     return document.body;
   }
 
   render() {
-    // console.log(this.isOpen, this.element?.strings);
-
-    return this.isOpen
+    return this.open
       ? html`<div>
           <style>
             #modal-container {

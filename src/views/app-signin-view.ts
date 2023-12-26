@@ -8,6 +8,9 @@ import { View } from '../types/view';
 import { alertNotifyDanger } from '../utils/alertsUtils';
 import { auth, googleProvider } from '../utils/firebase';
 
+/**
+ * @fires updateView
+ */
 @customElement('app-signin-view')
 export class AppSignin extends LitElement {
   static styles = [

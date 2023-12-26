@@ -5,7 +5,11 @@ import { customElement, property } from 'lit/decorators.js';
 import { userPosContext } from '../contexts/userPosContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { Coords } from '../types/geolocation';
+import { sendEvent } from '../utils/eventUtils';
 
+/**
+ * @fires watchUserPos
+ */
 @customElement('app-loading-map-view')
 export class AppLoadingMapView extends LitElement {
   static styles = [
@@ -36,12 +40,7 @@ export class AppLoadingMapView extends LitElement {
   userPos: Coords | null = null;
 
   watchUserPosEvent = () => {
-    const options: CustomEventInit = {
-      detail: true,
-      bubbles: true,
-      composed: true,
-    };
-    this.dispatchEvent(new CustomEvent('watchUserPosEvent', options));
+    sendEvent(this, 'watchUserPos');
   };
 
   render() {

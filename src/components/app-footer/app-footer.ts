@@ -6,6 +6,9 @@ import { updateViewEvent, viewContext } from '../../contexts/viewContext';
 import { sharedStyles } from '../../styles/shared-styles';
 import { View } from '../../types/view';
 
+/**
+ * @fires updateView
+ */
 @customElement('app-footer')
 export class AppFooter extends LitElement {
   static styles = [

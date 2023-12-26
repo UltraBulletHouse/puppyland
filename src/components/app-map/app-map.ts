@@ -13,17 +13,20 @@ import { CreateDoghouseResponse, Doghouse } from '../../types/doghouse';
 import { Coords } from '../../types/geolocation';
 import { MarkersList } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
-import { alertNotifySuccess } from '../../utils/alertsUtils';
 import { apiCall } from '../../utils/apiUtils';
 import {
   generateDoghouseIcon,
   generatePulsatingMarker,
   getClosestDoghouses,
 } from '../../utils/mapUtils';
+import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-syles';
 
+/**
+ * @fires updateDogInfo
+ */
 @customElement('app-map')
 export class AppMap extends LitElement {
   static styles = AppMapStyles;
@@ -55,6 +58,13 @@ export class AppMap extends LitElement {
 
   @state()
   markersList: MarkersList | null = null;
+
+  @state()
+  isAddHouseModalOpen: boolean = false;
+
+  closeModal = () => {
+    this.isAddHouseModalOpen = false;
+  };
 
   centerPosition() {
     if (this.map && this.userPos) {
@@ -170,13 +180,13 @@ export class AppMap extends LitElement {
 
     // TODO: Dodac do doghouses i markerslist - zrobic util/controller updateujacy obie listy
 
-    alertNotifySuccess('Your doghouse was created');
-
     const userDogRes = createDoghouseResponse.data.dog;
     if (userDogRes) {
       updateDogInfoEvent(this, userDogRes);
     }
     if (createDoghouseResponse.status === 200) {
+      this.isAddHouseModalOpen = true;
+
       this.setDoghousesMarkers();
     }
   }
@@ -221,6 +231,11 @@ export class AppMap extends LitElement {
             </sl-button>
           </div>
         </div>
+
+        <app-modal-addhouse
+          .open=${this.isAddHouseModalOpen}
+          @addhouseModal=${this.closeModal}
+        ></app-modal-addhouse>
       </div>
     `;
   }

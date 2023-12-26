@@ -174,11 +174,7 @@ export class AppIndex extends LitElement {
       !this.view;
 
     return html`
-      <div
-        id="main-container"
-        @updateView=${this.updateView}
-        @watchUserPosEvent=${this.watchUserPos}
-      >
+      <div id="main-container" @updateView=${this.updateView} @watchUserPos=${this.watchUserPos}>
         <div id="content">${cache(this.renderContent(this.view))}</div>
         <app-footer ?hidden=${isFooterHidden}></app-footer>
       </div>
