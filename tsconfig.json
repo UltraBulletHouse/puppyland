@@ -20,7 +20,12 @@
     "types": ["vite-plugin-pwa/client", "vite/client", "node"],
     "plugins": [
       {
-        "name": "ts-lit-plugin"
+        "name": "ts-lit-plugin",
+        // "strict": true,
+        "rules": {
+          "no-unknown-event": "warning",
+          "no-missing-import": "off"
+        }
       }
     ]
   },
