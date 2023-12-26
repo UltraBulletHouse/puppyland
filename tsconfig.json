@@ -17,7 +17,12 @@
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": false,
     "isolatedModules": true,
-    "types": ["vite-plugin-pwa/client", "vite/client", "node"]
+    "types": ["vite-plugin-pwa/client", "vite/client", "node"],
+    "plugins": [
+      {
+        "name": "ts-lit-plugin"
+      }
+    ]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts"],
   "exclude": ["node_modules"]

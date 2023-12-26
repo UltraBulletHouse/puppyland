@@ -34,6 +34,7 @@
     "eslint-plugin-lit": "^1.10.1",
     "eslint-plugin-wc": "^2.0.4",
     "prettier": "^3.1.0",
+    "ts-lit-plugin": "^2.0.1",
     "typescript": "^5.0.4",
     "vite": "^5.0.2",
     "vite-plugin-pwa": "^0.17.0",
