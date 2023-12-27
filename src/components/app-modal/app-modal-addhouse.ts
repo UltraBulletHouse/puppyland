@@ -45,6 +45,7 @@ export class AppModalAddhouse extends LitElement {
           id="doghouse-name-input"
           placeholder="New name for your doghouse"
           value=${this.addDoghouseResponse ?? ''}
+          pill
         ></sl-input>
         <sl-button id="doghouse-name-save-btn" pill>Save name</sl-button>
         <sl-button @click=${this.closeModal} pill>Close</sl-button>
