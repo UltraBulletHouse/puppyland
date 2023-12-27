@@ -49,7 +49,7 @@ export class AppModalAttack extends LitElement {
             <p>
               Doghouse is ${this.attackResult?.isDoghouseDestroyed ? 'destroyed' : 'not destroyed'}
             </p>
-            <sl-button @click=${this.closeModal}>Close</sl-button>
+            <sl-button @click=${this.closeModal} pill>Close</sl-button>
           </div>`
       : html`
           <style>

@@ -60,6 +60,10 @@ export class AppMap extends LitElement {
   markersList: MarkersList | null = null;
 
   @state()
+  addDoghouseResponse: string | null = null;
+  // addDoghouseResponse: CreateDoghouseResponse | null = null;//TODO: caly objekt jak P naprawi
+
+  @state()
   isAddHouseModalOpen: boolean = false;
 
   closeModal = () => {
@@ -180,12 +184,12 @@ export class AppMap extends LitElement {
 
     // TODO: Dodac do doghouses i markerslist - zrobic util/controller updateujacy obie listy
 
-    const userDogRes = createDoghouseResponse.data.dog;
-    if (userDogRes) {
-      updateDogInfoEvent(this, userDogRes);
-    }
     if (createDoghouseResponse.status === 200) {
+      this.addDoghouseResponse = createDoghouseResponse.data.name;
       this.isAddHouseModalOpen = true;
+
+      const userDogRes = createDoghouseResponse.data.dog;
+      updateDogInfoEvent(this, userDogRes);
 
       this.setDoghousesMarkers();
     }
@@ -234,6 +238,7 @@ export class AppMap extends LitElement {
 
         <app-modal-addhouse
           .open=${this.isAddHouseModalOpen}
+          .addDoghouseResponse=${this.addDoghouseResponse}
           @addhouseModal=${this.closeModal}
         ></app-modal-addhouse>
       </div>

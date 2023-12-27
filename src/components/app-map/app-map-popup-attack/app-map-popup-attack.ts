@@ -72,7 +72,7 @@ export class AppMapPopupAttack extends LitElement {
       <sl-card class="card-overview">
         <strong>${this.doghouseName}</strong>
         <div slot="footer">
-          <sl-button id="attack-btn" @click=${this.attackDoghouse}>Attack</sl-button>
+          <sl-button id="attack-btn" @click=${this.attackDoghouse} pill>Attack</sl-button>
         </div>
       </sl-card>
 
