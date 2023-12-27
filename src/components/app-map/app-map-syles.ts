@@ -71,7 +71,7 @@ export const AppMapStyles = [
       padding: 8px;
     }
     #center-position {
-      margin-bottom: 10px;
+      margin-top: 10px;
     }
     .control-counter {
       display: flex;

@@ -224,11 +224,6 @@ export class AppMap extends LitElement {
             </div>
           </div>
           <div id="right-side">
-            <div id="center-position" @click=${this.centerPosition}>
-              <sl-button variant="default" size="large" circle>
-                <sl-icon name="record-circle"></sl-icon>
-              </sl-button>
-            </div>
             <div id="add-doghouse" @click=${this.addDoghouse}>
               <sl-button
                 id="add-doghouse-btn"
@@ -238,6 +233,11 @@ export class AppMap extends LitElement {
                 ?disabled=${!this.dogInfo?.availableDoghouses}
               >
                 <sl-icon name="house-add"></sl-icon>
+              </sl-button>
+            </div>
+            <div id="center-position" @click=${this.centerPosition}>
+              <sl-button variant="default" size="large" circle>
+                <sl-icon name="record-circle"></sl-icon>
               </sl-button>
             </div>
           </div>
