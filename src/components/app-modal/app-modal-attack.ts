@@ -4,6 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { sharedStyles } from '../../styles/shared-styles';
 import { AttackResult } from '../../types/doghouse';
 import { sendEvent } from '../../utils/eventUtils';
+import '../app-spinner/app-spinner';
 import './app-modal';
 
 /**
@@ -51,21 +52,7 @@ export class AppModalAttack extends LitElement {
             </p>
             <sl-button @click=${this.closeModal} pill>Close</sl-button>
           </div>`
-      : html`
-          <style>
-            #attack-modal {
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              align-items: center;
-              height: 100%;
-              width: 100%;
-            }
-          </style>
-          <div id="attack-modal">
-            <sl-spinner style="font-size: 80px;"></sl-spinner>
-          </div>
-        `;
+      : html` <app-spinner></app-spinner> `;
 
     return html`<app-modal
       modalId="attack-doghouse"
