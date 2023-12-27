@@ -5,6 +5,7 @@ import { when } from 'lit/directives/when.js';
 
 import '@shoelace-style/shoelace/dist/components/details/details.js';
 
+import '../components/app-spinner/app-spinner';
 import { API_DOGHOUSE_GET } from '../constants/apiConstants';
 import { dogInfoContext } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
@@ -72,7 +73,7 @@ export class AppDoghousesView extends LitElement {
                   </sl-details>
                 `
               ),
-            () => html`<sl-spinner style="font-size: 80px;"></sl-spinner> `
+            () => html`<app-spinner></app-spinner>`
           )}
         </div>
       </div>
