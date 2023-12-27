@@ -33,10 +33,15 @@ export const AppMapStyles = [
       display: flex;
       align-items: end;
       justify-content: space-between;
-      height: 60px;
-      bottom: 85px;
+      bottom: 134px;
       padding: 0 10px;
       z-index: 1000;
+      pointer-events: none;
+    }
+    #dog-posibilities,
+    #center-position,
+    #add-doghouse {
+      pointer-events: all;
     }
     #add-doghouse-btn::part(base) {
       border-color: var(--sl-color-green-300);
@@ -56,15 +61,25 @@ export const AppMapStyles = [
     #attack-doghouse-btn::part(base):active {
       border-color: var(--sl-color-red-300);
     }
-    .control-counter {
-      font-size: 16px;
+    #dog-posibilities {
+      font-size: 18px;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       background: #ffffff;
       border-radius: 15px;
-      padding: 3px 5px;
+      padding: 8px;
     }
-
+    #center-position {
+      margin-bottom: 10px;
+    }
+    .control-counter {
+      display: flex;
+      align-items: center;
+    }
+    .control-counter sl-icon {
+      margin-right: 6px;
+    }
     #pulse {
       display: block;
       border-radius: 50%;

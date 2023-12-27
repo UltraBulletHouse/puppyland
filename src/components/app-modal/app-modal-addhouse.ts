@@ -33,6 +33,7 @@ export class AppModalAddhouse extends LitElement {
         }
         #doghouse-name-input {
           margin-bottom: 20px;
+          width: 100%;
         }
         #doghouse-name-save-btn {
           margin-bottom: 20px;
@@ -46,6 +47,7 @@ export class AppModalAddhouse extends LitElement {
           placeholder="New name for your doghouse"
           value=${this.addDoghouseResponse ?? ''}
           pill
+          clearable
         ></sl-input>
         <sl-button id="doghouse-name-save-btn" pill>Save name</sl-button>
         <sl-button @click=${this.closeModal} pill>Close</sl-button>

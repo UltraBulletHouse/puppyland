@@ -212,27 +212,34 @@ export class AppMap extends LitElement {
       <div id="container">
         <div id="map"></div>
         <div id="controls">
-          <div id="attack-doghouse">
+          <div id="dog-posibilities">
             <div class="control-counter">
-              <sl-icon name="lightning-charge"></sl-icon> ${this.dogInfo?.availableAttacks ?? ''}
+              <sl-icon name="lightning-charge"></sl-icon> ${this.dogInfo?.attackPower ?? ''}
+            </div>
+            <div class="control-counter">
+              <sl-icon name="heart-arrow"></sl-icon> ${this.dogInfo?.availableAttacks ?? ''}
+            </div>
+            <div class="control-counter">
+              <sl-icon name="house-add"></sl-icon> ${this.dogInfo?.availableDoghouses ?? ''}
             </div>
           </div>
-          <div id="center-position" @click=${this.centerPosition}>
-            <sl-button variant="default" size="large" circle>
-              <sl-icon name="record-circle"></sl-icon>
-            </sl-button>
-          </div>
-          <div id="add-doghouse" @click=${this.addDoghouse}>
-            <div class="control-counter">${this.dogInfo?.availableDoghouses ?? ''}</div>
-            <sl-button
-              id="add-doghouse-btn"
-              variant="default"
-              size="large"
-              circle
-              ?disabled=${!this.dogInfo?.availableDoghouses}
-            >
-              <sl-icon name="house-add"></sl-icon>
-            </sl-button>
+          <div id="right-side">
+            <div id="center-position" @click=${this.centerPosition}>
+              <sl-button variant="default" size="large" circle>
+                <sl-icon name="record-circle"></sl-icon>
+              </sl-button>
+            </div>
+            <div id="add-doghouse" @click=${this.addDoghouse}>
+              <sl-button
+                id="add-doghouse-btn"
+                variant="default"
+                size="large"
+                circle
+                ?disabled=${!this.dogInfo?.availableDoghouses}
+              >
+                <sl-icon name="house-add"></sl-icon>
+              </sl-button>
+            </div>
           </div>
         </div>
 
