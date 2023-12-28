@@ -13,7 +13,6 @@ import { sharedStyles } from '../styles/shared-styles';
 import {
   DogInfo,
   DogInfoResponse,
-  DogInfoUpdateRequest,
   DogInfoUpdateResponse,
 } from '../types/dog';
 import { apiCall } from '../utils/apiUtils';
