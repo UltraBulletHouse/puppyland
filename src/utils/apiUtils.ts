@@ -4,17 +4,23 @@ import { alertNotifyDanger } from './alertsUtils';
 
 // const corsAny = 'https://cors-anywhere.herokuapp.com/'
 const apiUrl = 'https://testaccount1rif-001-site1.anytempurl.com/';
-const baseHeaders = (accesToken: string) => ({
-  'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin': '*',
-  'Authorization': 'Bearer ' + accesToken,
-});
+const baseHeaders = (accesToken?: string) => {
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+   
+  }
+  if (accesToken) {
+    headers['Authorization'] = 'Bearer ' + accesToken
+  }
+  return headers
+};
 
 interface ApiError {
   message: string;
 }
 
-export const apiCall = (accesToken: string) => {
+export const apiCall = (accesToken?: string) => {
   const api = axios.create({
     baseURL: apiUrl,
     timeout: 7000,

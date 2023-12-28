@@ -155,10 +155,10 @@ export class AppMap extends LitElement {
 
   async setDoghousesMarkers() {
     if (!this.map || !this.userPos) return;
-    if (!this.accessToken) return; //TODO: Remove, allow without
+    
     const {
       data: { doghousesList },
-    } = await apiCall(this.accessToken).get(API_DOGHOUSES_NEAR_USER, {
+    } = await apiCall().get(API_DOGHOUSES_NEAR_USER, {
       params: {
         lat: this.userPos.lat.toString(),
         lng: this.userPos.lng.toString(),
