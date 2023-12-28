@@ -13,3 +13,12 @@ export interface DogInfo {
 export interface DogInfoResponse {
   dog: DogInfo;
 }
+
+export interface DogInfoUpdateRequest {
+  dogId: string;
+  name: string;
+}
+
+export interface DogInfoUpdateResponse {
+  name: string;
+}

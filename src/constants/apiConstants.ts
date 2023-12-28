@@ -9,3 +9,4 @@ export const API_DOGHOUSE_ATTACK = 'Dog/Doghouse/Attack';
 
 /* DOG */
 export const API_DOG_GET = 'Dog';
+export const API_DOG_UPDATE = 'Dog/Update';
