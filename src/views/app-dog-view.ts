@@ -95,23 +95,24 @@ export class AppDogView extends LitElement {
     this.isEditingName = true;
   }
 
-  saveNewName() {
-    this.isEditingName = false;
-  }
-
-  async onChangeName(event: Event) {
+  async saveNewName() {
     if (!this.accessToken) return;
-    const newName = (event.target as HTMLInputElement)?.value;
 
     const dogInfoResponse = await apiCall(this.accessToken).patch<DogInfoUpdateResponse>(
       API_DOG_UPDATE,
       {
         dogId: this.dogInfo?.id,
-        name: newName,
+        name: this.newName,
       }
     );
 
     this.newName = dogInfoResponse.data.name;
+    this.isEditingName = false;
+  }
+
+  async onChangeName(event: Event) {
+    const newName = (event.target as HTMLInputElement)?.value;
+    this.newName = newName
   }
 
   render() {
@@ -146,7 +147,12 @@ export class AppDogView extends LitElement {
                     id="input"
                     value=${this.newName ?? ''}
                     @sl-change=${this.onChangeName}
+                    minlength="3"
+                    maxlength="20"
+                    autofocus
+                    required
                     clearable
+                    pill
                   ></sl-input>`
                 : this.newName ?? name ?? ''}
               ${this.isEditingName
