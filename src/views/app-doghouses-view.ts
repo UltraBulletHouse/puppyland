@@ -5,6 +5,7 @@ import { when } from 'lit/directives/when.js';
 
 import '@shoelace-style/shoelace/dist/components/details/details.js';
 
+import '../components/app-doghouse-item/app-doghouse-item';
 import '../components/app-spinner/app-spinner';
 import { API_DOGHOUSE_GET } from '../constants/apiConstants';
 import { dogInfoContext } from '../contexts/dogInfoContext';
@@ -84,9 +85,7 @@ export class AppDoghousesView extends LitElement {
               this.doghouses?.map(
                 (item) => html`
                   <sl-details summary=${item.name}>
-                    <ul>
-                      ${Object.entries(item).map(([key, value]) => html`<li>${key}: ${value}</li>`)}
-                    </ul>
+                    <app-dogouse-item .dogouseInfo=${item}></app-dogouse-item>
                   </sl-details>
                 `
               ),

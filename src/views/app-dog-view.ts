@@ -10,11 +10,7 @@ import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
-import {
-  DogInfo,
-  DogInfoResponse,
-  DogInfoUpdateResponse,
-} from '../types/dog';
+import { DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
 import { apiCall } from '../utils/apiUtils';
 
 @customElement('app-dog-view')
@@ -80,17 +76,6 @@ export class AppDogView extends LitElement {
   @state()
   newName: string | null = null;
 
-  async firstUpdated() {
-    if (!this.accessToken) return;
-
-    const dogInfoResponse = await apiCall(this.accessToken).get<DogInfoResponse>(API_DOG_GET);
-    const { dog } = dogInfoResponse.data;
-    if (dog) {
-      this.newName = dog.name;
-      updateDogInfoEvent(this, dog);
-    }
-  }
-
   editName() {
     this.isEditingName = true;
   }
@@ -110,9 +95,20 @@ export class AppDogView extends LitElement {
     this.isEditingName = false;
   }
 
-  async onChangeName(event: Event) {
+  onChangeName(event: Event) {
     const newName = (event.target as HTMLInputElement)?.value;
-    this.newName = newName
+    this.newName = newName;
+  }
+
+  async firstUpdated() {
+    if (!this.accessToken) return;
+
+    const dogInfoResponse = await apiCall(this.accessToken).get<DogInfoResponse>(API_DOG_GET);
+    const { dog } = dogInfoResponse.data;
+    if (dog) {
+      this.newName = dog.name;
+      updateDogInfoEvent(this, dog);
+    }
   }
 
   render() {

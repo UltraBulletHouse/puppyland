@@ -8,6 +8,7 @@ export interface Doghouse {
   lng: number;
   hp: number;
   maxHp: number;
+  createdDate: string;
 }
 
 export interface NearDoghousesResponse {
@@ -43,4 +44,8 @@ export interface AttackDoghouseResponse {
   doghouse: Doghouse;
   dog: DogInfo;
   attackResult: AttackResult;
+}
+
+export interface UpdateDoghouseResponse {
+  name: string;
 }
