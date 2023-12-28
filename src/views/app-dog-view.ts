@@ -26,7 +26,7 @@ export class AppDogView extends LitElement {
       }
       #dog-image {
         font-size: 100px;
-        margin-top: 20px;
+        margin-top: 40px;
       }
       #dog-image-circle {
         height: 130px;
@@ -35,7 +35,7 @@ export class AppDogView extends LitElement {
         justify-content: center;
         align-items: center;
         border-radius: 50%;
-        background-color: var(--sl-color-gray-50);
+        background-color: var(--sl-color-gray-200);
         margin-bottom: 20px;
       }
       #dog-name {
@@ -90,7 +90,7 @@ export class AppDogView extends LitElement {
                 <sl-icon name="piggy-bank"></sl-icon>
               </div>
             </div>
-            <div id="dog-name">${name ?? 'El Burek Pablito'}</div>
+            <div id="dog-name">${name ?? 'El Perro'} <sl-icon name="pencil"></sl-icon></div>
             <div id="info-container">
               <div id="dog-level">
                 <sl-icon name="star"></sl-icon>Level:

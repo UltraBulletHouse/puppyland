@@ -20,10 +20,22 @@ export class AppDoghousesView extends LitElement {
     sharedStyles,
     css`
       #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         height: 100%;
+        width: 100%;
+      }
+      #title{
+        font-weight: 400;
+        margin: 20px 0;
+      }
+      #title #title-text {
+        margin-left: 10px;
       }
       #list {
         height: 100%;
+        width: 100%;
         margin: 0;
         overflow: auto;
       }
@@ -60,6 +72,11 @@ export class AppDoghousesView extends LitElement {
   render() {
     return html`
       <div id="container">
+        <h2 id="title">
+          <sl-icon name="houses"></sl-icon>
+          <span id="title-text">Your doghouses</span>
+        </h2>
+
         <div id="list">
           ${when(
             this.doghouses,
