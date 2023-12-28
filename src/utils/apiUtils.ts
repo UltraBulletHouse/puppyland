@@ -8,12 +8,11 @@ const baseHeaders = (accesToken?: string) => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
-   
-  }
+  };
   if (accesToken) {
-    headers['Authorization'] = 'Bearer ' + accesToken
+    headers['Authorization'] = 'Bearer ' + accesToken;
   }
-  return headers
+  return headers;
 };
 
 interface ApiError {

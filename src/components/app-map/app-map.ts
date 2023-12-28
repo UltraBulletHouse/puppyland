@@ -155,7 +155,7 @@ export class AppMap extends LitElement {
 
   async setDoghousesMarkers() {
     if (!this.map || !this.userPos) return;
-    
+
     const {
       data: { doghousesList },
     } = await apiCall().get(API_DOGHOUSES_NEAR_USER, {

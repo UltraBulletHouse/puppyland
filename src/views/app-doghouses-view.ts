@@ -26,7 +26,7 @@ export class AppDoghousesView extends LitElement {
         height: 100%;
         width: 100%;
       }
-      #title{
+      #title {
         font-weight: 400;
         margin: 20px 0;
       }
