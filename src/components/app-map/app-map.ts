@@ -200,7 +200,7 @@ export class AppMap extends LitElement {
 
     const currentZoom = this.map.getZoom();
     console.log(currentZoom);
-    
+
     const marks = this.shadowRoot?.querySelectorAll('.doghouse-marker');
     if (currentZoom <= 12) {
       marks?.forEach((item) => {
@@ -225,9 +225,8 @@ export class AppMap extends LitElement {
     this.map = map;
 
     let urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
-    map.addLayer(L.tileLayer(urlTemplate, { minZoom: 1, attribution: '© OpenStreetMap' }));
+    map.addLayer(L.tileLayer(urlTemplate, { minZoom: 11, maxZoom: 20, attribution: '© OpenStreetMap' }));
 
-    //TODO: do osobnej funkcji/util
     map.on('zoomend', this.handleZoomend);
   }
 
