@@ -236,7 +236,7 @@ export class AppMap extends LitElement {
               </sl-button>
             </div>
             <div id="center-position" @click=${this.centerPosition}>
-              <sl-button variant="default" size="large" circle>
+              <sl-button id="center-position-btn" variant="default" size="large" circle>
                 <sl-icon name="record-circle"></sl-icon>
               </sl-button>
             </div>

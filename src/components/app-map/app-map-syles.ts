@@ -43,23 +43,17 @@ export const AppMapStyles = [
     #add-doghouse {
       pointer-events: all;
     }
-    #add-doghouse-btn::part(base) {
-      border-color: var(--sl-color-green-300);
-    }
-    #add-doghouse-btn::part(base):hover {
-      border-color: var(--sl-color-green-300);
-    }
+    #add-doghouse-btn::part(base),
+    #add-doghouse-btn::part(base):hover,
     #add-doghouse-btn::part(base):active {
-      border-color: var(--sl-color-green-300);
+      border-color: var(--color-orange);
+      color: var(--color-orange);
     }
-    #attack-doghouse-btn::part(base) {
-      border-color: var(--sl-color-red-300);
-    }
-    #attack-doghouse-btn::part(base):hover {
-      border-color: var(--sl-color-red-300);
-    }
-    #attack-doghouse-btn::part(base):active {
-      border-color: var(--sl-color-red-300);
+    #center-position-btn::part(base),
+    #center-position-btn::part(base):hover,
+    #center-position-btn::part(base):active {
+      border-color: var(--color-blue);
+      color: var(--color-blue);
     }
     #dog-posibilities {
       font-size: 18px;
@@ -69,6 +63,7 @@ export const AppMapStyles = [
       background: #ffffff;
       border-radius: 15px;
       padding: 8px;
+      border: 1px solid var(--color-green);
     }
     #center-position {
       margin-top: 10px;

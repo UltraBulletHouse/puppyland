@@ -15,8 +15,13 @@
   --sl-color-primary-950: var(--sl-color-green-950);
 
   /* green: #37a26e */
+  --color-green: #37a26e;
+
   /* orange: #f97a2c */
+  --color-orange: #f97a2c;
+
   /* blue: #2e96f8 */
+  --color-blue: #2e96f8;
 
   --sl-z-index-toast: 1009;
 }
