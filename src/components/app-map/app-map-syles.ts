@@ -55,6 +55,10 @@ export const AppMapStyles = [
       border-color: var(--color-blue);
       color: var(--color-blue);
     }
+    #center-position-btn::part(base),
+    #add-doghouse-btn::part(base) {
+      box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 15px 0px;
+    }
     #dog-posibilities {
       font-size: 18px;
       display: flex;
@@ -64,6 +68,7 @@ export const AppMapStyles = [
       border-radius: 15px;
       padding: 8px;
       border: 1px solid var(--color-green);
+      box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 15px 0px;
     }
     #center-position {
       margin-top: 10px;
