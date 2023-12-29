@@ -112,7 +112,7 @@ export class AppDoghouseItem extends LitElement {
         </div>
         <div id="doghouse-days">
           <p>
-            <sl-icon name="calendar-check"></sl-icon>Crated
+            <sl-icon name="calendar-check"></sl-icon>Created
             <sl-relative-time date=${createdDate}></sl-relative-time>
           </p>
         </div>
