@@ -102,6 +102,10 @@ export class AppMap extends LitElement {
     if (changedProperties.has('map') && this.map && this.userPos) {
       const { lat, lng } = this.userPos;
       this.map.setView([lat, lng], 17);
+
+      //TODO: zeby wysylal w NearMe coordynaty i wrzucic tu zamiast this.map.getBounds()
+      // this.map.setMaxBounds(this.map.getBounds());
+
     }
 
     if (this.userPos && this.map) {
@@ -197,11 +201,9 @@ export class AppMap extends LitElement {
 
   handleZoomend = () => {
     if (!this.map) return;
-
     const currentZoom = this.map.getZoom();
-    console.log(currentZoom);
-
     const marks = this.shadowRoot?.querySelectorAll('.doghouse-marker');
+    
     if (currentZoom <= 12) {
       marks?.forEach((item) => {
         (item as HTMLElement).style.scale = '0.5';
