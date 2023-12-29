@@ -34,6 +34,7 @@ export const generateDoghouseIcon = ({
     border-radius: 50%;
     background: rgb(253,119,29);
     background: linear-gradient(90deg, rgb(255 102 0) 0%, rgba(252,176,69,1) 100%);
+    transition: all .5s ease-in-out;
   `;
   const cssStyleIcon = `
     font-size: 14px;
@@ -48,7 +49,7 @@ export const generateDoghouseIcon = ({
 
   const doghouseIcon = L.divIcon({
     html: `
-      <div style="${cssStyleWrapper}">
+      <div class="doghouse-marker" style="${cssStyleWrapper}">
         <sl-icon name="house-door-fill" style="${cssStyleIcon}">
       </sl-icon></div>
     `,

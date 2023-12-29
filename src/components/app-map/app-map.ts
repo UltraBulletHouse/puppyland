@@ -87,7 +87,7 @@ export class AppMap extends LitElement {
     if (this.userPosMarker) {
       this.userPosMarker.setLatLng([lat, lng]);
     } else {
-      const pulsatingIcon = generatePulsatingMarker(L, 10, '#2e96f8');
+      const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
       this.userPosMarker = L.marker([lat, lng], {
         icon: pulsatingIcon,
         zIndexOffset: 999999,
@@ -195,6 +195,24 @@ export class AppMap extends LitElement {
     }
   }
 
+  handleZoomend = () => {
+    if (!this.map) return;
+
+    const currentZoom = this.map.getZoom();
+    console.log(currentZoom);
+    if (currentZoom <= 14) {
+      const marks = this.shadowRoot?.querySelectorAll('.doghouse-marker');
+      marks?.forEach((item) => {
+        (item as HTMLElement).style.scale = '0.7';
+      });
+    } else {
+      const marks = this.shadowRoot?.querySelectorAll('.doghouse-marker');
+      marks?.forEach((item) => {
+        (item as HTMLElement).style.scale = '1';
+      });
+    }
+  };
+
   firstUpdated() {
     /* Create Map */
     const mapEl = this.shadowRoot?.querySelector('#map') as HTMLDivElement;
@@ -204,6 +222,9 @@ export class AppMap extends LitElement {
 
     let urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
     map.addLayer(L.tileLayer(urlTemplate, { minZoom: 1, attribution: '© OpenStreetMap' }));
+
+    //TODO: do osobnej funkcji/util
+    map.on('zoomend', this.handleZoomend);
   }
 
   render() {
