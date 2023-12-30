@@ -11,7 +11,7 @@ import { alertNotifySuccess } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
 
 //TODO: Test item - remove
-const TEST_ITEM = 'doghouse_3_pack';
+const TEST_ITEM = 'doghouse_1_pack';
 
 //TODO: Move it to .env
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
