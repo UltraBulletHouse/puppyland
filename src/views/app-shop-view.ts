@@ -3,10 +3,9 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import '../components/app-map/app-map';
-import { API_DOGHOUSE_GET, API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
+import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { GetDoghouseResponse } from '../types/doghouse';
 import { AcknowledgePurchase } from '../types/shop';
 import { apiCall } from '../utils/apiUtils';
 
