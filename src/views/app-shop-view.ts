@@ -56,7 +56,7 @@ export class AppShopView extends LitElement {
       }
     );
 
-    console.log(acknowledgePurchaseResponse);
+    console.log('acknowledgePurchaseResponse',acknowledgePurchaseResponse);
   }
 
   async makePurchase(sku: string) {
@@ -84,7 +84,7 @@ export class AppShopView extends LitElement {
     // try {
     const paymentResponse = await request.show();
     const { purchaseToken } = paymentResponse.details;
-    console.log(purchaseToken);
+    console.log('purchaseToken',purchaseToken);
 
     this.acknowledgePurchase(TEST_ITEM, purchaseToken);
     // }
@@ -99,11 +99,11 @@ export class AppShopView extends LitElement {
         );
         // Google Play Billing is supported!
 
-        const skuDetails: GoogleBillingItem[] = await service.getDetails(['doghouse_3_pack']);
-        console.log(skuDetails);
+        const skuDetails: GoogleBillingItem[] = await service.getDetails([TEST_ITEM]);
+        console.log('skuDetails',skuDetails);
 
-        const result = await this.makePurchase('doghouse_3_pack');
-        console.log(result);
+        const result = await this.makePurchase(TEST_ITEM);
+        console.log('makePurshaseResult',result);
 
         // const existingPurchases = await service.listPurchases();
         // console.log(existingPurchases);
