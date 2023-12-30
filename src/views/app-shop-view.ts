@@ -6,9 +6,11 @@ import '../components/app-map/app-map';
 import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { AcknowledgePurchase, GoogleBillingItem } from '../types/shop';
+import { AcknowledgePurchaseResponse, GoogleBillingItem } from '../types/shop';
 import { apiCall } from '../utils/apiUtils';
+import { alertNotifySuccess } from '../utils/alertsUtils';
 
+//TODO: Test item - remove
 const TEST_ITEM = 'doghouse_3_pack';
 
 //TODO: Move it to .env
@@ -38,7 +40,7 @@ export class AppShopView extends LitElement {
     console.log('accessToken', this.accessToken);
     if (!this.accessToken) return;
 
-    const acknowledgePurchaseResponse = await apiCall(this.accessToken).patch<AcknowledgePurchase>(
+    const acknowledgePurchaseResponse = await apiCall(this.accessToken).patch<AcknowledgePurchaseResponse>(
       API_PURCHASE_ACKNOWLEDGE,
       {
         packageName: PACKAGE_NAME,
@@ -48,6 +50,7 @@ export class AppShopView extends LitElement {
     );
 
     console.log('acknowledgePurchaseResponse', acknowledgePurchaseResponse);
+    alertNotifySuccess(`${acknowledgePurchaseResponse.data}`)
   }
 
   async makePurchase(sku: string) {
@@ -67,11 +70,12 @@ export class AppShopView extends LitElement {
     const paymentDetails = {
       total: {
         label: `Total`,
-        amount: { currency: `USD`, value: `0` },
+        amount: { currency: `EUR`, value: `0` },
       },
     };
 
     const request = new PaymentRequest(paymentMethods, paymentDetails);
+
     try {
       const paymentResponse = await request.show();
       const { purchaseToken } = paymentResponse.details;

@@ -4,6 +4,10 @@ export interface AcknowledgePurchase {
   token: string;
 }
 
+export interface AcknowledgePurchaseResponse {
+  success: boolean;
+}
+
 export interface Price {
   currency: string;
   value: string;
