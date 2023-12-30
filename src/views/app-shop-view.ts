@@ -6,7 +6,7 @@ import '../components/app-map/app-map';
 import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { AcknowledgePurchase } from '../types/shop';
+import { AcknowledgePurchase, GoogleBillingItem } from '../types/shop';
 import { apiCall } from '../utils/apiUtils';
 
 const TEST_ITEM = 'doghouse_3_pack';
@@ -14,28 +14,18 @@ const TEST_ITEM = 'doghouse_3_pack';
 //TODO: Move it to .env
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
 
-interface Price {
-  currency: string;
-  value: string;
-}
-
-interface GoogleBillingItem {
-  description: string;
-  iconURLs: [];
-  introductoryPrice: Price;
-  itemId: string;
-  price: Price;
-  title: string;
-  type: string;
-}
-
 @customElement('app-shop-view')
 export class AppShopView extends LitElement {
   static styles = [
     sharedStyles,
     css`
       #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         height: 100%;
+        width: 100%;
       }
     `,
   ];
@@ -44,8 +34,8 @@ export class AppShopView extends LitElement {
   @property({ attribute: false })
   accessToken: string | null = null;
 
-   acknowledgePurchase = async (productId: string, token: string) =>  {
-    console.log('accessToken',this.accessToken);
+  async acknowledgePurchase(productId: string, token: string) {
+    console.log('accessToken', this.accessToken);
     if (!this.accessToken) return;
 
     const acknowledgePurchaseResponse = await apiCall(this.accessToken).patch<AcknowledgePurchase>(
@@ -57,7 +47,7 @@ export class AppShopView extends LitElement {
       }
     );
 
-    console.log('acknowledgePurchaseResponse',acknowledgePurchaseResponse);
+    console.log('acknowledgePurchaseResponse', acknowledgePurchaseResponse);
   }
 
   async makePurchase(sku: string) {
@@ -82,16 +72,18 @@ export class AppShopView extends LitElement {
     };
 
     const request = new PaymentRequest(paymentMethods, paymentDetails);
-    // try {
-    const paymentResponse = await request.show();
-    const { purchaseToken } = paymentResponse.details;
-    console.log('purchaseToken',purchaseToken);
+    try {
+      const paymentResponse = await request.show();
+      const { purchaseToken } = paymentResponse.details;
+      console.log('purchaseToken', purchaseToken);
 
-    this.acknowledgePurchase(TEST_ITEM, purchaseToken);
-    // }
+      await this.acknowledgePurchase(TEST_ITEM, purchaseToken);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  async connectedCallback() {
+  async buyProduct() {
     if ('getDigitalGoodsService' in window) {
       // Digital Goods API is supported!
       try {
@@ -101,10 +93,10 @@ export class AppShopView extends LitElement {
         // Google Play Billing is supported!
 
         const skuDetails: GoogleBillingItem[] = await service.getDetails([TEST_ITEM]);
-        console.log('skuDetails',skuDetails);
+        console.log('skuDetails', skuDetails);
 
         const result = await this.makePurchase(TEST_ITEM);
-        console.log('makePurshaseResult',result);
+        console.log('makePurshaseResult', result);
 
         // const existingPurchases = await service.listPurchases();
         // console.log(existingPurchases);
@@ -119,6 +111,7 @@ export class AppShopView extends LitElement {
     return html`
       <div id="container">
         <div>SHOP</div>
+        <sl-button @click=${this.buyProduct} pill>BUY - ${TEST_ITEM}</sl-button>
       </div>
     `;
   }
