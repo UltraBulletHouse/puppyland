@@ -45,6 +45,7 @@ export class AppShopView extends LitElement {
   accessToken: string | null = null;
 
   async acknowledgePurchase(productId: string, token: string) {
+    console.log('accessToken',this.accessToken);
     if (!this.accessToken) return;
 
     const acknowledgePurchaseResponse = await apiCall(this.accessToken).patch<AcknowledgePurchase>(
