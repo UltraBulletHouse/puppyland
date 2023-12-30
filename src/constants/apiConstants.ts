@@ -13,3 +13,6 @@ export const API_DOGHOUSE_ATTACK = 'Dog/Doghouse/Attack';
 /* DOGHOUSES */
 export const API_DOGHOUSES_NEAR_USER = 'Doghouses/NearUser';
 export const API_DOGHOUSE_UPDATE = 'Doghouses/Update';
+
+/* PURSHASE */
+export const API_PURCHASE_ACKNOWLEDGE = 'Purchase/AcknowledgePurchase';

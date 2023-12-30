@@ -1,8 +1,19 @@
+import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 import '../components/app-map/app-map';
+import { API_DOGHOUSE_GET, API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
+import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
+import { GetDoghouseResponse } from '../types/doghouse';
+import { AcknowledgePurchase } from '../types/shop';
+import { apiCall } from '../utils/apiUtils';
+
+const TEST_ITEM = 'doghouse_3_pack';
+
+//TODO: Move it to .env
+const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
 
 interface Price {
   currency: string;
@@ -30,6 +41,25 @@ export class AppShopView extends LitElement {
     `,
   ];
 
+  @consume({ context: accessTokenContext, subscribe: true })
+  @property({ attribute: false })
+  accessToken: string | null = null;
+
+  async acknowledgePurchase(productId: string, token: string) {
+    if (!this.accessToken) return;
+
+    const acknowledgePurchaseResponse = await apiCall(this.accessToken).patch<AcknowledgePurchase>(
+      API_PURCHASE_ACKNOWLEDGE,
+      {
+        packageName: PACKAGE_NAME,
+        productId,
+        token,
+      }
+    );
+
+    console.log(acknowledgePurchaseResponse);
+  }
+
   async makePurchase(sku: string) {
     // Define the preferred payment method and item ID
     const paymentMethods = [
@@ -56,6 +86,8 @@ export class AppShopView extends LitElement {
     const paymentResponse = await request.show();
     const { purchaseToken } = paymentResponse.details;
     console.log(purchaseToken);
+
+    this.acknowledgePurchase(TEST_ITEM, purchaseToken);
     // }
   }
 
@@ -68,10 +100,7 @@ export class AppShopView extends LitElement {
         );
         // Google Play Billing is supported!
 
-        const skuDetails: GoogleBillingItem[] = await service.getDetails([
-          'android.test.purchased',
-          'doghouse_3_pack',
-        ]);
+        const skuDetails: GoogleBillingItem[] = await service.getDetails(['doghouse_3_pack']);
         console.log(skuDetails);
 
         const result = await this.makePurchase('doghouse_3_pack');
