@@ -105,7 +105,6 @@ export class AppMap extends LitElement {
 
       //TODO: zeby wysylal w NearMe coordynaty i wrzucic tu zamiast this.map.getBounds()
       // this.map.setMaxBounds(this.map.getBounds());
-
     }
 
     if (this.userPos && this.map) {
@@ -203,16 +202,17 @@ export class AppMap extends LitElement {
     if (!this.map) return;
     const currentZoom = this.map.getZoom();
     const marks = this.shadowRoot?.querySelectorAll('.doghouse-marker');
-    
+    console.log(currentZoom);
     if (currentZoom <= 12) {
       marks?.forEach((item) => {
         (item as HTMLElement).style.scale = '0.5';
       });
-    } else if (currentZoom > 12 && currentZoom < 14){
+    } else if (currentZoom > 12 && currentZoom <= 14) {
       marks?.forEach((item) => {
         (item as HTMLElement).style.scale = '0.7';
       });
-    } else {
+    } else if (currentZoom > 14) {
+      console.log('SCALE 1');
       marks?.forEach((item) => {
         (item as HTMLElement).style.scale = '1';
       });
@@ -227,7 +227,9 @@ export class AppMap extends LitElement {
     this.map = map;
 
     let urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
-    map.addLayer(L.tileLayer(urlTemplate, { minZoom: 11, maxZoom: 20, attribution: '© OpenStreetMap' }));
+    map.addLayer(
+      L.tileLayer(urlTemplate, { minZoom: 11, maxZoom: 19, attribution: '© OpenStreetMap' })
+    );
 
     map.on('zoomend', this.handleZoomend);
   }
