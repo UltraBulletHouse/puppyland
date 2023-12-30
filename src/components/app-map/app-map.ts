@@ -9,7 +9,7 @@ import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { userInfoContext } from '../../contexts/userInfoContext';
 import { userPosContext } from '../../contexts/userPosContext';
 import { DogInfo } from '../../types/dog';
-import { CreateDoghouseResponse, Doghouse } from '../../types/doghouse';
+import { CreateDoghouseResponse, CreateResult, Doghouse } from '../../types/doghouse';
 import { Coords } from '../../types/geolocation';
 import { MarkersList } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
@@ -18,6 +18,7 @@ import {
   generateDoghouseIcon,
   generatePulsatingMarker,
   getClosestDoghouses,
+  handleZoom,
 } from '../../utils/mapUtils';
 import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
@@ -60,8 +61,7 @@ export class AppMap extends LitElement {
   markersList: MarkersList | null = null;
 
   @state()
-  addDoghouseResponse: string | null = null;
-  // addDoghouseResponse: CreateDoghouseResponse | null = null;//TODO: caly objekt jak P naprawi
+  addDoghouseResponse: CreateResult | null = null;
 
   @state()
   isAddHouseModalOpen: boolean = false;
@@ -102,9 +102,6 @@ export class AppMap extends LitElement {
     if (changedProperties.has('map') && this.map && this.userPos) {
       const { lat, lng } = this.userPos;
       this.map.setView([lat, lng], 17);
-
-      //TODO: zeby wysylal w NearMe coordynaty i wrzucic tu zamiast this.map.getBounds()
-      // this.map.setMaxBounds(this.map.getBounds());
     }
 
     if (this.userPos && this.map) {
@@ -172,6 +169,9 @@ export class AppMap extends LitElement {
     this.doghouses = doghousesList;
 
     this.setDefaultDoghousesMarkers();
+
+    //TODO: zeby wysylal w NearMe coordynaty i wrzucic tu zamiast this.map.getBounds()
+    // this.map.setMaxBounds(this.map.getBounds());
   }
 
   async addDoghouse() {
@@ -188,7 +188,7 @@ export class AppMap extends LitElement {
     // TODO: Dodac do doghouses i markerslist - zrobic util/controller updateujacy obie listy
 
     if (createDoghouseResponse.status === 200) {
-      this.addDoghouseResponse = createDoghouseResponse.data.name;
+      this.addDoghouseResponse = createDoghouseResponse.data.createResult;
       this.isAddHouseModalOpen = true;
 
       const userDogRes = createDoghouseResponse.data.dog;
@@ -199,23 +199,7 @@ export class AppMap extends LitElement {
   }
 
   handleZoomend = () => {
-    if (!this.map) return;
-    const currentZoom = this.map.getZoom();
-    const marks = this.shadowRoot?.querySelectorAll('.doghouse-marker');
-
-    if (currentZoom <= 12) {
-      marks?.forEach((item) => {
-        (item as HTMLElement).style.scale = '0.5';
-      });
-    } else if (currentZoom > 12 && currentZoom <= 14) {
-      marks?.forEach((item) => {
-        (item as HTMLElement).style.scale = '0.7';
-      });
-    } else if (currentZoom > 14) {
-      marks?.forEach((item) => {
-        (item as HTMLElement).style.scale = '1';
-      });
-    }
+    handleZoom(this);
   };
 
   firstUpdated() {

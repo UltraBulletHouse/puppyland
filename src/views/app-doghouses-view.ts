@@ -86,7 +86,7 @@ export class AppDoghousesView extends LitElement {
           ${when(
             this.doghouses,
             () =>
-              this.doghouses?.map(
+              this.doghouses?.reverse().map(
                 (item) => html`
                   <sl-details summary=${item.name}>
                     <app-dogouse-item .dogouseInfo=${item}></app-dogouse-item>

@@ -1,5 +1,6 @@
 import L from 'leaflet';
 
+import { AppMap } from '../components/app-map/app-map';
 import { Doghouse } from '../types/doghouse';
 import { Coords } from '../types/geolocation';
 
@@ -81,4 +82,24 @@ export const getClosestDoghouses = (
   }, []);
 
   return closestDogHouses;
+};
+
+export const handleZoom = (element: AppMap) => {
+  if (!element.map) return;
+  const currentZoom = element.map.getZoom();
+  const marks = element.shadowRoot?.querySelectorAll('.doghouse-marker');
+
+  if (currentZoom <= 12) {
+    marks?.forEach((item) => {
+      (item as HTMLElement).style.scale = '0.5';
+    });
+  } else if (currentZoom > 12 && currentZoom <= 14) {
+    marks?.forEach((item) => {
+      (item as HTMLElement).style.scale = '0.7';
+    });
+  } else if (currentZoom > 14) {
+    marks?.forEach((item) => {
+      (item as HTMLElement).style.scale = '1';
+    });
+  }
 };

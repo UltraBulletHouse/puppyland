@@ -7,8 +7,8 @@ import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { AcknowledgePurchaseResponse, GoogleBillingItem } from '../types/shop';
-import { apiCall } from '../utils/apiUtils';
 import { alertNotifySuccess } from '../utils/alertsUtils';
+import { apiCall } from '../utils/apiUtils';
 
 //TODO: Test item - remove
 const TEST_ITEM = 'doghouse_3_pack';
@@ -40,17 +40,16 @@ export class AppShopView extends LitElement {
     console.log('accessToken', this.accessToken);
     if (!this.accessToken) return;
 
-    const acknowledgePurchaseResponse = await apiCall(this.accessToken).patch<AcknowledgePurchaseResponse>(
-      API_PURCHASE_ACKNOWLEDGE,
-      {
-        packageName: PACKAGE_NAME,
-        productId,
-        token,
-      }
-    );
+    const acknowledgePurchaseResponse = await apiCall(
+      this.accessToken
+    ).patch<AcknowledgePurchaseResponse>(API_PURCHASE_ACKNOWLEDGE, {
+      packageName: PACKAGE_NAME,
+      productId,
+      token,
+    });
 
     console.log('acknowledgePurchaseResponse', acknowledgePurchaseResponse);
-    alertNotifySuccess(`${acknowledgePurchaseResponse.data}`)
+    alertNotifySuccess(`${acknowledgePurchaseResponse.data}`);
   }
 
   async makePurchase(sku: string) {

@@ -24,15 +24,19 @@ export interface GetDoghouseResponse {
   doghousesList: Doghouse[];
 }
 
-//TODO: Naprawic interface 'createResilt, ...'
-export interface CreateDoghouseResponse {
+export interface CreateResult {
   id: string;
-  dog: DogInfo;
   name: string;
   hp: number;
   maxHp: number;
   lng: number;
   lat: number;
+  experienceGained: number;
+}
+
+export interface CreateDoghouseResponse {
+  dog: DogInfo;
+  createResult: CreateResult;
 }
 
 export interface AttackResult {
