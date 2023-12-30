@@ -44,7 +44,7 @@ export class AppShopView extends LitElement {
   @property({ attribute: false })
   accessToken: string | null = null;
 
-  async acknowledgePurchase(productId: string, token: string) {
+   acknowledgePurchase = async (productId: string, token: string) =>  {
     console.log('accessToken',this.accessToken);
     if (!this.accessToken) return;
 
