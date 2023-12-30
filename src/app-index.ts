@@ -112,6 +112,7 @@ export class AppIndex extends LitElement {
       this.view = View.LOADING_VIEW;
 
       if (userFirebase) {
+        console.log('userFirebase',userFirebase);
         const accessToken = await userFirebase.getIdToken();
         const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
 
