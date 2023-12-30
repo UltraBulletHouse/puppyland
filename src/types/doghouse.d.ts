@@ -24,6 +24,7 @@ export interface GetDoghouseResponse {
   doghousesList: Doghouse[];
 }
 
+//TODO: Naprawic interface 'createResilt, ...'
 export interface CreateDoghouseResponse {
   id: string;
   dog: DogInfo;

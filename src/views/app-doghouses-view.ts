@@ -71,6 +71,10 @@ export class AppDoghousesView extends LitElement {
   }
 
   render() {
+    //TODO: posortowac liste wedlug najmlodszego
+    //https://stackoverflow.com/questions/52287060/how-to-sort-array-by-date-in-javascript
+    //https://stackoverflow.com/questions/10123953/how-to-sort-an-object-array-by-date-property
+
     return html`
       <div id="container">
         <h2 id="title">
