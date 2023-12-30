@@ -202,7 +202,7 @@ export class AppMap extends LitElement {
     if (!this.map) return;
     const currentZoom = this.map.getZoom();
     const marks = this.shadowRoot?.querySelectorAll('.doghouse-marker');
-    console.log(currentZoom);
+
     if (currentZoom <= 12) {
       marks?.forEach((item) => {
         (item as HTMLElement).style.scale = '0.5';
@@ -212,7 +212,6 @@ export class AppMap extends LitElement {
         (item as HTMLElement).style.scale = '0.7';
       });
     } else if (currentZoom > 14) {
-      console.log('SCALE 1');
       marks?.forEach((item) => {
         (item as HTMLElement).style.scale = '1';
       });
