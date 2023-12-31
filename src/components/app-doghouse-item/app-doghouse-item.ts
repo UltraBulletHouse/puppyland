@@ -75,6 +75,7 @@ export class AppDoghouseItem extends LitElement {
   async saveNewName() {
     const doghouseId = this.dogouseInfo?.id;
     if (!this.accessToken || !doghouseId) return;
+    this.isEditingName = false;
 
     const doghouseResponse = await apiCall(this.accessToken).patch<UpdateDoghouseResponse>(
       API_DOGHOUSE_UPDATE,
@@ -83,10 +84,7 @@ export class AppDoghouseItem extends LitElement {
         name: this.newName,
       }
     );
-
-    console.log(doghouseResponse);
-    // this.newName = dogInfoResponse.data.name;
-    this.isEditingName = false;
+      console.log(doghouseResponse);
   }
 
   protected firstUpdated() {
@@ -96,28 +94,29 @@ export class AppDoghouseItem extends LitElement {
 
   render() {
     if (!this.dogouseInfo) return null;
-
     const { name, hp, maxHp, createdDate } = this.dogouseInfo;
+    const displayName = this.newName ?? name ?? '';
+
+    const nameInput = html`<sl-input
+      id="input"
+      value=${displayName}
+      @sl-change=${this.onChangeName}
+      minlength="3"
+      maxlength="20"
+      autofocus
+      required
+      clearable
+      pill
+    ></sl-input>`;
+
+    const nameText = html` <p id="doghouse-name-wrapper">
+      <sl-icon name="tag"></sl-icon><span id="doghouse-name-text">${displayName}</span>
+    </p>`;
 
     return html`
       <div id="container">
         <div id="doghouse-name">
-          ${this.isEditingName
-            ? html`<sl-input
-                id="input"
-                value=${this.newName ?? name ?? ''}
-                @sl-change=${this.onChangeName}
-                minlength="3"
-                maxlength="20"
-                autofocus
-                required
-                clearable
-                pill
-              ></sl-input>`
-            : html` <p id="doghouse-name-wrapper">
-                <sl-icon name="tag"></sl-icon
-                ><span id="doghouse-name-text">${this.newName ?? name ?? ''}</span>
-              </p>`}
+          ${this.isEditingName ? nameInput : nameText}
           ${this.isEditingName
             ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>`
             : html`<sl-icon name="pencil" @click=${this.editName}></sl-icon>`}
