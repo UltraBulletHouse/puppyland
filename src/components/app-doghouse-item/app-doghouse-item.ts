@@ -10,7 +10,11 @@ import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { sharedStyles } from '../../styles/shared-styles';
 import { Doghouse, UpdateDoghouseResponse } from '../../types/doghouse';
 import { apiCall } from '../../utils/apiUtils';
+import { sendEvent } from '../../utils/eventUtils';
 
+/**
+ * @fires updateDoghouse
+ */
 @customElement('app-dogouse-item')
 export class AppDoghouseItem extends LitElement {
   static styles = [
@@ -84,7 +88,8 @@ export class AppDoghouseItem extends LitElement {
         name: this.newName,
       }
     );
-      console.log(doghouseResponse);
+
+    sendEvent<Doghouse>(this, 'updateDoghouse', doghouseResponse.data.doghouse);
   }
 
   protected firstUpdated() {

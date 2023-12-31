@@ -52,5 +52,5 @@ export interface AttackDoghouseResponse {
 }
 
 export interface UpdateDoghouseResponse {
-  name: string;
+  doghouse: Doghouse;
 }

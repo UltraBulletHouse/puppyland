@@ -64,6 +64,14 @@ export class AppDoghousesView extends LitElement {
   @state()
   doghouses: Doghouse[] | null = null;
 
+  updateDoghouse(event: CustomEvent<Doghouse>) {
+    if (!this.doghouses) return;
+    const dhToUpdate = event.detail;
+    const updatedDoghouses = this.doghouses.map((x) => (x.id === dhToUpdate.id ? dhToUpdate : x));
+
+    this.doghouses = updatedDoghouses;
+  }
+
   async connectedCallback() {
     super.connectedCallback();
 
@@ -96,10 +104,13 @@ export class AppDoghousesView extends LitElement {
           ${when(
             this.doghouses,
             () =>
-              this.doghouses?.reverse().map(
+              this.doghouses?.map(
                 (item) => html`
                   <sl-details summary=${item.name}>
-                    <app-dogouse-item .dogouseInfo=${item}></app-dogouse-item>
+                    <app-dogouse-item
+                      .dogouseInfo=${item}
+                      @updateDoghouse=${this.updateDoghouse}
+                    ></app-dogouse-item>
                   </sl-details>
                 `
               ),
