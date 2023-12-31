@@ -40,6 +40,16 @@ export class AppDoghousesView extends LitElement {
         margin: 0;
         overflow: auto;
       }
+      #list sl-details::part(base),
+      #list sl-details::part(summary),
+      #list sl-details::part(header) {
+        width: 100%;
+        overflow: hidden;
+      }
+      #list sl-details::part(summary) {
+        display: block;
+        text-overflow: ellipsis;
+      }
     `,
   ];
 

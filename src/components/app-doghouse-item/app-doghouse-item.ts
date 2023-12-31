@@ -25,9 +25,21 @@ export class AppDoghouseItem extends LitElement {
       #doghouse-name {
         display: flex;
         align-items: center;
+        width: 90%;
+      }
+      #doghouse-name-wrapper {
+        display: flex;
+        max-width: 85%;
+      }
+      #doghouse-name-wrapper sl-icon {
+        flex-shrink: 0;
+      }
+      #doghouse-name-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       #doghouse-name sl-input {
-        width: 290px;
+        max-width: 85%;
       }
       #doghouse-name sl-icon,
       #doghouse-days sl-icon,
@@ -102,7 +114,10 @@ export class AppDoghouseItem extends LitElement {
                 clearable
                 pill
               ></sl-input>`
-            : html`<p><sl-icon name="tag"></sl-icon>${this.newName ?? name ?? ''}</p>`}
+            : html` <p id="doghouse-name-wrapper">
+                <sl-icon name="tag"></sl-icon
+                ><span id="doghouse-name-text">${this.newName ?? name ?? ''}</span>
+              </p>`}
           ${this.isEditingName
             ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>`
             : html`<sl-icon name="pencil" @click=${this.editName}></sl-icon>`}
