@@ -27,7 +27,8 @@ import { apiCall } from './utils/apiUtils';
 import { auth } from './utils/firebase';
 import './views/app-loading-map-view';
 import './views/app-loading-view';
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
+// import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 setBasePath(import.meta.env.BASE_URL + 'shoelace/');
 
@@ -116,12 +117,12 @@ export class AppIndex extends LitElement {
         // console.log('userFirebase',userFirebase);
 
         /* OAUTH */
-        const provider = new GoogleAuthProvider();
-        const result = await signInWithPopup(auth, provider);
-        // This gives you a Google Access Token.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
-        console.log('TokenDoSerduszkaTwojejStarej= ',token);
+        // const provider = new GoogleAuthProvider();
+        // const result = await signInWithPopup(auth, provider);
+        // // This gives you a Google Access Token.
+        // const credential = GoogleAuthProvider.credentialFromResult(result);
+        // const token = credential?.accessToken;
+        // console.log('TokenDoSerduszkaTwojejStarej= ',token);
         /* OAUTH END*/
 
         const accessToken = await userFirebase.getIdToken();
