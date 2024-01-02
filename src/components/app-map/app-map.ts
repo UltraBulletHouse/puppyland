@@ -18,9 +18,9 @@ import {
   generateDoghouseIcon,
   generatePulsatingMarker,
   getClosestDoghouses,
-  handleZoom,
 } from '../../utils/mapUtils';
 import '../app-modal/app-modal-addhouse';
+import '../svg-icon';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-syles';
@@ -198,10 +198,6 @@ export class AppMap extends LitElement {
     }
   }
 
-  handleZoomend = () => {
-    handleZoom(this);
-  };
-
   firstUpdated() {
     /* Create Map */
     const mapEl = this.shadowRoot?.querySelector('#map') as HTMLDivElement;
@@ -213,8 +209,6 @@ export class AppMap extends LitElement {
     map.addLayer(
       L.tileLayer(urlTemplate, { minZoom: 11, maxZoom: 19, attribution: '© OpenStreetMap' })
     );
-
-    map.on('zoomend', this.handleZoomend);
   }
 
   render() {
@@ -248,7 +242,7 @@ export class AppMap extends LitElement {
             </div>
             <div id="center-position" @click=${this.centerPosition}>
               <sl-button id="center-position-btn" variant="default" size="large" circle>
-                <sl-icon name="record-circle"></sl-icon>
+                <svg-icon name="accurate"></svg-icon>
               </sl-button>
             </div>
           </div>
