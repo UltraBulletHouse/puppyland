@@ -1,16 +1,22 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:lit/recommended",
-    "plugin:wc/recommended"
-    // "plugin:unused-imports"
-  ]
-  // "rules": {
-  //   "no-unused-vars": "warn", // or "@typescript-eslint/no-unused-vars": "off",
-  //   "unused-imports/no-unused-imports": "error",
-  //   "unused-imports/no-unused-vars": [
-  //     "warn",
-  //     { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
-  //   ]
-  // }
+  "extends": ["eslint:recommended", "plugin:lit/recommended", "plugin:wc/recommended"],
+  "parserOptions": { "ecmaVersion": 2015 },
+  "env": {
+    "browser": true,
+    "amd": true,
+    "node": true
+  }
 }
+
+// "plugin:unused-imports"
+
+// "rules": {
+//   "no-unused-vars": "warn", // or "@typescript-eslint/no-unused-vars": "off",
+//   "unused-imports/no-unused-imports": "error",
+//   "unused-imports/no-unused-vars": [
+//     "warn",
+//     { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
+//   ]
+
+
+// }

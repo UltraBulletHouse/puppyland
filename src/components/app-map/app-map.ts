@@ -8,10 +8,11 @@ import { dogInfoContext, updateDogInfoEvent } from '../../contexts/dogInfoContex
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { userInfoContext } from '../../contexts/userInfoContext';
 import { userPosContext } from '../../contexts/userPosContext';
+import '../../external-scripts/leaflet.edgebuffer.js';
 import { DogInfo } from '../../types/dog';
 import { CreateDoghouseResponse, CreateResult, Doghouse } from '../../types/doghouse';
 import { Coords } from '../../types/geolocation';
-import { MarkersList } from '../../types/map';
+import { MarkersList, TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
 import {
@@ -206,7 +207,12 @@ export class AppMap extends LitElement {
 
     let urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
     map.addLayer(
-      L.tileLayer(urlTemplate, { minZoom: 11, maxZoom: 19, attribution: '© OpenStreetMap' })
+      L.tileLayer(urlTemplate, {
+        minZoom: 11,
+        maxZoom: 19,
+        attribution: '© OpenStreetMap',
+        edgeBufferTiles: 2,
+      } as TileLayerOptionsPlugins)
     );
   }
 

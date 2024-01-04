@@ -39,9 +39,7 @@ export class AppShopView extends LitElement {
   async acknowledgePurchase(productId: string, token: string) {
     if (!this.accessToken) return;
 
-    await apiCall(
-      this.accessToken
-    ).patch<AcknowledgePurchaseResponse>(API_PURCHASE_ACKNOWLEDGE, {
+    await apiCall(this.accessToken).patch<AcknowledgePurchaseResponse>(API_PURCHASE_ACKNOWLEDGE, {
       packageName: PACKAGE_NAME,
       productId,
       token,
@@ -77,7 +75,7 @@ export class AppShopView extends LitElement {
 
       await this.acknowledgePurchase(TEST_ITEM, purchaseToken);
       await paymentResponse.complete('success');
-      
+
       alertNotifySuccess('You just bought item!');
     } catch (error) {
       console.log(error);
