@@ -10,6 +10,8 @@ import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 
 import './components/app-footer/app-footer';
+import './components/svg-icon/svg-icon';
+import './components/svg-icon/svg-icon-button';
 import { API_USER_INFO } from './constants/apiConstants';
 import { dogInfoContext } from './contexts/dogInfoContext';
 import { accessTokenContext } from './contexts/userFirebaseContext';

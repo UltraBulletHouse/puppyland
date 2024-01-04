@@ -34,7 +34,6 @@ export class AppDogView extends LitElement {
         width: 130px;
         display: flex;
         justify-content: center;
-        align-items: center;
         border-radius: 50%;
         background-color: var(--sl-color-gray-200);
         margin-bottom: 20px;
@@ -136,7 +135,7 @@ export class AppDogView extends LitElement {
           <div id="container">
             <div id="dog-image">
               <div id="dog-image-circle">
-                <sl-icon name="piggy-bank"></sl-icon>
+                <svg-icon name="dogHead"></svg-icon>
               </div>
             </div>
             <div id="dog-name">

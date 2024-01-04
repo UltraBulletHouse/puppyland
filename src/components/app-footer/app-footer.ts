@@ -56,11 +56,11 @@ export class AppFooter extends LitElement {
     return html`
       <footer id="footer">
         <div id="container">
-          <sl-icon-button
-            name="piggy-bank"
+          <svg-icon-button
+            name="dogPaw"
             class="btn-icon ${this.view === View.DOG_VIEW && 'btn-icon--active'}"
             @click="${() => this.changeView(View.DOG_VIEW)}"
-          ></sl-icon-button>
+          ></svg-icon-button>
           <sl-icon-button
             name="house-heart"
             class="btn-icon ${this.view === View.DOGHOUSE_VIEW && 'btn-icon--active'}"

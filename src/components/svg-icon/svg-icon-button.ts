@@ -2,17 +2,32 @@ import { TemplateResult, css } from 'lit';
 import { LitElement, html } from 'lit-element';
 import { customElement, property, state } from 'lit/decorators.js';
 
-import { sharedStyles } from '../styles/shared-styles';
+import { sharedStyles } from '../../styles/shared-styles';
 
-@customElement('svg-icon')
+@customElement('svg-icon-button')
 export class SvgIcon extends LitElement {
   static styles = [
     sharedStyles,
     css`
       .svg-wrapper {
-        display: inline-block;
+        display: flex;
+        align-items: center;
         height: 1em;
         width: 1em;
+        box-sizing: content-box !important;
+
+        background: none;
+        border: none;
+        font-size: inherit;
+        color: inherit;
+        cursor: pointer;
+        appearance: none;
+        padding: var(--sl-spacing-x-small);
+        transition: var(--sl-transition-x-fast) color;
+      }
+      .svg-wrapper svg {
+        height: 100%;
+        width: 100%;
       }
     `,
   ];
@@ -28,7 +43,7 @@ export class SvgIcon extends LitElement {
       if (!this.name) {
         throw new Error('"name" is not defined for svg-icon element');
       }
-      const svgIcon = await import(`../assets/iconsTemplates/${this.name}.ts`);
+      const svgIcon = await import(`../../assets/iconsTemplates/${this.name}.ts`);
       this.svgElement = svgIcon[this.name];
     } catch (error) {
       console.error('Error loading SVG:', error);
@@ -41,7 +56,6 @@ export class SvgIcon extends LitElement {
   }
 
   render() {
-    if (!this.svgElement) return;
-    return html`<span class="svg-wrapper">${this.svgElement}</span>`;
+    return html`<button class="svg-wrapper">${this.svgElement}</button>`;
   }
 }

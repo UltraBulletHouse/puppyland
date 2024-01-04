@@ -20,7 +20,6 @@ import {
   getClosestDoghouses,
 } from '../../utils/mapUtils';
 import '../app-modal/app-modal-addhouse';
-import '../svg-icon';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-syles';
