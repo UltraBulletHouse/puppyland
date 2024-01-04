@@ -81,6 +81,8 @@ export class AppShopView extends LitElement {
       console.log('purchaseToken', purchaseToken);
 
       await this.acknowledgePurchase(TEST_ITEM, purchaseToken);
+      const paymentComplete = await paymentResponse.complete('success');
+console.log('paymentComplete',paymentComplete);
     } catch (error) {
       console.log(error);
     }
