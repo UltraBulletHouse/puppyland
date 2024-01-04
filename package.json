@@ -22,6 +22,7 @@
     "firebase": "^10.6.0",
     "firebaseui": "^6.1.0",
     "leaflet": "^1.9.4",
+    "leaflet-edgebuffer": "^1.0.6",
     "lit": "^2.7.2",
     "workbox-build": "^6.5.2",
     "workbox-core": "^6.5.2",

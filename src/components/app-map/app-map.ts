@@ -8,7 +8,6 @@ import { dogInfoContext, updateDogInfoEvent } from '../../contexts/dogInfoContex
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { userInfoContext } from '../../contexts/userInfoContext';
 import { userPosContext } from '../../contexts/userPosContext';
-import '../../external-scripts/leaflet.edgebuffer.js';
 import { DogInfo } from '../../types/dog';
 import { CreateDoghouseResponse, CreateResult, Doghouse } from '../../types/doghouse';
 import { Coords } from '../../types/geolocation';
@@ -24,6 +23,7 @@ import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-syles';
+import 'leaflet-edgebuffer'
 
 /**
  * @fires updateDogInfo
