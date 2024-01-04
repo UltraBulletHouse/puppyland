@@ -1,5 +1,9 @@
 import { html } from 'lit';
 
+/* 
+* https://uxwing.com/
+* Free - no -attribution
+*/
 export const accurate = html`<?xml version="1.0" encoding="utf-8"?><svg
     version="1.1"
     id="Layer_1"
