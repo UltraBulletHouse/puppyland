@@ -78,7 +78,7 @@ export const AppMapStyles = [
     }
     #center-position-icon {
       font-size: 24px;
-      margin-top: 5px;
+      margin-top: 3px;
     }
     .control-counter {
       display: flex;
