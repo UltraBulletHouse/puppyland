@@ -10,10 +10,14 @@ export class SvgIcon extends LitElement {
     sharedStyles,
     css`
       :host {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
       .svg-wrapper {
-        display: inline-block;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
         height: 1em;
         width: 1em;
       }

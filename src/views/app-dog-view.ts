@@ -26,17 +26,18 @@ export class AppDogView extends LitElement {
         width: 100%;
       }
       #dog-image {
-        font-size: 100px;
+        font-size: 90px;
         margin-top: 40px;
+        margin-bottom: 20px;
       }
       #dog-image-circle {
         height: 130px;
         width: 130px;
         display: flex;
         justify-content: center;
+        align-items: center;
         border-radius: 50%;
         background-color: var(--sl-color-gray-200);
-        margin-bottom: 20px;
         border: 2px solid var(--sl-color-gray-50);
         outline: 2px solid #37a26e;
       }
