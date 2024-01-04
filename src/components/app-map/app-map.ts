@@ -236,12 +236,12 @@ export class AppMap extends LitElement {
                 circle
                 ?disabled=${!this.dogInfo?.availableDoghouses}
               >
-                <sl-icon name="house-add"></sl-icon>
+                <sl-icon name="house-add" id="house-add-icon"></sl-icon>
               </sl-button>
             </div>
             <div id="center-position" @click=${this.centerPosition}>
               <sl-button id="center-position-btn" variant="default" size="large" circle>
-                <svg-icon name="accurate"></svg-icon>
+                <svg-icon name="accurate" id="center-position-icon"></svg-icon>
               </sl-button>
             </div>
           </div>

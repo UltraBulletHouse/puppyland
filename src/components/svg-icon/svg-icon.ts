@@ -9,6 +9,9 @@ export class SvgIcon extends LitElement {
   static styles = [
     sharedStyles,
     css`
+      :host {
+        display: inline-block;
+      }
       .svg-wrapper {
         display: inline-block;
         height: 1em;

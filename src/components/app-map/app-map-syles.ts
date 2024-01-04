@@ -70,8 +70,15 @@ export const AppMapStyles = [
       border: 1px solid var(--color-green);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 15px 0px;
     }
+    #house-add-icon {
+      font-size: 20px;
+    }
     #center-position {
       margin-top: 10px;
+    }
+    #center-position-icon {
+      font-size: 24px;
+      margin-top: 5px;
     }
     .control-counter {
       display: flex;
