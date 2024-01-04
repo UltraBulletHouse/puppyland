@@ -37,19 +37,15 @@ export class AppShopView extends LitElement {
   accessToken: string | null = null;
 
   async acknowledgePurchase(productId: string, token: string) {
-    console.log('accessToken', this.accessToken);
     if (!this.accessToken) return;
 
-    const acknowledgePurchaseResponse = await apiCall(
+    await apiCall(
       this.accessToken
     ).patch<AcknowledgePurchaseResponse>(API_PURCHASE_ACKNOWLEDGE, {
       packageName: PACKAGE_NAME,
       productId,
       token,
     });
-
-    console.log('acknowledgePurchaseResponse', acknowledgePurchaseResponse);
-    alertNotifySuccess(`${acknowledgePurchaseResponse.data}`);
   }
 
   async makePurchase(sku: string) {
@@ -78,11 +74,11 @@ export class AppShopView extends LitElement {
     try {
       const paymentResponse = await request.show();
       const { purchaseToken } = paymentResponse.details;
-      console.log('purchaseToken', purchaseToken);
 
       await this.acknowledgePurchase(TEST_ITEM, purchaseToken);
-      const paymentComplete = await paymentResponse.complete('success');
-console.log('paymentComplete',paymentComplete);
+      await paymentResponse.complete('success');
+      
+      alertNotifySuccess('You just bought item!');
     } catch (error) {
       console.log(error);
     }
@@ -98,10 +94,9 @@ console.log('paymentComplete',paymentComplete);
         // Google Play Billing is supported!
 
         const skuDetails: GoogleBillingItem[] = await service.getDetails([TEST_ITEM]);
-        console.log('skuDetails', skuDetails);
+        console.log('SkuDetails = ', skuDetails);
 
-        const result = await this.makePurchase(TEST_ITEM);
-        console.log('makePurshaseResult', result);
+        await this.makePurchase(TEST_ITEM);
 
         // const existingPurchases = await service.listPurchases();
         // console.log(existingPurchases);
