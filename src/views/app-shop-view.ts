@@ -10,11 +10,20 @@ import { AcknowledgePurchaseResponse, GoogleBillingItem } from '../types/shop';
 import { alertNotifySuccess } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
 
-//TODO: Test item - remove
-const TEST_ITEM = 'doghouse_1_pack';
-
 //TODO: Move it to .env
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
+
+const shopItems = [
+  'extended_attack_range_buff',
+  'attack_5_pack',
+  'attack_25_pack',
+  'attack_12_pack',
+  'doghouse_1_pack',
+  'doghouse_3_pack',
+  'doghouse_6_pack',
+  'health_50_bonus',
+  'health_max_bonus',
+];
 
 @customElement('app-shop-view')
 export class AppShopView extends LitElement {
@@ -28,6 +37,9 @@ export class AppShopView extends LitElement {
         justify-content: center;
         height: 100%;
         width: 100%;
+      }
+      #buy-btn {
+        margin-bottom: 10px;
       }
     `,
   ];
@@ -46,13 +58,13 @@ export class AppShopView extends LitElement {
     });
   }
 
-  async makePurchase(sku: string) {
+  async makePurchase(item: string) {
     // Define the preferred payment method and item ID
     const paymentMethods = [
       {
         supportedMethods: 'https://play.google.com/billing',
         data: {
-          sku: sku,
+          sku: item,
         },
       },
     ];
@@ -73,7 +85,7 @@ export class AppShopView extends LitElement {
       const paymentResponse = await request.show();
       const { purchaseToken } = paymentResponse.details;
 
-      await this.acknowledgePurchase(TEST_ITEM, purchaseToken);
+      await this.acknowledgePurchase(item, purchaseToken);
       await paymentResponse.complete('success');
 
       alertNotifySuccess('You just bought item!');
@@ -82,7 +94,7 @@ export class AppShopView extends LitElement {
     }
   }
 
-  async buyProduct() {
+  async buyProduct(item: string) {
     if ('getDigitalGoodsService' in window) {
       // Digital Goods API is supported!
       try {
@@ -91,10 +103,10 @@ export class AppShopView extends LitElement {
         );
         // Google Play Billing is supported!
 
-        const skuDetails: GoogleBillingItem[] = await service.getDetails([TEST_ITEM]);
+        const skuDetails: GoogleBillingItem[] = await service.getDetails([item]);
         console.log('SkuDetails = ', skuDetails);
 
-        await this.makePurchase(TEST_ITEM);
+        await this.makePurchase(item);
 
         // const existingPurchases = await service.listPurchases();
         // console.log(existingPurchases);
@@ -109,7 +121,12 @@ export class AppShopView extends LitElement {
     return html`
       <div id="container">
         <div>SHOP</div>
-        <sl-button @click=${this.buyProduct} pill>BUY - ${TEST_ITEM}</sl-button>
+        ${shopItems.map(
+          (item) =>
+            html`<sl-button id="buy-btn" @click=${() => this.buyProduct(item)} pill
+              >BUY - ${item}</sl-button
+            >`
+        )}
       </div>
     `;
   }

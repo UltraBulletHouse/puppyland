@@ -1,5 +1,6 @@
 import { consume } from '@lit/context';
 import L from 'leaflet';
+import 'leaflet-edgebuffer';
 import { LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
@@ -23,7 +24,6 @@ import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-syles';
-import 'leaflet-edgebuffer'
 
 /**
  * @fires updateDogInfo
