@@ -66,10 +66,6 @@ export class AppMap extends LitElement {
   @state()
   isAddHouseModalOpen: boolean = false;
 
-  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    console.log(_changedProperties);
-  }
-
   closeModal = () => {
     this.isAddHouseModalOpen = false;
   };

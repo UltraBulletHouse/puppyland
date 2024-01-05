@@ -113,8 +113,8 @@ export class AppIndex extends LitElement {
   }
 
   firstUpdated() {
-    alertNotifySuccess(`${navigator.serviceWorker.controller?.scriptURL}`);
-    alertNotifySuccess(`${document.referrer}`);
+    // TODO: https://stackoverflow.com/questions/54580414/how-can-i-detect-if-my-website-is-opened-inside-a-trusted-web-actvity
+    // console.log(document.referrer);
 
     auth.onAuthStateChanged(async (userFirebase) => {
       this.view = View.LOADING_VIEW;
