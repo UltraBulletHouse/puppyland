@@ -124,7 +124,7 @@ export class AppShopView extends LitElement {
         ${shopItems.map(
           (item) =>
             html`<sl-button id="buy-btn" @click=${() => this.buyProduct(item)} pill
-              >BUY - ${item}</sl-button
+              >${item}</sl-button
             >`
         )}
       </div>
