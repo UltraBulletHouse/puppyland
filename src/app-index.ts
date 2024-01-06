@@ -25,7 +25,6 @@ import { DogInfo } from './types/dog';
 import { Coords } from './types/geolocation';
 import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
-import { alertNotifySuccess } from './utils/alertsUtils';
 import { apiCall } from './utils/apiUtils';
 import { auth } from './utils/firebase';
 import './views/app-loading-map-view';
