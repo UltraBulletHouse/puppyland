@@ -17,7 +17,8 @@ import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
 import {
   // generateDoghouseIcon,
-  generatePulsatingMarker, // getClosestDoghouses,
+  // generatePulsatingMarker,
+   // getClosestDoghouses,
 } from '../../utils/mapUtils';
 import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
@@ -51,7 +52,7 @@ export class AppMap extends LitElement {
   map?: L.Map;
 
   @state()
-  userPosMarker?: L.Marker;
+  userPosMarker?: L.Circle;
 
   @state()
   doghouses?: Doghouse[];
@@ -64,6 +65,9 @@ export class AppMap extends LitElement {
 
   @state()
   isAddHouseModalOpen: boolean = false;
+
+  //TODO: Renderer for laflet
+  myRenderer = L.canvas({ padding: 1 });
 
   closeModal = () => {
     this.isAddHouseModalOpen = false;
@@ -86,11 +90,16 @@ export class AppMap extends LitElement {
     if (this.userPosMarker) {
       this.userPosMarker.setLatLng([lat, lng]);
     } else {
-      const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
-      this.userPosMarker = L.marker([lat, lng], {
-        icon: pulsatingIcon,
-        zIndexOffset: 999999,
-      }).addTo(this.map);
+      // const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
+      // this.userPosMarker = L.marker([lat, lng], {
+      //   icon: pulsatingIcon,
+      //   zIndexOffset: 999999,
+      // }).addTo(this.map);
+      // ------------------------------------------------
+      const coords = { lat: lat, lng: lng };
+      const marker = L.circle(coords, { renderer: this.myRenderer, color: 'red' });
+      this.userPosMarker = marker;
+      marker.addTo(this.map);
     }
 
     //TODO: Revert back
@@ -127,9 +136,6 @@ export class AppMap extends LitElement {
     // });
   }
 
-  //TODO: Move it to top
-  myRenderer = L.canvas({ padding: 1 });
-
   setDefaultDoghousesMarkers() {
     // const dogInfoId = this.dogInfo?.id;
 
@@ -162,7 +168,7 @@ export class AppMap extends LitElement {
 
   protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
     if (!this.markersList) return;
-    this.markersList.get('658afb3c1d4ac102d9091945')?.setStyle({ color: 'red' });
+    this.markersList.get('658afb3c1d4ac102d9091945')?.setStyle({ color: 'yellow' });
     this.markersList.get('658afb3c1d4ac102d9091945')?.setRadius(100);
     this.markersList.get('658afb3c1d4ac102d9091945')?.setRadius(100);
     this.markersList.get('658afb3c1d4ac102d9091945')?.options;
