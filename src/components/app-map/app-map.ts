@@ -16,9 +16,9 @@ import { MarkersList, TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
 import {
-  generateDoghouseIcon,
+  // generateDoghouseIcon,
   generatePulsatingMarker,
-  getClosestDoghouses,
+  // getClosestDoghouses,
 } from '../../utils/mapUtils';
 import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
@@ -94,8 +94,9 @@ export class AppMap extends LitElement {
       }).addTo(this.map);
     }
 
+    //TODO: Revert back
     this.setDefaultDoghousesMarkers();
-    this.updateClosestDoghousesMarkers();
+    // this.updateClosestDoghousesMarkers();
   }
 
   willUpdate(changedProperties: PropertyValueMap<this>) {
@@ -113,44 +114,62 @@ export class AppMap extends LitElement {
   updateClosestDoghousesMarkers() {
     if (!this.map || !this.userPos || !this.doghouses) return;
 
-    const dogInfoId = this.dogInfo?.id;
-    const closestDoghouses = getClosestDoghouses(this.userPos, this.doghouses, dogInfoId);
-    // console.log('ClosestDoghouses = ', closestDoghouses);
+    // const dogInfoId = this.dogInfo?.id;
+    // const closestDoghouses = getClosestDoghouses(this.userPos, this.doghouses, dogInfoId);
 
     /* Update Closest Markers */
-    closestDoghouses?.forEach(({ id, name }) => {
-      const mark = this.markersList?.get(id);
-      const doghouseIcon = generateDoghouseIcon({ isClose: true });
-      const popupContent = `<app-map-popup-attack dogId=${dogInfoId} doghouseId=${id} doghouseName=${name}></app-map-popup-attack>`;
-      mark?.setIcon(doghouseIcon).bindPopup(popupContent, {
-        minWidth: 108,
-      });
-    });
+    // closestDoghouses?.forEach(({ id, name }) => {
+      // const mark = this.markersList?.get(id);
+      // const doghouseIcon = generateDoghouseIcon({ isClose: true });
+      // const popupContent = `<app-map-popup-attack dogId=${dogInfoId} doghouseId=${id} doghouseName=${name}></app-map-popup-attack>`;
+      // mark?.setIcon(doghouseIcon).bindPopup(popupContent, {
+      //   minWidth: 108,
+      // });
+    // });
   }
 
+
+  //TODO: Move it to top
+  myRenderer = L.canvas({ padding: 1 });
+
   setDefaultDoghousesMarkers() {
-    const dogInfoId = this.dogInfo?.id;
+    // const dogInfoId = this.dogInfo?.id;
 
     /* MarkersList Map */ //TODO: przerobic na reduce
-    const markersList = new Map<string, L.Marker>();
+    const markersList = new Map<string, L.Circle>();
     this.doghouses?.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
-      const { id, dogId, name, lat, lng, hp, maxHp } = doghouse;
-      const popupContent = `<app-map-popup dhId=${id} dhName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`;
+      // const { id, dogId, name, lat, lng, hp, maxHp } = doghouse;
+      const { name, id,lat, lng, } = doghouse;
+      // const popupContent = `<app-map-popup dhId=${id} dhName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`;
 
-      const marker = L.marker([lat, lng], {
-        icon: generateDoghouseIcon({ isOwn: dogId === dogInfoId }),
-      })
-        .bindPopup(popupContent, {
-          minWidth: 108,
-        })
-        .addTo(this.map);
+      // const marker = L.marker([lat, lng], {
+      //   icon: generateDoghouseIcon({ isOwn: dogId === dogInfoId }),
+      // })
+      //   .bindPopup(popupContent, {
+      //     minWidth: 108,
+      //   })
+      //   .addTo(this.map);
+      //------------------------------------------------------------------------
+
+      const coords = {lat: lat, lng: lng}
+      const marker = L.circle( coords, { renderer: this.myRenderer } );
+      marker.addTo(this.map).bindPopup(`${name}`)
+
 
       markersList.set(id, marker);
     });
     this.markersList = markersList;
+    console.log(markersList);
+  }
 
-    this.updateClosestDoghousesMarkers();
+  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+    if(!this.markersList) return
+    this.markersList.get("658afb3c1d4ac102d9091945")?.setStyle({color: 'red'})
+    this.markersList.get("658afb3c1d4ac102d9091945")?.setRadius(100)
+    this.markersList.get("658afb3c1d4ac102d9091945")?.setRadius(100)
+    this.markersList.get("658afb3c1d4ac102d9091945")?.options
+
   }
 
   async setDoghousesMarkers() {
@@ -202,16 +221,19 @@ export class AppMap extends LitElement {
     /* Create Map */
     const mapEl = this.shadowRoot?.querySelector('#map') as HTMLDivElement;
     if (!mapEl) return;
-    let map = L.map(mapEl);
+    const map = L.map(mapEl, {
+      renderer: L.canvas()
+  });
     this.map = map;
 
-    let urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
+    const urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
     map.addLayer(
       L.tileLayer(urlTemplate, {
         minZoom: 11,
         maxZoom: 19,
         attribution: '© OpenStreetMap',
         edgeBufferTiles: 2,
+        preferCanvas: true,
       } as TileLayerOptionsPlugins)
     );
   }
