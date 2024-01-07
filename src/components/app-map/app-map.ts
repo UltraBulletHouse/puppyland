@@ -1,5 +1,6 @@
 import { consume } from '@lit/context';
-import L from 'leaflet';
+import L, { Polygon } from 'leaflet';
+import 'leaflet-canvas-markers';
 import 'leaflet-edgebuffer';
 import { LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
@@ -15,11 +16,8 @@ import { Coords } from '../../types/geolocation';
 import { MarkersList, TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
-import {
-  // generateDoghouseIcon,
-  // generatePulsatingMarker,
-   // getClosestDoghouses,
-} from '../../utils/mapUtils';
+import '../../utils/mapUtils';
+import { getHeading } from '../../utils/sensorUtil';
 import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
@@ -55,6 +53,9 @@ export class AppMap extends LitElement {
   userPosMarker?: L.Circle;
 
   @state()
+  userHeading: number | null = null;
+
+  @state()
   doghouses?: Doghouse[];
 
   @state()
@@ -65,9 +66,6 @@ export class AppMap extends LitElement {
 
   @state()
   isAddHouseModalOpen: boolean = false;
-
-  //TODO: Renderer for laflet
-  myRenderer = L.canvas({ padding: 1 });
 
   closeModal = () => {
     this.isAddHouseModalOpen = false;
@@ -89,6 +87,10 @@ export class AppMap extends LitElement {
     const { lat, lng } = this.userPos;
     if (this.userPosMarker) {
       this.userPosMarker.setLatLng([lat, lng]);
+
+      if (!this.userHeading) return;
+      (this.userPosMarker.options as any).img.rotate = 360 - this.userHeading;
+      this.userPosMarker.redraw();
     } else {
       // const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
       // this.userPosMarker = L.marker([lat, lng], {
@@ -96,14 +98,27 @@ export class AppMap extends LitElement {
       //   zIndexOffset: 999999,
       // }).addTo(this.map);
       // ------------------------------------------------
-      const coords = { lat: lat, lng: lng };
-      const marker = L.circle(coords, { renderer: this.myRenderer, color: 'blue' });
-      this.userPosMarker = marker;
+
+      if (!this.markersList) return;
+
+      const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
+        radius: 10,
+        img: {
+          url: 'src/assets/icons/direction-top-position-icon.svg', //image link
+          size: [40, 40], //image size ( default [40, 40] )
+          rotate: this.userHeading, //image base rotate ( default 0 )
+          offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
+        },
+      });
+
+      // console.log(marker);
+
       marker.addTo(this.map);
+      this.userPosMarker = marker;
     }
 
     //TODO: Revert back
-    this.setDefaultDoghousesMarkers();
+    // this.setDefaultDoghousesMarkers();
     // this.updateClosestDoghousesMarkers();
   }
 
@@ -138,7 +153,6 @@ export class AppMap extends LitElement {
 
   setDefaultDoghousesMarkers() {
     // const dogInfoId = this.dogInfo?.id;
-
     /* MarkersList Map */ //TODO: przerobic na reduce
     // const markersList = new Map<string, L.Circle | L.Polyline | L.Polygon>();
     const markersList = new Map<string, L.Polygon>();
@@ -156,30 +170,61 @@ export class AppMap extends LitElement {
       //   })
       //   .addTo(this.map);
       //------------------------------------------------------------------------
+      // const coords = { lat: lat, lng: lng };
+      // const coords2 = { lat: lat + 0.0002, lng: lng}
+      // const coords3 = { lat: lat + 0.0002, lng: lng + 0.0002}
+      // const coords4 = { lat: lat, lng: lng + 0.0002}
+      // // const marker = L.circle(coords, { renderer: this.myRenderer });
+      // const marker = L.polygon([coords, coords2,coords3,coords4], { renderer: this.myRenderer, smoothFactor:2, color: '#f97a2c' });
 
-      const coords = { lat: lat, lng: lng };
-      const coords2 = { lat: lat + 0.0002, lng: lng}
-      const coords3 = { lat: lat + 0.0002, lng: lng + 0.0002}
-      const coords4 = { lat: lat, lng: lng + 0.0002}
-      // const marker = L.circle(coords, { renderer: this.myRenderer });
-      const marker = L.polygon([coords, coords2,coords3,coords4], { renderer: this.myRenderer, smoothFactor:2, color: '#f97a2c' });
-      
+      const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
+        radius: 10,
+        img: {
+          url: 'src/assets/icons/doghouse.svg', //image link
+          size: [40, 40], //image size ( default [40, 40] )
+          rotate: 0, //image base rotate ( default 0 )
+          offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
+        },
+      });
+
       marker.addTo(this.map).bindPopup(`${name}`);
 
       markersList.set(id, marker);
     });
     this.markersList = markersList;
-    // console.log(markersList);
   }
 
-  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
-    if (!this.markersList) return;
-    this.markersList.get('658afb3c1d4ac102d9091945')?.setStyle({ color: 'yellow',weight: 20 });
-    // this.markersList.get('658afb3c1d4ac102d9091945')?.setRadius(100);
-    // const el = this.markersList.get('658afb3c1d4ac102d9091945')
-// console.log((el?.options.renderer as any)._ctx );
-    
-  }
+  scaleOnZoom = () => {
+    if (!this.map || !this.markersList) return;
+    const currentZoom = this.map.getZoom();
+    // console.log(currentZoom);
+
+    if (currentZoom < 15) {
+      this.markersList.forEach((marker: Polygon) => {
+        // (marker?.options as any).img.size = [20, 20];
+        // (marker?.options as any).img.rotate = 45;
+
+        (marker?.options as any).img = {
+          url: 'src/assets/icons/doghouse.svg', //image link
+          size: [20, 20], //image size ( default [40, 40] )
+          rotate: 0, //image base rotate ( default 0 )
+          offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
+        };
+      });
+    } else {
+      this.markersList.forEach((marker: Polygon) => {
+        // (marker?.options as any).img.size = [40, 40];
+        // (marker?.options as any).img.rotate = 0;
+
+        (marker?.options as any).img = {
+          url: 'src/assets/icons/doghouse.svg', //image link
+          size: [40, 40], //image size ( default [40, 40] )
+          rotate: 0, //image base rotate ( default 0 )
+          offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
+        };
+      });
+    }
+  };
 
   async setDoghousesMarkers() {
     if (!this.map || !this.userPos) return;
@@ -226,7 +271,14 @@ export class AppMap extends LitElement {
     }
   }
 
+  handleDeviceRotate = (heading: number | null) => {
+    // console.log(heading);
+    this.userHeading = heading;
+  };
+
   firstUpdated() {
+    getHeading(this.handleDeviceRotate);
+
     /* Create Map */
     const mapEl = this.shadowRoot?.querySelector('#map') as HTMLDivElement;
     if (!mapEl) return;
@@ -245,6 +297,8 @@ export class AppMap extends LitElement {
         preferCanvas: true,
       } as TileLayerOptionsPlugins)
     );
+
+    map.on('zoomend', this.scaleOnZoom);
   }
 
   render() {

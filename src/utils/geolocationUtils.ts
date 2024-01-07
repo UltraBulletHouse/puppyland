@@ -32,8 +32,8 @@ export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) =>
   if ('geolocation' in navigator) {
     // alertNotifyWarning('WATCH USER - utils');
     navigator.geolocation.clearWatch(1);
-    navigator.geolocation.clearWatch(2);
-    navigator.geolocation.clearWatch(3);
+    // navigator.geolocation.clearWatch(2);
+    // navigator.geolocation.clearWatch(3);
 
     navigator.geolocation.watchPosition(
       watchUserPositionSuccess,
