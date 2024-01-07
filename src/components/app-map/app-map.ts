@@ -93,10 +93,10 @@ export class AppMap extends LitElement {
     const { lat, lng } = this.userPos;
     if (this.userPosMarker) {
       this.userPosMarker.setLatLng([lat, lng]);
-
+      
       if (!this.userHeading) return;
-      (this.userPosMarker.options as any).img.rotate = 360 - this.userHeading;
-      this.userPosMarker.redraw();
+      ;(this.userPosMarker.options as any).img.rotate = 360 - this.userHeading;
+      // this.userPosMarker.redraw()
     } else {
       // const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
       // this.userPosMarker = L.marker([lat, lng], {
@@ -108,7 +108,7 @@ export class AppMap extends LitElement {
       if (!this.markersList || !this.arrowMarkerPath) return;
 
       const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
-        radius: 10,
+        radius: 30,
         img: {
           url: this.arrowMarkerPath, //image link
           size: [40, 40], //image size ( default [40, 40] )
