@@ -97,7 +97,7 @@ export class AppMap extends LitElement {
       // }).addTo(this.map);
       // ------------------------------------------------
       const coords = { lat: lat, lng: lng };
-      const marker = L.circle(coords, { renderer: this.myRenderer, color: 'red' });
+      const marker = L.circle(coords, { renderer: this.myRenderer, color: 'blue' });
       this.userPosMarker = marker;
       marker.addTo(this.map);
     }
@@ -140,7 +140,8 @@ export class AppMap extends LitElement {
     // const dogInfoId = this.dogInfo?.id;
 
     /* MarkersList Map */ //TODO: przerobic na reduce
-    const markersList = new Map<string, L.Circle>();
+    // const markersList = new Map<string, L.Circle | L.Polyline | L.Polygon>();
+    const markersList = new Map<string, L.Polygon>();
     this.doghouses?.forEach((doghouse: Doghouse) => {
       if (!this.map) return;
       // const { id, dogId, name, lat, lng, hp, maxHp } = doghouse;
@@ -157,21 +158,27 @@ export class AppMap extends LitElement {
       //------------------------------------------------------------------------
 
       const coords = { lat: lat, lng: lng };
-      const marker = L.circle(coords, { renderer: this.myRenderer });
+      const coords2 = { lat: lat + 0.0002, lng: lng}
+      const coords3 = { lat: lat + 0.0002, lng: lng + 0.0002}
+      const coords4 = { lat: lat, lng: lng + 0.0002}
+      // const marker = L.circle(coords, { renderer: this.myRenderer });
+      const marker = L.polygon([coords, coords2,coords3,coords4], { renderer: this.myRenderer, smoothFactor:2, color: '#f97a2c' });
+      
       marker.addTo(this.map).bindPopup(`${name}`);
 
       markersList.set(id, marker);
     });
     this.markersList = markersList;
-    console.log(markersList);
+    // console.log(markersList);
   }
 
   protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
     if (!this.markersList) return;
-    this.markersList.get('658afb3c1d4ac102d9091945')?.setStyle({ color: 'yellow' });
-    this.markersList.get('658afb3c1d4ac102d9091945')?.setRadius(100);
-    this.markersList.get('658afb3c1d4ac102d9091945')?.setRadius(100);
-    this.markersList.get('658afb3c1d4ac102d9091945')?.options;
+    this.markersList.get('658afb3c1d4ac102d9091945')?.setStyle({ color: 'yellow',weight: 20 });
+    // this.markersList.get('658afb3c1d4ac102d9091945')?.setRadius(100);
+    // const el = this.markersList.get('658afb3c1d4ac102d9091945')
+// console.log((el?.options.renderer as any)._ctx );
+    
   }
 
   async setDoghousesMarkers() {

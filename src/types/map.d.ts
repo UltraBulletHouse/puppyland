@@ -5,4 +5,5 @@ export interface TileLayerOptionsPlugins extends TileLayerOptions {
 }
 
 //TODO: Change to Path albo inny Canvasowy
-export type MarkersList = Map<string, L.Circle>;
+// export type MarkersList = Map<string, L.Circle | L.Polyline | L.Polygon>;
+export type MarkersList = Map<string, L.Polygon>;
