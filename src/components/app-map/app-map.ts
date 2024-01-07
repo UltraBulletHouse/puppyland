@@ -77,7 +77,7 @@ export class AppMap extends LitElement {
     }
   }
 
-  setUserPostion() {
+  async setUserPostion() {
     if (!this.map || !this.userPos) return;
 
     if (!this.doghouses) {
@@ -101,10 +101,13 @@ export class AppMap extends LitElement {
 
       if (!this.markersList) return;
 
+      const arrowPath = await import('../../assets/icons/direction-top-position-icon.svg')
+      console.log(arrowPath.default);
+
       const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
         radius: 10,
         img: {
-          url: './src/assets/icons/direction-top-position-icon.svg', //image link
+          url: arrowPath.default, //image link
           size: [40, 40], //image size ( default [40, 40] )
           rotate: this.userHeading, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
