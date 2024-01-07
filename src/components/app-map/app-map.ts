@@ -67,6 +67,12 @@ export class AppMap extends LitElement {
   @state()
   isAddHouseModalOpen: boolean = false;
 
+  @state()
+  arrowMarkerPath: string | null = null
+
+  @state()
+  doghouseMarkerPath: string | null = null
+
   closeModal = () => {
     this.isAddHouseModalOpen = false;
   };
@@ -77,7 +83,7 @@ export class AppMap extends LitElement {
     }
   }
 
-  async setUserPostion() {
+   setUserPostion() {
     if (!this.map || !this.userPos) return;
 
     if (!this.doghouses) {
@@ -99,15 +105,12 @@ export class AppMap extends LitElement {
       // }).addTo(this.map);
       // ------------------------------------------------
 
-      if (!this.markersList) return;
-
-      const arrowPath = await import('../../assets/icons/direction-top-position-icon.svg')
-      console.log(arrowPath.default);
+      if (!this.markersList || !this.arrowMarkerPath) return;
 
       const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
         radius: 10,
         img: {
-          url: arrowPath.default, //image link
+          url: this.arrowMarkerPath, //image link
           size: [40, 40], //image size ( default [40, 40] )
           rotate: this.userHeading, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
@@ -183,7 +186,7 @@ export class AppMap extends LitElement {
       const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
         radius: 10,
         img: {
-          url: './src/assets/icons/doghouse.svg', //image link
+          url: this.doghouseMarkerPath, //image link
           size: [40, 40], //image size ( default [40, 40] )
           rotate: 0, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
@@ -208,7 +211,7 @@ export class AppMap extends LitElement {
         // (marker?.options as any).img.rotate = 45;
 
         (marker?.options as any).img = {
-          url: './src/assets/icons/doghouse.svg', //image link
+          url: this.doghouseMarkerPath, //image link
           size: [20, 20], //image size ( default [40, 40] )
           rotate: 0, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
@@ -220,7 +223,7 @@ export class AppMap extends LitElement {
         // (marker?.options as any).img.rotate = 0;
 
         (marker?.options as any).img = {
-          url: './src/assets/icons/doghouse.svg', //image link
+          url: this.doghouseMarkerPath, //image link
           size: [40, 40], //image size ( default [40, 40] )
           rotate: 0, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
@@ -279,7 +282,12 @@ export class AppMap extends LitElement {
     this.userHeading = heading;
   };
 
-  firstUpdated() {
+  async firstUpdated() {
+    const arrowPath = await import('../../assets/icons/direction-top-position-icon.svg')
+    this.arrowMarkerPath = arrowPath.default;
+    const doghousePath = await import('../../assets/icons/doghouse.svg')
+    this.doghouseMarkerPath = doghousePath.default;
+
     getHeading(this.handleDeviceRotate);
 
     /* Create Map */
