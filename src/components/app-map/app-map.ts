@@ -104,7 +104,7 @@ export class AppMap extends LitElement {
       const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
         radius: 10,
         img: {
-          url: '../../assets/icons/direction-top-position-icon.svg', //image link
+          url: './src/assets/icons/direction-top-position-icon.svg', //image link
           size: [40, 40], //image size ( default [40, 40] )
           rotate: this.userHeading, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
@@ -180,7 +180,7 @@ export class AppMap extends LitElement {
       const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
         radius: 10,
         img: {
-          url: '../../assets/icons/doghouse.svg', //image link
+          url: './src/assets/icons/doghouse.svg', //image link
           size: [40, 40], //image size ( default [40, 40] )
           rotate: 0, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
@@ -205,7 +205,7 @@ export class AppMap extends LitElement {
         // (marker?.options as any).img.rotate = 45;
 
         (marker?.options as any).img = {
-          url: '../../assets/icons/doghouse.svg', //image link
+          url: './src/assets/icons/doghouse.svg', //image link
           size: [20, 20], //image size ( default [40, 40] )
           rotate: 0, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
@@ -217,7 +217,7 @@ export class AppMap extends LitElement {
         // (marker?.options as any).img.rotate = 0;
 
         (marker?.options as any).img = {
-          url: '../../assets/icons/doghouse.svg', //image link
+          url: './src/assets/icons/doghouse.svg', //image link
           size: [40, 40], //image size ( default [40, 40] )
           rotate: 0, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
