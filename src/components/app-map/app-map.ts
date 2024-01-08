@@ -95,7 +95,7 @@ export class AppMap extends LitElement {
       this.userPosMarker.setLatLng([lat, lng]);
 
       if (!this.userHeading) return;
-      (this.userPosMarker.options as any).img.rotate = this.userHeading;
+      (this.userPosMarker.options as any).img.rotate = 360 - this.userHeading;
       // this.userPosMarker.redraw()
     } else {
       // const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
@@ -112,7 +112,7 @@ export class AppMap extends LitElement {
         img: {
           url: this.arrowMarkerPath, //image link
           size: [40, 40], //image size ( default [40, 40] )
-          rotate: this.userHeading, //image base rotate ( default 0 )
+          rotate: 360 - this.userHeading, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
         },
       });
