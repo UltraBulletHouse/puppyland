@@ -17,7 +17,6 @@ import { MarkersList, TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
-import { getHeading } from '../../utils/sensorUtil';
 import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
@@ -51,9 +50,6 @@ export class AppMap extends LitElement {
 
   @state()
   userPosMarker?: L.Circle;
-
-  @state()
-  userHeading: number | null = null;
 
   @state()
   doghouses?: Doghouse[];
@@ -93,10 +89,6 @@ export class AppMap extends LitElement {
     const { lat, lng } = this.userPos;
     if (this.userPosMarker) {
       this.userPosMarker.setLatLng([lat, lng]);
-
-      if (!this.userHeading) return;
-      (this.userPosMarker.options as any).img.rotate = 360 - this.userHeading;
-      // this.userPosMarker.redraw()
     } else {
       // const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
       // this.userPosMarker = L.marker([lat, lng], {
@@ -105,14 +97,14 @@ export class AppMap extends LitElement {
       // }).addTo(this.map);
       // ------------------------------------------------
 
-      if (!this.markersList || !this.arrowMarkerPath || !this.userHeading) return;
+      if (!this.markersList || !this.arrowMarkerPath) return;
 
       const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
         radius: 30,
         img: {
           url: this.arrowMarkerPath, //image link
           size: [40, 40], //image size ( default [40, 40] )
-          rotate: 360 - this.userHeading, //image base rotate ( default 0 )
+          rotate: 0, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
         },
       });
@@ -279,18 +271,11 @@ export class AppMap extends LitElement {
     }
   }
 
-  handleDeviceRotate = (heading: number | null) => {
-    // console.log(heading);
-    this.userHeading = heading;
-  };
-
   async firstUpdated() {
     const arrowPath = await import('../../assets/icons/direction-top-position-icon.svg');
     this.arrowMarkerPath = arrowPath.default;
     const doghousePath = await import('../../assets/icons/doghouse.svg');
     this.doghouseMarkerPath = doghousePath.default;
-
-    getHeading(this.handleDeviceRotate);
 
     /* Create Map */
     const mapEl = this.shadowRoot?.querySelector('#map') as HTMLDivElement;
