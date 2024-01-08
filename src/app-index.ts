@@ -122,8 +122,8 @@ export class AppIndex extends LitElement {
         const accessToken = await userFirebase.getIdToken();
         const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
 
-        this.userInfo = userInfoResponse.data?.user;
-        this.dogInfo = userInfoResponse.data?.dog;
+        this.userInfo = userInfoResponse?.data?.user;
+        this.dogInfo = userInfoResponse?.data?.dog;
         this.accessToken = accessToken;
 
         this.watchUserPos();

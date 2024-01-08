@@ -68,10 +68,10 @@ export class AppMap extends LitElement {
   isAddHouseModalOpen: boolean = false;
 
   @state()
-  arrowMarkerPath: string | null = null
+  arrowMarkerPath: string | null = null;
 
   @state()
-  doghouseMarkerPath: string | null = null
+  doghouseMarkerPath: string | null = null;
 
   closeModal = () => {
     this.isAddHouseModalOpen = false;
@@ -83,7 +83,7 @@ export class AppMap extends LitElement {
     }
   }
 
-   setUserPostion() {
+  setUserPostion() {
     if (!this.map || !this.userPos) return;
 
     if (!this.doghouses) {
@@ -93,9 +93,9 @@ export class AppMap extends LitElement {
     const { lat, lng } = this.userPos;
     if (this.userPosMarker) {
       this.userPosMarker.setLatLng([lat, lng]);
-      
+
       if (!this.userHeading) return;
-      ;(this.userPosMarker.options as any).img.rotate = 360 - this.userHeading;
+      (this.userPosMarker.options as any).img.rotate = this.userHeading;
       // this.userPosMarker.redraw()
     } else {
       // const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
@@ -105,7 +105,7 @@ export class AppMap extends LitElement {
       // }).addTo(this.map);
       // ------------------------------------------------
 
-      if (!this.markersList || !this.arrowMarkerPath) return;
+      if (!this.markersList || !this.arrowMarkerPath || !this.userHeading) return;
 
       const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
         radius: 30,
@@ -116,8 +116,6 @@ export class AppMap extends LitElement {
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
         },
       });
-
-      // console.log(marker);
 
       marker.addTo(this.map);
       this.userPosMarker = marker;
@@ -203,8 +201,8 @@ export class AppMap extends LitElement {
   scaleOnZoom = () => {
     if (!this.map || !this.markersList) return;
     const currentZoom = this.map.getZoom();
-    // console.log(currentZoom);
 
+    //TODO: Kasowac stare i malowac jeszcze raz
     if (currentZoom < 15) {
       this.markersList.forEach((marker: Polygon) => {
         // (marker?.options as any).img.size = [20, 20];
@@ -216,6 +214,8 @@ export class AppMap extends LitElement {
           rotate: 0, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
         };
+
+        marker.redraw();
       });
     } else {
       this.markersList.forEach((marker: Polygon) => {
@@ -228,6 +228,8 @@ export class AppMap extends LitElement {
           rotate: 0, //image base rotate ( default 0 )
           offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
         };
+
+        marker.redraw();
       });
     }
   };
@@ -283,9 +285,9 @@ export class AppMap extends LitElement {
   };
 
   async firstUpdated() {
-    const arrowPath = await import('../../assets/icons/direction-top-position-icon.svg')
+    const arrowPath = await import('../../assets/icons/direction-top-position-icon.svg');
     this.arrowMarkerPath = arrowPath.default;
-    const doghousePath = await import('../../assets/icons/doghouse.svg')
+    const doghousePath = await import('../../assets/icons/doghouse.svg');
     this.doghouseMarkerPath = doghousePath.default;
 
     getHeading(this.handleDeviceRotate);
