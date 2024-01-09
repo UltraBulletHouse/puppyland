@@ -21,6 +21,7 @@ import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-syles';
+import { generatePulsatingMarker } from '../../utils/mapUtils';
 
 /**
  * @fires updateDogInfo
@@ -49,7 +50,10 @@ export class AppMap extends LitElement {
   map?: L.Map;
 
   @state()
-  userPosMarker?: L.Circle;
+  userPosMarker?: L.Marker;
+
+  // @state()
+  // userPosMarker?: L.Circle;
 
   @state()
   doghouses?: Doghouse[];
@@ -91,30 +95,30 @@ export class AppMap extends LitElement {
       //TODO: Test if drawing arrow marker costs a lot, revert it or go back to pulse icon 
       this.userPosMarker.setLatLng([lat, lng]);
     } else {
-      // const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
-      // this.userPosMarker = L.marker([lat, lng], {
-      //   icon: pulsatingIcon,
-      //   zIndexOffset: 999999,
-      // }).addTo(this.map);
+      const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
+      this.userPosMarker = L.marker([lat, lng], {
+        icon: pulsatingIcon,
+        zIndexOffset: 999999,
+      }).addTo(this.map);
       // ------------------------------------------------
 
-      if (!this.markersList || !this.arrowMarkerPath) return;
+      // if (!this.markersList || !this.arrowMarkerPath) return;
 
-      const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
-        radius: 30,
-        img: {
-          url: this.arrowMarkerPath, //image link
-          size: [40, 40], //image size ( default [40, 40] )
-          rotate: 0, //image base rotate ( default 0 )
-          offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
-        },
-      });
+      // const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
+      //   radius: 30,
+      //   img: {
+      //     url: this.arrowMarkerPath, //image link
+      //     size: [40, 40], //image size ( default [40, 40] )
+      //     rotate: 0, //image base rotate ( default 0 )
+      //     offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
+      //   },
+      // });
 
-      marker.addTo(this.map);
-      this.userPosMarker = marker;
+      // marker.addTo(this.map);
+      // this.userPosMarker = marker;
     }
 
-    //TODO: Revert back
+    //TODO: Revert back or NOT (wyzej juz updatuje markery)
     // this.setDefaultDoghousesMarkers();
     // this.updateClosestDoghousesMarkers();
   }
@@ -297,7 +301,7 @@ export class AppMap extends LitElement {
       } as TileLayerOptionsPlugins)
     );
 
-    // map.on('zoomend', this.scaleOnZoom);
+    map.on('zoomend', this.scaleOnZoom);
   }
 
   render() {

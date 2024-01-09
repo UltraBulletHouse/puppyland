@@ -1,4 +1,5 @@
 'use strict';
+// https://github.com/lipton-ice-tea/leaflet-canvas-markers
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
