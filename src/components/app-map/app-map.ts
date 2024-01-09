@@ -89,7 +89,7 @@ export class AppMap extends LitElement {
     const { lat, lng } = this.userPos;
     if (this.userPosMarker) {
       //TODO: Test if drawing arrow marker costs a lot, revert it or go back to pulse icon 
-      // this.userPosMarker.setLatLng([lat, lng]);
+      this.userPosMarker.setLatLng([lat, lng]);
     } else {
       // const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-blue)');
       // this.userPosMarker = L.marker([lat, lng], {
@@ -297,7 +297,7 @@ export class AppMap extends LitElement {
       } as TileLayerOptionsPlugins)
     );
 
-    map.on('zoomend', this.scaleOnZoom);
+    // map.on('zoomend', this.scaleOnZoom);
   }
 
   render() {
