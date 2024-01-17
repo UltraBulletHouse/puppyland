@@ -27,6 +27,7 @@ import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-syles';
+import { alertNotifyPrimary } from '../../utils/alertsUtils';
 
 /**
  * @fires updateDogInfo
@@ -104,7 +105,9 @@ export class AppMap extends LitElement {
   }
 
   setDoghousesMarkers() {
+    alertNotifyPrimary('#---setDoghousesMarkers')
     console.log('#---setDoghousesMarkers');
+    
     if (!this.map || !this.userPos || !this.doghouses) return;
 
     const dogInfoId = this.dogInfo?.id;
