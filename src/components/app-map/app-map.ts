@@ -12,7 +12,12 @@ import { userPosContext } from '../../contexts/userPosContext';
 // import 'leaflet-canvas-markers';
 import '../../scripts/leaflet-canvas-markers';
 import { DogInfo } from '../../types/dog';
-import { CreateDoghouseResponse, CreateResult, Doghouse } from '../../types/doghouse';
+import {
+  CreateDoghouseResponse,
+  CreateResult,
+  Doghouse,
+  GetDoghouseNearUserResponse,
+} from '../../types/doghouse';
 import { Coords } from '../../types/geolocation';
 import { MarkersList, TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
@@ -213,7 +218,7 @@ export class AppMap extends LitElement {
   scaleOnZoom = () => {
     if (!this.map || !this.markersList) return;
     const currentZoom = this.map.getZoom();
-console.log(currentZoom);
+    console.log(currentZoom);
     //TODO: Kasowac stare i malowac jeszcze raz
     if (currentZoom < 15) {
       this.markersList.forEach((marker: Polygon) => {
@@ -252,8 +257,8 @@ console.log(currentZoom);
     if (!this.map || !this.userPos) return;
 
     const {
-      data: { doghousesList },
-    } = await apiCall().get(API_DOGHOUSES_NEAR_USER, {
+      data: { doghousesList, geoRange },
+    } = await apiCall().get<GetDoghouseNearUserResponse>(API_DOGHOUSES_NEAR_USER, {
       params: {
         lat: this.userPos.lat.toString(),
         lng: this.userPos.lng.toString(),
@@ -265,8 +270,11 @@ console.log(currentZoom);
 
     this.setDefaultDoghousesMarkers();
 
-    //TODO: zeby wysylal w NearMe coordynaty i wrzucic tu zamiast this.map.getBounds()
-    // this.map.setMaxBounds(this.map.getBounds());
+    const { latitudeMax, latitudeMin, longitudeMax, longitudeMin } = geoRange;
+    const northEast = L.latLng(latitudeMax, longitudeMax);
+    const southWest = L.latLng(latitudeMin, longitudeMin);
+    const bounds = L.latLngBounds(southWest, northEast);
+    this.map.setMaxBounds(bounds);
   }
 
   /* OK - raczej */

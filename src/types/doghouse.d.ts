@@ -54,3 +54,14 @@ export interface AttackDoghouseResponse {
 export interface UpdateDoghouseResponse {
   doghouse: Doghouse;
 }
+
+export interface GeoRange {
+  latitudeMin: number;
+  longitudeMin: number;
+  latitudeMax: number;
+  longitudeMax: number;
+}
+export interface GetDoghouseNearUserResponse {
+  doghousesList: Doghouse[];
+  geoRange: GeoRange;
+}

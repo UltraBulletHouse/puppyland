@@ -113,6 +113,7 @@ export class AppIndex extends LitElement {
 
   firstUpdated() {
     // TODO: https://stackoverflow.com/questions/54580414/how-can-i-detect-if-my-website-is-opened-inside-a-trusted-web-actvity
+    // TODO: sprawdzac czy dziala sklep Google (to co w shop view)
     // console.log(document.referrer);
 
     auth.onAuthStateChanged(async (userFirebase) => {
