@@ -1,4 +1,4 @@
-import { alertNotifyWarning } from "./alertsUtils";
+import { alertNotifyWarning } from './alertsUtils';
 
 export const getHeading = (deviceOrientChange: (heading: number | null) => void) => {
   if (window.DeviceOrientationEvent) {

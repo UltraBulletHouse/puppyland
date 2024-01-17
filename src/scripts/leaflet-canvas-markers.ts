@@ -1,17 +1,18 @@
-'use strict';
 // https://github.com/lipton-ice-tea/leaflet-canvas-markers
 
-(function (root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define(['leaflet'], factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory(require('leaflet'));
-  } else {
-    factory(window.L);
-  }
-})(this, function (L) {
+'use strict';
+
+(function (_root, factory) {
+  // if (typeof define === 'function' && define.amd) {
+  //   define(['leaflet'], factory);
+  // } else if (typeof exports === 'object') {
+  // module.exports = factory(require('leaflet'));
+  // } else {
+  factory(window.L);
+  // }
+})(this, function (L: any) {
   L.Canvas.include({
-    _updateImg(layer) {
+    _updateImg(layer: any) {
       const { img } = layer.options;
       const p = layer._point.round();
       p.x += img.offset.x;
@@ -34,7 +35,7 @@
     },
   });
 
-  const angleCrds = (map, prevLatlng, latlng) => {
+  const angleCrds = (map: any, prevLatlng: any, latlng: any) => {
     if (!latlng || !prevLatlng) return 0;
     const pxStart = map.project(prevLatlng);
     const pxEnd = map.project(latlng);
@@ -68,7 +69,7 @@
     },
   });
 
-  L.canvasMarker = function (...opt) {
+  L.canvasMarker = function (...opt: any[]) {
     try {
       const i = opt.findIndex((o) => typeof o === 'object' && o.img);
       if (i + 1) {
