@@ -27,6 +27,12 @@ export class AppMapPopupAttack extends LitElement {
   @property({ type: String })
   doghouseName?: string;
 
+  @property({ type: String })
+  dhHp?: string;
+
+  @property({ type: String })
+  dhMaxHp?: string;
+
   @state()
   attackResult: AttackResult | null = null;
 
@@ -71,6 +77,7 @@ export class AppMapPopupAttack extends LitElement {
     return html` <div>
       <sl-card class="card-overview">
         <strong>${this.doghouseName}</strong>
+        <p>HP: ${this.dhHp}/${this.dhMaxHp}</p>
         <div slot="footer">
           <sl-button id="attack-btn" @click=${this.attackDoghouse} pill>Attack</sl-button>
         </div>
