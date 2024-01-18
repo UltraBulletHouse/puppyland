@@ -20,6 +20,7 @@ import {
 import { Coords } from '../../types/geolocation';
 import { TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
+import { alertNotifyPrimary } from '../../utils/alertsUtils';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
 import { generatePulsatingMarker, getClosestDoghouses } from '../../utils/mapUtils';
@@ -27,7 +28,6 @@ import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-syles';
-import { alertNotifyPrimary } from '../../utils/alertsUtils';
 
 /**
  * @fires updateDogInfo
@@ -105,9 +105,9 @@ export class AppMap extends LitElement {
   }
 
   setDoghousesMarkers() {
-    alertNotifyPrimary('#---setDoghousesMarkers')
+    alertNotifyPrimary('#---setDoghousesMarkers');
     console.log('#---setDoghousesMarkers');
-    
+
     if (!this.map || !this.userPos || !this.doghouses) return;
 
     const dogInfoId = this.dogInfo?.id;
@@ -120,8 +120,10 @@ export class AppMap extends LitElement {
 
       if (isClose) {
         const popupContent = `<app-map-popup-attack dogId=${dogInfoId} doghouseId=${id} doghouseName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-attack>`;
+
+        // TODO: Zrobic utils do tworzenia markerow z defaultowymi, przekazywac jaka ikona, rozmiar, itp
         const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
-          radius: 40, // WAZNE zeby nie bylo artefaktow
+          radius: 30, // WAZNE zeby nie bylo artefaktow
           img: {
             url: this.doghouseAttackPath,
             size: [40, 40],
@@ -136,7 +138,7 @@ export class AppMap extends LitElement {
         const popupContent = `<app-map-popup dhId=${id} dhName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`;
 
         const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
-          radius: 40, // WAZNE zeby nie bylo artefaktow
+          radius: 30, // WAZNE zeby nie bylo artefaktow
           img: {
             url: dogId === dogInfoId ? this.doghouseOwnPath : this.doghouseEnemyPath,
             size: [40, 40],

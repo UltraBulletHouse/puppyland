@@ -2,8 +2,7 @@ import axios, { AxiosError } from 'axios';
 
 import { alertNotifyDanger } from './alertsUtils';
 
-// const corsAny = 'https://cors-anywhere.herokuapp.com/'
-const apiUrl = 'https://testaccount1rif-001-site1.anytempurl.com/';
+const apiUrl = 'https://projectwebapi20240118105830.azurewebsites.net/';
 const baseHeaders = (accesToken?: string) => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',
