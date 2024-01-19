@@ -23,7 +23,7 @@ import { UserInfo } from '../../types/userInfo';
 import { alertNotifyPrimary } from '../../utils/alertsUtils';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
-import { generatePulsatingMarker, getClosestDoghouses } from '../../utils/mapUtils';
+import { drawMarker, generatePulsatingMarker, getClosestDoghouses } from '../../utils/mapUtils';
 import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
@@ -119,36 +119,26 @@ export class AppMap extends LitElement {
       const isClose = closestDoghouses?.find((dh) => dh.id === doghouse.id);
 
       if (isClose) {
-        const popupContent = `<app-map-popup-attack dogId=${dogInfoId} doghouseId=${id} doghouseName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-attack>`;
+        const popupAttackContent = `<app-map-popup-attack dogId=${dogInfoId} doghouseId=${id} doghouseName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-attack>`;
 
-        // TODO: Zrobic utils do tworzenia markerow z defaultowymi, przekazywac jaka ikona, rozmiar, itp
-        const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
-          radius: 30, // WAZNE zeby nie bylo artefaktow
-          img: {
+        drawMarker({
+          self: this,
+          coords: { lat, lng },
+          popupContent: popupAttackContent,
+          canvasMarkerImg: {
             url: this.doghouseAttackPath,
-            size: [40, 40],
-            rotate: 0,
-            offset: { x: 0, y: 0 },
           },
-        });
-        marker.addTo(this.map).bindPopup(popupContent, {
-          minWidth: 108,
         });
       } else {
         const popupContent = `<app-map-popup dhId=${id} dhName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`;
 
-        const marker = (L as any).canvasMarker(L.latLng(lat, lng), {
-          radius: 30, // WAZNE zeby nie bylo artefaktow
-          img: {
+        drawMarker({
+          self: this,
+          coords: { lat, lng },
+          popupContent,
+          canvasMarkerImg: {
             url: dogId === dogInfoId ? this.doghouseOwnPath : this.doghouseEnemyPath,
-            size: [40, 40],
-            rotate: 0,
-            offset: { x: 0, y: 0 },
           },
-        });
-
-        marker.addTo(this.map).bindPopup(popupContent, {
-          minWidth: 108,
         });
       }
     });

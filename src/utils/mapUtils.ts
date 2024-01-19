@@ -3,6 +3,9 @@ import L from 'leaflet';
 import { AppMap } from '../components/app-map/app-map';
 import { Doghouse } from '../types/doghouse';
 import { Coords } from '../types/geolocation';
+import { CanvasMarkerImg } from '../types/map';
+
+//TODO: Sprawdzic i usunąć co nie uzywane
 
 export const generatePulsatingMarker = (L: any, radius: number, color: string) => {
   const cssStyle = `
@@ -102,4 +105,29 @@ export const handleZoom = (element: AppMap) => {
       (item as HTMLElement).style.scale = '1';
     });
   }
+};
+
+interface DrawMarker {
+  self: AppMap;
+  coords: Coords;
+  canvasMarkerImg: CanvasMarkerImg;
+  popupContent: any;
+  radius?: number;
+}
+
+export const drawMarker = ({ self, coords, popupContent, radius, canvasMarkerImg }: DrawMarker) => {
+  const marker = (L as any).canvasMarker(L.latLng(coords.lat, coords.lng), {
+    radius: radius ?? 30, // WAZNE zeby nie bylo artefaktow
+    img: {
+      size: [40, 40],
+      rotate: 0,
+      offset: { x: 0, y: 0 },
+      ...canvasMarkerImg,
+      url: canvasMarkerImg.url,
+    },
+  });
+
+  marker.addTo(self.map).bindPopup(popupContent, {
+    minWidth: 108,
+  });
 };
