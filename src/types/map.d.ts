@@ -9,6 +9,7 @@ export interface CanvasMarkerImg {
   size?: [number, number];
   rotate?: number;
   offset?: { x: number; y: number };
+  radius?: number
 }
 
 export interface CanvasMarkerOptions {
