@@ -4,6 +4,9 @@ import 'leaflet-edgebuffer';
 import { LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
+import doghouseAttackPath from '../../assets/icons/marker-attack.svg';
+import doghouseEnemyPath from '../../assets/icons/marker-enemy.svg';
+import doghouseOwnPath from '../../assets/icons/marker-own.svg';
 import { API_DOGHOUSES_NEAR_USER, API_DOGHOUSE_CREATE } from '../../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
@@ -126,7 +129,7 @@ export class AppMap extends LitElement {
           coords: { lat, lng },
           popupContent: popupAttackContent,
           canvasMarkerImg: {
-            url: this.doghouseAttackPath,
+            url: doghouseAttackPath,
           },
         });
       } else {
@@ -137,7 +140,7 @@ export class AppMap extends LitElement {
           coords: { lat, lng },
           popupContent,
           canvasMarkerImg: {
-            url: dogId === dogInfoId ? this.doghouseOwnPath : this.doghouseEnemyPath,
+            url: dogId === dogInfoId ? doghouseOwnPath : doghouseEnemyPath,
           },
         });
       }
@@ -193,7 +196,6 @@ export class AppMap extends LitElement {
   scaleOnZoom = () => {
     if (!this.map) return;
     const currentZoom = this.map.getZoom();
-    // console.log(currentZoom);
 
     //TODO: Kasowac stare i malowac jeszcze raz
     if (currentZoom < 15) {
@@ -239,15 +241,6 @@ export class AppMap extends LitElement {
 
   /* OK */
   async firstUpdated() {
-    const doghouseOwnPath = await import('../../assets/icons/home-color.svg');
-    this.doghouseOwnPath = doghouseOwnPath.default;
-
-    const doghouseEnemyPath = await import('../../assets/icons/doghouse.svg');
-    this.doghouseEnemyPath = doghouseEnemyPath.default;
-
-    const doghouseAttackPath = await import('../../assets/icons/doghouse-attack.svg');
-    this.doghouseAttackPath = doghouseAttackPath.default;
-
     /* Create Map */
     const mapEl = this.shadowRoot?.querySelector('#map') as HTMLDivElement;
     if (!mapEl) return;
@@ -259,11 +252,12 @@ export class AppMap extends LitElement {
     const urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
     map.addLayer(
       L.tileLayer(urlTemplate, {
-        minZoom: 11,
+        minZoom: 13,
         maxZoom: 19,
         attribution: '© OpenStreetMap',
         edgeBufferTiles: 1,
         preferCanvas: true,
+        zoomSnap: 0.25,
       } as TileLayerOptionsPlugins)
     );
 
