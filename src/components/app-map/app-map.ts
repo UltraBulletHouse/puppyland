@@ -5,8 +5,8 @@ import { LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 import doghouseAttackPath from '../../assets/icons/marker-attack.svg';
-import doghouseEnemyPath from '../../assets/icons/marker-enemy.svg';
-import doghouseOwnPath from '../../assets/icons/marker-own.svg';
+import doghouseEnemyPath from '../../assets/icons/marker-enemy-d.svg';
+import doghouseOwnPath from '../../assets/icons/marker-own-d.svg';
 import { API_DOGHOUSES_NEAR_USER, API_DOGHOUSE_CREATE } from '../../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
