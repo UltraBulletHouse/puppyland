@@ -112,18 +112,23 @@ interface DrawMarker {
   coords: Coords;
   canvasMarkerImg: CanvasMarkerImg;
   popupContent: any;
-  radius?: number;
 }
 
-export const drawMarker = ({ self, coords, popupContent, radius, canvasMarkerImg }: DrawMarker) => {
+export const drawMarker = ({ self, coords, popupContent, canvasMarkerImg }: DrawMarker) => {
+  // const ctx = (self.map?.options as any).renderer._container
+  // if (ctx) {
+  //   const mapCtx = ctx.getContext('2d');
+  //   // console.log(mapCtx);
+  //   mapCtx.clearRect(0,0,1000,1000);
+  // }
+// console.log('DRAW MARKER');
   const marker = (L as any).canvasMarker(L.latLng(coords.lat, coords.lng), {
-    radius: radius ?? 30, // WAZNE zeby nie bylo artefaktow
+    radius: canvasMarkerImg.radius ?? 30, // WAZNE zeby nie bylo artefaktow
     img: {
-      size: [40, 40],
-      rotate: 0,
-      offset: { x: 0, y: 0 },
-      ...canvasMarkerImg,
       url: canvasMarkerImg.url,
+      size: canvasMarkerImg.size ?? [40, 40],
+      rotate: canvasMarkerImg.rotate ?? 0,
+      offset: canvasMarkerImg.offset ?? { x: 10, y: 0 },
     },
   });
 
