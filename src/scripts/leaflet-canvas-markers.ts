@@ -24,11 +24,6 @@
         this._ctx.drawImage(img.el, -img.size[0] / 2, -img.size[1] / 2, img.size[0], img.size[1]);
         this._ctx.restore();
       } else {
-        // console.log('SIZE',img.size[0], this._ctx.globalCompositeOperation);
-  
-        // this._ctx.globalCompositeOperation ="copy"
-
-
         this._ctx.drawImage(
           img.el,
           p.x - img.size[0] / 2,
@@ -55,9 +50,6 @@
 
   const CanvasMarker = L.CircleMarker.extend({
     _updatePath() {
-      // this._ctx.globalCompositeOperation ="copy"
-      // this._renderer._ctx.globalCompositeOperation ="copy"
-
       if (!this.options.img || !this.options.img.url) return;
       if (!this.options.img.el) {
         this.options.img = { ...defaultImgOptions, ...this.options.img };
