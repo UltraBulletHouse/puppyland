@@ -7,7 +7,7 @@
 </style>
       <defs>
         <linearGradient id="MyGradient">
-          <stop offset="1%" stop-color="#f09c16" />
+          <stop offset="10%" stop-color="#ffbf59" />
           <stop offset="90%" stop-color="#cf8002" />
         </linearGradient>
       </defs>
