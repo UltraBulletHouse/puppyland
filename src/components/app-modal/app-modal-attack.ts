@@ -1,8 +1,13 @@
+import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 
+import { API_DOGHOUSE_ATTACK } from '../../constants/apiConstants';
+import { updateDogInfoEvent } from '../../contexts/dogInfoContext';
+import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { sharedStyles } from '../../styles/shared-styles';
-import { AttackResult } from '../../types/doghouse';
+import { AttackDoghouseResponse, AttackResult } from '../../types/doghouse';
+import { apiCall } from '../../utils/apiUtils';
 import { sendEvent } from '../../utils/eventUtils';
 import '../app-spinner/app-spinner';
 import './app-modal';
@@ -21,14 +26,48 @@ export class AppModalAttack extends LitElement {
     `,
   ];
 
-  @property({ type: Object })
-  attackResult: AttackResult | null = null;
+  @consume({ context: accessTokenContext, subscribe: true })
+  @property({ attribute: false })
+  accessToken: string | null = null;
 
   @property({ type: Boolean })
   open: boolean = false;
 
+  @property({ type: String })
+  dogId?: string;
+
+  @property({ type: String })
+  dhId?: string;
+
+  @state()
+  attackResult: AttackResult | null = null;
+
   closeModal = () => {
     sendEvent(this, 'attackModal');
+  };
+
+  attackDoghouse = async () => {
+    this.attackResult = null;
+
+    if (!this.accessToken || !this.dhId || !this.dogId) return;
+
+    const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
+      API_DOGHOUSE_ATTACK,
+      { doghouseId: this.dhId, dogId: this.dogId }
+    );
+
+    const dogInfoResponse = attackDoghouseResponse?.data?.dog;
+    const attackResult = attackDoghouseResponse?.data?.attackResult;
+
+    this.attackResult = attackResult;
+    // console.log('ATTACK RSULT', attackResult);
+    // if (!attackResult) {
+    //   this.closeModal();
+    // }
+
+    if (dogInfoResponse) {
+      updateDogInfoEvent(this, dogInfoResponse);
+    }
   };
 
   render() {
@@ -52,7 +91,10 @@ export class AppModalAttack extends LitElement {
             </p>
             <sl-button @click=${this.closeModal} pill>Close</sl-button>
           </div>`
-      : html` <app-spinner></app-spinner> `;
+      : html` <div>
+          <sl-button @click=${this.attackDoghouse} pill>Attack</sl-button>
+          <sl-button @click=${this.closeModal} pill>Close</sl-button>
+        </div>`;
 
     return html`<app-modal
       modalId="attack-doghouse"

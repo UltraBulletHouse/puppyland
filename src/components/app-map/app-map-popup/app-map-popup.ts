@@ -31,10 +31,8 @@ export class AppMapPopup extends LitElement {
 
   render() {
     return html` <div>
-      <sl-card class="card-overview">
-        <strong>${this.dhName}</strong>
-        <div slot="footer">HP: ${this.dhHp}/${this.dhMaxHp}</div>
-      </sl-card>
+      <strong>${decodeURIComponent(this.dhName ?? '')}</strong>
+      <div slot="footer">HP: ${this.dhHp}/${this.dhMaxHp}</div>
     </div>`;
   }
 }

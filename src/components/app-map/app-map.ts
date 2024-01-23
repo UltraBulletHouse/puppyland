@@ -120,9 +120,10 @@ export class AppMap extends LitElement {
       if (!this.map) return;
       const { id, dogId, name, lat, lng, hp, maxHp } = doghouse;
       const isClose = closestDoghouses?.find((dh) => dh.id === doghouse.id);
+      const dhName = encodeURIComponent(name);
 
       if (isClose) {
-        const popupAttackContent = `<app-map-popup-attack dogId=${dogInfoId} doghouseId=${id} doghouseName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-attack>`;
+        const popupAttackContent = `<app-map-popup-attack dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-attack>`;
 
         drawMarker({
           self: this,
@@ -133,7 +134,7 @@ export class AppMap extends LitElement {
           },
         });
       } else {
-        const popupContent = `<app-map-popup dhId=${id} dhName=${name} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`;
+        const popupContent = `<app-map-popup dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`;
 
         drawMarker({
           self: this,
@@ -192,37 +193,6 @@ export class AppMap extends LitElement {
     }
   }
 
-  /* ZMIANA - NIE DZIALA = Rysowac od nowa z doghouseList (uzyc util) */
-  scaleOnZoom = () => {
-    if (!this.map) return;
-    const currentZoom = this.map.getZoom();
-
-    //TODO: Kasowac stare i malowac jeszcze raz
-    if (currentZoom < 15) {
-      // this.markersList.forEach((marker: Polygon) => {
-      //   // (marker?.options as any).img.size = [20, 20];
-      //   // (marker?.options as any).img.rotate = 45;
-      //   (marker?.options as any).img = {
-      //     // url: this.doghouseEnemyPath, //image link
-      //     size: [10, 10], //image size ( default [40, 40] )
-      //     rotate: 0, //image base rotate ( default 0 )
-      //     offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
-      //   };
-      // });
-    } else {
-      // this.markersList.forEach((marker: Polygon) => {
-      //   // (marker?.options as any).img.size = [40, 40];
-      //   // (marker?.options as any).img.rotate = 0;
-      //   (marker?.options as any).img = {
-      //     // url: this.doghouseEnemyPath, //image link
-      //     size: [40, 40], //image size ( default [40, 40] )
-      //     rotate: 0, //image base rotate ( default 0 )
-      //     offset: { x: 0, y: 0 }, //image offset ( default { x: 0, y: 0 } )
-      //   };
-      // });
-    }
-  };
-
   /* OK */
   willUpdate(changedProperties: PropertyValueMap<this>) {
     if (changedProperties.has('map') && this.map && this.userPos) {
@@ -257,11 +227,9 @@ export class AppMap extends LitElement {
         attribution: '© OpenStreetMap',
         edgeBufferTiles: 1,
         preferCanvas: true,
-        zoomSnap: 0.25,
+        zoomSnap: 0.5,
       } as TileLayerOptionsPlugins)
     );
-
-    map.on('zoomend', this.scaleOnZoom);
   }
 
   render() {

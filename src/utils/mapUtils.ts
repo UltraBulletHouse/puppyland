@@ -127,7 +127,12 @@ export const drawMarker = ({ self, coords, popupContent, radius, canvasMarkerImg
     },
   });
 
-  marker.addTo(self.map).bindPopup(popupContent, {
-    minWidth: 108,
+  const mark = marker.addTo(self.map).bindPopup(popupContent, {
+    minWidth: 120,
+    offset: [0, -12],
+  });
+
+  mark.on('click', function (ev: any) {
+    ev.target.openPopup(ev.target.getLatLng());
   });
 };
