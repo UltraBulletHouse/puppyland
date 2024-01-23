@@ -30,7 +30,7 @@ import { drawMarker, generatePulsatingMarker, getClosestDoghouses } from '../../
 import '../app-modal/app-modal-addhouse';
 import './app-map-popup-attack/app-map-popup-attack';
 import './app-map-popup/app-map-popup';
-import { AppMapStyles } from './app-map-syles';
+import { AppMapStyles } from './app-map-styles';
 
 /**
  * @fires updateDogInfo

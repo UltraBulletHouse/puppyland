@@ -28,6 +28,16 @@ export const AppMapStyles = [
     .leaflet-touch .leaflet-bar {
       box-shadow: 0px 0px 12px 0px #0000002b;
     }
+    .leaflet-popup-content-wrapper {
+      border: 1px solid var(--color-orange);
+    }
+    .leaflet-popup-tip {
+      border-right: 1px solid var(--color-orange);
+      border-bottom: 1px solid var(--color-orange);
+    }
+    .leaflet-popup-content {
+      height: 160px;
+    }
     #controls {
       position: relative;
       display: flex;
