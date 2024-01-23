@@ -30,9 +30,26 @@ export class AppMapPopup extends LitElement {
   }
 
   render() {
-    return html` <div>
-      <strong>${decodeURIComponent(this.dhName ?? '')}</strong>
-      <div slot="footer">HP: ${this.dhHp}/${this.dhMaxHp}</div>
-    </div>`;
+    return html`<style>
+        #popup-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          height: 100%;
+        }
+        #dog-icon {
+          display: flex;
+          justify-content: center;
+          font-size: 40px;
+          margin-bottom: 10px;
+        }
+      </style>
+      <div id="popup-container">
+        <div id="dog-icon">
+          <svg-icon name="dogFace"></svg-icon>
+        </div>
+        <strong>${decodeURIComponent(this.dhName ?? '')}</strong>
+        <p>HP: ${this.dhHp}/${this.dhMaxHp}</p>
+      </div> `;
   }
 }
