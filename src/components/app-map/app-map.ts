@@ -135,7 +135,10 @@ export class AppMap extends LitElement {
           },
         });
       } else {
-        const popupContent = `<app-map-popup dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`;
+        const popupContent =
+          dogId === dogInfoId
+            ? `<app-map-popup dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`
+            : `<app-map-popup-enemy dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-enemy>`;
 
         drawMarker({
           self: this,

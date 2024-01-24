@@ -64,7 +64,7 @@ export class AppMapPopupEnemy extends LitElement {
         <strong>${decodeURIComponent(this.dhName ?? '')}</strong>
         <p>HP: ${this.dhHp}/${this.dhMaxHp}</p>
         <div slot="footer">
-          <sl-button id="attack-btn" @click=${this.openEnemyModal} pill>Action</sl-button>
+          <sl-button id="attack-btn" @click=${this.openEnemyModal} pill>More</sl-button>
         </div>
 
         <app-modal-enemy
