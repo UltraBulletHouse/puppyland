@@ -4,6 +4,8 @@ import 'leaflet-edgebuffer';
 import { LitElement, PropertyValueMap, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
+import '@shoelace-style/shoelace/dist/components/badge/badge.js';
+
 import doghouseAttackPath from '../../assets/icons/marker-attack.svg';
 import doghouseEnemyPath from '../../assets/icons/marker-enemy-d.svg';
 import doghouseOwnPath from '../../assets/icons/marker-own-d.svg';
@@ -238,18 +240,7 @@ export class AppMap extends LitElement {
       <div id="container">
         <div id="map"></div>
         <div id="controls">
-          <div id="dog-posibilities">
-            <div class="control-counter">
-              <sl-icon name="lightning-charge"></sl-icon> ${this.dogInfo?.attackPower ?? ''}
-            </div>
-            <div class="control-counter">
-              <sl-icon name="heart-arrow"></sl-icon> ${this.dogInfo?.availableAttacks ?? ''}
-            </div>
-            <div class="control-counter">
-              <sl-icon name="house-add"></sl-icon> ${this.dogInfo?.availableDoghouses ?? ''}
-            </div>
-          </div>
-          <div id="right-side">
+          <div id="left-side">
             <div id="add-doghouse" @click=${this.addDoghouse}>
               <sl-button
                 id="add-doghouse-btn"
@@ -258,9 +249,12 @@ export class AppMap extends LitElement {
                 circle
                 ?disabled=${!this.dogInfo?.availableDoghouses}
               >
+                <sl-badge variant="warning" pill>${this.dogInfo?.availableDoghouses}</sl-badge>
                 <sl-icon name="house-add" id="house-add-icon"></sl-icon>
               </sl-button>
             </div>
+          </div>
+          <div id="right-side">
             <div id="center-position" @click=${this.centerPosition}>
               <sl-button id="center-position-btn" variant="default" size="large" circle>
                 <svg-icon name="accurate" id="center-position-icon"></svg-icon>

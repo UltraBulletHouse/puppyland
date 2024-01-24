@@ -7,6 +7,7 @@ export const AppMapStyles = [
   css`
     #container {
       height: 100%;
+      animation: blur 2s ease 0s 1;
     }
     #map {
       height: 100%;
@@ -43,12 +44,12 @@ export const AppMapStyles = [
       display: flex;
       align-items: end;
       justify-content: space-between;
-      bottom: 134px;
+      bottom: 80px;
       padding: 0 10px;
       z-index: 1000;
       pointer-events: none;
     }
-    #dog-posibilities,
+    #left-side,
     #center-position,
     #add-doghouse {
       pointer-events: all;
@@ -67,17 +68,6 @@ export const AppMapStyles = [
     }
     #center-position-btn::part(base),
     #add-doghouse-btn::part(base) {
-      box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 15px 0px;
-    }
-    #dog-posibilities {
-      font-size: 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: #ffffff;
-      border-radius: 15px;
-      padding: 8px;
-      border: 1px solid var(--color-green);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 15px 0px;
     }
     #house-add-icon {
@@ -112,6 +102,21 @@ export const AppMapStyles = [
       }
       100% {
         box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+
+    @keyframes blur {
+      0% {
+        -webkit-filter: blur(40px);
+        -moz-filter: blur(40px);
+        -o-filter: blur(40px);
+        -ms-filter: blur(40px);
+      }
+      100% {
+        -webkit-filter: blur(0px);
+        -moz-filter: blur(0px);
+        -o-filter: blur(0px);
+        -ms-filter: blur(0px);
       }
     }
   `,
