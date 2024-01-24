@@ -4,10 +4,10 @@ import { property, state } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
 
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
-import '../../app-modal/app-modal-attack';
+import '../../app-modal/app-modal-enemy';
 
-@customElement('app-map-popup-attack')
-export class AppMapPopupAttack extends LitElement {
+@customElement('app-map-popup-enemy')
+export class AppMapPopupEnemy extends LitElement {
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;
@@ -34,7 +34,7 @@ export class AppMapPopupAttack extends LitElement {
     this.isOpen = false;
   };
 
-  openAttackModal() {
+  openEnemyModal() {
     this.isOpen = true;
   }
 
@@ -64,15 +64,18 @@ export class AppMapPopupAttack extends LitElement {
         <strong>${decodeURIComponent(this.dhName ?? '')}</strong>
         <p>HP: ${this.dhHp}/${this.dhMaxHp}</p>
         <div slot="footer">
-          <sl-button id="attack-btn" @click=${this.openAttackModal} pill>Action</sl-button>
+          <sl-button id="attack-btn" @click=${this.openEnemyModal} pill>Action</sl-button>
         </div>
 
-        <app-modal-attack
+        <app-modal-enemy
           .open=${this.isOpen}
           .dhId=${this.dhId}
+          .dhName=${this.dhName}
+          .dhHp=${this.dhHp}
+          .dhMaxHp=${this.dhMaxHp}
           .dogId=${this.dogId}
-          @attackModal=${this.closeModal}
-        ></app-modal-attack>
+          @enemyModal=${this.closeModal}
+        ></app-modal-enemy>
       </div>`;
   }
 }

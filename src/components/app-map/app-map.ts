@@ -25,12 +25,11 @@ import {
 import { Coords } from '../../types/geolocation';
 import { TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
-import { alertNotifyPrimary } from '../../utils/alertsUtils';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker, getClosestDoghouses } from '../../utils/mapUtils';
 import '../app-modal/app-modal-addhouse';
-import './app-map-popup-attack/app-map-popup-attack';
+import './app-map-popup-enemy/app-map-popup-enemy';
 import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-styles';
 
@@ -110,8 +109,8 @@ export class AppMap extends LitElement {
   }
 
   setDoghousesMarkers() {
-    alertNotifyPrimary('#---setDoghousesMarkers');
-    console.log('#---setDoghousesMarkers');
+    // alertNotifyPrimary('#SetMarkers = ' + this?.userPos?.lat + ' / ' + this?.userPos?.lng );
+    console.log('#SetMarkers', this.userPos);
 
     if (!this.map || !this.userPos || !this.doghouses) return;
 
@@ -125,7 +124,7 @@ export class AppMap extends LitElement {
       const dhName = encodeURIComponent(name);
 
       if (isClose) {
-        const popupAttackContent = `<app-map-popup-attack dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-attack>`;
+        const popupAttackContent = `<app-map-popup-enemy dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-enemy>`;
 
         drawMarker({
           self: this,
