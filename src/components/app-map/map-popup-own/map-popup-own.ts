@@ -7,8 +7,8 @@ import '@shoelace-style/shoelace/dist/components/card/card.js';
 
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 
-@customElement('app-map-popup')
-export class AppMapPopup extends LitElement {
+@customElement('map-popup')
+export class MapPopup extends LitElement {
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;

@@ -4,10 +4,10 @@ import { property, state } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
 
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
-import '../../app-modal/app-modal-enemy';
+import '../map-modals/modal-enemy';
 
-@customElement('app-map-popup-enemy')
-export class AppMapPopupEnemy extends LitElement {
+@customElement('map-popup-enemy')
+export class MapPopupEnemy extends LitElement {
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;
@@ -67,7 +67,7 @@ export class AppMapPopupEnemy extends LitElement {
           <sl-button id="attack-btn" @click=${this.openEnemyModal} pill>More</sl-button>
         </div>
 
-        <app-modal-enemy
+        <modal-enemy
           .open=${this.isOpen}
           .dhId=${this.dhId}
           .dhName=${this.dhName}
@@ -75,7 +75,7 @@ export class AppMapPopupEnemy extends LitElement {
           .dhMaxHp=${this.dhMaxHp}
           .dogId=${this.dogId}
           @enemyModal=${this.closeModal}
-        ></app-modal-enemy>
+        ></modal-enemy>
       </div>`;
   }
 }

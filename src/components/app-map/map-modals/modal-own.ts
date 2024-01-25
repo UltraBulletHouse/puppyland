@@ -4,20 +4,20 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
-import { API_DOGHOUSE_ATTACK } from '../../constants/apiConstants';
-import { updateDogInfoEvent } from '../../contexts/dogInfoContext';
-import { accessTokenContext } from '../../contexts/userFirebaseContext';
-import { AttackDoghouseResponse, AttackResult } from '../../types/doghouse';
-import { apiCall } from '../../utils/apiUtils';
-import { sendEvent } from '../../utils/eventUtils';
-import '../app-spinner/app-spinner';
-import './app-modal';
+import { API_DOGHOUSE_ATTACK } from '../../../constants/apiConstants';
+import { updateDogInfoEvent } from '../../../contexts/dogInfoContext';
+import { accessTokenContext } from '../../../contexts/userFirebaseContext';
+import { AttackDoghouseResponse, AttackResult } from '../../../types/doghouse';
+import { apiCall } from '../../../utils/apiUtils';
+import { sendEvent } from '../../../utils/eventUtils';
+import '../../app-modal/app-modal';
+import '../../app-spinner/app-spinner';
 
 /**
- * @fires enemyModal
+ * @fires ownModal
  */
-@customElement('app-modal-enemy')
-export class AppModalEnemy extends LitElement {
+@customElement('modal-own')
+export class ModalEnemy extends LitElement {
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;

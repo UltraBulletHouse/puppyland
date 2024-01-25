@@ -5,8 +5,8 @@ import { when } from 'lit/directives/when.js';
 
 import '@shoelace-style/shoelace/dist/components/details/details.js';
 
-import '../components/app-doghouse-item/app-doghouse-item';
 import '../components/app-spinner/app-spinner';
+import '../components/doghouse-item/doghouse-item';
 import { API_DOGHOUSE_GET } from '../constants/apiConstants';
 import { dogInfoContext } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';

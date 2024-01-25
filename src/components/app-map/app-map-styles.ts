@@ -70,8 +70,14 @@ export const AppMapStyles = [
     #add-doghouse-btn::part(base) {
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 15px 0px;
     }
-    #house-add-icon {
+    #add-doghouse-icon {
       font-size: 20px;
+    }
+    #add-doghouse-badge {
+      transform: translateX(-41px);
+    }
+    #add-doghouse-badge::part(base) {
+      background-color: var(--color-orange);
     }
     #center-position {
       margin-top: 10px;

@@ -4,18 +4,18 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 
-import { API_DOGHOUSE_UPDATE } from '../../constants/apiConstants';
-import { accessTokenContext } from '../../contexts/userFirebaseContext';
-import { CreateResult, UpdateDoghouseResponse } from '../../types/doghouse';
-import { apiCall } from '../../utils/apiUtils';
-import { sendEvent } from '../../utils/eventUtils';
-import './app-modal';
+import { API_DOGHOUSE_UPDATE } from '../../../constants/apiConstants';
+import { accessTokenContext } from '../../../contexts/userFirebaseContext';
+import { CreateResult, UpdateDoghouseResponse } from '../../../types/doghouse';
+import { apiCall } from '../../../utils/apiUtils';
+import { sendEvent } from '../../../utils/eventUtils';
+import '../../app-modal/app-modal';
 
 /**
  * @fires addhouseModal
  */
-@customElement('app-modal-addhouse')
-export class AppModalAddhouse extends LitElement {
+@customElement('modal-addhouse')
+export class ModalAddhouse extends LitElement {
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;

@@ -54,7 +54,7 @@ export class GeolocationController implements ReactiveController {
 
       const lat = numberToFixed(pos.coords.latitude);
       const lng = numberToFixed(pos.coords.longitude);
-      // console.log('GeolocationController', lat, lng);
+
       this.userPos = { lat, lng };
       watchUserPosSuccess({ lat, lng });
     };

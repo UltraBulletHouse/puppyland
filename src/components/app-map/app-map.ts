@@ -28,10 +28,10 @@ import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker, getClosestDoghouses } from '../../utils/mapUtils';
-import '../app-modal/app-modal-addhouse';
-import './app-map-popup-enemy/app-map-popup-enemy';
-import './app-map-popup/app-map-popup';
 import { AppMapStyles } from './app-map-styles';
+import './map-modals/modal-addhouse';
+import './map-popup-enemy/map-popup-enemy';
+import './map-popup-own/map-popup-own';
 
 /**
  * @fires updateDogInfo
@@ -124,7 +124,7 @@ export class AppMap extends LitElement {
       const dhName = encodeURIComponent(name);
 
       if (isClose) {
-        const popupAttackContent = `<app-map-popup-enemy dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-enemy>`;
+        const popupAttackContent = `<map-popup-enemy dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup-enemy>`;
 
         drawMarker({
           self: this,
@@ -137,8 +137,8 @@ export class AppMap extends LitElement {
       } else {
         const popupContent =
           dogId === dogInfoId
-            ? `<app-map-popup dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup>`
-            : `<app-map-popup-enemy dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></app-map-popup-enemy>`;
+            ? `<map-popup dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`
+            : `<map-popup-enemy dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup-enemy>`;
 
         drawMarker({
           self: this,
@@ -251,8 +251,10 @@ export class AppMap extends LitElement {
                 circle
                 ?disabled=${!this.dogInfo?.availableDoghouses}
               >
-                <sl-badge variant="warning" pill>${this.dogInfo?.availableDoghouses}</sl-badge>
-                <sl-icon name="house-add" id="house-add-icon"></sl-icon>
+                <sl-badge id="add-doghouse-badge" variant="warning" pill
+                  >${this.dogInfo?.availableDoghouses}</sl-badge
+                >
+                <sl-icon name="house-add" id="add-doghouse-icon"></sl-icon>
               </sl-button>
             </div>
           </div>
