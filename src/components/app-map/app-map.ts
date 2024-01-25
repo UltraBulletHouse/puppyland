@@ -137,7 +137,7 @@ export class AppMap extends LitElement {
       } else {
         const popupContent =
           dogId === dogInfoId
-            ? `<map-popup dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`
+            ? `<map-popup-own dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup-own>`
             : `<map-popup-enemy dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup-enemy>`;
 
         drawMarker({
