@@ -25,6 +25,7 @@ import {
 import { Coords } from '../../types/geolocation';
 import { TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
+import { alertNotifyPrimary } from '../../utils/alertsUtils';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker, getClosestDoghouses } from '../../utils/mapUtils';
@@ -109,7 +110,7 @@ export class AppMap extends LitElement {
   }
 
   setDoghousesMarkers() {
-    // alertNotifyPrimary('#SetMarkers = ' + this?.userPos?.lat + ' / ' + this?.userPos?.lng );
+    alertNotifyPrimary('#SetMarkers = ' + this?.userPos?.lat + ' / ' + this?.userPos?.lng);
     console.log('#SetMarkers', this.userPos);
 
     if (!this.map || !this.userPos || !this.doghouses) return;

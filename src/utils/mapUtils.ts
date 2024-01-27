@@ -14,6 +14,7 @@ export const generatePulsatingMarker = (L: any, radius: number, color: string) =
     background: ${color};
     color: ${color};
     box-shadow: 0 0 0 ${color};
+    pointer-events: none;
   `;
   return L.divIcon({
     html: `<span style="${cssStyle}" id="pulse"/>`,
