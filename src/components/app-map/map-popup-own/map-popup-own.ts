@@ -44,7 +44,7 @@ export class MapPopupOwn extends LitElement {
 
   render() {
     return html` <style>
-        #popup-attack-container {
+        #popup-own-container {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -56,15 +56,37 @@ export class MapPopupOwn extends LitElement {
           font-size: 40px;
           margin-bottom: 10px;
         }
+        #hp-section {
+          display: flex;
+          align-items: center;
+          font-size: 20px;
+          margin: 10px 0;
+          color: var(--color-orange);
+        }
+        #hp-section sl-icon {
+          margin-right: 4px;
+        }
+        #more-btn::part(base) {
+          border-color: var(--color-orange);
+          color: var(--color-orange);
+        }
+        /* .leaflet-popup-content-wrapper{
+          background: linear-gradient(180deg, rgb(245 225 191) 0%, rgb(230 171 69) 100%);
+        }
+        .leaflet-popup-tip {
+          background: rgb(230 171 69);
+        } */
       </style>
-      <div id="popup-attack-container">
+      <div id="popup-own-container">
         <div id="dog-icon">
           <svg-icon name="dogFace"></svg-icon>
         </div>
         <strong>${decodeURIComponent(this.dhName ?? '')}</strong>
-        <p>HP: ${this.dhHp}/${this.dhMaxHp}</p>
+        <div id="hp-section">
+          <sl-icon name="heart-pulse"></sl-icon> ${this.dhHp}/${this.dhMaxHp}
+        </div>
         <div slot="footer">
-          <sl-button id="attack-btn" @click=${this.openEnemyModal} pill>More</sl-button>
+          <sl-button id="more-btn" @click=${this.openEnemyModal} pill>More</sl-button>
         </div>
 
         <modal-enemy
