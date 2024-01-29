@@ -18,19 +18,12 @@ export class AppFooter extends LitElement {
         position: relative;
         z-index: 1000;
         box-shadow: 3px -1px 20px 11px #0000002b;
+        background-color: var(--color-orange-light);
       }
       #container {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-      }
-      #wave {
-        height: 12px;
-        width: 50px;
-        background: rgb(255, 255, 255);
-        position: absolute;
-        top: -4px;
-        border-radius: 100%;
       }
       .btn-icon {
         font-size: 26px;
@@ -39,7 +32,7 @@ export class AppFooter extends LitElement {
         font-size: 34px;
       }
       .btn-icon--active {
-        color: #37a26e;
+        color: var(--color-orange);
       }
     `,
   ];
@@ -72,7 +65,6 @@ export class AppFooter extends LitElement {
               class="btn-icon-big ${this.view === View.MAP_VIEW && 'btn-icon--active'}"
               @click="${() => this.changeView(View.MAP_VIEW)}"
             ></sl-icon-button>
-            <div id="wave"></div>
           </div>
           <sl-icon-button
             name="cart"

@@ -18,7 +18,10 @@
   --color-green: #37a26e;
 
   /* orange: #f97a2c */
-  --color-orange: #f97a2c;
+  /* --color-orange: #f97a2c; */
+  --color-orange: #ffa755;
+
+  --color-orange-light: #fff5ef;
 
   /* blue: #2e96f8 */
   --color-blue: #2e96f8;

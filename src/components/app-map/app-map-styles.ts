@@ -66,15 +66,15 @@ export const AppMapStyles = [
     #center-position-btn::part(base),
     #center-position-btn::part(base):hover,
     #center-position-btn::part(base):active {
-      border-color: var(--color-blue);
-      color: var(--color-blue);
+      border-color: var(--color-orange);
+      color: var(--color-orange);
     }
     #center-position-btn::part(base),
     #add-doghouse-btn::part(base) {
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 15px 0px;
     }
     #add-doghouse-btn::part(base) {
-      background: linear-gradient(272deg, rgb(255, 254, 253) 0%, rgb(245, 230, 221) 100%);
+      background: var(--color-orange-light);
     }
     #add-doghouse-icon {
       font-size: 20px;
@@ -86,7 +86,7 @@ export const AppMapStyles = [
       background-color: var(--color-orange);
     }
     #center-position-btn::part(base) {
-      background: linear-gradient(90deg, rgb(234 249 255) 0%, rgb(211 246 255) 100%);
+      background: var(--color-orange-light);
     }
     #center-position {
       margin-top: 10px;
