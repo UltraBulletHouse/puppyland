@@ -12,4 +12,8 @@ export const sharedStyles = css`
   h6 {
     margin: 0;
   }
+  .icon-button:active:not(.icon-button--disabled),
+  .icon-button:focus-visible:not(.icon-button--disabled) {
+    color: var(--color-orange);
+  }
 `;

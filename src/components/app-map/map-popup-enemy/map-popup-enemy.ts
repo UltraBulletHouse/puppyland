@@ -59,9 +59,8 @@ export class MapPopupEnemy extends LitElement {
         #hp-section {
           display: flex;
           align-items: center;
-          font-size: 20px;
+          font-size: 14px;
           margin: 10px 0;
-          color: var(--color-orange);
         }
         #hp-section sl-icon {
           margin-right: 4px;
@@ -72,11 +71,12 @@ export class MapPopupEnemy extends LitElement {
         }
       </style>
       <div id="popup-enemy-container">
+        <strong>${decodeURIComponent(this.dhName ?? '')}</strong>
+        <p id="hp-section"><sl-icon name="heart-pulse"></sl-icon> ${this.dhHp}/${this.dhMaxHp}</p>
         <div id="dog-icon">
           <svg-icon name="dogFace"></svg-icon>
         </div>
-        <strong>${decodeURIComponent(this.dhName ?? '')}</strong>
-        <p id="hp-section"><sl-icon name="heart-pulse"></sl-icon> ${this.dhHp}/${this.dhMaxHp}</p>
+        <div>Fafik pizdafik</div>
         <div slot="footer">
           <sl-button id="more-btn" @click=${this.openEnemyModal} pill>More</sl-button>
         </div>

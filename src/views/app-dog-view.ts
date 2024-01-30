@@ -24,6 +24,7 @@ export class AppDogView extends LitElement {
         align-items: center;
         height: 100%;
         width: 100%;
+        background-color: var(--color-orange-light);
       }
       #dog-image {
         font-size: 90px;

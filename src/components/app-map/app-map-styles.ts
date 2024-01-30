@@ -42,6 +42,9 @@ export const AppMapStyles = [
     .leaflet-marker-icon {
       pointer-events: none !important;
     }
+    .leaflet-container {
+      font-family: inherit !important;
+    }
     #controls {
       position: relative;
       display: flex;

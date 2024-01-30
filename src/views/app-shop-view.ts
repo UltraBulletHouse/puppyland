@@ -37,6 +37,7 @@ export class AppShopView extends LitElement {
         justify-content: center;
         height: 100%;
         width: 100%;
+        background-color: var(--color-orange-light);
       }
       #buy-btn {
         margin-bottom: 10px;
