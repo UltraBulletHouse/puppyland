@@ -1,7 +1,13 @@
 :root {
   --font-family: sans-serif;
 
-  /* Change the primary theme color to lime using primitives */
+  --sl-z-index-toast: 1009;
+
+  /* ----------------COLORS---------------------------- */
+  --color-primary: #f97a2c;
+  --color-primary-light: #ffeee4;
+
+  /* -------------------OLD VALUES--------------------- */
   --sl-color-primary-50: var(--sl-color-green-50);
   --sl-color-primary-100: var(--sl-color-green-100);
   --sl-color-primary-200: var(--sl-color-green-200);
@@ -18,15 +24,12 @@
   --color-green: #37a26e;
 
   /* orange: #f97a2c */
-  --color-orange: #f97a2c;
-  /* --color-orange: #ffa755; */
-
-  --color-orange-light: #ffeee4;
+  /* --color-primary: #f97a2c; */
+  /* --color-primary: #ffa755; */
+  /* --color-primary-light: #ffeee4; */
 
   /* blue: #2e96f8 */
   --color-blue: #2e96f8;
-
-  --sl-z-index-toast: 1009;
 }
 
 html,

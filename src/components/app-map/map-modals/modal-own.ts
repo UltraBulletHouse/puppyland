@@ -98,7 +98,7 @@ export class ModalEnemy extends LitElement {
           border-radius: 50%;
           background-color: var(--sl-color-gray-200);
           border: 2px solid var(--sl-color-gray-50);
-          outline: 2px solid var(--color-orange);
+          outline: 2px solid var(--color-primary);
         }
 
         #dh-image {
@@ -123,7 +123,7 @@ export class ModalEnemy extends LitElement {
           justify-content: center;
         }
         #dh-hp-bar {
-          --indicator-color: var(--color-orange);
+          --indicator-color: var(--color-primary);
           --height: 7px;
         }
         #attack-btn {

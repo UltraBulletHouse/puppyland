@@ -66,8 +66,8 @@ export class MapPopupEnemy extends LitElement {
           margin-right: 4px;
         }
         #more-btn::part(base) {
-          border-color: var(--color-orange);
-          color: var(--color-orange);
+          border-color: var(--color-primary);
+          color: var(--color-primary);
         }
       </style>
       <div id="popup-enemy-container">

@@ -14,6 +14,6 @@ export const sharedStyles = css`
   }
   .icon-button:active:not(.icon-button--disabled),
   .icon-button:focus-visible:not(.icon-button--disabled) {
-    color: var(--color-orange);
+    color: var(--color-primary);
   }
 `;

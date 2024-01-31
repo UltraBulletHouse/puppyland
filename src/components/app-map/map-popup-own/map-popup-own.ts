@@ -61,14 +61,14 @@ export class MapPopupOwn extends LitElement {
           align-items: center;
           font-size: 20px;
           margin: 10px 0;
-          color: var(--color-orange);
+          color: var(--color-primary);
         }
         #hp-section sl-icon {
           margin-right: 4px;
         }
         #more-btn::part(base) {
-          border-color: var(--color-orange);
-          color: var(--color-orange);
+          border-color: var(--color-primary);
+          color: var(--color-primary);
         }
         /* .leaflet-popup-content-wrapper{
           background: linear-gradient(180deg, rgb(245 225 191) 0%, rgb(230 171 69) 100%);

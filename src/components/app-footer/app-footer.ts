@@ -18,7 +18,6 @@ export class AppFooter extends LitElement {
         position: relative;
         z-index: 1000;
         box-shadow: 3px -1px 20px 11px #0000002b;
-        background-color: var(--color-orange-light);
       }
       #container {
         display: flex;
@@ -31,8 +30,10 @@ export class AppFooter extends LitElement {
       .btn-icon-big {
         font-size: 34px;
       }
-      .btn-icon--active {
-        color: var(--color-orange);
+      .btn-icon--active,
+      .btn-icon--active::part(base):active,
+      .btn-icon--active::part(base):hover {
+        color: var(--color-primary);
       }
     `,
   ];

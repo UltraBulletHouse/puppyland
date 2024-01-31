@@ -22,7 +22,6 @@ export class AppSignin extends LitElement {
         align-items: center;
         flex-direction: column;
         height: 100%;
-        background-color: var(--color-orange-light);
       }
       #signpost-icon {
         font-size: 50px;

@@ -30,11 +30,11 @@ export const AppMapStyles = [
       box-shadow: 0px 0px 12px 0px #0000002b;
     }
     .leaflet-popup-content-wrapper {
-      border: 1px solid var(--color-orange);
+      border: 1px solid var(--color-primary);
     }
     .leaflet-popup-tip {
-      border-right: 1px solid var(--color-orange);
-      border-bottom: 1px solid var(--color-orange);
+      border-right: 1px solid var(--color-primary);
+      border-bottom: 1px solid var(--color-primary);
     }
     .leaflet-popup-content {
       height: 160px;
@@ -63,22 +63,21 @@ export const AppMapStyles = [
     #add-doghouse-btn::part(base),
     #add-doghouse-btn::part(base):hover,
     #add-doghouse-btn::part(base):active {
-      border-color: var(--color-orange);
-      color: var(--color-orange);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
     }
     #center-position-btn::part(base),
     #center-position-btn::part(base):hover,
     #center-position-btn::part(base):active {
-      border-color: var(--color-orange);
-      color: var(--color-orange);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
     }
     #center-position-btn::part(base),
     #add-doghouse-btn::part(base) {
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 15px 0px;
     }
-    #add-doghouse-btn::part(base) {
-      background: var(--color-orange-light);
-    }
+ /*    #add-doghouse-btn::part(base) {
+    } */
     #add-doghouse-icon {
       font-size: 20px;
     }
@@ -86,11 +85,10 @@ export const AppMapStyles = [
       transform: translateX(-41px);
     }
     #add-doghouse-badge::part(base) {
-      background-color: var(--color-orange);
+      background-color: var(--color-primary);
     }
-    #center-position-btn::part(base) {
-      background: var(--color-orange-light);
-    }
+ /*    #center-position-btn::part(base) {
+    } */
     #center-position {
       margin-top: 10px;
     }
