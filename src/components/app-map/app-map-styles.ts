@@ -45,6 +45,31 @@ export const AppMapStyles = [
     .leaflet-container {
       font-family: inherit !important;
     }
+    .leaflet-touch .leaflet-control-layers,
+    .leaflet-touch .leaflet-bar {
+      border: none !important;
+      box-shadow: none !important;
+    }
+    .leaflet-control-zoom-in {
+      height: 34px !important;
+      width: 34px !important;
+      border-top-right-radius: 14px !important;
+      border-top-left-radius: 14px !important;
+      border-top: 1px solid var(--color-primary);
+      border-left: 1px solid var(--color-primary);
+      border-right: 1px solid var(--color-primary);
+      box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
+    }
+    .leaflet-control-zoom-out {
+      height: 34px !important;
+      width: 34px !important;
+      border-bottom-right-radius: 14px !important;
+      border-bottom-left-radius: 14px !important;
+      border-bottom: 1px solid var(--color-primary) !important;
+      border-left: 1px solid var(--color-primary);
+      border-right: 1px solid var(--color-primary);
+      box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
+    }
     #controls {
       position: relative;
       display: flex;
@@ -69,14 +94,14 @@ export const AppMapStyles = [
     #center-position-btn::part(base),
     #center-position-btn::part(base):hover,
     #center-position-btn::part(base):active {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
+      border-color: var(--color-blue);
+      color: var(--color-blue);
     }
     #center-position-btn::part(base),
     #add-doghouse-btn::part(base) {
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 15px 0px;
     }
- /*    #add-doghouse-btn::part(base) {
+    /*    #add-doghouse-btn::part(base) {
     } */
     #add-doghouse-icon {
       font-size: 20px;
@@ -87,7 +112,7 @@ export const AppMapStyles = [
     #add-doghouse-badge::part(base) {
       background-color: var(--color-primary);
     }
- /*    #center-position-btn::part(base) {
+    /*    #center-position-btn::part(base) {
     } */
     #center-position {
       margin-top: 10px;
