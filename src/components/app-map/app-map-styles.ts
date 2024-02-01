@@ -14,6 +14,9 @@ export const AppMapStyles = [
       width: 100%;
       overflow: hidden;
     }
+    .leaflet-bottom {
+      bottom: 7px;
+    }
     .leaflet-top,
     .leaflet-bottom {
       z-index: 400;
@@ -53,8 +56,8 @@ export const AppMapStyles = [
     .leaflet-control-zoom-in {
       height: 34px !important;
       width: 34px !important;
-      border-top-right-radius: 14px !important;
-      border-top-left-radius: 14px !important;
+      border-top-right-radius: 20px !important;
+      border-top-left-radius: 20px !important;
       border-top: 1px solid var(--color-primary);
       border-left: 1px solid var(--color-primary);
       border-right: 1px solid var(--color-primary);
@@ -63,8 +66,8 @@ export const AppMapStyles = [
     .leaflet-control-zoom-out {
       height: 34px !important;
       width: 34px !important;
-      border-bottom-right-radius: 14px !important;
-      border-bottom-left-radius: 14px !important;
+      border-bottom-right-radius: 20px !important;
+      border-bottom-left-radius: 20px !important;
       border-bottom: 1px solid var(--color-primary) !important;
       border-left: 1px solid var(--color-primary);
       border-right: 1px solid var(--color-primary);
@@ -75,7 +78,7 @@ export const AppMapStyles = [
       display: flex;
       align-items: end;
       justify-content: space-between;
-      bottom: 80px;
+      bottom: 87px;
       padding: 0 10px;
       z-index: 1000;
       pointer-events: none;

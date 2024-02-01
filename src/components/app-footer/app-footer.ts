@@ -15,9 +15,18 @@ export class AppFooter extends LitElement {
     sharedStyles,
     css`
       #footer {
-        position: relative;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background-color: #fff;
+        border-top: 1px solid var(--color-primary-trans);
+        border-top-right-radius: 17px;
+        border-top-left-radius: 17px;
         z-index: 1000;
         box-shadow: 3px -1px 20px 11px #0000002b;
+      }
+      #footer-space {
+        height: 44px;
       }
       #container {
         display: flex;
@@ -48,6 +57,7 @@ export class AppFooter extends LitElement {
 
   render() {
     return html`
+      <div id="footer-space"></div>
       <footer id="footer">
         <div id="container">
           <svg-icon-button
