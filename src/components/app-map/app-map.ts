@@ -235,6 +235,8 @@ export class AppMap extends LitElement {
         zoomSnap: 0.5,
       } as TileLayerOptionsPlugins)
     );
+
+    this.map.attributionControl.setPosition('topright');
   }
 
   render() {

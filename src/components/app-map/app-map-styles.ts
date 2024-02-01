@@ -7,7 +7,7 @@ export const AppMapStyles = [
   css`
     #container {
       height: 100%;
-      animation: blur 2s ease 0s 1;
+      animation: blur 1s ease 0s 1;
     }
     #map {
       height: 100%;
@@ -78,7 +78,7 @@ export const AppMapStyles = [
       display: flex;
       align-items: end;
       justify-content: space-between;
-      bottom: 87px;
+      bottom: 84px;
       padding: 0 10px;
       z-index: 1000;
       pointer-events: none;

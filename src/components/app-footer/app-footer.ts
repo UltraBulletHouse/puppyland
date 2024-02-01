@@ -26,7 +26,7 @@ export class AppFooter extends LitElement {
         box-shadow: 3px -1px 20px 11px #0000002b;
       }
       #footer-space {
-        height: 44px;
+        height: 38px;
       }
       #container {
         display: flex;
