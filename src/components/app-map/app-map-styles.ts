@@ -33,14 +33,14 @@ export const AppMapStyles = [
       box-shadow: 0px 0px 12px 0px #0000002b;
     }
     .leaflet-popup-content-wrapper {
-      border: 1px solid var(--color-primary);
+      border: 1px solid var(--color-primary-trans);
     }
     .leaflet-popup-tip {
-      border-right: 1px solid var(--color-primary);
-      border-bottom: 1px solid var(--color-primary);
+      border-right: 1px solid var(--color-primary-trans);
+      border-bottom: 1px solid var(--color-primary-trans);
     }
     .leaflet-popup-content {
-      height: 160px;
+      height: 170px;
     }
     .leaflet-marker-icon {
       pointer-events: none !important;
@@ -52,6 +52,9 @@ export const AppMapStyles = [
     .leaflet-touch .leaflet-bar {
       border: none !important;
       box-shadow: none !important;
+    }
+    .leaflet-touch .leaflet-bar a {
+      line-height: 32px;
     }
     .leaflet-control-zoom-in {
       height: 34px !important;

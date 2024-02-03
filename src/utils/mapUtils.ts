@@ -129,8 +129,8 @@ export const drawMarker = ({ self, coords, popupContent, radius, canvasMarkerImg
   });
 
   const mark = marker.addTo(self.map).bindPopup(popupContent, {
-    minWidth: 140,
-    maxWidth: 140,
+    minWidth: 150,
+    maxWidth: 150,
     offset: [0, -12],
   });
 

@@ -50,6 +50,23 @@ export class MapPopupEnemy extends LitElement {
           align-items: center;
           height: 100%;
         }
+        #doghouse-section {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background: var(--color-primary-light);
+          padding: 7px;
+          border-radius: 7px;
+        }
+        #dh-name {
+          margin: 0;
+          font-size: 16px;
+          text-wrap: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          width: 100%;
+        }
         #dog-icon {
           display: flex;
           justify-content: center;
@@ -65,20 +82,55 @@ export class MapPopupEnemy extends LitElement {
         #hp-section sl-icon {
           margin-right: 4px;
         }
-        #more-btn::part(base) {
-          border-color: var(--color-primary);
+        #owner-section {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        #popup-footer {
+          width: 100%;
+          display: flex;
+          justify-content: end;
+        }
+        #next-btn {
+          display: flex;
+          padding: 10px;
+          border-radius: 50px;
+          font-size: 22px;
+          /* border-color: var(--color-primary); */
+          background-color: var(--color-primary);
+          color: #fff;
+        }
+        #close-btn {
+          display: flex;
+          padding: 10px;
+          border-radius: 50px;
+          font-size: 22px;
+          /* border: 1px solid var(--color-primary); */
           color: var(--color-primary);
+          background-color: #fff;
+        }
+
+        .leaflet-popup-close-button {
+          display: none;
         }
       </style>
       <div id="popup-enemy-container">
-        <strong>${decodeURIComponent(this.dhName ?? '')}</strong>
-        <p id="hp-section"><sl-icon name="heart-pulse"></sl-icon> ${this.dhHp}/${this.dhMaxHp}</p>
-        <div id="dog-icon">
-          <svg-icon name="dogFace"></svg-icon>
+        <div id="doghouse-section">
+          <p id="dh-name">${decodeURIComponent(this.dhName ?? '')}</p>
+          <p id="hp-section"><sl-icon name="heart"></sl-icon> ${this.dhHp}</p>
         </div>
-        <div>Fafik pizdafik</div>
-        <div slot="footer">
-          <sl-button id="more-btn" @click=${this.openEnemyModal} pill>More</sl-button>
+        <div id="owner-section">
+          <div id="dog-icon">
+            <svg-icon name="dogFace"></svg-icon>
+          </div>
+          <div>Fafik pizdafik</div>
+        </div>
+        <div id="popup-footer">
+          <div id="close-btn" @click=${this.openEnemyModal}><sl-icon name="x"></sl-icon></div>
+          <div id="next-btn" @click=${this.openEnemyModal}>
+            <sl-icon name="arrow-right"></sl-icon>
+          </div>
         </div>
 
         <modal-enemy
