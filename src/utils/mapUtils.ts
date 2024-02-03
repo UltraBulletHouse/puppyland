@@ -120,7 +120,7 @@ export const drawMarker = ({ self, coords, popupContent, radius, canvasMarkerImg
   const marker = (L as any).canvasMarker(L.latLng(coords.lat, coords.lng), {
     radius: radius ?? 30, // WAZNE zeby nie bylo artefaktow
     img: {
-      size: [30, 40],
+      size: [58, 64],
       rotate: 0,
       offset: { x: 0, y: 0 },
       ...canvasMarkerImg,

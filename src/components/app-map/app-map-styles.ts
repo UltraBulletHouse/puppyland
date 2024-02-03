@@ -85,7 +85,7 @@ export const AppMapStyles = [
       display: flex;
       align-items: end;
       justify-content: space-between;
-      bottom: 88px;
+      bottom: 96px;
       padding: 0 10px;
       z-index: 1000;
       pointer-events: none;
