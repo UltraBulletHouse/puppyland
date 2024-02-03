@@ -181,13 +181,15 @@ export class AppIndex extends LitElement {
       this.view === View.LOADING_MAP_VIEW ||
       !this.view;
 
+    const hasShadowFooter = this.view === View.MAP_VIEW;
+
     return html`
       <div id="main-container" @updateView=${this.updateView} @watchUserPos=${this.watchUserPos}>
         <!-- <div id="content">${cache(
           this.renderContent(this.view)
         )}</div> // TODO: Sprawdzic czy lepiej czy gorzej - chyba lepiej bez-->
         <div id="content">${this.renderContent(this.view)}</div>
-        <app-footer ?hidden=${isFooterHidden}></app-footer>
+        <app-footer ?hidden=${isFooterHidden} .hasShadow=${hasShadowFooter}></app-footer>
       </div>
     `;
   }

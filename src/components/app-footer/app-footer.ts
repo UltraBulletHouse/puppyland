@@ -23,6 +23,8 @@ export class AppFooter extends LitElement {
         border-top-right-radius: 17px;
         border-top-left-radius: 17px;
         z-index: 1000;
+      }
+      #footer.footer-has-shadow {
         box-shadow: 3px -1px 20px 11px #0000002b;
       }
       #footer-space {
@@ -52,6 +54,9 @@ export class AppFooter extends LitElement {
   @property({ attribute: false })
   view: View = View.SIGNIN_VIEW;
 
+  @property({ type: Boolean })
+  hasShadow = false;
+
   changeView(view: View) {
     updateViewEvent(this, view);
   }
@@ -59,7 +64,7 @@ export class AppFooter extends LitElement {
   render() {
     return html`
       <div id="footer-space"></div>
-      <footer id="footer">
+      <footer id="footer" class=${this.hasShadow ? 'footer-has-shadow' : ''}>
         <div id="container">
           <svg-icon-button
             name="dogPaw"
