@@ -41,6 +41,7 @@ export const AppMapStyles = [
     }
     .leaflet-popup-content {
       height: 170px;
+      margin: 12px;
     }
     .leaflet-marker-icon {
       pointer-events: none !important;

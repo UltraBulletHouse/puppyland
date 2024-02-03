@@ -30,9 +30,7 @@ import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker, getClosestDoghouses } from '../../utils/mapUtils';
 import { AppMapStyles } from './app-map-styles';
-import './map-modals/modal-addhouse';
-import './map-popup-enemy/map-popup-enemy';
-import './map-popup-own/map-popup-own';
+import './map-popup/map-popup';
 
 /**
  * @fires updateDogInfo
@@ -85,6 +83,10 @@ export class AppMap extends LitElement {
     this.isAddHouseModalOpen = false;
   };
 
+  closePopup() {
+    this.map?.closePopup();
+  }
+
   centerPosition() {
     if (this.map && this.userPos) {
       this.map.setView([this.userPos.lat, this.userPos.lng], 17);
@@ -125,7 +127,7 @@ export class AppMap extends LitElement {
       const dhName = encodeURIComponent(name);
 
       if (isClose) {
-        const popupAttackContent = `<map-popup-enemy dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup-enemy>`;
+        const popupAttackContent = `<map-popup dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`;
 
         drawMarker({
           self: this,
@@ -138,8 +140,8 @@ export class AppMap extends LitElement {
       } else {
         const popupContent =
           dogId === dogInfoId
-            ? `<map-popup-own dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup-own>`
-            : `<map-popup-enemy dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup-enemy>`;
+            ? `<map-popup dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`
+            : `<map-popup dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`;
 
         drawMarker({
           self: this,
@@ -243,7 +245,7 @@ export class AppMap extends LitElement {
     return html`
       <link rel="stylesheet" href="https://cdn.skypack.dev/leaflet/dist/leaflet.css" />
       <div id="container">
-        <div id="map"></div>
+        <div id="map" @closePopup=${this.closePopup}></div>
         <div id="controls">
           <div id="left-side">
             <div id="add-doghouse" @click=${this.addDoghouse}>

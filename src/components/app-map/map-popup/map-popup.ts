@@ -4,10 +4,14 @@ import { property, state } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
 
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
-import '../map-modals/modal-enemy';
+import { sendEvent } from '../../../utils/eventUtils';
+import '../map-modals/map-modal';
 
-@customElement('map-popup-enemy')
-export class MapPopupEnemy extends LitElement {
+/**
+ * @fires closePopup
+ */
+@customElement('map-popup')
+export class MapPopup extends LitElement {
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;
@@ -30,13 +34,17 @@ export class MapPopupEnemy extends LitElement {
   @state()
   isOpen: boolean = false;
 
-  closeModal = () => {
+  closeMapModal = () => {
     this.isOpen = false;
   };
 
-  openEnemyModal() {
+  openMapModal() {
     this.isOpen = true;
   }
+
+  closePopup = () => {
+    sendEvent(this, 'closePopup');
+  };
 
   protected createRenderRoot() {
     return this;
@@ -44,7 +52,7 @@ export class MapPopupEnemy extends LitElement {
 
   render() {
     return html` <style>
-        #popup-enemy-container {
+        #popup-container {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -55,6 +63,7 @@ export class MapPopupEnemy extends LitElement {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          width: 100%;
           background: var(--color-primary-light);
           padding: 7px;
           border-radius: 7px;
@@ -115,7 +124,7 @@ export class MapPopupEnemy extends LitElement {
           display: none;
         }
       </style>
-      <div id="popup-enemy-container">
+      <div id="popup-container">
         <div id="doghouse-section">
           <p id="dh-name">${decodeURIComponent(this.dhName ?? '')}</p>
           <p id="hp-section"><sl-icon name="heart"></sl-icon> ${this.dhHp}</p>
@@ -127,21 +136,21 @@ export class MapPopupEnemy extends LitElement {
           <div>Fafik pizdafik</div>
         </div>
         <div id="popup-footer">
-          <div id="close-btn" @click=${this.openEnemyModal}><sl-icon name="x"></sl-icon></div>
-          <div id="next-btn" @click=${this.openEnemyModal}>
+          <div id="close-btn" @click=${this.closePopup}><sl-icon name="x"></sl-icon></div>
+          <div id="next-btn" @click=${this.openMapModal}>
             <sl-icon name="arrow-right"></sl-icon>
           </div>
         </div>
 
-        <modal-enemy
+        <map-modal
           .open=${this.isOpen}
           .dhId=${this.dhId}
-          .dhName=${this.dhName}
+          .dhName=${decodeURIComponent(this.dhName ?? '')}
           .dhHp=${this.dhHp}
           .dhMaxHp=${this.dhMaxHp}
           .dogId=${this.dogId}
-          @enemyModal=${this.closeModal}
-        ></modal-enemy>
+          @closeMapModal=${this.closeMapModal}
+        ></map-modal>
       </div>`;
   }
 }

@@ -14,10 +14,10 @@ import '../../app-modal/app-modal';
 import '../../app-spinner/app-spinner';
 
 /**
- * @fires enemyModal
+ * @fires closeMapModal
  */
-@customElement('modal-enemy')
-export class ModalEnemy extends LitElement {
+@customElement('map-modal')
+export class MapModal extends LitElement {
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;
@@ -43,8 +43,8 @@ export class ModalEnemy extends LitElement {
   @state()
   attackResult: AttackResult | null = null;
 
-  closeModal = () => {
-    sendEvent(this, 'enemyModal');
+  closeMapModal = () => {
+    sendEvent(this, 'closeMapModal');
   };
 
   attackDoghouse = async () => {
@@ -71,7 +71,7 @@ export class ModalEnemy extends LitElement {
     const hpPercent = Math.round((Number(this.dhHp) / Number(this.dhMaxHp)) * 100);
 
     const baseTemplate = html` <style>
-        #enemy-modal-container {
+        #map-modal-container {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -133,7 +133,7 @@ export class ModalEnemy extends LitElement {
           flex: 1;
         }
       </style>
-      <div id="enemy-modal-container">
+      <div id="map-modal-container">
         <div id="dh-info">
           <div id="dh-image">
             <div id="dog-icon">
@@ -153,12 +153,12 @@ export class ModalEnemy extends LitElement {
 
         <div id="attack-btn">
           <sl-button @click=${this.attackDoghouse} pill>Attack</sl-button>
-          <sl-button @click=${this.closeModal} pill>Close</sl-button>
+          <sl-button @click=${this.closeMapModal} pill>Close</sl-button>
         </div>
       </div>`;
 
     const attackResultTemplate = html` <style>
-        #enemy-modal-container {
+        #map-modal-container {
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -167,12 +167,12 @@ export class ModalEnemy extends LitElement {
           width: 100%;
         }
       </style>
-      <div id="enemy-modal-container">
+      <div id="map-modal-container">
         <h3>Congratulation!!!</h3>
         <p>You dealt ${this.attackResult?.damageDealt} damages!</p>
         <p>You gained ${this.attackResult?.experienceGained} experience!</p>
         <p>Doghouse is ${this.attackResult?.isDoghouseDestroyed ? 'destroyed' : 'not destroyed'}</p>
-        <sl-button @click=${this.closeModal} pill>Close</sl-button>
+        <sl-button @click=${this.closeMapModal} pill>Close</sl-button>
       </div>`;
 
     const modalTemplate = this.attackResult ? attackResultTemplate : baseTemplate;
