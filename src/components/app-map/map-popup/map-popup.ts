@@ -108,7 +108,7 @@ export class MapPopup extends LitElement {
           font-size: 22px;
           /* border-color: var(--color-primary); */
           background-color: var(--color-primary);
-          color: #fff;
+          color: var(--color-white);
         }
         #close-btn {
           display: flex;
@@ -117,7 +117,7 @@ export class MapPopup extends LitElement {
           font-size: 22px;
           /* border: 1px solid var(--color-primary); */
           color: var(--color-primary);
-          background-color: #fff;
+          background-color: var(--color-white);
         }
 
         .leaflet-popup-close-button {

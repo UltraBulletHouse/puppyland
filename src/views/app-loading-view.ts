@@ -14,6 +14,7 @@ export class AppLoadingView extends LitElement {
         align-items: center;
         flex-direction: column;
         height: 100%;
+        background: var(--color-white);
       }
     `,
   ];

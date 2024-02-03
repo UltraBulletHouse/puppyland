@@ -25,6 +25,7 @@ export class AppUserView extends LitElement {
         align-items: center;
         flex-direction: column;
         height: 100%;
+        background: var(--color-white);
       }
       #initials {
         margin-bottom: 40px;

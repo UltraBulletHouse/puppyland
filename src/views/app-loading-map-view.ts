@@ -21,6 +21,7 @@ export class AppLoadingMapView extends LitElement {
         align-items: center;
         flex-direction: column;
         height: 100%;
+        background: var(--color-white);
       }
       #map-icon {
         font-size: 80px;

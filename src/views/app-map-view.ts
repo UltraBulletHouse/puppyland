@@ -11,6 +11,7 @@ export class AppMapView extends LitElement {
     css`
       #container {
         height: 100%;
+        background: var(--color-white);
       }
     `,
   ];

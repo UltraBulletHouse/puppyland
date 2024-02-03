@@ -18,7 +18,7 @@ export class AppFooter extends LitElement {
         position: absolute;
         bottom: 0;
         width: 100%;
-        background-color: #fff;
+        background-color: var(--color-white);
         border-top: 1px solid var(--color-primary-trans);
         border-top-right-radius: 17px;
         border-top-left-radius: 17px;
@@ -26,12 +26,13 @@ export class AppFooter extends LitElement {
         box-shadow: 3px -1px 20px 11px #0000002b;
       }
       #footer-space {
-        height: 38px;
+        height: 42px;
       }
       #container {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
+        padding: 4px 0;
       }
       .btn-icon {
         font-size: 26px;

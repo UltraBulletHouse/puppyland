@@ -34,6 +34,7 @@ export const AppMapStyles = [
     }
     .leaflet-popup-content-wrapper {
       border: 1px solid var(--color-primary-trans);
+      background-color: var(--color-white);
     }
     .leaflet-popup-tip {
       border-right: 1px solid var(--color-primary-trans);
@@ -62,27 +63,29 @@ export const AppMapStyles = [
       width: 34px !important;
       border-top-right-radius: 20px !important;
       border-top-left-radius: 20px !important;
-      border-top: 1px solid var(--color-primary);
-      border-left: 1px solid var(--color-primary);
-      border-right: 1px solid var(--color-primary);
+      border-top: 1px solid var(--color-primary-trans);
+      border-left: 1px solid var(--color-primary-trans);
+      border-right: 1px solid var(--color-primary-trans);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
+      background-color: var(--color-white) !important;
     }
     .leaflet-control-zoom-out {
       height: 34px !important;
       width: 34px !important;
       border-bottom-right-radius: 20px !important;
       border-bottom-left-radius: 20px !important;
-      border-bottom: 1px solid var(--color-primary) !important;
-      border-left: 1px solid var(--color-primary);
-      border-right: 1px solid var(--color-primary);
+      border-bottom: 1px solid var(--color-primary-trans) !important;
+      border-left: 1px solid var(--color-primary-trans);
+      border-right: 1px solid var(--color-primary-trans);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
+      background-color: var(--color-white) !important;
     }
     #controls {
       position: relative;
       display: flex;
       align-items: end;
       justify-content: space-between;
-      bottom: 84px;
+      bottom: 88px;
       padding: 0 10px;
       z-index: 1000;
       pointer-events: none;
@@ -97,12 +100,14 @@ export const AppMapStyles = [
     #add-doghouse-btn::part(base):active {
       border-color: var(--color-primary);
       color: var(--color-primary);
+      background: var(--color-white);
     }
     #center-position-btn::part(base),
     #center-position-btn::part(base):hover,
     #center-position-btn::part(base):active {
       border-color: var(--color-blue);
       color: var(--color-blue);
+      background: var(--color-white);
     }
     #center-position-btn::part(base),
     #add-doghouse-btn::part(base) {
