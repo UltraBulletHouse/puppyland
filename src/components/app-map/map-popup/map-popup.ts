@@ -103,19 +103,17 @@ export class MapPopup extends LitElement {
         }
         #next-btn {
           display: flex;
-          padding: 10px;
+          padding: 10px 14px;
           border-radius: 50px;
           font-size: 22px;
-          /* border-color: var(--color-primary); */
           background-color: var(--color-primary);
           color: var(--color-white);
         }
         #close-btn {
           display: flex;
-          padding: 10px;
+          padding: 10px 14px;
           border-radius: 50px;
           font-size: 22px;
-          /* border: 1px solid var(--color-primary); */
           color: var(--color-primary);
           background-color: var(--color-white);
         }

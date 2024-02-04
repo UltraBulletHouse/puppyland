@@ -33,12 +33,11 @@ export const AppMapStyles = [
       box-shadow: 0px 0px 12px 0px #0000002b;
     }
     .leaflet-popup-content-wrapper {
-      border: 1px solid var(--color-primary-trans);
       background-color: var(--color-white);
     }
     .leaflet-popup-tip {
-      border-right: 1px solid var(--color-primary-trans);
-      border-bottom: 1px solid var(--color-primary-trans);
+      border-right: 1px solid var(--color-primary-alpha);
+      border-bottom: 1px solid var(--color-primary-alpha);
     }
     .leaflet-popup-content {
       height: 170px;
@@ -63,9 +62,9 @@ export const AppMapStyles = [
       width: 34px !important;
       border-top-right-radius: 20px !important;
       border-top-left-radius: 20px !important;
-      border-top: 1px solid var(--color-primary-trans);
-      border-left: 1px solid var(--color-primary-trans);
-      border-right: 1px solid var(--color-primary-trans);
+      border-top: 1px solid var(--color-primary-alpha);
+      border-left: 1px solid var(--color-primary-alpha);
+      border-right: 1px solid var(--color-primary-alpha);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
       background-color: var(--color-white) !important;
     }
@@ -74,9 +73,9 @@ export const AppMapStyles = [
       width: 34px !important;
       border-bottom-right-radius: 20px !important;
       border-bottom-left-radius: 20px !important;
-      border-bottom: 1px solid var(--color-primary-trans) !important;
-      border-left: 1px solid var(--color-primary-trans);
-      border-right: 1px solid var(--color-primary-trans);
+      border-bottom: 1px solid var(--color-primary-alpha) !important;
+      border-left: 1px solid var(--color-primary-alpha);
+      border-right: 1px solid var(--color-primary-alpha);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
       background-color: var(--color-white) !important;
     }

@@ -7,7 +7,7 @@
   /* ORANGE */
   --color-primary: #f97a2c;
   --color-primary-light: #ffeee4;
-  --color-primary-trans: #f97a2c82;
+  --color-primary-alpha: rgba(248, 121, 42, 0.51);
 
   /* GREEN */
   --color-secondary: #00c5b7;
