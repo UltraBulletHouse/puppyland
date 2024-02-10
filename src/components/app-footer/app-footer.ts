@@ -19,7 +19,7 @@ export class AppFooter extends LitElement {
         bottom: 0;
         width: 100%;
         background-color: var(--color-white);
-        border-top: 1px solid var(--color-primary-alpha);
+        border-top: 1px solid var(--color-primary-medium);
         border-top-right-radius: 17px;
         border-top-left-radius: 17px;
         z-index: 1000;

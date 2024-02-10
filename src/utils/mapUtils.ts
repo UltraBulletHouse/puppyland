@@ -36,7 +36,7 @@ export const generateDoghouseIcon = ({
     height: 20px;
     width: 20px;
     opacity: 0.9;
-    border-radius: 50%;
+    border-radius: var(--border-radius-circle);
     background: rgb(253,119,29);
     background: linear-gradient(90deg, rgb(255 102 0) 0%, rgba(252,176,69,1) 100%);
     transition: all .5s ease-in-out;
@@ -128,9 +128,11 @@ export const drawMarker = ({ self, coords, popupContent, radius, canvasMarkerImg
     },
   });
 
+  const POPUP_WIDTH = 200;
+
   const mark = marker.addTo(self.map).bindPopup(popupContent, {
-    minWidth: 150,
-    maxWidth: 150,
+    minWidth: POPUP_WIDTH,
+    maxWidth: POPUP_WIDTH,
     offset: [0, -12],
   });
 

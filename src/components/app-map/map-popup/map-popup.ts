@@ -66,11 +66,14 @@ export class MapPopup extends LitElement {
           width: 100%;
           background: var(--color-primary-light);
           padding: 7px;
-          border-radius: 7px;
+          border-radius: var(--border-radius-small);
         }
         #dh-name {
+          display: flex;
+          justify-content: center;
           margin: 0;
           font-size: 16px;
+          font-weight: 600;
           text-wrap: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
@@ -80,7 +83,9 @@ export class MapPopup extends LitElement {
           display: flex;
           justify-content: center;
           font-size: 40px;
-          margin-bottom: 10px;
+        }
+        #dog-name {
+          font-size: 12px;
         }
         #hp-section {
           display: flex;
@@ -93,13 +98,26 @@ export class MapPopup extends LitElement {
         }
         #owner-section {
           display: flex;
+          flex-direction: column;
           align-items: center;
           justify-content: center;
+          flex-basis: 50%;
+          height: 100%;
+          background: var(--color-primary-light);
+          border-radius: var(--border-radius-small);
         }
-        #popup-footer {
-          width: 100%;
+        #lower-section {
           display: flex;
-          justify-content: end;
+          align-items: center;
+          justify-content: space-between;
+          flex: 1;
+          margin-top: 8px;
+          width: 100%;
+        }
+        #popup-actions {
+          display: flex;
+          justify-content: center;
+          flex-basis: 50%;
         }
         #next-btn {
           display: flex;
@@ -111,7 +129,7 @@ export class MapPopup extends LitElement {
         }
         #close-btn {
           display: flex;
-          padding: 10px 14px;
+          padding: 10px 10px;
           border-radius: 50px;
           font-size: 22px;
           color: var(--color-primary);
@@ -127,16 +145,19 @@ export class MapPopup extends LitElement {
           <p id="dh-name">${decodeURIComponent(this.dhName ?? '')}</p>
           <p id="hp-section"><sl-icon name="heart"></sl-icon> ${this.dhHp}</p>
         </div>
-        <div id="owner-section">
-          <div id="dog-icon">
-            <svg-icon name="dogFace"></svg-icon>
+
+        <div id="lower-section">
+          <div id="owner-section">
+            <div id="dog-icon">
+              <svg-icon name="dogFace"></svg-icon>
+            </div>
+            <div id="dog-name">ReksioPizdeksio</div>
           </div>
-          <div>Fafik pizdafik</div>
-        </div>
-        <div id="popup-footer">
-          <div id="close-btn" @click=${this.closePopup}><sl-icon name="x"></sl-icon></div>
-          <div id="next-btn" @click=${this.openMapModal}>
-            <sl-icon name="arrow-right"></sl-icon>
+          <div id="popup-actions">
+            <div id="close-btn" @click=${this.closePopup}><sl-icon name="x"></sl-icon></div>
+            <div id="next-btn" @click=${this.openMapModal}>
+              <sl-icon name="arrow-right"></sl-icon>
+            </div>
           </div>
         </div>
 

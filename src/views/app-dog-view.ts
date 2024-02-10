@@ -37,7 +37,7 @@ export class AppDogView extends LitElement {
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 50%;
+        border-radius: var(--border-radius-circle);
         background-color: var(--sl-color-gray-200);
         border: 2px solid var(--sl-color-gray-50);
         outline: 2px solid #37a26e;

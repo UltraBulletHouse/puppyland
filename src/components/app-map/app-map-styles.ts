@@ -36,12 +36,12 @@ export const AppMapStyles = [
       background-color: var(--color-white);
     }
     .leaflet-popup-tip {
-      border-right: 1px solid var(--color-primary-alpha);
-      border-bottom: 1px solid var(--color-primary-alpha);
+      border-right: 1px solid var(--color-primary-medium);
+      border-bottom: 1px solid var(--color-primary-medium);
     }
     .leaflet-popup-content {
-      height: 170px;
-      margin: 12px;
+      height: 150px;
+      margin: 8px;
     }
     .leaflet-marker-icon {
       pointer-events: none !important;
@@ -62,9 +62,9 @@ export const AppMapStyles = [
       width: 34px !important;
       border-top-right-radius: 20px !important;
       border-top-left-radius: 20px !important;
-      border-top: 1px solid var(--color-primary-alpha);
-      border-left: 1px solid var(--color-primary-alpha);
-      border-right: 1px solid var(--color-primary-alpha);
+      border-top: 1px solid var(--color-primary-medium);
+      border-left: 1px solid var(--color-primary-medium);
+      border-right: 1px solid var(--color-primary-medium);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
       background-color: var(--color-white) !important;
     }
@@ -73,9 +73,9 @@ export const AppMapStyles = [
       width: 34px !important;
       border-bottom-right-radius: 20px !important;
       border-bottom-left-radius: 20px !important;
-      border-bottom: 1px solid var(--color-primary-alpha) !important;
-      border-left: 1px solid var(--color-primary-alpha);
-      border-right: 1px solid var(--color-primary-alpha);
+      border-bottom: 1px solid var(--color-primary-medium) !important;
+      border-left: 1px solid var(--color-primary-medium);
+      border-right: 1px solid var(--color-primary-medium);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
       background-color: var(--color-white) !important;
     }
@@ -141,7 +141,7 @@ export const AppMapStyles = [
     }
     #pulse {
       display: block;
-      border-radius: 50%;
+      border-radius: var(--border-radius-circle);
       cursor: pointer;
       animation: pulse 4s infinite;
     }

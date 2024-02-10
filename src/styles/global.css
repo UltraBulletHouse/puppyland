@@ -5,9 +5,12 @@
 
   /* ----------------COLORS---------------------------- */
   /* ORANGE */
-  --color-primary: #f97a2c;
-  --color-primary-light: #ffeee4;
-  --color-primary-alpha: rgba(248, 121, 42, 0.51);
+  /* --color-primary: #f97a2c;
+  --color-primary-light: #ffeee4;*/
+
+  --color-primary: #ff6100;
+  --color-primary-medium: #ffd2b6;
+  --color-primary-light: #f8f1ed;
 
   /* GREEN */
   --color-secondary: #00c5b7;
@@ -21,12 +24,14 @@
   --color-blue: #2e96f8;
 
   /* WHITE */
-  --color-white: #fffaf6;
+  /* --color-white: #fffaf6; */
+  --color-white: #f9f8f7;
 
   /* ----------------BORDER-RADIUS------------------- */
-  --border-radius-big: 40px;
-  --border-radius-medium: 20px;
-  --border-radius-small: 10px;
+  --border-radius-big: 24px;
+  --border-radius-medium: 16px;
+  --border-radius-small: 8px;
+  --border-radius-circle: 50%;
 
   /* -------------------OLD VALUES--------------------- */
   /* --sl-color-primary-50: var(--sl-color-green-50);
