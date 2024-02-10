@@ -36,8 +36,7 @@ export const AppMapStyles = [
       background-color: var(--color-white);
     }
     .leaflet-popup-tip {
-      border-right: 1px solid var(--color-primary-medium);
-      border-bottom: 1px solid var(--color-primary-medium);
+      background-color: var(--color-white);
     }
     .leaflet-popup-content {
       height: 150px;
