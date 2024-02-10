@@ -71,13 +71,13 @@ export class MapPopup extends LitElement {
         #dh-name {
           display: flex;
           justify-content: center;
+          width: 100%;
           margin: 0;
-          font-size: 16px;
           font-weight: 600;
+          font-size: 17px;
           text-wrap: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
-          width: 100%;
         }
         #dog-icon {
           display: flex;
@@ -87,14 +87,34 @@ export class MapPopup extends LitElement {
         #dog-name {
           font-size: 12px;
         }
-        #hp-section {
+        #dh-features {
           display: flex;
           align-items: center;
           font-size: 14px;
-          margin: 10px 0;
+          margin: 14px 0 6px;
         }
-        #hp-section sl-icon {
+        #dh-features-wrapper {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1px solid var(--color-black-light);
+          border-radius: var(--border-radius-big);
+        }
+        #dh-features-item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 1px 8px;
+          color: var(--color-black-medium);
+        }
+        .dh-features-item-middle {
+          border-left: 1px solid var(--color-black-light);
+        }
+        #dh-features-icon-healh {
           margin-right: 4px;
+        }
+        #dh-features-icon-attack {
+          color: var(--color-black-light);
         }
         #owner-section {
           display: flex;
@@ -143,7 +163,19 @@ export class MapPopup extends LitElement {
       <div id="popup-container">
         <div id="doghouse-section">
           <p id="dh-name">${decodeURIComponent(this.dhName ?? '')}</p>
-          <p id="hp-section"><sl-icon name="heart"></sl-icon> ${this.dhHp}</p>
+          <div id="dh-features">
+            <div id="dh-features-wrapper">
+              <span id="dh-features-item">
+                <sl-icon name="heart" id="dh-features-icon-healh"></sl-icon>${this.dhHp}
+              </span>
+              <span id="dh-features-item" class="dh-features-item-middle">
+                <sl-icon name="hammer" id="dh-features-icon-repair"></sl-icon>
+              </span>
+              <span id="dh-features-item" class="dh-features-item-middle">
+                <sl-icon name="heart-arrow" id="dh-features-icon-attack"></sl-icon>
+              </span>
+            </div>
+          </div>
         </div>
 
         <div id="lower-section">

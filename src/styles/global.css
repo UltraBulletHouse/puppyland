@@ -27,6 +27,11 @@
   /* --color-white: #fffaf6; */
   --color-white: #f9f8f7;
 
+  /* BLACK */
+  --color-black: #333;
+  --color-black-medium: #666666;
+  --color-black-light: #b4b4b4;
+
   /* ----------------BORDER-RADIUS------------------- */
   --border-radius-big: 24px;
   --border-radius-medium: 16px;
