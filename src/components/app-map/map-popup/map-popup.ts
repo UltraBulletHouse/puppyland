@@ -95,8 +95,6 @@ export class MapPopup extends LitElement {
         }
         #dh-features-wrapper {
           display: flex;
-          justify-content: center;
-          align-items: center;
           border: 1px solid var(--color-black-light);
           border-radius: var(--border-radius-big);
         }
