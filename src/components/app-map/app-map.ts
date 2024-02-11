@@ -127,7 +127,7 @@ export class AppMap extends LitElement {
       const dhName = encodeURIComponent(name);
 
       if (isClose) {
-        const popupAttackContent = `<map-popup dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`;
+        const popupAttackContent = `<map-popup isClose=${true} dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`;
 
         drawMarker({
           self: this,
@@ -140,7 +140,7 @@ export class AppMap extends LitElement {
       } else {
         const popupContent =
           dogId === dogInfoId
-            ? `<map-popup dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`
+            ? `<map-popup isOwn=${true} dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`
             : `<map-popup dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`;
 
         drawMarker({

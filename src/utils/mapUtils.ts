@@ -88,6 +88,14 @@ export const getClosestDoghouses = (
   return closestDogHouses;
 };
 
+export const checkIfIsClose = (userPos: Coords, doghousePos: Coords) => {
+  const userPosition = new L.LatLng(userPos.lat, userPos.lng);
+  const doghousePosition = new L.LatLng(doghousePos.lat, doghousePos.lng);
+
+  const diff = userPosition.distanceTo(doghousePosition);
+  console.log(diff);
+};
+
 // export const handleZoom = (element: AppMap) => {
 //   if (!element.map) return;
 //   const currentZoom = element.map.getZoom();

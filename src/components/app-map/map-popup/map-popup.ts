@@ -16,6 +16,12 @@ export class MapPopup extends LitElement {
   @property({ attribute: false })
   accessToken: string | null = null;
 
+  @property({ type: Boolean })
+  isClose?: boolean;
+
+  @property({ type: Boolean })
+  isOwn?: boolean;
+
   @property({ type: String })
   dogId?: string;
 
@@ -98,21 +104,21 @@ export class MapPopup extends LitElement {
           border: 1px solid var(--color-black-light);
           border-radius: var(--border-radius-big);
         }
-        #dh-features-item {
+        .dh-features-item {
           display: flex;
           justify-content: center;
           align-items: center;
           padding: 1px 8px;
-          color: var(--color-black-medium);
         }
         .dh-features-item-middle {
           border-left: 1px solid var(--color-black-light);
+          color: var(--color-black-light);
+        }
+        .dh-features-item-is-close {
+          color: var(--color-black);
         }
         #dh-features-icon-healh {
           margin-right: 4px;
-        }
-        #dh-features-icon-attack {
-          color: var(--color-black-light);
         }
         #owner-section {
           display: flex;
@@ -145,6 +151,12 @@ export class MapPopup extends LitElement {
           background-color: var(--color-primary);
           color: var(--color-white);
         }
+        #close-btn.close-btn-is-own {
+          color: var(--color-secondary);
+        }
+        #next-btn.next-btn-is-own {
+          background-color: var(--color-secondary);
+        }
         #close-btn {
           display: flex;
           padding: 10px 10px;
@@ -153,7 +165,6 @@ export class MapPopup extends LitElement {
           color: var(--color-primary);
           background-color: var(--color-white);
         }
-
         .leaflet-popup-close-button {
           display: none;
         }
@@ -163,13 +174,21 @@ export class MapPopup extends LitElement {
           <p id="dh-name">${decodeURIComponent(this.dhName ?? '')}</p>
           <div id="dh-features">
             <div id="dh-features-wrapper">
-              <span id="dh-features-item">
+              <span class="dh-features-item">
                 <sl-icon name="heart" id="dh-features-icon-healh"></sl-icon>${this.dhHp}
               </span>
-              <span id="dh-features-item" class="dh-features-item-middle">
+              <span
+                class="dh-features-item dh-features-item-middle ${this.isClose
+                  ? 'dh-features-item-is-close'
+                  : ''}"
+              >
                 <sl-icon name="hammer" id="dh-features-icon-repair"></sl-icon>
               </span>
-              <span id="dh-features-item" class="dh-features-item-middle">
+              <span
+                class="dh-features-item dh-features-item-middle ${this.isClose
+                  ? 'dh-features-item-is-close'
+                  : ''}"
+              >
                 <sl-icon name="heart-arrow" id="dh-features-icon-attack"></sl-icon>
               </span>
             </div>
@@ -184,8 +203,18 @@ export class MapPopup extends LitElement {
             <div id="dog-name">ReksioPizdeksio</div>
           </div>
           <div id="popup-actions">
-            <div id="close-btn" @click=${this.closePopup}><sl-icon name="x"></sl-icon></div>
-            <div id="next-btn" @click=${this.openMapModal}>
+            <div
+              id="close-btn"
+              class=${this.isOwn ? 'close-btn-is-own' : ''}
+              @click=${this.closePopup}
+            >
+              <sl-icon name="x"></sl-icon>
+            </div>
+            <div
+              id="next-btn"
+              class=${this.isOwn ? 'next-btn-is-own' : ''}
+              @click=${this.openMapModal}
+            >
               <sl-icon name="arrow-right"></sl-icon>
             </div>
           </div>
