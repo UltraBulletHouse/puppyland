@@ -79,35 +79,16 @@ export class MapModal extends LitElement {
           width: 100%;
           padding-top: 20px;
         }
-        #dh-info {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-        }
-        #dog-image {
-          font-size: 90px;
-          margin-top: 40px;
-          margin-bottom: 20px;
-        }
-        #dog-image-circle {
-          height: 100px;
-          width: 100px;
+        #dh-name {
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: var(--border-radius-circle);
-          background-color: var(--sl-color-gray-200);
-          border: 2px solid var(--sl-color-gray-50);
-          outline: 2px solid var(--color-primary);
-        }
-
-        #dh-image {
-          flex: 1;
-          display: flex;
-          justify-content: center;
-        }
-        #dog-icon {
-          font-size: 100px;
+          width: 100%;
+          font-weight: 600;
+          font-size: 17px;
+          text-wrap: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
         #dh-details {
           display: flex;
@@ -124,7 +105,7 @@ export class MapModal extends LitElement {
         }
         #dh-hp-bar {
           --indicator-color: var(--color-primary);
-          --height: 7px;
+          --height: 12px;
         }
         #attack-btn {
           align-self: flex-end;
@@ -135,18 +116,10 @@ export class MapModal extends LitElement {
       </style>
       <div id="map-modal-container">
         <div id="dh-info">
-          <div id="dh-image">
-            <div id="dog-icon">
-              <div id="dog-image-circle">
-                <svg-icon name="dogFace"></svg-icon>
-              </div>
-            </div>
-          </div>
-          <div id="dh-details">${this.dhName}</div>
+          <div id="dh-name">${this.dhName}</div>
         </div>
         <div id="dh-hp-container">
-          <div id="dh-hp-value">${this.dhHp}/${this.dhMaxHp}</div>
-          <sl-progress-bar id="dh-hp-bar" value=${hpPercent}></sl-progress-bar>
+          <sl-progress-bar id="dh-hp-bar" value=${hpPercent}>${this.dhHp}</sl-progress-bar>
         </div>
 
         <div id="center"></div>

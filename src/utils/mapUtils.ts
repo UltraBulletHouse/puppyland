@@ -64,57 +64,13 @@ export const generateDoghouseIcon = ({
   return doghouseIcon;
 };
 
-export const getClosestDoghouses = (
-  userPos: Coords,
-  doghouses: Doghouse[],
-  dogId?: string
-): Doghouse[] | null => {
-  const CLOSEST_DISTANCE = 20;
-
-  if (!doghouses || doghouses?.length === 0) return null;
-  const userPosition = new L.LatLng(userPos.lat, userPos.lng);
-
-  const closestDogHouses = doghouses.reduce((closestDH: Doghouse[], doghouse) => {
-    if (dogId === doghouse.dogId) return closestDH;
-
-    const doghousePos = new L.LatLng(doghouse.lat, doghouse.lng);
-    const diff = userPosition.distanceTo(doghousePos);
-    if (diff <= CLOSEST_DISTANCE) {
-      return [...closestDH, doghouse];
-    }
-    return closestDH;
-  }, []);
-
-  return closestDogHouses;
-};
-
-export const checkIfIsClose = (userPos: Coords, doghousePos: Coords) => {
+export const checkHowClose = (userPos: Coords, doghousePos: Coords) => {
   const userPosition = new L.LatLng(userPos.lat, userPos.lng);
   const doghousePosition = new L.LatLng(doghousePos.lat, doghousePos.lng);
 
   const diff = userPosition.distanceTo(doghousePosition);
-  console.log(diff);
+  return diff;
 };
-
-// export const handleZoom = (element: AppMap) => {
-//   if (!element.map) return;
-//   const currentZoom = element.map.getZoom();
-//   const marks = element.shadowRoot?.querySelectorAll('.doghouse-marker');
-
-//   if (currentZoom <= 12) {
-//     marks?.forEach((item) => {
-//       (item as HTMLElement).style.scale = '0.5';
-//     });
-//   } else if (currentZoom > 12 && currentZoom <= 14) {
-//     marks?.forEach((item) => {
-//       (item as HTMLElement).style.scale = '0.7';
-//     });
-//   } else if (currentZoom > 14) {
-//     marks?.forEach((item) => {
-//       (item as HTMLElement).style.scale = '1';
-//     });
-//   }
-// };
 
 interface DrawMarker {
   self: AppMap;
@@ -148,3 +104,49 @@ export const drawMarker = ({ self, coords, popupContent, radius, canvasMarkerImg
     ev.target.openPopup(ev.target.getLatLng());
   });
 };
+
+/* -------------------------- OLD --------------------------- */
+
+// export const getClosestDoghouses = (
+//   userPos: Coords,
+//   doghouses: Doghouse[],
+//   dogId?: string
+// ): Doghouse[] | null => {
+//   const CLOSEST_DISTANCE = 20;
+
+//   if (!doghouses || doghouses?.length === 0) return null;
+//   const userPosition = new L.LatLng(userPos.lat, userPos.lng);
+
+//   const closestDogHouses = doghouses.reduce((closestDH: Doghouse[], doghouse) => {
+//     if (dogId === doghouse.dogId) return closestDH;
+
+//     const doghousePos = new L.LatLng(doghouse.lat, doghouse.lng);
+//     const diff = userPosition.distanceTo(doghousePos);
+//     if (diff <= CLOSEST_DISTANCE) {
+//       return [...closestDH, doghouse];
+//     }
+//     return closestDH;
+//   }, []);
+
+//   return closestDogHouses;
+// };
+
+// export const handleZoom = (element: AppMap) => {
+//   if (!element.map) return;
+//   const currentZoom = element.map.getZoom();
+//   const marks = element.shadowRoot?.querySelectorAll('.doghouse-marker');
+
+//   if (currentZoom <= 12) {
+//     marks?.forEach((item) => {
+//       (item as HTMLElement).style.scale = '0.5';
+//     });
+//   } else if (currentZoom > 12 && currentZoom <= 14) {
+//     marks?.forEach((item) => {
+//       (item as HTMLElement).style.scale = '0.7';
+//     });
+//   } else if (currentZoom > 14) {
+//     marks?.forEach((item) => {
+//       (item as HTMLElement).style.scale = '1';
+//     });
+//   }
+// };

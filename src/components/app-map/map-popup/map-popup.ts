@@ -5,7 +5,9 @@ import { customElement } from 'lit/decorators/custom-element.js';
 
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { sendEvent } from '../../../utils/eventUtils';
+import { checkHowClose } from '../../../utils/mapUtils';
 import '../map-modals/map-modal';
+import { Coords } from '../../../types/geolocation';
 
 /**
  * @fires closePopup
@@ -16,8 +18,11 @@ export class MapPopup extends LitElement {
   @property({ attribute: false })
   accessToken: string | null = null;
 
-  @property({ type: Boolean })
-  isClose?: boolean;
+  @property({ type: String })
+  dhCoords?: string;
+
+  @property({ type: String })
+  userCoords?: string;
 
   @property({ type: Boolean })
   isOwn?: boolean;
@@ -38,6 +43,9 @@ export class MapPopup extends LitElement {
   dhMaxHp?: string;
 
   @state()
+  isClose: boolean = false;
+
+  @state()
   isOpen: boolean = false;
 
   closeMapModal = () => {
@@ -51,6 +59,25 @@ export class MapPopup extends LitElement {
   closePopup = () => {
     sendEvent(this, 'closePopup');
   };
+
+  firstUpdated() {
+    const CLOSEST_DISTANCE = 20;
+
+    const dhCoordsArr = this.dhCoords?.split('/');
+    let dhCoordsObj: Coords = { lat: 0, lng: 0 };
+    if (dhCoordsArr?.[0] && dhCoordsArr?.[1]) {
+      dhCoordsObj = { lat: parseFloat(dhCoordsArr[0]), lng: parseFloat(dhCoordsArr[1]) };
+    }
+
+    const userCoordsArr = this.userCoords?.split('/');
+    let userCoordsObj: Coords = { lat: 0, lng: 0 };
+    if (userCoordsArr?.[0] && userCoordsArr?.[1]) {
+      userCoordsObj = { lat: parseFloat(userCoordsArr[0]), lng: parseFloat(userCoordsArr[1]) };
+    }
+
+    const dhProximity = checkHowClose(userCoordsObj, dhCoordsObj);
+    this.isClose = dhProximity < CLOSEST_DISTANCE;
+  }
 
   protected createRenderRoot() {
     return this;

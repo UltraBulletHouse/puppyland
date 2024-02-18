@@ -25,10 +25,9 @@ import {
 import { Coords } from '../../types/geolocation';
 import { TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
-// import { alertNotifyPrimary } from '../../utils/alertsUtils';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
-import { drawMarker, generatePulsatingMarker, getClosestDoghouses } from '../../utils/mapUtils';
+import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
 import { AppMapStyles } from './app-map-styles';
 import './map-popup/map-popup';
 
@@ -112,46 +111,32 @@ export class AppMap extends LitElement {
   }
 
   setDoghousesMarkers() {
-    // alertNotifyPrimary('#SetMarkers = ' + this?.userPos?.lat + ' / ' + this?.userPos?.lng);
     console.log('#SetMarkers', this.userPos);
 
     if (!this.map || !this.userPos || !this.doghouses) return;
 
     const dogInfoId = this.dogInfo?.id;
-    const closestDoghouses = getClosestDoghouses(this.userPos, this.doghouses, dogInfoId);
 
     this.doghouses.forEach((doghouse: Doghouse) => {
-      if (!this.map) return;
+      if (!this.map || !this.userPos) return;
       const { id, dogId, name, lat, lng, hp, maxHp } = doghouse;
-      const isClose = closestDoghouses?.find((dh) => dh.id === doghouse.id);
       const dhName = encodeURIComponent(name);
 
-      if (isClose) {
-        const popupAttackContent = `<map-popup isClose=${true} dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`;
+      const popupContent =
+        dogId === dogInfoId
+          ? `<map-popup isOwn=${true} dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} 
+              dhMaxHp=${maxHp} dhCoords=${`${lat}/${lng}`} userCoords=${`${this.userPos.lat}/${this.userPos.lng}`}></map-popup>`
+          : `<map-popup dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp} 
+              dhCoords=${`${lat}/${lng}`} userCoords=${`${this.userPos.lat}/${this.userPos.lng}`}></map-popup>`;
 
-        drawMarker({
-          self: this,
-          coords: { lat, lng },
-          popupContent: popupAttackContent,
-          canvasMarkerImg: {
-            url: doghouseAttackPath,
-          },
-        });
-      } else {
-        const popupContent =
-          dogId === dogInfoId
-            ? `<map-popup isOwn=${true} dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`
-            : `<map-popup dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp}></map-popup>`;
-
-        drawMarker({
-          self: this,
-          coords: { lat, lng },
-          popupContent,
-          canvasMarkerImg: {
-            url: dogId === dogInfoId ? doghouseOwnPath : doghouseEnemyPath,
-          },
-        });
-      }
+      drawMarker({
+        self: this,
+        coords: { lat, lng },
+        popupContent,
+        canvasMarkerImg: {
+          url: dogId === dogInfoId ? doghouseOwnPath : doghouseEnemyPath,
+        },
+      });
     });
   }
 
