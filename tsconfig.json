@@ -4,7 +4,7 @@
     "target": "esnext",
     "lib": ["es2015", "es2017", "ES2018", "esnext", "dom", "dom.iterable"],
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "noEmit": true,
     "outDir": "./types",
     "strict": true,
     "noUnusedLocals": true,

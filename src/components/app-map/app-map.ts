@@ -6,7 +6,6 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 
-import doghouseAttackPath from '../../assets/icons/marker-dh-new.svg';
 import doghouseEnemyPath from '../../assets/icons/marker-dh-new.svg';
 import doghouseOwnPath from '../../assets/icons/marker-dh-new.svg';
 import { API_DOGHOUSES_NEAR_USER, API_DOGHOUSE_CREATE } from '../../constants/apiConstants';

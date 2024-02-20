@@ -1,7 +1,6 @@
 import L from 'leaflet';
 
 import { AppMap } from '../components/app-map/app-map';
-import { Doghouse } from '../types/doghouse';
 import { Coords } from '../types/geolocation';
 import { CanvasMarkerImg } from '../types/map';
 
