@@ -115,22 +115,22 @@ export class AppDogView extends LitElement {
   }
 
   render() {
-    const {
-      name,
-      attackPower,
-      availableAttacks,
-      availableDoghouses,
-      ownedDoghouses,
-      experience,
-      level,
-    } = this.dogInfo ?? {
-      attackPower: 0,
-      availableAttacks: 0,
-      availableDoghouses: 0,
-      ownedDoghouse: 0,
-      experience: 0,
-      level: 0,
-    };
+    const { name, availableDoghouses, experience, level, energy, energyMax } =
+      this.dogInfo ??
+      ({
+        id: '',
+        userId: '',
+        name: '',
+        availableDoghouses: 0,
+        energy: 0,
+        energyMax: 0,
+        experience: 0,
+        level: 0,
+        expForNextLevel: 0,
+        buffsForDoghouses: null,
+        buffsForDog: null,
+        photo: null,
+      } as DogInfo);
 
     return this.dogInfo
       ? html`
@@ -166,15 +166,15 @@ export class AppDogView extends LitElement {
               <div id="dog-experience">
                 <sl-icon name="mortarboard"></sl-icon>Experience: ${experience}
               </div>
-              <div id="dog-owned-doghouses">
-                <sl-icon name="houses"></sl-icon>Owned doghouses: ${ownedDoghouses}
-              </div>
+              <!-- <div id="dog-owned-doghouses">
+                <sl-icon name="houses"></sl-icon>Owned doghouses:
+              </div> -->
               <div id="dog-attack-power">
-                <sl-icon name="lightning-charge"></sl-icon>Attack power: ${attackPower}
+                <sl-icon name="lightning-charge"></sl-icon>Energy: ${energy} / ${energyMax}
               </div>
-              <div id="dog-available-attacks">
-                <sl-icon name="heart-arrow"></sl-icon>Available attacks: ${availableAttacks}
-              </div>
+              <!-- <div id="dog-available-attacks">
+                <sl-icon name="heart-arrow"></sl-icon>Available attacks:
+              </div> -->
               <div id="dog-available-doghouses">
                 <sl-icon name="house-add"></sl-icon>Available doghouses: ${availableDoghouses}
               </div>

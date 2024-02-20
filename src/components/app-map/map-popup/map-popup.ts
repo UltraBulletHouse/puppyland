@@ -4,10 +4,10 @@ import { property, state } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
 
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
+import { Coords } from '../../../types/geolocation';
 import { sendEvent } from '../../../utils/eventUtils';
 import { checkHowClose } from '../../../utils/mapUtils';
 import '../map-modals/map-modal';
-import { Coords } from '../../../types/geolocation';
 
 /**
  * @fires closePopup

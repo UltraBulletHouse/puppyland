@@ -2,12 +2,15 @@ export interface DogInfo {
   id: string;
   userId: string;
   name: string;
-  attackPower: number;
   availableDoghouses: number;
-  availableAttacks: number;
-  ownedDoghouses: number;
+  energy: number;
+  energyMax: number;
   experience: number;
   level: number;
+  expForNextLevel: number;
+  buffsForDoghouses: null;
+  buffsForDog: null;
+  photo: null;
 }
 
 export interface DogInfoResponse {
