@@ -2,7 +2,8 @@ import axios, { AxiosError } from 'axios';
 
 import { alertNotifyDanger } from './alertsUtils';
 
-const apiUrl = 'https://projectwebapi20240118105830.azurewebsites.net/';
+const apiUrl = 'https://newdogsapi.azurewebsites.net/';
+
 const baseHeaders = (accesToken?: string) => {
   const headers: HeadersInit = {
     'Content-Type': 'application/json',

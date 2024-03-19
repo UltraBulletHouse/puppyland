@@ -25,8 +25,14 @@ export class MapModal extends LitElement {
   @property({ type: Boolean })
   open: boolean = false;
 
+  @property({ type: Boolean })
+  isOwn: boolean = false;
+
   @property({ type: String })
   dogId?: string;
+
+  @property({ type: String })
+  dogName?: string;
 
   @property({ type: String })
   dhId?: string;
@@ -44,6 +50,8 @@ export class MapModal extends LitElement {
   attackResult: AttackResult | null = null;
 
   closeMapModal = () => {
+    this.attackResult = null;
+
     sendEvent(this, 'closeMapModal');
   };
 
@@ -77,7 +85,20 @@ export class MapModal extends LitElement {
           align-items: center;
           height: 100%;
           width: 100%;
-          padding-top: 20px;
+        }
+        #close-btn-container {
+          display: flex;
+          justify-content: end;
+          width: 100%;
+        }
+        #close-btn {
+          display: flex;
+          justify-content: end;
+          width: 100%;
+          padding: 4px 0px;
+          border-radius: 50px;
+          font-size: 30px;
+          color: var(--color-primary);
         }
         #dh-name {
           display: flex;
@@ -107,14 +128,44 @@ export class MapModal extends LitElement {
           --indicator-color: var(--color-primary);
           --height: 12px;
         }
-        #attack-btn {
-          align-self: flex-end;
+        #footer-btn {
+          padding: 10px;
         }
         #center {
           flex: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        #doghouse-icon {
+          font-size: 80px;
+        }
+        #dog-icon {
+          font-size: 80px;
+        }
+        #versus {
+          display: flex;
+          justify-content: center;
+          margin: 30px 0px;
+        }
+        #attack-btn::part(base) {
+          font-size: 18px;
+          background-color: var(--color-primary);
+          color: var(--color-white);
+        }
+        #heal-btn::part(base) {
+          font-size: 18px;
+          background-color: var(--color-secondary);
+          color: var(--color-white);
         }
       </style>
       <div id="map-modal-container">
+        <div id="close-btn-container">
+          <div id="close-btn" @click=${this.closeMapModal}>
+            <sl-icon name="x"></sl-icon>
+          </div>
+        </div>
         <div id="dh-info">
           <div id="dh-name">${this.dhName}</div>
         </div>
@@ -122,11 +173,25 @@ export class MapModal extends LitElement {
           <sl-progress-bar id="dh-hp-bar" value=${hpPercent}>${this.dhHp}</sl-progress-bar>
         </div>
 
-        <div id="center"></div>
-
-        <div id="attack-btn">
-          <sl-button @click=${this.attackDoghouse} pill>Attack</sl-button>
-          <sl-button @click=${this.closeMapModal} pill>Close</sl-button>
+        <div id="center">
+          ${!this.isOwn
+            ? html`
+                <div id="doghouse-icon"><svg-icon name="doghouseOne"></svg-icon></div>
+                <div id="versus">vs</div>
+                <div id="dog-icon">
+                  <svg-icon name="dogFace"></svg-icon>
+                </div>
+                <div id="dog-info">
+                  <div>${decodeURIComponent(this.dogName ?? '')}</div>
+                </div>
+              `
+            : html`<div>BUU</div>`}
+        </div>
+        
+        <div id="footer-btn">
+        ${!this.isOwn
+            ? html`<sl-button id="attack-btn" @click=${this.attackDoghouse} pill>Attack</sl-button>`
+            : html`<sl-button id="heal-btn"  pill>Heal</sl-button>`}
         </div>
       </div>`;
 

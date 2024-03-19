@@ -31,6 +31,9 @@ export class MapPopup extends LitElement {
   dogId?: string;
 
   @property({ type: String })
+  dogName?: string;
+
+  @property({ type: String })
   dhId?: string;
 
   @property({ type: String })
@@ -249,7 +252,9 @@ export class MapPopup extends LitElement {
 
         <map-modal
           .open=${this.isOpen}
+          .isOwn=${Boolean(this.isOwn)}
           .dhId=${this.dhId}
+          .dogName=${this.dogName}
           .dhName=${decodeURIComponent(this.dhName ?? '')}
           .dhHp=${this.dhHp}
           .dhMaxHp=${this.dhMaxHp}

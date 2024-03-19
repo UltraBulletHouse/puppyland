@@ -115,6 +115,7 @@ export class AppMap extends LitElement {
     if (!this.map || !this.userPos || !this.doghouses) return;
 
     const dogInfoId = this.dogInfo?.id;
+    const dogInfoName = encodeURIComponent(this.dogInfo?.name ?? '');
 
     this.doghouses.forEach((doghouse: Doghouse) => {
       if (!this.map || !this.userPos) return;
@@ -123,10 +124,29 @@ export class AppMap extends LitElement {
 
       const popupContent =
         dogId === dogInfoId
-          ? `<map-popup isOwn=${true} dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} 
-              dhMaxHp=${maxHp} dhCoords=${`${lat}/${lng}`} userCoords=${`${this.userPos.lat}/${this.userPos.lng}`}></map-popup>`
-          : `<map-popup dogId=${dogInfoId} dhId=${id} dhName=${dhName} dhHp=${hp} dhMaxHp=${maxHp} 
-              dhCoords=${`${lat}/${lng}`} userCoords=${`${this.userPos.lat}/${this.userPos.lng}`}></map-popup>`;
+          ? `<map-popup
+            isOwn=${true}
+            dogId=${dogInfoId}
+            dogName=${dogInfoName}
+            dhId=${id}
+            dhName=${dhName}
+            dhHp=${hp} 
+            dhMaxHp=${maxHp}
+            dhCoords=${`${lat}/${lng}`}
+            userCoords=${`${this.userPos.lat}/${this.userPos.lng}`}
+            ></map-popup>
+            `
+          : `<map-popup
+            dogId=${dogInfoId}
+            dogName=${dogInfoName}
+            dhId=${id}
+            dhName=${dhName}
+            dhHp=${hp}
+            dhMaxHp=${maxHp} 
+            dhCoords=${`${lat}/${lng}`}
+            userCoords=${`${this.userPos.lat}/${this.userPos.lng}`}
+            ></map-popup>
+            `;
 
       drawMarker({
         self: this,
