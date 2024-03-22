@@ -5,6 +5,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
 import { API_DOGHOUSE_ATTACK } from '../../../constants/apiConstants';
+import { attackEnergy } from '../../../constants/config';
 import { updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { AttackDoghouseResponse, AttackResult } from '../../../types/doghouse';
@@ -98,7 +99,7 @@ export class MapModal extends LitElement {
           padding: 4px 0px;
           border-radius: 50px;
           font-size: 30px;
-          color: var(--color-primary);
+          color: var(--color-secondary);
         }
         #dh-name {
           display: flex;
@@ -125,7 +126,7 @@ export class MapModal extends LitElement {
           justify-content: center;
         }
         #dh-hp-bar {
-          --indicator-color: var(--color-primary);
+          --indicator-color: var(--color-secondary);
           --height: 12px;
         }
         #footer-btn {
@@ -185,13 +186,28 @@ export class MapModal extends LitElement {
                   <div>${decodeURIComponent(this.dogName ?? '')}</div>
                 </div>
               `
-            : html`<div>BUU</div>`}
+            : html`
+                <div id="doghouse-icon"><svg-icon name="doghouseOne"></svg-icon></div>
+                <div id="versus">
+                  <sl-icon name="hammer" id="dh-features-icon-repair"></sl-icon>
+                </div>
+                <div id="dog-icon">
+                  <svg-icon name="dogFace"></svg-icon>
+                </div>
+                <div id="dog-info">
+                  <div>${decodeURIComponent(this.dogName ?? '')}</div>
+                </div>
+              `}
         </div>
-        
+
         <div id="footer-btn">
-        ${!this.isOwn
-            ? html`<sl-button id="attack-btn" @click=${this.attackDoghouse} pill>Attack</sl-button>`
-            : html`<sl-button id="heal-btn"  pill>Heal</sl-button>`}
+          ${!this.isOwn
+            ? html`<sl-button id="attack-btn" @click=${this.attackDoghouse} pill
+                >Bite - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
+              ></sl-button>`
+            : html`<sl-button id="heal-btn" pill
+                >Repair - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
+              ></sl-button>`}
         </div>
       </div>`;
 

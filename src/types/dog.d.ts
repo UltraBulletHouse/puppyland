@@ -23,5 +23,5 @@ export interface DogInfoUpdateRequest {
 }
 
 export interface DogInfoUpdateResponse {
-  name: string;
+  dog: DogInfo;
 }

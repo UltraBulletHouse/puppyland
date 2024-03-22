@@ -94,7 +94,7 @@ export class AppDogView extends LitElement {
       }
     );
 
-    this.newName = dogInfoResponse.data.name;
+    this.newName = dogInfoResponse.data.dog.name;
     this.isEditingName = false;
   }
 
@@ -115,7 +115,7 @@ export class AppDogView extends LitElement {
   }
 
   render() {
-    const { name, availableDoghouses, experience, level, energy, energyMax } =
+    const { name, availableDoghouses, experience, expForNextLevel, level, energy, energyMax } =
       this.dogInfo ??
       ({
         id: '',
@@ -125,8 +125,8 @@ export class AppDogView extends LitElement {
         energy: 0,
         energyMax: 0,
         experience: 0,
-        level: 0,
         expForNextLevel: 0,
+        level: 0,
         buffsForDoghouses: null,
         buffsForDog: null,
         photo: null,
@@ -165,12 +165,16 @@ export class AppDogView extends LitElement {
               </div>
               <div id="dog-experience">
                 <sl-icon name="mortarboard"></sl-icon>Experience: ${experience}
+                <sl-progress-bar id="dog-exp-bar" value=${50}>${expForNextLevel}</sl-progress-bar>
               </div>
               <!-- <div id="dog-owned-doghouses">
                 <sl-icon name="houses"></sl-icon>Owned doghouses:
               </div> -->
               <div id="dog-attack-power">
                 <sl-icon name="lightning-charge"></sl-icon>Energy: ${energy} / ${energyMax}
+                <sl-progress-bar id="dog-energy-bar" value=${(energy / energyMax) * 100}
+                  >${energy}</sl-progress-bar
+                >
               </div>
               <!-- <div id="dog-available-attacks">
                 <sl-icon name="heart-arrow"></sl-icon>Available attacks:
