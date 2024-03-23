@@ -150,7 +150,6 @@ export class AppDogView extends LitElement {
                     maxlength="20"
                     autofocus
                     required
-                    clearable
                     pill
                   ></sl-input>`
                 : this.newName ?? name ?? ''}

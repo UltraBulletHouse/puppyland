@@ -46,6 +46,7 @@ export class AppDoghousesView extends LitElement {
       #list sl-details::part(header) {
         width: 100%;
         overflow: hidden;
+        background-color: var(--color-white);
       }
       #list sl-details::part(summary) {
         display: block;

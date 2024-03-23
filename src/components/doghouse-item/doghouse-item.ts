@@ -81,6 +81,8 @@ export class AppDoghouseItem extends LitElement {
     if (!this.accessToken || !doghouseId) return;
     this.isEditingName = false;
 
+    if (this.newName === this.dogouseInfo?.name) return;
+
     const doghouseResponse = await apiCall(this.accessToken).patch<UpdateDoghouseResponse>(
       API_DOGHOUSE_UPDATE,
       {
@@ -110,7 +112,6 @@ export class AppDoghouseItem extends LitElement {
       maxlength="20"
       autofocus
       required
-      clearable
       pill
     ></sl-input>`;
 
