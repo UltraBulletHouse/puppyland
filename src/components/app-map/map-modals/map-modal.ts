@@ -149,6 +149,7 @@ export class MapModal extends LitElement {
           display: flex;
           justify-content: center;
           margin: 30px 0px;
+          font-size: 26px;
         }
         #attack-btn::part(base) {
           font-size: 18px;
