@@ -51,6 +51,11 @@ export interface AttackDoghouseResponse {
   attackResult: AttackResult;
 }
 
+export interface RepairDoghouseResponse {
+  doghouse: Doghouse;
+  dog: DogInfo;
+}
+
 export interface UpdateDoghouseResponse {
   doghouse: Doghouse;
 }

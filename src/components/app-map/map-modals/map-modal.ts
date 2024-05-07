@@ -4,11 +4,11 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
-import { API_DOGHOUSE_ATTACK } from '../../../constants/apiConstants';
+import { API_DOGHOUSE_ATTACK, API_DOGHOUSE_REPAIR } from '../../../constants/apiConstants';
 import { attackEnergy } from '../../../constants/config';
 import { updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
-import { AttackDoghouseResponse, AttackResult } from '../../../types/doghouse';
+import { AttackDoghouseResponse, AttackResult, RepairDoghouseResponse } from '../../../types/doghouse';
 import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
@@ -70,6 +70,21 @@ export class MapModal extends LitElement {
     const attackResult = attackDoghouseResponse?.data?.attackResult;
 
     this.attackResult = attackResult;
+
+    if (dogInfoResponse) {
+      updateDogInfoEvent(this, dogInfoResponse);
+    }
+  };
+
+  repairDoghouse = async () => {
+    if (!this.accessToken || !this.dhId || !this.dogId) return;
+
+    const attackDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
+      API_DOGHOUSE_REPAIR,
+      { doghouseId: this.dhId, dogId: this.dogId }
+    );
+
+    const dogInfoResponse = attackDoghouseResponse?.data?.dog;
 
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
@@ -206,7 +221,7 @@ export class MapModal extends LitElement {
             ? html`<sl-button id="attack-btn" @click=${this.attackDoghouse} pill
                 >Bite - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
               ></sl-button>`
-            : html`<sl-button id="heal-btn" pill
+            : html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill
                 >Repair - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
               ></sl-button>`}
         </div>
