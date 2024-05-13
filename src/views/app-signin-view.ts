@@ -40,19 +40,12 @@ export class AppSignin extends LitElement {
     });
   }
 
-  updateView() {
-    updateViewEvent(this, View.MAP_VIEW);
-  }
-
   render() {
     return html`
       <div id="container">
         <div><sl-icon id="signpost-icon" name="signpost-split"></sl-icon></div>
         <sl-button id="google-btn" pill @click=${this.signInWithGoogle}>
           <sl-icon name="google"></sl-icon> Sign-in with Google</sl-button
-        >
-        <sl-button pill @click=${this.updateView}>
-          <sl-icon name="incognito"></sl-icon> Visit as guest</sl-button
         >
       </div>
     `;

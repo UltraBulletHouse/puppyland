@@ -17,13 +17,13 @@ import '../../scripts/leaflet-canvas-markers';
 import { DogInfo } from '../../types/dog';
 import {
   CreateDoghouseResponse,
-  CreateResult,
   Doghouse,
   GetDoghouseNearUserResponse,
 } from '../../types/doghouse';
 import { Coords } from '../../types/geolocation';
 import { TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
+import { alertNotifySuccess } from '../../utils/alertsUtils';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
@@ -62,11 +62,9 @@ export class AppMap extends LitElement {
   @state()
   doghouses?: Doghouse[];
 
-  @state()
-  addDoghouseResponse: CreateResult | null = null;
-
-  @state()
-  isAddHouseModalOpen: boolean = false;
+  //TODO: Usunac chyba
+  // @state()
+  // addDoghouseResponse: CreateResult | null = null;
 
   @state()
   doghouseOwnPath: string | null = null;
@@ -76,10 +74,6 @@ export class AppMap extends LitElement {
 
   @state()
   doghouseAttackPath: string | null = null;
-
-  closeModal = () => {
-    this.isAddHouseModalOpen = false;
-  };
 
   closePopup() {
     this.map?.closePopup();
@@ -194,11 +188,11 @@ export class AppMap extends LitElement {
     );
 
     if (createDoghouseResponse.status === 200) {
-      this.addDoghouseResponse = createDoghouseResponse.data.createResult;
-      this.isAddHouseModalOpen = true;
+      const { createResult, dog } = createDoghouseResponse.data;
 
-      const userDogRes = createDoghouseResponse.data.dog;
-      updateDogInfoEvent(this, userDogRes);
+      updateDogInfoEvent(this, dog);
+
+      alertNotifySuccess(`Your doghouse ${createResult.name} was created`);
 
       this.getDoghousesList();
     }
@@ -275,12 +269,6 @@ export class AppMap extends LitElement {
             </div>
           </div>
         </div>
-
-        <app-modal-addhouse
-          .open=${this.isAddHouseModalOpen}
-          .addDoghouseResponse=${this.addDoghouseResponse}
-          @addhouseModal=${this.closeModal}
-        ></app-modal-addhouse>
       </div>
     `;
   }

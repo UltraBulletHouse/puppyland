@@ -1,6 +1,6 @@
 import { consume } from '@lit/context';
 import { LitElement, html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
@@ -8,7 +8,8 @@ import { API_DOGHOUSE_ATTACK, API_DOGHOUSE_REPAIR } from '../../../constants/api
 import { attackEnergy } from '../../../constants/config';
 import { updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
-import { AttackDoghouseResponse, AttackResult, RepairDoghouseResponse } from '../../../types/doghouse';
+import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
+import { alertNotifySuccess } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
@@ -47,17 +48,17 @@ export class MapModal extends LitElement {
   @property({ type: String })
   dhMaxHp?: string;
 
-  @state()
-  attackResult: AttackResult | null = null;
+  // @state()
+  // attackResult: AttackResult | null = null;
 
   closeMapModal = () => {
-    this.attackResult = null;
+    // this.attackResult = null;
 
     sendEvent(this, 'closeMapModal');
   };
 
   attackDoghouse = async () => {
-    this.attackResult = null;
+    // this.attackResult = null;
 
     if (!this.accessToken || !this.dhId || !this.dogId) return;
 
@@ -69,7 +70,10 @@ export class MapModal extends LitElement {
     const dogInfoResponse = attackDoghouseResponse?.data?.dog;
     const attackResult = attackDoghouseResponse?.data?.attackResult;
 
-    this.attackResult = attackResult;
+    // this.attackResult = attackResult;
+    alertNotifySuccess(
+      `You dealt ${attackResult.damageDealt} damages to ${this.dhName} and gained ${attackResult.experienceGained} XP`
+    );
 
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
@@ -227,30 +231,30 @@ export class MapModal extends LitElement {
         </div>
       </div>`;
 
-    const attackResultTemplate = html` <style>
-        #map-modal-container {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          height: 100%;
-          width: 100%;
-        }
-      </style>
-      <div id="map-modal-container">
-        <h3>Congratulation!!!</h3>
-        <p>You dealt ${this.attackResult?.damageDealt} damages!</p>
-        <p>You gained ${this.attackResult?.experienceGained} experience!</p>
-        <p>Doghouse is ${this.attackResult?.isDoghouseDestroyed ? 'destroyed' : 'not destroyed'}</p>
-        <sl-button @click=${this.closeMapModal} pill>Close</sl-button>
-      </div>`;
+    // const attackResultTemplate = html` <style>
+    //     #map-modal-container {
+    //       display: flex;
+    //       flex-direction: column;
+    //       justify-content: center;
+    //       align-items: center;
+    //       height: 100%;
+    //       width: 100%;
+    //     }
+    //   </style>
+    //   <div id="map-modal-container">
+    //     <h3>Congratulation!!!</h3>
+    //     <p>You dealt ${this.attackResult?.damageDealt} damages!</p>
+    //     <p>You gained ${this.attackResult?.experienceGained} experience!</p>
+    //     <p>Doghouse is ${this.attackResult?.isDoghouseDestroyed ? 'destroyed' : 'not destroyed'}</p>
+    //     <sl-button @click=${this.closeMapModal} pill>Close</sl-button>
+    //   </div>`;
 
-    const modalTemplate = this.attackResult ? attackResultTemplate : baseTemplate;
+    // const modalTemplate = this.attackResult ? attackResultTemplate : baseTemplate;
 
     return html`<app-modal
       modalId="attack-doghouse"
       .open=${this.open}
-      .element=${modalTemplate}
+      .element=${baseTemplate}
     ></app-modal>`;
   }
 }
