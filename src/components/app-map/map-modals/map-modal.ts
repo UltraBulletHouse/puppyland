@@ -1,4 +1,5 @@
 import { consume } from '@lit/context';
+import * as signalR from '@microsoft/signalr';
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
@@ -9,13 +10,11 @@ import { attackEnergy } from '../../../constants/config';
 import { updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
-import { alertNotifySuccess } from '../../../utils/alertsUtils';
+import { alertNotifySuccess, alertNotifyWarning } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
 import '../../app-spinner/app-spinner';
-
-import * as signalR from "@microsoft/signalr";
 
 /**
  * @fires closeMapModal
@@ -50,16 +49,11 @@ export class MapModal extends LitElement {
   @property({ type: String })
   dhMaxHp?: string;
 
-  // @state()
-  // attackResult: AttackResult | null = null;
-
   connection = new signalR.HubConnectionBuilder()
-  .withUrl("https://mydogapi.azurewebsites.net/doghouse-hub")
-  .build();
+    .withUrl('https://mydogapi.azurewebsites.net/doghouse-hub')
+    .build();
 
   closeMapModal = () => {
-    // this.attackResult = null;
-
     // WEBSOCKETS
     // this.connection.invoke("RemoveFromGroup", this.dhId).catch((err: Error) => {
     //   console.error(err.toString());
@@ -84,10 +78,7 @@ export class MapModal extends LitElement {
   //     });
   // }
 
-
   attackDoghouse = async () => {
-    // this.attackResult = null;
-
     if (!this.accessToken || !this.dhId || !this.dogId) return;
 
     const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
@@ -96,18 +87,21 @@ export class MapModal extends LitElement {
     );
 
     const dogInfoResponse = attackDoghouseResponse?.data?.dog;
+    const doghouseInfoResponse = attackDoghouseResponse?.data?.doghouse;
     const attackResult = attackDoghouseResponse?.data?.attackResult;
 
-    // this.attackResult = attackResult;
-    alertNotifySuccess(
-      `You dealt ${attackResult.damageDealt} damages to ${this.dhName} and gained ${attackResult.experienceGained} XP`,
-      {
-        duration: 6000,
-      }
-    );
+    alertNotifyWarning(`You dealt ${attackResult.damageDealt} damages to ${this.dhName}`, {
+      duration: 5000,
+    });
+    alertNotifySuccess(`You gained ${attackResult.experienceGained} XP`, {
+      duration: 5000,
+    });
 
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
+    }
+    if (doghouseInfoResponse) {
+      this.dhHp = doghouseInfoResponse.hp.toString();
     }
   };
 
