@@ -1,7 +1,7 @@
 import { consume } from '@lit/context';
-import * as signalR from '@microsoft/signalr';
+// import * as signalR from '@microsoft/signalr';
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
@@ -49,9 +49,13 @@ export class MapModal extends LitElement {
   @property({ type: String })
   dhMaxHp?: string;
 
-  connection = new signalR.HubConnectionBuilder()
-    .withUrl('https://mydogapi.azurewebsites.net/doghouse-hub')
-    .build();
+  @state()
+  btnDisabled: boolean = false;
+
+  // WEBSOCKETS
+  // connection = new signalR.HubConnectionBuilder()
+  // .withUrl('https://mydogapi.azurewebsites.net/doghouse-hub')
+  // .build();
 
   closeMapModal = () => {
     // WEBSOCKETS
@@ -78,8 +82,18 @@ export class MapModal extends LitElement {
   //     });
   // }
 
+  disableButton = () => {
+    this.btnDisabled = true;
+
+    setTimeout(() => {
+      this.btnDisabled = false;
+    }, 4000);
+  };
+
   attackDoghouse = async () => {
     if (!this.accessToken || !this.dhId || !this.dogId) return;
+
+    this.disableButton();
 
     const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
       API_DOGHOUSE_ATTACK,
@@ -249,7 +263,11 @@ export class MapModal extends LitElement {
 
         <div id="footer-btn">
           ${!this.isOwn
-            ? html`<sl-button id="attack-btn" @click=${this.attackDoghouse} pill
+            ? html`<sl-button
+                id="attack-btn"
+                @click=${this.attackDoghouse}
+                pill
+                ?disabled=${this.btnDisabled}
                 >Bite - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
               ></sl-button>`
             : html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill
@@ -257,26 +275,6 @@ export class MapModal extends LitElement {
               ></sl-button>`}
         </div>
       </div>`;
-
-    // const attackResultTemplate = html` <style>
-    //     #map-modal-container {
-    //       display: flex;
-    //       flex-direction: column;
-    //       justify-content: center;
-    //       align-items: center;
-    //       height: 100%;
-    //       width: 100%;
-    //     }
-    //   </style>
-    //   <div id="map-modal-container">
-    //     <h3>Congratulation!!!</h3>
-    //     <p>You dealt ${this.attackResult?.damageDealt} damages!</p>
-    //     <p>You gained ${this.attackResult?.experienceGained} experience!</p>
-    //     <p>Doghouse is ${this.attackResult?.isDoghouseDestroyed ? 'destroyed' : 'not destroyed'}</p>
-    //     <sl-button @click=${this.closeMapModal} pill>Close</sl-button>
-    //   </div>`;
-
-    // const modalTemplate = this.attackResult ? attackResultTemplate : baseTemplate;
 
     return html`<app-modal
       modalId="attack-doghouse"
