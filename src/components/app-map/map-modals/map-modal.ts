@@ -15,6 +15,8 @@ import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
 import '../../app-spinner/app-spinner';
 
+import * as signalR from "@microsoft/signalr";
+
 /**
  * @fires closeMapModal
  */
@@ -51,11 +53,37 @@ export class MapModal extends LitElement {
   // @state()
   // attackResult: AttackResult | null = null;
 
+  connection = new signalR.HubConnectionBuilder()
+  .withUrl("https://mydogapi.azurewebsites.net/doghouse-hub")
+  .build();
+
   closeMapModal = () => {
     // this.attackResult = null;
 
+    // WEBSOCKETS
+    // this.connection.invoke("RemoveFromGroup", this.dhId).catch((err: Error) => {
+    //   console.error(err.toString());
+    // });
+
     sendEvent(this, 'closeMapModal');
   };
+
+  // WEBSOCKETS
+  // runSignal = () => {
+  //   this.connection.start()
+  //       .then(() => {
+  //         this.connection.invoke("AddToGroup", this.dhId).catch((err: Error) => {
+  //           console.error(err.toString());
+  //       });
+  //       });
+
+  //       this.connection.on("ReceiveMessage", (message: number) => {
+  //         console.log("Received message: " + message);
+  //         // Display the message to the user
+  //         // e.g., update the DOM
+  //     });
+  // }
+
 
   attackDoghouse = async () => {
     // this.attackResult = null;
@@ -72,7 +100,10 @@ export class MapModal extends LitElement {
 
     // this.attackResult = attackResult;
     alertNotifySuccess(
-      `You dealt ${attackResult.damageDealt} damages to ${this.dhName} and gained ${attackResult.experienceGained} XP`
+      `You dealt ${attackResult.damageDealt} damages to ${this.dhName} and gained ${attackResult.experienceGained} XP`,
+      {
+        duration: 6000,
+      }
     );
 
     if (dogInfoResponse) {
@@ -96,6 +127,8 @@ export class MapModal extends LitElement {
   };
 
   render() {
+    // WEBSOCKETS
+    // this.runSignal()
     const hpPercent = Math.round((Number(this.dhHp) / Number(this.dhMaxHp)) * 100);
 
     const baseTemplate = html` <style>
