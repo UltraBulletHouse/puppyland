@@ -50,7 +50,7 @@ export class MapModal extends LitElement {
   dhMaxHp?: string;
 
   @state()
-  btnDisabled: boolean = false;
+  btnLoading: boolean = false;
 
   // WEBSOCKETS
   // connection = new signalR.HubConnectionBuilder()
@@ -82,18 +82,18 @@ export class MapModal extends LitElement {
   //     });
   // }
 
-  disableButton = () => {
-    this.btnDisabled = true;
+  loadingButton = () => {
+    this.btnLoading = true;
 
     setTimeout(() => {
-      this.btnDisabled = false;
+      this.btnLoading = false;
     }, 4000);
   };
 
   attackDoghouse = async () => {
     if (!this.accessToken || !this.dhId || !this.dogId) return;
 
-    this.disableButton();
+    this.loadingButton();
 
     const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
       API_DOGHOUSE_ATTACK,
@@ -267,7 +267,7 @@ export class MapModal extends LitElement {
                 id="attack-btn"
                 @click=${this.attackDoghouse}
                 pill
-                ?disabled=${this.btnDisabled}
+                ?loading=${this.btnLoading}
                 >Bite - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
               ></sl-button>`
             : html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill
