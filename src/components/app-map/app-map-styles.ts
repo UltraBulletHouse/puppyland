@@ -24,6 +24,7 @@ export const AppMapStyles = [
       padding: 10px;
       background: var(--color-primary-light);
       border-radius: var(--border-radius-medium);
+      border: 1px solid var(--color-primary-medium);
     }
     #info-box-line {
       display: flex;
