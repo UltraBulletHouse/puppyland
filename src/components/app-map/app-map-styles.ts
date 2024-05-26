@@ -14,6 +14,25 @@ export const AppMapStyles = [
       width: 100%;
       overflow: hidden;
     }
+    #info-box {
+      position: absolute;
+      right: 5px;
+      top: 21px;
+      z-index: 1000;
+      height: 56px;
+      width: 70px;
+      padding: 10px;
+      background: var(--color-primary-light);
+      border-radius: var(--border-radius-medium);
+    }
+    #info-box-line {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #info-box-icon {
+      margin-right: 5px;
+    }
     .leaflet-bottom {
       bottom: 7px;
     }

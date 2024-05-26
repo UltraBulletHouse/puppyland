@@ -243,7 +243,14 @@ export class AppMap extends LitElement {
     return html`
       <link rel="stylesheet" href="https://cdn.skypack.dev/leaflet/dist/leaflet.css" />
       <div id="container">
+        <div id="info-box">
+          <div id="info-box-line">
+            <sl-icon id="info-box-icon" name="lightning-charge"></sl-icon>${this.dogInfo?.energy}
+          </div>
+        </div>
+
         <div id="map" @closePopup=${this.closePopup}></div>
+
         <div id="controls">
           <div id="left-side">
             <div id="add-doghouse" @click=${this.addDoghouse}>
@@ -261,6 +268,7 @@ export class AppMap extends LitElement {
               </sl-button>
             </div>
           </div>
+
           <div id="right-side">
             <div id="center-position" @click=${this.centerPosition}>
               <sl-button id="center-position-btn" variant="default" size="large" circle>
