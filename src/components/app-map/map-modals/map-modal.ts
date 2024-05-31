@@ -6,9 +6,10 @@ import { customElement, property, state } from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
 import { API_DOGHOUSE_ATTACK, API_DOGHOUSE_REPAIR } from '../../../constants/apiConstants';
-import { attackEnergy } from '../../../constants/config';
-import { updateDogInfoEvent } from '../../../contexts/dogInfoContext';
+import { attackEnergy, repairEnergy } from '../../../constants/config';
+import { dogInfoContext, updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
+import { DogInfo } from '../../../types/dog';
 import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
 import { alertNotifySuccess, alertNotifyWarning } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
@@ -25,17 +26,15 @@ export class MapModal extends LitElement {
   @property({ attribute: false })
   accessToken: string | null = null;
 
+  @consume({ context: dogInfoContext, subscribe: true })
+  @property({ attribute: false })
+  dogInfo: DogInfo | null = null;
+
   @property({ type: Boolean })
   open: boolean = false;
 
   @property({ type: Boolean })
   isOwn: boolean = false;
-
-  @property({ type: String })
-  dogId?: string;
-
-  @property({ type: String })
-  dogName?: string;
 
   @property({ type: String })
   dhId?: string;
@@ -91,13 +90,13 @@ export class MapModal extends LitElement {
   };
 
   attackDoghouse = async () => {
-    if (!this.accessToken || !this.dhId || !this.dogId) return;
+    if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
     this.loadingButton();
 
     const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
       API_DOGHOUSE_ATTACK,
-      { doghouseId: this.dhId, dogId: this.dogId }
+      { doghouseId: this.dhId, dogId: this.dogInfo.id }
     );
 
     const dogInfoResponse = attackDoghouseResponse?.data?.dog;
@@ -120,11 +119,11 @@ export class MapModal extends LitElement {
   };
 
   repairDoghouse = async () => {
-    if (!this.accessToken || !this.dhId || !this.dogId) return;
+    if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
     const attackDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
       API_DOGHOUSE_REPAIR,
-      { doghouseId: this.dhId, dogId: this.dogId }
+      { doghouseId: this.dhId, dogId: this.dogInfo.id }
     );
 
     const dogInfoResponse = attackDoghouseResponse?.data?.dog;
@@ -167,7 +166,7 @@ export class MapModal extends LitElement {
           align-items: center;
           width: 100%;
           font-weight: 600;
-          font-size: 17px;
+          font-size: 20px;
           text-wrap: nowrap;
           text-overflow: ellipsis;
           overflow: hidden;
@@ -189,6 +188,9 @@ export class MapModal extends LitElement {
           --indicator-color: var(--color-secondary);
           --height: 12px;
         }
+        .dh-hp-bar--enemy {
+          --indicator-color: var(--color-primary) !important;
+        }
         #footer-btn {
           padding: 10px;
         }
@@ -198,18 +200,14 @@ export class MapModal extends LitElement {
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          width: 100%;
         }
         #doghouse-icon {
-          font-size: 80px;
-        }
-        #dog-icon {
-          font-size: 80px;
-        }
-        #versus {
           display: flex;
           justify-content: center;
-          margin: 30px 0px;
-          font-size: 26px;
+          align-items: center;
+          font-size: 80px;
+          margin: 30px 0;
         }
         #attack-btn::part(base) {
           font-size: 18px;
@@ -230,36 +228,18 @@ export class MapModal extends LitElement {
         </div>
         <div id="dh-info">
           <div id="dh-name">${this.dhName}</div>
+          <div id="doghouse-icon"><svg-icon name="doghouseOne"></svg-icon></div>
         </div>
         <div id="dh-hp-container">
-          <sl-progress-bar id="dh-hp-bar" value=${hpPercent}>${this.dhHp}</sl-progress-bar>
+          <sl-progress-bar
+            id="dh-hp-bar"
+            class=${!this.isOwn ? 'dh-hp-bar--enemy' : ''}
+            value=${hpPercent}
+            >${this.dhHp}</sl-progress-bar
+          >
         </div>
 
-        <div id="center">
-          ${!this.isOwn
-            ? html`
-                <div id="doghouse-icon"><svg-icon name="doghouseOne"></svg-icon></div>
-                <div id="versus">vs</div>
-                <div id="dog-icon">
-                  <svg-icon name="dogFace"></svg-icon>
-                </div>
-                <div id="dog-info">
-                  <div>${decodeURIComponent(this.dogName ?? '')}</div>
-                </div>
-              `
-            : html`
-                <div id="doghouse-icon"><svg-icon name="doghouseOne"></svg-icon></div>
-                <div id="versus">
-                  <sl-icon name="hammer" id="dh-features-icon-repair"></sl-icon>
-                </div>
-                <div id="dog-icon">
-                  <svg-icon name="dogFace"></svg-icon>
-                </div>
-                <div id="dog-info">
-                  <div>${decodeURIComponent(this.dogName ?? '')}</div>
-                </div>
-              `}
-        </div>
+        <div id="center">${!this.isOwn ? html`` : html``}</div>
 
         <div id="footer-btn">
           ${!this.isOwn
@@ -271,7 +251,7 @@ export class MapModal extends LitElement {
                 >Bite - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
               ></sl-button>`
             : html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill
-                >Repair - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
+                >Repair - ${repairEnergy}<sl-icon name="lightning-charge"></sl-icon
               ></sl-button>`}
         </div>
       </div>`;

@@ -19,7 +19,7 @@ export const AppMapStyles = [
       right: 5px;
       top: 21px;
       z-index: 1000;
-      height: 56px;
+      height: 44px;
       width: 70px;
       padding: 10px;
       background: var(--color-primary-light);

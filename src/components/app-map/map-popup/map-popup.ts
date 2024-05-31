@@ -207,19 +207,6 @@ export class MapPopup extends LitElement {
               <span class="dh-features-item">
                 <sl-icon name="heart" id="dh-features-icon-healh"></sl-icon>${this.dhHp}
               </span>
-              <span
-                class="dh-features-item dh-features-item-middle ${this.isClose
-                  ? 'dh-features-item-is-close'
-                  : ''}"
-              >
-                <sl-icon name="hammer" id="dh-features-icon-repair"></sl-icon>
-              </span>
-              <span
-                class="dh-features-item dh-features-item-middle ${this.isClose
-                  ? 'dh-features-item-is-close'
-                  : ''}"
-              >
-                <sl-icon name="heart-arrow" id="dh-features-icon-attack"></sl-icon>
               </span>
             </div>
           </div>
@@ -254,11 +241,9 @@ export class MapPopup extends LitElement {
           .open=${this.isOpen}
           .isOwn=${Boolean(this.isOwn)}
           .dhId=${this.dhId}
-          .dogName=${this.dogName}
           .dhName=${decodeURIComponent(this.dhName ?? '')}
           .dhHp=${this.dhHp}
           .dhMaxHp=${this.dhMaxHp}
-          .dogId=${this.dogId}
           @closeMapModal=${this.closeMapModal}
         ></map-modal>
       </div>`;
