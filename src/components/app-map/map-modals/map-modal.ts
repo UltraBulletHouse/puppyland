@@ -103,7 +103,11 @@ export class MapModal extends LitElement {
     const doghouseInfoResponse = attackDoghouseResponse?.data?.doghouse;
     const attackResult = attackDoghouseResponse?.data?.attackResult;
 
-    alertNotifyWarning(`You dealt ${attackResult.damageDealt} damages to ${this.dhName}`, {
+    const attackMessage = attackResult.isDoghouseDestroyed
+      ? `You destroyed ${this.dhName}`
+      : `You dealt ${attackResult.damageDealt} damages to ${this.dhName}`;
+
+    alertNotifyWarning(attackMessage, {
       duration: 5000,
     });
     alertNotifySuccess(`You gained ${attackResult.experienceGained} XP`, {
@@ -159,6 +163,9 @@ export class MapModal extends LitElement {
           border-radius: 50px;
           font-size: 30px;
           color: var(--color-secondary);
+        }
+        .close-btn--enemy {
+          color: var(--color-primary) !important;
         }
         #dh-name {
           display: flex;
@@ -222,7 +229,11 @@ export class MapModal extends LitElement {
       </style>
       <div id="map-modal-container">
         <div id="close-btn-container">
-          <div id="close-btn" @click=${this.closeMapModal}>
+          <div
+            id="close-btn"
+            class=${!this.isOwn ? 'close-btn--enemy' : ''}
+            @click=${this.closeMapModal}
+          >
             <sl-icon name="x"></sl-icon>
           </div>
         </div>
@@ -248,6 +259,7 @@ export class MapModal extends LitElement {
                 @click=${this.attackDoghouse}
                 pill
                 ?loading=${this.btnLoading}
+                ?disabled=${this.btnLoading}
                 >Bite - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
               ></sl-button>`
             : html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill

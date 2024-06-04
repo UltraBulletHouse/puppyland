@@ -33,7 +33,7 @@ export class AppModal extends LitElement {
             }
             #modal-content {
               width: 100%;
-              height: 100%;
+              height: 80%;
               background: var(--color-white);
               border: 1px solid var(--color-primary-medium);
               border-radius: var(--border-radius-medium);
