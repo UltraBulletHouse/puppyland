@@ -76,6 +76,10 @@ export class AppDoghouseItem extends LitElement {
     this.newName = newName;
   }
 
+  onCloseEditing() {
+    this.isEditingName = false;
+  }
+
   async saveNewName() {
     const doghouseId = this.dogouseInfo?.id;
     if (!this.accessToken || !doghouseId) return;
@@ -124,7 +128,8 @@ export class AppDoghouseItem extends LitElement {
         <div id="doghouse-name">
           ${this.isEditingName ? nameInput : nameText}
           ${this.isEditingName
-            ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>`
+            ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>
+                <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
             : html`<sl-icon name="pencil" @click=${this.editName}></sl-icon>`}
         </div>
         <div id="doghouse-hp">

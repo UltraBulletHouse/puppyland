@@ -62,9 +62,26 @@ export class AppDogView extends LitElement {
       #info-container div {
         margin-bottom: 20px;
       }
+      #dog-level-icon {
+      }
       #dog-exp-bar,
       #dog-energy-bar {
+        --indicator-color: var(--color-secondary);
+        --height: 10px;
+
         margin-top: 10px;
+      }
+      #pencil-wrapper {
+        position: relative;
+      }
+      #names-counter {
+        position: absolute;
+        top: -3px;
+        right: -18px;
+        font-size: 12px;
+        background: var(--color-primary-medium);
+        border-radius: 50px;
+        padding: 0px 5px;
       }
     `,
   ];
@@ -105,6 +122,10 @@ export class AppDogView extends LitElement {
   onChangeName(event: Event) {
     const newName = (event.target as HTMLInputElement)?.value;
     this.newName = newName;
+  }
+
+  onCloseEditing() {
+    this.isEditingName = false;
   }
 
   async firstUpdated() {
@@ -158,13 +179,20 @@ export class AppDogView extends LitElement {
                   ></sl-input>`
                 : this.newName ?? name ?? ''}
               ${this.isEditingName
-                ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>`
-                : html`<sl-icon name="pencil" @click=${this.editName}></sl-icon>`}
+                ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>
+                    <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
+                : html` <div id="pencil-wrapper">
+                    <sl-icon name="pencil" @click=${this.editName}></sl-icon>
+                    <div id="names-counter">${this.dogInfo.nameChangesCounter}</div>
+                  </div>`}
             </div>
             <div id="info-container">
               <div id="dog-level">
-                <sl-icon name="star"></sl-icon>Level:
-                <sl-badge variant="success" pill>${level}</sl-badge>
+                <sl-icon name="star"></sl-icon>Level: ${level}
+                <!-- <div id="dog-level-wrapper">
+                  <sl-icon id="dog-level-icon" name="star"></sl-icon>
+                <span id="dog-level-counter">${level}</span>
+                </div> -->
               </div>
               <div id="dog-experience">
                 <sl-icon name="mortarboard"></sl-icon>Exp: ${experience} /

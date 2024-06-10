@@ -2,6 +2,7 @@ export interface DogInfo {
   id: string;
   userId: string;
   name: string;
+  nameChangesCounter: number;
   availableDoghouses: number;
   energy: number;
   energyMax: number;
