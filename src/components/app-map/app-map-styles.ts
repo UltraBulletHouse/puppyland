@@ -22,7 +22,7 @@ export const AppMapStyles = [
       height: 44px;
       width: 70px;
       padding: 10px;
-      background: var(--color-primary-light);
+      background: var(--color-white);
       border-radius: var(--border-radius-medium);
       border: 1px solid var(--color-primary-medium);
     }

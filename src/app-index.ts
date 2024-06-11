@@ -128,7 +128,8 @@ export class AppIndex extends LitElement {
         this.accessToken = accessToken;
 
         this.watchUserPos();
-        this.view = View.LOADING_MAP_VIEW;
+        // this.view = View.LOADING_MAP_VIEW;
+        this.view = View.DOGHOUSE_VIEW;
       } else {
         console.log('Please sign-in');
         this.view = View.SIGNIN_VIEW;

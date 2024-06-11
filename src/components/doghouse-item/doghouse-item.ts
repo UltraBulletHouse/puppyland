@@ -22,6 +22,11 @@ export class AppDoghouseItem extends LitElement {
     css`
       #container {
         height: 100%;
+        margin: 10px;
+        padding: 10px;
+        border-radius: var(--border-radius-big);
+        background-color: var(--color-primary-light);
+        border: 1px solid var(--color-primary-medium);
       }
       p {
         margin: 5px 0;
@@ -29,14 +34,15 @@ export class AppDoghouseItem extends LitElement {
       #doghouse-name {
         display: flex;
         align-items: center;
-        width: 90%;
+        justify-content: center;
+        font-size: 20px;
       }
       #doghouse-name-wrapper {
         display: flex;
         max-width: 85%;
       }
-      #doghouse-name-wrapper sl-icon {
-        flex-shrink: 0;
+      #doghouse-name sl-icon {
+        font-size: 14px;
       }
       #doghouse-name-text {
         overflow: hidden;
@@ -49,7 +55,11 @@ export class AppDoghouseItem extends LitElement {
       #doghouse-days sl-icon,
       #doghouse-hp sl-icon {
         margin-left: 10px;
-        margin-right: 10px;
+        margin-right: 2px;
+      }
+      #doghouse-days,
+      #doghouse-hp {
+        font-weight: 300;
       }
     `,
   ];
@@ -120,7 +130,7 @@ export class AppDoghouseItem extends LitElement {
     ></sl-input>`;
 
     const nameText = html` <p id="doghouse-name-wrapper">
-      <sl-icon name="tag"></sl-icon><span id="doghouse-name-text">${displayName}</span>
+      <span id="doghouse-name-text">${displayName}</span>
     </p>`;
 
     return html`
@@ -133,7 +143,7 @@ export class AppDoghouseItem extends LitElement {
             : html`<sl-icon name="pencil" @click=${this.editName}></sl-icon>`}
         </div>
         <div id="doghouse-hp">
-          <p><sl-icon name="heart-pulse"></sl-icon>HP: ${hp}/${maxHp}</p>
+          <p><sl-icon name="heart-pulse"></sl-icon>${hp}/${maxHp}</p>
         </div>
         <div id="doghouse-days">
           <p>

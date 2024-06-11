@@ -3,8 +3,6 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 
-import '@shoelace-style/shoelace/dist/components/details/details.js';
-
 import '../components/app-spinner/app-spinner';
 import '../components/doghouse-item/doghouse-item';
 import { API_DOGHOUSE_GET } from '../constants/apiConstants';
@@ -108,12 +106,12 @@ export class AppDoghousesView extends LitElement {
             () =>
               this.doghouses?.map(
                 (item) => html`
-                  <sl-details summary=${item.name}>
+                  <div>
                     <app-dogouse-item
                       .dogouseInfo=${item}
                       @updateDoghouse=${this.updateDoghouse}
                     ></app-dogouse-item>
-                  </sl-details>
+                  </div>
                 `
               ),
             () => html`<app-spinner></app-spinner>`

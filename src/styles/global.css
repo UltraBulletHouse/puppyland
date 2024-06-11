@@ -5,15 +5,11 @@
 
   /* ----------------COLORS---------------------------- */
   /* ORANGE */
-  /* --color-primary: #f97a2c;
-  --color-primary-light: #ffeee4;*/
-
   --color-primary: #ff6100;
-  --color-primary-medium: #ffc6a3;
-  --color-primary-light: #f9f6f4;
+  --color-primary-medium: #f2dacc;
+  --color-primary-light: #fff1e8;
 
   /* GREEN */
-  /* --color-secondary: #00c5b7; */
   --color-secondary: #00bd31;
   --color-secondary-light: #c4f4f0;
 
@@ -25,7 +21,6 @@
   --color-blue: #2e96f8;
 
   /* WHITE */
-  /* --color-white: #fffaf6; */
   --color-white: #f9f8f7;
 
   /* BLACK */
@@ -38,30 +33,6 @@
   --border-radius-medium: 16px;
   --border-radius-small: 8px;
   --border-radius-circle: 50%;
-
-  /* -------------------OLD VALUES--------------------- */
-  /* --sl-color-primary-50: var(--sl-color-green-50);
-  --sl-color-primary-100: var(--sl-color-green-100);
-  --sl-color-primary-200: var(--sl-color-green-200);
-  --sl-color-primary-300: var(--sl-color-green-300);
-  --sl-color-primary-400: var(--sl-color-green-400);
-  --sl-color-primary-500: var(--sl-color-green-500);
-  --sl-color-primary-600: var(--sl-color-green-600);
-  --sl-color-primary-700: var(--sl-color-green-700);
-  --sl-color-primary-800: var(--sl-color-green-800);
-  --sl-color-primary-900: var(--sl-color-green-900);
-  --sl-color-primary-950: var(--sl-color-green-950); */
-
-  /* green: #37a26e */
-  /* --color-green: #37a26e; */
-
-  /* orange: #f97a2c */
-  /* --color-primary: #f97a2c; */
-  /* --color-primary: #ffa755; */
-  /* --color-primary-light: #ffeee4; */
-
-  /* blue: #2e96f8 */
-  /* --color-blue: #2e96f8; */
 }
 
 html,
