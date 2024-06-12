@@ -3,6 +3,7 @@ import { DogInfo } from './dog';
 export interface Doghouse {
   id: string;
   dogId: string;
+  dogName: string;
   name: string;
   lat: number;
   lng: number;

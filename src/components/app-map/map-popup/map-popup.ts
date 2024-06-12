@@ -121,6 +121,7 @@ export class MapPopup extends LitElement {
           font-size: 40px;
         }
         #dog-name {
+          overflow: hidden;
           font-size: 12px;
         }
         #dh-features {
@@ -167,6 +168,7 @@ export class MapPopup extends LitElement {
           flex: 1;
           margin-top: 8px;
           width: 100%;
+          overflow: hidden;
         }
         #popup-actions {
           display: flex;
@@ -217,7 +219,7 @@ export class MapPopup extends LitElement {
             <div id="dog-icon">
               <svg-icon name="dogFace"></svg-icon>
             </div>
-            <div id="dog-name">ReksioPizdeksio</div>
+            <div id="dog-name">${decodeURIComponent(this.dogName ?? '')}</div>
           </div>
           <div id="popup-actions">
             <div

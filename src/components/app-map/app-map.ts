@@ -109,20 +109,20 @@ export class AppMap extends LitElement {
     if (!this.map || !this.userPos || !this.doghouses) return;
 
     const dogInfoId = this.dogInfo?.id;
-    const dogInfoName = encodeURIComponent(this.dogInfo?.name ?? '');
 
     this.doghouses.forEach((doghouse: Doghouse) => {
       if (!this.map || !this.userPos) return;
-      const { id, dogId, name, lat, lng, hp, maxHp } = doghouse;
+      const { id, dogId, dogName, name, lat, lng, hp, maxHp } = doghouse;
       const dhName = encodeURIComponent(name);
+      const dhDogName = encodeURIComponent(dogName ?? '');
 
       const popupContent =
         dogId === dogInfoId
           ? `<map-popup
             isOwn=${true}
             dogId=${dogInfoId}
-            dogName=${dogInfoName}
             dhId=${id}
+            dogName=${dhDogName}
             dhName=${dhName}
             dhHp=${hp} 
             dhMaxHp=${maxHp}
@@ -132,7 +132,7 @@ export class AppMap extends LitElement {
             `
           : `<map-popup
             dogId=${dogInfoId}
-            dogName=${dogInfoName}
+            dogName=${dhDogName}
             dhId=${id}
             dhName=${dhName}
             dhHp=${hp}
