@@ -23,6 +23,7 @@ export interface ClosestDoghouse {
 
 export interface GetDoghouseResponse {
   doghousesList: Doghouse[];
+  doghouseNameChangesCounter: number;
 }
 
 export interface CreateResult {

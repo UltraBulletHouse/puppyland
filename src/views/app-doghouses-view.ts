@@ -64,6 +64,9 @@ export class AppDoghousesView extends LitElement {
   @state()
   doghouses: Doghouse[] | null = null;
 
+  @state()
+  doghouseNameChangesCounter: number = 0;
+
   updateDoghouse(event: CustomEvent<Doghouse>) {
     if (!this.doghouses) return;
     const dhToUpdate = event.detail;
@@ -86,6 +89,7 @@ export class AppDoghousesView extends LitElement {
       }
     );
     this.doghouses = dogInfoResponse.data.doghousesList;
+    this.doghouseNameChangesCounter = dogInfoResponse.data.doghouseNameChangesCounter;
   }
 
   render() {

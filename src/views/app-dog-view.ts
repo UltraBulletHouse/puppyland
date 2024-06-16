@@ -101,6 +101,8 @@ export class AppDogView extends LitElement {
   newName: string | null = null;
 
   editName() {
+    if (this.dogInfo?.nameChangesCounter === 0) return;
+
     this.isEditingName = true;
   }
 
@@ -181,7 +183,7 @@ export class AppDogView extends LitElement {
               ${this.isEditingName
                 ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>
                     <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
-                : html` <div id="pencil-wrapper">
+                : html`<div id="pencil-wrapper">
                     <sl-icon name="pencil" @click=${this.editName}></sl-icon>
                     <div id="names-counter">${this.dogInfo.nameChangesCounter}</div>
                   </div>`}
@@ -195,11 +197,10 @@ export class AppDogView extends LitElement {
                 </div> -->
               </div>
               <div id="dog-experience">
-                <sl-icon name="mortarboard"></sl-icon>Exp: ${experience} /
-                ${experience + expForNextLevel}
+                <sl-icon name="mortarboard"></sl-icon>Exp: ${experience} / ${expForNextLevel}
                 <sl-progress-bar
                   id="dog-exp-bar"
-                  value=${(experience / (experience + expForNextLevel)) * 100}
+                  value=${(experience / expForNextLevel) * 100}
                 ></sl-progress-bar>
               </div>
               <!-- <div id="dog-owned-doghouses">
