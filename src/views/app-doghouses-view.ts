@@ -27,11 +27,15 @@ export class AppDoghousesView extends LitElement {
         background: var(--color-white);
       }
       #title {
-        font-weight: 400;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin: 20px 0;
       }
       #title #title-text {
-        margin-left: 10px;
+        font-weight: 400;
+        font-size: 30px;
+        margin: 0 30px 0 30px;
       }
       #list {
         height: 100%;
@@ -50,6 +54,9 @@ export class AppDoghousesView extends LitElement {
         display: block;
         text-overflow: ellipsis;
       }
+      .is-edit-mode {
+        color: var(--color-primary);
+      }
     `,
   ];
 
@@ -67,12 +74,19 @@ export class AppDoghousesView extends LitElement {
   @state()
   doghouseNameChangesCounter: number = 0;
 
+  @state()
+  editMode: boolean = false;
+
   updateDoghouse(event: CustomEvent<Doghouse>) {
     if (!this.doghouses) return;
     const dhToUpdate = event.detail;
     const updatedDoghouses = this.doghouses.map((x) => (x.id === dhToUpdate.id ? dhToUpdate : x));
 
     this.doghouses = updatedDoghouses;
+  }
+
+  handleEditMode() {
+    this.editMode = !this.editMode;
   }
 
   async connectedCallback() {
@@ -99,10 +113,15 @@ export class AppDoghousesView extends LitElement {
 
     return html`
       <div id="container">
-        <h2 id="title">
-          <sl-icon name="houses"></sl-icon>
-          <span id="title-text">Your doghouses</span>
-        </h2>
+        <div id="title">
+          <!-- <sl-icon name="houses"></sl-icon> -->
+          <div id="title-text">Your doghouses</div>
+          <sl-icon
+            name="gear"
+            @click=${this.handleEditMode}
+            class=${this.editMode ? 'is-edit-mode' : ''}
+          ></sl-icon>
+        </div>
 
         <div id="list">
           ${when(
@@ -113,6 +132,7 @@ export class AppDoghousesView extends LitElement {
                   <div>
                     <app-dogouse-item
                       .dogouseInfo=${item}
+                      .isEditMode=${this.editMode}
                       @updateDoghouse=${this.updateDoghouse}
                     ></app-dogouse-item>
                   </div>

@@ -1,5 +1,5 @@
 import { consume } from '@lit/context';
-import { LitElement, css, html } from 'lit';
+import { LitElement, PropertyValueMap, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/input/input.js';
@@ -71,6 +71,9 @@ export class AppDoghouseItem extends LitElement {
   @property({ type: Object })
   dogouseInfo: Doghouse | null = null;
 
+  @property({ type: Boolean })
+  isEditMode: boolean = false;
+
   @state()
   isEditingName: boolean = false;
 
@@ -88,6 +91,12 @@ export class AppDoghouseItem extends LitElement {
 
   onCloseEditing() {
     this.isEditingName = false;
+  }
+
+  updated(changedProperties: PropertyValueMap<this>) {
+    if (changedProperties.has('isEditMode') && !this.isEditMode) {
+      this.onCloseEditing();
+    }
   }
 
   async saveNewName() {
@@ -117,6 +126,7 @@ export class AppDoghouseItem extends LitElement {
     if (!this.dogouseInfo) return null;
     const { name, hp, maxHp, createdDate } = this.dogouseInfo;
     const displayName = this.newName ?? name ?? '';
+    const displayEdit = this.isEditingName && this.isEditMode;
 
     const nameInput = html`<sl-input
       id="input"
@@ -136,11 +146,13 @@ export class AppDoghouseItem extends LitElement {
     return html`
       <div id="container">
         <div id="doghouse-name">
-          ${this.isEditingName ? nameInput : nameText}
-          ${this.isEditingName
+          ${displayEdit ? nameInput : nameText}
+          ${displayEdit
             ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>
                 <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
-            : html`<sl-icon name="pencil" @click=${this.editName}></sl-icon>`}
+            : this.isEditMode
+              ? html`<sl-icon name="pencil" @click=${this.editName}></sl-icon>`
+              : ''}
         </div>
         <div id="doghouse-hp">
           <p><sl-icon name="heart-pulse"></sl-icon>${hp}/${maxHp}</p>
