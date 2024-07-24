@@ -14,16 +14,20 @@ import { apiCall } from '../utils/apiUtils';
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
 
 const shopItems = [
-  'extended_attack_range_buff',
-  'attack_5_pack',
-  'attack_25_pack',
-  'attack_12_pack',
   'doghouse_1_pack',
   'doghouse_3_pack',
   'doghouse_6_pack',
   'health_50_bonus',
   'health_max_bonus',
 ];
+
+// {
+//   id: 'doghouse_1_pack',
+//   name: 'Doghouse 1 pack',
+//   icon: 'doghouse-1-pack',
+//   price: 1,
+//   description: ''
+// }
 
 @customElement('app-shop-view')
 export class AppShopView extends LitElement {
@@ -104,7 +108,7 @@ export class AppShopView extends LitElement {
         );
         // Google Play Billing is supported!
 
-        const skuDetails: GoogleBillingItem[] = await service.getDetails([item]);
+        const skuDetails: GoogleBillingItem[] = await service.getDetails(shopItems);
         console.log('SkuDetails = ', skuDetails);
 
         await this.makePurchase(item);
