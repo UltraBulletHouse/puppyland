@@ -129,7 +129,7 @@ export class AppIndex extends LitElement {
 
         this.watchUserPos();
         // this.view = View.LOADING_MAP_VIEW;
-        this.view = View.DOGHOUSE_VIEW;
+        this.view = View.SHOP_VIEW;
       } else {
         console.log('Please sign-in');
         this.view = View.SIGNIN_VIEW;

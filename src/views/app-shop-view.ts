@@ -21,13 +21,46 @@ const shopItems = [
   'health_max_bonus',
 ];
 
-// {
-//   id: 'doghouse_1_pack',
-//   name: 'Doghouse 1 pack',
-//   icon: 'doghouse-1-pack',
-//   price: 1,
-//   description: ''
-// }
+const shopItemsDoghouse = [
+  {
+    id: 'doghouse_1_pack',
+    name: 'Doghouse 1 pack',
+    icon: 'doghouse-1-pack',
+    price: 1,
+    description: '',
+  },
+  {
+    id: 'doghouse_3_pack',
+    name: 'Doghouse 3 pack',
+    icon: 'doghouse-3-pack',
+    price: 1,
+    description: '',
+  },
+  {
+    id: 'doghouse_6_pack',
+    name: 'Doghouse 6 pack',
+    icon: 'doghouse-6-pack',
+    price: 1,
+    description: '',
+  },
+];
+
+const shopItemsHealth = [
+  {
+    id: 'health_50_bonus',
+    name: 'Health 50 bonus',
+    icon: 'health-50-bonus',
+    price: 1,
+    description: '',
+  },
+  {
+    id: 'health_max_bonus',
+    name: 'Health max bonus',
+    icon: 'health-max-bonus',
+    price: 1,
+    description: '',
+  },
+];
 
 @customElement('app-shop-view')
 export class AppShopView extends LitElement {
@@ -38,13 +71,27 @@ export class AppShopView extends LitElement {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         height: 100%;
         width: 100%;
         background: var(--color-white);
+        padding: 20px;
       }
       #buy-btn {
         margin-bottom: 10px;
+      }
+      .items-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+        border: 1px solid black;
+        border-radius: var(--border-radius-small);
+      }
+      .shop-item {
+        width: 86px;
+        margin: 10px;
+        border: 1px solid red;
+        border-radius: var(--border-radius-small);
       }
     `,
   ];
@@ -126,13 +173,32 @@ export class AppShopView extends LitElement {
     return html`
       <div id="container">
         <div>SHOP</div>
-        ${shopItems.map(
-          (item) =>
-            html`<sl-button id="buy-btn" @click=${() => this.buyProduct(item)} pill
-              >${item}</sl-button
-            >`
-        )}
+        <div class="items-container">
+          ${shopItemsDoghouse.map(
+            (item) =>
+              html`<div class="shop-item">
+                <div>${item.name}</div>
+                <div>${item.price}</div>
+              </div> `
+          )}
+        </div>
+        <div class="items-container">
+          ${shopItemsHealth.map(
+            (item) =>
+              html`<div class="shop-item">
+                <div>${item.name}</div>
+                <div>${item.price}</div>
+              </div> `
+          )}
+        </div>
       </div>
     `;
   }
 }
+
+// ${shopItems.map(
+//   (item) =>
+//     html`<sl-button id="buy-btn" @click=${() => this.buyProduct(item)} pill
+//       >${item}</sl-button
+//     >`
+// )}
