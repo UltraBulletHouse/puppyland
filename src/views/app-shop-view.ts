@@ -6,7 +6,7 @@ import '../components/app-map/app-map';
 import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { AcknowledgePurchaseResponse, GoogleBillingItem } from '../types/shop';
+import { AcknowledgePurchaseResponse, GoogleBillingItem, ShopItem } from '../types/shop';
 import { alertNotifySuccess } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
 
@@ -21,7 +21,7 @@ const shopItems = [
   'health_max_bonus',
 ];
 
-const shopItemsDoghouse = [
+const shopItemsDoghouse: ShopItem[] = [
   {
     id: 'doghouse_1_pack',
     name: 'Doghouse 1 pack',
@@ -45,7 +45,7 @@ const shopItemsDoghouse = [
   },
 ];
 
-const shopItemsHealth = [
+const shopItemsHealth: ShopItem[] = [
   {
     id: 'health_50_bonus',
     name: 'Health 50 bonus',
@@ -76,6 +76,9 @@ export class AppShopView extends LitElement {
         background: var(--color-white);
         padding: 20px;
       }
+      #title {
+        margin-bottom: 20px;
+      }
       #buy-btn {
         margin-bottom: 10px;
       }
@@ -83,15 +86,23 @@ export class AppShopView extends LitElement {
         display: flex;
         justify-content: center;
         width: 100%;
-        margin-bottom: 10px;
-        border: 1px solid black;
+        margin-bottom: 20px;
         border-radius: var(--border-radius-small);
+        border: 1px solid var(--color-primary-medium);
       }
       .shop-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         width: 86px;
         margin: 10px;
-        border: 1px solid red;
         border-radius: var(--border-radius-small);
+        border: 1px solid var(--color-primary-medium);
+        background-color: var(--color-primary-light);
+      }
+      .item-title {
+        text-align: center;
       }
     `,
   ];
@@ -169,28 +180,19 @@ export class AppShopView extends LitElement {
     }
   }
 
+  shopItem = (item: ShopItem) =>
+    html`<div class="shop-item">
+      <div class="item-title">${item.name}</div>
+      <div class="item-image">💊</div>
+      <div class="item-price">${item.price}$</div>
+    </div> `;
+
   render() {
     return html`
       <div id="container">
-        <div>SHOP</div>
-        <div class="items-container">
-          ${shopItemsDoghouse.map(
-            (item) =>
-              html`<div class="shop-item">
-                <div>${item.name}</div>
-                <div>${item.price}</div>
-              </div> `
-          )}
-        </div>
-        <div class="items-container">
-          ${shopItemsHealth.map(
-            (item) =>
-              html`<div class="shop-item">
-                <div>${item.name}</div>
-                <div>${item.price}</div>
-              </div> `
-          )}
-        </div>
+        <div id="title">SHOP</div>
+        <div class="items-container">${shopItemsDoghouse.map((item) => this.shopItem(item))}</div>
+        <div class="items-container">${shopItemsHealth.map((item) => this.shopItem(item))}</div>
       </div>
     `;
   }

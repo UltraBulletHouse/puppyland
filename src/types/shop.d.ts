@@ -22,3 +22,11 @@ export interface GoogleBillingItem {
   title: string;
   type: string;
 }
+
+export interface ShopItem {
+  id: string;
+  name: string;
+  icon: string;
+  price: number;
+  description: string;
+}
