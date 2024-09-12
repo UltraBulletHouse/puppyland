@@ -21,14 +21,17 @@ export class AppUserView extends LitElement {
     css`
       #container {
         display: flex;
-        justify-content: center;
         align-items: center;
         flex-direction: column;
         height: 100%;
+        padding-top: 100px;
         background: var(--color-white);
       }
       #initials {
         margin-bottom: 40px;
+      }
+      #attribution-container {
+        padding-top: 50px;
       }
     `,
   ];
@@ -49,6 +52,16 @@ export class AppUserView extends LitElement {
       <div id="container">
         <sl-avatar id="initials" initials=${userInitials} label="Avatar"></sl-avatar>
         <sl-button @click=${this.signOut}>SignOut</sl-button>
+
+        <div id="attribution-container">
+          <h4>Attribution:</h4>
+          <div>
+            <a
+              href="https://www.freepik.com/icon/first-aid-kit_2679336#fromView=search&page=2&position=53&uuid=444a2b3d-808a-48ed-ba83-8652ce216897"
+              >Icon by Freepik</a
+            >
+          </div>
+        </div>
       </div>
     `;
   }

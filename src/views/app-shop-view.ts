@@ -104,6 +104,9 @@ export class AppShopView extends LitElement {
       .item-title {
         text-align: center;
       }
+      .shop-item-icon {
+        width: 46px;
+      }
     `,
   ];
 
@@ -180,11 +183,21 @@ export class AppShopView extends LitElement {
     }
   }
 
+  //   async firstUpdated() {
+  //     if (!this.accessToken) return;
+
+  //     const shopItemsResponse = await apiCall(this.accessToken).get(`https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${PACKAGE_NAME}/inappproducts`);
+  // console.log(shopItemsResponse);
+  //   }
+
   shopItem = (item: ShopItem) =>
     html`<div class="shop-item">
       <div class="item-title">${item.name}</div>
-      <div class="item-image">💊</div>
+      <div class="item-image">
+        <img class="shop-item-icon" src="src/assets/icons-png/firstaid.png" />
+      </div>
       <div class="item-price">${item.price}$</div>
+      <div></div>
     </div> `;
 
   render() {

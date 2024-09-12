@@ -116,6 +116,8 @@ export class AppDogView extends LitElement {
         name: this.newName,
       }
     );
+    console.log(dogInfoResponse.data.dog);
+    updateDogInfoEvent(this, dogInfoResponse.data.dog);
 
     this.newName = dogInfoResponse.data.dog.name;
     this.isEditingName = false;
@@ -142,12 +144,22 @@ export class AppDogView extends LitElement {
   }
 
   render() {
-    const { name, availableDoghouses, experience, expForNextLevel, level, energy, energyMax } =
+    const {
+      name,
+      availableDoghouses,
+      experience,
+      expForNextLevel,
+      level,
+      energy,
+      energyMax,
+      nameChangesCounter,
+    } =
       this.dogInfo ??
       ({
         id: '',
         userId: '',
-        name: '',
+        name: '-----------',
+        nameChangesCounter: 0,
         availableDoghouses: 0,
         energy: 0,
         energyMax: 0,
@@ -171,7 +183,7 @@ export class AppDogView extends LitElement {
               ${this.isEditingName
                 ? html`<sl-input
                     id="input"
-                    value=${this.newName ?? ''}
+                    value=${this.newName ?? name ?? ''}
                     @sl-change=${this.onChangeName}
                     minlength="3"
                     maxlength="20"
@@ -179,13 +191,13 @@ export class AppDogView extends LitElement {
                     required
                     pill
                   ></sl-input>`
-                : this.newName ?? name ?? ''}
+                : this.newName ?? ''}
               ${this.isEditingName
                 ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>
                     <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
                 : html`<div id="pencil-wrapper">
                     <sl-icon name="pencil" @click=${this.editName}></sl-icon>
-                    <div id="names-counter">${this.dogInfo.nameChangesCounter}</div>
+                    <div id="names-counter">${nameChangesCounter}</div>
                   </div>`}
             </div>
             <div id="info-container">
