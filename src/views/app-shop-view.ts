@@ -1,6 +1,6 @@
 import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 
 import '../components/app-map/app-map';
 import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
@@ -9,6 +9,7 @@ import { sharedStyles } from '../styles/shared-styles';
 import { AcknowledgePurchaseResponse, GoogleBillingItem, ShopItem } from '../types/shop';
 import { alertNotifySuccess } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
+import { getImagePngUrl } from '../utils/getImage';
 
 //TODO: Move it to .env
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
@@ -114,6 +115,9 @@ export class AppShopView extends LitElement {
   @property({ attribute: false })
   accessToken: string | null = null;
 
+  @state()
+  shopItems: Object = { czydziala: 'nie' };
+
   async acknowledgePurchase(productId: string, token: string) {
     if (!this.accessToken) return;
 
@@ -183,18 +187,22 @@ export class AppShopView extends LitElement {
     }
   }
 
-  //   async firstUpdated() {
-  //     if (!this.accessToken) return;
+  async firstUpdated() {
+    if (!this.accessToken) return;
 
-  //     const shopItemsResponse = await apiCall(this.accessToken).get(`https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${PACKAGE_NAME}/inappproducts`);
-  // console.log(shopItemsResponse);
-  //   }
+    const shopItemsResponse = await apiCall(this.accessToken).get(
+      `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${PACKAGE_NAME}/inappproducts`
+    );
+    console.log(shopItemsResponse);
+
+    this.shopItems = shopItemsResponse.data;
+  }
 
   shopItem = (item: ShopItem) =>
     html`<div class="shop-item">
       <div class="item-title">${item.name}</div>
       <div class="item-image">
-        <img class="shop-item-icon" src="src/assets/icons-png/firstaid.png" />
+        <img class="shop-item-icon" src="${getImagePngUrl('firstaid')}" />
       </div>
       <div class="item-price">${item.price}$</div>
       <div></div>
@@ -206,6 +214,8 @@ export class AppShopView extends LitElement {
         <div id="title">SHOP</div>
         <div class="items-container">${shopItemsDoghouse.map((item) => this.shopItem(item))}</div>
         <div class="items-container">${shopItemsHealth.map((item) => this.shopItem(item))}</div>
+
+        <div>${JSON.stringify(this.shopItems)}</div>
       </div>
     `;
   }
