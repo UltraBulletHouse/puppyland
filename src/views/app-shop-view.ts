@@ -15,11 +15,13 @@ import { getImagePngUrl } from '../utils/getImage';
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
 
 const shopItems = [
+  'repair_50_bonus',
+  'repair_max_bonus',
+  'energy_10_boost',
+  'energy_50_boost',
   'doghouse_1_pack',
   'doghouse_3_pack',
   'doghouse_6_pack',
-  'health_50_bonus',
-  'health_max_bonus',
 ];
 
 const shopItemsDoghouse: ShopItem[] = [
@@ -189,13 +191,21 @@ export class AppShopView extends LitElement {
 
   async firstUpdated() {
     if (!this.accessToken) return;
+    if ('getDigitalGoodsService' in window) {
+      try {
+        const service = await (window as any).getDigitalGoodsService(
+          'https://play.google.com/billing'
+        );
 
-    const shopItemsResponse = await apiCall(this.accessToken).get(
-      `https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${PACKAGE_NAME}/inappproducts`
-    );
-    console.log(shopItemsResponse);
+        const skuDetails: GoogleBillingItem[] = await service.getDetails(shopItems);
+        console.log('SkuDetails = ', skuDetails);
+        this.shopItems = skuDetails
 
-    this.shopItems = shopItemsResponse.data;
+      } catch (error) {
+        return;
+      }
+    }
+
   }
 
   shopItem = (item: ShopItem) =>
