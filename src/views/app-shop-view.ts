@@ -110,6 +110,12 @@ export class AppShopView extends LitElement {
       .shop-item-icon {
         width: 46px;
       }
+      #shop-resp {
+        width: 100%;
+        max-width: 100%;
+        overflow-wrap: anywhere;
+        overflow: auto;
+      }
     `,
   ];
 
@@ -118,7 +124,7 @@ export class AppShopView extends LitElement {
   accessToken: string | null = null;
 
   @state()
-  shopItems: Object = { czydziala: 'nie' };
+  shopItems: Object = { czydziala: 'nienie fpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfwei fefoiewiof ewkof ewpof ewkopf kerjf reok kopr kprep fkr okprko kor koreko koreo iojr goire gre gokreko gokre okgroke okgreok gokreokg roke gokreok gokreko gok reokokg roekgo kreok gkoreok greok okgreok gokreok okreok reokg koreko groke okgrewok okgokr okwg' };
 
   async acknowledgePurchase(productId: string, token: string) {
     if (!this.accessToken) return;
@@ -225,7 +231,7 @@ export class AppShopView extends LitElement {
         <div class="items-container">${shopItemsDoghouse.map((item) => this.shopItem(item))}</div>
         <div class="items-container">${shopItemsHealth.map((item) => this.shopItem(item))}</div>
 
-        <div>${JSON.stringify(this.shopItems)}</div>
+        <div id="shop-resp">${JSON.stringify(this.shopItems)}</div>
       </div>
     `;
   }
