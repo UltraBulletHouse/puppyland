@@ -14,6 +14,25 @@ import { getImagePngUrl } from '../utils/getImage';
 //TODO: Move it to .env
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
 
+const parseShopItems = (items: ShopItem[], googleItems: GoogleBillingItem[] | null) => {
+  if (!googleItems) return [];
+
+  return items.map((item) => {
+    const googleItem = googleItems.find((googleLocalItem) => googleLocalItem.itemId === item.id);
+    if (!googleItem) return item;
+
+    const parsedItem = {
+      id: item.id,
+      icon: item.icon,
+      name: googleItem.title ?? item.name,
+      price: googleItem.price ?? item.price,
+      description: googleItem.description ?? item.description,
+    };
+
+    return parsedItem;
+  });
+};
+
 const shopItems = [
   'repair_50_bonus',
   'repair_max_bonus',
@@ -28,39 +47,56 @@ const shopItemsDoghouse: ShopItem[] = [
   {
     id: 'doghouse_1_pack',
     name: 'Doghouse 1 pack',
-    icon: 'doghouse-1-pack',
-    price: 1,
+    icon: 'doghouse',
+    price: { currency: 'EUR', value: '' },
     description: '',
   },
   {
     id: 'doghouse_3_pack',
     name: 'Doghouse 3 pack',
-    icon: 'doghouse-3-pack',
-    price: 1,
+    icon: 'doghouse',
+    price: { currency: 'EUR', value: '' },
     description: '',
   },
   {
     id: 'doghouse_6_pack',
     name: 'Doghouse 6 pack',
-    icon: 'doghouse-6-pack',
-    price: 1,
+    icon: 'doghouse',
+    price: { currency: 'EUR', value: '' },
     description: '',
   },
 ];
 
-const shopItemsHealth: ShopItem[] = [
+const shopItemsRepair: ShopItem[] = [
   {
-    id: 'health_50_bonus',
-    name: 'Health 50 bonus',
-    icon: 'health-50-bonus',
-    price: 1,
+    id: 'repair_50_bonus',
+    name: 'Repair 50 bonus',
+    icon: 'toolkit',
+    price: { currency: 'EUR', value: '' },
     description: '',
   },
   {
-    id: 'health_max_bonus',
-    name: 'Health max bonus',
-    icon: 'health-max-bonus',
-    price: 1,
+    id: 'repair_max_bonus',
+    name: 'Repair max bonus',
+    icon: 'toolkit',
+    price: { currency: 'EUR', value: '' },
+    description: '',
+  },
+];
+
+const shopItemsEnergy: ShopItem[] = [
+  {
+    id: 'energy_10_boost',
+    name: 'Energy 50 boost',
+    icon: 'energy-drink',
+    price: { currency: 'EUR', value: '' },
+    description: '',
+  },
+  {
+    id: 'energy_50_boost',
+    name: 'Energy max boost',
+    icon: 'energy-drink',
+    price: { currency: 'EUR', value: '' },
     description: '',
   },
 ];
@@ -124,7 +160,7 @@ export class AppShopView extends LitElement {
   accessToken: string | null = null;
 
   @state()
-  shopItems: Object = { czydziala: 'nienie fpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfweifpofkweopfwei fefoiewiof ewkof ewpof ewkopf kerjf reok kopr kprep fkr okprko kor koreko koreo iojr goire gre gokreko gokre okgroke okgreok gokreokg roke gokreok gokreko gok reokokg roekgo kreok gkoreok greok okgreok gokreok okreok reokg koreko groke okgrewok okgokr okwg' };
+  shopGoogleItems: GoogleBillingItem[] | null = null;
 
   async acknowledgePurchase(productId: string, token: string) {
     if (!this.accessToken) return;
@@ -176,13 +212,11 @@ export class AppShopView extends LitElement {
     if ('getDigitalGoodsService' in window) {
       // Digital Goods API is supported!
       try {
-        const service = await (window as any).getDigitalGoodsService(
-          'https://play.google.com/billing'
-        );
+        // const service = await (window as any).getDigitalGoodsService(
+        //   'https://play.google.com/billing'
+        // );
         // Google Play Billing is supported!
-
-        const skuDetails: GoogleBillingItem[] = await service.getDetails(shopItems);
-        console.log('SkuDetails = ', skuDetails);
+        // const skuDetails: GoogleBillingItem[] = await service.getDetails(shopItems);
 
         await this.makePurchase(item);
 
@@ -204,23 +238,21 @@ export class AppShopView extends LitElement {
         );
 
         const skuDetails: GoogleBillingItem[] = await service.getDetails(shopItems);
-        console.log('SkuDetails = ', skuDetails);
-        this.shopItems = skuDetails
-
+        this.shopGoogleItems = skuDetails;
       } catch (error) {
         return;
       }
     }
-
   }
 
   shopItem = (item: ShopItem) =>
     html`<div class="shop-item">
       <div class="item-title">${item.name}</div>
       <div class="item-image">
-        <img class="shop-item-icon" src="${getImagePngUrl('firstaid')}" />
+        <img class="shop-item-icon" src="${getImagePngUrl(item.icon)}" />
       </div>
-      <div class="item-price">${item.price}$</div>
+      <div class="item-price">${item.price.value}$</div>
+      <div class="item-price">${item.price.currency}$</div>
       <div></div>
     </div> `;
 
@@ -228,10 +260,23 @@ export class AppShopView extends LitElement {
     return html`
       <div id="container">
         <div id="title">SHOP</div>
-        <div class="items-container">${shopItemsDoghouse.map((item) => this.shopItem(item))}</div>
-        <div class="items-container">${shopItemsHealth.map((item) => this.shopItem(item))}</div>
+        <div class="items-container">
+          ${parseShopItems(shopItemsDoghouse, this.shopGoogleItems).map((item) =>
+            this.shopItem(item)
+          )}
+        </div>
+        <div class="items-container">
+          ${parseShopItems(shopItemsRepair, this.shopGoogleItems).map((item) =>
+            this.shopItem(item)
+          )}
+        </div>
+        <div class="items-container">
+          ${parseShopItems(shopItemsEnergy, this.shopGoogleItems).map((item) =>
+            this.shopItem(item)
+          )}
+        </div>
 
-        <div id="shop-resp">${JSON.stringify(this.shopItems)}</div>
+        <div id="shop-resp">${JSON.stringify(this.shopGoogleItems)}</div>
       </div>
     `;
   }

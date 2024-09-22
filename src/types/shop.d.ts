@@ -27,6 +27,6 @@ export interface ShopItem {
   id: string;
   name: string;
   icon: string;
-  price: number;
+  price: Price;
   description: string;
 }
