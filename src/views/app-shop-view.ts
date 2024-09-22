@@ -15,7 +15,7 @@ import { getImagePngUrl } from '../utils/getImage';
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
 
 const parseShopItems = (items: ShopItem[], googleItems: GoogleBillingItem[] | null) => {
-  if (!googleItems) return [];
+  if (!googleItems) return items;
 
   return items.map((item) => {
     const googleItem = googleItems.find((googleLocalItem) => googleLocalItem.itemId === item.id);
@@ -121,7 +121,11 @@ export class AppShopView extends LitElement {
       #buy-btn {
         margin-bottom: 10px;
       }
-      .items-container {
+      #items-container {
+        height: calc(100% - 45px);
+        overflow: auto;
+      }
+      .items-section {
         display: flex;
         justify-content: center;
         width: 100%;
@@ -260,23 +264,24 @@ export class AppShopView extends LitElement {
     return html`
       <div id="container">
         <div id="title">SHOP</div>
-        <div class="items-container">
-          ${parseShopItems(shopItemsDoghouse, this.shopGoogleItems).map((item) =>
-            this.shopItem(item)
-          )}
-        </div>
-        <div class="items-container">
-          ${parseShopItems(shopItemsRepair, this.shopGoogleItems).map((item) =>
-            this.shopItem(item)
-          )}
-        </div>
-        <div class="items-container">
-          ${parseShopItems(shopItemsEnergy, this.shopGoogleItems).map((item) =>
-            this.shopItem(item)
-          )}
-        </div>
 
-        <div id="shop-resp">${JSON.stringify(this.shopGoogleItems)}</div>
+        <div id="items-container">
+          <div class="items-section">
+            ${parseShopItems(shopItemsDoghouse, this.shopGoogleItems).map((item) =>
+              this.shopItem(item)
+            )}
+          </div>
+          <div class="items-section">
+            ${parseShopItems(shopItemsRepair, this.shopGoogleItems).map((item) =>
+              this.shopItem(item)
+            )}
+          </div>
+          <div class="items-section">
+            ${parseShopItems(shopItemsEnergy, this.shopGoogleItems).map((item) =>
+              this.shopItem(item)
+            )}
+          </div>
+        </div>
       </div>
     `;
   }
