@@ -6,13 +6,24 @@ import '../components/app-map/app-map';
 import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { AcknowledgePurchaseResponse, GoogleBillingItem, ShopItem } from '../types/shop';
+import { AcknowledgePurchaseResponse, GoogleBillingItem, Price, ShopItem } from '../types/shop';
 import { alertNotifySuccess } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
 import { getImagePngUrl } from '../utils/getImage';
 
 //TODO: Move it to .env
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
+
+const parsePriceToFixed = (price: Price): Price => {
+  return {
+    currency: price.currency,
+    value: parseFloat(price.value).toFixed(1).toString()
+  }
+}
+
+const removeIdNameFromName = (name: string) => {
+  return name.replace('(dogisland)', '')
+}
 
 const parseShopItems = (items: ShopItem[], googleItems: GoogleBillingItem[] | null) => {
   if (!googleItems) return items;
@@ -24,8 +35,8 @@ const parseShopItems = (items: ShopItem[], googleItems: GoogleBillingItem[] | nu
     const parsedItem = {
       id: item.id,
       icon: item.icon,
-      name: googleItem.title ?? item.name,
-      price: googleItem.price ?? item.price,
+      name: removeIdNameFromName(googleItem.title) ?? removeIdNameFromName(item.name),
+      price: parsePriceToFixed(googleItem.price) ?? parsePriceToFixed(item.price),
       description: googleItem.description ?? item.description,
     };
 
@@ -46,9 +57,9 @@ const shopItems = [
 const shopItemsDoghouse: ShopItem[] = [
   {
     id: 'doghouse_1_pack',
-    name: 'Doghouse 1 pack',
+    name: 'Doghouse 1 pack (dogisland)',
     icon: 'doghouse',
-    price: { currency: 'EUR', value: '' },
+    price: { currency: 'EUR', value: '1.090000' },
     description: '',
   },
   {
@@ -255,8 +266,8 @@ export class AppShopView extends LitElement {
       <div class="item-image">
         <img class="shop-item-icon" src="${getImagePngUrl(item.icon)}" />
       </div>
-      <div class="item-price">${item.price.value}$</div>
-      <div class="item-price">${item.price.currency}$</div>
+      <div class="item-price">${item.price.value}</div>
+      <div class="item-price">${item.price.currency}</div>
       <div></div>
     </div> `;
 
