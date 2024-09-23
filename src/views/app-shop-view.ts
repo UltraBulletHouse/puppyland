@@ -17,7 +17,7 @@ const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
 const parsePriceToFixed = (price: Price): Price => {
   return {
     currency: price.currency,
-    value: parseFloat(price.value).toFixed(1).toString()
+    value: parseFloat(price.value).toFixed(2).toString()
   }
 }
 
