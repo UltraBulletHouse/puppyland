@@ -17,13 +17,13 @@ const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
 const parsePriceToFixed = (price: Price): Price => {
   return {
     currency: price.currency,
-    value: parseFloat(price.value).toFixed(2).toString()
-  }
-}
+    value: parseFloat(price.value).toFixed(2).toString(),
+  };
+};
 
 const removeIdNameFromName = (name: string) => {
-  return name.replace('(dogisland)', '')
-}
+  return name.replace('(dogisland)', '');
+};
 
 const parseShopItems = (items: ShopItem[], googleItems: GoogleBillingItem[] | null) => {
   if (!googleItems) return items;
@@ -57,24 +57,24 @@ const shopItems = [
 const shopItemsDoghouse: ShopItem[] = [
   {
     id: 'doghouse_1_pack',
-    name: 'Doghouse 1 pack (dogisland)',
+    name: 'Doghouse 1 pack',
     icon: 'doghouse',
-    price: { currency: 'EUR', value: '1.090000' },
-    description: '',
+    price: { currency: 'EUR', value: '1.09' },
+    description: 'You can place 1 additional doghouses',
   },
   {
     id: 'doghouse_3_pack',
     name: 'Doghouse 3 pack',
     icon: 'doghouse',
-    price: { currency: 'EUR', value: '' },
-    description: '',
+    price: { currency: 'EUR', value: '1.09' },
+    description: 'You can place 3 additional doghouses',
   },
   {
     id: 'doghouse_6_pack',
     name: 'Doghouse 6 pack',
     icon: 'doghouse',
-    price: { currency: 'EUR', value: '' },
-    description: '',
+    price: { currency: 'EUR', value: '1.09' },
+    description: 'You can place 6 additional doghouses',
   },
 ];
 
@@ -134,10 +134,12 @@ export class AppShopView extends LitElement {
       }
       #items-container {
         height: calc(100% - 45px);
+        width: 100%;
         overflow: auto;
       }
       .items-section {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         width: 100%;
         margin-bottom: 20px;
@@ -149,7 +151,7 @@ export class AppShopView extends LitElement {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        width: 86px;
+        padding: 10px;
         margin: 10px;
         border-radius: var(--border-radius-small);
         border: 1px solid var(--color-primary-medium);
@@ -157,15 +159,17 @@ export class AppShopView extends LitElement {
       }
       .item-title {
         text-align: center;
+        font-weight: 700;
+      }
+      .item-main-container {
+        display: flex;
       }
       .shop-item-icon {
         width: 46px;
       }
-      #shop-resp {
-        width: 100%;
-        max-width: 100%;
-        overflow-wrap: anywhere;
-        overflow: auto;
+      .item-description {
+        padding: 8px;
+        padding-left: 22px;
       }
     `,
   ];
@@ -263,12 +267,17 @@ export class AppShopView extends LitElement {
   shopItem = (item: ShopItem) =>
     html`<div class="shop-item">
       <div class="item-title">${item.name}</div>
-      <div class="item-image">
-        <img class="shop-item-icon" src="${getImagePngUrl(item.icon)}" />
+      <div class="item-main-container">
+        <div class="item-image">
+          <img class="shop-item-icon" src="${getImagePngUrl(item.icon)}" />
+        </div>
+        <div class="item-description">${item.description}</div>
       </div>
-      <div class="item-price">${item.price.value}</div>
-      <div class="item-price">${item.price.currency}</div>
-      <div></div>
+      <div>
+        <sl-button @click=${() => this.buyProduct(item.id)} pill
+          >${item.price.value} ${item.price.currency}</sl-button
+        >
+      </div>
     </div> `;
 
   render() {
