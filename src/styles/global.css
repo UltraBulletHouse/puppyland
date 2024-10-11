@@ -45,7 +45,7 @@
   --border-radius-big: 24px;
   --border-radius-medium: 16px;
   --border-radius-small: 8px;
-  --border-radius-circle: 50%;
+  --border-radius-circle: 999px;
 }
 
 html,
