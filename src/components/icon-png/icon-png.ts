@@ -18,8 +18,7 @@ export class IconPngBadge extends LitElement {
         right: -4px;
         top: -6px;
         font-size: 13px;
-        line-height: 17px;
-        padding: 0 4px;
+        padding: 1px 4px 0;
         background: var(--color-primary);
         border-radius: var(--border-radius-circle);
         color: var(--color-white);
