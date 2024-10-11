@@ -1,3 +1,5 @@
+import { DogInfo } from './dog';
+
 export interface AcknowledgePurchase {
   packageName: string;
   productId: string;
@@ -6,6 +8,9 @@ export interface AcknowledgePurchase {
 
 export interface AcknowledgePurchaseResponse {
   success: boolean;
+  itemBought: string;
+  quantity: number;
+  dog: DogInfo;
 }
 
 export interface Price {

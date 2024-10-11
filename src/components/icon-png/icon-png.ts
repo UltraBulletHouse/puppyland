@@ -1,6 +1,3 @@
-
-
-
 import { css } from 'lit';
 import { LitElement, html } from 'lit-element';
 import { customElement, property } from 'lit/decorators.js';
@@ -13,19 +10,19 @@ export class IconPngBadge extends LitElement {
   static styles = [
     sharedStyles,
     css`
-    .image-wrapper {
-      position: relative;
-    }
-    .badge{
-      position: absolute;
-      right: -4px;
-      top: -6px;
-      font-size:13px;
-      padding: 0 4px;
-      background: var(--color-primary);
-      border-radius: var(--border-radius-circle);
-      color: var(--color-white)
-    }
+      .image-wrapper {
+        position: relative;
+      }
+      .badge {
+        position: absolute;
+        right: -4px;
+        top: -6px;
+        font-size: 13px;
+        padding: 0 4px;
+        background: var(--color-primary);
+        border-radius: var(--border-radius-circle);
+        color: var(--color-white);
+      }
       .image {
         width: var(--icon-png-badge-width);
       }
@@ -40,8 +37,8 @@ export class IconPngBadge extends LitElement {
 
   render() {
     return html`<div class="image-wrapper">
-    <div class="badge">${this.badge}</div>
-    <img class="image" src="${getImagePngUrl(this.name)}" />
-  </div>`;
+      <div class="badge">${this.badge}</div>
+      <img class="image" src="${getImagePngUrl(this.name)}" />
+    </div>`;
   }
 }

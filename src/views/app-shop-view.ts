@@ -1,15 +1,20 @@
 import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 import '../components/icon-png/icon-png';
 import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { AcknowledgePurchaseResponse, GoogleBillingItem, Price, ShopItemLocal } from '../types/shop';
+import {
+  AcknowledgePurchaseResponse,
+  GoogleBillingItem,
+  Price,
+  ShopItemLocal,
+} from '../types/shop';
 import { alertNotifySuccess } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
 //TODO: Move it to .env
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
@@ -203,6 +208,8 @@ export class AppShopView extends LitElement {
         token,
       }
     );
+
+    return result.data
   }
 
   async makePurchase(item: string) {
@@ -232,10 +239,12 @@ export class AppShopView extends LitElement {
       const paymentResponse = await request.show();
       const { purchaseToken } = paymentResponse.details;
 
-      await this.acknowledgePurchase(item, purchaseToken);
+      const result = await this.acknowledgePurchase(item, purchaseToken);
       await paymentResponse.complete('success');
 
-      alertNotifySuccess('You just bought item!');
+      const {itemBought, quantity} = result as AcknowledgePurchaseResponse
+
+      alertNotifySuccess(`You bought ${quantity} of ${itemBought}`);
     } catch (error) {
       console.log(error);
     }
