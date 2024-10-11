@@ -40,6 +40,7 @@ const parseShopItems = (items: ShopItemLocal[], googleItems: GoogleBillingItem[]
     const parsedItem = {
       id: item.id,
       icon: item.icon,
+      badge: item.badge,
       name: removeIdNameFromName(googleItem.title) ?? removeIdNameFromName(item.name),
       price: parsePriceToFixed(googleItem.price) ?? parsePriceToFixed(item.price),
       description: googleItem.description ?? item.description,
