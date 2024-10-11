@@ -2,14 +2,14 @@ import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
-import '../components/app-map/app-map';
+import '../components/icon-png/icon-png';
 import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { AcknowledgePurchaseResponse, GoogleBillingItem, Price, ShopItem } from '../types/shop';
+import { AcknowledgePurchaseResponse, GoogleBillingItem, Price, ShopItemLocal } from '../types/shop';
 import { alertNotifySuccess } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
-import { getImagePngUrl } from '../utils/getImage';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 //TODO: Move it to .env
 const PACKAGE_NAME = 'app.netlify.astounding_naiad_fc1ffa.twa';
@@ -25,7 +25,7 @@ const removeIdNameFromName = (name: string) => {
   return name.replace('(dogisland)', '');
 };
 
-const parseShopItems = (items: ShopItem[], googleItems: GoogleBillingItem[] | null) => {
+const parseShopItems = (items: ShopItemLocal[], googleItems: GoogleBillingItem[] | null) => {
   if (!googleItems) return items;
 
   return items.map((item) => {
@@ -54,35 +54,39 @@ const shopItems = [
   'doghouse_6_pack',
 ];
 
-const shopItemsDoghouse: ShopItem[] = [
+const shopItemsDoghouse: ShopItemLocal[] = [
   {
     id: 'doghouse_1_pack',
     name: 'Doghouse 1 pack',
     icon: 'doghouse',
-    price: { currency: 'EUR', value: '1.09' },
+    badge: '1',
+    price: { currency: 'EUR', value: '0' },
     description: 'You can place 1 additional doghouses',
   },
   {
     id: 'doghouse_3_pack',
     name: 'Doghouse 3 pack',
     icon: 'doghouse',
-    price: { currency: 'EUR', value: '1.09' },
+    badge: '3',
+    price: { currency: 'EUR', value: '0' },
     description: 'You can place 3 additional doghouses',
   },
   {
     id: 'doghouse_6_pack',
     name: 'Doghouse 6 pack',
     icon: 'doghouse',
-    price: { currency: 'EUR', value: '1.09' },
+    badge: '6',
+    price: { currency: 'EUR', value: '0' },
     description: 'You can place 6 additional doghouses',
   },
 ];
 
-const shopItemsRepair: ShopItem[] = [
+const shopItemsRepair: ShopItemLocal[] = [
   {
     id: 'repair_50_bonus',
     name: 'Repair 50 bonus',
     icon: 'toolkit',
+    badge: '50',
     price: { currency: 'EUR', value: '' },
     description: '',
   },
@@ -90,23 +94,26 @@ const shopItemsRepair: ShopItem[] = [
     id: 'repair_max_bonus',
     name: 'Repair max bonus',
     icon: 'toolkit',
+    badge: 'MAX',
     price: { currency: 'EUR', value: '' },
     description: '',
   },
 ];
 
-const shopItemsEnergy: ShopItem[] = [
+const shopItemsEnergy: ShopItemLocal[] = [
   {
     id: 'energy_10_boost',
-    name: 'Energy 50 boost',
+    name: 'Energy 10 boost',
     icon: 'energy-drink',
+    badge: '10',
     price: { currency: 'EUR', value: '' },
     description: '',
   },
   {
     id: 'energy_50_boost',
-    name: 'Energy max boost',
+    name: 'Energy 50 boost',
     icon: 'energy-drink',
+    badge: '50',
     price: { currency: 'EUR', value: '' },
     description: '',
   },
@@ -163,9 +170,13 @@ export class AppShopView extends LitElement {
       }
       .item-main-container {
         display: flex;
+        width: 100%;
       }
       .shop-item-icon {
         width: 46px;
+      }
+      icon-png-badge {
+        --icon-png-badge-width: 46px;
       }
       .item-description {
         padding: 8px;
@@ -184,11 +195,14 @@ export class AppShopView extends LitElement {
   async acknowledgePurchase(productId: string, token: string) {
     if (!this.accessToken) return;
 
-    await apiCall(this.accessToken).patch<AcknowledgePurchaseResponse>(API_PURCHASE_ACKNOWLEDGE, {
-      packageName: PACKAGE_NAME,
-      productId,
-      token,
-    });
+    const result = await apiCall(this.accessToken).patch<AcknowledgePurchaseResponse>(
+      API_PURCHASE_ACKNOWLEDGE,
+      {
+        packageName: PACKAGE_NAME,
+        productId,
+        token,
+      }
+    );
   }
 
   async makePurchase(item: string) {
@@ -240,7 +254,7 @@ export class AppShopView extends LitElement {
         await this.makePurchase(item);
 
         // const existingPurchases = await service.listPurchases();
-        // console.log(existingPurchases);
+        // <console.log(existingPurchases);
       } catch (error) {
         // Google Play Billing is not available. Use another payment flow.
         return;
@@ -264,12 +278,12 @@ export class AppShopView extends LitElement {
     }
   }
 
-  shopItem = (item: ShopItem) =>
+  shopItem = (item: ShopItemLocal) =>
     html`<div class="shop-item">
       <div class="item-title">${item.name}</div>
       <div class="item-main-container">
         <div class="item-image">
-          <img class="shop-item-icon" src="${getImagePngUrl(item.icon)}" />
+          <icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>
         </div>
         <div class="item-description">${item.description}</div>
       </div>

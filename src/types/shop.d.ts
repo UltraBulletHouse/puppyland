@@ -30,3 +30,7 @@ export interface ShopItem {
   price: Price;
   description: string;
 }
+
+export interface ShopItemLocal extends ShopItem {
+  badge?: string;
+}

@@ -28,6 +28,19 @@
   --color-black-medium: #666666;
   --color-black-light: #b4b4b4;
 
+  /* Mapping colors */
+  /* --sl-color-primary-50: var(--color-primary-light);
+  --sl-color-primary-100: var(--color-primary-light);
+  --sl-color-primary-200: var(--color-primary-light);
+  --sl-color-primary-300: var(--color-primary-light);
+  --sl-color-primary-400: var(--color-primary-medium);
+  --sl-color-primary-500: var(--color-primary-medium);
+  --sl-color-primary-600: var(--color-primary-medium);
+  --sl-color-primary-700: var(--color-primary-medium);
+  --sl-color-primary-800: var(--color-primary);
+  --sl-color-primary-900: var(--color-primary);
+  --sl-color-primary-950: var(--color-primary); */
+
   /* ----------------BORDER-RADIUS------------------- */
   --border-radius-big: 24px;
   --border-radius-medium: 16px;
