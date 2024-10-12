@@ -11,7 +11,7 @@ import { dogInfoContext, updateDogInfoEvent } from '../../../contexts/dogInfoCon
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { DogInfo } from '../../../types/dog';
 import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
-import { alertNotifySuccess, alertNotifyWarning } from '../../../utils/alertsUtils';
+import { alertNotifySuccess } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
@@ -103,14 +103,14 @@ export class MapModal extends LitElement {
     const doghouseInfoResponse = attackDoghouseResponse?.data?.doghouse;
     const attackResult = attackDoghouseResponse?.data?.attackResult;
 
-    const attackMessage = attackResult.isDoghouseDestroyed
-      ? `You destroyed ${this.dhName}`
-      : `You dealt ${attackResult.damageDealt} damages to ${this.dhName}`;
+    // const attackMessage = attackResult.isDoghouseDestroyed
+    //   ? `You destroyed ${this.dhName}`
+    //   : `You dealt ${attackResult.damageDealt} damages to ${this.dhName}`;
 
-    alertNotifyWarning(attackMessage, {
-      duration: 5000,
-    });
-    alertNotifySuccess(`You gained ${attackResult.experienceGained} XP`, {
+    alertNotifySuccess(`
+      💥 ${attackResult.damageDealt} DMG  </br>
+      🎓 ${attackResult.experienceGained} XP
+      `, {
       duration: 5000,
     });
 

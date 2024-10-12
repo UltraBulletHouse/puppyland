@@ -4,7 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 @customElement('app-modal')
 export class AppModal extends LitElement {
   @property({ type: Object })
-  element?: TemplateResult<1>;
+  element: TemplateResult<1> = {} as TemplateResult<1>;
 
   @property({ type: Boolean })
   open: boolean = false;

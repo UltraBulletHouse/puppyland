@@ -34,7 +34,6 @@ export class AppDoghousesView extends LitElement {
       }
       #title #title-text {
         font-weight: 400;
-        font-size: 30px;
         margin: 0 30px 0 30px;
       }
       #list {
@@ -115,7 +114,7 @@ export class AppDoghousesView extends LitElement {
       <div id="container">
         <div id="title">
           <!-- <sl-icon name="houses"></sl-icon> -->
-          <div id="title-text">Your doghouses</div>
+          <div id="title-text">DOGHOUSES</div>
           <sl-icon
             name="gear"
             @click=${this.handleEditMode}
@@ -127,7 +126,7 @@ export class AppDoghousesView extends LitElement {
           ${when(
             this.doghouses,
             () =>
-              this.doghouses?.map(
+              this.doghouses?.reverse().map(
                 (item) => html`
                   <div>
                     <app-dogouse-item

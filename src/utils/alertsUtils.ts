@@ -9,7 +9,8 @@ interface AlertNotifyProps {
 
 function escapeHtml(html: string) {
   const div = document.createElement('div');
-  div.textContent = html;
+
+  div.setHTMLUnsafe(html);
   return div.innerHTML;
 }
 
