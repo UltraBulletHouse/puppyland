@@ -210,7 +210,7 @@ export class AppShopView extends LitElement {
       }
     );
 
-    return result.data
+    return result.data;
   }
 
   async makePurchase(item: string) {
@@ -243,7 +243,7 @@ export class AppShopView extends LitElement {
       const result = await this.acknowledgePurchase(item, purchaseToken);
       await paymentResponse.complete('success');
 
-      const {itemBought, quantity} = result as AcknowledgePurchaseResponse
+      const { itemBought, quantity } = result as AcknowledgePurchaseResponse;
 
       alertNotifySuccess(`You bought ${quantity} of ${itemBought}`);
     } catch (error) {

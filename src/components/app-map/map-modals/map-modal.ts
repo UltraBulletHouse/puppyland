@@ -107,12 +107,15 @@ export class MapModal extends LitElement {
     //   ? `You destroyed ${this.dhName}`
     //   : `You dealt ${attackResult.damageDealt} damages to ${this.dhName}`;
 
-    alertNotifySuccess(`
+    alertNotifySuccess(
+      `
       💥 ${attackResult.damageDealt} DMG  </br>
       🎓 ${attackResult.experienceGained} XP
-      `, {
-      duration: 5000,
-    });
+      `,
+      {
+        duration: 5000,
+      }
+    );
 
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
