@@ -7,13 +7,6 @@ interface AlertNotifyProps {
   duration?: number;
 }
 
-function escapeHtml(html: string) {
-  const div = document.createElement('div');
-
-  div.setHTMLUnsafe(html);
-  return div.innerHTML;
-}
-
 export const alertNotify = ({
   message = '',
   variant = 'default',
@@ -26,7 +19,7 @@ export const alertNotify = ({
     duration: duration,
     innerHTML: `
       <sl-icon name="${icon}" slot="icon"></sl-icon>
-      ${escapeHtml(message)}
+      ${message}
     `,
   });
 
