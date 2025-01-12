@@ -116,7 +116,7 @@ export class AppDogView extends LitElement {
         name: this.newName,
       }
     );
-    console.log(dogInfoResponse.data.dog);
+
     updateDogInfoEvent(this, dogInfoResponse.data.dog);
 
     this.newName = dogInfoResponse.data.dog.name;
