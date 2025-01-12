@@ -171,7 +171,7 @@ export class AppDogView extends LitElement {
         photo: null,
       } as DogInfo);
 
-    return this.dogInfo
+    return this.dogInfo && this.newName
       ? html`
           <div id="container">
             <div id="dog-image">
