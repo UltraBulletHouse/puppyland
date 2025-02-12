@@ -175,6 +175,10 @@ export class AppMap extends LitElement {
     this.map.setMaxBounds(bounds);
   }
 
+  updateDoghousesHandler() {
+    this.getDoghousesList();
+  }
+
   /* OK - raczej */
   async addDoghouse() {
     if (!this.accessToken || !this.userPos || !this.dogInfo) return;
@@ -242,7 +246,7 @@ export class AppMap extends LitElement {
   render() {
     return html`
       <link rel="stylesheet" href="https://cdn.skypack.dev/leaflet/dist/leaflet.css" />
-      <div id="container">
+      <div id="container" @updateDoghouses=${this.updateDoghousesHandler}>
         <div id="info-box">
           <div id="info-box-line">
             <sl-icon id="info-box-icon" name="lightning-charge"></sl-icon>${this.dogInfo?.energy}

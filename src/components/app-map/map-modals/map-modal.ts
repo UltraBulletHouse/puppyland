@@ -123,6 +123,8 @@ export class MapModal extends LitElement {
     if (doghouseInfoResponse) {
       this.dhHp = doghouseInfoResponse.hp.toString();
     }
+
+    sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse?.hp.toString());
   };
 
   repairDoghouse = async () => {

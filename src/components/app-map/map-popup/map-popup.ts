@@ -1,5 +1,5 @@
 import { consume } from '@lit/context';
-import { LitElement, html } from 'lit';
+import { LitElement, PropertyValues, html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
 
@@ -46,6 +46,9 @@ export class MapPopup extends LitElement {
   dhMaxHp?: string;
 
   @state()
+  dhHpLocal?: string;
+
+  @state()
   isClose: boolean = false;
 
   @state()
@@ -80,6 +83,16 @@ export class MapPopup extends LitElement {
 
     const dhProximity = checkHowClose(userCoordsObj, dhCoordsObj);
     this.isClose = dhProximity < CLOSEST_DISTANCE;
+  }
+
+  protected updated(changedProperties: PropertyValues): void {
+    if (changedProperties.has('dhHp')) {
+      this.dhHpLocal = this.dhHp;
+    }
+  }
+
+  updateDoghousesHandler(event: CustomEvent<string>) {
+    this.dhHpLocal = event.detail;
   }
 
   protected createRenderRoot() {
@@ -201,13 +214,13 @@ export class MapPopup extends LitElement {
           display: none;
         }
       </style>
-      <div id="popup-container">
+      <div id="popup-container" @updateDoghouses=${this.updateDoghousesHandler}>
         <div id="doghouse-section">
           <p id="dh-name">${decodeURIComponent(this.dhName ?? '')}</p>
           <div id="dh-features">
             <div id="dh-features-wrapper">
               <span class="dh-features-item">
-                <sl-icon name="heart" id="dh-features-icon-healh"></sl-icon>${this.dhHp}
+                <sl-icon name="heart" id="dh-features-icon-healh"></sl-icon>${this.dhHpLocal}
               </span>
               </span>
             </div>
