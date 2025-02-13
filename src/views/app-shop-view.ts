@@ -52,7 +52,7 @@ const parseShopItems = (items: ShopItemLocal[], googleItems: GoogleBillingItem[]
 
 const shopItems = [
   'repair_50',
-  'repair_max_bonus',
+  'repair_max',
   'energy_10_boost',
   'energy_50_boost',
   'doghouse_1_pack',
@@ -97,8 +97,8 @@ const shopItemsRepair: ShopItemLocal[] = [
     description: '',
   },
   {
-    id: 'repair_max_bonus',
-    name: 'Repair max bonus',
+    id: 'repair_max',
+    name: 'Repair max',
     icon: 'toolkit',
     badge: 'MAX',
     price: { currency: 'EUR', value: '' },
