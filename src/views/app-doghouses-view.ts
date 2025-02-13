@@ -101,7 +101,7 @@ export class AppDoghousesView extends LitElement {
         },
       }
     );
-    this.doghouses = dogInfoResponse.data.doghousesList;
+    this.doghouses = dogInfoResponse.data.doghousesList.reverse();
     this.doghouseNameChangesCounter = dogInfoResponse.data.doghouseNameChangesCounter;
   }
 
@@ -126,7 +126,7 @@ export class AppDoghousesView extends LitElement {
           ${when(
             this.doghouses,
             () =>
-              this.doghouses?.reverse().map(
+              this.doghouses?.map(
                 (item) => html`
                   <div>
                     <app-dogouse-item
