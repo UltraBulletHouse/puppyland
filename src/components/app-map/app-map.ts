@@ -62,10 +62,6 @@ export class AppMap extends LitElement {
   @state()
   doghouses?: Doghouse[];
 
-  //TODO: Usunac chyba
-  // @state()
-  // addDoghouseResponse: CreateResult | null = null;
-
   @state()
   doghouseOwnPath: string | null = null;
 
@@ -74,6 +70,13 @@ export class AppMap extends LitElement {
 
   @state()
   doghouseAttackPath: string | null = null;
+
+  @state()
+  openPopupId: string | null = null;
+
+  openPopup(id: string | null) {
+    this.openPopupId = id;
+  }
 
   closePopup() {
     this.map?.closePopup();
@@ -102,6 +105,10 @@ export class AppMap extends LitElement {
       }).addTo(this.map);
     }
   }
+
+  closePopupHandler = () => {
+    this.openPopup(null);
+  };
 
   setDoghousesMarkers() {
     console.log('#SetMarkers', this.userPos);
@@ -149,6 +156,8 @@ export class AppMap extends LitElement {
         canvasMarkerImg: {
           url: dogId === dogInfoId ? doghouseOwnPath : doghouseEnemyPath,
         },
+        openPopup: this.openPopupId === id,
+        closePopupHandler: this.closePopupHandler,
       });
     });
   }
@@ -199,6 +208,8 @@ export class AppMap extends LitElement {
       alertNotifySuccess(`Your doghouse ${createResult.name} was created`);
 
       this.getDoghousesList();
+
+      this.openPopup(createResult.id);
     }
   }
 

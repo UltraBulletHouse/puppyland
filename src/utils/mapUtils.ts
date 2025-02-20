@@ -77,9 +77,19 @@ interface DrawMarker {
   canvasMarkerImg: CanvasMarkerImg;
   popupContent: any;
   radius?: number;
+  openPopup: boolean;
+  closePopupHandler: () => void;
 }
 
-export const drawMarker = ({ self, coords, popupContent, radius, canvasMarkerImg }: DrawMarker) => {
+export const drawMarker = ({
+  self,
+  coords,
+  popupContent,
+  radius,
+  canvasMarkerImg,
+  openPopup,
+  closePopupHandler,
+}: DrawMarker) => {
   const marker = (L as any).canvasMarker(L.latLng(coords.lat, coords.lng), {
     radius: radius ?? 30, // WAZNE zeby nie bylo artefaktow
     img: {
@@ -102,6 +112,14 @@ export const drawMarker = ({ self, coords, popupContent, radius, canvasMarkerImg
   mark.on('click', function (ev: any) {
     ev.target.openPopup(ev.target.getLatLng());
   });
+
+  mark.on('popupclose', function () {
+    closePopupHandler();
+  });
+
+  if (openPopup) {
+    mark.openPopup();
+  }
 };
 
 /* -------------------------- OLD --------------------------- */
