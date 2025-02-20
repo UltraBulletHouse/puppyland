@@ -5,6 +5,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 
 import '../components/icon-png/icon-png';
 import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
+import { updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
 import {
@@ -243,7 +244,9 @@ export class AppShopView extends LitElement {
       const result = await this.acknowledgePurchase(item, purchaseToken);
       await paymentResponse.complete('success');
 
-      const { itemBought, quantity } = result as AcknowledgePurchaseResponse;
+      const { itemBought, quantity, dog } = result as AcknowledgePurchaseResponse;
+
+      updateDogInfoEvent(this, dog);
 
       alertNotifySuccess(`You bought ${quantity} of ${itemBought}`);
     } catch (error) {

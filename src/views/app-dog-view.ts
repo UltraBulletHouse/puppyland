@@ -201,13 +201,7 @@ export class AppDogView extends LitElement {
                   </div>`}
             </div>
             <div id="info-container">
-              <div id="dog-level">
-                <sl-icon name="star"></sl-icon>Level: ${level}
-                <!-- <div id="dog-level-wrapper">
-                  <sl-icon id="dog-level-icon" name="star"></sl-icon>
-                <span id="dog-level-counter">${level}</span>
-                </div> -->
-              </div>
+              <div id="dog-level"><sl-icon name="star"></sl-icon>Level: ${level}</div>
               <div id="dog-experience">
                 <sl-icon name="mortarboard"></sl-icon>Exp: ${experience} / ${expForNextLevel}
                 <sl-progress-bar
@@ -215,9 +209,7 @@ export class AppDogView extends LitElement {
                   value=${(experience / expForNextLevel) * 100}
                 ></sl-progress-bar>
               </div>
-              <!-- <div id="dog-owned-doghouses">
-                <sl-icon name="houses"></sl-icon>Owned doghouses:
-              </div> -->
+
               <div id="dog-attack-power">
                 <sl-icon name="lightning-charge"></sl-icon>Energy: ${energy} / ${energyMax}
                 <sl-progress-bar
@@ -225,9 +217,7 @@ export class AppDogView extends LitElement {
                   value=${(energy / energyMax) * 100}
                 ></sl-progress-bar>
               </div>
-              <!-- <div id="dog-available-attacks">
-                <sl-icon name="heart-arrow"></sl-icon>Available attacks:
-              </div> -->
+
               <div id="dog-available-doghouses">
                 <sl-icon name="house-add"></sl-icon>Available doghouses: ${availableDoghouses}
               </div>
