@@ -22,7 +22,7 @@ export class AppFooter extends LitElement {
         border-top: 1px solid var(--color-primary-medium);
         border-top-right-radius: 17px;
         border-top-left-radius: 17px;
-        z-index: 1000;
+        z-index: 2000;
       }
       #footer.footer-has-shadow {
         box-shadow: 3px -1px 20px 11px #0000002b;

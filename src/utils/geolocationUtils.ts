@@ -21,7 +21,7 @@ export const watchPositionError = (err: GeolocationPositionError) => {
   if (err.code === 1) {
     alertNotifyDanger('Please allow geolocation access');
   } else {
-    alertNotifyDanger('Geolocation error: ' + err.message);
+    alertNotifyDanger('Geolocation is turned off ' + err.message);
     console.log(err);
   }
 };

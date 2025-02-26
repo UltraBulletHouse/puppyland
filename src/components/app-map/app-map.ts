@@ -1,7 +1,7 @@
 import { consume } from '@lit/context';
 import L from 'leaflet';
 import 'leaflet-edgebuffer';
-import { LitElement, PropertyValueMap, html } from 'lit';
+import { LitElement, PropertyValues, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
@@ -12,7 +12,7 @@ import { API_DOGHOUSES_NEAR_USER, API_DOGHOUSE_CREATE } from '../../constants/ap
 import { dogInfoContext, updateDogInfoEvent } from '../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { userInfoContext } from '../../contexts/userInfoContext';
-import { userPosContext } from '../../contexts/userPosContext';
+import { GeolocationController } from '../../controllers/GeolocationController';
 import '../../scripts/leaflet-canvas-markers';
 import { DogInfo } from '../../types/dog';
 import {
@@ -49,8 +49,7 @@ export class AppMap extends LitElement {
   @property({ attribute: false })
   dogInfo: DogInfo | null = null;
 
-  @consume({ context: userPosContext, subscribe: true })
-  @property({ attribute: false })
+  @state()
   userPos: Coords | null = null;
 
   @state()
@@ -88,6 +87,15 @@ export class AppMap extends LitElement {
     }
   }
 
+  private geolocation = new GeolocationController(this);
+
+  watchUserPos() {
+    const watchUserPosCallback = (coords: Coords) => {
+      this.userPos = coords;
+    };
+    this.geolocation.watchUserPostion(watchUserPosCallback);
+  }
+
   /* ZMIANA - malowac markery (setDoghousesMarkers) co iles metrow */
   setUserPostion() {
     if (!this.map || !this.userPos) return;
@@ -111,8 +119,6 @@ export class AppMap extends LitElement {
   };
 
   setDoghousesMarkers() {
-    console.log('#SetMarkers', this.userPos);
-
     if (!this.map || !this.userPos || !this.doghouses) return;
 
     const dogInfoId = this.dogInfo?.id;
@@ -213,9 +219,8 @@ export class AppMap extends LitElement {
     }
   }
 
-  /* OK */
-  willUpdate(changedProperties: PropertyValueMap<this>) {
-    if (changedProperties.has('map') && this.map && this.userPos) {
+  updated(changedProperties: PropertyValues<this>): void {
+    if (changedProperties.has('userPos') && this.map && this.userPos) {
       const { lat, lng } = this.userPos;
       this.map.setView([lat, lng], 17);
 
@@ -252,6 +257,8 @@ export class AppMap extends LitElement {
     );
 
     this.map.attributionControl.setPosition('topright');
+
+    this.watchUserPos();
   }
 
   render() {
@@ -292,6 +299,16 @@ export class AppMap extends LitElement {
             </div>
           </div>
         </div>
+
+        ${!this.userPos &&
+        html`<div id="geolocation-overlay">
+          <div id="geolocation-overlay-content">
+            <div id="geolocation-position" @click=${this.watchUserPos}>
+              <svg-icon name="accurate" id="geolocation-position-icon"></svg-icon>
+              <p id="geolocation-position-text">Click to find your position</p>
+            </div>
+          </div>
+        </div>`}
       </div>
     `;
   }

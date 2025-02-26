@@ -164,6 +164,33 @@ export const AppMapStyles = [
       cursor: pointer;
       animation: pulse 4s infinite;
     }
+    #geolocation-overlay {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: color-mix(in srgb, var(--color-primary-medium) 65%, transparent);
+      z-index: 1001;
+    }
+    #geolocation-position {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #geolocation-position-icon {
+      font-size: 64px;
+      color: var(--color-primary);
+    }
+    #geolocation-position-text {
+      color: var(--color-black);
+      margin-top: 20px;
+    }
+
     @keyframes pulse {
       0% {
         box-shadow: 0 0 0 0;

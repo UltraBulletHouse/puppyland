@@ -1,6 +1,6 @@
 import { provide } from '@lit/context';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
-import { LitElement, PropertyValueMap, css, html } from 'lit';
+import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { cache } from 'lit/directives/cache.js';
 
@@ -16,13 +16,10 @@ import { API_USER_INFO } from './constants/apiConstants';
 import { dogInfoContext } from './contexts/dogInfoContext';
 import { accessTokenContext } from './contexts/userFirebaseContext';
 import { userInfoContext } from './contexts/userInfoContext';
-import { userPosContext } from './contexts/userPosContext';
 import { viewContext } from './contexts/viewContext';
-import { GeolocationController } from './controllers/GeolocationController';
 import './styles/global.css';
 import { sharedStyles } from './styles/shared-styles';
 import { DogInfo } from './types/dog';
-import { Coords } from './types/geolocation';
 import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
@@ -85,32 +82,6 @@ export class AppIndex extends LitElement {
     this.dogInfo = event.detail;
   }
 
-  /* UserPosition context */
-  @provide({ context: userPosContext })
-  @property({ attribute: false })
-  userPos: Coords | null = null;
-
-  private geolocation = new GeolocationController(this);
-
-  watchUserPos() {
-    const watchUserPosCallback = (coords: Coords) => {
-      // console.log('watchUserPosCallback', coords);
-      this.userPos = coords;
-    };
-    this.geolocation.watchUserPostion(watchUserPosCallback);
-  }
-
-  willUpdate(changedProperties: PropertyValueMap<this>) {
-    // console.log(this.view === View.LOADING_MAP_VIEW, this.userPos, this.userInfo);
-    if (changedProperties.has('view') && changedProperties.size === 1) {
-      return;
-    }
-
-    if (this.view === View.LOADING_MAP_VIEW && this.userPos && this.userInfo) {
-      this.view = View.MAP_VIEW;
-    }
-  }
-
   firstUpdated() {
     // TODO: https://stackoverflow.com/questions/54580414/how-can-i-detect-if-my-website-is-opened-inside-a-trusted-web-actvity
     // TODO: sprawdzac czy dziala sklep Google (to co w shop view)
@@ -127,10 +98,8 @@ export class AppIndex extends LitElement {
         this.dogInfo = userInfoResponse?.data?.dog;
         this.accessToken = accessToken;
 
-        this.watchUserPos();
-
         /* DEFAULT VIEW */
-        this.view = View.LOADING_MAP_VIEW;
+        this.view = View.MAP_VIEW;
       } else {
         console.log('Please sign-in');
         this.view = View.SIGNIN_VIEW;
@@ -167,9 +136,6 @@ export class AppIndex extends LitElement {
       case View.LOADING_VIEW: {
         return html`<app-loading-view></app-loading-view>`;
       }
-      case View.LOADING_MAP_VIEW: {
-        return html`<app-loading-map-view></app-loading-map-view>`;
-      }
       default: {
         return html`<div>NULL</div>`;
       }
@@ -180,7 +146,6 @@ export class AppIndex extends LitElement {
     const isFooterHidden =
       this.view === View.SIGNIN_VIEW ||
       this.view === View.LOADING_VIEW ||
-      this.view === View.LOADING_MAP_VIEW ||
       !this.view;
 
     const hasShadowFooter = this.view === View.MAP_VIEW;
@@ -190,7 +155,6 @@ export class AppIndex extends LitElement {
         id="main-container"
         @updateView=${this.updateView}
         @updateUserInfo=${this.updateUserInfo}
-        @watchUserPos=${this.watchUserPos}
         @updateDogInfo=${this.updateDogInfo}
       >
         <!-- <div id="content">${cache(
