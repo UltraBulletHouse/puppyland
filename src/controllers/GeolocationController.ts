@@ -18,14 +18,20 @@ export class GeolocationController implements ReactiveController {
   }
 
   hostConnected() {
+    console.log('CONNECTED');
     this.checkPermissions();
   }
 
   hostDisconnected() {}
 
+  resetController () {
+    this.host.removeController(this);
+    this.host.addController(this);
+
+  }
+
   checkPermissions() {
-    this.host.requestUpdate()
-    
+    console.log(navigator.geolocation);
     navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
       if (permissionStatus.state == 'denied') {
         alertNotifyDanger('Permission for geolocation denied');

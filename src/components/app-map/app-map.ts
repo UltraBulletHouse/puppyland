@@ -89,21 +89,9 @@ export class AppMap extends LitElement {
 
   private geolocation = new GeolocationController(this);
 
-  // getUserPosition() {
-  //   console.log('getUserPosition');
-
-  //   this.geolocation.checkPermissions()
-
-  //   const getUserPosCallback = (coords: Coords) => {
-  //     console.log('getUserPositionCallback', coords);
-  //     this.userPos = coords;
-  //   };
-  //   this.geolocation.getUserPosition(getUserPosCallback);
-  // }
-
   watchUserPos() {
     console.log('watchUserPos');
-    this.geolocation.checkPermissions()
+    this.geolocation.resetController()
 
 
     const watchUserPosCallback = (coords: Coords) => {
