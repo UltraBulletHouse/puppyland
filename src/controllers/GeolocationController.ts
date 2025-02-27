@@ -31,7 +31,6 @@ export class GeolocationController implements ReactiveController {
   }
 
   checkPermissions() {
-    console.log(navigator.geolocation);
     navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
       if (permissionStatus.state == 'denied') {
         alertNotifyDanger('Permission for geolocation denied');
