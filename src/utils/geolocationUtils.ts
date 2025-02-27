@@ -21,8 +21,8 @@ export const watchPositionError = (err: GeolocationPositionError) => {
   if (err.code === 1) {
     alertNotifyDanger('Please allow geolocation access');
   } else {
-    alertNotifyDanger('Geolocation is turned off ' + err.message);
-    console.log(err);
+    // alertNotifyDanger('Geolocation is turned off ' + err.message);
+    // console.log(err);
   }
 };
 //TODO: Przeniesc do controllera wszystko i zapisywac id

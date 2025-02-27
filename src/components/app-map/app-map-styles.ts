@@ -173,7 +173,7 @@ export const AppMapStyles = [
       left: 0;
       height: 100vh;
       width: 100vw;
-      background-color: color-mix(in srgb, var(--color-primary-medium) 65%, transparent);
+      background-color: color-mix(in srgb, var(--color-primary-medium) 70%, transparent);
       z-index: 1001;
     }
     #geolocation-position {
