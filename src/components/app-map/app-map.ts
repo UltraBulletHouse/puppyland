@@ -89,6 +89,15 @@ export class AppMap extends LitElement {
 
   private geolocation = new GeolocationController(this);
 
+  getUserPosition() {
+    console.log('getUserPosition');
+    const getUserPosCallback = (coords: Coords) => {
+      console.log('getUserPositionCallback', coords);
+      this.userPos = coords;
+    };
+    this.geolocation.getUserPosition(getUserPosCallback);
+  }
+
   watchUserPos() {
     console.log('watchUserPos');
     const watchUserPosCallback = (coords: Coords) => {
@@ -310,7 +319,7 @@ export class AppMap extends LitElement {
         ${!this.userPos &&
         html`<div id="geolocation-overlay">
           <div id="geolocation-overlay-content">
-            <div id="geolocation-position" @click=${this.watchUserPos}>
+            <div id="geolocation-position" @click=${this.getUserPosition}>
               <svg-icon name="accurate" id="geolocation-position-icon"></svg-icon>
               <p id="geolocation-position-text">Click to find your position</p>
             </div>

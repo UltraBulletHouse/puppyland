@@ -29,32 +29,30 @@ export const watchPositionError = (err: GeolocationPositionError) => {
 export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) => {
   // alertNotifyWarning(navigator.geolocation.getCurrentPosition.toString());
   // console.log('watchUserPosition',navigator.geolocation);
+
   if ('geolocation' in navigator) {
     // alertNotifyWarning('WATCH USER - utils');
-    navigator.geolocation.clearWatch(1);
+    // navigator.geolocation.clearWatch(1);
     // navigator.geolocation.clearWatch(2);
-    // navigator.geolocation.clearWatch(3);
 
     navigator.geolocation.watchPosition(
       watchUserPositionSuccess,
       watchPositionError,
       watchPositionOptions
     );
-
-    // console.log('id', id);
   } else {
     // alertNotifyDanger('Watch position: No geolocation access');
   }
 };
 
-// export const getUserPostion = (getUserPositionSuccess: PositionCallback) => {
-//   if ('geolocation' in navigator) {
-//     navigator.geolocation.getCurrentPosition(
-//       getUserPositionSuccess,
-//       watchPositionError,
-//       watchPositionOptions
-//     );
-//   } else {
-//     // alertNotifyDanger('Get position: No geolocation access');
-//   }
-// };
+export const getUserPosition = (getUserPositionSuccess: PositionCallback) => {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      getUserPositionSuccess,
+      watchPositionError,
+      watchPositionOptions
+    );
+  } else {
+    // alertNotifyDanger('Get position: No geolocation access');
+  }
+};

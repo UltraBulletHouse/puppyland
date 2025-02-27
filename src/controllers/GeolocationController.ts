@@ -2,7 +2,7 @@ import { ReactiveController, ReactiveControllerHost } from 'lit';
 
 import { Coords } from '../types/geolocation';
 import { alertNotifyDanger, alertNotifySuccess } from '../utils/alertsUtils';
-import { watchUserPosition } from '../utils/geolocationUtils';
+import { getUserPosition, watchUserPosition } from '../utils/geolocationUtils';
 
 export class GeolocationController implements ReactiveController {
   private host: ReactiveControllerHost;
@@ -62,5 +62,21 @@ export class GeolocationController implements ReactiveController {
     };
 
     watchUserPosition(watchUserPositionSuccess);
+  }
+
+  getUserPosition(getUserPosSuccess: (userPos: Coords) => void) {
+    const watchUserPositionSuccess = (pos: GeolocationPosition) => {
+      const numberToFixed = (number: number) => parseFloat(number.toFixed(4));
+
+      const lat = numberToFixed(pos.coords.latitude);
+      const lng = numberToFixed(pos.coords.longitude);
+
+      if (this.userPos?.lat === lat && this.userPos?.lng === lng) return;
+
+      this.userPos = { lat, lng };
+      getUserPosSuccess({ lat, lng });
+    };
+
+    getUserPosition(watchUserPositionSuccess);
   }
 }
