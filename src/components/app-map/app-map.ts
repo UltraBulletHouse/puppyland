@@ -91,6 +91,9 @@ export class AppMap extends LitElement {
 
   getUserPosition() {
     console.log('getUserPosition');
+
+    this.geolocation.checkPermissions()
+
     const getUserPosCallback = (coords: Coords) => {
       console.log('getUserPositionCallback', coords);
       this.userPos = coords;
