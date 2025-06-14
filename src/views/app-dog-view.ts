@@ -100,6 +100,9 @@ export class AppDogView extends LitElement {
   @state()
   newName: string | null = null;
 
+  @state()
+  isNameSaveDisabled: boolean = false;
+
   editName() {
     if (this.dogInfo?.nameChangesCounter === 0) return;
 
@@ -108,6 +111,12 @@ export class AppDogView extends LitElement {
 
   async saveNewName() {
     if (!this.accessToken) return;
+    console.log('this.isNameSaveDisabled', this.isNameSaveDisabled);
+    if(this.isNameSaveDisabled) return;
+    this.isNameSaveDisabled = true;
+    setTimeout(() => {
+      this.isNameSaveDisabled = false;
+    }, 10000);
 
     const dogInfoResponse = await apiCall(this.accessToken).patch<DogInfoUpdateResponse>(
       API_DOG_UPDATE,
