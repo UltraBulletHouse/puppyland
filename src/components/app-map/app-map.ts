@@ -90,12 +90,9 @@ export class AppMap extends LitElement {
   private geolocation = new GeolocationController(this);
 
   watchUserPos() {
-    console.log('watchUserPos');
-    this.geolocation.resetController()
-
+    this.geolocation.resetController();
 
     const watchUserPosCallback = (coords: Coords) => {
-      console.log('watchUserPosCallback', coords);
       this.userPos = coords;
     };
     this.geolocation.watchUserPostion(watchUserPosCallback);
@@ -224,12 +221,7 @@ export class AppMap extends LitElement {
     }
   }
 
-  protected willUpdate(_changedProperties: PropertyValues): void {
-    console.log('WillUpdate', _changedProperties);
-  }
-
   updated(changedProperties: PropertyValues<this>): void {
-    console.log('updated', changedProperties);
     if (changedProperties.has('userPos') && this.map && this.userPos) {
       const { lat, lng } = this.userPos;
       this.map.setView([lat, lng], 17);

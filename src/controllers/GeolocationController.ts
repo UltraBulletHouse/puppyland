@@ -24,10 +24,9 @@ export class GeolocationController implements ReactiveController {
 
   hostDisconnected() {}
 
-  resetController () {
+  resetController() {
     this.host.removeController(this);
     this.host.addController(this);
-
   }
 
   checkPermissions() {

@@ -310,28 +310,28 @@ export class AppShopView extends LitElement {
   render() {
     return html`
       <div id="container">
-      <div id="title">SHOP</div>
-      ${this.shopGoogleItems
-        ? html`
-          <div id="items-container">
-          <div class="items-section">
-            ${parseShopItems(shopItemsDoghouse, this.shopGoogleItems).map((item) =>
-            this.shopItem(item)
-            )}
-          </div>
-          <div class="items-section">
-            ${parseShopItems(shopItemsRepair, this.shopGoogleItems).map((item) =>
-            this.shopItem(item)
-            )}
-          </div>
-          <div class="items-section">
-            ${parseShopItems(shopItemsEnergy, this.shopGoogleItems).map((item) =>
-            this.shopItem(item)
-            )}
-          </div>
-          </div>
-        `
-        : null}
+        <div id="title">SHOP</div>
+        ${this.shopGoogleItems
+          ? html`
+              <div id="items-container">
+                <div class="items-section">
+                  ${parseShopItems(shopItemsDoghouse, this.shopGoogleItems).map((item) =>
+                    this.shopItem(item)
+                  )}
+                </div>
+                <div class="items-section">
+                  ${parseShopItems(shopItemsRepair, this.shopGoogleItems).map((item) =>
+                    this.shopItem(item)
+                  )}
+                </div>
+                <div class="items-section">
+                  ${parseShopItems(shopItemsEnergy, this.shopGoogleItems).map((item) =>
+                    this.shopItem(item)
+                  )}
+                </div>
+              </div>
+            `
+          : null}
       </div>
     `;
   }

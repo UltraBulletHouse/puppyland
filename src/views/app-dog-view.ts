@@ -112,7 +112,7 @@ export class AppDogView extends LitElement {
   async saveNewName() {
     if (!this.accessToken) return;
     console.log('this.isNameSaveDisabled', this.isNameSaveDisabled);
-    if(this.isNameSaveDisabled) return;
+    if (this.isNameSaveDisabled) return;
     this.isNameSaveDisabled = true;
     setTimeout(() => {
       this.isNameSaveDisabled = false;

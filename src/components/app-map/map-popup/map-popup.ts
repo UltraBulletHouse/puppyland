@@ -196,8 +196,9 @@ export class MapPopup extends LitElement {
           background-color: var(--color-primary);
           color: var(--color-white);
         }
-        #close-btn.close-btn-is-own {
-          color: var(--color-secondary);
+        #next-btn.next-btn-is-not-close{
+          background-color: var(--color-black-light);
+          pointer-events: none;
         }
         #next-btn.next-btn-is-own {
           background-color: var(--color-secondary);
@@ -209,6 +210,9 @@ export class MapPopup extends LitElement {
           font-size: 22px;
           color: var(--color-primary);
           background-color: var(--color-white);
+        }
+        #close-btn.close-btn-is-own {
+          color: var(--color-secondary);
         }
         .leaflet-popup-close-button {
           display: none;
@@ -244,7 +248,13 @@ export class MapPopup extends LitElement {
             </div>
             <div
               id="next-btn"
-              class=${this.isOwn ? 'next-btn-is-own' : ''}
+              class=${
+                this.isOwn
+                  ? 'next-btn-is-own'
+                  : '' + ' ' + !this.isClose
+                    ? 'next-btn-is-not-close'
+                    : ''
+              }
               @click=${this.openMapModal}
             >
               <sl-icon name="arrow-right"></sl-icon>
