@@ -5,6 +5,7 @@ import { customElement } from 'lit/decorators/custom-element.js';
 
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { Coords } from '../../../types/geolocation';
+import { classNames } from '../../../utils/classNames';
 import { sendEvent } from '../../../utils/eventUtils';
 import { checkHowClose } from '../../../utils/mapUtils';
 import '../map-modals/map-modal';
@@ -52,6 +53,9 @@ export class MapPopup extends LitElement {
   isClose: boolean = false;
 
   @state()
+  isBlocked: boolean = false;
+
+  @state()
   isOpen: boolean = false;
 
   closeMapModal = () => {
@@ -67,7 +71,7 @@ export class MapPopup extends LitElement {
   };
 
   firstUpdated() {
-    const CLOSEST_DISTANCE = 20;
+    const CLOSEST_DISTANCE = 2000;
 
     const dhCoordsArr = this.dhCoords?.split('/');
     let dhCoordsObj: Coords = { lat: 0, lng: 0 };
@@ -88,6 +92,9 @@ export class MapPopup extends LitElement {
   protected updated(changedProperties: PropertyValues): void {
     if (changedProperties.has('dhHp')) {
       this.dhHpLocal = this.dhHp;
+    }
+    if (changedProperties.has('isClose')) {
+      this.isBlocked = !this.isClose;
     }
   }
 
@@ -196,7 +203,7 @@ export class MapPopup extends LitElement {
           background-color: var(--color-primary);
           color: var(--color-white);
         }
-        #next-btn.next-btn-is-not-close{
+        #next-btn.next-btn-is-blocked {
           background-color: var(--color-black-light);
           pointer-events: none;
         }
@@ -241,20 +248,18 @@ export class MapPopup extends LitElement {
           <div id="popup-actions">
             <div
               id="close-btn"
-              class=${this.isOwn ? 'close-btn-is-own' : ''}
+              class=${classNames(this.isOwn && 'close-btn-is-own')}
               @click=${this.closePopup}
             >
               <sl-icon name="x"></sl-icon>
             </div>
             <div
               id="next-btn"
-              class=${
-                this.isOwn
-                  ? 'next-btn-is-own'
-                  : '' + ' ' + !this.isClose
-                    ? 'next-btn-is-not-close'
-                    : ''
-              }
+ 
+              class=${classNames(
+                this.isOwn && 'next-btn-is-own',
+                this.isBlocked && 'next-btn-is-blocked'
+              )}
               @click=${this.openMapModal}
             >
               <sl-icon name="arrow-right"></sl-icon>
