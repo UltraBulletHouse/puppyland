@@ -1,4 +1,5 @@
 import { consume } from '@lit/context';
+import confetti from 'canvas-confetti';
 // import * as signalR from '@microsoft/signalr';
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
@@ -86,7 +87,7 @@ export class MapModal extends LitElement {
 
     setTimeout(() => {
       this.btnLoading = false;
-    }, 4000);
+    }, 0); // TODO: ZMIENIC NA 4000
   };
 
   attackDoghouse = async () => {
@@ -103,25 +104,36 @@ export class MapModal extends LitElement {
     const doghouseInfoResponse = attackDoghouseResponse?.data?.doghouse;
     const attackResult = attackDoghouseResponse?.data?.attackResult;
 
-    // const attackMessage = attackResult.isDoghouseDestroyed
-    //   ? `You destroyed ${this.dhName}`
-    //   : `You dealt ${attackResult.damageDealt} damages to ${this.dhName}`;
+    // if (attackResult.isDoghouseDestroyed) {
+    if (attackResult.damageDealt > 1) {
+      this.launchConfetti();
 
-    alertNotifySuccess(
-      `
-      💥 ${attackResult.damageDealt} DMG  </br>
-      🎓 ${attackResult.experienceGained} XP
-      `,
-      {
-        duration: 5000,
-      }
-    );
+      alertNotifySuccess(
+        `
+        💥 You destroyed doghouse!!!  </br>
+        🎓 ${attackResult.experienceGained} XP
+        `,
+        {
+          duration: 5000,
+        }
+      );
+    } else {
+      alertNotifySuccess(
+        `
+        💥 ${attackResult.damageDealt} DMG  </br>
+        🎓 ${attackResult.experienceGained} XP
+        `,
+        {
+          duration: 5000,
+        }
+      );
+    }
 
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
     }
     if (doghouseInfoResponse) {
-      this.dhHp = doghouseInfoResponse.hp.toString();
+      this.dhHp = attackResult.isDoghouseDestroyed ? '0' : doghouseInfoResponse.hp.toString();
     }
 
     sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse?.hp.toString());
@@ -141,6 +153,35 @@ export class MapModal extends LitElement {
       updateDogInfoEvent(this, dogInfoResponse);
     }
   };
+
+  launchConfetti() {
+    // Always look for the canvas in the main document
+    const canvas = window.document.getElementById('confetti-canvas') as HTMLCanvasElement | null;
+    if (!canvas) {
+      console.warn('Confetti canvas not found!');
+      return;
+    }
+
+    // Show canvas
+    canvas.style.display = 'block';
+
+    // Resize canvas to fill screen
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    // Fire confetti
+    confetti.create(canvas, { resize: true, useWorker: true })({
+      particleCount: 240,
+      spread: 130,
+      origin: { y: 0.6 },
+    });
+
+    // Hide canvas after animation
+    setTimeout(() => {
+      canvas.style.display = 'none';
+      this.closeMapModal();
+    }, 4500);
+  }
 
   render() {
     // WEBSOCKETS
@@ -233,6 +274,11 @@ export class MapModal extends LitElement {
         }
       </style>
       <div id="map-modal-container">
+        <canvas
+          id="confetti-canvas"
+          style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;display:none"
+        ></canvas>
+
         <div id="close-btn-container">
           <div
             id="close-btn"
