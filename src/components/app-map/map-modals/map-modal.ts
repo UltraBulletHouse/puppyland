@@ -158,7 +158,7 @@ export class MapModal extends LitElement {
     // Always look for the canvas in the main document
     const canvas = globalThis.document.getElementById('confetti-canvas') as HTMLCanvasElement | null;
     if (!canvas) {
-      alertNotifyDanger('Confetti canvas not found!');
+      console.warn('Confetti canvas not found!');
       return;
     }
 
@@ -172,7 +172,7 @@ export class MapModal extends LitElement {
     // Fire confetti
     confetti.create(canvas, { resize: true, useWorker: false })({
       particleCount: 240,
-      spread: 130,
+      spread: 100,
       origin: { y: 0.6 },
     });
 
