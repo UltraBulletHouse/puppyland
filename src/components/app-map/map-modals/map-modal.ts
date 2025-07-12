@@ -12,7 +12,7 @@ import { dogInfoContext, updateDogInfoEvent } from '../../../contexts/dogInfoCon
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { DogInfo } from '../../../types/dog';
 import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
-import { alertNotifyDanger, alertNotifySuccess } from '../../../utils/alertsUtils';
+import { alertNotifySuccess } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
