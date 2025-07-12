@@ -274,11 +274,6 @@ export class MapModal extends LitElement {
         }
       </style>
       <div id="map-modal-container">
-        <canvas
-          id="confetti-canvas"
-          style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;display:none"
-        ></canvas>
-
         <div id="close-btn-container">
           <div
             id="close-btn"
