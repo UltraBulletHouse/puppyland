@@ -104,8 +104,7 @@ export class MapModal extends LitElement {
     const doghouseInfoResponse = attackDoghouseResponse?.data?.doghouse;
     const attackResult = attackDoghouseResponse?.data?.attackResult;
 
-    // if (attackResult.isDoghouseDestroyed) {
-    if (attackResult.damageDealt > 1) {
+    if (attackResult.isDoghouseDestroyed) {
       this.launchConfetti();
 
       alertNotifySuccess(
@@ -132,8 +131,10 @@ export class MapModal extends LitElement {
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
     }
-    if (doghouseInfoResponse) {
-      this.dhHp = attackResult.isDoghouseDestroyed ? '0' : doghouseInfoResponse.hp.toString();
+    if (attackResult?.isDoghouseDestroyed) {
+      this.dhHp = '0';
+    } else if (doghouseInfoResponse) {
+      this.dhHp = doghouseInfoResponse.hp.toString();
     }
 
     sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse?.hp.toString());
