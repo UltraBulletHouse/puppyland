@@ -156,7 +156,9 @@ export class MapModal extends LitElement {
 
   launchConfetti() {
     // Always look for the canvas in the main document
-    const canvas = globalThis.document.getElementById('confetti-canvas') as HTMLCanvasElement | null;
+    const canvas = globalThis.document.getElementById(
+      'confetti-canvas'
+    ) as HTMLCanvasElement | null;
     if (!canvas) {
       console.warn('Confetti canvas not found!');
       return;
