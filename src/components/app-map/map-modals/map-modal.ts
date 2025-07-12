@@ -12,7 +12,7 @@ import { dogInfoContext, updateDogInfoEvent } from '../../../contexts/dogInfoCon
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { DogInfo } from '../../../types/dog';
 import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
-import { alertNotifySuccess } from '../../../utils/alertsUtils';
+import { alertNotifyDanger, alertNotifySuccess } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
@@ -158,7 +158,7 @@ export class MapModal extends LitElement {
     // Always look for the canvas in the main document
     const canvas = window.document.getElementById('confetti-canvas') as HTMLCanvasElement | null;
     if (!canvas) {
-      console.warn('Confetti canvas not found!');
+      alertNotifyDanger('Confetti canvas not found!');
       return;
     }
 
