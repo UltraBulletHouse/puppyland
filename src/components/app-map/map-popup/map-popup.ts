@@ -275,6 +275,7 @@ export class MapPopup extends LitElement {
           .dhHp=${this.dhHp}
           .dhMaxHp=${this.dhMaxHp}
           @closeMapModal=${this.closeMapModal}
+          @closePopup=${this.closePopup}
         ></map-modal>
       </div>`;
   }

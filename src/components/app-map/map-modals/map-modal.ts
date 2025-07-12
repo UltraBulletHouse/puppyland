@@ -20,6 +20,7 @@ import '../../app-spinner/app-spinner';
 
 /**
  * @fires closeMapModal
+ * @fires closePopup
  */
 @customElement('map-modal')
 export class MapModal extends LitElement {
@@ -87,7 +88,7 @@ export class MapModal extends LitElement {
 
     setTimeout(() => {
       this.btnLoading = false;
-    }, 0); // TODO: ZMIENIC NA 4000
+    }, 3000);
   };
 
   attackDoghouse = async () => {
@@ -156,7 +157,6 @@ export class MapModal extends LitElement {
   };
 
   launchConfetti() {
-    // Always look for the canvas in the main document
     const canvas = globalThis.document.getElementById(
       'confetti-canvas'
     ) as HTMLCanvasElement | null;
@@ -165,24 +165,20 @@ export class MapModal extends LitElement {
       return;
     }
 
-    // Show canvas
     canvas.style.display = 'block';
-
-    // Resize canvas to fill screen
     canvas.width = globalThis.innerWidth;
     canvas.height = globalThis.innerHeight;
 
-    // Fire confetti
     confetti.create(canvas, { resize: true, useWorker: false })({
       particleCount: 240,
       spread: 100,
       origin: { y: 0.6 },
     });
 
-    // Hide canvas after animation
     setTimeout(() => {
       canvas.style.display = 'none';
       this.closeMapModal();
+      sendEvent(this, 'closePopup');
     }, 4500);
   }
 
