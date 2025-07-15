@@ -7,6 +7,8 @@ interface AlertNotifyProps {
   duration?: number;
 }
 
+const ALERT_DURATION = 3000; // Default duration for alerts
+
 export const alertNotify = ({
   message = '',
   variant = 'default',
@@ -31,7 +33,7 @@ export const alertNotifySuccess = (message: string, options?: Partial<AlertNotif
   alertNotify({
     variant: 'success',
     icon: 'check2-circle',
-    duration: 4000,
+    duration: ALERT_DURATION,
     ...options,
     message,
   });
@@ -40,7 +42,7 @@ export const alertNotifyPrimary = (message: string, options?: Partial<AlertNotif
   alertNotify({
     variant: 'primary',
     icon: 'info-circle',
-    duration: 4000,
+    duration: ALERT_DURATION,
     ...options,
     message,
   });
@@ -49,7 +51,7 @@ export const alertNotifyDanger = (message: string, options?: Partial<AlertNotify
   alertNotify({
     variant: 'danger',
     icon: 'exclamation-octagon',
-    duration: 4000,
+    duration: ALERT_DURATION,
     ...options,
     message,
   });
@@ -58,7 +60,7 @@ export const alertNotifyWarning = (message: string, options?: Partial<AlertNotif
   alertNotify({
     variant: 'warning',
     icon: 'exclamation-triangle',
-    duration: 4000,
+    duration: ALERT_DURATION,
     ...options,
     message,
   });

@@ -112,20 +112,14 @@ export class MapModal extends LitElement {
         `
         💥 You destroyed doghouse!!!  </br>
         🎓 ${attackResult.experienceGained} XP
-        `,
-        {
-          duration: 5000,
-        }
+        `
       );
     } else {
       alertNotifySuccess(
         `
         💥 ${attackResult.damageDealt} DMG  </br>
         🎓 ${attackResult.experienceGained} XP
-        `,
-        {
-          duration: 5000,
-        }
+        `
       );
     }
 
