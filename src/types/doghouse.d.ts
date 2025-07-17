@@ -51,6 +51,7 @@ export interface AttackDoghouseResponse {
   doghouse: Doghouse;
   dog: DogInfo;
   attackResult: AttackResult;
+  isLevelUp: boolean;
 }
 
 export interface RepairDoghouseResponse {

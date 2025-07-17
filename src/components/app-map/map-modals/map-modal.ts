@@ -17,6 +17,7 @@ import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
 import '../../app-spinner/app-spinner';
+import { MapModalStyles } from './map-modal-styles';
 
 /**
  * @fires closeMapModal
@@ -52,6 +53,9 @@ export class MapModal extends LitElement {
 
   @state()
   btnLoading: boolean = false;
+
+  @state()
+  isLevelUp: boolean = true;
 
   // WEBSOCKETS
   // connection = new signalR.HubConnectionBuilder()
@@ -104,6 +108,11 @@ export class MapModal extends LitElement {
     const dogInfoResponse = attackDoghouseResponse?.data?.dog;
     const doghouseInfoResponse = attackDoghouseResponse?.data?.doghouse;
     const attackResult = attackDoghouseResponse?.data?.attackResult;
+    const isLevelUp = attackDoghouseResponse?.data?.isLevelUp;
+
+    if (isLevelUp) {
+      this.isLevelUp = isLevelUp;
+    }
 
     if (attackResult.isDoghouseDestroyed) {
       this.launchConfetti();
@@ -181,101 +190,8 @@ export class MapModal extends LitElement {
     // this.runSignal()
     const hpPercent = Math.round((Number(this.dhHp) / Number(this.dhMaxHp)) * 100);
 
-    const baseTemplate = html` <style>
-        #map-modal-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          height: 100%;
-          width: 100%;
-        }
-        #close-btn-container {
-          display: flex;
-          justify-content: end;
-          width: 100%;
-        }
-        #close-btn {
-          display: flex;
-          justify-content: end;
-          width: 100%;
-          padding: 4px 0px;
-          border-radius: 50px;
-          font-size: 30px;
-          color: var(--color-secondary);
-        }
-        .close-btn--enemy {
-          color: var(--color-primary) !important;
-        }
-        #dh-name {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          font-weight: 600;
-          font-size: 20px;
-          text-wrap: nowrap;
-          text-overflow: ellipsis;
-          overflow: hidden;
-        }
-        #dh-details {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        #dh-hp-container {
-          width: 100%;
-          margin: 20px 0 20px;
-        }
-        #dh-hp-value {
-          display: flex;
-          justify-content: center;
-        }
-        #dh-hp-bar {
-          --indicator-color: var(--color-secondary);
-          --height: 12px;
-        }
-        .dh-hp-bar--enemy {
-          --indicator-color: var(--color-primary) !important;
-        }
-        #footer-btn {
-          padding: 10px;
-        }
-        #center {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-        }
-        #doghouse-icon {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 80px;
-          margin: 30px 0;
-        }
-        #attack-btn::part(base) {
-          font-size: 18px;
-          background-color: var(--color-primary);
-          color: var(--color-white);
-        }
-        #heal-btn::part(base) {
-          font-size: 18px;
-          background-color: var(--color-secondary);
-          color: var(--color-white);
-        }
-      </style>
-      <div id="map-modal-container">
-        <div id="close-btn-container">
-          <div
-            id="close-btn"
-            class=${!this.isOwn ? 'close-btn--enemy' : ''}
-            @click=${this.closeMapModal}
-          >
-            <sl-icon name="x"></sl-icon>
-          </div>
-        </div>
+    const mainSection = html`
+      <div id="map-modal-main-section">
         <div id="dh-info">
           <div id="dh-name">${this.dhName}</div>
           <div id="doghouse-icon"><svg-icon name="doghouseOne"></svg-icon></div>
@@ -288,9 +204,7 @@ export class MapModal extends LitElement {
             >${this.dhHp}</sl-progress-bar
           >
         </div>
-
         <div id="center">${!this.isOwn ? html`` : html``}</div>
-
         <div id="footer-btn">
           ${!this.isOwn
             ? html`<sl-button
@@ -305,7 +219,32 @@ export class MapModal extends LitElement {
                 >Repair - ${repairEnergy}<sl-icon name="lightning-charge"></sl-icon
               ></sl-button>`}
         </div>
-      </div>`;
+      </div>
+    `;
+
+    const levelUpSection = html`
+      <div id="map-modal-level-up">
+        <h2>🎉 Level Up! 🎉</h2>
+        <p>Your dog has leveled up!</p>
+      </div>
+    `;
+
+    const baseTemplate = html`
+      ${MapModalStyles}
+
+      <div id="map-modal-container">
+        <div id="close-btn-container">
+          <div
+            id="close-btn"
+            class=${!this.isOwn ? 'close-btn--enemy' : ''}
+            @click=${this.closeMapModal}
+          >
+            <sl-icon name="x"></sl-icon>
+          </div>
+        </div>
+        ${this.isLevelUp ? levelUpSection : mainSection}
+      </div>
+    `;
 
     return html`<app-modal
       modalId="attack-doghouse"
