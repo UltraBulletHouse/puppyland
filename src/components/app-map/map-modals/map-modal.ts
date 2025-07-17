@@ -55,7 +55,7 @@ export class MapModal extends LitElement {
   btnLoading: boolean = false;
 
   @state()
-  isLevelUp: boolean = true;
+  isLevelUp: boolean = false;
 
   // WEBSOCKETS
   // connection = new signalR.HubConnectionBuilder()
