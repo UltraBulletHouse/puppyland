@@ -92,5 +92,47 @@ export const MapModalStyles = html`
       background-color: var(--color-secondary);
       color: var(--color-white);
     }
+    #map-modal-level-up {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      * {
+        font-weight: 400;
+      }
+
+      h3 {
+        font-size: 25px;
+        color: var(--color-primary);
+
+        strong {
+          font-weight: 700;
+        }
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 40px;
+      }
+
+      li {
+        margin-bottom: 10px;
+
+        sl-icon {
+          margin-right: 10px;
+        }
+      }
+
+      .claim-btn {
+        margin-top: 30px;
+      }
+
+      .claim-btn::part(base) {
+        font-size: 18px;
+        background-color: var(--color-primary);
+        color: var(--color-white);
+      }
+    }
   </style>
 `;

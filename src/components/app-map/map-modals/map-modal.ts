@@ -225,7 +225,16 @@ export class MapModal extends LitElement {
     const levelUpSection = html`
       <div id="map-modal-level-up">
         <h2>🎉 Level Up! 🎉</h2>
-        <p>Your dog has leveled up!</p>
+        <h3>You reached level <strong>${this.dogInfo?.level}</strong>!</h3>
+        <div>
+          <ul>
+            <li><sl-icon name="lightning-charge"></sl-icon>Max energy +10</li>
+            <li><sl-icon name="lightning"></sl-icon>Energy restored</li>
+            <li><sl-icon name="house-add"></sl-icon>Doghouse +1</li>
+            <li><sl-icon name="house-heart"></sl-icon>All doghouses health +10</li>
+          </ul>
+        </div>
+        <sl-button class="claim-btn" @click=${this.closeMapModal} pill>Claim </sl-button>
       </div>
     `;
 
