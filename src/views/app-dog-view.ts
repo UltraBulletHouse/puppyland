@@ -1,6 +1,7 @@
 import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
@@ -12,6 +13,7 @@ import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
 import '../components/leaderboards/leaderboards';
 import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
+import { allShopItems } from '../constants/shopItems';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
@@ -247,6 +249,17 @@ export class AppDogView extends LitElement {
         border-radius: 50px;
         padding: 0px 5px;
       }
+      #dog-buffs {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+        padding: 30px;
+      }
+      icon-png-badge {
+        --icon-png-badge-width: 46px;
+        --icon-png-badge-height: 46px;
+      }
     `,
   ];
 
@@ -343,6 +356,23 @@ export class AppDogView extends LitElement {
         buffsForDog: null,
         photo: null,
       } as DogInfo);
+
+    console.log(this.dogInfo?.buffsForDoghouses);
+
+    // Prepare doghouse buffs with icon, badge, and name
+    const doghouseBuffs =
+      this.dogInfo?.buffsForDoghouses
+        ?.map((buff) => {
+          const shopItem = allShopItems.find((item) => item.id === buff.buffSku);
+          return shopItem
+            ? {
+                icon: shopItem.icon,
+                badge: shopItem.badge,
+                name: shopItem.name,
+              }
+            : null;
+        })
+        .filter(Boolean) ?? [];
 
     return this.dogInfo && this.newName
       ? html`
