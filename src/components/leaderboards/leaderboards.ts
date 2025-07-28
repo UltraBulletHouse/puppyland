@@ -652,8 +652,8 @@ export class LeaderboardsComponent extends LitElement {
     return this.currentLeaderboard?.entries.find(entry => entry.isCurrentUser);
   }
 
-  handleCategoryChange(event: CustomEvent) {
-    const newCategory = event.target.value as LeaderboardCategory;
+  handleCategoryChange(event: CustomEvent<LeaderboardCategory>) {
+    const newCategory = event.detail as LeaderboardCategory;
     if (newCategory && newCategory !== this.selectedCategory) {
       this.selectedCategory = newCategory;
       this.requestUpdate();
