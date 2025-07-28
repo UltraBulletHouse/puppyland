@@ -66,9 +66,6 @@ export class AppDogView extends LitElement {
       #dog-name sl-icon {
         margin-left: 10px;
       }
-      #info-container {
-        margin-top: 30px;
-      }
       #content-tabs {
         flex: 1;
         overflow: hidden;
@@ -87,22 +84,155 @@ export class AppDogView extends LitElement {
       #info-container {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 16px;
       }
-      #info-container sl-icon {
-        margin-right: 10px;
+      
+      .stat-card {
+        background: var(--color-white);
+        border: 1px solid var(--color-primary-medium);
+        border-radius: var(--border-radius-medium);
+        padding: 16px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        transition: all 0.2s ease;
       }
-      #info-container div {
-        margin-bottom: 20px;
+      
+      .stat-card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        transform: translateY(-1px);
       }
-      #dog-level-icon {
+      
+      .stat-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
       }
-      #dog-exp-bar,
-      #dog-energy-bar {
-        --indicator-color: var(--color-secondary);
-        --height: 10px;
-
-        margin-top: 10px;
+      
+      .stat-icon {
+        font-size: 20px;
+        padding: 8px;
+        border-radius: var(--border-radius-circle);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+      }
+      
+      .stat-icon.level {
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: white;
+      }
+      
+      .stat-icon.experience {
+        background: linear-gradient(135deg, #9B59B6, #8E44AD);
+        color: white;
+      }
+      
+      .stat-icon.energy {
+        background: linear-gradient(135deg, #E74C3C, #C0392B);
+        color: white;
+      }
+      
+      .stat-icon.doghouses {
+        background: linear-gradient(135deg, #3498DB, #2980B9);
+        color: white;
+      }
+      
+      .stat-title {
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--color-black);
+        flex: 1;
+      }
+      
+      .stat-value {
+        font-weight: 700;
+        font-size: 18px;
+        color: var(--color-primary);
+      }
+      
+      .stat-progress {
+        margin-top: 8px;
+      }
+      
+      .progress-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 6px;
+        font-size: 12px;
+      }
+      
+      .progress-current {
+        color: var(--color-black-medium);
+        font-weight: 500;
+      }
+      
+      .progress-percentage {
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+      
+      .modern-progress-bar {
+        width: 100%;
+        height: 8px;
+        background: var(--color-primary-light);
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+      }
+      
+      .progress-fill {
+        height: 100%;
+        border-radius: 4px;
+        transition: width 0.6s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .progress-fill.experience {
+        background: linear-gradient(90deg, #9B59B6, #8E44AD);
+      }
+      
+      .progress-fill.energy {
+        background: linear-gradient(90deg, #E74C3C, #C0392B);
+      }
+      
+      .progress-fill::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        animation: shimmer 2s infinite;
+      }
+      
+      @keyframes shimmer {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+      
+      .level-badge {
+        background: linear-gradient(135deg, #FFD700, #FFA500);
+        color: white;
+        padding: 4px 12px;
+        border-radius: var(--border-radius-circle);
+        font-weight: 700;
+        font-size: 14px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      .doghouses-count {
+        background: var(--color-secondary);
+        color: white;
+        padding: 4px 12px;
+        border-radius: var(--border-radius-circle);
+        font-weight: 700;
+        font-size: 14px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       }
       #pencil-wrapper {
         position: relative;
@@ -259,27 +389,72 @@ export class AppDogView extends LitElement {
                 <sl-tab-panel name="stats">
                   <div id="stats-content">
                     <div id="info-container">
-                      <div id="dog-level">
-                        <sl-icon name="star"></sl-icon>Level: ${level}
-                      </div>
-                      <div id="dog-experience">
-                        <sl-icon name="mortarboard"></sl-icon>Exp: ${experience} / ${expForNextLevel}
-                        <sl-progress-bar
-                          id="dog-exp-bar"
-                          value=${(experience / expForNextLevel) * 100}
-                        ></sl-progress-bar>
-                      </div>
-
-                      <div id="dog-attack-power">
-                        <sl-icon name="lightning-charge"></sl-icon>Energy: ${energy} / ${energyMax}
-                        <sl-progress-bar
-                          id="dog-energy-bar"
-                          value=${(energy / energyMax) * 100}
-                        ></sl-progress-bar>
+                      <!-- Level Card -->
+                      <div class="stat-card">
+                        <div class="stat-header">
+                          <div class="stat-icon level">
+                            <sl-icon name="star"></sl-icon>
+                          </div>
+                          <div class="stat-title">Level</div>
+                          <div class="level-badge">${level}</div>
+                        </div>
                       </div>
 
-                      <div id="dog-available-doghouses">
-                        <sl-icon name="house-add"></sl-icon>Available doghouses: ${availableDoghouses}
+                      <!-- Experience Card -->
+                      <div class="stat-card">
+                        <div class="stat-header">
+                          <div class="stat-icon experience">
+                            <sl-icon name="mortarboard"></sl-icon>
+                          </div>
+                          <div class="stat-title">Experience</div>
+                          <div class="stat-value">${experience}</div>
+                        </div>
+                        <div class="stat-progress">
+                          <div class="progress-info">
+                            <span class="progress-current">${experience} / ${expForNextLevel} XP</span>
+                            <span class="progress-percentage">${Math.round((experience / expForNextLevel) * 100)}%</span>
+                          </div>
+                          <div class="modern-progress-bar">
+                            <div 
+                              class="progress-fill experience" 
+                              style="width: ${(experience / expForNextLevel) * 100}%"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Energy Card -->
+                      <div class="stat-card">
+                        <div class="stat-header">
+                          <div class="stat-icon energy">
+                            <sl-icon name="lightning-charge"></sl-icon>
+                          </div>
+                          <div class="stat-title">Energy</div>
+                          <div class="stat-value">${energy}</div>
+                        </div>
+                        <div class="stat-progress">
+                          <div class="progress-info">
+                            <span class="progress-current">${energy} / ${energyMax}</span>
+                            <span class="progress-percentage">${Math.round((energy / energyMax) * 100)}%</span>
+                          </div>
+                          <div class="modern-progress-bar">
+                            <div 
+                              class="progress-fill energy" 
+                              style="width: ${(energy / energyMax) * 100}%"
+                            ></div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Available Doghouses Card -->
+                      <div class="stat-card">
+                        <div class="stat-header">
+                          <div class="stat-icon doghouses">
+                            <sl-icon name="house-add"></sl-icon>
+                          </div>
+                          <div class="stat-title">Available Doghouses</div>
+                          <div class="doghouses-count">${availableDoghouses}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
