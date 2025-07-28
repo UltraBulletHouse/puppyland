@@ -1,8 +1,8 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 
-import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
+import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
 import { sharedStyles } from '../../styles/shared-styles';
 import { Quest, QuestType, RewardType } from '../../types/quest';
@@ -18,9 +18,9 @@ export class DailyQuests extends LitElement {
         padding: 16px;
         margin: 16px 0;
         border: 1px solid var(--color-primary-medium);
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
-      
+
       #header {
         display: flex;
         justify-content: space-between;
@@ -29,7 +29,7 @@ export class DailyQuests extends LitElement {
         padding-bottom: 12px;
         border-bottom: 1px solid var(--color-primary-light);
       }
-      
+
       #title {
         display: flex;
         align-items: center;
@@ -38,7 +38,7 @@ export class DailyQuests extends LitElement {
         font-size: 18px;
         color: var(--color-black);
       }
-      
+
       #refresh-timer {
         font-size: 12px;
         color: var(--color-black-medium);
@@ -46,7 +46,7 @@ export class DailyQuests extends LitElement {
         align-items: center;
         gap: 4px;
       }
-      
+
       .quest-item {
         background: var(--color-primary-light);
         border-radius: var(--border-radius-small);
@@ -55,28 +55,28 @@ export class DailyQuests extends LitElement {
         border: 1px solid var(--color-primary-medium);
         transition: all 0.2s ease;
       }
-      
+
       .quest-item:last-child {
         margin-bottom: 0;
       }
-      
+
       .quest-item.completed {
         background: var(--color-secondary-light);
         border-color: var(--color-secondary);
       }
-      
+
       .quest-header {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         margin-bottom: 8px;
       }
-      
+
       .quest-info {
         flex: 1;
         min-width: 0;
       }
-      
+
       .quest-title {
         font-weight: 600;
         font-size: 14px;
@@ -84,13 +84,13 @@ export class DailyQuests extends LitElement {
         margin-bottom: 4px;
         line-height: 1.3;
       }
-      
+
       .quest-description {
         font-size: 12px;
         color: var(--color-black-medium);
         line-height: 1.4;
       }
-      
+
       .quest-reward {
         display: flex;
         align-items: center;
@@ -103,17 +103,17 @@ export class DailyQuests extends LitElement {
         font-weight: 600;
         white-space: nowrap;
       }
-      
+
       .quest-reward.completed {
         background: var(--color-secondary);
         color: var(--color-white);
         border-color: var(--color-secondary);
       }
-      
+
       .quest-progress {
         margin-top: 8px;
       }
-      
+
       .progress-info {
         display: flex;
         justify-content: space-between;
@@ -121,53 +121,71 @@ export class DailyQuests extends LitElement {
         margin-bottom: 4px;
         font-size: 12px;
       }
-      
+
       .progress-text {
         color: var(--color-black-medium);
         font-weight: 500;
       }
-      
+
       .progress-percentage {
         color: var(--color-primary);
         font-weight: 600;
       }
-      
+
       sl-progress-bar {
         --height: 6px;
         --track-color: var(--color-white);
         --indicator-color: var(--color-primary);
       }
-      
+
       .quest-item.completed sl-progress-bar {
         --indicator-color: var(--color-secondary);
       }
-      
+
       .reward-icon {
         font-size: 14px;
       }
-      
-      .reward-icon.doghouse { color: #8B4513; }
-      .reward-icon.experience { color: #FFD700; }
-      .reward-icon.energy { color: #FF6B6B; }
-      .reward-icon.coins { color: #FFA500; }
-      
+
+      .reward-icon.doghouse {
+        color: #8b4513;
+      }
+      .reward-icon.experience {
+        color: #ffd700;
+      }
+      .reward-icon.energy {
+        color: #ff6b6b;
+      }
+      .reward-icon.coins {
+        color: #ffa500;
+      }
+
       .quest-type-icon {
         font-size: 16px;
         margin-right: 8px;
       }
-      
-      .quest-type-icon.attack { color: #E74C3C; }
-      .quest-type-icon.build { color: #3498DB; }
-      .quest-type-icon.experience { color: #F39C12; }
-      .quest-type-icon.visit { color: #9B59B6; }
-      .quest-type-icon.repair { color: #27AE60; }
-      
+
+      .quest-type-icon.attack {
+        color: #e74c3c;
+      }
+      .quest-type-icon.build {
+        color: #3498db;
+      }
+      .quest-type-icon.experience {
+        color: #f39c12;
+      }
+      .quest-type-icon.visit {
+        color: #9b59b6;
+      }
+      .quest-type-icon.repair {
+        color: #27ae60;
+      }
+
       #empty-state {
         text-align: center;
         padding: 20px;
         color: var(--color-black-light);
       }
-      
+
       #empty-state sl-icon {
         font-size: 32px;
         margin-bottom: 8px;
@@ -188,10 +206,10 @@ export class DailyQuests extends LitElement {
       reward: {
         type: RewardType.DOGHOUSES,
         amount: 1,
-        description: '+1 Available Doghouse'
+        description: '+1 Available Doghouse',
       },
       isCompleted: false,
-      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
     },
     {
       id: '2',
@@ -203,10 +221,10 @@ export class DailyQuests extends LitElement {
       reward: {
         type: RewardType.EXPERIENCE,
         amount: 500,
-        description: '+500 Experience'
+        description: '+500 Experience',
       },
       isCompleted: true,
-      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
+      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
     },
     {
       id: '3',
@@ -218,11 +236,11 @@ export class DailyQuests extends LitElement {
       reward: {
         type: RewardType.ENERGY,
         amount: 50,
-        description: '+50 Energy'
+        description: '+50 Energy',
       },
       isCompleted: false,
-      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString()
-    }
+      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+    },
   ];
 
   @state()
@@ -230,43 +248,65 @@ export class DailyQuests extends LitElement {
 
   getQuestTypeIcon(type: QuestType): string {
     switch (type) {
-      case QuestType.ATTACK_DOGHOUSES: return 'lightning-charge';
-      case QuestType.BUILD_DOGHOUSES: return 'hammer';
-      case QuestType.GAIN_EXPERIENCE: return 'star';
-      case QuestType.VISIT_LOCATIONS: return 'geo-alt';
-      case QuestType.REPAIR_DOGHOUSES: return 'tools';
-      default: return 'question-circle';
+      case QuestType.ATTACK_DOGHOUSES:
+        return 'lightning-charge';
+      case QuestType.BUILD_DOGHOUSES:
+        return 'hammer';
+      case QuestType.GAIN_EXPERIENCE:
+        return 'star';
+      case QuestType.VISIT_LOCATIONS:
+        return 'geo-alt';
+      case QuestType.REPAIR_DOGHOUSES:
+        return 'tools';
+      default:
+        return 'question-circle';
     }
   }
 
   getQuestTypeClass(type: QuestType): string {
     switch (type) {
-      case QuestType.ATTACK_DOGHOUSES: return 'attack';
-      case QuestType.BUILD_DOGHOUSES: return 'build';
-      case QuestType.GAIN_EXPERIENCE: return 'experience';
-      case QuestType.VISIT_LOCATIONS: return 'visit';
-      case QuestType.REPAIR_DOGHOUSES: return 'repair';
-      default: return '';
+      case QuestType.ATTACK_DOGHOUSES:
+        return 'attack';
+      case QuestType.BUILD_DOGHOUSES:
+        return 'build';
+      case QuestType.GAIN_EXPERIENCE:
+        return 'experience';
+      case QuestType.VISIT_LOCATIONS:
+        return 'visit';
+      case QuestType.REPAIR_DOGHOUSES:
+        return 'repair';
+      default:
+        return '';
     }
   }
 
   getRewardIcon(type: RewardType): string {
     switch (type) {
-      case RewardType.DOGHOUSES: return 'house-add';
-      case RewardType.EXPERIENCE: return 'star-fill';
-      case RewardType.ENERGY: return 'lightning-charge-fill';
-      case RewardType.COINS: return 'coin';
-      default: return 'gift';
+      case RewardType.DOGHOUSES:
+        return 'house-add';
+      case RewardType.EXPERIENCE:
+        return 'star-fill';
+      case RewardType.ENERGY:
+        return 'lightning-charge-fill';
+      case RewardType.COINS:
+        return 'coin';
+      default:
+        return 'gift';
     }
   }
 
   getRewardClass(type: RewardType): string {
     switch (type) {
-      case RewardType.DOGHOUSES: return 'doghouse';
-      case RewardType.EXPERIENCE: return 'experience';
-      case RewardType.ENERGY: return 'energy';
-      case RewardType.COINS: return 'coins';
-      default: return '';
+      case RewardType.DOGHOUSES:
+        return 'doghouse';
+      case RewardType.EXPERIENCE:
+        return 'experience';
+      case RewardType.ENERGY:
+        return 'energy';
+      case RewardType.COINS:
+        return 'coins';
+      default:
+        return '';
     }
   }
 
@@ -274,12 +314,12 @@ export class DailyQuests extends LitElement {
     const now = new Date();
     const refresh = this.nextRefreshAt;
     const diff = refresh.getTime() - now.getTime();
-    
+
     if (diff <= 0) return 'Refreshing...';
-    
+
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    
+
     return `${hours}h ${minutes}m`;
   }
 
@@ -313,17 +353,17 @@ export class DailyQuests extends LitElement {
             ${this.formatTimeRemaining()}
           </div>
         </div>
-        
-        ${this.quests.map(quest => {
+
+        ${this.quests.map((quest) => {
           const progressPercentage = Math.min((quest.progress / quest.target) * 100, 100);
-          
+
           return html`
             <div class="quest-item ${quest.isCompleted ? 'completed' : ''}">
               <div class="quest-header">
                 <div class="quest-info">
                   <div class="quest-title">
-                    <sl-icon 
-                      name="${this.getQuestTypeIcon(quest.type)}" 
+                    <sl-icon
+                      name="${this.getQuestTypeIcon(quest.type)}"
                       class="quest-type-icon ${this.getQuestTypeClass(quest.type)}"
                     ></sl-icon>
                     ${quest.title}
@@ -331,22 +371,18 @@ export class DailyQuests extends LitElement {
                   <div class="quest-description">${quest.description}</div>
                 </div>
                 <div class="quest-reward ${quest.isCompleted ? 'completed' : ''}">
-                  <sl-icon 
-                    name="${this.getRewardIcon(quest.reward.type)}" 
+                  <sl-icon
+                    name="${this.getRewardIcon(quest.reward.type)}"
                     class="reward-icon ${this.getRewardClass(quest.reward.type)}"
                   ></sl-icon>
                   ${quest.reward.amount}
                 </div>
               </div>
-              
+
               <div class="quest-progress">
                 <div class="progress-info">
-                  <span class="progress-text">
-                    ${quest.progress} / ${quest.target}
-                  </span>
-                  <span class="progress-percentage">
-                    ${Math.round(progressPercentage)}%
-                  </span>
+                  <span class="progress-text"> ${quest.progress} / ${quest.target} </span>
+                  <span class="progress-percentage"> ${Math.round(progressPercentage)}% </span>
                 </div>
                 <sl-progress-bar value="${progressPercentage}"></sl-progress-bar>
               </div>

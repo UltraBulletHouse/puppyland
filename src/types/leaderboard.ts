@@ -22,7 +22,7 @@ export enum BadgeType {
   TOP_PLAYER = 'top_player',
   RISING_STAR = 'rising_star',
   VETERAN = 'veteran',
-  NEWCOMER = 'newcomer'
+  NEWCOMER = 'newcomer',
 }
 
 export enum LeaderboardCategory {
@@ -30,7 +30,7 @@ export enum LeaderboardCategory {
   EXPERIENCE = 'experience',
   DOGHOUSES_BUILT = 'doghouses_built',
   DOGHOUSES_DESTROYED = 'doghouses_destroyed',
-  WEEKLY_ACTIVITY = 'weekly_activity'
+  WEEKLY_ACTIVITY = 'weekly_activity',
 }
 
 export interface LeaderboardData {

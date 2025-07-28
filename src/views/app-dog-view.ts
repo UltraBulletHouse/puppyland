@@ -1,7 +1,6 @@
 import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
@@ -13,7 +12,6 @@ import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
 import '../components/leaderboards/leaderboards';
 import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
-import { allShopItems } from '../constants/shopItems';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
@@ -54,7 +52,7 @@ export class AppDogView extends LitElement {
         background-color: var(--sl-color-gray-200);
         border: 2px solid var(--sl-color-gray-50);
         outline: 2px solid #37a26e;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
       #dog-name {
         display: flex;
@@ -89,28 +87,28 @@ export class AppDogView extends LitElement {
         flex-direction: column;
         gap: 16px;
       }
-      
+
       .stat-card {
         background: var(--color-white);
         border: 1px solid var(--color-primary-medium);
         border-radius: var(--border-radius-medium);
         padding: 16px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         transition: all 0.2s ease;
       }
-      
+
       .stat-card:hover {
-        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         transform: translateY(-1px);
       }
-      
+
       .stat-header {
         display: flex;
         align-items: center;
         gap: 8px;
         margin-bottom: 12px;
       }
-      
+
       .stat-icon {
         font-size: 20px;
         padding: 8px;
@@ -121,44 +119,44 @@ export class AppDogView extends LitElement {
         width: 36px;
         height: 36px;
       }
-      
+
       .stat-icon.level {
-        background: linear-gradient(135deg, #FFD700, #FFA500);
+        background: linear-gradient(135deg, #ffd700, #ffa500);
         color: white;
       }
-      
+
       .stat-icon.experience {
-        background: linear-gradient(135deg, #9B59B6, #8E44AD);
+        background: linear-gradient(135deg, #9b59b6, #8e44ad);
         color: white;
       }
-      
+
       .stat-icon.energy {
-        background: linear-gradient(135deg, #E74C3C, #C0392B);
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
         color: white;
       }
-      
+
       .stat-icon.doghouses {
-        background: linear-gradient(135deg, #3498DB, #2980B9);
+        background: linear-gradient(135deg, #3498db, #2980b9);
         color: white;
       }
-      
+
       .stat-title {
         font-weight: 600;
         font-size: 16px;
         color: var(--color-black);
         flex: 1;
       }
-      
+
       .stat-value {
         font-weight: 700;
         font-size: 18px;
         color: var(--color-primary);
       }
-      
+
       .stat-progress {
         margin-top: 8px;
       }
-      
+
       .progress-info {
         display: flex;
         justify-content: space-between;
@@ -166,17 +164,17 @@ export class AppDogView extends LitElement {
         margin-bottom: 6px;
         font-size: 12px;
       }
-      
+
       .progress-current {
         color: var(--color-black-medium);
         font-weight: 500;
       }
-      
+
       .progress-percentage {
         color: var(--color-primary);
         font-weight: 600;
       }
-      
+
       .modern-progress-bar {
         width: 100%;
         height: 8px;
@@ -185,7 +183,7 @@ export class AppDogView extends LitElement {
         overflow: hidden;
         position: relative;
       }
-      
+
       .progress-fill {
         height: 100%;
         border-radius: 4px;
@@ -193,15 +191,15 @@ export class AppDogView extends LitElement {
         position: relative;
         overflow: hidden;
       }
-      
+
       .progress-fill.experience {
-        background: linear-gradient(90deg, #9B59B6, #8E44AD);
+        background: linear-gradient(90deg, #9b59b6, #8e44ad);
       }
-      
+
       .progress-fill.energy {
-        background: linear-gradient(90deg, #E74C3C, #C0392B);
+        background: linear-gradient(90deg, #e74c3c, #c0392b);
       }
-      
+
       .progress-fill::after {
         content: '';
         position: absolute;
@@ -209,25 +207,29 @@ export class AppDogView extends LitElement {
         left: 0;
         right: 0;
         bottom: 0;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
         animation: shimmer 2s infinite;
       }
-      
+
       @keyframes shimmer {
-        0% { transform: translateX(-100%); }
-        100% { transform: translateX(100%); }
+        0% {
+          transform: translateX(-100%);
+        }
+        100% {
+          transform: translateX(100%);
+        }
       }
-      
+
       .level-badge {
-        background: linear-gradient(135deg, #FFD700, #FFA500);
+        background: linear-gradient(135deg, #ffd700, #ffa500);
         color: white;
         padding: 4px 12px;
         border-radius: var(--border-radius-circle);
         font-weight: 700;
         font-size: 14px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
-      
+
       .doghouses-count {
         background: var(--color-secondary);
         color: white;
@@ -235,7 +237,7 @@ export class AppDogView extends LitElement {
         border-radius: var(--border-radius-circle);
         font-weight: 700;
         font-size: 14px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
       #pencil-wrapper {
         position: relative;
@@ -357,23 +359,6 @@ export class AppDogView extends LitElement {
         photo: null,
       } as DogInfo);
 
-    console.log(this.dogInfo?.buffsForDoghouses);
-
-    // Prepare doghouse buffs with icon, badge, and name
-    const doghouseBuffs =
-      this.dogInfo?.buffsForDoghouses
-        ?.map((buff) => {
-          const shopItem = allShopItems.find((item) => item.id === buff.buffSku);
-          return shopItem
-            ? {
-                icon: shopItem.icon,
-                badge: shopItem.badge,
-                name: shopItem.name,
-              }
-            : null;
-        })
-        .filter(Boolean) ?? [];
-
     return this.dogInfo && this.newName
       ? html`
           <div id="container">
@@ -446,12 +431,16 @@ export class AppDogView extends LitElement {
                         </div>
                         <div class="stat-progress">
                           <div class="progress-info">
-                            <span class="progress-current">${experience} / ${expForNextLevel} XP</span>
-                            <span class="progress-percentage">${Math.round((experience / expForNextLevel) * 100)}%</span>
+                            <span class="progress-current"
+                              >${experience} / ${expForNextLevel} XP</span
+                            >
+                            <span class="progress-percentage"
+                              >${Math.round((experience / expForNextLevel) * 100)}%</span
+                            >
                           </div>
                           <div class="modern-progress-bar">
-                            <div 
-                              class="progress-fill experience" 
+                            <div
+                              class="progress-fill experience"
                               style="width: ${(experience / expForNextLevel) * 100}%"
                             ></div>
                           </div>
@@ -470,11 +459,13 @@ export class AppDogView extends LitElement {
                         <div class="stat-progress">
                           <div class="progress-info">
                             <span class="progress-current">${energy} / ${energyMax}</span>
-                            <span class="progress-percentage">${Math.round((energy / energyMax) * 100)}%</span>
+                            <span class="progress-percentage"
+                              >${Math.round((energy / energyMax) * 100)}%</span
+                            >
                           </div>
                           <div class="modern-progress-bar">
-                            <div 
-                              class="progress-fill energy" 
+                            <div
+                              class="progress-fill energy"
                               style="width: ${(energy / energyMax) * 100}%"
                             ></div>
                           </div>
