@@ -4,8 +4,12 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
+import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
+import '@shoelace-style/shoelace/dist/components/tab/tab.js';
 
 import '../components/app-spinner/app-spinner';
+import '../components/daily-quests/daily-quests';
 import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
@@ -21,19 +25,25 @@ export class AppDogView extends LitElement {
       #container {
         display: flex;
         flex-direction: column;
-        align-items: center;
         height: 100%;
         width: 100%;
         background: var(--color-white);
       }
+      #dog-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 16px;
+        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+        border-bottom: 1px solid var(--color-primary-medium);
+      }
       #dog-image {
-        font-size: 90px;
-        margin-top: 40px;
-        margin-bottom: 20px;
+        font-size: 70px;
+        margin-bottom: 12px;
       }
       #dog-image-circle {
-        height: 130px;
-        width: 130px;
+        height: 100px;
+        width: 100px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -41,11 +51,14 @@ export class AppDogView extends LitElement {
         background-color: var(--sl-color-gray-200);
         border: 2px solid var(--sl-color-gray-50);
         outline: 2px solid #37a26e;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       }
       #dog-name {
         display: flex;
         align-items: center;
-        font-size: 20px;
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--color-black);
       }
       #dog-name sl-input {
         width: 290px;
@@ -55,6 +68,26 @@ export class AppDogView extends LitElement {
       }
       #info-container {
         margin-top: 30px;
+      }
+      #content-tabs {
+        flex: 1;
+        overflow: hidden;
+      }
+      sl-tab-group {
+        height: 100%;
+      }
+      sl-tab-panel {
+        height: 100%;
+        overflow-y: auto;
+        padding: 0;
+      }
+      #stats-content {
+        padding: 16px;
+      }
+      #info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
       }
       #info-container sl-icon {
         margin-right: 10px;
@@ -183,53 +216,79 @@ export class AppDogView extends LitElement {
     return this.dogInfo && this.newName
       ? html`
           <div id="container">
-            <div id="dog-image">
-              <div id="dog-image-circle">
-                <svg-icon name="dogHead"></svg-icon>
+            <div id="dog-header">
+              <div id="dog-image">
+                <div id="dog-image-circle">
+                  <svg-icon name="dogHead"></svg-icon>
+                </div>
+              </div>
+              <div id="dog-name">
+                ${this.isEditingName
+                  ? html`<sl-input
+                      id="input"
+                      value=${this.newName ?? name ?? ''}
+                      @sl-change=${this.onChangeName}
+                      minlength="3"
+                      maxlength="20"
+                      autofocus
+                      required
+                      size="small"
+                    ></sl-input>`
+                  : this.newName ?? ''}
+                ${this.isEditingName
+                  ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>
+                      <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
+                  : html`<div id="pencil-wrapper">
+                      <sl-icon name="pencil" @click=${this.editName}></sl-icon>
+                      <div id="names-counter">${nameChangesCounter}</div>
+                    </div>`}
               </div>
             </div>
-            <div id="dog-name">
-              ${this.isEditingName
-                ? html`<sl-input
-                    id="input"
-                    value=${this.newName ?? name ?? ''}
-                    @sl-change=${this.onChangeName}
-                    minlength="3"
-                    maxlength="20"
-                    autofocus
-                    required
-                    pill
-                  ></sl-input>`
-                : this.newName ?? ''}
-              ${this.isEditingName
-                ? html`<sl-icon name="check-lg" @click=${this.saveNewName}></sl-icon>
-                    <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
-                : html`<div id="pencil-wrapper">
-                    <sl-icon name="pencil" @click=${this.editName}></sl-icon>
-                    <div id="names-counter">${nameChangesCounter}</div>
-                  </div>`}
-            </div>
-            <div id="info-container">
-              <div id="dog-level"><sl-icon name="star"></sl-icon>Level: ${level}</div>
-              <div id="dog-experience">
-                <sl-icon name="mortarboard"></sl-icon>Exp: ${experience} / ${expForNextLevel}
-                <sl-progress-bar
-                  id="dog-exp-bar"
-                  value=${(experience / expForNextLevel) * 100}
-                ></sl-progress-bar>
-              </div>
 
-              <div id="dog-attack-power">
-                <sl-icon name="lightning-charge"></sl-icon>Energy: ${energy} / ${energyMax}
-                <sl-progress-bar
-                  id="dog-energy-bar"
-                  value=${(energy / energyMax) * 100}
-                ></sl-progress-bar>
-              </div>
+            <div id="content-tabs">
+              <sl-tab-group>
+                <sl-tab slot="nav" panel="stats">
+                  <sl-icon name="bar-chart"></sl-icon>
+                  Stats
+                </sl-tab>
+                <sl-tab slot="nav" panel="quests">
+                  <sl-icon name="list-task"></sl-icon>
+                  Daily Quests
+                </sl-tab>
 
-              <div id="dog-available-doghouses">
-                <sl-icon name="house-add"></sl-icon>Available doghouses: ${availableDoghouses}
-              </div>
+                <sl-tab-panel name="stats">
+                  <div id="stats-content">
+                    <div id="info-container">
+                      <div id="dog-level">
+                        <sl-icon name="star"></sl-icon>Level: ${level}
+                      </div>
+                      <div id="dog-experience">
+                        <sl-icon name="mortarboard"></sl-icon>Exp: ${experience} / ${expForNextLevel}
+                        <sl-progress-bar
+                          id="dog-exp-bar"
+                          value=${(experience / expForNextLevel) * 100}
+                        ></sl-progress-bar>
+                      </div>
+
+                      <div id="dog-attack-power">
+                        <sl-icon name="lightning-charge"></sl-icon>Energy: ${energy} / ${energyMax}
+                        <sl-progress-bar
+                          id="dog-energy-bar"
+                          value=${(energy / energyMax) * 100}
+                        ></sl-progress-bar>
+                      </div>
+
+                      <div id="dog-available-doghouses">
+                        <sl-icon name="house-add"></sl-icon>Available doghouses: ${availableDoghouses}
+                      </div>
+                    </div>
+                  </div>
+                </sl-tab-panel>
+
+                <sl-tab-panel name="quests">
+                  <daily-quests></daily-quests>
+                </sl-tab-panel>
+              </sl-tab-group>
             </div>
           </div>
         `
