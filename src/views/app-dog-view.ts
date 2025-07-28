@@ -10,6 +10,7 @@ import '@shoelace-style/shoelace/dist/components/tab/tab.js';
 
 import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
+import '../components/leaderboards/leaderboards';
 import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
@@ -385,6 +386,10 @@ export class AppDogView extends LitElement {
                   <sl-icon name="list-task"></sl-icon>
                   Daily Quests
                 </sl-tab>
+                <sl-tab slot="nav" panel="leaderboards">
+                  <sl-icon name="trophy"></sl-icon>
+                  Leaderboards
+                </sl-tab>
 
                 <sl-tab-panel name="stats">
                   <div id="stats-content">
@@ -462,6 +467,10 @@ export class AppDogView extends LitElement {
 
                 <sl-tab-panel name="quests">
                   <daily-quests></daily-quests>
+                </sl-tab-panel>
+
+                <sl-tab-panel name="leaderboards">
+                  <leaderboards-component></leaderboards-component>
                 </sl-tab-panel>
               </sl-tab-group>
             </div>
