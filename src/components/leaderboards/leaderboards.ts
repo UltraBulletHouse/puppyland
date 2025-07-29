@@ -1,11 +1,13 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, state, property } from 'lit/decorators.js';
+import { consume } from '@lit/context';
 
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 
 import { sharedStyles } from '../../styles/shared-styles';
+import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import {
   LeaderboardEntry,
   LeaderboardCategory,
@@ -276,6 +278,10 @@ export class LeaderboardsComponent extends LitElement {
   @property({ type: Boolean })
   isActive: boolean = false;
 
+  @consume({ context: accessTokenContext, subscribe: true })
+  @property({ attribute: false })
+  accessToken: string | null = null;
+
   @state()
   selectedCategory: string = LeaderboardCategory.LEVEL;
 
@@ -299,15 +305,29 @@ export class LeaderboardsComponent extends LitElement {
   }
 
   private async fetchLeaderboardData() {
-    const response = await fetch('https://localhost:44355/Leaderboard');
-    const data: LeaderboardsResponse = await response.json();
-    this.leaderboards = data.leaderboards; // Assign the entire leaderboards array
-    this.currentUser = data.currentUser; // Assign current user data
-    console.log('Fetched leaderboards:', this.leaderboards);
-    // Set the initial selected category to the first leaderboard or a default
-    if (this.leaderboards.length > 0) {
-      this.selectedCategory = this.leaderboards[0].category.toString();
-      console.log('Initial selectedCategory:', this.selectedCategory);
+    if (!this.accessToken) {
+      console.error('No access token available for leaderboard');
+      return;
+    }
+
+    try {
+      const { apiCall } = await import('../../utils/apiUtils');
+      const { API_LEADERBOARD_GET } = await import('../../constants/apiConstants');
+      
+      const response = await apiCall(this.accessToken).get(API_LEADERBOARD_GET);
+      const data: LeaderboardsResponse = response.data;
+      
+      this.leaderboards = data.leaderboards;
+      this.currentUser = data.currentUser;
+      console.log('Fetched leaderboards:', this.leaderboards);
+      
+      // Set the initial selected category to the first leaderboard or a default
+      if (this.leaderboards.length > 0) {
+        this.selectedCategory = this.leaderboards[0].category.toString();
+        console.log('Initial selectedCategory:', this.selectedCategory);
+      }
+    } catch (error) {
+      console.error('Error fetching leaderboard data:', error);
     }
   }
 
