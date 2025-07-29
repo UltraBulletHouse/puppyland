@@ -5,9 +5,13 @@ export interface LeaderboardEntry {
   dogName: string;
   avatar?: string;
   score: number;
+  
   rank: number;
   isCurrentUser?: boolean;
   level?: number;
+  experience?: number;
+  ownedDoghouses?: number;
+  destroyedDoghouses?: number;
   badge?: LeaderboardBadge;
 }
 
@@ -22,15 +26,13 @@ export enum BadgeType {
   TOP_PLAYER = 'top_player',
   RISING_STAR = 'rising_star',
   VETERAN = 'veteran',
-  NEWCOMER = 'newcomer',
+  NEWCOMER = 'newcomer'
 }
 
 export enum LeaderboardCategory {
-  LEVEL = 'level',
-  EXPERIENCE = 'experience',
-  DOGHOUSES_BUILT = 'doghouses_built',
-  DOGHOUSES_DESTROYED = 'doghouses_destroyed',
-  WEEKLY_ACTIVITY = 'weekly_activity',
+  LEVEL = 'LEVEL',
+  DOGHOUSES_BUILT = 'DOGHOUSES_BUILT',
+  DOGHOUSES_DESTROYED = 'DOGHOUSES_DESTROYED'
 }
 
 export interface LeaderboardData {

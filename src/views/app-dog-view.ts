@@ -282,6 +282,13 @@ export class AppDogView extends LitElement {
   @state()
   isNameSaveDisabled: boolean = false;
 
+  @state()
+  activeTab: string = 'stats'; // Default active tab
+
+  handleTabShow(event: CustomEvent) {
+    this.activeTab = event.detail.name;
+  }
+
   editName() {
     if (this.dogInfo?.nameChangesCounter === 0) return;
 
@@ -392,7 +399,7 @@ export class AppDogView extends LitElement {
             </div>
 
             <div id="content-tabs">
-              <sl-tab-group>
+              <sl-tab-group @sl-tab-show=${this.handleTabShow}>
                 <sl-tab slot="nav" panel="stats">
                   <sl-icon name="bar-chart"></sl-icon>
                   Stats
@@ -491,7 +498,7 @@ export class AppDogView extends LitElement {
                 </sl-tab-panel>
 
                 <sl-tab-panel name="leaderboards">
-                  <leaderboards-component></leaderboards-component>
+                  <leaderboards-component .isActive=${this.activeTab === 'leaderboards'}></leaderboards-component>
                 </sl-tab-panel>
               </sl-tab-group>
             </div>
