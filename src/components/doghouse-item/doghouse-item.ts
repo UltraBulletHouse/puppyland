@@ -26,11 +26,11 @@ export class AppDoghouseItem extends LitElement {
         border-radius: var(--border-radius-medium);
         background-color: var(--color-white);
         border: 1px solid var(--color-primary-medium);
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition: all 0.2s ease;
       }
       #container:hover {
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         transform: translateY(-1px);
       }
       #header {
@@ -78,13 +78,13 @@ export class AppDoghouseItem extends LitElement {
       #edit-actions sl-icon:hover {
         background-color: var(--color-primary-light);
       }
-      #edit-actions sl-icon[name="check-lg"] {
+      #edit-actions sl-icon[name='check-lg'] {
         color: var(--color-secondary);
       }
-      #edit-actions sl-icon[name="x"] {
+      #edit-actions sl-icon[name='x'] {
         color: #e74c3c;
       }
-      #edit-actions sl-icon[name="pencil"] {
+      #edit-actions sl-icon[name='pencil'] {
         color: var(--color-primary);
       }
       #stats {
@@ -92,7 +92,8 @@ export class AppDoghouseItem extends LitElement {
         gap: 16px;
         align-items: center;
       }
-      #hp-stat, #date-stat {
+      #hp-stat,
+      #date-stat {
         display: flex;
         align-items: center;
         gap: 4px;
@@ -212,9 +213,7 @@ export class AppDoghouseItem extends LitElement {
     return html`
       <div id="container">
         <div id="header">
-          <div id="doghouse-name">
-            ${displayEdit ? nameInput : nameText}
-          </div>
+          <div id="doghouse-name">${displayEdit ? nameInput : nameText}</div>
           ${displayEdit
             ? html`
                 <div id="edit-actions">
@@ -230,7 +229,7 @@ export class AppDoghouseItem extends LitElement {
                 `
               : ''}
         </div>
-        
+
         <div id="stats">
           <div id="hp-stat">
             <sl-icon name="heart-pulse"></sl-icon>
@@ -239,7 +238,7 @@ export class AppDoghouseItem extends LitElement {
               <div id="hp-fill" style="width: ${hpPercentage}%"></div>
             </div>
           </div>
-          
+
           <div id="date-stat">
             <sl-icon name="calendar-check"></sl-icon>
             <sl-relative-time date=${createdDate}></sl-relative-time>

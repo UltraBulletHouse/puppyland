@@ -1,3 +1,9 @@
+export interface DogBuffs {
+  buffSku: string;
+  name: string;
+  quantity: number;
+}
+
 export interface DogInfo {
   id: string;
   userId: string;
@@ -9,8 +15,8 @@ export interface DogInfo {
   experience: number;
   level: number;
   expForNextLevel: number;
-  buffsForDoghouses: null;
-  buffsForDog: null;
+  buffsForDoghouses: DogBuffs[] | null;
+  buffsForDog: DogBuffs[] | null;
   photo: null;
 }
 

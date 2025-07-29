@@ -15,7 +15,7 @@ export enum QuestType {
   BUILD_DOGHOUSES = 'build_doghouses',
   GAIN_EXPERIENCE = 'gain_experience',
   VISIT_LOCATIONS = 'visit_locations',
-  REPAIR_DOGHOUSES = 'repair_doghouses'
+  REPAIR_DOGHOUSES = 'repair_doghouses',
 }
 
 export interface QuestReward {
@@ -28,7 +28,7 @@ export enum RewardType {
   DOGHOUSES = 'doghouses',
   EXPERIENCE = 'experience',
   ENERGY = 'energy',
-  COINS = 'coins'
+  COINS = 'coins',
 }
 
 export interface DailyQuestsResponse {

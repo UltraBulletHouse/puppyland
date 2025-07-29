@@ -2,9 +2,9 @@ import { LitElement, css, html } from 'lit';
 import { customElement, state, property } from 'lit/decorators.js';
 import { consume } from '@lit/context';
 
-import '@shoelace-style/shoelace/dist/components/select/select.js';
-import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
+import '@shoelace-style/shoelace/dist/components/option/option.js';
+import '@shoelace-style/shoelace/dist/components/select/select.js';
 
 import { sharedStyles } from '../../styles/shared-styles';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
@@ -27,13 +27,13 @@ export class LeaderboardsComponent extends LitElement {
         flex-direction: column;
         overflow: hidden;
       }
-      
+
       #header {
         padding: 16px;
         border-bottom: 1px solid var(--color-primary-light);
         background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
       }
-      
+
       #title {
         display: flex;
         align-items: center;
@@ -43,11 +43,11 @@ export class LeaderboardsComponent extends LitElement {
         color: var(--color-black);
         margin-bottom: 12px;
       }
-      
+
       #category-selector {
         width: 100%;
       }
-      
+
       #content {
         flex: 1;
         overflow-y: auto;
@@ -56,51 +56,51 @@ export class LeaderboardsComponent extends LitElement {
         max-height: calc(100vh - 200px);
         -webkit-overflow-scrolling: touch;
       }
-      
+
       #current-user-card {
         background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
         color: white;
         border-radius: var(--border-radius-medium);
         padding: 16px;
         margin-bottom: 16px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
-      
+
       #current-user-header {
         display: flex;
         align-items: center;
         gap: 12px;
         margin-bottom: 8px;
       }
-      
+
       #current-user-avatar {
         width: 48px;
         height: 48px;
         border-radius: var(--border-radius-circle);
-        background: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.2);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 24px;
       }
-      
+
       #current-user-info {
         flex: 1;
       }
-      
+
       #current-user-name {
         font-weight: 600;
         font-size: 16px;
         margin-bottom: 2px;
       }
-      
+
       #current-user-dog {
         font-size: 14px;
         opacity: 0.9;
       }
-      
+
       #current-user-rank {
-        background: rgba(255,255,255,0.2);
+        background: rgba(255, 255, 255, 0.2);
         padding: 8px 12px;
         border-radius: var(--border-radius-small);
         font-weight: 700;
@@ -108,7 +108,7 @@ export class LeaderboardsComponent extends LitElement {
         text-align: center;
         min-width: 60px;
       }
-      
+
       #leaderboard-list {
         background: var(--color-white);
         border-radius: var(--border-radius-medium);
@@ -116,7 +116,7 @@ export class LeaderboardsComponent extends LitElement {
         overflow: visible;
         margin-bottom: 16px;
       }
-      
+
       .leaderboard-entry {
         display: flex;
         align-items: center;
@@ -125,20 +125,20 @@ export class LeaderboardsComponent extends LitElement {
         transition: background-color 0.2s ease;
         min-height: 64px;
       }
-      
+
       .leaderboard-entry:last-child {
         border-bottom: none;
       }
-      
+
       .leaderboard-entry:hover {
         background: var(--color-primary-light);
       }
-      
+
       .leaderboard-entry.current-user {
         background: var(--color-secondary-light);
         border-left: 4px solid var(--color-secondary);
       }
-      
+
       .rank {
         width: 40px;
         text-align: center;
@@ -146,16 +146,22 @@ export class LeaderboardsComponent extends LitElement {
         font-size: 16px;
         color: var(--color-black-medium);
       }
-      
+
       .rank.top-3 {
         color: var(--color-primary);
         font-size: 18px;
       }
-      
-      .rank.rank-1 { color: #FFD700; }
-      .rank.rank-2 { color: #C0C0C0; }
-      .rank.rank-3 { color: #CD7F32; }
-      
+
+      .rank.rank-1 {
+        color: #ffd700;
+      }
+      .rank.rank-2 {
+        color: #c0c0c0;
+      }
+      .rank.rank-3 {
+        color: #cd7f32;
+      }
+
       .player-avatar {
         width: 40px;
         height: 40px;
@@ -168,12 +174,12 @@ export class LeaderboardsComponent extends LitElement {
         margin: 0 12px;
         border: 2px solid var(--color-primary-medium);
       }
-      
+
       .player-info {
         flex: 1;
         min-width: 0;
       }
-      
+
       .player-name {
         font-weight: 600;
         font-size: 14px;
@@ -183,7 +189,7 @@ export class LeaderboardsComponent extends LitElement {
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      
+
       .dog-name {
         font-size: 12px;
         color: var(--color-black-medium);
@@ -191,25 +197,25 @@ export class LeaderboardsComponent extends LitElement {
         text-overflow: ellipsis;
         white-space: nowrap;
       }
-      
+
       .score {
         text-align: right;
         margin-left: 8px;
       }
-      
+
       .score-value {
         font-weight: 700;
         font-size: 16px;
         color: var(--color-primary);
       }
-      
+
       .score-label {
         font-size: 11px;
         color: var(--color-black-light);
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-      
+
       .player-badge {
         margin-left: 8px;
         padding: 2px 6px;
@@ -219,32 +225,32 @@ export class LeaderboardsComponent extends LitElement {
         text-transform: uppercase;
         letter-spacing: 0.5px;
       }
-      
+
       .badge-champion {
-        background: linear-gradient(135deg, #FFD700, #FFA500);
+        background: linear-gradient(135deg, #ffd700, #ffa500);
         color: white;
       }
-      
+
       .badge-top-player {
-        background: linear-gradient(135deg, #C0C0C0, #A0A0A0);
+        background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
         color: white;
       }
-      
+
       .badge-rising-star {
-        background: linear-gradient(135deg, #FF6B6B, #FF5252);
+        background: linear-gradient(135deg, #ff6b6b, #ff5252);
         color: white;
       }
-      
+
       .badge-veteran {
-        background: linear-gradient(135deg, #9B59B6, #8E44AD);
+        background: linear-gradient(135deg, #9b59b6, #8e44ad);
         color: white;
       }
-      
+
       .badge-newcomer {
-        background: linear-gradient(135deg, #4ECDC4, #44A08D);
+        background: linear-gradient(135deg, #4ecdc4, #44a08d);
         color: white;
       }
-      
+
       #stats-footer {
         padding: 12px 16px;
         background: var(--color-primary-light);
@@ -253,23 +259,23 @@ export class LeaderboardsComponent extends LitElement {
         font-size: 12px;
         color: var(--color-black-medium);
       }
-      
+
       #empty-state {
         text-align: center;
         padding: 40px 20px;
         color: var(--color-black-light);
       }
-      
+
       #empty-state sl-icon {
         font-size: 48px;
         margin-bottom: 16px;
         opacity: 0.5;
       }
-      
+
       .crown-icon {
         margin-right: 4px;
         font-size: 14px;
-        color: #FFD700;
+        color: #ffd700;
       }
     `,
   ];
@@ -341,7 +347,7 @@ export class LeaderboardsComponent extends LitElement {
   }
 
   get currentUserEntry(): LeaderboardEntry | undefined {
-    return this.currentLeaderboard?.entries.find(entry => entry.isCurrentUser);
+    return this.currentLeaderboard?.entries.find((entry) => entry.isCurrentUser);
   }
 
   handleCategoryChange(event: CustomEvent) {
@@ -383,10 +389,14 @@ export class LeaderboardsComponent extends LitElement {
 
   getRankIcon(rank: number): string {
     switch (rank) {
-      case 1: return '👑';
-      case 2: return '🥈';
-      case 3: return '🥉';
-      default: return '';
+      case 1:
+        return '👑';
+      case 2:
+        return '🥈';
+      case 3:
+        return '🥉';
+      default:
+        return '';
     }
   }
 
@@ -412,7 +422,7 @@ export class LeaderboardsComponent extends LitElement {
             <sl-icon name="trophy"></sl-icon>
             Leaderboards
           </div>
-          
+
           <sl-select
             id="category-selector"
             value=${this.selectedCategory.toString()}
@@ -436,20 +446,20 @@ export class LeaderboardsComponent extends LitElement {
         </div>
 
         <div id="content">
-          ${userEntry ? html`
-            <div id="current-user-card">
-              <div id="current-user-header">
-                <div id="current-user-avatar">🐕</div>
-                <div id="current-user-info">
-                  <div id="current-user-name">${this.currentUser.userName}</div>
-                  <div id="current-user-dog">${this.currentUser.dogName}</div>
+          ${userEntry
+            ? html`
+                <div id="current-user-card">
+                  <div id="current-user-header">
+                    <div id="current-user-avatar">🐕</div>
+                    <div id="current-user-info">
+                      <div id="current-user-name">${this.currentUser.userName}</div>
+                      <div id="current-user-dog">${this.currentUser.dogName}</div>
+                    </div>
+                    <div id="current-user-rank">#${userEntry.rank}</div>
+                  </div>
                 </div>
-                <div id="current-user-rank">
-                  #${userEntry.rank}
-                </div>
-              </div>
-            </div>
-          ` : ''}
+              `
+            : ''}
 
           <div id="leaderboard-list">
             ${leaderboard.entries.map((entry) => {
@@ -487,7 +497,8 @@ export class LeaderboardsComponent extends LitElement {
             })}
 
           <div id="stats-footer">
-            ${leaderboard.totalPlayers.toLocaleString()} total players • Updated ${new Date(leaderboard.lastUpdated).toLocaleDateString()}
+            ${leaderboard.totalPlayers.toLocaleString()} total players • Updated
+            ${new Date(leaderboard.lastUpdated).toLocaleDateString()}
           </div>
         </div>
       </div>

@@ -35,7 +35,7 @@ export class AppDoghousesView extends LitElement {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
       #title-text {
         font-weight: 600;
@@ -138,9 +138,9 @@ export class AppDoghousesView extends LitElement {
 
   render() {
     // Sort doghouses by creation date (newest first)
-    const sortedDoghouses = this.doghouses?.slice().sort((a, b) => 
-      new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime()
-    );
+    const sortedDoghouses = this.doghouses
+      ?.slice()
+      .sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime());
 
     return html`
       <div id="container">
@@ -158,25 +158,26 @@ export class AppDoghousesView extends LitElement {
         <div id="list">
           ${when(
             this.doghouses,
-            () => sortedDoghouses && sortedDoghouses.length > 0
-              ? sortedDoghouses.map(
-                  (item) => html`
-                    <app-dogouse-item
-                      .dogouseInfo=${item}
-                      .isEditMode=${this.editMode}
-                      @updateDoghouse=${this.updateDoghouse}
-                    ></app-dogouse-item>
-                  `
-                )
-              : html`
-                  <div id="empty-state">
-                    <sl-icon name="house-add"></sl-icon>
-                    <div>No doghouses yet</div>
-                    <div style="font-size: 14px; margin-top: 8px;">
-                      Go to the map to build your first doghouse!
+            () =>
+              sortedDoghouses && sortedDoghouses.length > 0
+                ? sortedDoghouses.map(
+                    (item) => html`
+                      <app-dogouse-item
+                        .dogouseInfo=${item}
+                        .isEditMode=${this.editMode}
+                        @updateDoghouse=${this.updateDoghouse}
+                      ></app-dogouse-item>
+                    `
+                  )
+                : html`
+                    <div id="empty-state">
+                      <sl-icon name="house-add"></sl-icon>
+                      <div>No doghouses yet</div>
+                      <div style="font-size: 14px; margin-top: 8px;">
+                        Go to the map to build your first doghouse!
+                      </div>
                     </div>
-                  </div>
-                `,
+                  `,
             () => html`<app-spinner></app-spinner>`
           )}
         </div>
