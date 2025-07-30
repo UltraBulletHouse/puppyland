@@ -185,6 +185,23 @@ export class DailyQuests extends LitElement {
         margin-bottom: 8px;
         opacity: 0.5;
       }
+
+      #loading-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--color-black-medium);
+      }
+
+      #loading-state sl-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
     `,
   ];
 
@@ -261,12 +278,12 @@ export class DailyQuests extends LitElement {
   getQuestTypeIcon(type: QuestType): string {
     switch (type) {
       case QuestType.ATTACK_DOGHOUSES: return 'lightning-charge';
-      case QuestType.BUILD_DOGHOUSES: return 'hammer';
-      case QuestType.GAIN_EXPERIENCE: return 'star';
+      case QuestType.BUILD_DOGHOUSES: return 'house-add';
+      case QuestType.GAIN_EXPERIENCE: return 'mortarboard';
       case QuestType.REPAIR_DOGHOUSES: return 'tools';
       case QuestType.DESTROY_DOGHOUSES: return 'fire';
-      case QuestType.LEVEL_UP: return 'trophy';
-      case QuestType.SPEND_ENERGY: return 'battery-half';
+      case QuestType.LEVEL_UP: return 'star';
+      case QuestType.SPEND_ENERGY: return 'lightning-charge';
       default: return 'question-circle';
     }
   }
@@ -287,9 +304,9 @@ export class DailyQuests extends LitElement {
   getRewardIcon(type: RewardType): string {
     switch (type) {
       case RewardType.DOGHOUSES: return 'house-add';
-      case RewardType.EXPERIENCE: return 'star-fill';
-      case RewardType.ENERGY: return 'lightning-charge-fill';
-      case RewardType.COINS: return 'coin';
+      case RewardType.EXPERIENCE: return 'mortarboard';
+      case RewardType.ENERGY: return 'lightning-charge';
+      case RewardType.ENERGY_RESTORE: return 'lightning-charge';
       default: return 'gift';
     }
   }
@@ -320,6 +337,23 @@ export class DailyQuests extends LitElement {
   }
 
   render() {
+    if (this.isLoading) {
+      return html`
+        <div id="container">
+          <div id="header">
+            <div id="title">
+              <sl-icon name="list-task"></sl-icon>
+              Daily Quests
+            </div>
+          </div>
+          <div id="loading-state">
+            <sl-icon name="arrow-clockwise"></sl-icon>
+            <p>Loading daily quests...</p>
+          </div>
+        </div>
+      `;
+    }
+
     if (!this.quests || this.quests.length === 0) {
       return html`
         <div id="container">
