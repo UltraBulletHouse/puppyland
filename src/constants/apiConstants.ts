@@ -20,3 +20,7 @@ export const API_PURCHASE_ACKNOWLEDGE = 'Purchase/AcknowledgePurchase';
 
 /* LEADERBOARD */
 export const API_LEADERBOARD_GET = 'Leaderboard';
+
+/* QUESTS */
+export const API_QUESTS_DAILY = 'Quest/Daily';
+export const API_QUEST_CLAIM = 'Quest/Claim';
