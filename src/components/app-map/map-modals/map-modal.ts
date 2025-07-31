@@ -57,6 +57,9 @@ export class MapModal extends LitElement {
   @state()
   isLevelUp: boolean = false;
 
+  @state()
+  buffLoading: string | null = null;
+
   // WEBSOCKETS
   // connection = new signalR.HubConnectionBuilder()
   // .withUrl('https://mydogapi.azurewebsites.net/doghouse-hub')
@@ -147,16 +150,50 @@ export class MapModal extends LitElement {
   repairDoghouse = async () => {
     if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
+    this.loadingButton();
+
     const attackDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
       API_DOGHOUSE_REPAIR,
       { doghouseId: this.dhId, dogId: this.dogInfo.id }
     );
 
     const dogInfoResponse = attackDoghouseResponse?.data?.dog;
+    const doghouseInfoResponse = attackDoghouseResponse?.data?.doghouse;
 
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
     }
+
+    if (doghouseInfoResponse) {
+      this.dhHp = doghouseInfoResponse.hp.toString();
+      alertNotifySuccess(`🔧 Doghouse repaired!`);
+    }
+
+    sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse?.hp.toString());
+  };
+
+  applyBuff = async (buffType: 'repair50' | 'repairMax') => {
+    if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
+
+    this.buffLoading = buffType;
+
+    // Mock API call for now - replace with actual API endpoint
+    setTimeout(() => {
+      const currentHp = Number(this.dhHp);
+      const maxHp = Number(this.dhMaxHp);
+      
+      if (buffType === 'repair50') {
+        const newHp = Math.min(currentHp + 50, maxHp);
+        this.dhHp = newHp.toString();
+        alertNotifySuccess(`✨ Repair Buff Applied! +50 HP`);
+      } else if (buffType === 'repairMax') {
+        this.dhHp = this.dhMaxHp;
+        alertNotifySuccess(`⚡ Max Repair Buff Applied! Full HP restored!`);
+      }
+
+      this.buffLoading = null;
+      sendEvent<string>(this, 'updateDoghouses', this.dhHp);
+    }, 1500);
   };
 
   launchConfetti() {
@@ -189,35 +226,109 @@ export class MapModal extends LitElement {
     // WEBSOCKETS
     // this.runSignal()
     const hpPercent = Math.round((Number(this.dhHp) / Number(this.dhMaxHp)) * 100);
+    const currentHp = Number(this.dhHp);
+    const maxHp = Number(this.dhMaxHp);
+    const isFullHealth = currentHp >= maxHp;
 
     const mainSection = html`
       <div id="map-modal-main-section">
-        <div id="dh-info">
+        <div id="dh-header">
           <div id="dh-name">${this.dhName}</div>
-          <div id="doghouse-icon"><svg-icon name="doghouseOne"></svg-icon></div>
+          <div id="dh-status" class=${!this.isOwn ? 'enemy' : 'own'}>
+            ${!this.isOwn ? '⚔️ Enemy Territory' : '🏠 Your Doghouse'}
+          </div>
         </div>
-        <div id="dh-hp-container">
+        
+        <div id="doghouse-icon">
+          <svg-icon name="doghouseOne"></svg-icon>
+        </div>
+        
+        <div id="dh-hp-section">
+          <div id="dh-hp-label">
+            <span>Health: ${this.dhHp}/${this.dhMaxHp}</span>
+            <span class="hp-percent">(${hpPercent}%)</span>
+          </div>
           <sl-progress-bar
             id="dh-hp-bar"
-            class=${!this.isOwn ? 'dh-hp-bar--enemy' : ''}
+            class=${!this.isOwn ? 'dh-hp-bar--enemy' : 'dh-hp-bar--own'}
             value=${hpPercent}
-            >${this.dhHp}</sl-progress-bar
-          >
+          ></sl-progress-bar>
         </div>
+
         <div id="center">${!this.isOwn ? html`` : html``}</div>
-        <div id="footer-btn">
-          ${!this.isOwn
-            ? html`<sl-button
-                id="attack-btn"
-                @click=${this.attackDoghouse}
-                pill
+        
+        <div id="actions-section">
+          ${!this.isOwn ? html`
+            <div class="action-description">
+              <sl-icon name="sword"></sl-icon>
+              <span>Attack this doghouse to gain XP and potentially destroy it!</span>
+            </div>
+            <sl-button
+              id="attack-btn"
+              @click=${this.attackDoghouse}
+              size="large"
+              ?loading=${this.btnLoading}
+              ?disabled=${this.btnLoading}
+            >
+              <sl-icon slot="prefix" name="sword"></sl-icon>
+              Attack - ${attackEnergy}
+              <sl-icon slot="suffix" name="lightning-charge"></sl-icon>
+            </sl-button>
+          ` : html`
+            <div class="section-title">
+              <sl-icon name="tools"></sl-icon>
+              <span>Maintenance & Buffs</span>
+            </div>
+            
+            <div class="action-group">
+              <div class="action-label">Basic Repair</div>
+              <sl-button
+                class="repair-btn"
+                @click=${this.repairDoghouse}
                 ?loading=${this.btnLoading}
-                ?disabled=${this.btnLoading}
-                >Bite - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
-              ></sl-button>`
-            : html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill
-                >Repair - ${repairEnergy}<sl-icon name="lightning-charge"></sl-icon
-              ></sl-button>`}
+                ?disabled=${this.btnLoading || isFullHealth}
+                size="medium"
+              >
+                <sl-icon slot="prefix" name="wrench"></sl-icon>
+                Repair - ${repairEnergy}
+                <sl-icon slot="suffix" name="lightning-charge"></sl-icon>
+              </sl-button>
+            </div>
+
+            <div class="buffs-section">
+              <div class="action-label">Power Buffs</div>
+              <div class="buff-buttons">
+                <sl-button
+                  class="buff-btn buff-btn--repair50"
+                  @click=${() => this.applyBuff('repair50')}
+                  ?loading=${this.buffLoading === 'repair50'}
+                  ?disabled=${this.buffLoading !== null || isFullHealth}
+                  size="medium"
+                >
+                  <sl-icon slot="prefix" name="heart-pulse"></sl-icon>
+                  +50 HP Buff
+                </sl-button>
+                
+                <sl-button
+                  class="buff-btn buff-btn--repairmax"
+                  @click=${() => this.applyBuff('repairMax')}
+                  ?loading=${this.buffLoading === 'repairMax'}
+                  ?disabled=${this.buffLoading !== null || isFullHealth}
+                  size="medium"
+                >
+                  <sl-icon slot="prefix" name="heart-fill"></sl-icon>
+                  Max HP Buff
+                </sl-button>
+              </div>
+            </div>
+
+            ${isFullHealth ? html`
+              <div class="full-health-notice">
+                <sl-icon name="check-circle-fill"></sl-icon>
+                <span>Your doghouse is at full health!</span>
+              </div>
+            ` : ''}
+          `}
         </div>
       </div>
     `;

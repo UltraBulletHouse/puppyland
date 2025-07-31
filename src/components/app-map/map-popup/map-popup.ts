@@ -62,9 +62,9 @@ export class MapPopup extends LitElement {
     this.isOpen = false;
   };
 
-  openMapModal() {
+  openMapModal = () => {
     this.isOpen = true;
-  }
+  };
 
   closePopup = () => {
     sendEvent(this, 'closePopup');
