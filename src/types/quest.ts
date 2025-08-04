@@ -1,4 +1,5 @@
 export interface Quest {
+  isRewardClaimed: any;
   id: string;
   title: string;
   description: string;
@@ -14,8 +15,10 @@ export enum QuestType {
   ATTACK_DOGHOUSES = 'attack_doghouses',
   BUILD_DOGHOUSES = 'build_doghouses',
   GAIN_EXPERIENCE = 'gain_experience',
-  VISIT_LOCATIONS = 'visit_locations',
   REPAIR_DOGHOUSES = 'repair_doghouses',
+  DESTROY_DOGHOUSES = 'destroy_doghouses',
+  LEVEL_UP = 'level_up',
+  SPEND_ENERGY = 'spend_energy'
 }
 
 export interface QuestReward {
@@ -28,7 +31,9 @@ export enum RewardType {
   DOGHOUSES = 'doghouses',
   EXPERIENCE = 'experience',
   ENERGY = 'energy',
-  COINS = 'coins',
+  ENERGY_RESTORE = 'energy_restore',
+  PREMIUM_DOGHOUSE = 'premium_doghouse',
+  COINS = "COINS"
 }
 
 export interface DailyQuestsResponse {

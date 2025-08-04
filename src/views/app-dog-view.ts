@@ -494,7 +494,7 @@ export class AppDogView extends LitElement {
                 </sl-tab-panel>
 
                 <sl-tab-panel name="quests">
-                  <daily-quests></daily-quests>
+                  <daily-quests .isActive=${this.activeTab === 'quests'}></daily-quests>
                 </sl-tab-panel>
 
                 <sl-tab-panel name="leaderboards">

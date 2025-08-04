@@ -1,11 +1,15 @@
 import { LitElement, css, html } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { customElement, state, property } from 'lit/decorators.js';
+import { consume } from '@lit/context';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
+import '@shoelace-style/shoelace/dist/components/badge/badge.js';
+import '@shoelace-style/shoelace/dist/components/button/button.js';
 
 import { sharedStyles } from '../../styles/shared-styles';
-import { Quest, QuestType, RewardType } from '../../types/quest';
+import { accessTokenContext } from '../../contexts/userFirebaseContext';
+import { Quest, QuestType, RewardType, DailyQuestsResponse } from '../../types/quest';
 
 @customElement('daily-quests')
 export class DailyQuests extends LitElement {
@@ -89,6 +93,13 @@ export class DailyQuests extends LitElement {
         font-size: 12px;
         color: var(--color-black-medium);
         line-height: 1.4;
+      }
+      
+      .quest-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
       }
 
       .quest-reward {
@@ -191,107 +202,129 @@ export class DailyQuests extends LitElement {
         margin-bottom: 8px;
         opacity: 0.5;
       }
+
+      #loading-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--color-black-medium);
+      }
+
+      #loading-state sl-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
     `,
   ];
 
-  @state()
-  quests: Quest[] = [
-    {
-      id: '1',
-      title: 'Doghouse Destroyer',
-      description: 'Attack enemy doghouses 10 times today',
-      type: QuestType.ATTACK_DOGHOUSES,
-      target: 10,
-      progress: 7,
-      reward: {
-        type: RewardType.DOGHOUSES,
-        amount: 1,
-        description: '+1 Available Doghouse',
-      },
-      isCompleted: false,
-      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-    },
-    {
-      id: '2',
-      title: 'Builder Master',
-      description: 'Build 3 new doghouses',
-      type: QuestType.BUILD_DOGHOUSES,
-      target: 3,
-      progress: 3,
-      reward: {
-        type: RewardType.EXPERIENCE,
-        amount: 500,
-        description: '+500 Experience',
-      },
-      isCompleted: true,
-      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-    },
-    {
-      id: '3',
-      title: 'Energy Boost',
-      description: 'Gain 1000 experience points',
-      type: QuestType.GAIN_EXPERIENCE,
-      target: 1000,
-      progress: 650,
-      reward: {
-        type: RewardType.ENERGY,
-        amount: 50,
-        description: '+50 Energy',
-      },
-      isCompleted: false,
-      expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-    },
-  ];
+  @consume({ context: accessTokenContext, subscribe: true })
+  @property({ attribute: false })
+  accessToken: string | null = null;
+
+  @property({ type: Boolean })
+  isActive: boolean = false;
 
   @state()
-  nextRefreshAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
+  quests: Quest[] = [];
+
+  @state()
+  nextRefreshAt: string = '';
+
+  @state()
+  isLoading: boolean = true;
+
+  @state()
+  private hasFetchedData: boolean = false;
+
+  async firstUpdated() {
+  }
+
+  updated(changedProperties: Map<string | number | symbol, unknown>) {
+    if (changedProperties.has('isActive') && this.isActive && !this.hasFetchedData) {
+      this.fetchDailyQuests();
+      this.hasFetchedData = true;
+    }
+  }
+
+  private async fetchDailyQuests() {
+    if (!this.accessToken) {
+      console.error('No access token available for daily quests');
+      return;
+    }
+
+    try {
+      this.isLoading = true;
+      const { apiCall } = await import('../../utils/apiUtils');
+      const { API_QUESTS_DAILY } = await import('../../constants/apiConstants');
+      
+      const response = await apiCall(this.accessToken).get(API_QUESTS_DAILY);
+      const data: DailyQuestsResponse = response.data;
+      
+      this.quests = data.quests;
+      this.nextRefreshAt = data.nextRefreshAt;
+      console.log('Fetched daily quests:', this.quests);
+    } catch (error) {
+      console.error('Error fetching daily quests:', error);
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  private async claimReward(questId: string) {
+    if (!this.accessToken) return;
+
+    try {
+      const { apiCall } = await import('../../utils/apiUtils');
+      const { API_QUEST_CLAIM } = await import('../../constants/apiConstants');
+      
+      const response = await apiCall(this.accessToken).post(`${API_QUEST_CLAIM}/${questId}`);
+      console.log('Claimed reward:', response.data);
+      
+      // Refresh quests after claiming
+      await this.fetchDailyQuests();
+    } catch (error) {
+      console.error('Error claiming quest reward:', error);
+    }
+  }
 
   getQuestTypeIcon(type: QuestType): string {
     switch (type) {
-      case QuestType.ATTACK_DOGHOUSES:
-        return 'lightning-charge';
-      case QuestType.BUILD_DOGHOUSES:
-        return 'hammer';
-      case QuestType.GAIN_EXPERIENCE:
-        return 'star';
-      case QuestType.VISIT_LOCATIONS:
-        return 'geo-alt';
-      case QuestType.REPAIR_DOGHOUSES:
-        return 'tools';
-      default:
-        return 'question-circle';
+      case QuestType.ATTACK_DOGHOUSES: return 'lightning-charge';
+      case QuestType.BUILD_DOGHOUSES: return 'house-add';
+      case QuestType.GAIN_EXPERIENCE: return 'mortarboard';
+      case QuestType.REPAIR_DOGHOUSES: return 'tools';
+      case QuestType.DESTROY_DOGHOUSES: return 'fire';
+      case QuestType.LEVEL_UP: return 'star';
+      case QuestType.SPEND_ENERGY: return 'lightning-charge';
+      default: return 'question-circle';
     }
   }
 
   getQuestTypeClass(type: QuestType): string {
     switch (type) {
-      case QuestType.ATTACK_DOGHOUSES:
-        return 'attack';
-      case QuestType.BUILD_DOGHOUSES:
-        return 'build';
-      case QuestType.GAIN_EXPERIENCE:
-        return 'experience';
-      case QuestType.VISIT_LOCATIONS:
-        return 'visit';
-      case QuestType.REPAIR_DOGHOUSES:
-        return 'repair';
-      default:
-        return '';
+      case QuestType.ATTACK_DOGHOUSES: return 'attack';
+      case QuestType.BUILD_DOGHOUSES: return 'build';
+      case QuestType.GAIN_EXPERIENCE: return 'experience';
+      case QuestType.REPAIR_DOGHOUSES: return 'repair';
+      case QuestType.DESTROY_DOGHOUSES: return 'destroy';
+      case QuestType.LEVEL_UP: return 'level-up';
+      case QuestType.SPEND_ENERGY: return 'energy';
+      default: return '';
     }
   }
 
   getRewardIcon(type: RewardType): string {
     switch (type) {
-      case RewardType.DOGHOUSES:
-        return 'house-add';
-      case RewardType.EXPERIENCE:
-        return 'star-fill';
-      case RewardType.ENERGY:
-        return 'lightning-charge-fill';
-      case RewardType.COINS:
-        return 'coin';
-      default:
-        return 'gift';
+      case RewardType.DOGHOUSES: return 'house-add';
+      case RewardType.EXPERIENCE: return 'mortarboard';
+      case RewardType.ENERGY: return 'lightning-charge';
+      case RewardType.ENERGY_RESTORE: return 'lightning-charge';
+      default: return 'gift';
     }
   }
 
@@ -311,10 +344,12 @@ export class DailyQuests extends LitElement {
   }
 
   formatTimeRemaining(): string {
+    if (!this.nextRefreshAt) return 'Loading...';
+    
     const now = new Date();
-    const refresh = this.nextRefreshAt;
-    const diff = refresh.getTime() - now.getTime();
-
+    const refreshTime = new Date(this.nextRefreshAt);
+    const diff = refreshTime.getTime() - now.getTime();
+    
     if (diff <= 0) return 'Refreshing...';
 
     const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -324,6 +359,23 @@ export class DailyQuests extends LitElement {
   }
 
   render() {
+    if (this.isLoading) {
+      return html`
+        <div id="container">
+          <div id="header">
+            <div id="title">
+              <sl-icon name="list-task"></sl-icon>
+              Daily Quests
+            </div>
+          </div>
+          <div id="loading-state">
+            <sl-icon name="arrow-clockwise"></sl-icon>
+            <p>Loading daily quests...</p>
+          </div>
+        </div>
+      `;
+    }
+
     if (!this.quests || this.quests.length === 0) {
       return html`
         <div id="container">
@@ -370,12 +422,25 @@ export class DailyQuests extends LitElement {
                   </div>
                   <div class="quest-description">${quest.description}</div>
                 </div>
-                <div class="quest-reward ${quest.isCompleted ? 'completed' : ''}">
-                  <sl-icon
-                    name="${this.getRewardIcon(quest.reward.type)}"
-                    class="reward-icon ${this.getRewardClass(quest.reward.type)}"
-                  ></sl-icon>
-                  ${quest.reward.amount}
+                <div class="quest-actions">
+                  <div class="quest-reward ${quest.isCompleted ? 'completed' : ''}">
+                    <sl-icon 
+                      name="${this.getRewardIcon(quest.reward.type)}" 
+                      class="reward-icon ${this.getRewardClass(quest.reward.type)}"
+                    ></sl-icon>
+                    ${quest.reward.description}
+                  </div>
+                  ${quest.isCompleted && !quest.isRewardClaimed ? html`
+                    <sl-button variant="success" size="small" @click=${() => this.claimReward(quest.id)}>
+                      <sl-icon name="gift" slot="prefix"></sl-icon>
+                      Claim
+                    </sl-button>
+                  ` : quest.isRewardClaimed ? html`
+                    <sl-badge variant="success">
+                      <sl-icon name="check-circle"></sl-icon>
+                      Claimed
+                    </sl-badge>
+                  ` : ''}
                 </div>
               </div>
 
@@ -393,3 +458,4 @@ export class DailyQuests extends LitElement {
     `;
   }
 }
+
