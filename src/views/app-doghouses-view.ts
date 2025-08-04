@@ -3,6 +3,9 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 
+import '@shoelace-style/shoelace/dist/components/select/select.js';
+import '@shoelace-style/shoelace/dist/components/option/option.js';
+
 import '../components/app-spinner/app-spinner';
 import '../components/doghouse-item/doghouse-item';
 import { API_DOGHOUSE_GET } from '../constants/apiConstants';
@@ -42,6 +45,33 @@ export class AppDoghousesView extends LitElement {
         font-size: 18px;
         color: var(--color-black);
         letter-spacing: 0.5px;
+      }
+      #controls {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      #sort-by-selector {
+        width: 120px;
+      }
+      #sort-buttons {
+        display: flex;
+        gap: 8px;
+      }
+      .sort-button::part(base) {
+        font-size: 12px;
+        padding: 8px;
+        background-color: var(--color-white);
+        color: var(--color-primary);
+        border: 1px solid var(--color-primary-light);
+        transition: background-color 0.2s, color 0.2s;
+        align-items: center;
+        justify-content: center;
+      }
+      .sort-button.active::part(base) {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        border-color: var(--color-primary);
       }
       #edit-button {
         padding: 8px;
@@ -107,6 +137,9 @@ export class AppDoghousesView extends LitElement {
   @state()
   editMode: boolean = false;
 
+  @state()
+  sortBy: 'date' | 'hp' = 'date';
+
   updateDoghouse(event: CustomEvent<Doghouse>) {
     if (!this.doghouses) return;
     const dhToUpdate = event.detail;
@@ -137,22 +170,48 @@ export class AppDoghousesView extends LitElement {
   }
 
   render() {
-    // Sort doghouses by creation date (newest first)
+    // Sort doghouses based on the selected criteria
     const sortedDoghouses = this.doghouses
-      ?.slice()
-      .sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime());
+      ? [...this.doghouses].sort((a, b) => {
+          if (this.sortBy === 'hp') {
+            return a.hp - b.hp; // Sort by HP ascending
+          } else {
+            return new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime(); // Sort by date descending
+          }
+        })
+      : [];
 
     return html`
       <div id="container">
         <div id="header">
           <div id="title-text">My Doghouses</div>
-          <sl-icon
-            id="edit-button"
-            name="gear"
-            @click=${this.handleEditMode}
-            class=${this.editMode ? 'is-edit-mode' : ''}
-            title=${this.editMode ? 'Exit edit mode' : 'Edit doghouses'}
-          ></sl-icon>
+          <div id="controls">
+            <div id="sort-buttons">
+              <sl-button
+                class="sort-button ${this.sortBy === 'date' ? 'active' : ''}"
+                @click=${() => (this.sortBy = 'date')}
+                size="small"
+              >
+                <sl-icon name="calendar-date" slot="prefix"></sl-icon>
+                Date
+              </sl-button>
+              <sl-button
+                class="sort-button ${this.sortBy === 'hp' ? 'active' : ''}"
+                @click=${() => (this.sortBy = 'hp')}
+                size="small"
+              >
+                <sl-icon name="heart-pulse" slot="prefix"></sl-icon>
+                HP
+              </sl-button>
+            </div>
+            <sl-icon
+              id="edit-button"
+              name="gear"
+              @click=${this.handleEditMode}
+              class=${this.editMode ? 'is-edit-mode' : ''}
+              title=${this.editMode ? 'Exit edit mode' : 'Edit doghouses'}
+            ></sl-icon>
+          </div>
         </div>
 
         <div id="list">
