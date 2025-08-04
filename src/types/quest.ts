@@ -1,4 +1,5 @@
 export interface Quest {
+  isRewardClaimed: any;
   id: string;
   title: string;
   description: string;
@@ -31,7 +32,8 @@ export enum RewardType {
   EXPERIENCE = 'experience',
   ENERGY = 'energy',
   ENERGY_RESTORE = 'energy_restore',
-  PREMIUM_DOGHOUSE = 'premium_doghouse'
+  PREMIUM_DOGHOUSE = 'premium_doghouse',
+  COINS = "COINS"
 }
 
 export interface DailyQuestsResponse {

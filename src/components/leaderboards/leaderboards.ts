@@ -12,7 +12,6 @@ import {
   LeaderboardEntry,
   LeaderboardCategory,
   LeaderboardData,
-  BadgeType,
   LeaderboardsResponse
 } from '../../types/leaderboard';
 

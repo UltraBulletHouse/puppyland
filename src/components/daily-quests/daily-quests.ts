@@ -9,8 +9,6 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 import { sharedStyles } from '../../styles/shared-styles';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { Quest, QuestType, RewardType, DailyQuestsResponse } from '../../types/quest';
-import { viewContext } from '../../contexts/viewContext';
-import { View } from '../../types/view';
 
 @customElement('daily-quests')
 export class DailyQuests extends LitElement {
