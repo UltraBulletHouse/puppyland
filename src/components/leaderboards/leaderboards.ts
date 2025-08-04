@@ -48,6 +48,33 @@ export class LeaderboardsComponent extends LitElement {
         width: 100%;
       }
 
+      #category-buttons {
+        display: flex;
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .category-button {
+        flex: 1;
+      }
+
+      .category-button::part(base) {
+        font-size: 12px;
+        padding: 8px;
+        background-color: var(--color-white);
+        color: var(--color-primary);
+        border: 1px solid var(--color-primary-light);
+        transition: background-color 0.2s, color 0.2s;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .category-button.active::part(base) {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        border-color: var(--color-primary);
+      }
+
       #content {
         flex: 1;
         overflow-y: auto;
@@ -373,8 +400,7 @@ export class LeaderboardsComponent extends LitElement {
     return this.currentLeaderboard?.entries.find((entry) => entry.isCurrentUser);
   }
 
-  handleCategoryChange(event: CustomEvent) {
-    const newCategory = (event.target as HTMLSelectElement).value;
+  handleCategoryChange(newCategory: LeaderboardCategory) {
     if (newCategory && newCategory !== this.selectedCategory) {
       this.selectedCategory = newCategory;
       this.requestUpdate();
@@ -463,26 +489,32 @@ export class LeaderboardsComponent extends LitElement {
             Leaderboards
           </div>
 
-          <sl-select
-            id="category-selector"
-            value=${this.selectedCategory.toString()}
-            @sl-change=${this.handleCategoryChange}
-            size="small"
-            hoist
-          >
-            <sl-option value=${LeaderboardCategory.LEVEL.toString()}>
+          <div id="category-buttons">
+            <sl-button
+              class="category-button ${this.selectedCategory === LeaderboardCategory.LEVEL ? 'active' : ''}"
+              @click=${() => this.handleCategoryChange(LeaderboardCategory.LEVEL)}
+              size="small"
+            >
               <sl-icon name="star" slot="prefix"></sl-icon>
               Top Levels
-            </sl-option>
-            <sl-option value=${LeaderboardCategory.DOGHOUSES_BUILT.toString()}>
+            </sl-button>
+            <sl-button
+              class="category-button ${this.selectedCategory === LeaderboardCategory.DOGHOUSES_BUILT ? 'active' : ''}"
+              @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_BUILT)}
+              size="small"
+            >
               <sl-icon name="hammer" slot="prefix"></sl-icon>
-              Master Builders
-            </sl-option>
-            <sl-option value=${LeaderboardCategory.DOGHOUSES_DESTROYED.toString()}>
+              Builders
+            </sl-button>
+            <sl-button
+              class="category-button ${this.selectedCategory === LeaderboardCategory.DOGHOUSES_DESTROYED ? 'active' : ''}"
+              @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_DESTROYED)}
+              size="small"
+            >
               <sl-icon name="lightning-charge" slot="prefix"></sl-icon>
-              Top Destroyers
-            </sl-option>
-          </sl-select>
+              Destroyers
+            </sl-button>
+          </div>
         </div>
 
         <div id="content">
