@@ -275,7 +275,24 @@ export class LeaderboardsComponent extends LitElement {
       .crown-icon {
         margin-right: 4px;
         font-size: 14px;
-        color: #ffd700;
+        color: #FFD700;
+      }
+
+      #loading-state {
+        text-align: center;
+        padding: 40px 20px;
+        color: var(--color-black-medium);
+      }
+
+      #loading-state sl-icon {
+        font-size: 48px;
+        margin-bottom: 16px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
       }
     `,
   ];
@@ -300,6 +317,9 @@ export class LeaderboardsComponent extends LitElement {
     dogName: ''
   };
 
+  @state()
+  isLoading: boolean = true;
+
   private hasFetchedData: boolean = false;
 
   updated(changedProperties: Map<string | number | symbol, unknown>) {
@@ -316,6 +336,7 @@ export class LeaderboardsComponent extends LitElement {
     }
 
     try {
+      this.isLoading = true;
       const { apiCall } = await import('../../utils/apiUtils');
       const { API_LEADERBOARD_GET } = await import('../../constants/apiConstants');
       
@@ -333,6 +354,8 @@ export class LeaderboardsComponent extends LitElement {
       }
     } catch (error) {
       console.error('Error fetching leaderboard data:', error);
+    } finally {
+      this.isLoading = false;
     }
   }
 
@@ -401,6 +424,23 @@ export class LeaderboardsComponent extends LitElement {
   }
 
   render() {
+    if (this.isLoading) {
+      return html`
+        <div id="container">
+          <div id="header">
+            <div id="title">
+              <sl-icon name="trophy"></sl-icon>
+              Leaderboards
+            </div>
+          </div>
+          <div id="loading-state">
+            <sl-icon name="arrow-clockwise"></sl-icon>
+            <p>Loading leaderboards...</p>
+          </div>
+        </div>
+      `;
+    }
+
     const leaderboard = this.currentLeaderboard;
     const userEntry = this.currentUserEntry;
 
@@ -446,6 +486,20 @@ export class LeaderboardsComponent extends LitElement {
         </div>
 
         <div id="content">
+          ${userEntry
+            ? html`
+                <div id="current-user-card">
+                  <div id="current-user-header">
+                    <div id="current-user-avatar">🐕</div>
+                    <div id="current-user-info">
+                      <div id="current-user-name">${this.currentUser.userName}</div>
+                      <div id="current-user-dog">${this.currentUser.dogName}</div>
+                    </div>
+                    <div id="current-user-rank">#${userEntry.rank}</div>
+                  </div>
+                </div>
+              `
+            : ''}
           ${userEntry
             ? html`
                 <div id="current-user-card">
