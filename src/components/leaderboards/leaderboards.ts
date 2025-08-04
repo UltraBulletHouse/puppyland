@@ -500,20 +500,6 @@ export class LeaderboardsComponent extends LitElement {
                 </div>
               `
             : ''}
-          ${userEntry
-            ? html`
-                <div id="current-user-card">
-                  <div id="current-user-header">
-                    <div id="current-user-avatar">🐕</div>
-                    <div id="current-user-info">
-                      <div id="current-user-name">${this.currentUser.userName}</div>
-                      <div id="current-user-dog">${this.currentUser.dogName}</div>
-                    </div>
-                    <div id="current-user-rank">#${userEntry.rank}</div>
-                  </div>
-                </div>
-              `
-            : ''}
 
           <div id="leaderboard-list">
             ${leaderboard.entries.map((entry) => {
