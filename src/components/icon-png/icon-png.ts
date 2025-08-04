@@ -25,6 +25,7 @@ export class IconPngBadge extends LitElement {
       }
       .image {
         width: var(--icon-png-badge-width);
+        height: var(--icon-png-badge-height);
       }
     `,
   ];

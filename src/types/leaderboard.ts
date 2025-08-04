@@ -26,7 +26,7 @@ export enum BadgeType {
   TOP_PLAYER = 'top_player',
   RISING_STAR = 'rising_star',
   VETERAN = 'veteran',
-  NEWCOMER = 'newcomer'
+  NEWCOMER = 'newcomer',
 }
 
 export enum LeaderboardCategory {
