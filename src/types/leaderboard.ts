@@ -32,7 +32,9 @@ export enum BadgeType {
 export enum LeaderboardCategory {
   LEVEL = 'LEVEL',
   DOGHOUSES_BUILT = 'DOGHOUSES_BUILT',
-  DOGHOUSES_DESTROYED = 'DOGHOUSES_DESTROYED'
+  DOGHOUSES_DESTROYED = 'DOGHOUSES_DESTROYED',
+  EXPERIENCE = "EXPERIENCE",
+  WEEKLY_ACTIVITY = "WEEKLY_ACTIVITY"
 }
 
 export interface LeaderboardData {
