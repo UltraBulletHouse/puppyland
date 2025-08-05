@@ -10,8 +10,6 @@ export const dogPaw = html`<svg
   fill="currentColor"
   version="1.1"
   id="Capa_1"
-  width="800px"
-  height="800px"
   viewBox="0 0 63.445 63.445"
   xml:space="preserve"
 >
