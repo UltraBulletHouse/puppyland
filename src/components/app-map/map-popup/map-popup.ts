@@ -191,7 +191,6 @@ export class MapPopup extends LitElement {
           justify-content: center;
           flex-basis: 50%;
           height: 100%;
-          background: var(--color-primary-light);
           border-radius: var(--border-radius-small);
         }
         #lower-section {

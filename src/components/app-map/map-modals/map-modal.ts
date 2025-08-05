@@ -429,7 +429,7 @@ export class MapModal extends LitElement {
     const baseTemplate = html`
       ${MapModalStyles}
 
-      <div id="map-modal-container">
+      <div id="map-modal-container" class=${this.isOwn ? 'own-doghouse-modal' : 'enemy-doghouse-modal'}>
         <div id="close-btn-container">
           <div
             id="close-btn"

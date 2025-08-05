@@ -8,9 +8,14 @@ export const MapModalStyles = html`
       align-items: center;
       height: 100%;
       width: 100%;
-      background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
       border-radius: var(--border-radius-medium);
       overflow: hidden;
+    }
+    .own-doghouse-modal {
+      background: linear-gradient(135deg, var(--color-secondary-light) 0%, var(--color-white) 100%);
+    }
+    .enemy-doghouse-modal {
+      background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
     }
     #map-modal-main-section {
       display: flex;
