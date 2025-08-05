@@ -8,6 +8,9 @@ export const MapModalStyles = html`
       align-items: center;
       height: 100%;
       width: 100%;
+      background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+      border-radius: var(--border-radius-medium);
+      overflow: hidden;
     }
     #map-modal-main-section {
       display: flex;
@@ -15,11 +18,28 @@ export const MapModalStyles = html`
       align-items: center;
       height: 100%;
       width: 100%;
+      position: relative;
+      padding: 20px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+    }
+
+    #map-modal-main-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+      opacity: 0.3;
     }
     #close-btn-container {
       display: flex;
       justify-content: end;
       width: 100%;
+      position: relative;
+      z-index: 10;
+      padding: 0 10px;
     }
     #close-btn {
       display: flex;
@@ -43,6 +63,20 @@ export const MapModalStyles = html`
       text-wrap: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
+      color: var(--color-primary);
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      margin-bottom: 10px;
+    }
+
+    #dh-info {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: var(--border-radius-medium);
+      padding: 20px;
+      margin-bottom: 15px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      width: 100%;
     }
     #dh-details {
       display: flex;

@@ -4,7 +4,9 @@ import { property, state } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
 
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
+import { viewContext } from '../../../contexts/viewContext';
 import { Coords } from '../../../types/geolocation';
+import { View } from '../../../types/view';
 import { classNames } from '../../../utils/classNames';
 import { sendEvent } from '../../../utils/eventUtils';
 import { checkHowClose } from '../../../utils/mapUtils';
@@ -18,6 +20,10 @@ export class MapPopup extends LitElement {
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;
+
+  @consume({ context: viewContext, subscribe: true })
+  @property({ attribute: false })
+  currentView: View = View.MAP_VIEW;
 
   @property({ type: String })
   dhCoords?: string;
@@ -95,6 +101,12 @@ export class MapPopup extends LitElement {
     }
     if (changedProperties.has('isClose')) {
       this.isBlocked = !this.isClose;
+    }
+    // Close modal when view changes away from MAP_VIEW
+    if (changedProperties.has('currentView')) {
+      if (this.currentView !== View.MAP_VIEW && this.isOpen) {
+        this.closeMapModal();
+      }
     }
   }
 
