@@ -12,7 +12,6 @@ import { dogInfoContext, updateDogInfoEvent } from '../../../contexts/dogInfoCon
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { DogInfo } from '../../../types/dog';
 import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
-
 import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
@@ -129,7 +128,7 @@ export class MapModal extends LitElement {
     if (!this.isOwn && !this.btnLoading) {
       this.tapCount++;
       this.triggerShakeAnimation();
-      
+
       if (this.tapCount >= 3) {
         this.tapCount = 0;
         this.triggerAttackSuccessAnimation();
@@ -156,13 +155,13 @@ export class MapModal extends LitElement {
     // Start destruction animation
     this.showDestructionEffect = true;
     this.isDestroyed = true;
-    
+
     // Screen shake effect
     this.triggerScreenShake();
-    
+
     // Create particle explosion
     this.createParticleExplosion();
-    
+
     // After destruction animation, show confetti and close
     setTimeout(() => {
       this.launchConfetti();
@@ -199,9 +198,9 @@ export class MapModal extends LitElement {
         z-index: 100;
         animation: explode-${i} 1.5s ease-out forwards;
       `;
-      
+
       container.appendChild(particle);
-      
+
       // Remove particle after animation
       setTimeout(() => {
         if (particle.parentNode) {
@@ -219,19 +218,19 @@ export class MapModal extends LitElement {
   showVisualFeedback = (damage: number, experience: number) => {
     this.damageAmount = damage;
     this.experienceAmount = experience;
-    
+
     // Show damage indicator
     this.showDamageIndicator = true;
     setTimeout(() => {
       this.showDamageIndicator = false;
     }, 2000);
-    
+
     // Show energy consumption indicator
     this.showEnergyIndicator = true;
     setTimeout(() => {
       this.showEnergyIndicator = false;
     }, 2000);
-    
+
     // Show experience indicator
     this.showExperienceIndicator = true;
     setTimeout(() => {
@@ -333,42 +332,54 @@ export class MapModal extends LitElement {
       <div id="map-modal-main-section" style="position: relative;">
         <!-- Visual Feedback Indicators -->
         <div id="visual-feedback-container">
-          ${this.showDamageIndicator ? html`
-            <div class="feedback-indicator damage-indicator ${this.isDestroyed ? 'destruction-message' : ''}">
-              <sl-icon name="${this.isDestroyed ? 'explosion' : 'heart-crack'}"></sl-icon>
-              ${this.isDestroyed ? 'DESTROYED!' : `-${this.damageAmount} HP`}
-            </div>
-          ` : ''}
-          
-          ${this.showEnergyIndicator ? html`
-            <div class="feedback-indicator energy-indicator">
-              <sl-icon name="lightning-charge"></sl-icon>
-              -${attackEnergy} Energy
-            </div>
-          ` : ''}
-          
-          ${this.showExperienceIndicator ? html`
-            <div class="feedback-indicator experience-indicator">
-              <sl-icon name="star-fill"></sl-icon>
-              +${this.experienceAmount} XP
-            </div>
-          ` : ''}
+          ${this.showDamageIndicator
+            ? html`
+                <div
+                  class="feedback-indicator damage-indicator ${this.isDestroyed
+                    ? 'destruction-message'
+                    : ''}"
+                >
+                  <sl-icon name="${this.isDestroyed ? 'explosion' : 'heart-crack'}"></sl-icon>
+                  ${this.isDestroyed ? 'DESTROYED!' : `-${this.damageAmount} HP`}
+                </div>
+              `
+            : ''}
+          ${this.showEnergyIndicator
+            ? html`
+                <div class="feedback-indicator energy-indicator">
+                  <sl-icon name="lightning-charge"></sl-icon>
+                  -${attackEnergy} Energy
+                </div>
+              `
+            : ''}
+          ${this.showExperienceIndicator
+            ? html`
+                <div class="feedback-indicator experience-indicator">
+                  <sl-icon name="star-fill"></sl-icon>
+                  +${this.experienceAmount} XP
+                </div>
+              `
+            : ''}
         </div>
 
         <div id="dh-info">
           <div id="dh-name">${this.dhName}</div>
-          <div 
-            id="doghouse-icon" 
-            class=${this.isShaking ? 'shake' : this.isAttackSuccess ? 'attack-success' : this.isDestroyed ? 'destroyed' : ''}
+          <div
+            id="doghouse-icon"
+            class=${this.isShaking
+              ? 'shake'
+              : this.isAttackSuccess
+                ? 'attack-success'
+                : this.isDestroyed
+                  ? 'destroyed'
+                  : ''}
             @click=${this.handleDoghouseTap}
             style="cursor: ${!this.isOwn ? 'pointer' : 'default'}"
           >
             <svg-icon name="doghouseOne"></svg-icon>
           </div>
-          
-          ${this.showDestructionEffect ? html`
-            <div class="destruction-overlay"></div>
-          ` : ''}
+
+          ${this.showDestructionEffect ? html` <div class="destruction-overlay"></div> ` : ''}
         </div>
 
         <div id="dh-hp-container">
@@ -385,27 +396,39 @@ export class MapModal extends LitElement {
               <span class="hp-progress-percentage">${hpPercent}%</span>
             </div>
             <div class="modern-hp-bar">
-              <div 
-                class="hp-fill ${!this.isOwn ? 'enemy' : ''} ${hpPercent < 30 ? 'critical' : hpPercent < 60 ? 'low' : ''}"
+              <div
+                class="hp-fill ${!this.isOwn ? 'enemy' : ''} ${hpPercent < 30
+                  ? 'critical'
+                  : hpPercent < 60
+                    ? 'low'
+                    : ''}"
                 style="width: ${hpPercent}%"
               ></div>
             </div>
           </div>
         </div>
-        
+
         <div id="center">
-          ${!this.isOwn ? html`
-            <div id="tap-instructions">
-              <p>Tap the doghouse ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''} to attack!</p>
-              <div id="tap-progress">
-                ${Array.from({length: 3}, (_, i) => html`
-                  <div class="tap-dot ${i < this.tapCount ? 'active' : ''}"></div>
-                `)}
-              </div>
-            </div>
-          ` : html``}
+          ${!this.isOwn
+            ? html`
+                <div id="tap-instructions">
+                  <p>
+                    Tap the doghouse ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''}
+                    to attack!
+                  </p>
+                  <div id="tap-progress">
+                    ${Array.from(
+                      { length: 3 },
+                      (_, i) => html`
+                        <div class="tap-dot ${i < this.tapCount ? 'active' : ''}"></div>
+                      `
+                    )}
+                  </div>
+                </div>
+              `
+            : html``}
         </div>
-        
+
         <div id="footer-btn">
           ${this.isOwn
             ? html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill
@@ -435,7 +458,10 @@ export class MapModal extends LitElement {
     const baseTemplate = html`
       ${MapModalStyles}
 
-      <div id="map-modal-container" class=${this.isOwn ? 'own-doghouse-modal' : 'enemy-doghouse-modal'}>
+      <div
+        id="map-modal-container"
+        class=${this.isOwn ? 'own-doghouse-modal' : 'enemy-doghouse-modal'}
+      >
         <div id="close-btn-container">
           <div
             id="close-btn"

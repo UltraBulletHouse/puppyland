@@ -3,8 +3,8 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 
-import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
+import '@shoelace-style/shoelace/dist/components/select/select.js';
 
 import '../components/app-spinner/app-spinner';
 import '../components/doghouse-item/doghouse-item';
@@ -64,7 +64,9 @@ export class AppDoghousesView extends LitElement {
         background-color: var(--color-white);
         color: var(--color-primary);
         border: 1px solid var(--color-primary-light);
-        transition: background-color 0.2s, color 0.2s;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
         align-items: center;
         justify-content: center;
       }

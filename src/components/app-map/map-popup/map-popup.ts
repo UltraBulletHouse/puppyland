@@ -185,43 +185,43 @@ export class MapPopup extends LitElement {
           margin-right: 4px;
         }
         #stats {
-        display: flex;
-        gap: 16px;
-        align-items: center;
-        background-color: rgba(0, 0, 0, 0.1);
-        padding: 4px 8px;
-        border-radius: var(--border-radius-small);
-      }
-      #hp-stat,
-      #date-stat {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        font-size: 14px;
-        color: var(--color-white);
-      }
-      #hp-stat sl-icon {
-        color: var(--color-white);
-        font-size: 14px;
-      }
-      #date-stat sl-icon {
-        color: var(--color-black-light);
-        font-size: 14px;
-      }
-      #hp-bar {
-        width: 60px;
-        height: 8px;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 4px;
-        overflow: hidden;
-        margin-left: 4px;
-      }
-      #hp-fill {
-        height: 100%;
-        background: linear-gradient(90deg, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
-        border-radius: 2px;
-        transition: width 0.3s ease;
-      }
+          display: flex;
+          gap: 16px;
+          align-items: center;
+          background-color: rgba(0, 0, 0, 0.1);
+          padding: 4px 8px;
+          border-radius: var(--border-radius-small);
+        }
+        #hp-stat,
+        #date-stat {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 14px;
+          color: var(--color-white);
+        }
+        #hp-stat sl-icon {
+          color: var(--color-white);
+          font-size: 14px;
+        }
+        #date-stat sl-icon {
+          color: var(--color-black-light);
+          font-size: 14px;
+        }
+        #hp-bar {
+          width: 60px;
+          height: 8px;
+          background: rgba(0, 0, 0, 0.2);
+          border-radius: 4px;
+          overflow: hidden;
+          margin-left: 4px;
+        }
+        #hp-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
+          border-radius: 2px;
+          transition: width 0.3s ease;
+        }
         #owner-section {
           display: flex;
           flex-direction: column;
@@ -309,9 +309,7 @@ export class MapPopup extends LitElement {
               <div id="hp-bar">
                 <div
                   id="hp-fill"
-                  style="width: ${
-                    (Number(this.dhHpLocal) / Number(this.dhMaxHp)) * 100
-                  }%"
+                  style="width: ${(Number(this.dhHpLocal) / Number(this.dhMaxHp)) * 100}%"
                 ></div>
               </div>
             </div>

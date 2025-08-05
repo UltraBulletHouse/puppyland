@@ -18,7 +18,7 @@ export enum QuestType {
   REPAIR_DOGHOUSES = 'repair_doghouses',
   DESTROY_DOGHOUSES = 'destroy_doghouses',
   LEVEL_UP = 'level_up',
-  SPEND_ENERGY = 'spend_energy'
+  SPEND_ENERGY = 'spend_energy',
 }
 
 export interface QuestReward {
@@ -33,7 +33,7 @@ export enum RewardType {
   ENERGY = 'energy',
   ENERGY_RESTORE = 'energy_restore',
   PREMIUM_DOGHOUSE = 'premium_doghouse',
-  COINS = "COINS"
+  COINS = 'COINS',
 }
 
 export interface DailyQuestsResponse {

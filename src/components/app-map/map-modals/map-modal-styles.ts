@@ -25,7 +25,12 @@ export const MapModalStyles = html`
       width: 100%;
       position: relative;
       padding: 20px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(255, 255, 255, 0.05) 100%);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.05) 100%
+      );
     }
 
     #map-modal-main-section::before {
@@ -234,7 +239,7 @@ export const MapModalStyles = html`
       user-select: none;
       outline: none;
     }
-    
+
     #doghouse-icon.shake {
       animation: shake 0.5s ease-in-out;
     }
@@ -246,46 +251,70 @@ export const MapModalStyles = html`
     #doghouse-icon.destroyed {
       animation: destruction 1.5s ease-in-out forwards;
     }
-    
+
     @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-      20%, 40%, 60%, 80% { transform: translateX(5px); }
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
+        transform: translateX(-5px);
+      }
+      20%,
+      40%,
+      60%,
+      80% {
+        transform: translateX(5px);
+      }
     }
 
     @keyframes attackSuccess {
-      0% { transform: scale(1) rotate(0deg); }
-      25% { transform: scale(1.1) rotate(-5deg); }
-      50% { transform: scale(1.2) rotate(5deg); }
-      75% { transform: scale(1.1) rotate(-2deg); }
-      100% { transform: scale(1) rotate(0deg); }
+      0% {
+        transform: scale(1) rotate(0deg);
+      }
+      25% {
+        transform: scale(1.1) rotate(-5deg);
+      }
+      50% {
+        transform: scale(1.2) rotate(5deg);
+      }
+      75% {
+        transform: scale(1.1) rotate(-2deg);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+      }
     }
 
     @keyframes destruction {
-      0% { 
+      0% {
         transform: scale(1) rotate(0deg);
         opacity: 1;
         filter: brightness(1);
       }
-      20% { 
+      20% {
         transform: scale(1.3) rotate(-10deg);
         filter: brightness(1.5) contrast(1.2);
       }
-      40% { 
+      40% {
         transform: scale(1.1) rotate(15deg);
         filter: brightness(2) contrast(1.5);
       }
-      60% { 
+      60% {
         transform: scale(0.8) rotate(-20deg);
         opacity: 0.8;
         filter: brightness(0.5) blur(2px);
       }
-      80% { 
+      80% {
         transform: scale(0.4) rotate(25deg);
         opacity: 0.4;
         filter: brightness(0.2) blur(4px);
       }
-      100% { 
+      100% {
         transform: scale(0) rotate(45deg);
         opacity: 0;
         filter: brightness(0) blur(8px);
@@ -297,16 +326,37 @@ export const MapModalStyles = html`
     }
 
     @keyframes screenShake {
-      0%, 100% { transform: translate(0, 0) rotate(0deg); }
-      10% { transform: translate(-2px, -1px) rotate(-0.5deg); }
-      20% { transform: translate(-1px, 2px) rotate(0.5deg); }
-      30% { transform: translate(3px, 0px) rotate(-0.5deg); }
-      40% { transform: translate(0px, -2px) rotate(0.5deg); }
-      50% { transform: translate(-2px, 1px) rotate(-0.5deg); }
-      60% { transform: translate(2px, 0px) rotate(0.5deg); }
-      70% { transform: translate(0px, -1px) rotate(-0.5deg); }
-      80% { transform: translate(-1px, 2px) rotate(0.5deg); }
-      90% { transform: translate(1px, -1px) rotate(-0.5deg); }
+      0%,
+      100% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      10% {
+        transform: translate(-2px, -1px) rotate(-0.5deg);
+      }
+      20% {
+        transform: translate(-1px, 2px) rotate(0.5deg);
+      }
+      30% {
+        transform: translate(3px, 0px) rotate(-0.5deg);
+      }
+      40% {
+        transform: translate(0px, -2px) rotate(0.5deg);
+      }
+      50% {
+        transform: translate(-2px, 1px) rotate(-0.5deg);
+      }
+      60% {
+        transform: translate(2px, 0px) rotate(0.5deg);
+      }
+      70% {
+        transform: translate(0px, -1px) rotate(-0.5deg);
+      }
+      80% {
+        transform: translate(-1px, 2px) rotate(0.5deg);
+      }
+      90% {
+        transform: translate(1px, -1px) rotate(-0.5deg);
+      }
     }
 
     .destruction-overlay {
@@ -322,24 +372,90 @@ export const MapModalStyles = html`
     }
 
     @keyframes destructionFlash {
-      0% { opacity: 0; }
-      20% { opacity: 1; }
-      100% { opacity: 0; }
+      0% {
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
     }
 
     /* Dynamic particle explosion animations */
-    @keyframes explode-0 { to { transform: translate(-60px, -80px) scale(0); opacity: 0; } }
-    @keyframes explode-1 { to { transform: translate(70px, -90px) scale(0); opacity: 0; } }
-    @keyframes explode-2 { to { transform: translate(-40px, 60px) scale(0); opacity: 0; } }
-    @keyframes explode-3 { to { transform: translate(80px, 50px) scale(0); opacity: 0; } }
-    @keyframes explode-4 { to { transform: translate(-90px, -20px) scale(0); opacity: 0; } }
-    @keyframes explode-5 { to { transform: translate(90px, -30px) scale(0); opacity: 0; } }
-    @keyframes explode-6 { to { transform: translate(-30px, -100px) scale(0); opacity: 0; } }
-    @keyframes explode-7 { to { transform: translate(40px, -110px) scale(0); opacity: 0; } }
-    @keyframes explode-8 { to { transform: translate(-70px, 40px) scale(0); opacity: 0; } }
-    @keyframes explode-9 { to { transform: translate(60px, 70px) scale(0); opacity: 0; } }
-    @keyframes explode-10 { to { transform: translate(-50px, -50px) scale(0); opacity: 0; } }
-    @keyframes explode-11 { to { transform: translate(50px, -60px) scale(0); opacity: 0; } }
+    @keyframes explode-0 {
+      to {
+        transform: translate(-60px, -80px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-1 {
+      to {
+        transform: translate(70px, -90px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-2 {
+      to {
+        transform: translate(-40px, 60px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-3 {
+      to {
+        transform: translate(80px, 50px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-4 {
+      to {
+        transform: translate(-90px, -20px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-5 {
+      to {
+        transform: translate(90px, -30px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-6 {
+      to {
+        transform: translate(-30px, -100px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-7 {
+      to {
+        transform: translate(40px, -110px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-8 {
+      to {
+        transform: translate(-70px, 40px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-9 {
+      to {
+        transform: translate(60px, 70px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-10 {
+      to {
+        transform: translate(-50px, -50px) scale(0);
+        opacity: 0;
+      }
+    }
+    @keyframes explode-11 {
+      to {
+        transform: translate(50px, -60px) scale(0);
+        opacity: 0;
+      }
+    }
     #attack-btn::part(base) {
       font-size: 18px;
       background-color: var(--color-primary);
@@ -356,7 +472,12 @@ export const MapModalStyles = html`
       align-items: center;
       position: relative;
       padding: 40px 30px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%, rgba(255, 255, 255, 0.1) 100%);
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.2) 0%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.1) 100%
+      );
       border-radius: var(--border-radius-medium);
       backdrop-filter: blur(15px);
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -377,8 +498,12 @@ export const MapModalStyles = html`
     }
 
     @keyframes levelUpGlow {
-      0% { opacity: 0.6; }
-      100% { opacity: 1; }
+      0% {
+        opacity: 0.6;
+      }
+      100% {
+        opacity: 1;
+      }
     }
 
     #map-modal-level-up h2 {
@@ -395,8 +520,12 @@ export const MapModalStyles = html`
     }
 
     @keyframes levelUpPulse {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.05); }
+      0% {
+        transform: scale(1);
+      }
+      100% {
+        transform: scale(1.05);
+      }
     }
 
     #map-modal-level-up h3 {
@@ -441,10 +570,18 @@ export const MapModalStyles = html`
       transform: translateX(-20px);
     }
 
-    #map-modal-level-up li:nth-child(1) { animation-delay: 0.2s; }
-    #map-modal-level-up li:nth-child(2) { animation-delay: 0.4s; }
-    #map-modal-level-up li:nth-child(3) { animation-delay: 0.6s; }
-    #map-modal-level-up li:nth-child(4) { animation-delay: 0.8s; }
+    #map-modal-level-up li:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+    #map-modal-level-up li:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+    #map-modal-level-up li:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+    #map-modal-level-up li:nth-child(4) {
+      animation-delay: 0.8s;
+    }
 
     @keyframes levelUpItemSlide {
       to {
@@ -666,7 +803,11 @@ export const MapModalStyles = html`
       text-align: center;
       margin: 20px 0;
       padding: 15px;
-      background: linear-gradient(135deg, rgba(var(--color-primary-rgb, 220, 53, 69), 0.1), rgba(var(--color-primary-rgb, 220, 53, 69), 0.05));
+      background: linear-gradient(
+        135deg,
+        rgba(var(--color-primary-rgb, 220, 53, 69), 0.1),
+        rgba(var(--color-primary-rgb, 220, 53, 69), 0.05)
+      );
       border-radius: 15px;
       border: 1px solid rgba(var(--color-primary-rgb, 220, 53, 69), 0.2);
     }

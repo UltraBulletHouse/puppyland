@@ -5,12 +5,12 @@ import { customElement, property, state } from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/avatar/avatar.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/card/card.js';
+import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import '@shoelace-style/shoelace/dist/components/divider/divider.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
-import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
+import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/switch/switch.js';
-import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 
 import { userInfoContext } from '../contexts/userInfoContext';
 import { updateViewEvent } from '../contexts/viewContext';
@@ -292,7 +292,7 @@ export class AppUserView extends LitElement {
         <div slot="header">
           <strong>App Settings</strong>
         </div>
-        
+
         <!-- Language Setting -->
         <div class="setting-item">
           <div class="setting-info">
@@ -303,11 +303,12 @@ export class AppUserView extends LitElement {
             </div>
           </div>
           <div class="setting-control">
-            <sl-select 
+            <sl-select
               class="language-select"
               value=${this.selectedLanguage}
               @sl-change=${this.handleLanguageChange}
-              size="small">
+              size="small"
+            >
               <sl-option value="en">English</sl-option>
               <sl-option value="es">Spanish</sl-option>
               <sl-option value="fr">French</sl-option>
@@ -329,9 +330,10 @@ export class AppUserView extends LitElement {
             </div>
           </div>
           <div class="setting-control">
-            <sl-switch 
+            <sl-switch
               ?checked=${this.notificationsEnabled}
-              @sl-change=${this.handleNotificationToggle}>
+              @sl-change=${this.handleNotificationToggle}
+            >
             </sl-switch>
           </div>
         </div>
@@ -346,9 +348,7 @@ export class AppUserView extends LitElement {
             </div>
           </div>
           <div class="setting-control">
-            <sl-switch 
-              ?checked=${this.soundEnabled}
-              @sl-change=${this.handleSoundToggle}>
+            <sl-switch ?checked=${this.soundEnabled} @sl-change=${this.handleSoundToggle}>
             </sl-switch>
           </div>
         </div>
@@ -363,9 +363,7 @@ export class AppUserView extends LitElement {
             </div>
           </div>
           <div class="setting-control">
-            <sl-switch 
-              ?checked=${this.darkMode}
-              @sl-change=${this.handleDarkModeToggle}>
+            <sl-switch ?checked=${this.darkMode} @sl-change=${this.handleDarkModeToggle}>
             </sl-switch>
           </div>
         </div>
@@ -373,15 +371,10 @@ export class AppUserView extends LitElement {
     `;
   }
 
-
   private renderDangerZone() {
     return html`
       <div class="danger-zone">
-        <sl-button 
-          class="signout-button"
-          variant="danger" 
-          size="large"
-          @click=${this.signOut}>
+        <sl-button class="signout-button" variant="danger" size="large" @click=${this.signOut}>
           <sl-icon slot="prefix" name="box-arrow-right"></sl-icon>
           Sign Out
         </sl-button>
@@ -392,7 +385,7 @@ export class AppUserView extends LitElement {
   private renderAttribution() {
     return html`
       <div class="attribution">
-        <strong>Attribution:</strong><br>
+        <strong>Attribution:</strong><br />
         <a href="https://www.freepik.com/icon/first-aid-kit_2679336" target="_blank">
           Icons by Freepik
         </a>
@@ -409,20 +402,14 @@ export class AppUserView extends LitElement {
       <div class="container">
         <!-- Header Section -->
         <div class="header">
-          <sl-avatar 
-            class="user-avatar" 
-            initials=${userInitials} 
-            label="User Avatar">
-          </sl-avatar>
+          <sl-avatar class="user-avatar" initials=${userInitials} label="User Avatar"> </sl-avatar>
           <div class="user-name">${userName}</div>
           <div class="user-email">${userEmail}</div>
         </div>
 
         <!-- Settings Content -->
         <div class="settings-content">
-          ${this.renderAppSettings()}
-          ${this.renderDangerZone()}
-          ${this.renderAttribution()}
+          ${this.renderAppSettings()} ${this.renderDangerZone()} ${this.renderAttribution()}
         </div>
       </div>
     `;

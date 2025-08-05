@@ -498,7 +498,9 @@ export class AppDogView extends LitElement {
                 </sl-tab-panel>
 
                 <sl-tab-panel name="leaderboards">
-                  <leaderboards-component .isActive=${this.activeTab === 'leaderboards'}></leaderboards-component>
+                  <leaderboards-component
+                    .isActive=${this.activeTab === 'leaderboards'}
+                  ></leaderboards-component>
                 </sl-tab-panel>
               </sl-tab-group>
             </div>
