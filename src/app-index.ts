@@ -78,17 +78,16 @@ export class AppIndex extends LitElement {
   @property({ attribute: false })
   dogInfo: DogInfo | null = null;
 
+  @property({ type: Boolean })
+  isLoading: boolean = true;
+
   updateDogInfo(event: CustomEvent<DogInfo>) {
     this.dogInfo = event.detail;
   }
 
   firstUpdated() {
-    // TODO: https://stackoverflow.com/questions/54580414/how-can-i-detect-if-my-website-is-opened-inside-a-trusted-web-actvity
-    // TODO: sprawdzac czy dziala sklep Google (to co w shop view)
-    // console.log(document.referrer);
-
     auth.onAuthStateChanged(async (userFirebase) => {
-      this.view = View.LOADING_VIEW;
+      this.isLoading = true;
 
       if (userFirebase) {
         const accessToken = await userFirebase.getIdToken();
@@ -98,16 +97,19 @@ export class AppIndex extends LitElement {
         this.dogInfo = userInfoResponse?.data?.dog;
         this.accessToken = accessToken;
 
-        /* DEFAULT VIEW */
         this.view = View.MAP_VIEW;
       } else {
-        console.log('Please sign-in');
         this.view = View.SIGNIN_VIEW;
       }
+      this.isLoading = false;
     });
   }
 
   renderContent(view: View) {
+    if (this.isLoading) {
+      return html`<app-loading-view></app-loading-view>`;
+    }
+
     switch (view) {
       case View.SIGNIN_VIEW: {
         import('./views/app-signin-view');
@@ -133,18 +135,15 @@ export class AppIndex extends LitElement {
         import('./views/app-doghouses-view');
         return html`<app-doghouses-view></app-doghouses-view>`;
       }
-      case View.LOADING_VIEW: {
-        return html`<app-loading-view></app-loading-view>`;
-      }
       default: {
-        return html`<div>NULL</div>`;
+        return html`<app-loading-view></app-loading-view>`;
       }
     }
   }
 
   render() {
     const isFooterHidden =
-      this.view === View.SIGNIN_VIEW || this.view === View.LOADING_VIEW || !this.view;
+      this.view === View.SIGNIN_VIEW || this.isLoading || !this.view;
 
     const hasShadowFooter = this.view === View.MAP_VIEW;
 
