@@ -26,22 +26,15 @@ export const watchPositionError = (err: GeolocationPositionError) => {
   }
 };
 //TODO: Przeniesc do controllera wszystko i zapisywac id
-export const watchUserPosition = (watchUserPositionSuccess: PositionCallback) => {
-  // alertNotifyWarning(navigator.geolocation.getCurrentPosition.toString());
-  // console.log('watchUserPosition',navigator.geolocation);
-
+export const watchUserPosition = (watchUserPositionSuccess: PositionCallback): number | undefined => {
   if ('geolocation' in navigator) {
-    // alertNotifyWarning('WATCH USER - utils');
-    // navigator.geolocation.clearWatch(1);
-    // navigator.geolocation.clearWatch(2);
-
-    navigator.geolocation.watchPosition(
+    return navigator.geolocation.watchPosition(
       watchUserPositionSuccess,
       watchPositionError,
       watchPositionOptions
     );
   } else {
-    // alertNotifyDanger('Watch position: No geolocation access');
+    return undefined;
   }
 };
 

@@ -22,7 +22,14 @@ export class GeolocationController implements ReactiveController {
     this.checkPermissions();
   }
 
-  hostDisconnected() {}
+  private watchId: number | null = null;
+
+  hostDisconnected() {
+    if (this.watchId !== null) {
+      navigator.geolocation.clearWatch(this.watchId);
+      this.watchId = null;
+    }
+  }
 
   resetController() {
     this.host.removeController(this);
@@ -67,7 +74,7 @@ export class GeolocationController implements ReactiveController {
       watchUserPosSuccess({ lat, lng });
     };
 
-    watchUserPosition(watchUserPositionSuccess);
+    this.watchId = watchUserPosition(watchUserPositionSuccess) || null;
   }
 
   getUserPosition(getUserPosSuccess: (userPos: Coords) => void) {
