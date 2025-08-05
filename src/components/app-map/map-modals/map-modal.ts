@@ -130,9 +130,13 @@ export class MapModal extends LitElement {
       this.triggerShakeAnimation();
 
       if (this.tapCount >= 3) {
-        this.tapCount = 0;
         this.triggerAttackSuccessAnimation();
         this.attackDoghouse();
+
+        // Keep dots red for a moment, then reset
+        setTimeout(() => {
+          this.tapCount = 0;
+        }, 1000);
       }
     }
   };
