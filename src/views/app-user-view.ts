@@ -248,9 +248,6 @@ export class AppUserView extends LitElement {
   private notificationsEnabled = true;
 
   @state()
-  private soundEnabled = true;
-
-  @state()
   private darkMode = false;
 
   async signOut() {
@@ -268,11 +265,6 @@ export class AppUserView extends LitElement {
     localStorage.setItem('puppyland-notifications', this.notificationsEnabled.toString());
   }
 
-  private handleSoundToggle(event: CustomEvent) {
-    this.soundEnabled = (event.target as any).checked;
-    localStorage.setItem('puppyland-sound', this.soundEnabled.toString());
-  }
-
   private handleDarkModeToggle(event: CustomEvent) {
     this.darkMode = (event.target as any).checked;
     localStorage.setItem('puppyland-darkmode', this.darkMode.toString());
@@ -282,7 +274,6 @@ export class AppUserView extends LitElement {
     super.connectedCallback();
     this.selectedLanguage = localStorage.getItem('puppyland-language') || 'en';
     this.notificationsEnabled = localStorage.getItem('puppyland-notifications') !== 'false';
-    this.soundEnabled = localStorage.getItem('puppyland-sound') !== 'false';
     this.darkMode = localStorage.getItem('puppyland-darkmode') === 'true';
   }
 
