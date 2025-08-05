@@ -83,7 +83,6 @@ export const MapModalStyles = html`
       border-radius: var(--border-radius-medium);
       padding: 20px;
       margin-bottom: 15px;
-      backdrop-filter: blur(10px);
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       width: 100%;
@@ -193,25 +192,6 @@ export const MapModalStyles = html`
       background: linear-gradient(90deg, #f44336, #d32f2f);
     }
 
-    .hp-fill::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(100%);
-      }
-    }
     #footer-btn {
       padding: 10px;
     }
@@ -249,7 +229,7 @@ export const MapModalStyles = html`
     }
 
     #doghouse-icon.destroyed {
-      animation: destruction 1.5s ease-in-out forwards;
+      animation: destruction 1s ease-in-out forwards;
     }
 
     @keyframes shake {
@@ -294,30 +274,14 @@ export const MapModalStyles = html`
       0% {
         transform: scale(1) rotate(0deg);
         opacity: 1;
-        filter: brightness(1);
       }
-      20% {
-        transform: scale(1.3) rotate(-10deg);
-        filter: brightness(1.5) contrast(1.2);
-      }
-      40% {
-        transform: scale(1.1) rotate(15deg);
-        filter: brightness(2) contrast(1.5);
-      }
-      60% {
-        transform: scale(0.8) rotate(-20deg);
-        opacity: 0.8;
-        filter: brightness(0.5) blur(2px);
-      }
-      80% {
-        transform: scale(0.4) rotate(25deg);
-        opacity: 0.4;
-        filter: brightness(0.2) blur(4px);
+      50% {
+        transform: scale(1.5) rotate(15deg);
+        opacity: 0.5;
       }
       100% {
         transform: scale(0) rotate(45deg);
         opacity: 0;
-        filter: brightness(0) blur(8px);
       }
     }
 
