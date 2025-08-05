@@ -66,6 +66,7 @@ export class MapPopup extends LitElement {
 
   closeMapModal = () => {
     this.isOpen = false;
+    this.closePopup();
   };
 
   openMapModal() {
@@ -223,22 +224,46 @@ export class MapPopup extends LitElement {
           background-color: var(--color-secondary);
         }
         #close-btn {
+          position: absolute;
+          top: 8px;
+          right: 8px;
           display: flex;
-          padding: 10px 10px;
-          border-radius: 50px;
-          font-size: 22px;
-          color: var(--color-primary);
-          background-color: var(--color-white);
+          padding: 4px;
+          border-radius: 50%;
+          font-size: 16px;
+          color: var(--color-white);
+          background-color: rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+          transition: background-color 0.2s ease;
         }
-        #close-btn.close-btn-is-own {
-          color: var(--color-secondary);
+        #close-btn:hover {
+          background-color: rgba(0, 0, 0, 0.4);
         }
         .leaflet-popup-close-button {
           display: none;
         }
+        .own-doghouse #doghouse-section {
+          background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+          color: var(--color-white);
+        }
+        .enemy-doghouse #doghouse-section {
+          background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+          color: var(--color-white);
+        }
       </style>
-      <div id="popup-container" @updateDoghouses=${this.updateDoghousesHandler}>
+      <div
+        id="popup-container"
+        class=${classNames(
+          this.isOwn ? 'own-doghouse' : 'enemy-doghouse',
+          'animate__animated',
+          'animate__fadeIn'
+        )}
+        @updateDoghouses=${this.updateDoghousesHandler}
+      >
         <div id="doghouse-section">
+          <div id="close-btn" @click=${this.closePopup}>
+            <sl-icon name="x"></sl-icon>
+          </div>
           <p id="dh-name">${decodeURIComponent(this.dhName ?? '')}</p>
           <div id="dh-features">
             <div id="dh-features-wrapper">
@@ -259,15 +284,7 @@ export class MapPopup extends LitElement {
           </div>
           <div id="popup-actions">
             <div
-              id="close-btn"
-              class=${classNames(this.isOwn && 'close-btn-is-own')}
-              @click=${this.closePopup}
-            >
-              <sl-icon name="x"></sl-icon>
-            </div>
-            <div
               id="next-btn"
- 
               class=${classNames(
                 this.isOwn && 'next-btn-is-own',
                 this.isBlocked && 'next-btn-is-blocked'
