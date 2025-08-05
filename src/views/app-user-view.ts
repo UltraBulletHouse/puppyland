@@ -338,20 +338,7 @@ export class AppUserView extends LitElement {
           </div>
         </div>
 
-        <!-- Sound Setting -->
-        <div class="setting-item">
-          <div class="setting-info">
-            <sl-icon name="volume-2" class="setting-icon"></sl-icon>
-            <div class="setting-details">
-              <div class="setting-title">Sound Effects</div>
-              <div class="setting-description">Enable game sounds and music</div>
-            </div>
-          </div>
-          <div class="setting-control">
-            <sl-switch ?checked=${this.soundEnabled} @sl-change=${this.handleSoundToggle}>
-            </sl-switch>
-          </div>
-        </div>
+        
 
         <!-- Dark Mode Setting -->
         <div class="setting-item">
