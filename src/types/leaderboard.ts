@@ -5,7 +5,7 @@ export interface LeaderboardEntry {
   dogName: string;
   avatar?: string;
   score: number;
-  
+
   rank: number;
   isCurrentUser?: boolean;
   level?: number;
@@ -33,8 +33,8 @@ export enum LeaderboardCategory {
   LEVEL = 'LEVEL',
   DOGHOUSES_BUILT = 'DOGHOUSES_BUILT',
   DOGHOUSES_DESTROYED = 'DOGHOUSES_DESTROYED',
-  EXPERIENCE = "EXPERIENCE",
-  WEEKLY_ACTIVITY = "WEEKLY_ACTIVITY"
+  EXPERIENCE = 'EXPERIENCE',
+  WEEKLY_ACTIVITY = 'WEEKLY_ACTIVITY',
 }
 
 export interface LeaderboardData {

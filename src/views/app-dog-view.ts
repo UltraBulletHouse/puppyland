@@ -39,10 +39,10 @@ export class AppDogView extends LitElement {
         border-bottom: 1px solid var(--color-primary-medium);
       }
       #dog-image {
-        font-size: 70px;
         margin-bottom: 12px;
       }
       #dog-image-circle {
+        font-size: 70px;
         height: 100px;
         width: 100px;
         display: flex;
@@ -498,7 +498,9 @@ export class AppDogView extends LitElement {
                 </sl-tab-panel>
 
                 <sl-tab-panel name="leaderboards">
-                  <leaderboards-component .isActive=${this.activeTab === 'leaderboards'}></leaderboards-component>
+                  <leaderboards-component
+                    .isActive=${this.activeTab === 'leaderboards'}
+                  ></leaderboards-component>
                 </sl-tab-panel>
               </sl-tab-group>
             </div>

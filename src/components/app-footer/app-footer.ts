@@ -41,7 +41,9 @@ export class AppFooter extends LitElement {
         background-color: transparent;
         border: none;
         cursor: pointer;
-        transition: color 0.2s, transform 0.2s;
+        transition:
+          color 0.2s,
+          transform 0.2s;
         font-size: 11px;
         font-weight: 500;
         padding: 4px;
@@ -82,7 +84,10 @@ export class AppFooter extends LitElement {
         align-items: center;
         justify-content: center;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+        transition:
+          transform 0.2s ease,
+          background-color 0.2s ease,
+          color 0.2s ease;
       }
       .map-button:hover {
         transform: scale(1.05);

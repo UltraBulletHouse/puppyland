@@ -1,18 +1,18 @@
-import { LitElement, css, html } from 'lit';
-import { customElement, state, property } from 'lit/decorators.js';
 import { consume } from '@lit/context';
+import { LitElement, css, html } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 
-import { sharedStyles } from '../../styles/shared-styles';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
+import { sharedStyles } from '../../styles/shared-styles';
 import {
-  LeaderboardEntry,
   LeaderboardCategory,
   LeaderboardData,
-  LeaderboardsResponse
+  LeaderboardEntry,
+  LeaderboardsResponse,
 } from '../../types/leaderboard';
 
 @customElement('leaderboards-component')
@@ -64,7 +64,9 @@ export class LeaderboardsComponent extends LitElement {
         background-color: var(--color-white);
         color: var(--color-primary);
         border: 1px solid var(--color-primary-light);
-        transition: background-color 0.2s, color 0.2s;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
         align-items: center;
         justify-content: center;
       }
@@ -302,7 +304,7 @@ export class LeaderboardsComponent extends LitElement {
       .crown-icon {
         margin-right: 4px;
         font-size: 14px;
-        color: #FFD700;
+        color: #ffd700;
       }
 
       #loading-state {
@@ -318,8 +320,12 @@ export class LeaderboardsComponent extends LitElement {
       }
 
       @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
       }
     `,
   ];
@@ -341,7 +347,7 @@ export class LeaderboardsComponent extends LitElement {
   currentUser = {
     userId: '',
     userName: '',
-    dogName: ''
+    dogName: '',
   };
 
   @state()
@@ -366,14 +372,14 @@ export class LeaderboardsComponent extends LitElement {
       this.isLoading = true;
       const { apiCall } = await import('../../utils/apiUtils');
       const { API_LEADERBOARD_GET } = await import('../../constants/apiConstants');
-      
+
       const response = await apiCall(this.accessToken).get(API_LEADERBOARD_GET);
       const data: LeaderboardsResponse = response.data;
-      
+
       this.leaderboards = data.leaderboards;
       this.currentUser = data.currentUser;
       console.log('Fetched leaderboards:', this.leaderboards);
-      
+
       // Set the initial selected category to the first leaderboard or a default
       if (this.leaderboards.length > 0) {
         this.selectedCategory = this.leaderboards[0].category.toString();
@@ -388,7 +394,7 @@ export class LeaderboardsComponent extends LitElement {
 
   get currentLeaderboard(): LeaderboardData | undefined {
     console.log('Getting currentLeaderboard. selectedCategory:', this.selectedCategory);
-    const found = this.leaderboards.find(lb => {
+    const found = this.leaderboards.find((lb) => {
       console.log('  Comparing:', lb.category.toString(), '===', this.selectedCategory);
       return lb.category.toString() === this.selectedCategory;
     });
@@ -409,19 +415,27 @@ export class LeaderboardsComponent extends LitElement {
 
   getCategoryLabel(category: string): string {
     switch (category) {
-      case LeaderboardCategory.LEVEL: return 'Top Levels';
-      case LeaderboardCategory.DOGHOUSES_BUILT: return 'Master Builders';
-      case LeaderboardCategory.DOGHOUSES_DESTROYED: return 'Top Destroyers';
-      default: return 'Leaderboard';
+      case LeaderboardCategory.LEVEL:
+        return 'Top Levels';
+      case LeaderboardCategory.DOGHOUSES_BUILT:
+        return 'Master Builders';
+      case LeaderboardCategory.DOGHOUSES_DESTROYED:
+        return 'Top Destroyers';
+      default:
+        return 'Leaderboard';
     }
   }
 
   getScoreLabel(category: string): string {
     switch (category) {
-      case LeaderboardCategory.LEVEL: return 'Level';
-      case LeaderboardCategory.DOGHOUSES_BUILT: return 'Built';
-      case LeaderboardCategory.DOGHOUSES_DESTROYED: return 'Destroyed';
-      default: return 'Score';
+      case LeaderboardCategory.LEVEL:
+        return 'Level';
+      case LeaderboardCategory.DOGHOUSES_BUILT:
+        return 'Built';
+      case LeaderboardCategory.DOGHOUSES_DESTROYED:
+        return 'Destroyed';
+      default:
+        return 'Score';
     }
   }
 
@@ -429,10 +443,14 @@ export class LeaderboardsComponent extends LitElement {
     // For Level leaderboard, show the actual level instead of the calculated score
     // For other leaderboards, show the relevant metric
     switch (this.selectedCategory) {
-      case LeaderboardCategory.LEVEL: return entry.level ?? 0;
-      case LeaderboardCategory.DOGHOUSES_BUILT: return entry.ownedDoghouses ?? 0;
-      case LeaderboardCategory.DOGHOUSES_DESTROYED: return entry.destroyedDoghouses ?? 0;
-      default: return entry.score ?? 0;
+      case LeaderboardCategory.LEVEL:
+        return entry.level ?? 0;
+      case LeaderboardCategory.DOGHOUSES_BUILT:
+        return entry.ownedDoghouses ?? 0;
+      case LeaderboardCategory.DOGHOUSES_DESTROYED:
+        return entry.destroyedDoghouses ?? 0;
+      default:
+        return entry.score ?? 0;
     }
   }
 
@@ -491,7 +509,9 @@ export class LeaderboardsComponent extends LitElement {
 
           <div id="category-buttons">
             <sl-button
-              class="category-button ${this.selectedCategory === LeaderboardCategory.LEVEL ? 'active' : ''}"
+              class="category-button ${this.selectedCategory === LeaderboardCategory.LEVEL
+                ? 'active'
+                : ''}"
               @click=${() => this.handleCategoryChange(LeaderboardCategory.LEVEL)}
               size="small"
             >
@@ -499,7 +519,9 @@ export class LeaderboardsComponent extends LitElement {
               Top Levels
             </sl-button>
             <sl-button
-              class="category-button ${this.selectedCategory === LeaderboardCategory.DOGHOUSES_BUILT ? 'active' : ''}"
+              class="category-button ${this.selectedCategory === LeaderboardCategory.DOGHOUSES_BUILT
+                ? 'active'
+                : ''}"
               @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_BUILT)}
               size="small"
             >
@@ -507,7 +529,10 @@ export class LeaderboardsComponent extends LitElement {
               Builders
             </sl-button>
             <sl-button
-              class="category-button ${this.selectedCategory === LeaderboardCategory.DOGHOUSES_DESTROYED ? 'active' : ''}"
+              class="category-button ${this.selectedCategory ===
+              LeaderboardCategory.DOGHOUSES_DESTROYED
+                ? 'active'
+                : ''}"
               @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_DESTROYED)}
               size="small"
             >
@@ -536,41 +561,38 @@ export class LeaderboardsComponent extends LitElement {
           <div id="leaderboard-list">
             ${leaderboard.entries.map((entry) => {
               return html`
-              <div class="leaderboard-entry ${entry.isCurrentUser ? 'current-user' : ''}">
-                <div class="rank ${entry.rank <= 3 ? `top-3 rank-${entry.rank}` : ''}">
-                  ${entry.rank <= 3 ? this.getRankIcon(entry.rank) : `#${entry.rank}`}
-                </div>
-                
-                <div class="player-avatar">
-                  ${entry.isCurrentUser ? '🐕' : '🐶'}
-                </div>
-                
-                <div class="player-info">
-                  <div class="player-name">${entry.userName}</div>
-                  <div class="dog-name">${entry.dogName}</div>
-                </div>
-                
-                ${entry.badge && entry.badge.type ? html`
-                  <div class="player-badge badge-${entry.badge.type}">
-                    ${entry.badge.label}
+                <div class="leaderboard-entry ${entry.isCurrentUser ? 'current-user' : ''}">
+                  <div class="rank ${entry.rank <= 3 ? `top-3 rank-${entry.rank}` : ''}">
+                    ${entry.rank <= 3 ? this.getRankIcon(entry.rank) : `#${entry.rank}`}
                   </div>
-                ` : ''}
-                
-                <div class="score">
-                  <div class="score-value">
-                    ${this.getScoreValue(entry)}
+
+                  <div class="player-avatar">${entry.isCurrentUser ? '🐕' : '🐶'}</div>
+
+                  <div class="player-info">
+                    <div class="player-name">${entry.userName}</div>
+                    <div class="dog-name">${entry.dogName}</div>
                   </div>
-                  <div class="score-label">
-                    ${this.getScoreLabel(this.selectedCategory)}
+
+                  ${entry.badge && entry.badge.type
+                    ? html`
+                        <div class="player-badge badge-${entry.badge.type}">
+                          ${entry.badge.label}
+                        </div>
+                      `
+                    : ''}
+
+                  <div class="score">
+                    <div class="score-value">${this.getScoreValue(entry)}</div>
+                    <div class="score-label">${this.getScoreLabel(this.selectedCategory)}</div>
                   </div>
                 </div>
-              </div>
-            `;
+              `;
             })}
 
-          <div id="stats-footer">
-            ${leaderboard.totalPlayers.toLocaleString()} total players • Updated
-            ${new Date(leaderboard.lastUpdated).toLocaleDateString()}
+            <div id="stats-footer">
+              ${leaderboard.totalPlayers.toLocaleString()} total players • Updated
+              ${new Date(leaderboard.lastUpdated).toLocaleDateString()}
+            </div>
           </div>
         </div>
       </div>

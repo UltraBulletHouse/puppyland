@@ -12,7 +12,6 @@ import { dogInfoContext, updateDogInfoEvent } from '../../../contexts/dogInfoCon
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { DogInfo } from '../../../types/dog';
 import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
-import { alertNotifySuccess } from '../../../utils/alertsUtils';
 import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
@@ -57,6 +56,36 @@ export class MapModal extends LitElement {
   @state()
   isLevelUp: boolean = false;
 
+  @state()
+  tapCount: number = 0;
+
+  @state()
+  isShaking: boolean = false;
+
+  @state()
+  showDamageIndicator: boolean = false;
+
+  @state()
+  showEnergyIndicator: boolean = false;
+
+  @state()
+  showExperienceIndicator: boolean = false;
+
+  @state()
+  damageAmount: number = 0;
+
+  @state()
+  experienceAmount: number = 0;
+
+  @state()
+  isAttackSuccess: boolean = false;
+
+  @state()
+  isDestroyed: boolean = false;
+
+  @state()
+  showDestructionEffect: boolean = false;
+
   // WEBSOCKETS
   // connection = new signalR.HubConnectionBuilder()
   // .withUrl('https://mydogapi.azurewebsites.net/doghouse-hub')
@@ -95,6 +124,120 @@ export class MapModal extends LitElement {
     }, 3000);
   };
 
+  handleDoghouseTap = () => {
+    if (!this.isOwn && !this.btnLoading) {
+      this.tapCount++;
+      this.triggerShakeAnimation();
+
+      if (this.tapCount >= 3) {
+        this.tapCount = 0;
+        this.triggerAttackSuccessAnimation();
+        this.attackDoghouse();
+      }
+    }
+  };
+
+  triggerShakeAnimation = () => {
+    this.isShaking = true;
+    setTimeout(() => {
+      this.isShaking = false;
+    }, 500);
+  };
+
+  triggerAttackSuccessAnimation = () => {
+    this.isAttackSuccess = true;
+    setTimeout(() => {
+      this.isAttackSuccess = false;
+    }, 1000);
+  };
+
+  triggerDestructionEffect = () => {
+    // Start destruction animation
+    this.showDestructionEffect = true;
+    this.isDestroyed = true;
+
+    // Screen shake effect
+    this.triggerScreenShake();
+
+    // Create particle explosion
+    this.createParticleExplosion();
+
+    // After destruction animation, show confetti and close
+    setTimeout(() => {
+      this.launchConfetti();
+    }, 1500);
+  };
+
+  triggerScreenShake = () => {
+    const modalContainer = this.shadowRoot?.querySelector('#map-modal-container') as HTMLElement;
+    if (modalContainer) {
+      modalContainer.classList.add('screen-shake');
+      setTimeout(() => {
+        modalContainer.classList.remove('screen-shake');
+      }, 800);
+    }
+  };
+
+  createParticleExplosion = () => {
+    const container = this.shadowRoot?.querySelector('#map-modal-main-section') as HTMLElement;
+    if (!container) return;
+
+    // Create multiple explosion particles
+    for (let i = 0; i < 12; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'explosion-particle';
+      particle.style.cssText = `
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: ${this.getRandomExplosionColor()};
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        pointer-events: none;
+        z-index: 100;
+        animation: explode-${i} 1.5s ease-out forwards;
+      `;
+
+      container.appendChild(particle);
+
+      // Remove particle after animation
+      setTimeout(() => {
+        if (particle.parentNode) {
+          particle.parentNode.removeChild(particle);
+        }
+      }, 1500);
+    }
+  };
+
+  getRandomExplosionColor = () => {
+    const colors = ['#ff6b35', '#f7931e', '#ffd23f', '#ee4035', '#ff9500', '#ff4757'];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
+  showVisualFeedback = (damage: number, experience: number) => {
+    this.damageAmount = damage;
+    this.experienceAmount = experience;
+
+    // Show damage indicator
+    this.showDamageIndicator = true;
+    setTimeout(() => {
+      this.showDamageIndicator = false;
+    }, 2000);
+
+    // Show energy consumption indicator
+    this.showEnergyIndicator = true;
+    setTimeout(() => {
+      this.showEnergyIndicator = false;
+    }, 2000);
+
+    // Show experience indicator
+    this.showExperienceIndicator = true;
+    setTimeout(() => {
+      this.showExperienceIndicator = false;
+    }, 2000);
+  };
+
   attackDoghouse = async () => {
     if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
@@ -115,21 +258,10 @@ export class MapModal extends LitElement {
     }
 
     if (attackResult.isDoghouseDestroyed) {
-      this.launchConfetti();
-
-      alertNotifySuccess(
-        `
-        💥 You destroyed doghouse!!!  </br>
-        🎓 ${attackResult.experienceGained} XP
-        `
-      );
+      this.triggerDestructionEffect();
+      this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
     } else {
-      alertNotifySuccess(
-        `
-        💥 ${attackResult.damageDealt} DMG  </br>
-        🎓 ${attackResult.experienceGained} XP
-        `
-      );
+      this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
     }
 
     if (dogInfoResponse) {
@@ -147,15 +279,21 @@ export class MapModal extends LitElement {
   repairDoghouse = async () => {
     if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
-    const attackDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
+    const repairDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
       API_DOGHOUSE_REPAIR,
       { doghouseId: this.dhId, dogId: this.dogInfo.id }
     );
 
-    const dogInfoResponse = attackDoghouseResponse?.data?.dog;
+    const dogInfoResponse = repairDoghouseResponse?.data?.dog;
+    const doghouseInfoResponse = repairDoghouseResponse?.data?.doghouse;
 
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
+    }
+
+    if (doghouseInfoResponse) {
+      this.dhHp = doghouseInfoResponse.hp.toString();
+      sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
     }
   };
 
@@ -191,33 +329,112 @@ export class MapModal extends LitElement {
     const hpPercent = Math.round((Number(this.dhHp) / Number(this.dhMaxHp)) * 100);
 
     const mainSection = html`
-      <div id="map-modal-main-section">
+      <div id="map-modal-main-section" style="position: relative;">
+        <!-- Visual Feedback Indicators -->
+        <div id="visual-feedback-container">
+          ${this.showDamageIndicator
+            ? html`
+                <div
+                  class="feedback-indicator damage-indicator ${this.isDestroyed
+                    ? 'destruction-message'
+                    : ''}"
+                >
+                  <sl-icon name="${this.isDestroyed ? 'explosion' : 'heart-crack'}"></sl-icon>
+                  ${this.isDestroyed ? 'DESTROYED!' : `-${this.damageAmount} HP`}
+                </div>
+              `
+            : ''}
+          ${this.showEnergyIndicator
+            ? html`
+                <div class="feedback-indicator energy-indicator">
+                  <sl-icon name="lightning-charge"></sl-icon>
+                  -${attackEnergy} Energy
+                </div>
+              `
+            : ''}
+          ${this.showExperienceIndicator
+            ? html`
+                <div class="feedback-indicator experience-indicator">
+                  <sl-icon name="star-fill"></sl-icon>
+                  +${this.experienceAmount} XP
+                </div>
+              `
+            : ''}
+        </div>
+
         <div id="dh-info">
           <div id="dh-name">${this.dhName}</div>
-          <div id="doghouse-icon"><svg-icon name="doghouseOne"></svg-icon></div>
-        </div>
-        <div id="dh-hp-container">
-          <sl-progress-bar
-            id="dh-hp-bar"
-            class=${!this.isOwn ? 'dh-hp-bar--enemy' : ''}
-            value=${hpPercent}
-            >${this.dhHp}</sl-progress-bar
+          <div
+            id="doghouse-icon"
+            class=${this.isShaking
+              ? 'shake'
+              : this.isAttackSuccess
+                ? 'attack-success'
+                : this.isDestroyed
+                  ? 'destroyed'
+                  : ''}
+            @click=${this.handleDoghouseTap}
+            style="cursor: ${!this.isOwn ? 'pointer' : 'default'}"
           >
+            <svg-icon name="doghouseOne"></svg-icon>
+          </div>
+
+          ${this.showDestructionEffect ? html` <div class="destruction-overlay"></div> ` : ''}
         </div>
-        <div id="center">${!this.isOwn ? html`` : html``}</div>
-        <div id="footer-btn">
+
+        <div id="dh-hp-container">
+          <div class="hp-header">
+            <div class="hp-icon ${!this.isOwn ? 'enemy' : ''}">
+              <sl-icon name="heart-pulse"></sl-icon>
+            </div>
+            <div class="hp-title">Health</div>
+            <div class="hp-value">${this.dhHp}</div>
+          </div>
+          <div class="hp-progress">
+            <div class="hp-progress-info">
+              <span class="hp-progress-current">${this.dhHp} / ${this.dhMaxHp} HP</span>
+              <span class="hp-progress-percentage">${hpPercent}%</span>
+            </div>
+            <div class="modern-hp-bar">
+              <div
+                class="hp-fill ${!this.isOwn ? 'enemy' : ''} ${hpPercent < 30
+                  ? 'critical'
+                  : hpPercent < 60
+                    ? 'low'
+                    : ''}"
+                style="width: ${hpPercent}%"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="center">
           ${!this.isOwn
-            ? html`<sl-button
-                id="attack-btn"
-                @click=${this.attackDoghouse}
-                pill
-                ?loading=${this.btnLoading}
-                ?disabled=${this.btnLoading}
-                >Bite - ${attackEnergy}<sl-icon name="lightning-charge"></sl-icon
-              ></sl-button>`
-            : html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill
+            ? html`
+                <div id="tap-instructions">
+                  <p>
+                    Tap the doghouse ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''}
+                    to attack!
+                  </p>
+                  <div id="tap-progress">
+                    ${Array.from(
+                      { length: 3 },
+                      (_, i) => html`
+                        <div class="tap-dot ${i < this.tapCount ? 'active' : ''}"></div>
+                      `
+                    )}
+                  </div>
+                </div>
+              `
+            : html``}
+        </div>
+
+        <div id="footer-btn">
+          ${this.isOwn
+            ? html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill
                 >Repair - ${repairEnergy}<sl-icon name="lightning-charge"></sl-icon
-              ></sl-button>`}
+              ></sl-button>`
+            : html``}
         </div>
       </div>
     `;
@@ -241,7 +458,10 @@ export class MapModal extends LitElement {
     const baseTemplate = html`
       ${MapModalStyles}
 
-      <div id="map-modal-container">
+      <div
+        id="map-modal-container"
+        class=${this.isOwn ? 'own-doghouse-modal' : 'enemy-doghouse-modal'}
+      >
         <div id="close-btn-container">
           <div
             id="close-btn"

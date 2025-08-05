@@ -20,7 +20,7 @@ export class AppModal extends LitElement {
             #modal-container {
               display: flex;
               justify-content: space-evenly;
-              align-items: center;
+              align-items: flex-start;
               position: fixed;
               top: 0;
               left: 0;
@@ -28,12 +28,12 @@ export class AppModal extends LitElement {
               width: 100vw;
               background: #0000003e;
               z-index: 1001;
-              padding: 20px;
+              padding: 20px 20px 80px 20px;
               box-sizing: border-box;
             }
             #modal-content {
               width: 100%;
-              height: 80%;
+              height: 100%;
               background: var(--color-white);
               border: 1px solid var(--color-primary-medium);
               border-radius: var(--border-radius-medium);

@@ -4,7 +4,9 @@ import { property, state } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
 
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
+import { viewContext } from '../../../contexts/viewContext';
 import { Coords } from '../../../types/geolocation';
+import { View } from '../../../types/view';
 import { classNames } from '../../../utils/classNames';
 import { sendEvent } from '../../../utils/eventUtils';
 import { checkHowClose } from '../../../utils/mapUtils';
@@ -18,6 +20,10 @@ export class MapPopup extends LitElement {
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;
+
+  @consume({ context: viewContext, subscribe: true })
+  @property({ attribute: false })
+  currentView: View = View.MAP_VIEW;
 
   @property({ type: String })
   dhCoords?: string;
@@ -60,6 +66,7 @@ export class MapPopup extends LitElement {
 
   closeMapModal = () => {
     this.isOpen = false;
+    this.closePopup();
   };
 
   openMapModal() {
@@ -95,6 +102,12 @@ export class MapPopup extends LitElement {
     }
     if (changedProperties.has('isClose')) {
       this.isBlocked = !this.isClose;
+    }
+    // Close modal when view changes away from MAP_VIEW
+    if (changedProperties.has('currentView')) {
+      if (this.currentView !== View.MAP_VIEW && this.isOpen) {
+        this.closeMapModal();
+      }
     }
   }
 
@@ -171,6 +184,44 @@ export class MapPopup extends LitElement {
         #dh-features-icon-healh {
           margin-right: 4px;
         }
+        #stats {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+          background-color: rgba(0, 0, 0, 0.1);
+          padding: 4px 8px;
+          border-radius: var(--border-radius-small);
+        }
+        #hp-stat,
+        #date-stat {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: 14px;
+          color: var(--color-white);
+        }
+        #hp-stat sl-icon {
+          color: var(--color-white);
+          font-size: 14px;
+        }
+        #date-stat sl-icon {
+          color: var(--color-black-light);
+          font-size: 14px;
+        }
+        #hp-bar {
+          width: 60px;
+          height: 8px;
+          background: rgba(0, 0, 0, 0.2);
+          border-radius: 4px;
+          overflow: hidden;
+          margin-left: 4px;
+        }
+        #hp-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
+          border-radius: 2px;
+          transition: width 0.3s ease;
+        }
         #owner-section {
           display: flex;
           flex-direction: column;
@@ -178,7 +229,6 @@ export class MapPopup extends LitElement {
           justify-content: center;
           flex-basis: 50%;
           height: 100%;
-          background: var(--color-primary-light);
           border-radius: var(--border-radius-small);
         }
         #lower-section {
@@ -211,29 +261,57 @@ export class MapPopup extends LitElement {
           background-color: var(--color-secondary);
         }
         #close-btn {
+          position: absolute;
+          top: 8px;
+          right: 8px;
           display: flex;
-          padding: 10px 10px;
-          border-radius: 50px;
-          font-size: 22px;
-          color: var(--color-primary);
-          background-color: var(--color-white);
+          padding: 4px;
+          border-radius: 50%;
+          font-size: 16px;
+          color: var(--color-white);
+          background-color: rgba(0, 0, 0, 0.2);
+          cursor: pointer;
+          transition: background-color 0.2s ease;
         }
-        #close-btn.close-btn-is-own {
-          color: var(--color-secondary);
+        #close-btn:hover {
+          background-color: rgba(0, 0, 0, 0.4);
         }
         .leaflet-popup-close-button {
           display: none;
         }
+        .own-doghouse #doghouse-section {
+          background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+          color: var(--color-white);
+        }
+        .enemy-doghouse #doghouse-section {
+          background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+          color: var(--color-white);
+        }
       </style>
-      <div id="popup-container" @updateDoghouses=${this.updateDoghousesHandler}>
+      <div
+        id="popup-container"
+        class=${classNames(
+          this.isOwn ? 'own-doghouse' : 'enemy-doghouse',
+          'animate__animated',
+          'animate__fadeIn'
+        )}
+        @updateDoghouses=${this.updateDoghousesHandler}
+      >
         <div id="doghouse-section">
+          <div id="close-btn" @click=${this.closePopup}>
+            <sl-icon name="x"></sl-icon>
+          </div>
           <p id="dh-name">${decodeURIComponent(this.dhName ?? '')}</p>
-          <div id="dh-features">
-            <div id="dh-features-wrapper">
-              <span class="dh-features-item">
-                <sl-icon name="heart" id="dh-features-icon-healh"></sl-icon>${this.dhHpLocal}
-              </span>
-              </span>
+          <div id="stats">
+            <div id="hp-stat">
+              <sl-icon name="heart-pulse"></sl-icon>
+              <span>${this.dhHpLocal}/${this.dhMaxHp}</span>
+              <div id="hp-bar">
+                <div
+                  id="hp-fill"
+                  style="width: ${(Number(this.dhHpLocal) / Number(this.dhMaxHp)) * 100}%"
+                ></div>
+              </div>
             </div>
           </div>
         </div>
@@ -247,15 +325,7 @@ export class MapPopup extends LitElement {
           </div>
           <div id="popup-actions">
             <div
-              id="close-btn"
-              class=${classNames(this.isOwn && 'close-btn-is-own')}
-              @click=${this.closePopup}
-            >
-              <sl-icon name="x"></sl-icon>
-            </div>
-            <div
               id="next-btn"
- 
               class=${classNames(
                 this.isOwn && 'next-btn-is-own',
                 this.isBlocked && 'next-btn-is-blocked'
