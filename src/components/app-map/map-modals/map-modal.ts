@@ -280,15 +280,21 @@ export class MapModal extends LitElement {
   repairDoghouse = async () => {
     if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
-    const attackDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
+    const repairDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
       API_DOGHOUSE_REPAIR,
       { doghouseId: this.dhId, dogId: this.dogInfo.id }
     );
 
-    const dogInfoResponse = attackDoghouseResponse?.data?.dog;
+    const dogInfoResponse = repairDoghouseResponse?.data?.dog;
+    const doghouseInfoResponse = repairDoghouseResponse?.data?.doghouse;
 
     if (dogInfoResponse) {
       updateDogInfoEvent(this, dogInfoResponse);
+    }
+
+    if (doghouseInfoResponse) {
+      this.dhHp = doghouseInfoResponse.hp.toString();
+      sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
     }
   };
 
