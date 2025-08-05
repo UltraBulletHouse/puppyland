@@ -396,7 +396,7 @@ export class MapModal extends LitElement {
         <div id="center">
           ${!this.isOwn ? html`
             <div id="tap-instructions">
-              <p>Tap the doghouse ${3 - this.tapCount} more time${3 - this.tapCount !== 1 ? 's' : ''} to attack!</p>
+              <p>Tap the doghouse ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''} to attack!</p>
               <div id="tap-progress">
                 ${Array.from({length: 3}, (_, i) => html`
                   <div class="tap-dot ${i < this.tapCount ? 'active' : ''}"></div>

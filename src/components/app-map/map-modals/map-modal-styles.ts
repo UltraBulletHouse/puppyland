@@ -739,5 +739,16 @@ export const MapModalStyles = html`
         opacity: 0;
       }
     }
+
+    @media (max-width: 600px) {
+      #dh-info {
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      #doghouse-icon {
+        font-size: 60px;
+        margin: 15px 0;
+      }
+    }
   </style>
 `;
