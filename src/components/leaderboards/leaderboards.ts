@@ -117,12 +117,6 @@ export class LeaderboardsComponent extends LitElement {
         flex: 1;
       }
 
-      #current-user-name {
-        font-weight: 600;
-        font-size: 16px;
-        margin-bottom: 2px;
-      }
-
       #current-user-dog {
         font-size: 14px;
         opacity: 0.9;
@@ -209,16 +203,6 @@ export class LeaderboardsComponent extends LitElement {
         min-width: 0;
       }
 
-      .player-name {
-        font-weight: 600;
-        font-size: 14px;
-        color: var(--color-black);
-        margin-bottom: 2px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-
       .dog-name {
         font-size: 12px;
         color: var(--color-black-medium);
@@ -243,41 +227,6 @@ export class LeaderboardsComponent extends LitElement {
         color: var(--color-black-light);
         text-transform: uppercase;
         letter-spacing: 0.5px;
-      }
-
-      .player-badge {
-        margin-left: 8px;
-        padding: 2px 6px;
-        border-radius: var(--border-radius-small);
-        font-size: 10px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-      }
-
-      .badge-champion {
-        background: linear-gradient(135deg, #ffd700, #ffa500);
-        color: white;
-      }
-
-      .badge-top-player {
-        background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
-        color: white;
-      }
-
-      .badge-rising-star {
-        background: linear-gradient(135deg, #ff6b6b, #ff5252);
-        color: white;
-      }
-
-      .badge-veteran {
-        background: linear-gradient(135deg, #9b59b6, #8e44ad);
-        color: white;
-      }
-
-      .badge-newcomer {
-        background: linear-gradient(135deg, #4ecdc4, #44a08d);
-        color: white;
       }
 
       #stats-footer {
@@ -549,7 +498,6 @@ export class LeaderboardsComponent extends LitElement {
                   <div id="current-user-header">
                     <div id="current-user-avatar">🐕</div>
                     <div id="current-user-info">
-                      <div id="current-user-name">${this.currentUser.userName}</div>
                       <div id="current-user-dog">${this.currentUser.dogName}</div>
                     </div>
                     <div id="current-user-rank">#${userEntry.rank}</div>
@@ -569,17 +517,10 @@ export class LeaderboardsComponent extends LitElement {
                   <div class="player-avatar">${entry.isCurrentUser ? '🐕' : '🐶'}</div>
 
                   <div class="player-info">
-                    <div class="player-name">${entry.userName}</div>
                     <div class="dog-name">${entry.dogName}</div>
                   </div>
 
-                  ${entry.badge && entry.badge.type
-                    ? html`
-                        <div class="player-badge badge-${entry.badge.type}">
-                          ${entry.badge.label}
-                        </div>
-                      `
-                    : ''}
+                  
 
                   <div class="score">
                     <div class="score-value">${this.getScoreValue(entry)}</div>
