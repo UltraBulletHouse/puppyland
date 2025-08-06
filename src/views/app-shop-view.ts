@@ -65,60 +65,127 @@ export class AppShopView extends LitElement {
       #container {
         display: flex;
         flex-direction: column;
-        align-items: center;
         height: 100%;
         width: 100%;
         background: var(--color-white);
-        padding: 20px;
       }
-      #title {
-        margin-bottom: 20px;
-      }
-      #buy-btn {
-        margin-bottom: 10px;
-      }
-      #items-container {
-        height: calc(100% - 45px);
-        width: 100%;
-        overflow: auto;
-      }
-      .items-section {
+
+      #header {
+        padding: 20px 16px;
+        border-bottom: 1px solid var(--color-primary-light);
+        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 20px;
-        border-radius: var(--border-radius-small);
-        border: 1px solid var(--color-primary-medium);
-      }
-      .shop-item {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        padding: 10px;
-        margin: 10px;
-        border-radius: var(--border-radius-small);
-        border: 1px solid var(--color-primary-medium);
-        background-color: var(--color-primary-light);
+        gap: 12px;
       }
-      .item-title {
-        text-align: center;
-        font-weight: 700;
+
+      #title {
+        font-weight: 600;
+        font-size: 20px;
+        color: var(--color-black);
       }
-      .item-main-container {
+
+      #content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 16px;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .category-section {
+        margin-bottom: 24px;
+      }
+
+      .category-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--color-black);
+        margin-bottom: 12px;
         display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .shop-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 16px;
+      }
+
+      .shop-item-card {
+        background: var(--color-white);
+        border: 1px solid var(--color-primary-medium);
+        border-radius: var(--border-radius-medium);
+        padding: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        transition: all 0.2s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .shop-item-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .item-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .item-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius-small);
+        background: var(--color-primary-light);
+      }
+
+      .item-info {
+        flex: 1;
+      }
+
+      .item-name {
+        font-weight: 600;
+        font-size: 16px;
+        color: var(--color-black);
+      }
+
+      .item-description {
+        font-size: 14px;
+        color: var(--color-black-medium);
+        margin-bottom: 16px;
+        flex-grow: 1;
+      }
+
+      .item-footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      .buy-button {
         width: 100%;
       }
-      .shop-item-icon {
-        width: 46px;
+
+      .buy-button::part(base) {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        border: none;
       }
-      icon-png-badge {
-        --icon-png-badge-width: 46px;
+
+      .buy-button::part(label) {
+        font-weight: 600;
       }
-      .item-description {
-        padding: 8px;
-        padding-left: 22px;
+
+      .price-tag {
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--color-primary);
       }
     `,
   ];
@@ -146,7 +213,6 @@ export class AppShopView extends LitElement {
   }
 
   async makePurchase(item: string) {
-    // Define the preferred payment method and item ID
     const paymentMethods = [
       {
         supportedMethods: 'https://play.google.com/billing',
@@ -156,9 +222,6 @@ export class AppShopView extends LitElement {
       },
     ];
 
-    // The "total" member of the paymentDetails is required by the Payment
-    // Request API, but is not used when using Google Play Billing. We can
-    // set it up with bogus details.
     const paymentDetails = {
       total: {
         label: `Total`,
@@ -187,20 +250,9 @@ export class AppShopView extends LitElement {
 
   async buyProduct(item: string) {
     if ('getDigitalGoodsService' in window) {
-      // Digital Goods API is supported!
       try {
-        // const service = await (window as any).getDigitalGoodsService(
-        //   'https://play.google.com/billing'
-        // );
-        // Google Play Billing is supported!
-        // const skuDetails: GoogleBillingItem[] = await service.getDetails(shopItems);
-
         await this.makePurchase(item);
-
-        // const existingPurchases = await service.listPurchases();
-        // <console.log(existingPurchases);
       } catch (error) {
-        // Google Play Billing is not available. Use another payment flow.
         return;
       }
     }
@@ -222,47 +274,80 @@ export class AppShopView extends LitElement {
     }
   }
 
-  shopItem = (item: ShopItemLocal) =>
-    html`<div class="shop-item">
-      <div class="item-title">${item.name}</div>
-      <div class="item-main-container">
-        <div class="item-image">
+  renderShopItem = (item: ShopItemLocal) => html`
+    <div class="shop-item-card">
+      <div class="item-header">
+        <div class="item-icon">
           <icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>
         </div>
-        <div class="item-description">${item.description}</div>
+        <div class="item-info">
+          <div class="item-name">${item.name}</div>
+        </div>
       </div>
-      <div>
-        <sl-button @click=${() => this.buyProduct(item.id)} pill
-          >${item.price.value} ${item.price.currency}</sl-button
+      <div class="item-description">${item.description}</div>
+      <div class="item-footer">
+        <sl-button
+          class="buy-button"
+          @click=${() => this.buyProduct(item.id)}
+          pill
         >
+          <span class="price-tag">${item.price.value} ${item.price.currency}</span>
+        </sl-button>
       </div>
-    </div> `;
+    </div>
+  `;
+
+  renderCategorySection(
+    title: string,
+    icon: string,
+    items: ShopItemLocal[],
+    googleItems: GoogleBillingItem[] | null
+  ) {
+    const parsedItems = parseShopItems(items, googleItems);
+    return html`
+      <div class="category-section">
+        <div class="category-title">
+          <sl-icon name=${icon}></sl-icon>
+          ${title}
+        </div>
+        <div class="shop-grid">
+          ${parsedItems.map((item) => this.renderShopItem(item))}
+        </div>
+      </div>
+    `;
+  }
 
   render() {
     return html`
       <div id="container">
-        <div id="title">SHOP</div>
-        ${this.shopGoogleItems
-          ? html`
-              <div id="items-container">
-                <div class="items-section">
-                  ${parseShopItems(shopItemsDoghouse, this.shopGoogleItems).map((item) =>
-                    this.shopItem(item)
-                  )}
-                </div>
-                <div class="items-section">
-                  ${parseShopItems(shopItemsRepair, this.shopGoogleItems).map((item) =>
-                    this.shopItem(item)
-                  )}
-                </div>
-                <div class="items-section">
-                  ${parseShopItems(shopItemsEnergy, this.shopGoogleItems).map((item) =>
-                    this.shopItem(item)
-                  )}
-                </div>
-              </div>
-            `
-          : null}
+        <div id="header">
+          <sl-icon name="shop" style="font-size: 24px;"></sl-icon>
+          <div id="title">Shop</div>
+        </div>
+        <div id="content">
+          ${this.shopGoogleItems
+            ? html`
+                ${this.renderCategorySection(
+                  'Doghouses',
+                  'house-add',
+                  shopItemsDoghouse,
+                  this.shopGoogleItems
+                )}
+                ${this.renderCategorySection(
+                  'Repair Kits',
+                  'tools',
+                  shopItemsRepair,
+                  this.shopGoogleItems
+                )}
+                ${this.renderCategorySection(
+                  'Energy',
+                  'lightning-charge',
+                  shopItemsEnergy,
+                  this.shopGoogleItems
+                )}
+              `
+            : html`<app-spinner></app-spinner>`}
+        </div>
       </div>
     `;
   }
