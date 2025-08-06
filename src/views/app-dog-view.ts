@@ -11,6 +11,7 @@ import '@shoelace-style/shoelace/dist/components/tab/tab.js';
 import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
 import '../components/leaderboards/leaderboards';
+import '../components/icon-png/icon-png';
 import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
@@ -263,6 +264,28 @@ export class AppDogView extends LitElement {
         margin-top: 20px;
         padding: 30px;
       }
+      .buffs-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 16px;
+        margin-top: 12px;
+      }
+      .buff-item-tile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 8px;
+        border-radius: var(--border-radius-medium);
+        background: var(--sl-color-gray-100);
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+      }
+      .buff-item-tile .buff-name {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--color-black-medium);
+        margin-top: 4px;
+      }
       icon-png-badge {
         --icon-png-badge-width: 46px;
         --icon-png-badge-height: 46px;
@@ -494,6 +517,36 @@ export class AppDogView extends LitElement {
                           <div class="doghouses-count">${availableDoghouses}</div>
                         </div>
                       </div>
+
+                      <!-- Doghouse Buffs Card -->
+                      ${this.dogInfo?.buffsForDoghouses &&
+                      this.dogInfo.buffsForDoghouses.length > 0
+                        ? html`
+                            <div class="stat-card">
+                              <div class="stat-header">
+                                <div class="stat-icon doghouses">
+                                  <sl-icon name="tools"></sl-icon>
+                                </div>
+                                <div class="stat-title">Doghouse Buffs</div>
+                              </div>
+                              <div class="buffs-grid">
+                                ${this.dogInfo.buffsForDoghouses.map(
+                                  (buff) => html`
+                                    <div class="buff-item-tile">
+                                      <icon-png-badge
+                                        name="${buff.buffSku.includes('repair')
+                                          ? 'toolkit'
+                                          : 'energy-drink'}"
+                                        badge="${buff.quantity}"
+                                      ></icon-png-badge>
+                                      <span class="buff-name">${buff.name}</span>
+                                    </div>
+                                  `
+                                )}
+                              </div>
+                            </div>
+                          `
+                        : ``}
                     </div>
                   </div>
                 </sl-tab-panel>
