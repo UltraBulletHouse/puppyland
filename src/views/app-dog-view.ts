@@ -79,6 +79,11 @@ export class AppDogView extends LitElement {
         overflow-y: auto;
         padding: 0;
       }
+
+      sl-tab::part(base) {
+        gap: 8px;
+      }
+
       #stats-content {
         padding: 16px;
       }
