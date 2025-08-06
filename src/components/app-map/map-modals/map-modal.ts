@@ -60,10 +60,16 @@ export class MapModal extends LitElement {
   tapCount: number = 0;
 
   @state()
+  repairTapCount: number = 0;
+
+  @state()
   isShaking: boolean = false;
 
   @state()
   showDamageIndicator: boolean = false;
+
+  @state()
+  showRepairIndicator: boolean = false;
 
   @state()
   showEnergyIndicator: boolean = false;
@@ -75,16 +81,34 @@ export class MapModal extends LitElement {
   damageAmount: number = 0;
 
   @state()
+  repairAmount: number = 0;
+
+  @state()
   experienceAmount: number = 0;
 
   @state()
   isAttackSuccess: boolean = false;
 
   @state()
+  isRepairSuccess: boolean = false;
+
+  @state()
   isDestroyed: boolean = false;
 
   @state()
   showDestructionEffect: boolean = false;
+
+  @state()
+  showRepairBlockedMessage: boolean = false;
+
+  @state()
+  repairBlockedReason: string = '';
+
+  @state()
+  showAttackBlockedMessage: boolean = false;
+
+  @state()
+  attackBlockedReason: string = '';
 
   // WEBSOCKETS
   // connection = new signalR.HubConnectionBuilder()
@@ -126,6 +150,15 @@ export class MapModal extends LitElement {
 
   handleDoghouseTap = () => {
     if (!this.isOwn && !this.btnLoading) {
+      // Check if attack is allowed
+      const { canAttack, reason } = this.canAttackDoghouse();
+      
+      if (!canAttack) {
+        this.showAttackBlockedMessageWithReason(reason);
+        return;
+      }
+
+      // Attack logic for enemy doghouses
       this.tapCount++;
       this.triggerShakeAnimation();
 
@@ -136,6 +169,28 @@ export class MapModal extends LitElement {
         // Keep dots red for a moment, then reset
         setTimeout(() => {
           this.tapCount = 0;
+        }, 1000);
+      }
+    } else if (this.isOwn && !this.btnLoading) {
+      // Check if repair is allowed
+      const { canRepair, reason } = this.canRepairDoghouse();
+      
+      if (!canRepair) {
+        this.showRepairBlockedMessageWithReason(reason);
+        return;
+      }
+
+      // Repair logic for own doghouses
+      this.repairTapCount++;
+      this.triggerShakeAnimation();
+
+      if (this.repairTapCount >= 3) {
+        this.triggerRepairSuccessAnimation();
+        this.repairDoghouseWithTaps();
+
+        // Keep dots green for a moment, then reset
+        setTimeout(() => {
+          this.repairTapCount = 0;
         }, 1000);
       }
     }
@@ -153,6 +208,55 @@ export class MapModal extends LitElement {
     setTimeout(() => {
       this.isAttackSuccess = false;
     }, 1000);
+  };
+
+  triggerRepairSuccessAnimation = () => {
+    this.isRepairSuccess = true;
+    setTimeout(() => {
+      this.isRepairSuccess = false;
+    }, 1000);
+  };
+
+  canRepairDoghouse = (): { canRepair: boolean; reason: string } => {
+    const currentHp = Number(this.dhHp);
+    const maxHp = Number(this.dhMaxHp);
+    const userEnergy = this.dogInfo?.energy || 0;
+
+    if (currentHp >= maxHp) {
+      return { canRepair: false, reason: 'Doghouse is already at full health!' };
+    }
+
+    if (userEnergy < repairEnergy) {
+      return { canRepair: false, reason: `Not enough energy! Need ${repairEnergy} energy.` };
+    }
+
+    return { canRepair: true, reason: '' };
+  };
+
+  showRepairBlockedMessageWithReason = (reason: string) => {
+    this.repairBlockedReason = reason;
+    this.showRepairBlockedMessage = true;
+    setTimeout(() => {
+      this.showRepairBlockedMessage = false;
+    }, 3000);
+  };
+
+  canAttackDoghouse = (): { canAttack: boolean; reason: string } => {
+    const userEnergy = this.dogInfo?.energy || 0;
+
+    if (userEnergy < attackEnergy) {
+      return { canAttack: false, reason: `Not enough energy! Need ${attackEnergy} energy.` };
+    }
+
+    return { canAttack: true, reason: '' };
+  };
+
+  showAttackBlockedMessageWithReason = (reason: string) => {
+    this.attackBlockedReason = reason;
+    this.showAttackBlockedMessage = true;
+    setTimeout(() => {
+      this.showAttackBlockedMessage = false;
+    }, 3000);
   };
 
   triggerDestructionEffect = () => {
@@ -242,6 +346,22 @@ export class MapModal extends LitElement {
     }, 2000);
   };
 
+  showRepairVisualFeedback = (repairAmount: number) => {
+    this.repairAmount = repairAmount;
+
+    // Show repair indicator
+    this.showRepairIndicator = true;
+    setTimeout(() => {
+      this.showRepairIndicator = false;
+    }, 2000);
+
+    // Show energy consumption indicator
+    this.showEnergyIndicator = true;
+    setTimeout(() => {
+      this.showEnergyIndicator = false;
+    }, 2000);
+  };
+
   attackDoghouse = async () => {
     if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
@@ -301,6 +421,46 @@ export class MapModal extends LitElement {
     }
   };
 
+  repairDoghouseWithTaps = async () => {
+    if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
+
+    this.loadingButton();
+
+    const currentHp = Number(this.dhHp);
+
+    const repairDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
+      API_DOGHOUSE_REPAIR,
+      { doghouseId: this.dhId, dogId: this.dogInfo.id }
+    );
+
+    const dogInfoResponse = repairDoghouseResponse?.data?.dog;
+    const doghouseInfoResponse = repairDoghouseResponse?.data?.doghouse;
+
+    // Calculate actual health restored
+    let healthRestored = 0;
+    if (doghouseInfoResponse) {
+      const newHp = doghouseInfoResponse.hp;
+      healthRestored = newHp - currentHp;
+    }
+
+    // Show visual feedback for repair with actual amount
+    if (healthRestored > 0) {
+      this.showRepairVisualFeedback(healthRestored);
+    } else {
+      // Fallback for edge cases
+      this.showRepairVisualFeedback(1);
+    }
+
+    if (dogInfoResponse) {
+      updateDogInfoEvent(this, dogInfoResponse);
+    }
+
+    if (doghouseInfoResponse) {
+      this.dhHp = doghouseInfoResponse.hp.toString();
+      sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
+    }
+  };
+
   launchConfetti() {
     const canvas = globalThis.document.getElementById(
       'confetti-canvas'
@@ -348,11 +508,19 @@ export class MapModal extends LitElement {
                 </div>
               `
             : ''}
+          ${this.showRepairIndicator
+            ? html`
+                <div class="feedback-indicator repair-indicator">
+                  <sl-icon name="heart-pulse"></sl-icon>
+                  +${this.repairAmount} HP
+                </div>
+              `
+            : ''}
           ${this.showEnergyIndicator
             ? html`
                 <div class="feedback-indicator energy-indicator">
                   <sl-icon name="lightning-charge"></sl-icon>
-                  -${attackEnergy} Energy
+                  -${this.isOwn ? repairEnergy : attackEnergy} Energy
                 </div>
               `
             : ''}
@@ -361,6 +529,22 @@ export class MapModal extends LitElement {
                 <div class="feedback-indicator experience-indicator">
                   <sl-icon name="star-fill"></sl-icon>
                   +${this.experienceAmount} XP
+                </div>
+              `
+            : ''}
+          ${this.showRepairBlockedMessage
+            ? html`
+                <div class="feedback-indicator repair-blocked-indicator">
+                  <sl-icon name="exclamation-triangle"></sl-icon>
+                  ${this.repairBlockedReason}
+                </div>
+              `
+            : ''}
+          ${this.showAttackBlockedMessage
+            ? html`
+                <div class="feedback-indicator attack-blocked-indicator">
+                  <sl-icon name="exclamation-triangle"></sl-icon>
+                  ${this.attackBlockedReason}
                 </div>
               `
             : ''}
@@ -374,11 +558,13 @@ export class MapModal extends LitElement {
               ? 'shake'
               : this.isAttackSuccess
                 ? 'attack-success'
-                : this.isDestroyed
-                  ? 'destroyed'
-                  : ''}
+                : this.isRepairSuccess
+                  ? 'repair-success'
+                  : this.isDestroyed
+                    ? 'destroyed'
+                    : ''}
             @click=${this.handleDoghouseTap}
-            style="cursor: ${!this.isOwn ? 'pointer' : 'default'}"
+            style="cursor: pointer"
           >
             <svg-icon name="doghouseOne"></svg-icon>
           </div>
@@ -414,31 +600,67 @@ export class MapModal extends LitElement {
 
         <div id="center">
           ${!this.isOwn
-            ? html`
-                <div id="tap-instructions">
-                  <p>
-                    Tap the doghouse ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''}
-                    to attack!
-                  </p>
-                  <div id="tap-progress">
-                    ${Array.from(
-                      { length: 3 },
-                      (_, i) => html`
-                        <div class="tap-dot ${i < this.tapCount ? 'active' : ''}"></div>
+            ? (() => {
+                const { canAttack, reason } = this.canAttackDoghouse();
+                return canAttack
+                  ? html`
+                      <div id="tap-instructions">
+                        <p>
+                          Tap the doghouse ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''}
+                          to attack!
+                        </p>
+                        <div id="tap-progress">
+                          ${Array.from(
+                            { length: 3 },
+                            (_, i) => html`
+                              <div class="tap-dot ${i < this.tapCount ? 'active' : ''}"></div>
+                            `
+                          )}
+                        </div>
+                      </div>
+                    `
+                  : html`
+                      <div id="attack-blocked-instructions">
+                        <p>
+                          <sl-icon name="info-circle"></sl-icon>
+                          ${reason}
+                        </p>
+                      </div>
+                    `;
+              })()
+            : this.isOwn
+              ? (() => {
+                  const { canRepair, reason } = this.canRepairDoghouse();
+                  return canRepair
+                    ? html`
+                        <div id="repair-instructions">
+                          <p>
+                            Tap the doghouse ${3 - this.repairTapCount} time${3 - this.repairTapCount !== 1 ? 's' : ''}
+                            to repair!
+                          </p>
+                          <div id="repair-progress">
+                            ${Array.from(
+                              { length: 3 },
+                              (_, i) => html`
+                                <div class="repair-dot ${i < this.repairTapCount ? 'active' : ''}"></div>
+                              `
+                            )}
+                          </div>
+                        </div>
                       `
-                    )}
-                  </div>
-                </div>
-              `
-            : html``}
+                    : html`
+                        <div id="repair-blocked-instructions">
+                          <p>
+                            <sl-icon name="info-circle"></sl-icon>
+                            ${reason}
+                          </p>
+                        </div>
+                      `;
+                })()
+              : html``}
         </div>
 
         <div id="footer-btn">
-          ${this.isOwn
-            ? html`<sl-button id="heal-btn" @click=${this.repairDoghouse} pill
-                >Repair - ${repairEnergy}<sl-icon name="lightning-charge"></sl-icon
-              ></sl-button>`
-            : html``}
         </div>
       </div>
     `;

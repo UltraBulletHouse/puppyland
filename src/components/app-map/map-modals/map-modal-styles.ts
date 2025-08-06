@@ -12,7 +12,7 @@ export const MapModalStyles = html`
       overflow: hidden;
     }
     .own-doghouse-modal {
-      background: linear-gradient(135deg, var(--color-secondary-light) 0%, var(--color-white) 100%);
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.15) 0%, rgba(129, 199, 132, 0.08) 50%, var(--color-white) 100%);
     }
     .enemy-doghouse-modal {
       background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
@@ -228,6 +228,10 @@ export const MapModalStyles = html`
       animation: attackSuccess 1s ease-in-out;
     }
 
+    #doghouse-icon.repair-success {
+      animation: repairSuccess 1s ease-in-out;
+    }
+
     #doghouse-icon.destroyed {
       animation: destruction 1s ease-in-out forwards;
     }
@@ -267,6 +271,29 @@ export const MapModalStyles = html`
       }
       100% {
         transform: scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes repairSuccess {
+      0% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1) hue-rotate(0deg);
+      }
+      25% {
+        transform: scale(1.1) rotate(2deg);
+        filter: brightness(1.2) hue-rotate(-30deg);
+      }
+      50% {
+        transform: scale(1.2) rotate(-2deg);
+        filter: brightness(1.4) hue-rotate(-60deg);
+      }
+      75% {
+        transform: scale(1.1) rotate(1deg);
+        filter: brightness(1.2) hue-rotate(-30deg);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1) hue-rotate(0deg);
       }
     }
 
@@ -843,6 +870,178 @@ export const MapModalStyles = html`
         transform: scale(2);
         opacity: 0;
       }
+    }
+
+    /* Repair indicator styles */
+    .repair-indicator {
+      background: linear-gradient(135deg, #4caf50, #81c784);
+      color: white;
+      animation: floatUpCenter 2s ease-out forwards;
+    }
+
+    /* Repair blocked indicator styles */
+    .repair-blocked-indicator {
+      background: linear-gradient(135deg, #ff9800, #ffb74d);
+      color: white;
+      animation: floatUpCenter 3s ease-out forwards;
+      font-size: 14px;
+      padding: 8px 16px;
+      max-width: 280px;
+      text-align: center;
+    }
+
+    /* Attack blocked indicator styles */
+    .attack-blocked-indicator {
+      background: linear-gradient(135deg, #f44336, #ef5350);
+      color: white;
+      animation: floatUpCenter 3s ease-out forwards;
+      font-size: 14px;
+      padding: 8px 16px;
+      max-width: 280px;
+      text-align: center;
+    }
+
+    /* Repair instructions styles */
+    #repair-instructions {
+      text-align: center;
+      margin: 20px 0;
+      padding: 15px;
+      background: linear-gradient(
+        135deg,
+        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.1),
+        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.05)
+      );
+      border-radius: 15px;
+      border: 1px solid rgba(var(--color-secondary-rgb, 40, 167, 69), 0.2);
+    }
+
+    #repair-instructions p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: var(--color-secondary);
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    #repair-progress {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .repair-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+      border: 2px solid #ccc;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .repair-dot.active {
+      background: linear-gradient(135deg, var(--color-secondary), #4caf50);
+      border-color: var(--color-secondary);
+      box-shadow: 0 4px 12px rgba(var(--color-secondary-rgb, 40, 167, 69), 0.4);
+      animation: repairPulse 0.4s ease;
+    }
+
+    .repair-dot.active::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--color-secondary), transparent);
+      animation: repairRipple 0.6s ease-out;
+      z-index: -1;
+    }
+
+    @keyframes repairPulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.4);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes repairRipple {
+      0% {
+        transform: scale(1);
+        opacity: 0.7;
+      }
+      100% {
+        transform: scale(2);
+        opacity: 0;
+      }
+    }
+
+    /* Repair blocked instructions styles */
+    #repair-blocked-instructions {
+      text-align: center;
+      margin: 20px 0;
+      padding: 15px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 152, 0, 0.1),
+        rgba(255, 152, 0, 0.05)
+      );
+      border-radius: 15px;
+      border: 1px solid rgba(255, 152, 0, 0.3);
+    }
+
+    #repair-blocked-instructions p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #ff9800;
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    #repair-blocked-instructions sl-icon {
+      font-size: 18px;
+    }
+
+    /* Attack blocked instructions styles */
+    #attack-blocked-instructions {
+      text-align: center;
+      margin: 20px 0;
+      padding: 15px;
+      background: linear-gradient(
+        135deg,
+        rgba(244, 67, 54, 0.1),
+        rgba(244, 67, 54, 0.05)
+      );
+      border-radius: 15px;
+      border: 1px solid rgba(244, 67, 54, 0.3);
+    }
+
+    #attack-blocked-instructions p {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #f44336;
+      font-weight: 600;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    #attack-blocked-instructions sl-icon {
+      font-size: 18px;
     }
 
     @media (max-width: 600px) {
