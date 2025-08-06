@@ -20,7 +20,7 @@ import {
   Price,
   ShopItemLocal,
 } from '../types/shop';
-import { alertNotifySuccess } from '../utils/alertsUtils';
+import { showSuccessModal } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
 
 //TODO: Move it to .env
@@ -240,7 +240,10 @@ export class AppShopView extends LitElement {
 
       updateDogInfoEvent(this, dog);
 
-      alertNotifySuccess(`You bought ${quantity} of ${itemBought}`);
+      showSuccessModal(
+        'Purchase Successful',
+        `You have successfully purchased ${quantity} of ${itemBought}.`
+      );
     } catch (error) {
       console.log(error);
     }
