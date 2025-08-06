@@ -10,6 +10,7 @@ export const API_DOGHOUSE_GET = 'Dog/Doghouses';
 export const API_DOGHOUSE_CREATE = 'Dog/Doghouse/Create';
 export const API_DOGHOUSE_ATTACK = 'Dog/Doghouse/Attack';
 export const API_DOGHOUSE_REPAIR = 'Dog/Doghouse/Repair';
+export const API_DOGHOUSE_APPLY_BUFF = 'Doghouses/ApplyBuff';
 
 /* DOGHOUSES */
 export const API_DOGHOUSES_NEAR_USER = 'Doghouses/NearUser';

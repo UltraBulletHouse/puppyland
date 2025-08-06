@@ -287,8 +287,8 @@ export class AppDogView extends LitElement {
         margin-top: 4px;
       }
       icon-png-badge {
-        --icon-png-badge-width: 46px;
-        --icon-png-badge-height: 46px;
+        --icon-png-badge-width: 36px;
+        --icon-png-badge-height: 36px;
       }
     `,
   ];
