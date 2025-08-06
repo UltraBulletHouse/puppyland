@@ -74,9 +74,9 @@ export class AppFooter extends LitElement {
         z-index: 1;
       }
       .map-button {
-        background: var(--color-primary-light);
-        color: var(--color-primary);
-        border: 4px solid var(--color-white);
+        background: var(--color-white);
+        color: var(--color-black-light);
+        border: 1px solid var(--color-primary-light);
         border-radius: var(--border-radius-circle);
         width: 64px;
         height: 64px;
@@ -91,12 +91,13 @@ export class AppFooter extends LitElement {
       }
       .map-button:hover {
         transform: scale(1.05);
-        background-color: var(--color-primary-medium);
-        color: var(--color-white);
+        background: var(--color-primary-light);
+        color: var(--color-primary);
       }
       .map-button.active {
-        background: var(--color-primary);
-        color: var(--color-white);
+        background: var(--color-primary-light);
+        border-color: var(--color-primary);
+        color: var(--color-primary);
         transform: scale(1.02);
       }
       .map-button .nav-icon {
