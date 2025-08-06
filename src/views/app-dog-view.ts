@@ -76,11 +76,10 @@ export class AppDogView extends LitElement {
         height: 100%;
       }
       sl-tab-panel {
-        height: 100%;
         overflow-y: auto;
         padding: 0;
+        height: calc(100vh - 270px);
       }
-
       sl-tab::part(base) {
         gap: 8px;
       }
