@@ -73,7 +73,11 @@ export class AppShopView extends LitElement {
       #header {
         padding: 20px 16px;
         border-bottom: 1px solid var(--color-primary-light);
-        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-light) 0%,
+          var(--color-white) 100%
+        );
         display: flex;
         align-items: center;
         gap: 12px;
@@ -104,35 +108,30 @@ export class AppShopView extends LitElement {
         display: flex;
         align-items: center;
         gap: 8px;
+        padding-left: 8px;
       }
 
-      .shop-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 16px;
-      }
-
-      .shop-item-card {
+      .item-list {
         background: var(--color-white);
-        border: 1px solid var(--color-primary-medium);
         border-radius: var(--border-radius-medium);
-        padding: 16px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        transition: all 0.2s ease;
-        display: flex;
-        flex-direction: column;
+        border: 1px solid var(--color-primary-medium);
+        overflow: hidden;
       }
 
-      .shop-item-card:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-        transform: translateY(-1px);
-      }
-
-      .item-header {
+      .shop-item {
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-bottom: 12px;
+        padding: 16px;
+        border-bottom: 1px solid var(--color-primary-light);
+        transition: background-color 0.2s ease;
+      }
+
+      .shop-item:last-child {
+        border-bottom: none;
+      }
+
+      .shop-item:hover {
+        background: var(--color-primary-light);
       }
 
       .item-icon {
@@ -143,49 +142,48 @@ export class AppShopView extends LitElement {
         justify-content: center;
         border-radius: var(--border-radius-small);
         background: var(--color-primary-light);
+        margin-right: 16px;
       }
 
-      .item-info {
+      icon-png-badge {
+        --icon-png-badge-width: 32px;
+        --icon-png-badge-height: 32px;
+      }
+
+      .item-details {
         flex: 1;
+        min-width: 0;
       }
 
       .item-name {
         font-weight: 600;
         font-size: 16px;
         color: var(--color-black);
+        margin-bottom: 4px;
       }
 
       .item-description {
         font-size: 14px;
         color: var(--color-black-medium);
-        margin-bottom: 16px;
-        flex-grow: 1;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
-      .item-footer {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-      }
-
-      .buy-button {
-        width: 100%;
+      .item-action {
+        margin-left: 16px;
       }
 
       .buy-button::part(base) {
         background-color: var(--color-primary);
         color: var(--color-white);
         border: none;
-      }
-
-      .buy-button::part(label) {
         font-weight: 600;
       }
 
       .price-tag {
         font-weight: 700;
         font-size: 16px;
-        color: var(--color-primary);
       }
     `,
   ];
@@ -275,22 +273,16 @@ export class AppShopView extends LitElement {
   }
 
   renderShopItem = (item: ShopItemLocal) => html`
-    <div class="shop-item-card">
-      <div class="item-header">
-        <div class="item-icon">
-          <icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>
-        </div>
-        <div class="item-info">
-          <div class="item-name">${item.name}</div>
-        </div>
+    <div class="shop-item">
+      <div class="item-icon">
+        <icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>
       </div>
-      <div class="item-description">${item.description}</div>
-      <div class="item-footer">
-        <sl-button
-          class="buy-button"
-          @click=${() => this.buyProduct(item.id)}
-          pill
-        >
+      <div class="item-details">
+        <div class="item-name">${item.name}</div>
+        <div class="item-description">${item.description}</div>
+      </div>
+      <div class="item-action">
+        <sl-button class="buy-button" @click=${() => this.buyProduct(item.id)} pill>
           <span class="price-tag">${item.price.value} ${item.price.currency}</span>
         </sl-button>
       </div>
@@ -310,7 +302,7 @@ export class AppShopView extends LitElement {
           <sl-icon name=${icon}></sl-icon>
           ${title}
         </div>
-        <div class="shop-grid">
+        <div class="item-list">
           ${parsedItems.map((item) => this.renderShopItem(item))}
         </div>
       </div>
