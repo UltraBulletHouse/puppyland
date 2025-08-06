@@ -6,7 +6,8 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
-import { API_DOGHOUSE_ATTACK, API_DOGHOUSE_REPAIR } from '../../../constants/apiConstants';
+import { API_DOGHOUSE_APPLY_BUFF, API_DOGHOUSE_ATTACK, API_DOGHOUSE_REPAIR } from '../../../constants/apiConstants';
+import '../../icon-png/icon-png';
 import { attackEnergy, repairEnergy } from '../../../constants/config';
 import { dogInfoContext, updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
@@ -109,6 +110,57 @@ export class MapModal extends LitElement {
 
   @state()
   attackBlockedReason: string = '';
+
+  @state()
+  showBuffsSection: boolean = false;
+
+  @state()
+  showBuffAppliedMessage: boolean = false;
+
+  @state()
+  buffAppliedMessage: string = '';
+
+  applyBuffToDoghouse = async (buffSku: string) => {
+    if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
+
+    this.loadingButton();
+
+    try {
+      const applyBuffResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
+        API_DOGHOUSE_APPLY_BUFF,
+        {
+          doghouseId: this.dhId,
+          dogId: this.dogInfo.id,
+          buffSku: buffSku,
+        }
+      );
+
+      const dogInfoResponse = applyBuffResponse?.data?.dog;
+      const doghouseInfoResponse = applyBuffResponse?.data?.doghouse;
+
+      if (dogInfoResponse) {
+        updateDogInfoEvent(this, dogInfoResponse);
+      }
+
+      if (doghouseInfoResponse) {
+        this.dhHp = doghouseInfoResponse.hp.toString();
+        sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
+      }
+
+      this.showBuffAppliedMessageWithReason(`Buff ${buffSku} applied successfully!`);
+    } catch (error: any) {
+      console.error('Error applying buff:', error);
+      this.showBuffAppliedMessageWithReason(error.response.data.message || 'Failed to apply buff.');
+    }
+  };
+
+  showBuffAppliedMessageWithReason = (reason: string) => {
+    this.buffAppliedMessage = reason;
+    this.showBuffAppliedMessage = true;
+    setTimeout(() => {
+      this.showBuffAppliedMessage = false;
+    }, 3000);
+  };
 
   // WEBSOCKETS
   // connection = new signalR.HubConnectionBuilder()
@@ -662,6 +714,39 @@ export class MapModal extends LitElement {
 
         <div id="footer-btn">
         </div>
+
+        ${this.isOwn && this.dogInfo?.buffsForDoghouses && this.dogInfo.buffsForDoghouses.length > 0
+          ? html`
+              <div id="buffs-section">
+                <div class="buffs-header">
+                  <sl-icon name="magic"></sl-icon>
+                  Available Buffs
+                </div>
+                <div class="buffs-list">
+                  ${this.dogInfo.buffsForDoghouses.map(
+                    (buff) => html`
+                      <div class="buff-item" @click=${() => this.applyBuffToDoghouse(buff.buffSku)}>
+                        <icon-png-badge
+                          name="${buff.buffSku.includes('repair') ? 'toolkit' : 'energy-drink'}"
+                          badge="${buff.quantity}"
+                        ></icon-png-badge>
+                        <span class="buff-name">${buff.name}</span>
+                      </div>
+                    `
+                  )}
+                </div>
+              </div>
+            `
+          : ''}
+
+        ${this.showBuffAppliedMessage
+          ? html`
+              <div class="feedback-indicator buff-applied-indicator">
+                <sl-icon name="check-circle"></sl-icon>
+                ${this.buffAppliedMessage}
+              </div>
+            `
+          : ''}
       </div>
     `;
 

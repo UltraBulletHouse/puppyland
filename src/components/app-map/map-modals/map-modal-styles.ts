@@ -1044,6 +1044,81 @@ export const MapModalStyles = html`
       font-size: 18px;
     }
 
+    #buffs-section {
+      width: 100%;
+      margin-top: 20px;
+      padding: 16px;
+      background: var(--color-white);
+      border: 1px solid var(--color-primary-medium);
+      border-radius: var(--border-radius-medium);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .buffs-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--color-black);
+      margin-bottom: 12px;
+    }
+
+    .buffs-header sl-icon {
+      font-size: 20px;
+      padding: 8px;
+      border-radius: var(--border-radius-circle);
+      background: linear-gradient(135deg, #9b59b6, #8e44ad);
+      color: white;
+    }
+
+    .buffs-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 20px;
+    }
+
+    .buff-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: var(--border-radius-medium);
+      background: var(--sl-color-gray-100);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .buff-item:hover {
+      background: var(--sl-color-gray-200);
+      transform: translateY(-2px);
+      box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .buff-item .buff-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--color-black-medium);
+      margin-top: 4px;
+    }
+
+    .buff-item icon-png-badge {
+      --icon-png-badge-width: 36px;
+      --icon-png-badge-height: 36px;
+    }
+
+    .buff-applied-indicator {
+      background: linear-gradient(135deg, rgba(76, 175, 80, 0.95), rgba(76, 175, 80, 0.8));
+      color: white;
+      border-color: #4caf50;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: damageFlow 2.5s ease-out forwards;
+    }
+
     @media (max-width: 600px) {
       #dh-info {
         padding: 10px;
