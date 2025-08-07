@@ -544,6 +544,8 @@ export class MapModal extends LitElement {
     // this.runSignal()
     const hpPercent = Math.round((Number(this.dhHp) / Number(this.dhMaxHp)) * 100);
 
+    const hasDoghouseBuffs = this.dogInfo?.buffsForDoghouses && this.dogInfo.buffsForDoghouses.length > 0;
+
     const mainSection = html`
       <div id="map-modal-main-section" style="position: relative;">
         <!-- Visual Feedback Indicators -->
@@ -721,7 +723,7 @@ export class MapModal extends LitElement {
           </div>
         </div>
         
-        ${this.isOwn && this.dogInfo?.buffsForDoghouses && this.dogInfo.buffsForDoghouses.length > 0
+        ${hasDoghouseBuffs
           ? html`
               <div id="buffs-section">
                 <div class="buffs-header">
@@ -729,17 +731,19 @@ export class MapModal extends LitElement {
                   Available Buffs
                 </div>
                 <div class="buffs-list">
-                  ${this.dogInfo.buffsForDoghouses.map(
-                    (buff) => html`
-                      <div class="buff-item" @click=${() => this.applyBuffToDoghouse(buff.buffSku)}>
-                        <icon-png-badge
-                          name="${buff.buffSku.includes('repair') ? 'toolkit' : 'energy-drink'}"
-                          badge="${buff.quantity}"
-                        ></icon-png-badge>
-                        <span class="buff-name">${buff.name}</span>
-                      </div>
-                    `
-                  )}
+                  ${this.isOwn
+                    ? this.dogInfo?.buffsForDoghouses?.map(
+                        (buff) => html`
+                          <div class="buff-item" @click=${() => this.applyBuffToDoghouse(buff.buffSku)}>
+                            <icon-png-badge
+                              name="${buff.buffSku.includes('repair') ? 'toolkit' : 'energy-drink'}"
+                              badge="${buff.quantity}"
+                            ></icon-png-badge>
+                            <span class="buff-name">${buff.name}</span>
+                          </div>
+                        `
+                      )
+                    : ''}
                 </div>
               </div>
             `
