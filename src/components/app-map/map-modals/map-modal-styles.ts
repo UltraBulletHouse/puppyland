@@ -319,10 +319,6 @@ export const MapModalStyles = html`
       background: linear-gradient(90deg, #f44336, #d32f2f);
     }
 
-    #footer-btn {
-      padding: 10px;
-    }
-
     #doghouse-icon.shake {
       animation: shake 0.5s ease-in-out;
     }

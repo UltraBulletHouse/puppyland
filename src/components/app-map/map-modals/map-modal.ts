@@ -720,11 +720,7 @@ export class MapModal extends LitElement {
             </div>
           </div>
         </div>
-
-
-        <div id="footer-btn">
-        </div>
-
+        
         ${this.isOwn && this.dogInfo?.buffsForDoghouses && this.dogInfo.buffsForDoghouses.length > 0
           ? html`
               <div id="buffs-section">
