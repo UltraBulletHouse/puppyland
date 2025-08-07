@@ -12,13 +12,13 @@ export interface Quest {
 }
 
 export enum QuestType {
-  ATTACK_DOGHOUSES = 'attack_doghouses',
-  BUILD_DOGHOUSES = 'build_doghouses',
-  GAIN_EXPERIENCE = 'gain_experience',
-  REPAIR_DOGHOUSES = 'repair_doghouses',
-  DESTROY_DOGHOUSES = 'destroy_doghouses',
-  LEVEL_UP = 'level_up',
-  SPEND_ENERGY = 'spend_energy',
+  ATTACK_DOGHOUSES = 'ATTACK_DOGHOUSES',
+  BUILD_DOGHOUSES = 'BUILD_DOGHOUSES',
+  GAIN_EXPERIENCE = 'GAIN_EXPERIENCE',
+  REPAIR_DOGHOUSES = 'REPAIR_DOGHOUSES',
+  DESTROY_DOGHOUSES = 'DESTROY_DOGHOUSES',
+  LEVEL_UP = 'LEVEL_UP',
+  SPEND_ENERGY = 'SPEND_ENERGY',
 }
 
 export interface QuestReward {
