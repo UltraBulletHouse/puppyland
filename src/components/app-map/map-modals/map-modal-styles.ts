@@ -1149,7 +1149,7 @@ export const MapModalStyles = html`
 
     #buffs-section {
       width: 100%;
-      margin-top: 20px;
+      margin-top: 10px;
       padding: 16px;
       background: var(--color-white);
       border: 1px solid var(--color-primary-medium);
@@ -1162,7 +1162,7 @@ export const MapModalStyles = html`
       align-items: center;
       gap: 8px;
       font-weight: 600;
-      font-size: 16px;
+      font-size: 13px;
       color: var(--color-black);
       margin-bottom: 12px;
     }
@@ -1223,13 +1223,168 @@ export const MapModalStyles = html`
     }
 
     @media (max-width: 600px) {
+      #map-modal-main-section {
+        padding: 15px;
+      }
+      
       #dh-info {
-        padding: 10px;
+        padding: 15px;
         margin-bottom: 10px;
       }
+      
+      #dh-name {
+        font-size: 18px;
+        margin-bottom: 3px;
+      }
+      
+      #doghouse-container {
+        min-height: 140px;
+        padding-top: 8px;
+      }
+      
       #doghouse-icon {
         font-size: 60px;
+      }
+      
+      .tap-overlay {
+        top: 80px;
+        padding-top: 8px;
+      }
+      
+      .tap-instructions-compact,
+      .repair-instructions-compact {
+        max-width: 180px;
+        padding: 6px 10px;
+      }
+      
+      .tap-instructions-compact p,
+      .repair-instructions-compact p {
+        font-size: 11px;
+      }
+      
+      .attack-blocked-instructions-compact,
+      .repair-blocked-instructions-compact {
+        max-width: 200px;
+        padding: 6px 10px;
+      }
+      
+      .attack-blocked-instructions-compact p,
+      .repair-blocked-instructions-compact p {
+        font-size: 10px;
+      }
+      
+      .tap-progress-compact,
+      .repair-progress-compact {
+        gap: 6px;
+        margin-top: 4px;
+      }
+      
+      .tap-dot,
+      .repair-dot {
+        width: 12px;
+        height: 12px;
+      }
+      
+      #dh-hp-container {
+        padding: 12px;
         margin: 15px 0;
+      }
+      
+      .hp-header {
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+      
+      .hp-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 18px;
+      }
+      
+      .hp-title {
+        font-size: 14px;
+      }
+      
+      .hp-value {
+        font-size: 16px;
+      }
+      
+      .hp-progress-info {
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
+      
+      .modern-hp-bar {
+        height: 10px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      #map-modal-main-section {
+        padding: 10px;
+      }
+      
+      #dh-info {
+        padding: 12px;
+      }
+      
+      #dh-name {
+        font-size: 16px;
+      }
+      
+      #doghouse-container {
+        min-height: 120px;
+        padding-top: 5px;
+      }
+      
+      #doghouse-icon {
+        font-size: 50px;
+      }
+      
+      .tap-overlay {
+        top: 70px;
+        padding-top: 5px;
+      }
+      
+      .tap-instructions-compact,
+      .repair-instructions-compact {
+        max-width: 160px;
+        padding: 5px 8px;
+      }
+      
+      .tap-instructions-compact p,
+      .repair-instructions-compact p {
+        font-size: 10px;
+      }
+      
+      .attack-blocked-instructions-compact,
+      .repair-blocked-instructions-compact {
+        max-width: 180px;
+        padding: 5px 8px;
+      }
+      
+      .attack-blocked-instructions-compact p,
+      .repair-blocked-instructions-compact p {
+        font-size: 9px;
+      }
+      
+      .tap-dot,
+      .repair-dot {
+        width: 10px;
+        height: 10px;
+      }
+      
+      #dh-hp-container {
+        padding: 10px;
+        margin: 10px 0;
+      }
+      
+      .hp-title {
+        font-size: 13px;
+      }
+      
+      .hp-value {
+        font-size: 14px;
       }
     }
   </style>
