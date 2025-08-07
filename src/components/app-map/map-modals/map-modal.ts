@@ -1,5 +1,4 @@
 import { consume } from '@lit/context';
-import confetti from 'canvas-confetti';
 // import * as signalR from '@microsoft/signalr';
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
@@ -321,11 +320,6 @@ export class MapModal extends LitElement {
 
     // Create particle explosion
     this.createParticleExplosion();
-
-    // After destruction animation, show confetti and close
-    setTimeout(() => {
-      this.launchConfetti();
-    }, 1500);
   };
 
   triggerScreenShake = () => {
@@ -512,32 +506,6 @@ export class MapModal extends LitElement {
       sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
     }
   };
-
-  launchConfetti() {
-    const canvas = globalThis.document.getElementById(
-      'confetti-canvas'
-    ) as HTMLCanvasElement | null;
-    if (!canvas) {
-      console.warn('Confetti canvas not found!');
-      return;
-    }
-
-    canvas.style.display = 'block';
-    canvas.width = globalThis.innerWidth;
-    canvas.height = globalThis.innerHeight;
-
-    confetti.create(canvas, { resize: true, useWorker: false })({
-      particleCount: 240,
-      spread: 100,
-      origin: { y: 0.6 },
-    });
-
-    setTimeout(() => {
-      canvas.style.display = 'none';
-      this.closeMapModal();
-      sendEvent(this, 'closePopup');
-    }, 4500);
-  }
 
   render() {
     // WEBSOCKETS
