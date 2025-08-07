@@ -1,4 +1,3 @@
-import { alertNotifyDanger } from './alertsUtils';
 
 export const watchPositionOptions: PositionOptions = {
   enableHighAccuracy: true,
@@ -19,7 +18,7 @@ export const watchPositionOptions: PositionOptions = {
 export const watchPositionError = (err: GeolocationPositionError) => {
   console.log('watchPositionError', err);
   if (err.code === 1) {
-    alertNotifyDanger('Please allow geolocation access');
+    // alertNotifyDanger('Please allow geolocation access');
   } else {
     // alertNotifyDanger('Geolocation is turned off ' + err.message);
     // console.log(err);

@@ -23,7 +23,6 @@ import {
 import { Coords } from '../../types/geolocation';
 import { TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
-import { alertNotifySuccess } from '../../utils/alertsUtils';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
@@ -212,8 +211,6 @@ export class AppMap extends LitElement {
       const { createResult, dog } = createDoghouseResponse.data;
 
       updateDogInfoEvent(this, dog);
-
-      alertNotifySuccess(`Your doghouse ${createResult.name} was created`);
 
       this.getDoghousesList();
 

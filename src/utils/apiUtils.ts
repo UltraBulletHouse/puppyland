@@ -1,7 +1,5 @@
 import axios, { AxiosError } from 'axios';
 
-import { alertNotifyDanger, alertNotifyWarning } from './alertsUtils';
-
 const apiUrl = 'https://mydogapi.azurewebsites.net/';
 
 const baseHeaders = (accesToken?: string) => {
@@ -29,13 +27,13 @@ export const apiCall = (accesToken?: string) => {
   api.interceptors.response.use(
     (response) => response,
     (error: AxiosError<ApiError>) => {
-      const msg = error.response?.data?.message;
+      // const msg = error.response?.data?.message;
       const errorStatus = error.response?.status;
 
       if (errorStatus === 409) {
-        alertNotifyWarning(msg ?? error.message);
+        // alertNotifyWarning(msg ?? error.message);
       } else {
-        alertNotifyDanger(msg ?? error.message);
+        // alertNotifyDanger(msg ?? error.message);
       }
     }
   );
