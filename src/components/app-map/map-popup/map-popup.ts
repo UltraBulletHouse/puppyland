@@ -78,7 +78,7 @@ export class MapPopup extends LitElement {
   };
 
   firstUpdated() {
-    const CLOSEST_DISTANCE = 2000;
+    const CLOSEST_DISTANCE = 500;
 
     const dhCoordsArr = this.dhCoords?.split('/');
     let dhCoordsObj: Coords = { lat: 0, lng: 0 };
@@ -253,12 +253,12 @@ export class MapPopup extends LitElement {
           background-color: var(--color-primary);
           color: var(--color-white);
         }
+        #next-btn.next-btn-is-own {
+          background-color: var(--color-secondary);
+        }
         #next-btn.next-btn-is-blocked {
           background-color: var(--color-black-light);
           pointer-events: none;
-        }
-        #next-btn.next-btn-is-own {
-          background-color: var(--color-secondary);
         }
         #close-btn {
           position: absolute;
