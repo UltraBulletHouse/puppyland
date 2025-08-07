@@ -525,7 +525,7 @@ export class MapModal extends LitElement {
                     ? 'destruction-message'
                     : ''}"
                 >
-                  <sl-icon name="${this.isDestroyed ? 'explosion' : 'heart-crack'}"></sl-icon>
+                  <sl-icon name="${this.isDestroyed ? 'explosion' : 'heartbreak'}"></sl-icon>
                   ${this.isDestroyed ? 'DESTROYED!' : `-${this.damageAmount} HP`}
                 </div>
               `
