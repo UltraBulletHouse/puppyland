@@ -604,24 +604,95 @@ export class MapModal extends LitElement {
 
         <div id="dh-info">
           <div id="dh-name">${this.dhName}</div>
-          <div
-            id="doghouse-icon"
-            class=${this.isShaking
-              ? 'shake'
-              : this.isAttackSuccess
-                ? 'attack-success'
-                : this.isRepairSuccess
-                  ? 'repair-success'
-                  : this.isDestroyed
-                    ? 'destroyed'
-                    : ''}
-            @click=${this.handleDoghouseTap}
-            style="cursor: pointer"
-          >
-            <svg-icon name="doghouseOne"></svg-icon>
-          </div>
+          <div id="doghouse-container">
+            <div
+              id="doghouse-icon"
+              class=${this.isShaking
+                ? 'shake'
+                : this.isAttackSuccess
+                  ? 'attack-success'
+                  : this.isRepairSuccess
+                    ? 'repair-success'
+                    : this.isDestroyed
+                      ? 'destroyed'
+                      : ''}
+              @click=${this.handleDoghouseTap}
+              style="cursor: pointer"
+            >
+              <svg-icon name="doghouseOne"></svg-icon>
+            </div>
 
-          ${this.showDestructionEffect ? html` <div class="destruction-overlay"></div> ` : ''}
+            <!-- Tapping instructions and progress dots overlaid on doghouse -->
+            ${!this.isOwn
+              ? (() => {
+                  const { canAttack, reason } = this.canAttackDoghouse();
+                  return canAttack
+                    ? html`
+                        <div class="tap-overlay">
+                          <div class="tap-instructions-compact">
+                            <p>
+                              Tap ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''}
+                              to attack!
+                            </p>
+                            <div class="tap-progress-compact">
+                              ${Array.from(
+                                { length: 3 },
+                                (_, i) => html`
+                                  <div class="tap-dot ${i < this.tapCount ? 'active' : ''}"></div>
+                                `
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      `
+                    : html`
+                        <div class="tap-overlay">
+                          <div class="attack-blocked-instructions-compact">
+                            <p>
+                              <sl-icon name="info-circle"></sl-icon>
+                              ${reason}
+                            </p>
+                          </div>
+                        </div>
+                      `;
+                })()
+              : this.isOwn
+                ? (() => {
+                    const { canRepair, reason } = this.canRepairDoghouse();
+                    return canRepair
+                      ? html`
+                          <div class="tap-overlay">
+                            <div class="repair-instructions-compact">
+                              <p>
+                                Tap ${3 - this.repairTapCount} time${3 - this.repairTapCount !== 1 ? 's' : ''}
+                                to repair!
+                              </p>
+                              <div class="repair-progress-compact">
+                                ${Array.from(
+                                  { length: 3 },
+                                  (_, i) => html`
+                                    <div class="repair-dot ${i < this.repairTapCount ? 'active' : ''}"></div>
+                                  `
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        `
+                      : html`
+                          <div class="tap-overlay">
+                            <div class="repair-blocked-instructions-compact">
+                              <p>
+                                <sl-icon name="info-circle"></sl-icon>
+                                ${reason}
+                              </p>
+                            </div>
+                          </div>
+                        `;
+                  })()
+                : html``}
+
+            ${this.showDestructionEffect ? html` <div class="destruction-overlay"></div> ` : ''}
+          </div>
         </div>
 
         <div id="dh-hp-container">
@@ -650,67 +721,6 @@ export class MapModal extends LitElement {
           </div>
         </div>
 
-        <div id="center">
-          ${!this.isOwn
-            ? (() => {
-                const { canAttack, reason } = this.canAttackDoghouse();
-                return canAttack
-                  ? html`
-                      <div id="tap-instructions">
-                        <p>
-                          Tap the doghouse ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''}
-                          to attack!
-                        </p>
-                        <div id="tap-progress">
-                          ${Array.from(
-                            { length: 3 },
-                            (_, i) => html`
-                              <div class="tap-dot ${i < this.tapCount ? 'active' : ''}"></div>
-                            `
-                          )}
-                        </div>
-                      </div>
-                    `
-                  : html`
-                      <div id="attack-blocked-instructions">
-                        <p>
-                          <sl-icon name="info-circle"></sl-icon>
-                          ${reason}
-                        </p>
-                      </div>
-                    `;
-              })()
-            : this.isOwn
-              ? (() => {
-                  const { canRepair, reason } = this.canRepairDoghouse();
-                  return canRepair
-                    ? html`
-                        <div id="repair-instructions">
-                          <p>
-                            Tap the doghouse ${3 - this.repairTapCount} time${3 - this.repairTapCount !== 1 ? 's' : ''}
-                            to repair!
-                          </p>
-                          <div id="repair-progress">
-                            ${Array.from(
-                              { length: 3 },
-                              (_, i) => html`
-                                <div class="repair-dot ${i < this.repairTapCount ? 'active' : ''}"></div>
-                              `
-                            )}
-                          </div>
-                        </div>
-                      `
-                    : html`
-                        <div id="repair-blocked-instructions">
-                          <p>
-                            <sl-icon name="info-circle"></sl-icon>
-                            ${reason}
-                          </p>
-                        </div>
-                      `;
-                })()
-              : html``}
-        </div>
 
         <div id="footer-btn">
         </div>

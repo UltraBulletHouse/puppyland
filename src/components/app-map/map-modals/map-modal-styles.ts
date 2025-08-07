@@ -75,7 +75,7 @@ export const MapModalStyles = html`
       overflow: hidden;
       color: var(--color-primary);
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
 
     #dh-info {
@@ -86,6 +86,133 @@ export const MapModalStyles = html`
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
       width: 100%;
+    }
+
+    #doghouse-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 170px;
+      padding-top: 10px;
+    }
+
+    #doghouse-icon {
+      font-size: 80px;
+      z-index: 2;
+      position: relative;
+      transition: transform 0.1s ease;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      outline: none;
+    }
+
+    .tap-overlay {
+      position: absolute;
+      top: 100px;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      z-index: 3;
+      pointer-events: none;
+      padding-top: 10px;
+    }
+
+    .tap-instructions-compact,
+    .repair-instructions-compact {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 8px 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: 2px solid;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      max-width: 200px;
+    }
+
+    .tap-instructions-compact {
+      border-color: var(--color-primary);
+    }
+
+    .repair-instructions-compact {
+      border-color: var(--color-secondary);
+    }
+
+    .tap-instructions-compact p,
+    .repair-instructions-compact p {
+      margin: 4px 0;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .tap-instructions-compact p {
+      color: var(--color-primary);
+    }
+
+    .repair-instructions-compact p {
+      color: var(--color-secondary);
+    }
+
+    .tap-progress-compact,
+    .repair-progress-compact {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .attack-blocked-instructions-compact,
+    .repair-blocked-instructions-compact {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      padding: 8px 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border: 2px solid;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      max-width: 220px;
+    }
+
+    .attack-blocked-instructions-compact {
+      border-color: #f44336;
+    }
+
+    .repair-blocked-instructions-compact {
+      border-color: #ff9800;
+    }
+
+    .attack-blocked-instructions-compact p,
+    .repair-blocked-instructions-compact p {
+      margin: 4px 0;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .attack-blocked-instructions-compact p {
+      color: #f44336;
+    }
+
+    .repair-blocked-instructions-compact p {
+      color: #ff9800;
+    }
+
+    .attack-blocked-instructions-compact sl-icon,
+    .repair-blocked-instructions-compact sl-icon {
+      font-size: 14px;
     }
     #dh-details {
       display: flex;
@@ -194,30 +321,6 @@ export const MapModalStyles = html`
 
     #footer-btn {
       padding: 10px;
-    }
-    #center {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-    #doghouse-icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 80px;
-      margin: 30px 0;
-      transition: transform 0.1s ease;
-      -webkit-tap-highlight-color: transparent;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -khtml-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      outline: none;
     }
 
     #doghouse-icon.shake {
