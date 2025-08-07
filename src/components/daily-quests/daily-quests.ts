@@ -18,11 +18,19 @@ export class DailyQuests extends LitElement {
     css`
       #container {
         background: var(--color-white);
-        border-radius: var(--border-radius-medium);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+
+      #content {
+        flex: 1;
+        overflow-y: auto;
         padding: 16px;
-        margin: 16px 0;
-        border: 1px solid var(--color-primary-medium);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        min-height: 0;
+        max-height: calc(100vh - 200px);
+        -webkit-overflow-scrolling: touch;
       }
 
       #header {
@@ -30,8 +38,9 @@ export class DailyQuests extends LitElement {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 16px;
-        padding-bottom: 12px;
+        padding: 16px;
         border-bottom: 1px solid var(--color-primary-light);
+        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
       }
 
       #title {
@@ -64,9 +73,13 @@ export class DailyQuests extends LitElement {
         margin-bottom: 0;
       }
 
+      .quest-item:hover {
+        background: var(--color-primary-light);
+      }
+
       .quest-item.completed {
         background: var(--color-secondary-light);
-        border-color: var(--color-secondary);
+        border-left: 4px solid var(--color-secondary);
       }
 
       .quest-header {
@@ -392,9 +405,11 @@ export class DailyQuests extends LitElement {
               Daily Quests
             </div>
           </div>
-          <div id="loading-state">
-            <sl-icon name="arrow-clockwise"></sl-icon>
-            <p>Loading daily quests...</p>
+          <div id="content">
+            <div id="loading-state">
+              <sl-icon name="arrow-clockwise"></sl-icon>
+              <p>Loading daily quests...</p>
+            </div>
           </div>
         </div>
       `;
@@ -409,9 +424,11 @@ export class DailyQuests extends LitElement {
               Daily Quests
             </div>
           </div>
-          <div id="empty-state">
-            <sl-icon name="calendar-x"></sl-icon>
-            <div>No quests available today</div>
+          <div id="content">
+            <div id="empty-state">
+              <sl-icon name="calendar-x"></sl-icon>
+              <div>No quests available today</div>
+            </div>
           </div>
         </div>
       `;
@@ -430,62 +447,64 @@ export class DailyQuests extends LitElement {
           </div>
         </div>
 
-        ${this.quests.map((quest) => {
-          const progressPercentage = Math.min((quest.progress / quest.target) * 100, 100);
+        <div id="content">
+          ${this.quests.map((quest) => {
+            const progressPercentage = Math.min((quest.progress / quest.target) * 100, 100);
 
-          return html`
-            <div class="quest-item ${quest.isCompleted ? 'completed' : ''}">
-              <div class="quest-header">
-                <div class="quest-info">
-                  <div class="quest-title">
-                    <sl-icon
-                      name="${this.getQuestTypeIcon(quest.type)}"
-                      class="quest-type-icon ${this.getQuestTypeClass(quest.type)}"
-                    ></sl-icon>
-                    ${quest.title}
+            return html`
+              <div class="quest-item ${quest.isCompleted ? 'completed' : ''}">
+                <div class="quest-header">
+                  <div class="quest-info">
+                    <div class="quest-title">
+                      <sl-icon
+                        name="${this.getQuestTypeIcon(quest.type)}"
+                        class="quest-type-icon ${this.getQuestTypeClass(quest.type)}"
+                      ></sl-icon>
+                      ${quest.title}
+                    </div>
+                    <div class="quest-description">${quest.description}</div>
                   </div>
-                  <div class="quest-description">${quest.description}</div>
-                </div>
-                <div class="quest-actions">
-                  <div class="quest-reward ${quest.isCompleted ? 'completed' : ''}">
-                    <sl-icon
-                      name="${this.getRewardIcon(quest.reward.type)}"
-                      class="reward-icon ${this.getRewardClass(quest.reward.type)}"
-                    ></sl-icon>
-                    ${quest.reward.description}
-                  </div>
-                  ${quest.isCompleted && !quest.isRewardClaimed
-                    ? html`
-                        <sl-button
-                          variant="success"
-                          size="small"
-                          @click=${() => this.claimReward(quest.id)}
-                        >
-                          <sl-icon name="gift" slot="prefix"></sl-icon>
-                          Claim
-                        </sl-button>
-                      `
-                    : quest.isRewardClaimed
+                  <div class="quest-actions">
+                    <div class="quest-reward ${quest.isCompleted ? 'completed' : ''}">
+                      <sl-icon
+                        name="${this.getRewardIcon(quest.reward.type)}"
+                        class="reward-icon ${this.getRewardClass(quest.reward.type)}"
+                      ></sl-icon>
+                      ${quest.reward.description}
+                    </div>
+                    ${quest.isCompleted && !quest.isRewardClaimed
                       ? html`
-                          <sl-badge variant="success">
-                            <sl-icon name="check-circle"></sl-icon>
-                            Claimed
-                          </sl-badge>
+                          <sl-button
+                            variant="success"
+                            size="small"
+                            @click=${() => this.claimReward(quest.id)}
+                          >
+                            <sl-icon name="gift" slot="prefix"></sl-icon>
+                            Claim
+                          </sl-button>
                         `
-                      : ''}
+                      : quest.isRewardClaimed
+                        ? html`
+                            <sl-badge variant="success">
+                              <sl-icon name="check-circle"></sl-icon>
+                              Claimed
+                            </sl-badge>
+                          `
+                        : ''}
+                  </div>
                 </div>
-              </div>
 
-              <div class="quest-progress">
-                <div class="progress-info">
-                  <span class="progress-text"> ${quest.progress} / ${quest.target} </span>
-                  <span class="progress-percentage"> ${Math.round(progressPercentage)}% </span>
+                <div class="quest-progress">
+                  <div class="progress-info">
+                    <span class="progress-text"> ${quest.progress} / ${quest.target} </span>
+                    <span class="progress-percentage"> ${Math.round(progressPercentage)}% </span>
+                  </div>
+                  <sl-progress-bar value="${progressPercentage}"></sl-progress-bar>
                 </div>
-                <sl-progress-bar value="${progressPercentage}"></sl-progress-bar>
               </div>
-            </div>
-          `;
-        })}
+            `;
+          })}
+        </div>
       </div>
     `;
   }
