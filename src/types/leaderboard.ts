@@ -10,7 +10,7 @@ export interface LeaderboardEntry {
   isCurrentUser?: boolean;
   level?: number;
   experience?: number;
-  ownedDoghouses?: number;
+  totalDoghousesBuilt?: number;
   destroyedDoghouses?: number;
   badge?: LeaderboardBadge;
 }
