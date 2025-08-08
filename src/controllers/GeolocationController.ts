@@ -1,7 +1,6 @@
 import { ReactiveController, ReactiveControllerHost } from 'lit';
 
 import { Coords } from '../types/geolocation';
-import { alertNotifyWarning } from '../utils/alertsUtils';
 import { getUserPosition, watchUserPosition } from '../utils/geolocationUtils';
 
 export class GeolocationController implements ReactiveController {
@@ -51,16 +50,9 @@ export class GeolocationController implements ReactiveController {
     });
   }
 
-  showPermissionDeniedAlert() {
-    alertNotifyWarning(
-      'Geolocation permission has been denied. To use this feature, please enable it in your browser settings.'
-    );
-  }
-
   private updatePermissionState(state: PermissionState) {
     if (state === 'denied') {
       this.permissionGeolocation = false;
-      this.showPermissionDeniedAlert();
     } else if (state === 'granted') {
       this.permissionGeolocation = true;
     } else {
