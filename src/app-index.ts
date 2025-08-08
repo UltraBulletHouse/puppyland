@@ -1,5 +1,6 @@
 import { provide } from '@lit/context';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+import { User } from 'firebase/auth';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { cache } from 'lit/directives/cache.js';
@@ -15,7 +16,6 @@ import './components/icon-svg/svg-icon-button';
 import { API_USER_INFO } from './constants/apiConstants';
 import { dogInfoContext } from './contexts/dogInfoContext';
 import { accessTokenContext } from './contexts/userFirebaseContext';
-import { User } from 'firebase/auth';
 import { userInfoContext } from './contexts/userInfoContext';
 import { viewContext } from './contexts/viewContext';
 import './styles/global.css';
@@ -150,8 +150,7 @@ export class AppIndex extends LitElement {
   }
 
   render() {
-    const isFooterHidden =
-      this.view === View.SIGNIN_VIEW || this.isLoading || !this.view;
+    const isFooterHidden = this.view === View.SIGNIN_VIEW || this.isLoading || !this.view;
 
     const hasShadowFooter = this.view === View.MAP_VIEW;
 

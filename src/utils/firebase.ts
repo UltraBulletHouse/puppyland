@@ -1,6 +1,6 @@
-import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getApps, initializeApp } from 'firebase/app';
+import { GoogleAuthProvider, getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
-import { initializeApp, getApps } from 'firebase/app';
 
 const {
   VITE_apiKey,
@@ -29,5 +29,3 @@ if (!getApps().length) {
 export const auth = getAuth();
 export const firestore = getFirestore();
 export const googleProvider = new GoogleAuthProvider();
-
-

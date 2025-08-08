@@ -520,8 +520,6 @@ export class LeaderboardsComponent extends LitElement {
                     <div class="dog-name">${entry.dogName}</div>
                   </div>
 
-                  
-
                   <div class="score">
                     <div class="score-value">${this.getScoreValue(entry)}</div>
                     <div class="score-label">${this.getScoreLabel(this.selectedCategory)}</div>

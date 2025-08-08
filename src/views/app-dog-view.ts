@@ -10,8 +10,8 @@ import '@shoelace-style/shoelace/dist/components/tab/tab.js';
 
 import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
-import '../components/leaderboards/leaderboards';
 import '../components/icon-png/icon-png';
+import '../components/leaderboards/leaderboards';
 import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
@@ -518,8 +518,7 @@ export class AppDogView extends LitElement {
                       </div>
 
                       <!-- Doghouse Buffs Card -->
-                      ${this.dogInfo?.buffsForDoghouses &&
-                      this.dogInfo.buffsForDoghouses.length > 0
+                      ${this.dogInfo?.buffsForDoghouses && this.dogInfo.buffsForDoghouses.length > 0
                         ? html`
                             <div class="stat-card">
                               <div class="stat-header">

@@ -329,8 +329,6 @@ export class AppUserView extends LitElement {
           </div>
         </div>
 
-        
-
         <!-- Dark Mode Setting -->
         <div class="setting-item">
           <div class="setting-info">
