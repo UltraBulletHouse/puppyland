@@ -1,8 +1,6 @@
-import { GoogleAuthProvider } from 'firebase/auth';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import 'firebase/firestore';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
+import { initializeApp, getApps } from 'firebase/app';
 
 const {
   VITE_apiKey,
@@ -24,12 +22,12 @@ const firebaseConfig = {
   measurementId: VITE_measurementId,
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+if (!getApps().length) {
+  initializeApp(firebaseConfig);
 }
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+export const auth = getAuth();
+export const firestore = getFirestore();
 export const googleProvider = new GoogleAuthProvider();
 
-export type UserFirebase = firebase.User | null;
+

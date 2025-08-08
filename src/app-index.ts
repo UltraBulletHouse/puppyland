@@ -15,6 +15,7 @@ import './components/icon-svg/svg-icon-button';
 import { API_USER_INFO } from './constants/apiConstants';
 import { dogInfoContext } from './contexts/dogInfoContext';
 import { accessTokenContext } from './contexts/userFirebaseContext';
+import { User } from 'firebase/auth';
 import { userInfoContext } from './contexts/userInfoContext';
 import { viewContext } from './contexts/viewContext';
 import './styles/global.css';
@@ -86,7 +87,7 @@ export class AppIndex extends LitElement {
   }
 
   firstUpdated() {
-    auth.onAuthStateChanged(async (userFirebase) => {
+    auth.onAuthStateChanged(async (userFirebase: User | null) => {
       this.isLoading = true;
 
       if (userFirebase) {
@@ -102,6 +103,13 @@ export class AppIndex extends LitElement {
         this.view = View.SIGNIN_VIEW;
       }
       this.isLoading = false;
+    });
+
+    auth.onIdTokenChanged(async (user) => {
+      if (user) {
+        const newAccessToken = await user.getIdToken();
+        this.accessToken = newAccessToken;
+      }
     });
   }
 
