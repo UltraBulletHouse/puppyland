@@ -238,6 +238,12 @@ export class LeaderboardsComponent extends LitElement {
         color: var(--color-black-medium);
       }
 
+      @media (max-width: 750px) {
+        #header { padding: 12px; }
+        #content { padding: 12px; }
+        #title { gap: 6px; font-size: 16px; }
+      }
+
       #empty-state {
         text-align: center;
         padding: 40px 20px;
