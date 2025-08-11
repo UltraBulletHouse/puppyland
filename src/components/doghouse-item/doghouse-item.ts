@@ -14,6 +14,7 @@ import { sendEvent } from '../../utils/eventUtils';
 
 /**
  * @fires updateDoghouse
+ * @fires goToMap
  */
 @customElement('app-dogouse-item')
 export class AppDoghouseItem extends LitElement {
@@ -93,7 +94,8 @@ export class AppDoghouseItem extends LitElement {
         align-items: center;
       }
       #hp-stat,
-      #date-stat {
+      #date-stat,
+      #map-stat {
         display: flex;
         align-items: center;
         gap: 4px;
@@ -107,6 +109,11 @@ export class AppDoghouseItem extends LitElement {
       #date-stat sl-icon {
         color: var(--color-black-light);
         font-size: 14px;
+      }
+      #map-stat sl-icon {
+        color: var(--color-primary);
+        font-size: 14px;
+        cursor: pointer;
       }
       #hp-bar {
         width: 60px;
@@ -161,6 +168,12 @@ export class AppDoghouseItem extends LitElement {
     if (changedProperties.has('isEditMode') && !this.isEditMode) {
       this.onCloseEditing();
     }
+  }
+
+  goToMap() {
+    if (!this.dogouseInfo) return;
+    const { lat, lng } = this.dogouseInfo;
+    sendEvent(this, 'goToMap', { lat, lng });
   }
 
   async saveNewName() {
@@ -242,6 +255,9 @@ export class AppDoghouseItem extends LitElement {
           <div id="date-stat">
             <sl-icon name="calendar-check"></sl-icon>
             <sl-relative-time date=${createdDate}></sl-relative-time>
+          </div>
+          <div id="map-stat">
+            <sl-icon name="geo-alt" @click=${this.goToMap} title="Go to map"></sl-icon>
           </div>
         </div>
       </div>

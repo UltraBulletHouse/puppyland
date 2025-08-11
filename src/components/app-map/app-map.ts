@@ -48,6 +48,9 @@ export class AppMap extends LitElement {
   @property({ attribute: false })
   dogInfo: DogInfo | null = null;
 
+  @property({ type: Object })
+  centerCoords: Coords | null = null;
+
   @state()
   userPos: Coords | null = null;
 
@@ -220,8 +223,10 @@ export class AppMap extends LitElement {
 
   updated(changedProperties: PropertyValues<this>): void {
     if (changedProperties.has('userPos') && this.map && this.userPos) {
-      const { lat, lng } = this.userPos;
-      this.map.setView([lat, lng], 17);
+      if (!this.centerCoords) {
+        const { lat, lng } = this.userPos;
+        this.map.setView([lat, lng], 17);
+      }
 
       if (!this.doghouses) {
         this.getDoghousesList();
@@ -243,6 +248,12 @@ export class AppMap extends LitElement {
     });
     this.map = map;
 
+    if (this.centerCoords) {
+      const { lat, lng } = this.centerCoords;
+      this.map.setView([lat, lng], 17);
+      this.userPos = this.centerCoords;
+    }
+
     const urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
     map.addLayer(
       L.tileLayer(urlTemplate, {
@@ -257,7 +268,9 @@ export class AppMap extends LitElement {
 
     this.map.attributionControl.setPosition('topright');
 
-    this.watchUserPos();
+    if (!this.centerCoords) {
+      this.watchUserPos();
+    }
   }
 
   render() {

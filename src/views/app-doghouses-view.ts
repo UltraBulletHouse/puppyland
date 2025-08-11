@@ -14,7 +14,9 @@ import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogInfo } from '../types/dog';
 import { Doghouse, GetDoghouseResponse } from '../types/doghouse';
+import { Coords } from '../types/geolocation';
 import { apiCall } from '../utils/apiUtils';
+import { sendEvent } from '../utils/eventUtils';
 
 @customElement('app-doghouses-view')
 export class AppDoghousesView extends LitElement {
@@ -155,6 +157,10 @@ export class AppDoghousesView extends LitElement {
     this.doghouses = updatedDoghouses;
   }
 
+  handleGoToMap(event: CustomEvent<Coords>) {
+    sendEvent(this, 'setViewToMap', event.detail);
+  }
+
   handleEditMode() {
     this.editMode = !this.editMode;
   }
@@ -235,6 +241,7 @@ export class AppDoghousesView extends LitElement {
                         .dogouseInfo=${item}
                         .isEditMode=${this.editMode}
                         @updateDoghouse=${this.updateDoghouse}
+                        @goToMap=${this.handleGoToMap}
                       ></app-dogouse-item>
                     `
                   )

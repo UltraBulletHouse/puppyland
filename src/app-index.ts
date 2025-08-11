@@ -2,7 +2,7 @@ import { provide } from '@lit/context';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
 import { User } from 'firebase/auth';
 import { LitElement, css, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { cache } from 'lit/directives/cache.js';
 
 /* Common components loaded here */
@@ -21,6 +21,7 @@ import { viewContext } from './contexts/viewContext';
 import './styles/global.css';
 import { sharedStyles } from './styles/shared-styles';
 import { DogInfo } from './types/dog';
+import { Coords } from './types/geolocation';
 import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
@@ -56,8 +57,19 @@ export class AppIndex extends LitElement {
   @property({ attribute: false })
   view: View = View.LOADING_VIEW;
 
+  @state()
+  mapCenterCoords: Coords | null = null;
+
   updateView(event: CustomEvent<View>) {
     this.view = event.detail;
+    if (this.view !== View.MAP_VIEW) {
+      this.mapCenterCoords = null;
+    }
+  }
+
+  setViewToMap(event: CustomEvent<Coords>) {
+    this.mapCenterCoords = event.detail;
+    this.view = View.MAP_VIEW;
   }
 
   /* AccessToken context */
@@ -125,7 +137,10 @@ export class AppIndex extends LitElement {
       }
       case View.MAP_VIEW: {
         import('./views/app-map-view');
-        return html`<app-map-view @updateDogInfo=${this.updateDogInfo}></app-map-view>`;
+        return html`<app-map-view
+          .centerCoords=${this.mapCenterCoords}
+          @updateDogInfo=${this.updateDogInfo}
+        ></app-map-view>`;
       }
       case View.USER_VIEW: {
         import('./views/app-user-view');
@@ -141,7 +156,7 @@ export class AppIndex extends LitElement {
       }
       case View.DOGHOUSE_VIEW: {
         import('./views/app-doghouses-view');
-        return html`<app-doghouses-view></app-doghouses-view>`;
+        return html`<app-doghouses-view @setViewToMap=${this.setViewToMap}></app-doghouses-view>`;
       }
       default: {
         return html`<app-loading-view></app-loading-view>`;
