@@ -29,22 +29,27 @@ export class AppDoghousesView extends LitElement {
         background: var(--color-white);
       }
       #header {
-        position: sticky;
-        top: 0;
-        background: var(--color-white);
-        z-index: 10;
-        border-bottom: 1px solid var(--color-primary-medium);
-        padding: 12px 16px;
+        padding: 20px 16px;
+        border-bottom: 1px solid var(--color-primary-light);
+        background: linear-gradient(
+          135deg,
+          var(--color-primary-light) 0%,
+          var(--color-white) 100%
+        );
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        justify-content: space-between;
+        gap: 12px;
       }
-      #title-text {
+      #left {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      #title {
         font-weight: 600;
-        font-size: 18px;
+        font-size: 20px;
         color: var(--color-black);
-        letter-spacing: 0.5px;
       }
       #controls {
         display: flex;
@@ -186,7 +191,10 @@ export class AppDoghousesView extends LitElement {
     return html`
       <div id="container">
         <div id="header">
-          <div id="title-text">My Doghouses</div>
+          <div id="left">
+            <sl-icon name="houses" style="font-size: 24px;"></sl-icon>
+            <div id="title">Doghouses</div>
+          </div>
           <div id="controls">
             <div id="sort-buttons">
               <sl-button
