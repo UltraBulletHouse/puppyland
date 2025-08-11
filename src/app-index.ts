@@ -150,6 +150,7 @@ export class AppIndex extends LitElement {
   }
 
   render() {
+    /* TEST */
     const isFooterHidden = this.view === View.SIGNIN_VIEW || this.isLoading || !this.view;
 
     const hasShadowFooter = this.view === View.MAP_VIEW;
