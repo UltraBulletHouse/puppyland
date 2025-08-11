@@ -395,7 +395,7 @@ export class LeaderboardsComponent extends LitElement {
       case LeaderboardCategory.LEVEL:
         return entry.level ?? 0;
       case LeaderboardCategory.DOGHOUSES_BUILT:
-        return entry.ownedDoghouses ?? 0;
+        return entry.totalDoghousesBuilt ?? 0;
       case LeaderboardCategory.DOGHOUSES_DESTROYED:
         return entry.destroyedDoghouses ?? 0;
       default:
@@ -519,8 +519,6 @@ export class LeaderboardsComponent extends LitElement {
                   <div class="player-info">
                     <div class="dog-name">${entry.dogName}</div>
                   </div>
-
-                  
 
                   <div class="score">
                     <div class="score-value">${this.getScoreValue(entry)}</div>

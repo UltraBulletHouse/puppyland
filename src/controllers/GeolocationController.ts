@@ -17,8 +17,7 @@ export class GeolocationController implements ReactiveController {
   }
 
   hostConnected() {
-    console.log('CONNECTED');
-    this.checkPermissions();
+    this.handlePermissions();
   }
 
   private watchId: number | null = null;
@@ -35,25 +34,38 @@ export class GeolocationController implements ReactiveController {
     this.host.addController(this);
   }
 
-  checkPermissions() {
+  handlePermissions() {
     navigator.permissions.query({ name: 'geolocation' }).then((permissionStatus) => {
-      if (permissionStatus.state == 'denied') {
-        this.permissionGeolocation = false;
-      }
-      if (permissionStatus.state == 'granted') {
-        this.permissionGeolocation = true;
-      }
+      this.updatePermissionState(permissionStatus.state);
 
       permissionStatus.onchange = () => {
-        console.log('permissionStatus', permissionStatus.state);
-
-        if (permissionStatus.state == 'granted') {
-          this.permissionGeolocation = true;
-        }
-        if (permissionStatus.state == 'denied') {
-          this.permissionGeolocation = false;
+        this.updatePermissionState(permissionStatus.state);
+        if (permissionStatus.state === 'granted') {
+          this.getUserPosition((pos) => {
+            this.userPos = pos;
+            this.host.requestUpdate();
+          });
         }
       };
+    });
+  }
+
+  private updatePermissionState(state: PermissionState) {
+    if (state === 'denied') {
+      this.permissionGeolocation = false;
+    } else if (state === 'granted') {
+      this.permissionGeolocation = true;
+    } else {
+      this.permissionGeolocation = null;
+      this.requestPermission();
+    }
+    this.host.requestUpdate();
+  }
+
+  requestPermission() {
+    this.getUserPosition((pos) => {
+      this.userPos = pos;
+      this.host.requestUpdate();
     });
   }
 

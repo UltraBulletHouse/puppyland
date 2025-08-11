@@ -1,5 +1,6 @@
 import { provide } from '@lit/context';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
+import { User } from 'firebase/auth';
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { cache } from 'lit/directives/cache.js';
@@ -86,7 +87,7 @@ export class AppIndex extends LitElement {
   }
 
   firstUpdated() {
-    auth.onAuthStateChanged(async (userFirebase) => {
+    auth.onAuthStateChanged(async (userFirebase: User | null) => {
       this.isLoading = true;
 
       if (userFirebase) {
@@ -102,6 +103,13 @@ export class AppIndex extends LitElement {
         this.view = View.SIGNIN_VIEW;
       }
       this.isLoading = false;
+    });
+
+    auth.onIdTokenChanged(async (user) => {
+      if (user) {
+        const newAccessToken = await user.getIdToken();
+        this.accessToken = newAccessToken;
+      }
     });
   }
 
@@ -142,8 +150,7 @@ export class AppIndex extends LitElement {
   }
 
   render() {
-    const isFooterHidden =
-      this.view === View.SIGNIN_VIEW || this.isLoading || !this.view;
+    const isFooterHidden = this.view === View.SIGNIN_VIEW || this.isLoading || !this.view;
 
     const hasShadowFooter = this.view === View.MAP_VIEW;
 

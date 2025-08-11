@@ -1,7 +1,6 @@
 import { createContext } from '@lit/context';
+import { User } from 'firebase/auth';
 
-import { UserFirebase } from '../utils/firebase';
-
-export const userFirebaseContext = createContext<UserFirebase>('userFirebase');
+export const userFirebaseContext = createContext<User | null>('userFirebase');
 
 export const accessTokenContext = createContext<string | null>('accessToken');

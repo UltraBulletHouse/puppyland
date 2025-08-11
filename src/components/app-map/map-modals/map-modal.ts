@@ -1,13 +1,15 @@
 import { consume } from '@lit/context';
-import confetti from 'canvas-confetti';
 // import * as signalR from '@microsoft/signalr';
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
-import { API_DOGHOUSE_APPLY_BUFF, API_DOGHOUSE_ATTACK, API_DOGHOUSE_REPAIR } from '../../../constants/apiConstants';
-import '../../icon-png/icon-png';
+import {
+  API_DOGHOUSE_APPLY_BUFF,
+  API_DOGHOUSE_ATTACK,
+  API_DOGHOUSE_REPAIR,
+} from '../../../constants/apiConstants';
 import { attackEnergy, repairEnergy } from '../../../constants/config';
 import { dogInfoContext, updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
@@ -17,6 +19,7 @@ import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
 import '../../app-spinner/app-spinner';
+import '../../icon-png/icon-png';
 import { MapModalStyles } from './map-modal-styles';
 
 /**
@@ -204,7 +207,7 @@ export class MapModal extends LitElement {
     if (!this.isOwn && !this.btnLoading) {
       // Check if attack is allowed
       const { canAttack, reason } = this.canAttackDoghouse();
-      
+
       if (!canAttack) {
         this.showAttackBlockedMessageWithReason(reason);
         return;
@@ -226,7 +229,7 @@ export class MapModal extends LitElement {
     } else if (this.isOwn && !this.btnLoading) {
       // Check if repair is allowed
       const { canRepair, reason } = this.canRepairDoghouse();
-      
+
       if (!canRepair) {
         this.showRepairBlockedMessageWithReason(reason);
         return;
@@ -321,11 +324,6 @@ export class MapModal extends LitElement {
 
     // Create particle explosion
     this.createParticleExplosion();
-
-    // After destruction animation, show confetti and close
-    setTimeout(() => {
-      this.launchConfetti();
-    }, 1500);
   };
 
   triggerScreenShake = () => {
@@ -513,38 +511,13 @@ export class MapModal extends LitElement {
     }
   };
 
-  launchConfetti() {
-    const canvas = globalThis.document.getElementById(
-      'confetti-canvas'
-    ) as HTMLCanvasElement | null;
-    if (!canvas) {
-      console.warn('Confetti canvas not found!');
-      return;
-    }
-
-    canvas.style.display = 'block';
-    canvas.width = globalThis.innerWidth;
-    canvas.height = globalThis.innerHeight;
-
-    confetti.create(canvas, { resize: true, useWorker: false })({
-      particleCount: 240,
-      spread: 100,
-      origin: { y: 0.6 },
-    });
-
-    setTimeout(() => {
-      canvas.style.display = 'none';
-      this.closeMapModal();
-      sendEvent(this, 'closePopup');
-    }, 4500);
-  }
-
   render() {
     // WEBSOCKETS
     // this.runSignal()
     const hpPercent = Math.round((Number(this.dhHp) / Number(this.dhMaxHp)) * 100);
 
-    const hasDoghouseBuffs = this.dogInfo?.buffsForDoghouses && this.dogInfo.buffsForDoghouses.length > 0;
+    const hasDoghouseBuffs =
+      this.dogInfo?.buffsForDoghouses && this.dogInfo.buffsForDoghouses.length > 0;
 
     const mainSection = html`
       <div id="map-modal-main-section" style="position: relative;">
@@ -557,7 +530,7 @@ export class MapModal extends LitElement {
                     ? 'destruction-message'
                     : ''}"
                 >
-                  <sl-icon name="${this.isDestroyed ? 'explosion' : 'heart-crack'}"></sl-icon>
+                  <sl-icon name="${this.isDestroyed ? 'explosion' : 'heartbreak'}"></sl-icon>
                   ${this.isDestroyed ? 'DESTROYED!' : `-${this.damageAmount} HP`}
                 </div>
               `
@@ -633,8 +606,8 @@ export class MapModal extends LitElement {
                         <div class="tap-overlay">
                           <div class="tap-instructions-compact">
                             <p>
-                              Tap ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''}
-                              to attack!
+                              Tap ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''} to
+                              attack!
                             </p>
                             <div class="tap-progress-compact">
                               ${Array.from(
@@ -666,14 +639,16 @@ export class MapModal extends LitElement {
                           <div class="tap-overlay">
                             <div class="repair-instructions-compact">
                               <p>
-                                Tap ${3 - this.repairTapCount} time${3 - this.repairTapCount !== 1 ? 's' : ''}
-                                to repair!
+                                Tap ${3 - this.repairTapCount}
+                                time${3 - this.repairTapCount !== 1 ? 's' : ''} to repair!
                               </p>
                               <div class="repair-progress-compact">
                                 ${Array.from(
                                   { length: 3 },
                                   (_, i) => html`
-                                    <div class="repair-dot ${i < this.repairTapCount ? 'active' : ''}"></div>
+                                    <div
+                                      class="repair-dot ${i < this.repairTapCount ? 'active' : ''}"
+                                    ></div>
                                   `
                                 )}
                               </div>
@@ -692,7 +667,6 @@ export class MapModal extends LitElement {
                         `;
                   })()
                 : html``}
-
             ${this.showDestructionEffect ? html` <div class="destruction-overlay"></div> ` : ''}
           </div>
         </div>
@@ -722,7 +696,7 @@ export class MapModal extends LitElement {
             </div>
           </div>
         </div>
-        
+
         ${hasDoghouseBuffs
           ? html`
               <div id="buffs-section">
@@ -734,7 +708,10 @@ export class MapModal extends LitElement {
                   ${this.isOwn
                     ? this.dogInfo?.buffsForDoghouses?.map(
                         (buff) => html`
-                          <div class="buff-item" @click=${() => this.applyBuffToDoghouse(buff.buffSku)}>
+                          <div
+                            class="buff-item"
+                            @click=${() => this.applyBuffToDoghouse(buff.buffSku)}
+                          >
                             <icon-png-badge
                               name="${buff.buffSku.includes('repair') ? 'toolkit' : 'energy-drink'}"
                               badge="${buff.quantity}"
@@ -748,7 +725,6 @@ export class MapModal extends LitElement {
               </div>
             `
           : ''}
-
         ${this.showBuffAppliedMessage
           ? html`
               <div class="feedback-indicator buff-applied-indicator">

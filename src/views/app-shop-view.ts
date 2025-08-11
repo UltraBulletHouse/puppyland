@@ -73,11 +73,7 @@ export class AppShopView extends LitElement {
       #header {
         padding: 20px 16px;
         border-bottom: 1px solid var(--color-primary-light);
-        background: linear-gradient(
-          135deg,
-          var(--color-primary-light) 0%,
-          var(--color-white) 100%
-        );
+        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
         display: flex;
         align-items: center;
         gap: 12px;
@@ -333,9 +329,7 @@ export class AppShopView extends LitElement {
           <sl-icon name=${icon}></sl-icon>
           ${title}
         </div>
-        <div class="item-list">
-          ${parsedItems.map((item) => this.renderShopItem(item))}
-        </div>
+        <div class="item-list">${parsedItems.map((item) => this.renderShopItem(item))}</div>
       </div>
     `;
   }

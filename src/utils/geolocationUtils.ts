@@ -1,4 +1,3 @@
-
 export const watchPositionOptions: PositionOptions = {
   enableHighAccuracy: true,
   // Get high accuracy reading, if available (default false)
@@ -25,7 +24,9 @@ export const watchPositionError = (err: GeolocationPositionError) => {
   }
 };
 //TODO: Przeniesc do controllera wszystko i zapisywac id
-export const watchUserPosition = (watchUserPositionSuccess: PositionCallback): number | undefined => {
+export const watchUserPosition = (
+  watchUserPositionSuccess: PositionCallback
+): number | undefined => {
   if ('geolocation' in navigator) {
     return navigator.geolocation.watchPosition(
       watchUserPositionSuccess,
