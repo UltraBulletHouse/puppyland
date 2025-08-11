@@ -10,70 +10,12 @@ import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { sharedStyles } from '../../styles/shared-styles';
 import { DailyQuestsResponse, Quest, QuestType, RewardType } from '../../types/quest';
-import confetti from 'canvas-confetti';
 
 @customElement('daily-quests')
 export class DailyQuests extends LitElement {
   static styles = [
     sharedStyles,
     css`
-     #reward-overlay {
-       position: fixed;
-       inset: 0;
-       z-index: 5000;
-       display: flex;
-       align-items: center;
-       justify-content: center;
-       background: rgba(0,0,0,0.35);
-       backdrop-filter: blur(3px);
-       animation: overlayFade 200ms ease-out;
-     }
-     #reward-card {
-       width: min(90vw, 520px);
-       border-radius: var(--border-radius-medium);
-       background: var(--color-white);
-       border: 1px solid var(--color-primary-medium);
-       box-shadow: 0 10px 30px rgba(0,0,0,.2);
-       padding: 20px;
-       text-align: center;
-       animation: scaleIn 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
-     }
-     #reward-title {
-       display:flex;
-       align-items:center;
-       justify-content:center;
-       gap:10px;
-       font-size: 20px;
-       font-weight: 700;
-       color: var(--color-black);
-       margin-bottom: 12px;
-     }
-     #reward-items {
-       display: grid;
-       grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-       gap: 12px;
-       margin-bottom: 16px;
-     }
-     .reward-tile {
-       border: 1px solid var(--color-primary-light);
-       border-radius: var(--border-radius-small);
-       padding: 12px;
-       background: var(--color-primary-light);
-       display:flex;
-       flex-direction:column;
-       align-items:center;
-       gap:8px;
-       transition: transform .2s ease;
-     }
-     .reward-tile:hover { transform: translateY(-2px); }
-     .reward-icon-big { font-size: 28px; }
-     .reward-name { font-weight: 600; color: var(--color-black); font-size: 14px; }
-     .reward-desc { color: var(--color-black-medium); font-size: 12px; }
-     #reward-actions { display:flex; justify-content:center; }
-
-     @keyframes scaleIn { from { transform: scale(0.92); opacity: 0;} to { transform: scale(1); opacity: 1;} }
-     @keyframes overlayFade { from { opacity: 0;} to { opacity: 1;} }
-
       #container {
         background: var(--color-white);
         height: 100%;
@@ -136,27 +78,6 @@ export class DailyQuests extends LitElement {
       }
 
       .quest-item.completed {
-        position: relative;
-      }
-      .quest-item.completed::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-        border-radius: var(--border-radius-small);
-        pointer-events: none;
-        box-shadow: inset 0 0 0 2px var(--color-secondary);
-        opacity: 0.35;
-      }
-      .claimed-badge::part(base) {
-        background: transparent;
-        color: var(--color-secondary);
-        border: none;
-        padding: 0;
-        font-weight: 700;
-      }
-      .claimed-badge sl-icon {
-        margin-right: 6px;
-      }
         background: var(--color-secondary-light);
         border-left: 4px solid var(--color-secondary);
       }
@@ -283,21 +204,6 @@ export class DailyQuests extends LitElement {
         color: #27ae60;
       }
 
-      @media (max-width: 750px) {
-        #content { padding: 12px; }
-        #header { margin-bottom: 12px; padding: 12px; }
-        #title { gap: 6px; font-size: 16px; }
-        .quest-item { padding: 10px; margin-bottom: 8px; }
-        .quest-title { font-size: 13px; }
-        .quest-description { font-size: 11px; }
-        .quest-actions { gap: 6px; }
-        .quest-reward { padding: 4px 6px; font-size: 11px; }
-        .quest-progress { margin-top: 6px; }
-        sl-progress-bar { --height: 5px; }
-        .reward-icon { font-size: 12px; }
-        .quest-type-icon { font-size: 14px; margin-right: 6px; }
-      }
-
       #empty-state {
         text-align: center;
         padding: 20px;
@@ -352,12 +258,6 @@ export class DailyQuests extends LitElement {
   @state()
   private hasFetchedData: boolean = false;
 
-  @state()
-  private rewardOverlayOpen: boolean = false;
-
-  @state()
-  private rewardSummary: Array<{ icon: string; name: string; description: string }> = [];
-
   async firstUpdated() {}
 
   updated(changedProperties: Map<string | number | symbol, unknown>) {
@@ -393,72 +293,18 @@ export class DailyQuests extends LitElement {
 
   private async claimReward(questId: string) {
     if (!this.accessToken) return;
-    // Disable the button quickly to avoid double-claim taps (optimistic UI)
-    const prevQuests = [...this.quests];
-    this.quests = this.quests.map(q => q.id === questId ? { ...q, isRewardClaimed: true } : q);
 
     try {
       const { apiCall } = await import('../../utils/apiUtils');
       const { API_QUEST_CLAIM } = await import('../../constants/apiConstants');
 
       const response = await apiCall(this.accessToken).post(`${API_QUEST_CLAIM}/${questId}`);
-      const data = response.data as any;
+      console.log('Claimed reward:', response.data);
 
-      // Build a neat reward summary based on backend payload shape
-      const rewards: Array<{ icon: string; name: string; description: string }> = [];
-      const addReward = (icon: string, name: string, description: string) =>
-        rewards.push({ icon, name, description });
-
-      if (data?.reward) {
-        const r = data.reward;
-        if (r.type === 'EXPERIENCE' || r.type === 1) {
-          addReward('mortarboard', 'Experience', `+${r.amount ?? r.value ?? ''} XP`);
-        }
-        if (r.type === 'ENERGY' || r.type === 2) {
-          addReward('lightning-charge', 'Energy', `+${r.amount ?? r.value ?? ''}`);
-        }
-        if (r.type === 'ENERGY_RESTORE') {
-          addReward('lightning-charge', 'Energy Restored', `${r.description ?? ''}`);
-        }
-        if (r.type === 'DOGHOUSES' || r.type === 3) {
-          addReward('house-add', 'Doghouse', `+${r.amount ?? 1}`);
-        }
-        if (r.type === 'COINS' || r.type === 4) {
-          addReward('coin', 'Coins', `+${r.amount ?? ''}`);
-        }
-      }
-
-      // Fallback: if backend doesn’t return detailed reward, reflect the quest’s reward
-      if (!rewards.length) {
-        const claimedQuest = this.quests.find(q => q.id === questId);
-        if (claimedQuest) {
-          addReward(
-            this.getRewardIcon(claimedQuest.reward.type),
-            'Reward',
-            claimedQuest.reward.description
-          );
-        }
-      }
-
-      this.rewardSummary = rewards;
-      this.rewardOverlayOpen = true;
-
-      try {
-        confetti({
-          particleCount: 80,
-          spread: 60,
-          startVelocity: 35,
-          gravity: 0.9,
-          ticks: 120,
-          origin: { y: 0.3 }
-        });
-      } catch {}
-
-
+      // Refresh quests after claiming
+      await this.fetchDailyQuests();
     } catch (error) {
       console.error('Error claiming quest reward:', error);
-      // Revert optimistic UI on failure
-      this.quests = prevQuests;
     }
   }
 
@@ -549,37 +395,6 @@ export class DailyQuests extends LitElement {
     return `${hours}h ${minutes}m`;
   }
 
- private closeRewardOverlay() {
-   this.rewardOverlayOpen = false;
- }
-
- private renderRewardOverlay() {
-   return html`
-     <div id="reward-overlay" @click=${this.closeRewardOverlay}>
-       <div id="reward-card" @click=${(e: Event) => e.stopPropagation()}>
-         <div id="reward-title">
-           <sl-icon name="gift"></sl-icon>
-           Rewards Claimed
-         </div>
-         <div id="reward-items">
-           ${this.rewardSummary.map((r, i) => html`
-             <div class="reward-tile" style="animation-delay: ${i * 80}ms;">
-               <sl-icon name="${r.icon}" class="reward-icon-big"></sl-icon>
-               <div class="reward-name">${r.name}</div>
-               <div class="reward-desc">${r.description}</div>
-             </div>
-           `)}
-         </div>
-         <div id="reward-actions">
-           <sl-button variant="primary" pill @click=${this.closeRewardOverlay}>
-             Awesome!
-           </sl-button>
-         </div>
-       </div>
-     </div>
-   `;
- }
-
   render() {
     if (this.isLoading) {
       return html`
@@ -620,7 +435,6 @@ export class DailyQuests extends LitElement {
     }
 
     return html`
-      ${this.rewardOverlayOpen ? this.renderRewardOverlay() : ''}
       <div id="container">
         <div id="header">
           <div id="title">
@@ -671,9 +485,9 @@ export class DailyQuests extends LitElement {
                         `
                       : quest.isRewardClaimed
                         ? html`
-                            <sl-badge variant="success" class="claimed-badge">
+                            <sl-badge variant="success">
                               <sl-icon name="check-circle"></sl-icon>
-                              <span>Claimed</span>
+                              Claimed
                             </sl-badge>
                           `
                         : ''}
