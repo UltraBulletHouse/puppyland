@@ -701,8 +701,10 @@ export class MapModal extends LitElement {
           ? html`
               <div id="buffs-section">
                 <div class="buffs-header">
-                  <sl-icon name="magic"></sl-icon>
-                  Available Buffs
+                  <div><sl-icon name="magic"></sl-icon> Available Buffs</div>
+                  <div class="user-energy">
+                    <sl-icon name="lightning-charge"></sl-icon> ${this.dogInfo?.energy}
+                  </div>
                 </div>
                 <div class="buffs-list">
                   ${this.isOwn

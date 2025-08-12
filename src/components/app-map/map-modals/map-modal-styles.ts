@@ -1153,11 +1153,24 @@ export const MapModalStyles = html`
     .buffs-header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       gap: 8px;
       font-weight: 600;
       font-size: 13px;
       color: var(--color-black);
       margin-bottom: 12px;
+    }
+
+    .buffs-header > div {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .buffs-header .user-energy {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-primary);
     }
 
     .buffs-header sl-icon {
@@ -1166,6 +1179,11 @@ export const MapModalStyles = html`
       border-radius: var(--border-radius-circle);
       background: linear-gradient(135deg, #9b59b6, #8e44ad);
       color: white;
+    }
+
+    .buffs-header .user-energy sl-icon {
+      background: linear-gradient(135deg, #ffeb3b, #ffc107);
+      color: var(--color-black);
     }
 
     .buffs-list {
