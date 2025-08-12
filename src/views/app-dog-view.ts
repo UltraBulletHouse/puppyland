@@ -409,7 +409,7 @@ export class AppDogView extends LitElement {
                       value=${this.newName ?? name ?? ''}
                       @sl-change=${this.onChangeName}
                       minlength="3"
-                      maxlength="20"
+                      maxlength="15"
                       autofocus
                       required
                       size="small"
