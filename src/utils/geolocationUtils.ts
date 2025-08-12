@@ -25,12 +25,13 @@ export const watchPositionError = (err: GeolocationPositionError) => {
 };
 //TODO: Przeniesc do controllera wszystko i zapisywac id
 export const watchUserPosition = (
-  watchUserPositionSuccess: PositionCallback
+  watchUserPositionSuccess: PositionCallback,
+  watchUserPositionError: PositionErrorCallback
 ): number | undefined => {
   if ('geolocation' in navigator) {
     return navigator.geolocation.watchPosition(
       watchUserPositionSuccess,
-      watchPositionError,
+      watchUserPositionError,
       watchPositionOptions
     );
   } else {
@@ -38,11 +39,14 @@ export const watchUserPosition = (
   }
 };
 
-export const getUserPosition = (getUserPositionSuccess: PositionCallback) => {
+export const getUserPosition = (
+  getUserPositionSuccess: PositionCallback,
+  getUserPositionError: PositionErrorCallback
+) => {
   if ('geolocation' in navigator) {
     navigator.geolocation.getCurrentPosition(
       getUserPositionSuccess,
-      watchPositionError,
+      getUserPositionError,
       watchPositionOptions
     );
   } else {

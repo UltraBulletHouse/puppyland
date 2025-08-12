@@ -8,6 +8,7 @@ export class GeolocationController implements ReactiveController {
 
   userPos: Coords | null = null;
   permissionGeolocation: boolean | null = null;
+  private retryTimeoutId: NodeJS.Timeout | null = null;
 
   constructor(host: ReactiveControllerHost) {
     // Store a reference to the host
@@ -27,6 +28,10 @@ export class GeolocationController implements ReactiveController {
       navigator.geolocation.clearWatch(this.watchId);
       this.watchId = null;
     }
+    if (this.retryTimeoutId) {
+      clearTimeout(this.retryTimeoutId);
+      this.retryTimeoutId = null;
+    }
   }
 
   resetController() {
@@ -41,10 +46,13 @@ export class GeolocationController implements ReactiveController {
       permissionStatus.onchange = () => {
         this.updatePermissionState(permissionStatus.state);
         if (permissionStatus.state === 'granted') {
-          this.getUserPosition((pos) => {
-            this.userPos = pos;
-            this.host.requestUpdate();
-          });
+          this.getUserPosition(
+            (pos) => {
+              this.userPos = pos;
+              this.host.requestUpdate();
+            },
+            () => {}
+          );
         }
       };
     });
@@ -63,10 +71,13 @@ export class GeolocationController implements ReactiveController {
   }
 
   requestPermission() {
-    this.getUserPosition((pos) => {
-      this.userPos = pos;
-      this.host.requestUpdate();
-    });
+    this.getUserPosition(
+      (pos) => {
+        this.userPos = pos;
+        this.host.requestUpdate();
+      },
+      () => {}
+    );
   }
 
   watchUserPostion(watchUserPosSuccess: (userPos: Coords) => void) {
@@ -82,10 +93,21 @@ export class GeolocationController implements ReactiveController {
       watchUserPosSuccess({ lat, lng });
     };
 
-    this.watchId = watchUserPosition(watchUserPositionSuccess) || null;
+    const watchUserPositionError = () => {
+      if (this.watchId) {
+        navigator.geolocation.clearWatch(this.watchId);
+        this.watchId = null;
+      }
+      this.retryTimeoutId = setTimeout(() => this.watchUserPostion(watchUserPosSuccess), 5000);
+    };
+
+    this.watchId = watchUserPosition(watchUserPositionSuccess, watchUserPositionError) || null;
   }
 
-  getUserPosition(getUserPosSuccess: (userPos: Coords) => void) {
+  getUserPosition(
+    getUserPosSuccess: (userPos: Coords) => void,
+    getUserPosError: PositionErrorCallback
+  ) {
     const watchUserPositionSuccess = (pos: GeolocationPosition) => {
       const numberToFixed = (number: number) => parseFloat(number.toFixed(4));
 
@@ -98,6 +120,6 @@ export class GeolocationController implements ReactiveController {
       getUserPosSuccess({ lat, lng });
     };
 
-    getUserPosition(watchUserPositionSuccess);
+    getUserPosition(watchUserPositionSuccess, getUserPosError);
   }
 }
