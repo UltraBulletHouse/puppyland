@@ -93,6 +93,15 @@ export class AppDoghousesView extends LitElement {
         color: var(--color-primary);
         background: var(--color-primary-light);
       }
+      #edit-container {
+        position: relative;
+      }
+      #edit-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        transform: translate(50%, -50%);
+      }
       #list {
         flex: 1;
         overflow-y: auto;
@@ -214,13 +223,18 @@ export class AppDoghousesView extends LitElement {
                 HP
               </sl-button>
             </div>
-            <sl-icon
-              id="edit-button"
-              name="gear"
-              @click=${this.handleEditMode}
-              class=${this.editMode ? 'is-edit-mode' : ''}
-              title=${this.editMode ? 'Exit edit mode' : 'Edit doghouses'}
-            ></sl-icon>
+            <div id="edit-container">
+              <sl-icon
+                id="edit-button"
+                name="pencil-square"
+                @click=${this.handleEditMode}
+                class=${this.editMode ? 'is-edit-mode' : ''}
+                title=${this.editMode ? 'Exit edit mode' : 'Edit doghouses'}
+              ></sl-icon>
+              <sl-badge id="edit-badge" variant="warning" pill
+                >${this.doghouseNameChangesCounter}</sl-badge
+              >
+            </div>
           </div>
         </div>
 
