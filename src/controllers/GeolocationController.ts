@@ -98,7 +98,7 @@ export class GeolocationController implements ReactiveController {
         navigator.geolocation.clearWatch(this.watchId);
         this.watchId = null;
       }
-      this.retryTimeoutId = setTimeout(() => this.watchUserPostion(watchUserPosSuccess), 5000);
+      this.retryTimeoutId = setTimeout(() => this.watchUserPostion(watchUserPosSuccess), 2000);
     };
 
     this.watchId = watchUserPosition(watchUserPositionSuccess, watchUserPositionError) || null;
