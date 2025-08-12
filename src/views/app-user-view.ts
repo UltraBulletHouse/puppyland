@@ -30,7 +30,7 @@ export class AppUserView extends LitElement {
       .container {
         display: flex;
         flex-direction: column;
-        height: 100vh;
+        height: calc(100vh - 60px);
         background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
         overflow-y: auto;
         padding: 0;
@@ -75,6 +75,7 @@ export class AppUserView extends LitElement {
       }
 
       .settings-card {
+        margin-top: 1rem;
         margin-bottom: 1rem;
         border-radius: var(--border-radius-medium);
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
@@ -163,7 +164,6 @@ export class AppUserView extends LitElement {
       }
 
       .danger-zone {
-        margin-top: 2rem;
         padding-top: 1rem;
         border-top: 2px solid var(--color-primary-light);
       }
@@ -184,22 +184,13 @@ export class AppUserView extends LitElement {
         border-color: #bd2130;
       }
 
-      .attribution {
-        margin-top: 2rem;
-        padding: 1rem;
-        background: var(--color-white);
-        border-radius: var(--border-radius-small);
-        text-align: center;
+      .attribution-card .setting-details a {
         font-size: 0.8rem;
-        color: var(--color-black-medium);
-      }
-
-      .attribution a {
         color: var(--color-primary);
         text-decoration: none;
       }
 
-      .attribution a:hover {
+      .attribution-card .setting-details a:hover {
         text-decoration: underline;
       }
 
@@ -360,12 +351,50 @@ export class AppUserView extends LitElement {
 
   private renderAttribution() {
     return html`
-      <div class="attribution">
-        <strong>Attribution:</strong><br />
-        <a href="https://www.freepik.com/icon/first-aid-kit_2679336" target="_blank">
-          Icons by Freepik
-        </a>
-      </div>
+      <sl-card class="settings-card attribution-card">
+        <div slot="header">
+          <strong>Attributions</strong>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <sl-icon name="house" class="setting-icon"></sl-icon>
+            <div class="setting-details">
+              <a
+                href="https://www.flaticon.com/free-icons/dog-house"
+                title="dog house icons"
+                target="_blank"
+                >Dog house icons created by Freepik - Flaticon</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <sl-icon name="lightning-charge" class="setting-icon"></sl-icon>
+            <div class="setting-details">
+              <a
+                href="https://www.flaticon.com/free-icons/energy-drink"
+                title="energy drink icons"
+                target="_blank"
+                >Energy drink icons created by Freepik - Flaticon</a
+              >
+            </div>
+          </div>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <sl-icon name="tools" class="setting-icon"></sl-icon>
+            <div class="setting-details">
+              <a
+                href="https://www.flaticon.com/free-icons/toolkit"
+                title="toolkit icons"
+                target="_blank"
+                >Toolkit icons created by Freepik - Flaticon</a
+              >
+            </div>
+          </div>
+        </div>
+      </sl-card>
     `;
   }
 
