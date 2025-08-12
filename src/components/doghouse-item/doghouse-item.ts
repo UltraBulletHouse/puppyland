@@ -197,7 +197,7 @@ export class AppDoghouseItem extends LitElement {
       value=${displayName}
       @sl-change=${this.onChangeName}
       minlength="3"
-      maxlength="20"
+      maxlength="15"
       autofocus
       required
       size="small"
