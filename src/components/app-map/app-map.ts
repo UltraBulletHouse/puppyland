@@ -29,6 +29,14 @@ import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
 import { AppMapStyles } from './app-map-styles';
 import './map-popup/map-popup';
 
+
+
+
+
+
+
+
+
 /**
  * @fires updateDogInfo
  */
