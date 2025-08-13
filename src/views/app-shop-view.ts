@@ -303,7 +303,9 @@ export class AppShopView extends LitElement {
   renderShopItem = (item: ShopItemLocal) => html`
     <div class="shop-item">
       <div class="item-icon">
-        <icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>
+        ${item.icon
+            ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
+            : html`<sl-icon name="star"></sl-icon>`}
       </div>
       <div class="item-details">
         <div class="item-name">${item.name}</div>
@@ -346,6 +348,12 @@ export class AppShopView extends LitElement {
           ${this.shopGoogleItems
             ? html`
                 ${this.renderCategorySection(
+                  'Subscriptions',
+                  'star',
+                  shopItemsSubscription,
+                  this.shopGoogleItems
+                )}
+                ${this.renderCategorySection(
                   'Doghouses',
                   'house-add',
                   shopItemsDoghouse,
@@ -361,12 +369,6 @@ export class AppShopView extends LitElement {
                   'Energy',
                   'lightning-charge',
                   shopItemsEnergy,
-                  this.shopGoogleItems
-                )}
-                ${this.renderCategorySection(
-                  'Subscriptions',
-                  'star',
-                  shopItemsSubscription,
                   this.shopGoogleItems
                 )}
               `

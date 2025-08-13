@@ -37,9 +37,10 @@ export class IconPngBadge extends LitElement {
   badge?: string;
 
   render() {
+    const hasBadge = this.badge !== undefined && this.badge !== null && this.badge !== '';
     return html`<div class="image-wrapper">
-      <div class="badge">${this.badge}</div>
-      <img class="image" src="${getImagePngUrl(this.name)}" />
+      ${hasBadge ? html`<div class="badge">${this.badge}</div>` : ''}
+      <img class="image" src="${getImagePngUrl(this.name)}" alt="icon ${this.name}" />
     </div>`;
   }
 }

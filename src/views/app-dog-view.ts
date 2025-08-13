@@ -3,6 +3,8 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
+import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
@@ -31,6 +33,13 @@ export class AppDogView extends LitElement {
         height: 100%;
         width: 100%;
         background: var(--color-white);
+        position: relative;
+      }
+      #manage-subscription {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 10;
       }
       #dog-header {
         display: flex;
@@ -308,6 +317,14 @@ export class AppDogView extends LitElement {
   @state()
   isEditingName: boolean = false;
 
+  manageSubscription() {
+    // Open Google Play subscription management deep link
+    const pkg = 'app.netlify.astounding_naiad_fc1ffa.twa'; // same as PACKAGE_NAME in shop view
+    // Universal link for subscription center
+    const url = `https://play.google.com/store/account/subscriptions?sku=premium&package=${pkg}`;
+    window.open(url, '_blank');
+  }
+
   @state()
   newName: string | null = null;
 
@@ -401,16 +418,27 @@ export class AppDogView extends LitElement {
     return this.dogInfo && this.newName
       ? html`
           <div id="container">
+            ${this.userInfo?.isPremium
+              ? html`<div id="manage-subscription">
+                  <sl-button size="small" pill variant="default" @click=${this.manageSubscription}>
+                    <sl-icon name="gear"></sl-icon>
+                    <span style="margin-left:6px;">Manage Subscription</span>
+                  </sl-button>
+                </div>`
+              : ''}
             <div id="dog-header">
               ${this.userInfo?.isPremium
-                ? html`<sl-badge
-                    variant="success"
-                    pill
-                    title=${this.userInfo?.premiumExpiryUtc
-                      ? `Expires: ${new Date(this.userInfo.premiumExpiryUtc).toLocaleString()}`
-                      : ''}
-                    >Premium</sl-badge
-                  >`
+                ? html`<div style="display:flex; gap:8px; align-items:center;">
+                    <sl-badge
+                      variant="success"
+                      pill
+                      title=${this.userInfo?.premiumExpiryUtc
+                        ? `Expires: ${new Date(this.userInfo.premiumExpiryUtc).toLocaleString()}`
+                        : ''}
+                      >Premium</sl-badge
+                    >
+                    
+                  </div>`
                 : ''}
               <div id="dog-image">
                 <div id="dog-image-circle">

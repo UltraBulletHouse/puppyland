@@ -86,9 +86,10 @@ export const shopItemsSubscription: ShopItemLocal[] = [
   },
 ];
 
+// Premium subscription should be on top
 export const allShopItems = [
+  ...shopItemsSubscription,
   ...shopItemsDoghouse,
   ...shopItemsRepair,
   ...shopItemsEnergy,
-  ...shopItemsSubscription,
 ];
