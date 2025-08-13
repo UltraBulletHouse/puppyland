@@ -40,7 +40,12 @@ export class IconPngBadge extends LitElement {
     const hasBadge = this.badge !== undefined && this.badge !== null && this.badge !== '';
     return html`<div class="image-wrapper">
       ${hasBadge ? html`<div class="badge">${this.badge}</div>` : ''}
-      <img class="image" src="${getImagePngUrl(this.name)}" alt="icon ${this.name}" onContextMenu="${(e: { preventDefault: () => any; }) => e.preventDefault()}" />
+      <img
+        class="image"
+        src="${getImagePngUrl(this.name)}"
+        alt="icon ${this.name}"
+        onContextMenu="${(e: { preventDefault: () => any }) => e.preventDefault()}"
+      />
     </div>`;
   }
 }

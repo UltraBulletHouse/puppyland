@@ -1253,6 +1253,11 @@ export const MapModalStyles = html`
       height: 40px;
     }
 
+    .buff-confirmation sl-button::part(base) {
+      font-size: 20px;
+      padding-top: 7px;
+    }
+
     .buff-applied-indicator {
       background: linear-gradient(135deg, rgba(76, 175, 80, 0.95), rgba(76, 175, 80, 0.8));
       color: white;

@@ -723,10 +723,7 @@ export class MapModal extends LitElement {
                   ${this.isOwn
                     ? this.dogInfo?.buffsForDoghouses?.map(
                         (buff) => html`
-                          <div
-                            class="buff-item"
-                            @click=${() => this.handleBuffClick(buff.buffSku)}
-                          >
+                          <div class="buff-item" @click=${() => this.handleBuffClick(buff.buffSku)}>
                             ${this.buffToConfirm === buff.buffSku
                               ? html`
                                   <div class="buff-confirmation">
