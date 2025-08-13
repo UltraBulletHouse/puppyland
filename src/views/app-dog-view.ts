@@ -16,7 +16,7 @@ import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
 import '../components/icon-png/icon-png';
 import '../components/leaderboards/leaderboards';
-import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
+import { API_DOG_GET, API_DOG_UPDATE, API_SUBSCRIPTION_REFRESH } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { userInfoContext } from '../contexts/userInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
@@ -381,6 +381,11 @@ export class AppDogView extends LitElement {
 
   async firstUpdated() {
     if (!this.accessToken) return;
+
+    // Refresh subscription status when dog view loads (server uses stored token if available)
+    try {
+      await apiCall(this.accessToken).post(API_SUBSCRIPTION_REFRESH, {});
+    } catch {}
 
     const dogInfoResponse = await apiCall(this.accessToken).get<DogInfoResponse>(API_DOG_GET);
     const { dog } = dogInfoResponse.data;
