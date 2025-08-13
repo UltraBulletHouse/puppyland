@@ -14,6 +14,7 @@ import '../components/icon-png/icon-png';
 import '../components/leaderboards/leaderboards';
 import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
+import { userInfoContext } from '../contexts/userInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
@@ -300,6 +301,10 @@ export class AppDogView extends LitElement {
   @property({ attribute: false })
   dogInfo: DogInfo | null = null;
 
+  @consume({ context: userInfoContext, subscribe: true })
+  @property({ attribute: false })
+  userInfo: import('../types/userInfo').UserInfo | null = null;
+
   @state()
   isEditingName: boolean = false;
 
@@ -397,6 +402,16 @@ export class AppDogView extends LitElement {
       ? html`
           <div id="container">
             <div id="dog-header">
+              ${this.userInfo?.isPremium
+                ? html`<sl-badge
+                    variant="success"
+                    pill
+                    title=${this.userInfo?.premiumExpiryUtc
+                      ? `Expires: ${new Date(this.userInfo.premiumExpiryUtc).toLocaleString()}`
+                      : ''}
+                    >Premium</sl-badge
+                  >`
+                : ''}
               <div id="dog-image">
                 <div id="dog-image-circle">
                   <svg-icon name="dogHead"></svg-icon>

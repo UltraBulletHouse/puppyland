@@ -10,6 +10,7 @@ import {
   shopItemsDoghouse,
   shopItemsEnergy,
   shopItemsRepair,
+  shopItemsSubscription,
 } from '../constants/shopItems';
 import { updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
@@ -360,6 +361,12 @@ export class AppShopView extends LitElement {
                   'Energy',
                   'lightning-charge',
                   shopItemsEnergy,
+                  this.shopGoogleItems
+                )}
+                ${this.renderCategorySection(
+                  'Subscriptions',
+                  'star',
+                  shopItemsSubscription,
                   this.shopGoogleItems
                 )}
               `
