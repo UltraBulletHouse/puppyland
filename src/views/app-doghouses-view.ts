@@ -97,6 +97,11 @@ export class AppDoghousesView extends LitElement {
         color: var(--color-primary);
         background: var(--color-primary-light);
       }
+      #edit-button.disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+        pointer-events: none;
+      }
       #edit-container {
         position: relative;
       }
@@ -169,6 +174,7 @@ export class AppDoghousesView extends LitElement {
   }
 
   handleEditMode() {
+    if (this.doghouseNameChangesCounter === 0 && !this.editMode) return;
     this.editMode = !this.editMode;
   }
 
@@ -232,7 +238,10 @@ export class AppDoghousesView extends LitElement {
                 id="edit-button"
                 name="pencil-square"
                 @click=${this.handleEditMode}
-                class=${this.editMode ? 'is-edit-mode' : ''}
+                class="${this.editMode ? 'is-edit-mode' : ''} ${this
+                  .doghouseNameChangesCounter === 0
+                  ? 'disabled'
+                  : ''}"
                 title=${this.editMode ? 'Exit edit mode' : 'Edit doghouses'}
               ></sl-icon>
               <sl-badge id="edit-badge" variant="warning" pill
