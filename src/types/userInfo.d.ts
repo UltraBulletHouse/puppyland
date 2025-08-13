@@ -7,6 +7,8 @@ export interface UserInfo {
   availableDoghouses: number;
   availableAttacks: number;
   ownedDogHouses: number;
+  isPremium?: boolean;
+  premiumExpiryUtc?: string | null;
 }
 
 export interface UserInfoResponse {

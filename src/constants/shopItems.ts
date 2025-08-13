@@ -8,6 +8,7 @@ export const shopItems = [
   'doghouse_1_pack',
   'doghouse_3_pack',
   'doghouse_6_pack',
+  'premium',
 ];
 
 export const shopItemsDoghouse: ShopItemLocal[] = [
@@ -75,4 +76,20 @@ export const shopItemsEnergy: ShopItemLocal[] = [
   },
 ];
 
-export const allShopItems = [...shopItemsDoghouse, ...shopItemsRepair, ...shopItemsEnergy];
+export const shopItemsSubscription: ShopItemLocal[] = [
+  {
+    id: 'premium',
+    name: 'Premium',
+    icon: 'star',
+    price: { currency: 'EUR', value: '' },
+    description: 'Unlock premium features',
+  },
+];
+
+// Premium subscription should be on top
+export const allShopItems = [
+  ...shopItemsSubscription,
+  ...shopItemsDoghouse,
+  ...shopItemsRepair,
+  ...shopItemsEnergy,
+];

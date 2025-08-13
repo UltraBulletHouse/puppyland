@@ -13,7 +13,7 @@ import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import './components/app-footer/app-footer';
 import './components/icon-svg/svg-icon';
 import './components/icon-svg/svg-icon-button';
-import { API_USER_INFO } from './constants/apiConstants';
+import { API_USER_INFO, API_SUBSCRIPTION_REFRESH } from './constants/apiConstants';
 import { dogInfoContext } from './contexts/dogInfoContext';
 import { accessTokenContext } from './contexts/userFirebaseContext';
 import { userInfoContext } from './contexts/userInfoContext';
@@ -92,6 +92,10 @@ export class AppIndex extends LitElement {
 
       if (userFirebase) {
         const accessToken = await userFirebase.getIdToken();
+        // Attempt to refresh subscription status on app start (server uses stored token if available)
+        try {
+          await apiCall(accessToken).post(API_SUBSCRIPTION_REFRESH, {});
+        } catch {}
         const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
 
         this.userInfo = userInfoResponse?.data?.user;

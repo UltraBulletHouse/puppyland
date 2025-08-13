@@ -2,6 +2,9 @@ import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
+import '@shoelace-style/shoelace/dist/components/badge/badge.js';
+import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import { userInfoContext } from '../contexts/userInfoContext';
 
 import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
@@ -153,6 +156,10 @@ export class AppDoghousesView extends LitElement {
   @property({ attribute: false })
   dogInfo: DogInfo | null = null;
 
+  @consume({ context: userInfoContext, subscribe: true })
+  @property({ attribute: false })
+  userInfo: import('../types/userInfo').UserInfo | null = null;
+
   @state()
   doghouses: Doghouse[] | null = null;
 
@@ -244,9 +251,9 @@ export class AppDoghousesView extends LitElement {
                   : ''}"
                 title=${this.editMode ? 'Exit edit mode' : 'Edit doghouses'}
               ></sl-icon>
-              <sl-badge id="edit-badge" variant="warning" pill
-                >${this.doghouseNameChangesCounter}</sl-badge
-              >
+              ${this.userInfo?.isPremium
+                ? html`<sl-badge id="edit-badge" variant="success" pill title="Unlimited">∞</sl-badge>`
+                : html`<sl-badge id="edit-badge" variant="warning" pill>${this.doghouseNameChangesCounter}</sl-badge>`}
             </div>
           </div>
         </div>

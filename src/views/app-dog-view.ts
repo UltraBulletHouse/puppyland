@@ -3,6 +3,10 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
+import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
+import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
@@ -12,8 +16,9 @@ import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
 import '../components/icon-png/icon-png';
 import '../components/leaderboards/leaderboards';
-import { API_DOG_GET, API_DOG_UPDATE } from '../constants/apiConstants';
+import { API_DOG_GET, API_DOG_UPDATE, API_SUBSCRIPTION_REFRESH } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
+import { userInfoContext } from '../contexts/userInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
@@ -30,8 +35,16 @@ export class AppDogView extends LitElement {
         height: 100%;
         width: 100%;
         background: var(--color-white);
+        position: relative;
+      }
+      #manage-subscription {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 10;
       }
       #dog-header {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -247,6 +260,11 @@ export class AppDogView extends LitElement {
       #pencil-wrapper {
         position: relative;
       }
+      #pencil-wrapper sl-icon {
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+      }
       #names-counter {
         position: absolute;
         top: -3px;
@@ -255,6 +273,7 @@ export class AppDogView extends LitElement {
         background: var(--color-primary-medium);
         border-radius: 50px;
         padding: 0px 5px;
+        pointer-events: none; /* allow clicks to pass through to the pencil icon */
       }
       #dog-buffs {
         display: flex;
@@ -300,8 +319,20 @@ export class AppDogView extends LitElement {
   @property({ attribute: false })
   dogInfo: DogInfo | null = null;
 
+  @consume({ context: userInfoContext, subscribe: true })
+  @property({ attribute: false })
+  userInfo: import('../types/userInfo').UserInfo | null = null;
+
   @state()
   isEditingName: boolean = false;
+
+  manageSubscription() {
+    // Open Google Play subscription management deep link
+    const pkg = 'app.netlify.astounding_naiad_fc1ffa.twa'; // same as PACKAGE_NAME in shop view
+    // Universal link for subscription center
+    const url = `https://play.google.com/store/account/subscriptions?sku=premium&package=${pkg}`;
+    window.open(url, '_blank');
+  }
 
   @state()
   newName: string | null = null;
@@ -317,7 +348,8 @@ export class AppDogView extends LitElement {
   }
 
   editName() {
-    if (this.dogInfo?.nameChangesCounter === 0) return;
+    const isPremium = this.userInfo?.isPremium === true;
+    if (!isPremium && (this.dogInfo?.nameChangesCounter ?? 0) === 0) return;
 
     this.isEditingName = true;
   }
@@ -356,6 +388,11 @@ export class AppDogView extends LitElement {
 
   async firstUpdated() {
     if (!this.accessToken) return;
+
+    // Refresh subscription status when dog view loads (server uses stored token if available)
+    try {
+      await apiCall(this.accessToken).post(API_SUBSCRIPTION_REFRESH, {});
+    } catch {}
 
     const dogInfoResponse = await apiCall(this.accessToken).get<DogInfoResponse>(API_DOG_GET);
     const { dog } = dogInfoResponse.data;
@@ -396,7 +433,23 @@ export class AppDogView extends LitElement {
     return this.dogInfo && this.newName
       ? html`
           <div id="container">
+            
             <div id="dog-header">
+              ${this.userInfo?.isPremium
+                ? html`<div style="position:absolute; top:12px; right:12px; display:flex; gap:8px; align-items:center; background: rgba(255,255,255,0.8); padding: 6px 10px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); backdrop-filter: blur(4px);">
+                    <sl-badge
+                      variant="success"
+                      pill
+                      title=${this.userInfo?.premiumExpiryUtc
+                        ? `Expires: ${new Date(this.userInfo.premiumExpiryUtc).toLocaleString()}`
+                        : ''}
+                      >Premium</sl-badge
+                    >
+                    <sl-tooltip content="Manage subscription">
+                      <sl-icon-button name="gear" label="Manage subscription" @click=${this.manageSubscription}></sl-icon-button>
+                    </sl-tooltip>
+                  </div>`
+                : ''}
               <div id="dog-image">
                 <div id="dog-image-circle">
                   <svg-icon name="dogHead"></svg-icon>
@@ -420,7 +473,7 @@ export class AppDogView extends LitElement {
                       <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
                   : html`<div id="pencil-wrapper">
                       <sl-icon name="pencil" @click=${this.editName}></sl-icon>
-                      <div id="names-counter">${nameChangesCounter}</div>
+                      ${this.userInfo?.isPremium ? html`<div id="names-counter" title="Unlimited">∞</div>` : html`<div id="names-counter">${nameChangesCounter}</div>`}
                     </div>`}
               </div>
             </div>
