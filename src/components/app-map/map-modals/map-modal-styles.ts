@@ -1204,6 +1204,8 @@ export const MapModalStyles = html`
       border: 1px solid var(--sl-color-gray-300);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       transition: all 0.2s ease;
+      position: relative;
+      min-height: 80px;
     }
 
     .buff-item:hover {
@@ -1228,6 +1230,27 @@ export const MapModalStyles = html`
     .buff-item icon-png-badge {
       --icon-png-badge-width: 36px;
       --icon-png-badge-height: 36px;
+    }
+
+    .buff-confirmation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: var(--border-radius-medium);
+    }
+
+    .buff-confirmation sl-button::part(base) {
+      width: 40px;
+      height: 40px;
     }
 
     .buff-applied-indicator {

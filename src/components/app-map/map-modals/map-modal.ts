@@ -123,6 +123,17 @@ export class MapModal extends LitElement {
   @state()
   buffAppliedMessage: string = '';
 
+  @state()
+  private buffToConfirm: string | null = null;
+
+  private handleBuffClick(buffSku: string) {
+    this.buffToConfirm = buffSku;
+  }
+
+  private cancelBuffConfirmation() {
+    this.buffToConfirm = null;
+  }
+
   applyBuffToDoghouse = async (buffSku: string) => {
     if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
@@ -154,6 +165,8 @@ export class MapModal extends LitElement {
     } catch (error: any) {
       console.error('Error applying buff:', error);
       this.showBuffAppliedMessageWithReason(error.response.data.message || 'Failed to apply buff.');
+    } finally {
+      this.buffToConfirm = null;
     }
   };
 
@@ -712,13 +725,44 @@ export class MapModal extends LitElement {
                         (buff) => html`
                           <div
                             class="buff-item"
-                            @click=${() => this.applyBuffToDoghouse(buff.buffSku)}
+                            @click=${() => this.handleBuffClick(buff.buffSku)}
                           >
-                            <icon-png-badge
-                              name="${buff.buffSku.includes('repair') ? 'toolkit' : 'energy-drink'}"
-                              badge="${buff.quantity}"
-                            ></icon-png-badge>
-                            <span class="buff-name">${buff.name}</span>
+                            ${this.buffToConfirm === buff.buffSku
+                              ? html`
+                                  <div class="buff-confirmation">
+                                    <sl-button
+                                      size="small"
+                                      variant="success"
+                                      pill
+                                      title="Confirm"
+                                      @click=${(e: Event) => {
+                                        e.stopPropagation();
+                                        this.applyBuffToDoghouse(buff.buffSku);
+                                      }}
+                                      ><sl-icon name="check-lg"></sl-icon
+                                    ></sl-button>
+                                    <sl-button
+                                      size="small"
+                                      variant="danger"
+                                      pill
+                                      title="Cancel"
+                                      @click=${(e: Event) => {
+                                        e.stopPropagation();
+                                        this.cancelBuffConfirmation();
+                                      }}
+                                      ><sl-icon name="x-lg"></sl-icon
+                                    ></sl-button>
+                                  </div>
+                                `
+                              : html`
+                                  <icon-png-badge
+                                    name="${buff.buffSku.includes('repair')
+                                      ? 'toolkit'
+                                      : 'energy-drink'}"
+                                    badge="${buff.quantity}"
+                                  ></icon-png-badge>
+                                  <span class="buff-name">${buff.name}</span>
+                                `}
                           </div>
                         `
                       )
