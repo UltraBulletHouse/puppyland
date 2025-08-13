@@ -21,6 +21,10 @@ export class AppDoghousesView extends LitElement {
   static styles = [
     sharedStyles,
     css`
+      sl-badge[variant='warning']::part(base) {
+        background-color: var(--color-primary-medium);
+        color: var(--color-black);
+      }
       #container {
         display: flex;
         flex-direction: column;
