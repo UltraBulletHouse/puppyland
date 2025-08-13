@@ -260,6 +260,11 @@ export class AppDogView extends LitElement {
       #pencil-wrapper {
         position: relative;
       }
+      #pencil-wrapper sl-icon {
+        cursor: pointer;
+        position: relative;
+        z-index: 2;
+      }
       #names-counter {
         position: absolute;
         top: -3px;
@@ -268,6 +273,7 @@ export class AppDogView extends LitElement {
         background: var(--color-primary-medium);
         border-radius: 50px;
         padding: 0px 5px;
+        pointer-events: none; /* allow clicks to pass through to the pencil icon */
       }
       #dog-buffs {
         display: flex;
@@ -342,7 +348,8 @@ export class AppDogView extends LitElement {
   }
 
   editName() {
-    if (this.dogInfo?.nameChangesCounter === 0) return;
+    const isPremium = this.userInfo?.isPremium === true;
+    if (!isPremium && (this.dogInfo?.nameChangesCounter ?? 0) === 0) return;
 
     this.isEditingName = true;
   }
@@ -466,7 +473,7 @@ export class AppDogView extends LitElement {
                       <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
                   : html`<div id="pencil-wrapper">
                       <sl-icon name="pencil" @click=${this.editName}></sl-icon>
-                      <div id="names-counter">${nameChangesCounter}</div>
+                      ${this.userInfo?.isPremium ? html`<div id="names-counter" title="Unlimited">∞</div>` : html`<div id="names-counter">${nameChangesCounter}</div>`}
                     </div>`}
               </div>
             </div>
