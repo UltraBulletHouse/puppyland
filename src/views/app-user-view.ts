@@ -194,6 +194,16 @@ export class AppUserView extends LitElement {
         text-decoration: underline;
       }
 
+      .contact-card .setting-details a {
+        font-size: 0.9rem;
+        color: var(--color-primary);
+        text-decoration: none;
+      }
+
+      .contact-card .setting-details a:hover {
+        text-decoration: underline;
+      }
+
       @media (max-width: 480px) {
         .header {
           padding: 1.5rem 1rem 1rem;
@@ -349,6 +359,27 @@ export class AppUserView extends LitElement {
     `;
   }
 
+  private renderContactUs() {
+    return html`
+      <sl-card class="settings-card contact-card">
+        <div slot="header">
+          <strong>Contact Us</strong>
+        </div>
+        <div class="setting-item">
+          <div class="setting-info">
+            <sl-icon name="envelope" class="setting-icon"></sl-icon>
+            <div class="setting-details">
+              <div class="setting-description">
+                For any inquiries, please email us at:
+                <a href="mailto:dogapp.dev@gmail.com">dogapp.dev@gmail.com</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sl-card>
+    `;
+  }
+
   private renderAttribution() {
     return html`
       <sl-card class="settings-card attribution-card">
@@ -414,7 +445,8 @@ export class AppUserView extends LitElement {
 
         <!-- Settings Content -->
         <div class="settings-content">
-          ${this.renderAppSettings()} ${this.renderDangerZone()} ${this.renderAttribution()}
+          ${this.renderAppSettings()} ${this.renderDangerZone()} ${this.renderContactUs()}
+          ${this.renderAttribution()}
         </div>
       </div>
     `;
