@@ -5,6 +5,8 @@ import { customElement, property, state } from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
+import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
@@ -42,6 +44,7 @@ export class AppDogView extends LitElement {
         z-index: 10;
       }
       #dog-header {
+        position: relative;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -418,17 +421,10 @@ export class AppDogView extends LitElement {
     return this.dogInfo && this.newName
       ? html`
           <div id="container">
-            ${this.userInfo?.isPremium
-              ? html`<div id="manage-subscription">
-                  <sl-button size="small" pill variant="default" @click=${this.manageSubscription}>
-                    <sl-icon name="gear"></sl-icon>
-                    <span style="margin-left:6px;">Manage Subscription</span>
-                  </sl-button>
-                </div>`
-              : ''}
+            
             <div id="dog-header">
               ${this.userInfo?.isPremium
-                ? html`<div style="display:flex; gap:8px; align-items:center;">
+                ? html`<div style="position:absolute; top:12px; right:12px; display:flex; gap:8px; align-items:center; background: rgba(255,255,255,0.8); padding: 6px 10px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); backdrop-filter: blur(4px);">
                     <sl-badge
                       variant="success"
                       pill
@@ -437,7 +433,9 @@ export class AppDogView extends LitElement {
                         : ''}
                       >Premium</sl-badge
                     >
-                    
+                    <sl-tooltip content="Manage subscription">
+                      <sl-icon-button name="gear" label="Manage subscription" @click=${this.manageSubscription}></sl-icon-button>
+                    </sl-tooltip>
                   </div>`
                 : ''}
               <div id="dog-image">
