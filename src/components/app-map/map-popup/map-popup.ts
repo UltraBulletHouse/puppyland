@@ -78,7 +78,7 @@ export class MapPopup extends LitElement {
   };
 
   firstUpdated() {
-    const CLOSEST_DISTANCE = 500;
+    const CLOSEST_DISTANCE = 5000;
 
     const dhCoordsArr = this.dhCoords?.split('/');
     let dhCoordsObj: Coords = { lat: 0, lng: 0 };
