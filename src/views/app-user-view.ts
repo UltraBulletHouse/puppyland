@@ -371,10 +371,7 @@ export class AppUserView extends LitElement {
             <div class="setting-details">
               <div class="setting-description">
                 For any inquiries, please email us at:
-                <a
-                  href="mailto:puppyhousedev@gmail.com"
-                  >puppyhousedev@gmail.com
-                </a>
+                <a href="mailto:puppyhousedev@gmail.com">puppyhousedev@gmail.com </a>
               </div>
             </div>
           </div>

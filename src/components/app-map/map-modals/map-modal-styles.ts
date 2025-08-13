@@ -1202,19 +1202,19 @@ export const MapModalStyles = html`
       border-radius: var(--border-radius-medium);
       background: var(--color-white);
       border: 1px solid var(--sl-color-gray-300);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       transition: all 0.2s ease;
     }
 
     .buff-item:hover {
       background: var(--sl-color-gray-100);
       transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
 
     .buff-item:active {
       transform: translateY(0);
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
       background: var(--sl-color-gray-200);
     }
 

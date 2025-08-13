@@ -16,4 +16,7 @@ export const sharedStyles = css`
   .icon-button:focus-visible:not(.icon-button--disabled) {
     color: var(--color-primary);
   }
+  img {
+    pointer-events: none; /* optional: makes the image non-interactive entirely */
+  }
 `;
