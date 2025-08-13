@@ -4,13 +4,13 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
-import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
-import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
+import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
 import '@shoelace-style/shoelace/dist/components/tab/tab.js';
+import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 
 import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
@@ -18,8 +18,8 @@ import '../components/icon-png/icon-png';
 import '../components/leaderboards/leaderboards';
 import { API_DOG_GET, API_DOG_UPDATE, API_SUBSCRIPTION_REFRESH } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
-import { userInfoContext } from '../contexts/userInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
+import { userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
 import { apiCall } from '../utils/apiUtils';
@@ -433,10 +433,11 @@ export class AppDogView extends LitElement {
     return this.dogInfo && this.newName
       ? html`
           <div id="container">
-            
             <div id="dog-header">
               ${this.userInfo?.isPremium
-                ? html`<div style="position:absolute; top:12px; right:12px; display:flex; gap:8px; align-items:center; background: rgba(255,255,255,0.8); padding: 6px 10px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); backdrop-filter: blur(4px);">
+                ? html`<div
+                    style="position:absolute; top:12px; right:12px; display:flex; gap:8px; align-items:center; background: rgba(255,255,255,0.8); padding: 6px 10px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); backdrop-filter: blur(4px);"
+                  >
                     <sl-badge
                       variant="success"
                       pill
@@ -446,7 +447,11 @@ export class AppDogView extends LitElement {
                       >Premium</sl-badge
                     >
                     <sl-tooltip content="Manage subscription">
-                      <sl-icon-button name="gear" label="Manage subscription" @click=${this.manageSubscription}></sl-icon-button>
+                      <sl-icon-button
+                        name="gear"
+                        label="Manage subscription"
+                        @click=${this.manageSubscription}
+                      ></sl-icon-button>
                     </sl-tooltip>
                   </div>`
                 : ''}
@@ -473,7 +478,9 @@ export class AppDogView extends LitElement {
                       <sl-icon name="x" @click=${this.onCloseEditing}></sl-icon> `
                   : html`<div id="pencil-wrapper">
                       <sl-icon name="pencil" @click=${this.editName}></sl-icon>
-                      ${this.userInfo?.isPremium ? html`<div id="names-counter" title="Unlimited">∞</div>` : html`<div id="names-counter">${nameChangesCounter}</div>`}
+                      ${this.userInfo?.isPremium
+                        ? html`<div id="names-counter" title="Unlimited">∞</div>`
+                        : html`<div id="names-counter">${nameChangesCounter}</div>`}
                     </div>`}
               </div>
             </div>

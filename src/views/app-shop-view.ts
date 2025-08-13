@@ -304,8 +304,8 @@ export class AppShopView extends LitElement {
     <div class="shop-item">
       <div class="item-icon">
         ${item.icon
-            ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
-            : html`<sl-icon name="star"></sl-icon>`}
+          ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
+          : html`<sl-icon name="star"></sl-icon>`}
       </div>
       <div class="item-details">
         <div class="item-name">${item.name}</div>

@@ -2,10 +2,9 @@ import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
+
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
-import { userInfoContext } from '../contexts/userInfoContext';
-
 import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 
@@ -14,6 +13,7 @@ import '../components/doghouse-item/doghouse-item';
 import { API_DOGHOUSE_GET } from '../constants/apiConstants';
 import { dogInfoContext } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
+import { userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogInfo } from '../types/dog';
 import { Doghouse, GetDoghouseResponse } from '../types/doghouse';
@@ -38,11 +38,7 @@ export class AppDoghousesView extends LitElement {
       #header {
         padding: 20px 16px;
         border-bottom: 1px solid var(--color-primary-light);
-        background: linear-gradient(
-          135deg,
-          var(--color-primary-light) 0%,
-          var(--color-white) 100%
-        );
+        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -245,15 +241,19 @@ export class AppDoghousesView extends LitElement {
                 id="edit-button"
                 name="pencil-square"
                 @click=${this.handleEditMode}
-                class="${this.editMode ? 'is-edit-mode' : ''} ${this
-                  .doghouseNameChangesCounter === 0
+                class="${this.editMode ? 'is-edit-mode' : ''} ${this.doghouseNameChangesCounter ===
+                0
                   ? 'disabled'
                   : ''}"
                 title=${this.editMode ? 'Exit edit mode' : 'Edit doghouses'}
               ></sl-icon>
               ${this.userInfo?.isPremium
-                ? html`<sl-badge id="edit-badge" variant="success" pill title="Unlimited">∞</sl-badge>`
-                : html`<sl-badge id="edit-badge" variant="warning" pill>${this.doghouseNameChangesCounter}</sl-badge>`}
+                ? html`<sl-badge id="edit-badge" variant="success" pill title="Unlimited"
+                    >∞</sl-badge
+                  >`
+                : html`<sl-badge id="edit-badge" variant="warning" pill
+                    >${this.doghouseNameChangesCounter}</sl-badge
+                  >`}
             </div>
           </div>
         </div>

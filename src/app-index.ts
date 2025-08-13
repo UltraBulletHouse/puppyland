@@ -13,7 +13,7 @@ import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import './components/app-footer/app-footer';
 import './components/icon-svg/svg-icon';
 import './components/icon-svg/svg-icon-button';
-import { API_USER_INFO, API_SUBSCRIPTION_REFRESH } from './constants/apiConstants';
+import { API_SUBSCRIPTION_REFRESH, API_USER_INFO } from './constants/apiConstants';
 import { dogInfoContext } from './contexts/dogInfoContext';
 import { accessTokenContext } from './contexts/userFirebaseContext';
 import { userInfoContext } from './contexts/userInfoContext';
