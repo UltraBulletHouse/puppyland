@@ -149,8 +149,8 @@ export class AppDogView extends LitElement {
         padding: 16px;
       }
       #info-container {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 16px;
       }
 
@@ -588,30 +588,14 @@ export class AppDogView extends LitElement {
                         </div>
                       </div>
 
-                      <!-- Experience Card -->
+                      <!-- Available Doghouses Card -->
                       <div class="stat-card">
                         <div class="stat-header">
-                          <div class="stat-icon experience">
-                            <sl-icon name="mortarboard"></sl-icon>
+                          <div class="stat-icon doghouses">
+                            <sl-icon name="house-add"></sl-icon>
                           </div>
-                          <div class="stat-title">Experience</div>
-                          <div class="stat-value">${experience}</div>
-                        </div>
-                        <div class="stat-progress">
-                          <div class="progress-info">
-                            <span class="progress-current"
-                              >${experience} / ${expForNextLevel} XP</span
-                            >
-                            <span class="progress-percentage"
-                              >${Math.round((experience / expForNextLevel) * 100)}%</span
-                            >
-                          </div>
-                          <div class="modern-progress-bar">
-                            <div
-                              class="progress-fill experience"
-                              style="width: ${(experience / expForNextLevel) * 100}%"
-                            ></div>
-                          </div>
+                          <div class="stat-title">Available Doghouses</div>
+                          <div class="doghouses-count">${availableDoghouses}</div>
                         </div>
                       </div>
 
@@ -640,14 +624,30 @@ export class AppDogView extends LitElement {
                         </div>
                       </div>
 
-                      <!-- Available Doghouses Card -->
+                      <!-- Experience Card -->
                       <div class="stat-card">
                         <div class="stat-header">
-                          <div class="stat-icon doghouses">
-                            <sl-icon name="house-add"></sl-icon>
+                          <div class="stat-icon experience">
+                            <sl-icon name="mortarboard"></sl-icon>
                           </div>
-                          <div class="stat-title">Available Doghouses</div>
-                          <div class="doghouses-count">${availableDoghouses}</div>
+                          <div class="stat-title">Experience</div>
+                          <div class="stat-value">${experience}</div>
+                        </div>
+                        <div class="stat-progress">
+                          <div class="progress-info">
+                            <span class="progress-current"
+                              >${experience} / ${expForNextLevel} XP</span
+                            >
+                            <span class="progress-percentage"
+                              >${Math.round((experience / expForNextLevel) * 100)}%</span
+                            >
+                          </div>
+                          <div class="modern-progress-bar">
+                            <div
+                              class="progress-fill experience"
+                              style="width: ${(experience / expForNextLevel) * 100}%"
+                            ></div>
+                          </div>
                         </div>
                       </div>
 
