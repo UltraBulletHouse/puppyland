@@ -52,6 +52,21 @@ export class AppDogView extends LitElement {
         background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
         border-bottom: 1px solid var(--color-primary-medium);
       }
+      #treats-balance {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 700;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(4px);
+        cursor: pointer;
+      }
       #dog-image {
         margin-bottom: 12px;
       }
@@ -434,6 +449,10 @@ export class AppDogView extends LitElement {
       ? html`
           <div id="container">
             <div id="dog-header">
+              <div id="treats-balance" @click=${() => this.dispatchEvent(new CustomEvent('updateView', { detail: 'app-shop-view', bubbles: true, composed: true }))}>
+                <sl-icon name="coin"></sl-icon>
+                <span>${this.userInfo?.treatsBalance ?? 0}</span>
+              </div>
               ${this.userInfo?.isPremium
                 ? html`<div
                     style="position:absolute; top:12px; right:12px; display:flex; gap:8px; align-items:center; background: rgba(255,255,255,0.8); padding: 6px 10px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); backdrop-filter: blur(4px);"
