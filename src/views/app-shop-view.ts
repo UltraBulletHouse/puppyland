@@ -18,10 +18,10 @@ import {
   googleSkuIds,
   shopItemsDoghouse,
   shopItemsEnergy,
+  shopItemsRename,
   shopItemsRepair,
   shopItemsSubscription,
   shopItemsTreatPacks,
-  shopItemsRename,
 } from '../constants/shopItems';
 import { updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
