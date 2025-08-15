@@ -457,20 +457,20 @@ export class AppShopView extends LitElement {
         <div id="content">
           <div id="tabs-container">
             <sl-tab-group class="shop-tabs">
-              <sl-tab slot="nav" panel="buy-treats">
-                <sl-icon name="coin" style="margin-right: 6px;"></sl-icon>
-                Buy Treats
-              </sl-tab>
               <sl-tab slot="nav" panel="spend-treats">
                 <sl-icon name="handbag" style="margin-right: 6px;"></sl-icon>
                 Spend Treats
+              </sl-tab>
+              <sl-tab slot="nav" panel="buy-treats">
+                <sl-icon name="coin" style="margin-right: 6px;"></sl-icon>
+                Buy Treats
               </sl-tab>
               <sl-tab slot="nav" panel="premium">
                 <sl-icon name="star" style="margin-right: 6px;"></sl-icon>
                 Buy Premium
               </sl-tab>
 
-              <sl-tab-panel name="buy-treats">
+              <sl-tab-panel name="spend-treats">
                 ${this.shopGoogleItems
                   ? html`
                       ${this.renderCategorySection(
@@ -497,6 +497,20 @@ export class AppShopView extends LitElement {
                 ${this.renderCategorySection('Energy', 'lightning-charge', shopItemsEnergy, (i) =>
                   this.renderShopItemTreats(i)
                 )}
+              </sl-tab-panel>
+
+              <sl-tab-panel name="buy-treats">
+                ${this.shopGoogleItems
+                  ? html`
+                      ${this.renderCategorySection(
+                        'Treat Packs',
+                        'coin',
+                        shopItemsTreatPacks,
+                        (i) => this.renderShopItemReal(i),
+                        this.shopGoogleItems
+                      )}
+                    `
+                  : html`<app-spinner></app-spinner>`}
               </sl-tab-panel>
 
               <sl-tab-panel name="premium">
