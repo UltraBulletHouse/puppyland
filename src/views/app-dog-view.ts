@@ -137,8 +137,12 @@ export class AppDogView extends LitElement {
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        padding: 4px 8px;
-        font-size: 13px;
+        padding: 8px 12px;
+        font-size: 17px;
+      }
+
+      .dog-tabs sl-tab sl-icon {
+        font-size: 18px;
       }
 
       #stats-content {

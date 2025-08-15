@@ -133,12 +133,12 @@ export class AppShopView extends LitElement {
         display: inline-flex;
         align-items: center;
         gap: 4px;
-        padding: 4px 8px;
-        font-size: 13px;
+        padding: 8px 12px;
+        font-size: 17px;
       }
       /* Smaller icons inside tab labels */
       .shop-tabs sl-tab sl-icon {
-        font-size: 14px;
+        font-size: 18px;
       }
 
       .category-section {
@@ -459,11 +459,11 @@ export class AppShopView extends LitElement {
             <sl-tab-group class="shop-tabs">
               <sl-tab slot="nav" panel="spend-treats">
                 <sl-icon name="handbag" style="margin-right: 6px;"></sl-icon>
-                Spend Treats
+                Spend
               </sl-tab>
               <sl-tab slot="nav" panel="buy-treats">
                 <sl-icon name="coin" style="margin-right: 6px;"></sl-icon>
-                Buy Treats
+                Buy
               </sl-tab>
               <sl-tab slot="nav" panel="premium">
                 <sl-icon name="star" style="margin-right: 6px;"></sl-icon>
