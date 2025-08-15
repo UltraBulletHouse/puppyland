@@ -1,13 +1,12 @@
 import { ShopItemLocal } from '../types/shop';
 
-export const shopItems = [
-  'repair_50',
-  'repair_max',
-  'energy_10_boost',
-  'energy_50_boost',
-  'doghouse_1_pack',
-  'doghouse_3_pack',
-  'doghouse_6_pack',
+// SKUs that exist in Google Play (real-money purchases)
+export const googleSkuIds = [
+  'small_treats',
+  'tasty_handful',
+  'snack_sack',
+  'mega_munch',
+  'ultimate_treat',
   'premium',
 ];
 
@@ -17,7 +16,7 @@ export const shopItemsDoghouse: ShopItemLocal[] = [
     name: 'Doghouse 1 pack',
     icon: 'doghouse',
     badge: '1',
-    price: { currency: 'EUR', value: '0' },
+    price: { currency: 'Treats', value: '100' },
     description: 'You can place 1 additional doghouses',
   },
   {
@@ -25,7 +24,7 @@ export const shopItemsDoghouse: ShopItemLocal[] = [
     name: 'Doghouse 3 pack',
     icon: 'doghouse',
     badge: '3',
-    price: { currency: 'EUR', value: '0' },
+    price: { currency: 'Treats', value: '200' },
     description: 'You can place 3 additional doghouses',
   },
   {
@@ -33,7 +32,7 @@ export const shopItemsDoghouse: ShopItemLocal[] = [
     name: 'Doghouse 6 pack',
     icon: 'doghouse',
     badge: '6',
-    price: { currency: 'EUR', value: '0' },
+    price: { currency: 'Treats', value: '300' },
     description: 'You can place 6 additional doghouses',
   },
 ];
@@ -44,15 +43,15 @@ export const shopItemsRepair: ShopItemLocal[] = [
     name: 'Repair 50',
     icon: 'toolkit',
     badge: '50',
-    price: { currency: 'EUR', value: '' },
+    price: { currency: 'Treats', value: '100' },
     description: '',
   },
   {
     id: 'repair_max',
-    name: 'Repair max',
+    name: 'Full repair',
     icon: 'toolkit',
     badge: 'MAX',
-    price: { currency: 'EUR', value: '' },
+    price: { currency: 'Treats', value: '300' },
     description: '',
   },
 ];
@@ -63,7 +62,7 @@ export const shopItemsEnergy: ShopItemLocal[] = [
     name: 'Energy 10 boost',
     icon: 'energy-drink',
     badge: '10',
-    price: { currency: 'EUR', value: '' },
+    price: { currency: 'Treats', value: '100' },
     description: '',
   },
   {
@@ -71,7 +70,7 @@ export const shopItemsEnergy: ShopItemLocal[] = [
     name: 'Energy 50 boost',
     icon: 'energy-drink',
     badge: '50',
-    price: { currency: 'EUR', value: '' },
+    price: { currency: 'Treats', value: '300' },
     description: '',
   },
 ];
@@ -86,10 +85,41 @@ export const shopItemsSubscription: ShopItemLocal[] = [
   },
 ];
 
-// Premium subscription should be on top
-export const allShopItems = [
-  ...shopItemsSubscription,
-  ...shopItemsDoghouse,
-  ...shopItemsRepair,
-  ...shopItemsEnergy,
+// Real-money Treat packs and subscription (used for Google Billing)
+export const shopItemsTreatPacks: ShopItemLocal[] = [
+  {
+    id: 'small_treats',
+    name: 'Small Treats',
+    icon: 'energy-drink',
+    price: { currency: 'EUR', value: '' },
+    description: '100 Treats',
+  },
+  {
+    id: 'tasty_handful',
+    name: 'Tasty Handful',
+    icon: 'energy-drink',
+    price: { currency: 'EUR', value: '' },
+    description: '700 Treats',
+  },
+  {
+    id: 'snack_sack',
+    name: 'Snack Sack',
+    icon: 'energy-drink',
+    price: { currency: 'EUR', value: '' },
+    description: '1600 Treats',
+  },
+  {
+    id: 'mega_munch',
+    name: 'Mega munch bag',
+    icon: 'energy-drink',
+    price: { currency: 'EUR', value: '' },
+    description: '3600 Treats',
+  },
+  {
+    id: 'ultimate_treat',
+    name: 'Ultimate treat crate',
+    icon: 'energy-drink',
+    price: { currency: 'EUR', value: '' },
+    description: '12500 Treats',
+  },
 ];

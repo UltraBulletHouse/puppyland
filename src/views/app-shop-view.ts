@@ -3,17 +3,28 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
+import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
+import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
+import '@shoelace-style/shoelace/dist/components/tab/tab.js';
+
+import '../components/app-spinner/app-spinner';
 import '../components/icon-png/icon-png';
-import { API_PURCHASE_ACKNOWLEDGE } from '../constants/apiConstants';
 import {
-  shopItems,
+  API_PURCHASE_ACKNOWLEDGE,
+  API_PURCHASE_BUY_WITH_TREATS,
+  API_USER_INFO,
+} from '../constants/apiConstants';
+import {
+  googleSkuIds,
   shopItemsDoghouse,
   shopItemsEnergy,
   shopItemsRepair,
   shopItemsSubscription,
+  shopItemsTreatPacks,
 } from '../constants/shopItems';
 import { updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
+import { updateUserInfoEvent, userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
 import {
   AcknowledgePurchaseResponse,
@@ -21,6 +32,7 @@ import {
   Price,
   ShopItemLocal,
 } from '../types/shop';
+import { UserInfoResponse } from '../types/userInfo';
 import { showSuccessModal } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
 
@@ -91,6 +103,41 @@ export class AppShopView extends LitElement {
         overflow-y: auto;
         padding: 16px;
         -webkit-overflow-scrolling: touch;
+      }
+
+      /* Center the tabs wrapper and limit width for nicer mobile look */
+      #tabs-container {
+        display: flex;
+        justify-content: center;
+      }
+      .shop-tabs {
+        width: 100%;
+        max-width: 560px;
+      }
+      .shop-tabs::part(nav) {
+        justify-content: center;
+        flex-wrap: wrap;
+        white-space: normal;
+        gap: 6px;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .shop-tabs::part(base) {
+        border-radius: var(--border-radius-medium);
+      }
+      sl-tab::part(base) {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 8px;
+        font-size: 13px;
+      }
+      /* Smaller icons inside tab labels */
+      .shop-tabs sl-tab sl-icon {
+        font-size: 14px;
       }
 
       .category-section {
@@ -196,6 +243,10 @@ export class AppShopView extends LitElement {
   @state()
   shopGoogleItems: GoogleBillingItem[] | null = null;
 
+  @consume({ context: userInfoContext, subscribe: true })
+  @property({ attribute: false })
+  userInfo: import('../types/userInfo').UserInfo | null = null;
+
   async acknowledgePurchase(productId: string, token: string) {
     if (!this.accessToken) return;
 
@@ -235,6 +286,29 @@ export class AppShopView extends LitElement {
     }
   }
 
+  async buyWithTreats(item: string) {
+    if (!this.accessToken) return;
+    try {
+      const result = await apiCall(this.accessToken).post(API_PURCHASE_BUY_WITH_TREATS, {
+        itemId: item,
+        quantity: 1,
+      });
+      const { data } = result;
+      // Update dog and user info
+      updateDogInfoEvent(this, data?.dog);
+      // refresh user info to get updated treats balance
+      const refreshed = await apiCall(this.accessToken).get<UserInfoResponse>(API_USER_INFO);
+      updateUserInfoEvent(this, refreshed.data.user);
+
+      showSuccessModal(
+        'Purchase Successful',
+        `You spent ${data?.spentTreats} Treats on ${data?.itemBought}.`
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async makePurchase(item: string) {
     const paymentMethods = [
       {
@@ -264,6 +338,13 @@ export class AppShopView extends LitElement {
       const { itemBought, quantity, dog } = result as AcknowledgePurchaseResponse;
 
       updateDogInfoEvent(this, dog);
+      // Refresh user info (for treats balance updates after treat pack purchases)
+      if (this.accessToken) {
+        try {
+          const refreshed = await apiCall(this.accessToken).get<UserInfoResponse>(API_USER_INFO);
+          updateUserInfoEvent(this, refreshed.data.user);
+        } catch {}
+      }
 
       showSuccessModal(
         'Purchase Successful',
@@ -285,6 +366,8 @@ export class AppShopView extends LitElement {
   }
 
   async firstUpdated() {
+    // Load Google Billing details for real-money SKUs (treat packs + premium)
+
     if (!this.accessToken) return;
     if ('getDigitalGoodsService' in window) {
       try {
@@ -292,7 +375,7 @@ export class AppShopView extends LitElement {
           'https://play.google.com/billing'
         );
 
-        const skuDetails: GoogleBillingItem[] = await service.getDetails(shopItems);
+        const skuDetails: GoogleBillingItem[] = await service.getDetails(googleSkuIds);
         this.shopGoogleItems = skuDetails;
       } catch (error) {
         return;
@@ -300,7 +383,7 @@ export class AppShopView extends LitElement {
     }
   }
 
-  renderShopItem = (item: ShopItemLocal) => html`
+  renderShopItemReal = (item: ShopItemLocal) => html`
     <div class="shop-item">
       <div class="item-icon">
         ${item.icon
@@ -319,20 +402,40 @@ export class AppShopView extends LitElement {
     </div>
   `;
 
+  renderShopItemTreats = (item: ShopItemLocal) => html`
+    <div class="shop-item">
+      <div class="item-icon">
+        ${item.icon
+          ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
+          : html`<sl-icon name="star"></sl-icon>`}
+      </div>
+      <div class="item-details">
+        <div class="item-name">${item.name}</div>
+        <div class="item-description">${item.description}</div>
+      </div>
+      <div class="item-action">
+        <sl-button class="buy-button" @click=${() => this.buyWithTreats(item.id)} pill>
+          <span class="price-tag">${item.price.value} ${item.price.currency}</span>
+        </sl-button>
+      </div>
+    </div>
+  `;
+
   renderCategorySection(
     title: string,
     icon: string,
     items: ShopItemLocal[],
-    googleItems: GoogleBillingItem[] | null
+    renderer: (item: ShopItemLocal) => unknown,
+    googleItems: GoogleBillingItem[] | null = null
   ) {
-    const parsedItems = parseShopItems(items, googleItems);
+    const parsedItems = googleItems ? parseShopItems(items, googleItems) : items;
     return html`
       <div class="category-section">
         <div class="category-title">
           <sl-icon name=${icon}></sl-icon>
           ${title}
         </div>
-        <div class="item-list">${parsedItems.map((item) => this.renderShopItem(item))}</div>
+        <div class="item-list">${parsedItems.map((item) => renderer(item as ShopItemLocal))}</div>
       </div>
     `;
   }
@@ -343,36 +446,69 @@ export class AppShopView extends LitElement {
         <div id="header">
           <sl-icon name="shop" style="font-size: 24px;"></sl-icon>
           <div id="title">Shop</div>
+          <div
+            style="margin-left:auto; display:flex; align-items:center; gap:8px; font-weight:600;"
+          >
+            <sl-icon name="coin"></sl-icon>
+            <span>${this.userInfo?.treatsBalance ?? 0}</span>
+          </div>
         </div>
         <div id="content">
-          ${this.shopGoogleItems
-            ? html`
-                ${this.renderCategorySection(
-                  'Subscriptions',
-                  'star',
-                  shopItemsSubscription,
-                  this.shopGoogleItems
+          <div id="tabs-container">
+            <sl-tab-group class="shop-tabs">
+              <sl-tab slot="nav" panel="buy-treats">
+                <sl-icon name="coin" style="margin-right: 6px;"></sl-icon>
+                Buy Treats
+              </sl-tab>
+              <sl-tab slot="nav" panel="spend-treats">
+                <sl-icon name="handbag" style="margin-right: 6px;"></sl-icon>
+                Spend Treats
+              </sl-tab>
+              <sl-tab slot="nav" panel="premium">
+                <sl-icon name="star" style="margin-right: 6px;"></sl-icon>
+                Buy Premium
+              </sl-tab>
+
+              <sl-tab-panel name="buy-treats">
+                ${this.shopGoogleItems
+                  ? html`
+                      ${this.renderCategorySection(
+                        'Treat Packs',
+                        'coin',
+                        shopItemsTreatPacks,
+                        (i) => this.renderShopItemReal(i),
+                        this.shopGoogleItems
+                      )}
+                    `
+                  : html`<app-spinner></app-spinner>`}
+              </sl-tab-panel>
+
+              <sl-tab-panel name="spend-treats">
+                ${this.renderCategorySection('Doghouses', 'house-add', shopItemsDoghouse, (i) =>
+                  this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection(
-                  'Doghouses',
-                  'house-add',
-                  shopItemsDoghouse,
-                  this.shopGoogleItems
+                ${this.renderCategorySection('Repair Kits', 'tools', shopItemsRepair, (i) =>
+                  this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection(
-                  'Repair Kits',
-                  'tools',
-                  shopItemsRepair,
-                  this.shopGoogleItems
+                ${this.renderCategorySection('Energy', 'lightning-charge', shopItemsEnergy, (i) =>
+                  this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection(
-                  'Energy',
-                  'lightning-charge',
-                  shopItemsEnergy,
-                  this.shopGoogleItems
-                )}
-              `
-            : html`<app-spinner></app-spinner>`}
+              </sl-tab-panel>
+
+              <sl-tab-panel name="premium">
+                ${this.shopGoogleItems
+                  ? html`${this.renderCategorySection(
+                      'Subscriptions',
+                      'star',
+                      shopItemsSubscription,
+                      (i) => this.renderShopItemReal(i),
+                      this.shopGoogleItems
+                    )}`
+                  : html`<app-spinner></app-spinner>`}
+              </sl-tab-panel>
+            </sl-tab-group>
+          </div>
+
           <sl-button id="consume-all-btn" @click=${this.consumeAll} pill>Consume All</sl-button>
         </div>
       </div>

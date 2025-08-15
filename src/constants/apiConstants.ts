@@ -18,6 +18,7 @@ export const API_DOGHOUSE_UPDATE = 'Doghouses/Update';
 
 /* PURSHASE */
 export const API_PURCHASE_ACKNOWLEDGE = 'Purchase/AcknowledgePurchase';
+export const API_PURCHASE_BUY_WITH_TREATS = 'Purchase/BuyWithTreats';
 
 /* SUBSCRIPTION */
 export const API_SUBSCRIPTION_REFRESH = 'Subscription/Refresh';
