@@ -37,6 +37,25 @@ export const shopItemsDoghouse: ShopItemLocal[] = [
   },
 ];
 
+export const shopItemsRename: ShopItemLocal[] = [
+  {
+    id: 'dog_rename',
+    name: 'Dog rename token',
+    icon: 'doghouse',
+    badge: '1',
+    price: { currency: 'Treats', value: '100' },
+    description: 'Buy one rename for your dog',
+  },
+  {
+    id: 'doghouse_rename',
+    name: 'Doghouse rename token',
+    icon: 'doghouse',
+    badge: '1',
+    price: { currency: 'Treats', value: '100' },
+    description: 'Buy one rename for your doghouse',
+  },
+];
+
 export const shopItemsRepair: ShopItemLocal[] = [
   {
     id: 'repair_50',

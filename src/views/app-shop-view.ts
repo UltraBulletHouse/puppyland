@@ -21,6 +21,7 @@ import {
   shopItemsRepair,
   shopItemsSubscription,
   shopItemsTreatPacks,
+  shopItemsRename,
 } from '../constants/shopItems';
 import { updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
@@ -485,6 +486,9 @@ export class AppShopView extends LitElement {
 
               <sl-tab-panel name="spend-treats">
                 ${this.renderCategorySection('Doghouses', 'house-add', shopItemsDoghouse, (i) =>
+                  this.renderShopItemTreats(i)
+                )}
+                ${this.renderCategorySection('Rename Tokens', 'pencil', shopItemsRename, (i) =>
                   this.renderShopItemTreats(i)
                 )}
                 ${this.renderCategorySection('Repair Kits', 'tools', shopItemsRepair, (i) =>
