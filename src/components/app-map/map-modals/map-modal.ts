@@ -435,6 +435,9 @@ export class MapModal extends LitElement {
       if (attackResult.isDoghouseDestroyed) {
         this.triggerDestructionEffect();
         this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
+        setTimeout(() => {
+          this.closeMapModal();
+        }, 2500);
       } else {
         this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
       }
