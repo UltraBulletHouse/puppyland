@@ -141,6 +141,17 @@ export class AppDogView extends LitElement {
         font-size: 17px;
       }
 
+      @media (max-width: 400px) {
+        sl-tab::part(base) {
+          padding: 6px 8px;
+          font-size: 14px;
+        }
+
+        .dog-tabs sl-tab sl-icon {
+          font-size: 16px;
+        }
+      }
+
       .dog-tabs sl-tab sl-icon {
         font-size: 18px;
       }
@@ -152,6 +163,12 @@ export class AppDogView extends LitElement {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 16px;
+      }
+
+      @media (max-width: 400px) {
+        #info-container {
+          grid-template-columns: repeat(1, 1fr);
+        }
       }
 
       .stat-card {

@@ -136,6 +136,17 @@ export class AppShopView extends LitElement {
         padding: 8px 12px;
         font-size: 17px;
       }
+
+      @media (max-width: 400px) {
+        sl-tab::part(base) {
+          padding: 6px 8px;
+          font-size: 14px;
+        }
+
+        .shop-tabs sl-tab sl-icon {
+          font-size: 16px;
+        }
+      }
       /* Smaller icons inside tab labels */
       .shop-tabs sl-tab sl-icon {
         font-size: 18px;
