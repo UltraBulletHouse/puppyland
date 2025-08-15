@@ -16,7 +16,7 @@ import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
 import '../components/icon-png/icon-png';
 import '../components/leaderboards/leaderboards';
-import { API_DOG_GET, API_DOG_UPDATE, API_SUBSCRIPTION_REFRESH } from '../constants/apiConstants';
+import { API_DOG_GET, API_DOG_UPDATE, API_SUBSCRIPTION_REFRESH, API_USER_INFO } from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
@@ -404,11 +404,21 @@ export class AppDogView extends LitElement {
   async firstUpdated() {
     if (!this.accessToken) return;
 
-    // Refresh subscription status when dog view loads (server uses stored token if available)
-    try {
-      await apiCall(this.accessToken).post(API_SUBSCRIPTION_REFRESH, {});
-    } catch {}
+    // Trigger subscription refresh in the background (non-blocking)
+    (async () => {
+      try {
+        await apiCall(this.accessToken!).post(API_SUBSCRIPTION_REFRESH, {});
+        // Optionally refresh user info after successful refresh
+        const userInfoResp = await apiCall(this.accessToken!).get<{ user: import('../types/userInfo').UserInfo }>(API_USER_INFO);
+        const user = userInfoResp.data?.user;
+        if (user) {
+          const { updateUserInfoEvent } = await import('../contexts/userInfoContext');
+          updateUserInfoEvent(this, user);
+        }
+      } catch {}
+    })();
 
+    // Proceed without waiting for refresh
     const dogInfoResponse = await apiCall(this.accessToken).get<DogInfoResponse>(API_DOG_GET);
     const { dog } = dogInfoResponse.data;
     if (dog) {

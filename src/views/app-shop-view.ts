@@ -471,20 +471,6 @@ export class AppShopView extends LitElement {
               </sl-tab>
 
               <sl-tab-panel name="spend-treats">
-                ${this.shopGoogleItems
-                  ? html`
-                      ${this.renderCategorySection(
-                        'Treat Packs',
-                        'coin',
-                        shopItemsTreatPacks,
-                        (i) => this.renderShopItemReal(i),
-                        this.shopGoogleItems
-                      )}
-                    `
-                  : html`<app-spinner></app-spinner>`}
-              </sl-tab-panel>
-
-              <sl-tab-panel name="spend-treats">
                 ${this.renderCategorySection('Doghouses', 'house-add', shopItemsDoghouse, (i) =>
                   this.renderShopItemTreats(i)
                 )}

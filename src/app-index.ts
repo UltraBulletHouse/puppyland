@@ -93,9 +93,14 @@ export class AppIndex extends LitElement {
       if (userFirebase) {
         const accessToken = await userFirebase.getIdToken();
         // Attempt to refresh subscription status on app start (server uses stored token if available)
-        try {
-          await apiCall(accessToken).post(API_SUBSCRIPTION_REFRESH, {});
-        } catch {}
+        const lastChecked = Number(localStorage.getItem('premiumRefreshTs') || '0');
+        const now = Date.now();
+        if (now - lastChecked > 30 * 60 * 1000) {
+          try {
+            await apiCall(accessToken).post(API_SUBSCRIPTION_REFRESH, {});
+          } catch {}
+          localStorage.setItem('premiumRefreshTs', String(now));
+        }
         const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
 
         this.userInfo = userInfoResponse?.data?.user;
@@ -116,6 +121,25 @@ export class AppIndex extends LitElement {
       }
     });
   }
+
+ connectedCallback() {
+   super.connectedCallback();
+   // Refresh subscription in background when app/window regains focus, with cooldown
+   const handler = async () => {
+     const lastChecked = Number(localStorage.getItem('premiumRefreshTs') || '0');
+     const now = Date.now();
+     if (now - lastChecked > 30 * 60 * 1000 && this.accessToken) {
+       try {
+         await apiCall(this.accessToken).post(API_SUBSCRIPTION_REFRESH, {});
+         const userInfoResponse = await apiCall(this.accessToken).get<UserInfoResponse>(API_USER_INFO);
+         this.userInfo = userInfoResponse?.data?.user;
+       } catch {}
+       localStorage.setItem('premiumRefreshTs', String(now));
+     }
+   };
+   window.addEventListener('visibilitychange', handler);
+   window.addEventListener('focus', handler);
+ }
 
   renderContent(view: View) {
     if (this.isLoading) {
