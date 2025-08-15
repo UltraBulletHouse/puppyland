@@ -100,6 +100,31 @@ export class AppDogView extends LitElement {
         flex: 1;
         overflow: hidden;
       }
+
+      /* Center the tabs wrapper and limit width like shop */
+      #tabs-container {
+        display: flex;
+        justify-content: center;
+      }
+      .dog-tabs {
+        width: 100%;
+        max-width: 560px;
+      }
+      .dog-tabs::part(nav) {
+        justify-content: center;
+        flex-wrap: wrap;
+        white-space: normal;
+        gap: 6px;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0;
+        padding-right: 0;
+      }
+      .dog-tabs::part(base) {
+        border-radius: var(--border-radius-medium);
+      }
+
       sl-tab-group {
         height: 100%;
       }
@@ -109,7 +134,11 @@ export class AppDogView extends LitElement {
         height: calc(100vh - 270px);
       }
       sl-tab::part(base) {
-        gap: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 8px;
+        font-size: 13px;
       }
 
       #stats-content {
@@ -525,7 +554,9 @@ export class AppDogView extends LitElement {
             </div>
 
             <div id="content-tabs">
-              <sl-tab-group @sl-tab-show=${this.handleTabShow}>
+              <div id="tabs-container">
+                <sl-tab-group class="dog-tabs" @sl-tab-show=${this.handleTabShow}>
+              
                 <sl-tab slot="nav" panel="stats">
                   <sl-icon name="bar-chart"></sl-icon>
                   Stats
@@ -657,7 +688,8 @@ export class AppDogView extends LitElement {
                     .isActive=${this.activeTab === 'leaderboards'}
                   ></leaderboards-component>
                 </sl-tab-panel>
-              </sl-tab-group>
+                </sl-tab-group>
+              </div>
             </div>
           </div>
         `
