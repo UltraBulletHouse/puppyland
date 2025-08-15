@@ -449,7 +449,17 @@ export class AppDogView extends LitElement {
       ? html`
           <div id="container">
             <div id="dog-header">
-              <div id="treats-balance" @click=${() => this.dispatchEvent(new CustomEvent('updateView', { detail: 'app-shop-view', bubbles: true, composed: true }))}>
+              <div
+                id="treats-balance"
+                @click=${() =>
+                  this.dispatchEvent(
+                    new CustomEvent('updateView', {
+                      detail: 'app-shop-view',
+                      bubbles: true,
+                      composed: true,
+                    })
+                  )}
+              >
                 <sl-icon name="coin"></sl-icon>
                 <span>${this.userInfo?.treatsBalance ?? 0}</span>
               </div>
