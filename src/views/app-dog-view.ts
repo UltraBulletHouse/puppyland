@@ -16,7 +16,12 @@ import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
 import '../components/icon-png/icon-png';
 import '../components/leaderboards/leaderboards';
-import { API_DOG_GET, API_DOG_UPDATE, API_SUBSCRIPTION_REFRESH, API_USER_INFO } from '../constants/apiConstants';
+import {
+  API_DOG_GET,
+  API_DOG_UPDATE,
+  API_SUBSCRIPTION_REFRESH,
+  API_USER_INFO,
+} from '../constants/apiConstants';
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
@@ -459,7 +464,9 @@ export class AppDogView extends LitElement {
       try {
         await apiCall(this.accessToken!).post(API_SUBSCRIPTION_REFRESH, {});
         // Optionally refresh user info after successful refresh
-        const userInfoResp = await apiCall(this.accessToken!).get<{ user: import('../types/userInfo').UserInfo }>(API_USER_INFO);
+        const userInfoResp = await apiCall(this.accessToken!).get<{
+          user: import('../types/userInfo').UserInfo;
+        }>(API_USER_INFO);
         const user = userInfoResp.data?.user;
         if (user) {
           const { updateUserInfoEvent } = await import('../contexts/userInfoContext');
@@ -577,138 +584,138 @@ export class AppDogView extends LitElement {
             <div id="content-tabs">
               <div id="tabs-container">
                 <sl-tab-group class="dog-tabs" @sl-tab-show=${this.handleTabShow}>
-              
-                <sl-tab slot="nav" panel="stats">
-                  <sl-icon name="bar-chart"></sl-icon>
-                  Stats
-                </sl-tab>
-                <sl-tab slot="nav" panel="quests">
-                  <sl-icon name="list-task"></sl-icon>
-                  Daily Quests
-                </sl-tab>
-                <sl-tab slot="nav" panel="leaderboards">
-                  <sl-icon name="trophy"></sl-icon>
-                  Leaderboards
-                </sl-tab>
+                  <sl-tab slot="nav" panel="stats">
+                    <sl-icon name="bar-chart"></sl-icon>
+                    Stats
+                  </sl-tab>
+                  <sl-tab slot="nav" panel="quests">
+                    <sl-icon name="list-task"></sl-icon>
+                    Daily Quests
+                  </sl-tab>
+                  <sl-tab slot="nav" panel="leaderboards">
+                    <sl-icon name="trophy"></sl-icon>
+                    Leaderboards
+                  </sl-tab>
 
-                <sl-tab-panel name="stats">
-                  <div id="stats-content">
-                    <div id="info-container">
-                      <!-- Level Card -->
-                      <div class="stat-card">
-                        <div class="stat-header">
-                          <div class="stat-icon level">
-                            <sl-icon name="star"></sl-icon>
-                          </div>
-                          <div class="stat-title">Level</div>
-                          <div class="level-badge">${level}</div>
-                        </div>
-                      </div>
-
-                      <!-- Available Doghouses Card -->
-                      <div class="stat-card">
-                        <div class="stat-header">
-                          <div class="stat-icon doghouses">
-                            <sl-icon name="house-add"></sl-icon>
-                          </div>
-                          <div class="stat-title">Available Doghouses</div>
-                          <div class="doghouses-count">${availableDoghouses}</div>
-                        </div>
-                      </div>
-
-                      <!-- Energy Card -->
-                      <div class="stat-card">
-                        <div class="stat-header">
-                          <div class="stat-icon energy">
-                            <sl-icon name="lightning-charge"></sl-icon>
-                          </div>
-                          <div class="stat-title">Energy</div>
-                          <div class="stat-value">${energy}</div>
-                        </div>
-                        <div class="stat-progress">
-                          <div class="progress-info">
-                            <span class="progress-current">${energy} / ${energyMax}</span>
-                            <span class="progress-percentage"
-                              >${Math.round((energy / energyMax) * 100)}%</span
-                            >
-                          </div>
-                          <div class="modern-progress-bar">
-                            <div
-                              class="progress-fill energy"
-                              style="width: ${(energy / energyMax) * 100}%"
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Experience Card -->
-                      <div class="stat-card">
-                        <div class="stat-header">
-                          <div class="stat-icon experience">
-                            <sl-icon name="mortarboard"></sl-icon>
-                          </div>
-                          <div class="stat-title">Experience</div>
-                          <div class="stat-value">${experience}</div>
-                        </div>
-                        <div class="stat-progress">
-                          <div class="progress-info">
-                            <span class="progress-current"
-                              >${experience} / ${expForNextLevel} XP</span
-                            >
-                            <span class="progress-percentage"
-                              >${Math.round((experience / expForNextLevel) * 100)}%</span
-                            >
-                          </div>
-                          <div class="modern-progress-bar">
-                            <div
-                              class="progress-fill experience"
-                              style="width: ${(experience / expForNextLevel) * 100}%"
-                            ></div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Doghouse Buffs Card -->
-                      ${this.dogInfo?.buffsForDoghouses && this.dogInfo.buffsForDoghouses.length > 0
-                        ? html`
-                            <div class="stat-card">
-                              <div class="stat-header">
-                                <div class="stat-icon doghouses">
-                                  <sl-icon name="tools"></sl-icon>
-                                </div>
-                                <div class="stat-title">Doghouse Buffs</div>
-                              </div>
-                              <div class="buffs-grid">
-                                ${this.dogInfo.buffsForDoghouses.map(
-                                  (buff) => html`
-                                    <div class="buff-item-tile">
-                                      <icon-png-badge
-                                        name="${buff.buffSku.includes('repair')
-                                          ? 'toolkit'
-                                          : 'energy-drink'}"
-                                        badge="${buff.quantity}"
-                                      ></icon-png-badge>
-                                      <span class="buff-name">${buff.name}</span>
-                                    </div>
-                                  `
-                                )}
-                              </div>
+                  <sl-tab-panel name="stats">
+                    <div id="stats-content">
+                      <div id="info-container">
+                        <!-- Level Card -->
+                        <div class="stat-card">
+                          <div class="stat-header">
+                            <div class="stat-icon level">
+                              <sl-icon name="star"></sl-icon>
                             </div>
-                          `
-                        : ``}
+                            <div class="stat-title">Level</div>
+                            <div class="level-badge">${level}</div>
+                          </div>
+                        </div>
+
+                        <!-- Available Doghouses Card -->
+                        <div class="stat-card">
+                          <div class="stat-header">
+                            <div class="stat-icon doghouses">
+                              <sl-icon name="house-add"></sl-icon>
+                            </div>
+                            <div class="stat-title">Available Doghouses</div>
+                            <div class="doghouses-count">${availableDoghouses}</div>
+                          </div>
+                        </div>
+
+                        <!-- Energy Card -->
+                        <div class="stat-card">
+                          <div class="stat-header">
+                            <div class="stat-icon energy">
+                              <sl-icon name="lightning-charge"></sl-icon>
+                            </div>
+                            <div class="stat-title">Energy</div>
+                            <div class="stat-value">${energy}</div>
+                          </div>
+                          <div class="stat-progress">
+                            <div class="progress-info">
+                              <span class="progress-current">${energy} / ${energyMax}</span>
+                              <span class="progress-percentage"
+                                >${Math.round((energy / energyMax) * 100)}%</span
+                              >
+                            </div>
+                            <div class="modern-progress-bar">
+                              <div
+                                class="progress-fill energy"
+                                style="width: ${(energy / energyMax) * 100}%"
+                              ></div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Experience Card -->
+                        <div class="stat-card">
+                          <div class="stat-header">
+                            <div class="stat-icon experience">
+                              <sl-icon name="mortarboard"></sl-icon>
+                            </div>
+                            <div class="stat-title">Experience</div>
+                            <div class="stat-value">${experience}</div>
+                          </div>
+                          <div class="stat-progress">
+                            <div class="progress-info">
+                              <span class="progress-current"
+                                >${experience} / ${expForNextLevel} XP</span
+                              >
+                              <span class="progress-percentage"
+                                >${Math.round((experience / expForNextLevel) * 100)}%</span
+                              >
+                            </div>
+                            <div class="modern-progress-bar">
+                              <div
+                                class="progress-fill experience"
+                                style="width: ${(experience / expForNextLevel) * 100}%"
+                              ></div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Doghouse Buffs Card -->
+                        ${this.dogInfo?.buffsForDoghouses &&
+                        this.dogInfo.buffsForDoghouses.length > 0
+                          ? html`
+                              <div class="stat-card">
+                                <div class="stat-header">
+                                  <div class="stat-icon doghouses">
+                                    <sl-icon name="tools"></sl-icon>
+                                  </div>
+                                  <div class="stat-title">Doghouse Buffs</div>
+                                </div>
+                                <div class="buffs-grid">
+                                  ${this.dogInfo.buffsForDoghouses.map(
+                                    (buff) => html`
+                                      <div class="buff-item-tile">
+                                        <icon-png-badge
+                                          name="${buff.buffSku.includes('repair')
+                                            ? 'toolkit'
+                                            : 'energy-drink'}"
+                                          badge="${buff.quantity}"
+                                        ></icon-png-badge>
+                                        <span class="buff-name">${buff.name}</span>
+                                      </div>
+                                    `
+                                  )}
+                                </div>
+                              </div>
+                            `
+                          : ``}
+                      </div>
                     </div>
-                  </div>
-                </sl-tab-panel>
+                  </sl-tab-panel>
 
-                <sl-tab-panel name="quests">
-                  <daily-quests .isActive=${this.activeTab === 'quests'}></daily-quests>
-                </sl-tab-panel>
+                  <sl-tab-panel name="quests">
+                    <daily-quests .isActive=${this.activeTab === 'quests'}></daily-quests>
+                  </sl-tab-panel>
 
-                <sl-tab-panel name="leaderboards">
-                  <leaderboards-component
-                    .isActive=${this.activeTab === 'leaderboards'}
-                  ></leaderboards-component>
-                </sl-tab-panel>
+                  <sl-tab-panel name="leaderboards">
+                    <leaderboards-component
+                      .isActive=${this.activeTab === 'leaderboards'}
+                    ></leaderboards-component>
+                  </sl-tab-panel>
                 </sl-tab-group>
               </div>
             </div>

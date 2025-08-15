@@ -209,8 +209,6 @@ export class MapModal extends LitElement {
   //     });
   // }
 
-  
-
   handleDoghouseTap = () => {
     if (this.btnLoading) return;
 
