@@ -137,7 +137,7 @@ export class MapModal extends LitElement {
   applyBuffToDoghouse = async (buffSku: string) => {
     if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
-    this.loadingButton();
+    this.btnLoading = true;
 
     try {
       const applyBuffResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
@@ -167,6 +167,7 @@ export class MapModal extends LitElement {
       this.showBuffAppliedMessageWithReason(error.response.data.message || 'Failed to apply buff.');
     } finally {
       this.buffToConfirm = null;
+      this.btnLoading = false;
     }
   };
 
@@ -208,16 +209,12 @@ export class MapModal extends LitElement {
   //     });
   // }
 
-  loadingButton = () => {
-    this.btnLoading = true;
-
-    setTimeout(() => {
-      this.btnLoading = false;
-    }, 3000);
-  };
+  
 
   handleDoghouseTap = () => {
-    if (!this.isOwn && !this.btnLoading) {
+    if (this.btnLoading) return;
+
+    if (!this.isOwn) {
       // Check if attack is allowed
       const { canAttack, reason } = this.canAttackDoghouse();
 
@@ -233,13 +230,8 @@ export class MapModal extends LitElement {
       if (this.tapCount >= 3) {
         this.triggerAttackSuccessAnimation();
         this.attackDoghouse();
-
-        // Keep dots red for a moment, then reset
-        setTimeout(() => {
-          this.tapCount = 0;
-        }, 1000);
       }
-    } else if (this.isOwn && !this.btnLoading) {
+    } else if (this.isOwn) {
       // Check if repair is allowed
       const { canRepair, reason } = this.canRepairDoghouse();
 
@@ -255,11 +247,6 @@ export class MapModal extends LitElement {
       if (this.repairTapCount >= 3) {
         this.triggerRepairSuccessAnimation();
         this.repairDoghouseWithTaps();
-
-        // Keep dots green for a moment, then reset
-        setTimeout(() => {
-          this.repairTapCount = 0;
-        }, 1000);
       }
     }
   };
@@ -428,39 +415,46 @@ export class MapModal extends LitElement {
   attackDoghouse = async () => {
     if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
-    this.loadingButton();
+    this.btnLoading = true;
 
-    const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
-      API_DOGHOUSE_ATTACK,
-      { doghouseId: this.dhId, dogId: this.dogInfo.id }
-    );
+    try {
+      const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
+        API_DOGHOUSE_ATTACK,
+        { doghouseId: this.dhId, dogId: this.dogInfo.id }
+      );
 
-    const dogInfoResponse = attackDoghouseResponse?.data?.dog;
-    const doghouseInfoResponse = attackDoghouseResponse?.data?.doghouse;
-    const attackResult = attackDoghouseResponse?.data?.attackResult;
-    const isLevelUp = attackDoghouseResponse?.data?.isLevelUp;
+      const dogInfoResponse = attackDoghouseResponse?.data?.dog;
+      const doghouseInfoResponse = attackDoghouseResponse?.data?.doghouse;
+      const attackResult = attackDoghouseResponse?.data?.attackResult;
+      const isLevelUp = attackDoghouseResponse?.data?.isLevelUp;
 
-    if (isLevelUp) {
-      this.isLevelUp = isLevelUp;
+      if (isLevelUp) {
+        this.isLevelUp = isLevelUp;
+      }
+
+      if (attackResult.isDoghouseDestroyed) {
+        this.triggerDestructionEffect();
+        this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
+      } else {
+        this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
+      }
+
+      if (dogInfoResponse) {
+        updateDogInfoEvent(this, dogInfoResponse);
+      }
+      if (attackResult?.isDoghouseDestroyed) {
+        this.dhHp = '0';
+      } else if (doghouseInfoResponse) {
+        this.dhHp = doghouseInfoResponse.hp.toString();
+      }
+
+      sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse?.hp.toString());
+    } catch (error) {
+      console.error('Error attacking doghouse:', error);
+    } finally {
+      this.btnLoading = false;
+      this.tapCount = 0;
     }
-
-    if (attackResult.isDoghouseDestroyed) {
-      this.triggerDestructionEffect();
-      this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
-    } else {
-      this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
-    }
-
-    if (dogInfoResponse) {
-      updateDogInfoEvent(this, dogInfoResponse);
-    }
-    if (attackResult?.isDoghouseDestroyed) {
-      this.dhHp = '0';
-    } else if (doghouseInfoResponse) {
-      this.dhHp = doghouseInfoResponse.hp.toString();
-    }
-
-    sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse?.hp.toString());
   };
 
   repairDoghouse = async () => {
@@ -487,40 +481,47 @@ export class MapModal extends LitElement {
   repairDoghouseWithTaps = async () => {
     if (!this.accessToken || !this.dhId || !this.dogInfo?.id) return;
 
-    this.loadingButton();
+    this.btnLoading = true;
 
-    const currentHp = Number(this.dhHp);
+    try {
+      const currentHp = Number(this.dhHp);
 
-    const repairDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
-      API_DOGHOUSE_REPAIR,
-      { doghouseId: this.dhId, dogId: this.dogInfo.id }
-    );
+      const repairDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
+        API_DOGHOUSE_REPAIR,
+        { doghouseId: this.dhId, dogId: this.dogInfo.id }
+      );
 
-    const dogInfoResponse = repairDoghouseResponse?.data?.dog;
-    const doghouseInfoResponse = repairDoghouseResponse?.data?.doghouse;
+      const dogInfoResponse = repairDoghouseResponse?.data?.dog;
+      const doghouseInfoResponse = repairDoghouseResponse?.data?.doghouse;
 
-    // Calculate actual health restored
-    let healthRestored = 0;
-    if (doghouseInfoResponse) {
-      const newHp = doghouseInfoResponse.hp;
-      healthRestored = newHp - currentHp;
-    }
+      // Calculate actual health restored
+      let healthRestored = 0;
+      if (doghouseInfoResponse) {
+        const newHp = doghouseInfoResponse.hp;
+        healthRestored = newHp - currentHp;
+      }
 
-    // Show visual feedback for repair with actual amount
-    if (healthRestored > 0) {
-      this.showRepairVisualFeedback(healthRestored);
-    } else {
-      // Fallback for edge cases
-      this.showRepairVisualFeedback(1);
-    }
+      // Show visual feedback for repair with actual amount
+      if (healthRestored > 0) {
+        this.showRepairVisualFeedback(healthRestored);
+      } else {
+        // Fallback for edge cases
+        this.showRepairVisualFeedback(1);
+      }
 
-    if (dogInfoResponse) {
-      updateDogInfoEvent(this, dogInfoResponse);
-    }
+      if (dogInfoResponse) {
+        updateDogInfoEvent(this, dogInfoResponse);
+      }
 
-    if (doghouseInfoResponse) {
-      this.dhHp = doghouseInfoResponse.hp.toString();
-      sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
+      if (doghouseInfoResponse) {
+        this.dhHp = doghouseInfoResponse.hp.toString();
+        sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
+      }
+    } catch (error) {
+      console.error('Error repairing doghouse:', error);
+    } finally {
+      this.btnLoading = false;
+      this.repairTapCount = 0;
     }
   };
 
