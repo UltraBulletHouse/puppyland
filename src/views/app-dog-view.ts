@@ -4,16 +4,16 @@ import { customElement, property, state } from 'lit/decorators.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
+import '@shoelace-style/shoelace/dist/components/drawer/drawer.js';
 import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
+import '@shoelace-style/shoelace/dist/components/popup/popup.js';
+import '@shoelace-style/shoelace/dist/components/range/range.js';
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
 import '@shoelace-style/shoelace/dist/components/tab/tab.js';
 import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
-import '@shoelace-style/shoelace/dist/components/drawer/drawer.js';
-import '@shoelace-style/shoelace/dist/components/popup/popup.js';
-import '@shoelace-style/shoelace/dist/components/range/range.js';
 
 import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
@@ -471,9 +471,18 @@ export class AppDogView extends LitElement {
         animation: impactPulse 350ms ease-out;
       }
       @keyframes impactPulse {
-        0% { transform: scale(1); color: var(--color-black-medium); }
-        20% { transform: scale(1.06); color: var(--color-primary); }
-        100% { transform: scale(1); color: var(--color-black-medium); }
+        0% {
+          transform: scale(1);
+          color: var(--color-black-medium);
+        }
+        20% {
+          transform: scale(1.06);
+          color: var(--color-primary);
+        }
+        100% {
+          transform: scale(1);
+          color: var(--color-black-medium);
+        }
       }
       .alloc-card .help-icon::part(base) {
         color: var(--color-black-medium);
@@ -522,9 +531,24 @@ export class AppDogView extends LitElement {
         border-color: var(--sl-color-gray-400);
         box-shadow: none;
       }
-      .alloc-btn-slot{position:absolute; right:8px; top:50%; transform:translateY(-50%); display:flex; justify-content:flex-end}
-      .alloc-card { border: none !important; position: relative; }
-      .alloc-card.alloc-card--floating .alloc-btn-slot { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); }
+      .alloc-btn-slot {
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: flex-end;
+      }
+      .alloc-card {
+        border: none !important;
+        position: relative;
+      }
+      .alloc-card.alloc-card--floating .alloc-btn-slot {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
       .alloc-card .alloc-btn.plus::part(base) {
         padding: 0;
         width: 28px;
@@ -534,16 +558,23 @@ export class AppDogView extends LitElement {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(180deg, var(--color-primary), color-mix(in srgb, var(--color-primary) 85%, #000 15%));
+        background: linear-gradient(
+          180deg,
+          var(--color-primary),
+          color-mix(in srgb, var(--color-primary) 85%, #000 15%)
+        );
         color: white;
         border: none;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-        transition: background 0.15s ease, transform 0.05s ease, box-shadow 0.15s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition:
+          background 0.15s ease,
+          transform 0.05s ease,
+          box-shadow 0.15s ease;
         line-height: 1;
       }
       .alloc-card .alloc-btn.plus:hover::part(base) {
         background: color-mix(in srgb, var(--color-primary) 85%, #fff 15%);
-        box-shadow: 0 3px 10px rgba(0,0,0,0.18);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
       }
       .alloc-card .alloc-btn.plus:active::part(base) {
         transform: translateY(1px);
@@ -565,17 +596,25 @@ export class AppDogView extends LitElement {
         padding: 10px 12px;
         border-radius: var(--border-radius-medium);
         border: 1px solid var(--color-primary-medium);
-        background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--sl-color-gray-50));
-        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), var(--sl-color-gray-50));
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
         margin: 8px 0 12px;
       }
       .points-panel.active {
         border-color: color-mix(in srgb, var(--color-primary) 50%, #fff);
-        background: linear-gradient(180deg, color-mix(in srgb, var(--color-primary) 8%, #fff), #fff);
+        background: linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--color-primary) 8%, #fff),
+          #fff
+        );
       }
       .points-panel.done {
         border-color: color-mix(in srgb, var(--sl-color-success-600) 40%, #fff);
-        background: linear-gradient(180deg, color-mix(in srgb, var(--sl-color-success-200) 25%, #fff), #fff);
+        background: linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--sl-color-success-200) 25%, #fff),
+          #fff
+        );
       }
       .points-left {
         display: inline-flex;
@@ -607,39 +646,39 @@ export class AppDogView extends LitElement {
         line-height: 1;
       }
 
-     /* Attribute Details Drawer styles */
-     .details-drawer::part(panel) {
-       max-width: 520px;
-       margin: 0 auto;
-     
-       border-top-left-radius: var(--border-radius-large, 16px);
-       border-top-right-radius: var(--border-radius-large, 16px);
-       padding: 16px 16px 20px;
-     }
-     .details-header {
-       display: flex;
-       align-items: center;
-       gap: 10px;
-       font-weight: 800;
-       font-size: 16px;
-       margin-bottom: 8px;
-     }
-     .details-header sl-icon::part(base) {
-       background: var(--color-primary);
-       color: white;
-       border-radius: 999px;
-       padding: 6px;
-       font-size: 16px;
-     }
-     .details-text {
-       color: var(--color-black-medium);
-       margin: 0 0 14px;
-       line-height: 1.4;
-     }
-     .details-actions {
-       display: flex;
-       justify-content: flex-end;
-     }
+      /* Attribute Details Drawer styles */
+      .details-drawer::part(panel) {
+        max-width: 520px;
+        margin: 0 auto;
+
+        border-top-left-radius: var(--border-radius-large, 16px);
+        border-top-right-radius: var(--border-radius-large, 16px);
+        padding: 16px 16px 20px;
+      }
+      .details-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+      .details-header sl-icon::part(base) {
+        background: var(--color-primary);
+        color: white;
+        border-radius: 999px;
+        padding: 6px;
+        font-size: 16px;
+      }
+      .details-text {
+        color: var(--color-black-medium);
+        margin: 0 0 14px;
+        line-height: 1.4;
+      }
+      .details-actions {
+        display: flex;
+        justify-content: flex-end;
+      }
     `,
   ];
 
@@ -726,25 +765,29 @@ export class AppDogView extends LitElement {
 
   saveAttributes() {
     // Mock: accept the current stats as the new base and clear pending points (no API yet)
-    const spent = (this.stats.power - this.baseStats.power)
-      + (this.stats.stamina - this.baseStats.stamina)
-      + (this.stats.reach - this.baseStats.reach)
-      + (this.stats.fortification - this.baseStats.fortification);
+    const spent =
+      this.stats.power -
+      this.baseStats.power +
+      (this.stats.stamina - this.baseStats.stamina) +
+      (this.stats.reach - this.baseStats.reach) +
+      (this.stats.fortification - this.baseStats.fortification);
     this.baseStats = { ...this.stats };
     this.statPointsAvailable = Math.max(0, this.statPointsAvailable - 0); // unchanged, but keep consistent
     // no API yet; in real impl, persist then toast and refresh
   }
 
   resetAllocation = () => {
-    const spent = (this.stats.power - this.baseStats.power)
-      + (this.stats.stamina - this.baseStats.stamina)
-      + (this.stats.reach - this.baseStats.reach)
-      + (this.stats.fortification - this.baseStats.fortification);
+    const spent =
+      this.stats.power -
+      this.baseStats.power +
+      (this.stats.stamina - this.baseStats.stamina) +
+      (this.stats.reach - this.baseStats.reach) +
+      (this.stats.fortification - this.baseStats.fortification);
     if (spent <= 0) return;
     // Revert to last saved baseline and return the unsaved points to the pool
     this.stats = { ...this.baseStats };
     this.statPointsAvailable += spent;
-  }
+  };
 
   manageSubscription() {
     // Open Google Play subscription management deep link
@@ -924,13 +967,15 @@ export class AppDogView extends LitElement {
         photo: null,
       } as DogInfo);
 
-   const spentPoints = (this.stats.power - this.baseStats.power)
-     + (this.stats.stamina - this.baseStats.stamina)
-     + (this.stats.reach - this.baseStats.reach)
-     + (this.stats.fortification - this.baseStats.fortification);
-   const hasPending = spentPoints > 0;
+    const spentPoints =
+      this.stats.power -
+      this.baseStats.power +
+      (this.stats.stamina - this.baseStats.stamina) +
+      (this.stats.reach - this.baseStats.reach) +
+      (this.stats.fortification - this.baseStats.fortification);
+    const hasPending = spentPoints > 0;
 
-   return this.dogInfo && this.newName
+    return this.dogInfo && this.newName
       ? html`
           <div id="container">
             <div id="dog-header">
@@ -1030,17 +1075,34 @@ export class AppDogView extends LitElement {
                           <!-- Compact Experience tile integrated into Attributes -->
                           <div class="mini-progress" title="XP to next level">
                             <div class="progress-info">
-                              <span class="progress-current">${experience} / ${expForNextLevel} XP</span>
-                              <span class="progress-percentage">${Math.round(expForNextLevel ? (experience / expForNextLevel) * 100 : 0)}%</span>
+                              <span class="progress-current"
+                                >${experience} / ${expForNextLevel} XP</span
+                              >
+                              <span class="progress-percentage"
+                                >${Math.round(
+                                  expForNextLevel ? (experience / expForNextLevel) * 100 : 0
+                                )}%</span
+                              >
                             </div>
                             <div class="modern-progress-bar mini">
-                              <div class="progress-fill experience" style="width: ${expForNextLevel ? (experience / expForNextLevel) * 100 : 0}%"></div>
+                              <div
+                                class="progress-fill experience"
+                                style="width: ${expForNextLevel
+                                  ? (experience / expForNextLevel) * 100
+                                  : 0}%"
+                              ></div>
                             </div>
                           </div>
 
-                          <div class="points-panel ${this.statPointsAvailable > 0 ? 'active' : 'done'}">
+                          <div
+                            class="points-panel ${this.statPointsAvailable > 0 ? 'active' : 'done'}"
+                          >
                             <div class="points-left">
-                              <sl-icon name="${this.statPointsAvailable > 0 ? 'plus-circle' : 'check2-circle'}"></sl-icon>
+                              <sl-icon
+                                name="${this.statPointsAvailable > 0
+                                  ? 'plus-circle'
+                                  : 'check2-circle'}"
+                              ></sl-icon>
                               ${this.statPointsAvailable > 0
                                 ? html`<div>
                                     <div class="points-number">${this.statPointsAvailable}</div>
@@ -1050,8 +1112,16 @@ export class AppDogView extends LitElement {
                             </div>
                             ${hasPending
                               ? html`<div class="points-actions">
-                                  <sl-button size="small" pill variant="primary" @click=${this.saveAttributes}>Save</sl-button>
-                                  <sl-button size="small" pill @click=${this.resetAllocation}>Reset</sl-button>
+                                  <sl-button
+                                    size="small"
+                                    pill
+                                    variant="primary"
+                                    @click=${this.saveAttributes}
+                                    >Save</sl-button
+                                  >
+                                  <sl-button size="small" pill @click=${this.resetAllocation}
+                                    >Reset</sl-button
+                                  >
                                 </div>`
                               : ''}
                           </div>
@@ -1061,60 +1131,131 @@ export class AppDogView extends LitElement {
                               <sl-icon class="stat-icon level" name="fire"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Power</div>
-                                <span class="impact">Atk dmg ${5 + (this.stats.power - this.baseStats.power)}–${9 + (this.stats.power - this.baseStats.power)}</span>
-                                <sl-icon-button class="help-icon" name="question-circle" label="What is Power?" @click=${() => this.openAttributeDetails('power')}></sl-icon-button>
+                                <span class="impact"
+                                  >Atk dmg
+                                  ${5 + (this.stats.power - this.baseStats.power)}–${9 +
+                                  (this.stats.power - this.baseStats.power)}</span
+                                >
+                                <sl-icon-button
+                                  class="help-icon"
+                                  name="question-circle"
+                                  label="What is Power?"
+                                  @click=${() => this.openAttributeDetails('power')}
+                                ></sl-icon-button>
                               </div>
                               <div class="value">${this.stats.power}</div>
                               <div class="alloc-btn-slot">
-  ${this.statPointsAvailable > 0
-    ? html`<sl-button class="alloc-btn plus" circle size="small" @click=${(e: Event) => { e.stopPropagation(); this.allocateStat('power'); }}><sl-icon name="plus-lg"></sl-icon></sl-button>`
-    : html``}
-</div>
+                                ${this.statPointsAvailable > 0
+                                  ? html`<sl-button
+                                      class="alloc-btn plus"
+                                      circle
+                                      size="small"
+                                      @click=${(e: Event) => {
+                                        e.stopPropagation();
+                                        this.allocateStat('power');
+                                      }}
+                                      ><sl-icon name="plus-lg"></sl-icon
+                                    ></sl-button>`
+                                  : html``}
+                              </div>
                             </div>
 
                             <div class="alloc-card alloc-card--floating">
                               <sl-icon class="stat-icon energy" name="heart-pulse"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Stamina</div>
-                                <span class="impact">Max energy ${100 + 10 * (this.stats.stamina - this.baseStats.stamina)}</span>
-                                <sl-icon-button class="help-icon" name="question-circle" label="What is Stamina?" @click=${() => this.openAttributeDetails('stamina')}></sl-icon-button>
+                                <span class="impact"
+                                  >Max energy
+                                  ${100 + 10 * (this.stats.stamina - this.baseStats.stamina)}</span
+                                >
+                                <sl-icon-button
+                                  class="help-icon"
+                                  name="question-circle"
+                                  label="What is Stamina?"
+                                  @click=${() => this.openAttributeDetails('stamina')}
+                                ></sl-icon-button>
                               </div>
                               <div class="value">${this.stats.stamina}</div>
                               <div class="alloc-btn-slot">
-  ${this.statPointsAvailable > 0
-    ? html`<sl-button class="alloc-btn plus" circle size="small" @click=${(e: Event) => { e.stopPropagation(); this.allocateStat('stamina'); }}><sl-icon name="plus-lg"></sl-icon></sl-button>`
-    : html``}
-</div>
+                                ${this.statPointsAvailable > 0
+                                  ? html`<sl-button
+                                      class="alloc-btn plus"
+                                      circle
+                                      size="small"
+                                      @click=${(e: Event) => {
+                                        e.stopPropagation();
+                                        this.allocateStat('stamina');
+                                      }}
+                                      ><sl-icon name="plus-lg"></sl-icon
+                                    ></sl-button>`
+                                  : html``}
+                              </div>
                             </div>
 
                             <div class="alloc-card alloc-card--floating">
                               <sl-icon class="stat-icon doghouses" name="radar"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Reach</div>
-                                <span class="impact">Range ${200 + 10 * (this.stats.reach - this.baseStats.reach)}m</span>
-                                <sl-icon-button class="help-icon" name="question-circle" label="What is Reach?" @click=${() => this.openAttributeDetails('reach')}></sl-icon-button>
+                                <span class="impact"
+                                  >Range
+                                  ${200 + 10 * (this.stats.reach - this.baseStats.reach)}m</span
+                                >
+                                <sl-icon-button
+                                  class="help-icon"
+                                  name="question-circle"
+                                  label="What is Reach?"
+                                  @click=${() => this.openAttributeDetails('reach')}
+                                ></sl-icon-button>
                               </div>
                               <div class="value">${this.stats.reach}</div>
                               <div class="alloc-btn-slot">
-  ${this.statPointsAvailable > 0
-    ? html`<sl-button class="alloc-btn plus" circle size="small" @click=${(e: Event) => { e.stopPropagation(); this.allocateStat('reach'); }}><sl-icon name="plus-lg"></sl-icon></sl-button>`
-    : html``}
-</div>
+                                ${this.statPointsAvailable > 0
+                                  ? html`<sl-button
+                                      class="alloc-btn plus"
+                                      circle
+                                      size="small"
+                                      @click=${(e: Event) => {
+                                        e.stopPropagation();
+                                        this.allocateStat('reach');
+                                      }}
+                                      ><sl-icon name="plus-lg"></sl-icon
+                                    ></sl-button>`
+                                  : html``}
+                              </div>
                             </div>
 
                             <div class="alloc-card alloc-card--floating">
                               <sl-icon class="stat-icon experience" name="shield-shaded"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Fortification</div>
-                                <span class="impact">Doghouse HP ${100 + 20 * (this.stats.fortification - this.baseStats.fortification)}</span>
-                                <sl-icon-button class="help-icon" name="question-circle" label="What is Fortification?" @click=${() => this.openAttributeDetails('fortification')}></sl-icon-button>
+                                <span class="impact"
+                                  >Doghouse HP
+                                  ${100 +
+                                  20 *
+                                    (this.stats.fortification - this.baseStats.fortification)}</span
+                                >
+                                <sl-icon-button
+                                  class="help-icon"
+                                  name="question-circle"
+                                  label="What is Fortification?"
+                                  @click=${() => this.openAttributeDetails('fortification')}
+                                ></sl-icon-button>
                               </div>
                               <div class="value">${this.stats.fortification}</div>
                               <div class="alloc-btn-slot">
-  ${this.statPointsAvailable > 0
-    ? html`<sl-button class="alloc-btn plus" circle size="small" @click=${(e: Event) => { e.stopPropagation(); this.allocateStat('fortification'); }}><sl-icon name="plus-lg"></sl-icon></sl-button>`
-    : html``}
-</div>
+                                ${this.statPointsAvailable > 0
+                                  ? html`<sl-button
+                                      class="alloc-btn plus"
+                                      circle
+                                      size="small"
+                                      @click=${(e: Event) => {
+                                        e.stopPropagation();
+                                        this.allocateStat('fortification');
+                                      }}
+                                      ><sl-icon name="plus-lg"></sl-icon
+                                    ></sl-button>`
+                                  : html``}
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -1186,7 +1327,6 @@ export class AppDogView extends LitElement {
                               </div>
                             `
                           : ``}
-
                       </div>
                     </div>
                   </sl-tab-panel>
@@ -1202,24 +1342,26 @@ export class AppDogView extends LitElement {
                   </sl-tab-panel>
                 </sl-tab-group>
 
-                  <!-- Attribute Details Drawer -->
-                  <sl-drawer
-                    ?open=${this.detailsOpen}
-                    aria-label=${this.detailsTitle}
-                    placement="bottom"
-                    class="details-drawer"
-                    @sl-after-hide=${this.onCloseAttributeDetails}
-                    @sl-request-close=${this.onCloseAttributeDetails}
-                  >
-                    <div class="details-header">
-                      <sl-icon name=${this.detailsIcon}></sl-icon>
-                      <span>${this.detailsTitle}</span>
-                    </div>
-                    <p class="details-text">${this.detailsText}</p>
-                    <div class="details-actions">
-                      <sl-button variant="primary" pill @click=${this.onCloseAttributeDetails}>Got it</sl-button>
-                    </div>
-                  </sl-drawer>
+                <!-- Attribute Details Drawer -->
+                <sl-drawer
+                  ?open=${this.detailsOpen}
+                  aria-label=${this.detailsTitle}
+                  placement="bottom"
+                  class="details-drawer"
+                  @sl-after-hide=${this.onCloseAttributeDetails}
+                  @sl-request-close=${this.onCloseAttributeDetails}
+                >
+                  <div class="details-header">
+                    <sl-icon name=${this.detailsIcon}></sl-icon>
+                    <span>${this.detailsTitle}</span>
+                  </div>
+                  <p class="details-text">${this.detailsText}</p>
+                  <div class="details-actions">
+                    <sl-button variant="primary" pill @click=${this.onCloseAttributeDetails}
+                      >Got it</sl-button
+                    >
+                  </div>
+                </sl-drawer>
               </div>
             </div>
           </div>
