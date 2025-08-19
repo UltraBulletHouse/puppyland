@@ -750,10 +750,46 @@ export class AppDogView extends LitElement {
     // Update dog in context and reset baseline
     const updated = resp.data?.dog;
     if (updated) {
-      // Optionally fetch derived stats in GET Dog; for now we use server-updated dog
       this.baseStats = { ...this.stats };
       updateDogInfoEvent(this, updated);
+      // Optimistic derived update to avoid UI drop while waiting for refresh
+      const cur = this.derived ?? {
+        attackMin: 5,
+        attackMax: 9,
+        energyMax: 100,
+        reachMeters: 200,
+        doghouseMaxHp: 100,
+      };
+      this.derived = {
+        attackMin: cur.attackMin + deltas.power,
+        attackMax: cur.attackMax + deltas.power,
+        energyMax: cur.energyMax + 10 * deltas.stamina,
+        reachMeters: cur.reachMeters + 10 * deltas.reach,
+        doghouseMaxHp: cur.doghouseMaxHp + 20 * deltas.fortification,
+      };
     }
+
+    // Refresh from backend to get accurate derived stats and any server-side adjustments
+    try {
+      const refreshed = await apiCall(this.accessToken).get<DogInfoResponse>(API_DOG_GET);
+      const { dog: freshDog, derived: freshDerived } = refreshed.data;
+      if (freshDog) {
+        updateDogInfoEvent(this, freshDog);
+        const attrs = (freshDog as any).attributes as {
+          power: number;
+          stamina: number;
+          reach: number;
+          fortification: number;
+        } | undefined;
+        if (attrs) {
+          this.baseStats = { ...attrs };
+          this.stats = { ...attrs };
+        }
+        this.statPointsAvailable = (freshDog as any).skillPointsAvailable ?? 0;
+      }
+      this.derived = freshDerived ?? this.derived;
+    } catch {}
+
   }
 
   resetAllocation = () => {
