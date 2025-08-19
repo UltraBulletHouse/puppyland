@@ -344,6 +344,8 @@ export class MapPopup extends LitElement {
           .dhName=${decodeURIComponent(this.dhName ?? '')}
           .dhHp=${this.dhHp}
           .dhMaxHp=${this.dhMaxHp}
+          .lat=${Number(this.userCoords?.split('/')[0] ?? '0')}
+          .lng=${Number(this.userCoords?.split('/')[1] ?? '0')}
           @closeMapModal=${this.closeMapModal}
           @closePopup=${this.closePopup}
         ></map-modal>

@@ -28,6 +28,8 @@ import { MapModalStyles } from './map-modal-styles';
  */
 @customElement('map-modal')
 export class MapModal extends LitElement {
+  @property({ type: Number }) lat?: number;
+  @property({ type: Number }) lng?: number;
   @consume({ context: accessTokenContext, subscribe: true })
   @property({ attribute: false })
   accessToken: string | null = null;
@@ -418,7 +420,7 @@ export class MapModal extends LitElement {
     try {
       const attackDoghouseResponse = await apiCall(this.accessToken).patch<AttackDoghouseResponse>(
         API_DOGHOUSE_ATTACK,
-        { doghouseId: this.dhId, dogId: this.dogInfo.id }
+        { doghouseId: this.dhId, dogId: this.dogInfo.id, userLat: this.lat, userLng: this.lng }
       );
 
       const dogInfoResponse = attackDoghouseResponse?.data?.dog;
@@ -463,7 +465,7 @@ export class MapModal extends LitElement {
 
     const repairDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
       API_DOGHOUSE_REPAIR,
-      { doghouseId: this.dhId, dogId: this.dogInfo.id }
+      { doghouseId: this.dhId, dogId: this.dogInfo.id, userLat: this.lat, userLng: this.lng }
     );
 
     const dogInfoResponse = repairDoghouseResponse?.data?.dog;
@@ -489,7 +491,7 @@ export class MapModal extends LitElement {
 
       const repairDoghouseResponse = await apiCall(this.accessToken).patch<RepairDoghouseResponse>(
         API_DOGHOUSE_REPAIR,
-        { doghouseId: this.dhId, dogId: this.dogInfo.id }
+        { doghouseId: this.dhId, dogId: this.dogInfo.id, userLat: this.lat, userLng: this.lng }
       );
 
       const dogInfoResponse = repairDoghouseResponse?.data?.dog;
@@ -787,10 +789,9 @@ export class MapModal extends LitElement {
         <h3>You reached level <strong>${this.dogInfo?.level}</strong>!</h3>
         <div>
           <ul>
-            <li><sl-icon name="lightning-charge"></sl-icon>Max energy +10</li>
-            <li><sl-icon name="lightning"></sl-icon>Energy restored</li>
+            <li><sl-icon name="plus-circle"></sl-icon>Skill point +1</li>
+
             <li><sl-icon name="house-add"></sl-icon>Doghouse +1</li>
-            <li><sl-icon name="house-heart"></sl-icon>All doghouses health +10</li>
           </ul>
         </div>
         <sl-button class="claim-btn" @click=${this.closeMapModal} pill>Claim </sl-button>
