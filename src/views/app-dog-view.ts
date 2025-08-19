@@ -1235,7 +1235,7 @@ export class AppDogView extends LitElement {
                             </div>
 
                             <div class="alloc-card alloc-card--floating">
-                              <sl-icon class="stat-icon doghouses" name="radar"></sl-icon>
+                              <sl-icon class="stat-icon doghouses" name="broadcast-pin"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Reach</div>
                                 <span class="impact">Range ${reachPreview}m</span>
