@@ -875,7 +875,7 @@ export class AppDogView extends LitElement {
       case 'stamina':
         title = 'Stamina';
         icon = 'heart-pulse';
-        text = `Increases max energy so you can attack more or repair your doghouses more often. Current max energy: ${maxEnergy}. (+10 per point, starting from 100)`;
+        text = `Increases max energy so you can attack or repair your doghouses more often. Current max energy: ${maxEnergy}. (+10 per point, starting from 100)`;
         break;
       case 'reach':
         title = 'Reach';
