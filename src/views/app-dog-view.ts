@@ -132,9 +132,11 @@ export class AppDogView extends LitElement {
       .dog-tabs::part(base) {
         border-radius: var(--border-radius-medium);
       }
-
       sl-tab-group {
         height: 100%;
+      }
+      sl-tab-group::part(nav) {
+        padding: 8px;
       }
       sl-tab-panel {
         overflow-y: auto;
@@ -166,6 +168,7 @@ export class AppDogView extends LitElement {
 
       #stats-content {
         padding: 16px;
+        padding-top: 0;
       }
       #info-container {
         display: grid;
