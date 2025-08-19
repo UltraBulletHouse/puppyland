@@ -4,6 +4,7 @@ export const API_USER_INFO = 'User';
 /* DOG */
 export const API_DOG_GET = 'Dog';
 export const API_DOG_UPDATE = 'Dog/Update';
+export const API_DOG_ALLOCATE_ATTRS = 'Dog/Attributes/Allocate';
 
 /* DOG/DOGHOUSES */
 export const API_DOGHOUSE_GET = 'Dog/Doghouses';

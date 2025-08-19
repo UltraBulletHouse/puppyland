@@ -29,7 +29,8 @@ import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
+import { DogInfo, DogInfoResponse, DogInfoUpdateResponse, DogDerivedStats } from '../types/dog';
+
 import { apiCall } from '../utils/apiUtils';
 
 @customElement('app-dog-view')
@@ -731,24 +732,24 @@ export class AppDogView extends LitElement {
   @state()
   isEditingName: boolean = false;
 
-  // Mocked RPG-like stats and allocation points
+  // RPG-like stats and allocation points
   @state()
-  statPointsAvailable: number = 0; // will be set based on level once dog info loads
+  statPointsAvailable: number = 0;
 
   @state()
   stats: { power: number; stamina: number; reach: number; fortification: number } = {
-    power: 5,
-    stamina: 5,
-    reach: 5,
-    fortification: 5,
+    power: 0,
+    stamina: 0,
+    reach: 0,
+    fortification: 0,
   };
 
   @state()
   baseStats: { power: number; stamina: number; reach: number; fortification: number } = {
-    power: 5,
-    stamina: 5,
-    reach: 5,
-    fortification: 5,
+    power: 0,
+    stamina: 0,
+    reach: 0,
+    fortification: 0,
   };
 
   allocateStat(stat: 'power' | 'stamina' | 'reach' | 'fortification') {
@@ -763,17 +764,32 @@ export class AppDogView extends LitElement {
     this.statPointsAvailable = this.statPointsAvailable + 1;
   }
 
-  saveAttributes() {
-    // Mock: accept the current stats as the new base and clear pending points (no API yet)
-    const spent =
-      this.stats.power -
-      this.baseStats.power +
-      (this.stats.stamina - this.baseStats.stamina) +
-      (this.stats.reach - this.baseStats.reach) +
-      (this.stats.fortification - this.baseStats.fortification);
-    this.baseStats = { ...this.stats };
-    this.statPointsAvailable = Math.max(0, this.statPointsAvailable - 0); // unchanged, but keep consistent
-    // no API yet; in real impl, persist then toast and refresh
+  async saveAttributes() {
+    if (!this.accessToken || !this.dogInfo) return;
+    const deltas = {
+      power: this.stats.power - this.baseStats.power,
+      stamina: this.stats.stamina - this.baseStats.stamina,
+      reach: this.stats.reach - this.baseStats.reach,
+      fortification: this.stats.fortification - this.baseStats.fortification,
+    };
+    const spent = deltas.power + deltas.stamina + deltas.reach + deltas.fortification;
+    if (spent <= 0) return;
+
+    const { API_DOG_ALLOCATE_ATTRS } = await import('../constants/apiConstants');
+    const { apiCall } = await import('../utils/apiUtils');
+
+    const resp = await apiCall(this.accessToken).patch<{ dog: DogInfo }>(API_DOG_ALLOCATE_ATTRS, {
+      dogId: this.dogInfo.id,
+      ...deltas,
+    });
+
+    // Update dog in context and reset baseline
+    const updated = resp.data?.dog;
+    if (updated) {
+      // Optionally fetch derived stats in GET Dog; for now we use server-updated dog
+      this.baseStats = { ...this.stats };
+      updateDogInfoEvent(this, updated);
+    }
   }
 
   resetAllocation = () => {
@@ -815,6 +831,10 @@ export class AppDogView extends LitElement {
   detailsText: string = '';
   @state()
   detailsIcon: string = 'info-circle';
+
+  // Derived stats from backend for display
+  @state()
+  derived: DogDerivedStats | null = null;
 
   openAttributeDetails(kind: 'power' | 'stamina' | 'reach' | 'fortification') {
     // Compute current impact values from assigned points (relative to baseline)
@@ -930,12 +950,19 @@ export class AppDogView extends LitElement {
 
     // Proceed without waiting for refresh
     const dogInfoResponse = await apiCall(this.accessToken).get<DogInfoResponse>(API_DOG_GET);
-    const { dog } = dogInfoResponse.data;
+    const { dog, derived } = dogInfoResponse.data;
+    this.derived = derived ?? null;
     if (dog) {
       this.newName = dog.name;
       updateDogInfoEvent(this, dog);
-      // Points equal to level (mocked rule)
-      this.statPointsAvailable = dog.level ?? 0;
+      // Initialize UI allocation stats from backend dog attributes if present
+      const attrs = (dog as any).attributes as { power: number; stamina: number; reach: number; fortification: number } | undefined;
+      if (attrs) {
+        this.baseStats = { ...attrs };
+        this.stats = { ...attrs };
+      }
+      // If backend exposes skillPointsAvailable on dog, use it; else 0
+      this.statPointsAvailable = (dog as any).skillPointsAvailable ?? 0;
     }
   }
 
@@ -1133,8 +1160,7 @@ export class AppDogView extends LitElement {
                                 <div class="title">Power</div>
                                 <span class="impact"
                                   >Atk dmg
-                                  ${5 + (this.stats.power - this.baseStats.power)}–${9 +
-                                  (this.stats.power - this.baseStats.power)}</span
+                                  ${this.derived?.attackMin ?? 5}–${this.derived?.attackMax ?? 9}</span
                                 >
                                 <sl-icon-button
                                   class="help-icon"
@@ -1166,7 +1192,7 @@ export class AppDogView extends LitElement {
                                 <div class="title">Stamina</div>
                                 <span class="impact"
                                   >Max energy
-                                  ${100 + 10 * (this.stats.stamina - this.baseStats.stamina)}</span
+                                  ${this.derived?.energyMax ?? 100}</span
                                 >
                                 <sl-icon-button
                                   class="help-icon"
@@ -1198,7 +1224,7 @@ export class AppDogView extends LitElement {
                                 <div class="title">Reach</div>
                                 <span class="impact"
                                   >Range
-                                  ${200 + 10 * (this.stats.reach - this.baseStats.reach)}m</span
+                                  ${this.derived?.reachMeters ?? 200}m</span
                                 >
                                 <sl-icon-button
                                   class="help-icon"
@@ -1230,9 +1256,7 @@ export class AppDogView extends LitElement {
                                 <div class="title">Fortification</div>
                                 <span class="impact"
                                   >Doghouse HP
-                                  ${100 +
-                                  20 *
-                                    (this.stats.fortification - this.baseStats.fortification)}</span
+                                  ${this.derived?.doghouseMaxHp ?? 100}</span
                                 >
                                 <sl-icon-button
                                   class="help-icon"

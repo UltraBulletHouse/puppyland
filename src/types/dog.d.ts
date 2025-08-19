@@ -20,8 +20,17 @@ export interface DogInfo {
   photo: null;
 }
 
+export interface DogDerivedStats {
+  attackMin: number;
+  attackMax: number;
+  reachMeters: number;
+  energyMax: number;
+  doghouseMaxHp: number;
+}
+
 export interface DogInfoResponse {
   dog: DogInfo;
+  derived?: DogDerivedStats;
 }
 
 export interface DogInfoUpdateRequest {
