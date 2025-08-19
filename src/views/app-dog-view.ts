@@ -396,20 +396,21 @@ export class AppDogView extends LitElement {
         opacity: 0.8;
       }
       .alloc-grid {
-        display: grid;
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
         gap: 6px;
       }
       .alloc-card {
-        display: grid;
-        grid-template-columns: 24px 1fr auto 34px;
+        display: flex;
         align-items: center;
         gap: 8px;
         padding: 6px 8px;
-        border: 1px solid var(--color-primary-medium);
         border-radius: var(--border-radius-medium);
         background: var(--color-white);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      }
+      .alloc-card .title-row {
+        flex-grow: 1;
       }
       .alloc-card .stat-icon {
         font-size: 14px;
@@ -438,14 +439,30 @@ export class AppDogView extends LitElement {
       }
       .alloc-card .title-row {
         display: flex;
-        align-items: center;
-        column-gap: 8px;
         flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        row-gap: 2px;
+      }
+      .alloc-card .title-row .title {
+        order: 1;
+      }
+      .alloc-card .title-row .impact {
+        order: 3;
+        flex-basis: 100%;
+      }
+      .alloc-card .title-row .help-icon {
+        order: 2;
       }
       .alloc-card .impact {
         font-size: 12px;
         color: var(--color-black-medium);
         font-weight: 600;
+      }
+      .alloc-card .impact-row {
+        display: flex;
+        align-items: center;
+        column-gap: 8px;
       }
       .alloc-card .help-icon::part(base) {
         color: var(--color-black-medium);
