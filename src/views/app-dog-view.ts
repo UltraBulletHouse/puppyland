@@ -292,25 +292,6 @@ export class AppDogView extends LitElement {
         background: linear-gradient(90deg, #e74c3c, #c0392b);
       }
 
-      .progress-fill::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-        animation: shimmer 2s infinite;
-      }
-
-      @keyframes shimmer {
-        0% {
-          transform: translateX(-100%);
-        }
-        100% {
-          transform: translateX(100%);
-        }
-      }
 
       .level-badge {
         background: linear-gradient(135deg, #ffd700, #ffa500);
@@ -467,23 +448,6 @@ export class AppDogView extends LitElement {
         font-size: 12px;
         color: var(--color-black-medium);
         font-weight: 600;
-      }
-      .impact.pulse {
-        animation: impactPulse 350ms ease-out;
-      }
-      @keyframes impactPulse {
-        0% {
-          transform: scale(1);
-          color: var(--color-black-medium);
-        }
-        20% {
-          transform: scale(1.06);
-          color: var(--color-primary);
-        }
-        100% {
-          transform: scale(1);
-          color: var(--color-black-medium);
-        }
       }
       .alloc-card .help-icon::part(base) {
         color: var(--color-black-medium);
@@ -843,11 +807,18 @@ export class AppDogView extends LitElement {
     const reachDelta = this.stats.reach - this.baseStats.reach;
     const fortDelta = this.stats.fortification - this.baseStats.fortification;
 
-    const dmgMin = 5 + powerDelta;
-    const dmgMax = 9 + powerDelta;
-    const maxEnergy = 100 + 10 * staminaDelta;
-    const rangeM = 200 + 10 * reachDelta;
-    const doghouseHp = 100 + 20 * fortDelta;
+    // Base from backend-derived stats to reflect current state accurately
+    const baseMin = this.derived?.attackMin ?? 5;
+    const baseMax = this.derived?.attackMax ?? 9;
+    const baseEnergyMax = this.derived?.energyMax ?? 100;
+    const baseRange = this.derived?.reachMeters ?? 200;
+    const baseDoghouseHp = this.derived?.doghouseMaxHp ?? 100;
+
+    const dmgMin = baseMin + powerDelta;
+    const dmgMax = baseMax + powerDelta;
+    const maxEnergy = baseEnergyMax + 10 * staminaDelta;
+    const rangeM = baseRange + 10 * reachDelta;
+    const doghouseHp = baseDoghouseHp + 20 * fortDelta;
 
     let title = '';
     let text = '';
@@ -1001,6 +972,18 @@ export class AppDogView extends LitElement {
       (this.stats.reach - this.baseStats.reach) +
       (this.stats.fortification - this.baseStats.fortification);
     const hasPending = spentPoints > 0;
+
+    // Live preview of derived stats based on local allocation deltas
+    const powerDelta = this.stats.power - this.baseStats.power;
+    const staminaDelta = this.stats.stamina - this.baseStats.stamina;
+    const reachDelta = this.stats.reach - this.baseStats.reach;
+    const fortDelta = this.stats.fortification - this.baseStats.fortification;
+
+    const atkMinPreview = (this.derived?.attackMin ?? 5) + powerDelta;
+    const atkMaxPreview = (this.derived?.attackMax ?? 9) + powerDelta;
+    const energyMaxPreview = (this.derived?.energyMax ?? 100) + 10 * staminaDelta;
+    const reachPreview = (this.derived?.reachMeters ?? 200) + 10 * reachDelta;
+    const doghouseHpPreview = (this.derived?.doghouseMaxHp ?? 100) + 20 * fortDelta;
 
     return this.dogInfo && this.newName
       ? html`
@@ -1160,7 +1143,7 @@ export class AppDogView extends LitElement {
                                 <div class="title">Power</div>
                                 <span class="impact"
                                   >Atk dmg
-                                  ${this.derived?.attackMin ?? 5}–${this.derived?.attackMax ?? 9}</span
+                                  ${atkMinPreview}–${atkMaxPreview}</span
                                 >
                                 <sl-icon-button
                                   class="help-icon"
@@ -1192,7 +1175,7 @@ export class AppDogView extends LitElement {
                                 <div class="title">Stamina</div>
                                 <span class="impact"
                                   >Max energy
-                                  ${this.derived?.energyMax ?? 100}</span
+                                  ${energyMaxPreview}</span
                                 >
                                 <sl-icon-button
                                   class="help-icon"
@@ -1224,7 +1207,7 @@ export class AppDogView extends LitElement {
                                 <div class="title">Reach</div>
                                 <span class="impact"
                                   >Range
-                                  ${this.derived?.reachMeters ?? 200}m</span
+                                  ${reachPreview}m</span
                                 >
                                 <sl-icon-button
                                   class="help-icon"
@@ -1256,7 +1239,7 @@ export class AppDogView extends LitElement {
                                 <div class="title">Fortification</div>
                                 <span class="impact"
                                   >Doghouse HP
-                                  ${this.derived?.doghouseMaxHp ?? 100}</span
+                                  ${doghouseHpPreview}</span
                                 >
                                 <sl-icon-button
                                   class="help-icon"
