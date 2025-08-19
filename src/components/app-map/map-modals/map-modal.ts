@@ -790,9 +790,8 @@ export class MapModal extends LitElement {
         <div>
           <ul>
             <li><sl-icon name="plus-circle"></sl-icon>Skill point +1</li>
-            
+
             <li><sl-icon name="house-add"></sl-icon>Doghouse +1</li>
-            
           </ul>
         </div>
         <sl-button class="claim-btn" @click=${this.closeMapModal} pill>Claim </sl-button>

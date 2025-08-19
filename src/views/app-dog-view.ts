@@ -29,8 +29,7 @@ import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
-import { DogInfo, DogInfoResponse, DogInfoUpdateResponse, DogDerivedStats } from '../types/dog';
-
+import { DogDerivedStats, DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
 import { apiCall } from '../utils/apiUtils';
 
 @customElement('app-dog-view')
@@ -292,7 +291,6 @@ export class AppDogView extends LitElement {
         background: linear-gradient(90deg, #e74c3c, #c0392b);
       }
 
-
       .level-badge {
         background: linear-gradient(135deg, #ffd700, #ffa500);
         color: white;
@@ -406,7 +404,7 @@ export class AppDogView extends LitElement {
         display: grid;
         grid-template-columns: 24px 1fr auto 34px;
         align-items: center;
-        gap: 6px;
+        gap: 8px;
         padding: 6px 8px;
         border: 1px solid var(--color-primary-medium);
         border-radius: var(--border-radius-medium);
@@ -441,7 +439,7 @@ export class AppDogView extends LitElement {
       .alloc-card .title-row {
         display: flex;
         align-items: center;
-        gap: 8px;
+        column-gap: 8px;
         flex-wrap: wrap;
       }
       .alloc-card .impact {
@@ -775,12 +773,14 @@ export class AppDogView extends LitElement {
       const { dog: freshDog, derived: freshDerived } = refreshed.data;
       if (freshDog) {
         updateDogInfoEvent(this, freshDog);
-        const attrs = (freshDog as any).attributes as {
-          power: number;
-          stamina: number;
-          reach: number;
-          fortification: number;
-        } | undefined;
+        const attrs = (freshDog as any).attributes as
+          | {
+              power: number;
+              stamina: number;
+              reach: number;
+              fortification: number;
+            }
+          | undefined;
         if (attrs) {
           this.baseStats = { ...attrs };
           this.stats = { ...attrs };
@@ -789,7 +789,6 @@ export class AppDogView extends LitElement {
       }
       this.derived = freshDerived ?? this.derived;
     } catch {}
-
   }
 
   resetAllocation = () => {
@@ -963,7 +962,9 @@ export class AppDogView extends LitElement {
       this.newName = dog.name;
       updateDogInfoEvent(this, dog);
       // Initialize UI allocation stats from backend dog attributes if present
-      const attrs = (dog as any).attributes as { power: number; stamina: number; reach: number; fortification: number } | undefined;
+      const attrs = (dog as any).attributes as
+        | { power: number; stamina: number; reach: number; fortification: number }
+        | undefined;
       if (attrs) {
         this.baseStats = { ...attrs };
         this.stats = { ...attrs };
@@ -1115,7 +1116,7 @@ export class AppDogView extends LitElement {
                             <div class="stat-icon level">
                               <sl-icon name="star"></sl-icon>
                             </div>
-                            <div class="stat-title">Attributes</div>
+                            <div class="stat-title">Stats</div>
                             <div class="level-badge" title="Your current level">Lvl ${level}</div>
                           </div>
                           <!-- Compact Experience tile integrated into Attributes -->
@@ -1178,8 +1179,7 @@ export class AppDogView extends LitElement {
                               <div class="title-row">
                                 <div class="title">Power</div>
                                 <span class="impact"
-                                  >Atk dmg
-                                  ${atkMinPreview}–${atkMaxPreview}</span
+                                  >Atk dmg ${atkMinPreview}–${atkMaxPreview}</span
                                 >
                                 <sl-icon-button
                                   class="help-icon"
@@ -1209,10 +1209,7 @@ export class AppDogView extends LitElement {
                               <sl-icon class="stat-icon energy" name="heart-pulse"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Stamina</div>
-                                <span class="impact"
-                                  >Max energy
-                                  ${energyMaxPreview}</span
-                                >
+                                <span class="impact">Max energy ${energyMaxPreview}</span>
                                 <sl-icon-button
                                   class="help-icon"
                                   name="question-circle"
@@ -1241,10 +1238,7 @@ export class AppDogView extends LitElement {
                               <sl-icon class="stat-icon doghouses" name="radar"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Reach</div>
-                                <span class="impact"
-                                  >Range
-                                  ${reachPreview}m</span
-                                >
+                                <span class="impact">Range ${reachPreview}m</span>
                                 <sl-icon-button
                                   class="help-icon"
                                   name="question-circle"
@@ -1273,10 +1267,7 @@ export class AppDogView extends LitElement {
                               <sl-icon class="stat-icon experience" name="shield-shaded"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Fortification</div>
-                                <span class="impact"
-                                  >Doghouse HP
-                                  ${doghouseHpPreview}</span
-                                >
+                                <span class="impact">Doghouse HP ${doghouseHpPreview}</span>
                                 <sl-icon-button
                                   class="help-icon"
                                   name="question-circle"
