@@ -411,6 +411,12 @@ export class AppDogView extends LitElement {
       }
       .alloc-card .title-row {
         flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .alloc-card .bottom-row {
+        display: flex;
+        align-items: center;
       }
       .alloc-card .stat-icon {
         font-size: 14px;
@@ -437,23 +443,6 @@ export class AppDogView extends LitElement {
           color: var(--color-black-medium);
         }
       }
-      .alloc-card .title-row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        row-gap: 2px;
-      }
-      .alloc-card .title-row .title {
-        order: 1;
-      }
-      .alloc-card .title-row .impact {
-        order: 3;
-        flex-basis: 100%;
-      }
-      .alloc-card .title-row .help-icon {
-        order: 2;
-      }
       .alloc-card .impact {
         font-size: 12px;
         color: var(--color-black-medium);
@@ -468,6 +457,7 @@ export class AppDogView extends LitElement {
         color: var(--color-black-medium);
         font-size: 16px;
         padding: 0;
+        margin-left: 8px;
         height: auto;
         min-height: 0;
       }
@@ -1195,15 +1185,17 @@ export class AppDogView extends LitElement {
                               <sl-icon class="stat-icon level" name="fire"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Power</div>
-                                <span class="impact"
-                                  >Atk dmg ${atkMinPreview}–${atkMaxPreview}</span
-                                >
-                                <sl-icon-button
-                                  class="help-icon"
-                                  name="question-circle"
-                                  label="What is Power?"
-                                  @click=${() => this.openAttributeDetails('power')}
-                                ></sl-icon-button>
+                                <div class="bottom-row">
+                                  <span class="impact"
+                                    >Atk dmg ${atkMinPreview}–${atkMaxPreview}</span
+                                  >
+                                  <sl-icon-button
+                                    class="help-icon"
+                                    name="question-circle"
+                                    label="What is Power?"
+                                    @click=${() => this.openAttributeDetails('power')}
+                                  ></sl-icon-button>
+                                </div>
                               </div>
                               <div class="value">${this.stats.power}</div>
                               <div class="alloc-btn-slot">
@@ -1226,13 +1218,15 @@ export class AppDogView extends LitElement {
                               <sl-icon class="stat-icon energy" name="heart-pulse"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Stamina</div>
-                                <span class="impact">Max energy ${energyMaxPreview}</span>
-                                <sl-icon-button
-                                  class="help-icon"
-                                  name="question-circle"
-                                  label="What is Stamina?"
-                                  @click=${() => this.openAttributeDetails('stamina')}
-                                ></sl-icon-button>
+                                <div class="bottom-row">
+                                  <span class="impact">Max energy ${energyMaxPreview}</span>
+                                  <sl-icon-button
+                                    class="help-icon"
+                                    name="question-circle"
+                                    label="What is Stamina?"
+                                    @click=${() => this.openAttributeDetails('stamina')}
+                                  ></sl-icon-button>
+                                </div>
                               </div>
                               <div class="value">${this.stats.stamina}</div>
                               <div class="alloc-btn-slot">
@@ -1255,13 +1249,15 @@ export class AppDogView extends LitElement {
                               <sl-icon class="stat-icon doghouses" name="broadcast-pin"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Reach</div>
-                                <span class="impact">Range ${reachPreview}m</span>
-                                <sl-icon-button
-                                  class="help-icon"
-                                  name="question-circle"
-                                  label="What is Reach?"
-                                  @click=${() => this.openAttributeDetails('reach')}
-                                ></sl-icon-button>
+                                <div class="bottom-row">
+                                  <span class="impact">Range ${reachPreview}m</span>
+                                  <sl-icon-button
+                                    class="help-icon"
+                                    name="question-circle"
+                                    label="What is Reach?"
+                                    @click=${() => this.openAttributeDetails('reach')}
+                                  ></sl-icon-button>
+                                </div>
                               </div>
                               <div class="value">${this.stats.reach}</div>
                               <div class="alloc-btn-slot">
@@ -1284,13 +1280,15 @@ export class AppDogView extends LitElement {
                               <sl-icon class="stat-icon experience" name="shield-shaded"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Fortification</div>
-                                <span class="impact">Doghouse HP ${doghouseHpPreview}</span>
-                                <sl-icon-button
-                                  class="help-icon"
-                                  name="question-circle"
-                                  label="What is Fortification?"
-                                  @click=${() => this.openAttributeDetails('fortification')}
-                                ></sl-icon-button>
+                                <div class="bottom-row">
+                                  <span class="impact">Doghouse HP ${doghouseHpPreview}</span>
+                                  <sl-icon-button
+                                    class="help-icon"
+                                    name="question-circle"
+                                    label="What is Fortification?"
+                                    @click=${() => this.openAttributeDetails('fortification')}
+                                  ></sl-icon-button>
+                                </div>
                               </div>
                               <div class="value">${this.stats.fortification}</div>
                               <div class="alloc-btn-slot">
