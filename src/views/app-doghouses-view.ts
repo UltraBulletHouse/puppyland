@@ -1,5 +1,6 @@
 import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
+import { repeat } from 'lit/directives/repeat.js';
 import { customElement, property, state } from 'lit/decorators.js';
 import { when } from 'lit/directives/when.js';
 
@@ -263,7 +264,9 @@ export class AppDoghousesView extends LitElement {
             this.doghouses,
             () =>
               sortedDoghouses && sortedDoghouses.length > 0
-                ? sortedDoghouses.map(
+                ? repeat(
+                    sortedDoghouses,
+                    (item) => item.id,
                     (item) => html`
                       <app-dogouse-item
                         .dogouseInfo=${item}
