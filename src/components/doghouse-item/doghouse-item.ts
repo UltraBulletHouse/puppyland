@@ -161,6 +161,10 @@ export class AppDoghouseItem extends LitElement {
     if (changedProperties.has('isEditMode') && !this.isEditMode) {
       this.onCloseEditing();
     }
+    if (changedProperties.has('dogouseInfo') && !this.isEditingName) {
+      // Keep displayed name in sync with incoming data when not editing
+      this.newName = this.dogouseInfo?.name ?? null;
+    }
   }
 
   async saveNewName() {

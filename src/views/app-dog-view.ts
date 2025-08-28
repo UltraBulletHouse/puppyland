@@ -60,10 +60,35 @@ export class AppDogView extends LitElement {
         background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
         border-bottom: 1px solid var(--color-primary-medium);
       }
-      #treats-balance {
+      #top-right-row {
         position: absolute;
         top: 12px;
         right: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 10;
+      }
+      #top-left-row {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        z-index: 10;
+      }
+      #premium-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 6px 10px;
+        border-radius: 999px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        backdrop-filter: blur(4px);
+      }
+      #treats-balance {
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -1037,41 +1062,44 @@ export class AppDogView extends LitElement {
       ? html`
           <div id="container">
             <div id="dog-header">
-              <div
-                id="treats-balance"
-                @click=${() =>
-                  this.dispatchEvent(
-                    new CustomEvent('updateView', {
-                      detail: 'app-shop-view',
-                      bubbles: true,
-                      composed: true,
-                    })
-                  )}
-              >
-                <sl-icon name="coin"></sl-icon>
-                <span>${this.userInfo?.treatsBalance ?? 0}</span>
+              <div id="top-left-row">
+                ${this.userInfo?.isPremium
+                  ? html`<div id="premium-pill">
+                      <sl-badge
+                        variant="success"
+                        pill
+                        title=${this.userInfo?.premiumExpiryUtc
+                          ? `Expires: ${new Date(this.userInfo.premiumExpiryUtc).toLocaleString()}`
+                          : ''}
+                        >Premium</sl-badge
+                      >
+                      <sl-tooltip content="Manage subscription">
+                        <sl-icon-button
+                          name="gear"
+                          label="Manage subscription"
+                          @click=${this.manageSubscription}
+                        ></sl-icon-button>
+                      </sl-tooltip>
+                    </div>`
+                  : ''}
               </div>
-              ${this.userInfo?.isPremium
-                ? html`<div
-                    style="position:absolute; top:12px; right:12px; display:flex; gap:8px; align-items:center; background: rgba(255,255,255,0.8); padding: 6px 10px; border-radius: 999px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); backdrop-filter: blur(4px);"
-                  >
-                    <sl-badge
-                      variant="success"
-                      pill
-                      title=${this.userInfo?.premiumExpiryUtc
-                        ? `Expires: ${new Date(this.userInfo.premiumExpiryUtc).toLocaleString()}`
-                        : ''}
-                      >Premium</sl-badge
-                    >
-                    <sl-tooltip content="Manage subscription">
-                      <sl-icon-button
-                        name="gear"
-                        label="Manage subscription"
-                        @click=${this.manageSubscription}
-                      ></sl-icon-button>
-                    </sl-tooltip>
-                  </div>`
-                : ''}
+
+              <div id="top-right-row">
+                <div
+                  id="treats-balance"
+                  @click=${() =>
+                    this.dispatchEvent(
+                      new CustomEvent('updateView', {
+                        detail: 'app-shop-view',
+                        bubbles: true,
+                        composed: true,
+                      })
+                    )}
+                >
+                  <sl-icon name="coin"></sl-icon>
+                  <span>${this.userInfo?.treatsBalance ?? 0}</span>
+                </div>
+              </div>
               <div id="dog-image">
                 <div id="dog-image-circle">
                   <svg-icon name="dogHead"></svg-icon>
