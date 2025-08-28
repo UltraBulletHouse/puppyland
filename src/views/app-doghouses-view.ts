@@ -1,7 +1,7 @@
 import { consume } from '@lit/context';
 import { LitElement, css, html } from 'lit';
-import { repeat } from 'lit/directives/repeat.js';
 import { customElement, property, state } from 'lit/decorators.js';
+import { repeat } from 'lit/directives/repeat.js';
 import { when } from 'lit/directives/when.js';
 
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
