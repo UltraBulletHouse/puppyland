@@ -330,6 +330,7 @@ export class AppDogView extends LitElement {
         border-radius: 50px;
         padding: 0px 5px;
         pointer-events: none; /* allow clicks to pass through to the pencil icon */
+        z-index: 999;
       }
       #dog-buffs {
         display: flex;
