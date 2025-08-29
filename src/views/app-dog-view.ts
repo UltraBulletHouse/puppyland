@@ -544,7 +544,7 @@ export class AppDogView extends LitElement {
       }
       .alloc-card.alloc-card--floating .alloc-btn-slot {
         position: absolute;
-           right: 26px;
+        right: 26px;
         top: 50%;
         transform: translateY(-50%);
       }
