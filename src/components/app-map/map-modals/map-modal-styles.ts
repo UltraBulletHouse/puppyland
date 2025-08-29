@@ -45,7 +45,7 @@ export const MapModalStyles = html`
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+      background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
       opacity: 0.3;
     }
     #close-btn-container {
@@ -229,7 +229,7 @@ export const MapModalStyles = html`
       margin: 20px 0;
       padding: 16px;
       background: var(--color-white);
-      border: 1px solid var(--color-primary-medium);
+      border: 1px solid var(--color-secondary-light);
       border-radius: var(--border-radius-medium);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       position: relative;
@@ -969,7 +969,7 @@ export const MapModalStyles = html`
       margin-top: 10px;
       padding: 16px;
       background: var(--color-white);
-      border: 1px solid var(--color-primary-medium);
+      border: 1px solid var(--color-secondary-light);
       border-radius: var(--border-radius-medium);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
