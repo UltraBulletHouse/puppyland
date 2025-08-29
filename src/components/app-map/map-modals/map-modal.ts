@@ -20,6 +20,7 @@ import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
 import '../../app-spinner/app-spinner';
 import '../../icon-png/icon-png';
+import '../../level-up-modal/level-up-modal';
 import { MapModalStyles } from './map-modal-styles';
 
 /**
@@ -784,18 +785,7 @@ export class MapModal extends LitElement {
     `;
 
     const levelUpSection = html`
-      <div id="map-modal-level-up">
-        <h2>🎉 Level Up! 🎉</h2>
-        <h3>You reached level <strong>${this.dogInfo?.level}</strong>!</h3>
-        <div>
-          <ul>
-            <li><sl-icon name="plus-circle"></sl-icon>Skill point +1</li>
-
-            <li><sl-icon name="house-add"></sl-icon>Doghouse +1</li>
-          </ul>
-        </div>
-        <sl-button class="claim-btn" @click=${this.closeMapModal} pill>Claim </sl-button>
-      </div>
+      <level-up-modal .dogInfo=${this.dogInfo} @close=${this.closeMapModal}></level-up-modal>
     `;
 
     const baseTemplate = html`
