@@ -532,7 +532,7 @@ export class AppDogView extends LitElement {
       }
       .alloc-btn-slot {
         position: absolute;
-        right: 8px;
+        right: 26px;
         top: 50%;
         transform: translateY(-50%);
         display: flex;
@@ -544,7 +544,7 @@ export class AppDogView extends LitElement {
       }
       .alloc-card.alloc-card--floating .alloc-btn-slot {
         position: absolute;
-        right: 10px;
+           right: 26px;
         top: 50%;
         transform: translateY(-50%);
       }
@@ -1229,7 +1229,6 @@ export class AppDogView extends LitElement {
                                   ></sl-icon-button>
                                 </div>
                               </div>
-                              <div class="value">${this.stats.power}</div>
                               <div class="alloc-btn-slot">
                                 ${this.statPointsAvailable > 0
                                   ? html`<sl-button
@@ -1244,6 +1243,7 @@ export class AppDogView extends LitElement {
                                     ></sl-button>`
                                   : html``}
                               </div>
+                              <div class="value">${this.stats.power}</div>
                             </div>
 
                             <div class="alloc-card alloc-card--floating">

@@ -26,9 +26,9 @@ import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
+import '../level-up-modal/level-up-modal';
 import { AppMapStyles } from './app-map-styles';
 import './map-popup/map-popup';
-import '../level-up-modal/level-up-modal';
 
 /**
  * @fires updateDogInfo
