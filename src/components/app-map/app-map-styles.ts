@@ -6,8 +6,17 @@ export const AppMapStyles = [
   sharedStyles,
   css`
     #container {
+      position: relative;
       height: 100%;
       animation: blur 1s ease 0s 1;
+    }
+    .level-up-modal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
     }
     #map {
       height: 100%;

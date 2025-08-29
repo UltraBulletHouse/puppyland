@@ -39,6 +39,7 @@ export interface CreateResult {
 export interface CreateDoghouseResponse {
   dog: DogInfo;
   createResult: CreateResult;
+  isLevelUp: boolean;
 }
 
 export interface AttackResult {

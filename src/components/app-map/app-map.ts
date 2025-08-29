@@ -28,6 +28,7 @@ import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
 import { AppMapStyles } from './app-map-styles';
 import './map-popup/map-popup';
+import '../level-up-modal/level-up-modal';
 
 /**
  * @fires updateDogInfo
@@ -71,6 +72,9 @@ export class AppMap extends LitElement {
 
   @state()
   openPopupId: string | null = null;
+
+  @state()
+  isLevelUp: boolean = false;
 
   openPopup(id: string | null) {
     this.openPopupId = id;
@@ -208,7 +212,11 @@ export class AppMap extends LitElement {
     );
 
     if (createDoghouseResponse.status === 200) {
-      const { createResult, dog } = createDoghouseResponse.data;
+      const { createResult, dog, isLevelUp } = createDoghouseResponse.data;
+
+      if (isLevelUp) {
+        this.isLevelUp = isLevelUp;
+      }
 
       updateDogInfoEvent(this, dog);
 
@@ -260,10 +268,22 @@ export class AppMap extends LitElement {
     this.watchUserPos();
   }
 
+  closeLevelUpModal = () => {
+    this.isLevelUp = false;
+  };
+
   render() {
     return html`
       <link rel="stylesheet" href="https://cdn.skypack.dev/leaflet/dist/leaflet.css" />
       <div id="container" @updateDoghouses=${this.updateDoghousesHandler}>
+        ${this.isLevelUp
+          ? html` <app-modal class="level-up-modal" .open=${this.isLevelUp}
+              ><level-up-modal
+                .dogInfo=${this.dogInfo}
+                @close=${this.closeLevelUpModal}
+              ></level-up-modal
+            ></app-modal>`
+          : ''}
         <div id="info-box">
           <div id="info-box-line">
             <sl-icon id="info-box-icon" name="lightning-charge"></sl-icon>${this.dogInfo?.energy}
