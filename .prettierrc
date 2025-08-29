@@ -1,5 +1,5 @@
 {
-  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "plugins": ["@trivago/prettier-plugin-sort-imports", "prettier-plugin-organize-imports"],
   "importOrderParserPlugins": ["typescript", "decorators-legacy"],
   "importOrder": ["^components/(.*)$", "^@shoelace-style/shoelace/dist/components/(.*)$", "^[./]"],
   "importOrderSeparation": true,
