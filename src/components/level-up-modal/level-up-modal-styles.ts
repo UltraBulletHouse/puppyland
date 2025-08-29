@@ -8,14 +8,8 @@ export const LevelUpModalStyles = html`
       align-items: center;
       position: relative;
       padding: 40px 30px;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.2) 0%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.1) 100%
-      );
+      background: var(--color-primary-light);
       border-radius: var(--border-radius-medium);
-      backdrop-filter: blur(15px);
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
       border: 1px solid rgba(255, 255, 255, 0.3);
       margin: 20px;

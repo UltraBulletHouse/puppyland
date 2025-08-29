@@ -11,7 +11,7 @@ export class LevelUpModal extends LitElement {
   dogInfo: DogInfo | null = null;
 
   closeModal = () => {
-    sendEvent(this, 'close');
+    // sendEvent(this, 'close');
   };
 
   render() {
