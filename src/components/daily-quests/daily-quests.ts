@@ -297,7 +297,7 @@ export class DailyQuests extends LitElement {
       const { apiCall } = await import('../../utils/apiUtils');
       const { API_QUEST_CLAIM } = await import('../../constants/apiConstants');
 
-      const response = await apiCall(this.accessToken).post(`${API_QUEST_CLAIM}/${questId}`);
+      await apiCall(this.accessToken).post(`${API_QUEST_CLAIM}/${questId}`);
       /* console.log('Claimed reward:', response.data); */
 
       // Refresh quests after claiming

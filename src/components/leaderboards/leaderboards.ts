@@ -320,6 +320,7 @@ export class LeaderboardsComponent extends LitElement {
 
     try {
       this.isLoading = true;
+      const { idbGet, idbSet } = await import('../../utils/idb');
       // Try last-known cached leaderboards for instant UI
       try {
         const cached = await idbGet<LeaderboardsResponse>(cacheKey);
@@ -330,7 +331,6 @@ export class LeaderboardsComponent extends LitElement {
         }
       } catch {}
       const { apiCall } = await import('../../utils/apiUtils');
-      const { idbGet, idbSet } = await import('../../utils/idb');
       const { API_LEADERBOARD_GET } = await import('../../constants/apiConstants');
 
       const response = await apiCall(this.accessToken).get(API_LEADERBOARD_GET);
