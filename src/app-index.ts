@@ -9,7 +9,6 @@ import { cache } from 'lit/directives/cache.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
-
 import './components/app-footer/app-footer';
 import './components/icon-svg/svg-icon';
 import './components/icon-svg/svg-icon-button';
@@ -24,6 +23,7 @@ import { DogInfo } from './types/dog';
 import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
+import { idbGet, idbSet } from './utils/idb';
 import { auth } from './utils/firebase';
 import './views/app-loading-map-view';
 import './views/app-loading-view';
@@ -86,7 +86,10 @@ export class AppIndex extends LitElement {
     this.dogInfo = event.detail;
   }
 
-  firstUpdated() {
+  async firstUpdated() {
+    // Request persistent storage to improve offline reliability (best effort)
+    try { await (navigator as any).storage?.persist?.(); } catch {}
+
     auth.onAuthStateChanged(async (userFirebase: User | null) => {
       this.isLoading = true;
 
@@ -101,13 +104,33 @@ export class AppIndex extends LitElement {
           } catch {}
           localStorage.setItem('premiumRefreshTs', String(now));
         }
-        const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
+        // Try last-known user/dog from IDB first for instant UI, then refresh from network
+        const cacheKey = 'user-info';
+        try {
+          const cached = await idbGet<UserInfoResponse>(cacheKey);
+          if (cached?.value) {
+            this.userInfo = cached.value.user;
+            this.dogInfo = cached.value.dog;
+          }
+        } catch {}
 
+        const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
         this.userInfo = userInfoResponse?.data?.user;
         this.dogInfo = userInfoResponse?.data?.dog;
+        try { await idbSet<UserInfoResponse>(cacheKey, userInfoResponse.data); } catch {}
+
         this.accessToken = accessToken;
 
         this.view = View.MAP_VIEW;
+
+        // Idle prefetch other views to speed up navigation (progressive enhancement)
+        const idle = (cb: () => void) => (('requestIdleCallback' in window) ? (window as any).requestIdleCallback(cb) : setTimeout(cb, 0));
+        idle(() => {
+          import('./views/app-dog-view').catch(() => {});
+          import('./views/app-doghouses-view').catch(() => {});
+          import('./views/app-shop-view').catch(() => {});
+          import('./views/app-user-view').catch(() => {});
+        });
       } else {
         this.view = View.SIGNIN_VIEW;
       }

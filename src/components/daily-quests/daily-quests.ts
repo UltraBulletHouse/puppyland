@@ -268,7 +268,7 @@ export class DailyQuests extends LitElement {
 
   private async fetchDailyQuests() {
     if (!this.accessToken) {
-      console.error('No access token available for daily quests');
+      /* console.error('No access token available for daily quests'); */
       return;
     }
 
@@ -282,9 +282,9 @@ export class DailyQuests extends LitElement {
 
       this.quests = data.quests;
       this.nextRefreshAt = data.nextRefreshAt;
-      console.log('Fetched daily quests:', this.quests);
+      /* console.log('Fetched daily quests:', this.quests); */
     } catch (error) {
-      console.error('Error fetching daily quests:', error);
+      /* console.error('Error fetching daily quests:', error); */
     } finally {
       this.isLoading = false;
     }
@@ -298,12 +298,12 @@ export class DailyQuests extends LitElement {
       const { API_QUEST_CLAIM } = await import('../../constants/apiConstants');
 
       const response = await apiCall(this.accessToken).post(`${API_QUEST_CLAIM}/${questId}`);
-      console.log('Claimed reward:', response.data);
+      /* console.log('Claimed reward:', response.data); */
 
       // Refresh quests after claiming
       await this.fetchDailyQuests();
     } catch (error) {
-      console.error('Error claiming quest reward:', error);
+      /* console.error('Error claiming quest reward:', error); */
     }
   }
 
