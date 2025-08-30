@@ -241,7 +241,6 @@ export class AppShopView extends LitElement {
         font-weight: 700;
         font-size: 16px;
       }
-
     `,
   ];
 
@@ -496,7 +495,6 @@ export class AppShopView extends LitElement {
               </sl-tab-panel>
             </sl-tab-group>
           </div>
-
         </div>
       </div>
     `;

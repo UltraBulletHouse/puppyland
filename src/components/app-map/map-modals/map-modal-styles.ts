@@ -45,9 +45,16 @@ export const MapModalStyles = html`
       left: 0;
       right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
       opacity: 0.3;
     }
+
+    .own-doghouse-modal #map-modal-main-section::before {
+      background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+    }
+    .enemy-doghouse-modal #map-modal-main-section::before {
+      background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    }
+
     #close-btn-container {
       display: flex;
       justify-content: end;
@@ -229,10 +236,16 @@ export const MapModalStyles = html`
       margin: 20px 0;
       padding: 16px;
       background: var(--color-white);
-      border: 1px solid var(--color-secondary-light);
       border-radius: var(--border-radius-medium);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       position: relative;
+    }
+
+    .own-doghouse-modal #dh-hp-container {
+      border: 1px solid var(--color-secondary-light);
+    }
+    .enemy-doghouse-modal #dh-hp-container {
+      border: 1px solid var(--color-primary-light);
     }
 
     .hp-header {
@@ -297,10 +310,16 @@ export const MapModalStyles = html`
     .modern-hp-bar {
       width: 100%;
       height: 12px;
-      background: var(--color-primary-light);
       border-radius: 6px;
       overflow: hidden;
       position: relative;
+    }
+
+    .own-doghouse-modal .modern-hp-bar {
+      background: var(--color-secondary-light);
+    }
+    .enemy-doghouse-modal .modern-hp-bar {
+      background: var(--color-primary-light);
     }
 
     .hp-fill {
@@ -969,9 +988,15 @@ export const MapModalStyles = html`
       margin-top: 10px;
       padding: 16px;
       background: var(--color-white);
-      border: 1px solid var(--color-secondary-light);
       border-radius: var(--border-radius-medium);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .own-doghouse-modal #buffs-section {
+      border: 1px solid var(--color-secondary-light);
+    }
+    .enemy-doghouse-modal #buffs-section {
+      border: 1px solid var(--color-primary-light);
     }
 
     .buffs-header {
