@@ -242,9 +242,6 @@ export class AppShopView extends LitElement {
         font-size: 16px;
       }
 
-      #consume-all-btn {
-        margin-top: 20px;
-      }
     `,
   ];
 
@@ -272,30 +269,6 @@ export class AppShopView extends LitElement {
     );
 
     return result.data;
-  }
-
-  async consumeAll() {
-    if ('getDigitalGoodsService' in window) {
-      try {
-        const service = await (window as any).getDigitalGoodsService(
-          'https://play.google.com/billing'
-        );
-        const purchases = await service.listPurchases();
-        let consumedCount = 0;
-
-        for (const purchase of purchases) {
-          await service.consume(purchase.purchaseToken);
-          consumedCount++;
-        }
-
-        showSuccessModal(
-          'Consumption Successful',
-          `You have successfully consumed ${consumedCount} purchases.`
-        );
-      } catch (error) {
-        console.log(error);
-      }
-    }
   }
 
   async buyWithTreats(item: string) {
@@ -524,7 +497,6 @@ export class AppShopView extends LitElement {
             </sl-tab-group>
           </div>
 
-          <sl-button id="consume-all-btn" @click=${this.consumeAll} pill>Consume All</sl-button>
         </div>
       </div>
     `;
