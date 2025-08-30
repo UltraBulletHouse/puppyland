@@ -44,6 +44,9 @@ export class IconPngBadge extends LitElement {
         class="image"
         src="${getImagePngUrl(this.name)}"
         alt="icon ${this.name}"
+        loading="lazy"
+        decoding="async"
+        fetchpriority="low"
         onContextMenu="${(e: { preventDefault: () => any }) => e.preventDefault()}"
       />
     </div>`;

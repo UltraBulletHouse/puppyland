@@ -123,6 +123,7 @@ export class AppFooter extends LitElement {
       <footer id="footer">
         <button
           class="nav-button ${this.view === View.DOG_VIEW ? 'active' : ''}"
+          @mouseenter="${() => import('../../views/app-dog-view').catch(() => {})}"
           @click="${() => this.changeView(View.DOG_VIEW)}"
         >
           <svg-icon name="dogPaw" class="nav-icon"></svg-icon>
@@ -130,6 +131,7 @@ export class AppFooter extends LitElement {
         </button>
         <button
           class="nav-button ${this.view === View.DOGHOUSE_VIEW ? 'active' : ''}"
+          @mouseenter="${() => import('../../views/app-doghouses-view').catch(() => {})}"
           @click="${() => this.changeView(View.DOGHOUSE_VIEW)}"
         >
           <sl-icon name="house-heart" class="nav-icon"></sl-icon>
@@ -138,6 +140,7 @@ export class AppFooter extends LitElement {
         <div class="map-button-container">
           <button
             class="map-button ${this.view === View.MAP_VIEW ? 'active' : ''}"
+            @mouseenter="${() => import('../../views/app-map-view').catch(() => {})}"
             @click="${() => this.changeView(View.MAP_VIEW)}"
           >
             <sl-icon name="globe-americas" class="nav-icon"></sl-icon>
@@ -145,6 +148,7 @@ export class AppFooter extends LitElement {
         </div>
         <button
           class="nav-button ${this.view === View.SHOP_VIEW ? 'active' : ''}"
+          @mouseenter="${() => import('../../views/app-shop-view').catch(() => {})}"
           @click="${() => this.changeView(View.SHOP_VIEW)}"
         >
           <sl-icon name="cart" class="nav-icon"></sl-icon>
@@ -152,6 +156,7 @@ export class AppFooter extends LitElement {
         </button>
         <button
           class="nav-button ${this.view === View.USER_VIEW ? 'active' : ''}"
+          @mouseenter="${() => import('../../views/app-user-view').catch(() => {})}"
           @click="${() => this.changeView(View.USER_VIEW)}"
         >
           <sl-icon name="person-circle" class="nav-icon"></sl-icon>
