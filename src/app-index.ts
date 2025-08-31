@@ -27,6 +27,15 @@ import { auth } from './utils/firebase';
 import { idbGet, idbSet } from './utils/idb';
 import './views/app-loading-map-view';
 import './views/app-loading-view';
+import {
+  preloadPngBadges,
+  preloadAllPngBadges,
+  preloadShoelaceIcons,
+  preloadStaticUrls,
+  preloadSvgTemplates,
+} from './utils/preloadImages';
+import markerOwnUrl from './assets/icons/marker-dh-own.svg';
+import markerEnemyUrl from './assets/icons/marker-dh-enemy.svg';
 
 // import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
@@ -92,6 +101,84 @@ export class AppIndex extends LitElement {
       await (navigator as any).storage?.persist?.();
     } catch {}
 
+    // Preload small PNG badges/icons to avoid first-use flicker
+    // Do this ASAP but off the critical path
+    try {
+      preloadAllPngBadges();
+    } catch {}
+
+    // Idle-preload common Shoelace icons and svg templates used in modals
+    const idle = (cb: () => void) =>
+      'requestIdleCallback' in window ? (window as any).requestIdleCallback(cb) : setTimeout(cb, 0);
+    idle(() => {
+      // Preload every <sl-icon name="..."> we use across the app
+      preloadShoelaceIcons([
+        'arrow-clockwise',
+        'arrow-right',
+        'bar-chart',
+        'bell',
+        'box-arrow-right',
+        'broadcast-pin',
+        'calendar-check',
+        'calendar-date',
+        'calendar-x',
+        'cart',
+        'check-circle',
+        'check-lg',
+        'clock',
+        'coin',
+        'envelope',
+        'exclamation-triangle',
+        'fire',
+        'geo-alt',
+        'gift',
+        'globe',
+        'globe-americas',
+        'google',
+        'hammer',
+        'handbag',
+        'heart-pulse',
+        'heartbreak',
+        'house',
+        'house-add',
+        'house-door-fill',
+        'house-heart',
+        'houses',
+        'info-circle',
+        'lightning-charge',
+        'list-task',
+        'magic',
+        'map',
+        'moon',
+        'pencil',
+        'person-circle',
+        'plus-circle',
+        'plus-lg',
+        'shield-shaded',
+        'shop',
+        'signpost-split',
+        'star',
+        'star-fill',
+        'tools',
+        'trophy',
+        'x',
+        'x-lg',
+        'explosion',
+      ]);
+      // Warm dynamic svg templates used by <svg-icon>
+      preloadSvgTemplates(['doghouseOne', 'dogFace', 'dogHead', 'accurate', 'dogPaw']);
+      // Warm marker SVGs and common Leaflet UI images
+      preloadStaticUrls([
+        markerOwnUrl,
+        markerEnemyUrl,
+        '/leaflet/images/marker-icon.png',
+        '/leaflet/images/marker-icon-2x.png',
+        '/leaflet/images/marker-shadow.png',
+        '/leaflet/images/layers.png',
+        '/leaflet/images/layers-2x.png',
+      ]);
+    });
+
     auth.onAuthStateChanged(async (userFirebase: User | null) => {
       this.isLoading = true;
 
@@ -128,10 +215,6 @@ export class AppIndex extends LitElement {
         this.view = View.MAP_VIEW;
 
         // Idle prefetch other views to speed up navigation (progressive enhancement)
-        const idle = (cb: () => void) =>
-          'requestIdleCallback' in window
-            ? (window as any).requestIdleCallback(cb)
-            : setTimeout(cb, 0);
         idle(() => {
           import('./views/app-dog-view').catch(() => {});
           import('./views/app-doghouses-view').catch(() => {});

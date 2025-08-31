@@ -33,7 +33,16 @@ export default defineConfig({
       filename: 'sw.js',
       injectRegister: false,
       manifest: false,
-      includeAssets: ['assets/**/*', 'offline.html'],
+      // Ensure runtime-copied assets are precached for offline and no flicker
+      includeAssets: [
+        'assets/**/*',
+        'offline.html',
+        // Shoelace static assets copied by viteStaticCopy
+        'shoelace/assets/icons/*.svg',
+        'shoelace/themes/*',
+        // Leaflet static assets copied by viteStaticCopy
+        'leaflet/**/*',
+      ],
     }),
   ],
   build: {
