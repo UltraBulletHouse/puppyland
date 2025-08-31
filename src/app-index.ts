@@ -9,6 +9,8 @@ import { cache } from 'lit/directives/cache.js';
 import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import '@shoelace-style/shoelace/dist/components/icon/icon.js';
+import markerEnemyUrl from './assets/icons/marker-dh-enemy.svg';
+import markerOwnUrl from './assets/icons/marker-dh-own.svg';
 import './components/app-footer/app-footer';
 import './components/icon-svg/svg-icon';
 import './components/icon-svg/svg-icon-button';
@@ -25,17 +27,14 @@ import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
 import { auth } from './utils/firebase';
 import { idbGet, idbSet } from './utils/idb';
-import './views/app-loading-map-view';
-import './views/app-loading-view';
 import {
-  preloadPngBadges,
   preloadAllPngBadges,
   preloadShoelaceIcons,
   preloadStaticUrls,
   preloadSvgTemplates,
 } from './utils/preloadImages';
-import markerOwnUrl from './assets/icons/marker-dh-own.svg';
-import markerEnemyUrl from './assets/icons/marker-dh-enemy.svg';
+import './views/app-loading-map-view';
+import './views/app-loading-view';
 
 // import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 

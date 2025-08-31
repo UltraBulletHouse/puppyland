@@ -18,9 +18,7 @@ export function preloadPngBadges(names: string[]) {
       preloadedBitmaps.push(img);
       // Trigger decode to avoid paint hitch on first display
       if ('decode' in img) {
-        (img as any)
-          .decode?.()
-          .catch(() => {});
+        (img as any).decode?.().catch(() => {});
       }
     });
   } catch {}
@@ -30,7 +28,10 @@ export function preloadPngBadges(names: string[]) {
 export function preloadAllPngBadges() {
   try {
     // The 'as: "url"' option returns resolved URLs for the files
-    const files = import.meta.glob('../assets/icons-png/*.png', { eager: true, as: 'url' }) as Record<string, string>;
+    const files = import.meta.glob('../assets/icons-png/*.png', {
+      eager: true,
+      as: 'url',
+    }) as Record<string, string>;
     const urls = Object.values(files);
     urls.forEach((src) => {
       const img = new Image();
@@ -50,7 +51,11 @@ export async function preloadShoelaceIcons(names: string[]) {
   await Promise.all(
     names.map(async (n) => {
       try {
-        await fetch(`${base}${n}.svg`, { method: 'GET', credentials: 'same-origin', cache: 'force-cache' });
+        await fetch(`${base}${n}.svg`, {
+          method: 'GET',
+          credentials: 'same-origin',
+          cache: 'force-cache',
+        });
       } catch {}
     })
   );
