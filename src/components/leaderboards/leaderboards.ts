@@ -312,13 +312,24 @@ export class LeaderboardsComponent extends LitElement {
   }
 
   private async fetchLeaderboardData() {
+    const cacheKey = 'leaderboards';
     if (!this.accessToken) {
-      console.error('No access token available for leaderboard');
+      /* console.error('No access token available for leaderboard'); */
       return;
     }
 
     try {
       this.isLoading = true;
+      const { idbGet, idbSet } = await import('../../utils/idb');
+      // Try last-known cached leaderboards for instant UI
+      try {
+        const cached = await idbGet<LeaderboardsResponse>(cacheKey);
+        if (cached?.value) {
+          this.leaderboards = cached.value.leaderboards;
+          this.currentUser = cached.value.currentUser;
+          this.isLoading = false; // render quickly, then refresh network below
+        }
+      } catch {}
       const { apiCall } = await import('../../utils/apiUtils');
       const { API_LEADERBOARD_GET } = await import('../../constants/apiConstants');
 
@@ -327,27 +338,28 @@ export class LeaderboardsComponent extends LitElement {
 
       this.leaderboards = data.leaderboards;
       this.currentUser = data.currentUser;
-      console.log('Fetched leaderboards:', this.leaderboards);
+      try { await idbSet<LeaderboardsResponse>(cacheKey, data); } catch {}
+      /* console.log('Fetched leaderboards:', this.leaderboards); */
 
       // Set the initial selected category to the first leaderboard or a default
       if (this.leaderboards.length > 0) {
         this.selectedCategory = this.leaderboards[0].category.toString();
-        console.log('Initial selectedCategory:', this.selectedCategory);
+        /* console.log('Initial selectedCategory:', this.selectedCategory); */
       }
     } catch (error) {
-      console.error('Error fetching leaderboard data:', error);
+      /* console.error('Error fetching leaderboard data:', error); */
     } finally {
       this.isLoading = false;
     }
   }
 
   get currentLeaderboard(): LeaderboardData | undefined {
-    console.log('Getting currentLeaderboard. selectedCategory:', this.selectedCategory);
+    /* console.log('Getting currentLeaderboard. selectedCategory:', this.selectedCategory); */
     const found = this.leaderboards.find((lb) => {
-      console.log('  Comparing:', lb.category.toString(), '===', this.selectedCategory);
+      /* console.log('  Comparing:', lb.category.toString(), '===', this.selectedCategory); */
       return lb.category.toString() === this.selectedCategory;
     });
-    console.log('  Found leaderboard:', found);
+    /* console.log('  Found leaderboard:', found); */
     return found;
   }
 

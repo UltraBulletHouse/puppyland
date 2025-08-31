@@ -251,7 +251,7 @@ export class AppMap extends LitElement {
     });
     this.map = map;
 
-    const urlTemplate = 'https://{s}.tile.osm.org/{z}/{x}/{y}.png';
+    const urlTemplate = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     map.addLayer(
       L.tileLayer(urlTemplate, {
         minZoom: 13,
@@ -274,7 +274,7 @@ export class AppMap extends LitElement {
 
   render() {
     return html`
-      <link rel="stylesheet" href="https://cdn.skypack.dev/leaflet/dist/leaflet.css" />
+      <link rel="stylesheet" href="/leaflet/leaflet.css" />
       <div id="container" @updateDoghouses=${this.updateDoghousesHandler}>
         ${this.isLevelUp
           ? html` <app-modal class="level-up-modal" .open=${this.isLevelUp}
