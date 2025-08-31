@@ -293,16 +293,22 @@ export class MapModal extends LitElement {
 
   triggerAttackSuccessAnimation = () => {
     this.isAttackSuccess = true;
-    setTimeout(() => {
-      this.isAttackSuccess = false;
-    }, this.lowPerfMode ? 600 : 1000);
+    setTimeout(
+      () => {
+        this.isAttackSuccess = false;
+      },
+      this.lowPerfMode ? 600 : 1000
+    );
   };
 
   triggerRepairSuccessAnimation = () => {
     this.isRepairSuccess = true;
-    setTimeout(() => {
-      this.isRepairSuccess = false;
-    }, this.lowPerfMode ? 600 : 1000);
+    setTimeout(
+      () => {
+        this.isRepairSuccess = false;
+      },
+      this.lowPerfMode ? 600 : 1000
+    );
   };
 
   canRepairDoghouse = (): { canRepair: boolean; reason: string } => {
@@ -395,11 +401,14 @@ export class MapModal extends LitElement {
       container.appendChild(particle);
 
       // Remove particle after animation
-      setTimeout(() => {
-        if (particle.parentNode) {
-          particle.parentNode.removeChild(particle);
-        }
-      }, Math.ceil(durationSec * 1000));
+      setTimeout(
+        () => {
+          if (particle.parentNode) {
+            particle.parentNode.removeChild(particle);
+          }
+        },
+        Math.ceil(durationSec * 1000)
+      );
     }
   };
 
@@ -414,21 +423,30 @@ export class MapModal extends LitElement {
 
     // Show damage indicator
     this.showDamageIndicator = true;
-    setTimeout(() => {
-      this.showDamageIndicator = false;
-    }, this.lowPerfMode ? 1200 : 2000);
+    setTimeout(
+      () => {
+        this.showDamageIndicator = false;
+      },
+      this.lowPerfMode ? 1200 : 2000
+    );
 
     // Show energy consumption indicator
     this.showEnergyIndicator = true;
-    setTimeout(() => {
-      this.showEnergyIndicator = false;
-    }, this.lowPerfMode ? 1200 : 2000);
+    setTimeout(
+      () => {
+        this.showEnergyIndicator = false;
+      },
+      this.lowPerfMode ? 1200 : 2000
+    );
 
     // Show experience indicator
     this.showExperienceIndicator = true;
-    setTimeout(() => {
-      this.showExperienceIndicator = false;
-    }, this.lowPerfMode ? 1200 : 2000);
+    setTimeout(
+      () => {
+        this.showExperienceIndicator = false;
+      },
+      this.lowPerfMode ? 1200 : 2000
+    );
   };
 
   showRepairVisualFeedback = (repairAmount: number) => {
@@ -436,15 +454,21 @@ export class MapModal extends LitElement {
 
     // Show repair indicator
     this.showRepairIndicator = true;
-    setTimeout(() => {
-      this.showRepairIndicator = false;
-    }, this.lowPerfMode ? 1200 : 2000);
+    setTimeout(
+      () => {
+        this.showRepairIndicator = false;
+      },
+      this.lowPerfMode ? 1200 : 2000
+    );
 
     // Show energy consumption indicator
     this.showEnergyIndicator = true;
-    setTimeout(() => {
-      this.showEnergyIndicator = false;
-    }, this.lowPerfMode ? 1200 : 2000);
+    setTimeout(
+      () => {
+        this.showEnergyIndicator = false;
+      },
+      this.lowPerfMode ? 1200 : 2000
+    );
   };
 
   attackDoghouse = async () => {

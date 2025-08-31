@@ -23,8 +23,8 @@ import { DogInfo } from './types/dog';
 import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
-import { idbGet, idbSet } from './utils/idb';
 import { auth } from './utils/firebase';
+import { idbGet, idbSet } from './utils/idb';
 import './views/app-loading-map-view';
 import './views/app-loading-view';
 
@@ -88,7 +88,9 @@ export class AppIndex extends LitElement {
 
   async firstUpdated() {
     // Request persistent storage to improve offline reliability (best effort)
-    try { await (navigator as any).storage?.persist?.(); } catch {}
+    try {
+      await (navigator as any).storage?.persist?.();
+    } catch {}
 
     auth.onAuthStateChanged(async (userFirebase: User | null) => {
       this.isLoading = true;
@@ -117,14 +119,19 @@ export class AppIndex extends LitElement {
         const userInfoResponse = await apiCall(accessToken).get<UserInfoResponse>(API_USER_INFO);
         this.userInfo = userInfoResponse?.data?.user;
         this.dogInfo = userInfoResponse?.data?.dog;
-        try { await idbSet<UserInfoResponse>(cacheKey, userInfoResponse.data); } catch {}
+        try {
+          await idbSet<UserInfoResponse>(cacheKey, userInfoResponse.data);
+        } catch {}
 
         this.accessToken = accessToken;
 
         this.view = View.MAP_VIEW;
 
         // Idle prefetch other views to speed up navigation (progressive enhancement)
-        const idle = (cb: () => void) => (('requestIdleCallback' in window) ? (window as any).requestIdleCallback(cb) : setTimeout(cb, 0));
+        const idle = (cb: () => void) =>
+          'requestIdleCallback' in window
+            ? (window as any).requestIdleCallback(cb)
+            : setTimeout(cb, 0);
         idle(() => {
           import('./views/app-dog-view').catch(() => {});
           import('./views/app-doghouses-view').catch(() => {});

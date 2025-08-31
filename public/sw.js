@@ -1,6 +1,8 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/6.5.4/workbox-sw.js');
 self.__WB_DISABLE_DEV_LOGS = true;
-try { workbox.setConfig({ debug: false }); } catch (e) {}
+try {
+  workbox.setConfig({ debug: false });
+} catch (e) {}
 
 // This is your Service Worker, you can put any of your custom Service Worker
 // code in this file, above the `precacheAndRoute` line.
@@ -77,7 +79,7 @@ workbox.precaching.precacheAndRoute([
   { url: '/offline.html', revision: '1' },
   { url: '/', revision: '1' },
   { url: '/index.html', revision: '1' },
-  { url: '/manifest.json', revision: '1' }
+  { url: '/manifest.json', revision: '1' },
 ]);
 
 // Offline fallback for navigations
@@ -102,8 +104,8 @@ workbox.routing.registerRoute(
     networkTimeoutSeconds: 5,
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({ statuses: [0, 200] }),
-      new workbox.expiration.ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 })
-    ]
+      new workbox.expiration.ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 }),
+    ],
   })
 );
 
@@ -114,8 +116,8 @@ workbox.routing.registerRoute(
     cacheName: 'static-resources',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({ statuses: [0, 200] }),
-      new workbox.expiration.ExpirationPlugin({ maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 7 })
-    ]
+      new workbox.expiration.ExpirationPlugin({ maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 7 }),
+    ],
   })
 );
 
@@ -126,8 +128,11 @@ workbox.routing.registerRoute(
     cacheName: 'app-assets',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({ statuses: [0, 200] }),
-      new workbox.expiration.ExpirationPlugin({ maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 180 })
-    ]
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 200,
+        maxAgeSeconds: 60 * 60 * 24 * 180,
+      }),
+    ],
   })
 );
 
@@ -138,8 +143,11 @@ workbox.routing.registerRoute(
     cacheName: 'font-cache',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({ statuses: [0, 200] }),
-      new workbox.expiration.ExpirationPlugin({ maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 365 })
-    ]
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 50,
+        maxAgeSeconds: 60 * 60 * 24 * 365,
+      }),
+    ],
   })
 );
 
@@ -150,8 +158,11 @@ workbox.routing.registerRoute(
     cacheName: 'image-cache',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({ statuses: [0, 200] }),
-      new workbox.expiration.ExpirationPlugin({ maxEntries: 300, maxAgeSeconds: 60 * 60 * 24 * 30 })
-    ]
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 300,
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+    ],
   })
 );
 
@@ -162,45 +173,55 @@ workbox.routing.registerRoute(
     cacheName: 'osm-tiles',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({ statuses: [0, 200] }),
-      new workbox.expiration.ExpirationPlugin({ maxEntries: 500, maxAgeSeconds: 60 * 60 * 24 * 14 })
-    ]
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 500,
+        maxAgeSeconds: 60 * 60 * 24 * 14,
+      }),
+    ],
   })
 );
 
 // Local CSS/JS assets: SWR for quick updates
 workbox.routing.registerRoute(
-  ({ url }) => url.origin === self.location.origin && (url.pathname.endsWith('.css') || url.pathname.endsWith('.js')),
+  ({ url }) =>
+    url.origin === self.location.origin &&
+    (url.pathname.endsWith('.css') || url.pathname.endsWith('.js')),
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'local-static-swr',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({ statuses: [0, 200] }),
-      new workbox.expiration.ExpirationPlugin({ maxEntries: 200, maxAgeSeconds: 60 * 60 * 24 * 30 })
-    ]
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 200,
+        maxAgeSeconds: 60 * 60 * 24 * 30,
+      }),
+    ],
   })
 );
 
 // API requests: Prefer network, fall back to cache when offline; keep cache reasonably fresh
 workbox.routing.registerRoute(
-  ({ url, request }) => url.origin === 'https://mydogapi.azurewebsites.net' && request.method === 'GET',
+  ({ url, request }) =>
+    url.origin === 'https://mydogapi.azurewebsites.net' && request.method === 'GET',
   new workbox.strategies.NetworkFirst({
     cacheName: 'api-cache',
     networkTimeoutSeconds: 5,
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({ statuses: [0, 200] }),
-      new workbox.expiration.ExpirationPlugin({ maxEntries: 200, maxAgeSeconds: 60 * 10 }) // 10 minutes
-    ]
+      new workbox.expiration.ExpirationPlugin({ maxEntries: 200, maxAgeSeconds: 60 * 10 }), // 10 minutes
+    ],
   })
 );
 
 // Queue POST requests while offline, replay when back online
 workbox.routing.registerRoute(
-  ({ url, request }) => url.origin === 'https://mydogapi.azurewebsites.net' && request.method === 'POST',
+  ({ url, request }) =>
+    url.origin === 'https://mydogapi.azurewebsites.net' && request.method === 'POST',
   new workbox.strategies.NetworkOnly({
     plugins: [
       new workbox.backgroundSync.BackgroundSyncPlugin('api-post-queue', {
-        maxRetentionTime: 60 * 24 // Retry for up to 24 hours
-      })
-    ]
+        maxRetentionTime: 60 * 24, // Retry for up to 24 hours
+      }),
+    ],
   }),
   'POST'
 );

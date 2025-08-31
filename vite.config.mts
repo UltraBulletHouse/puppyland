@@ -1,10 +1,10 @@
 import { defineConfig } from 'vite';
-import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { VitePWA } from 'vite-plugin-pwa';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
   resolve: {
-    dedupe: ['lit', '@shoelace-style/shoelace']
+    dedupe: ['lit', '@shoelace-style/shoelace'],
   },
   plugins: [
     viteStaticCopy({
@@ -43,8 +43,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['lit', '@shoelace-style/shoelace', 'leaflet'],
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 });

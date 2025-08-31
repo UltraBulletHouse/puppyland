@@ -338,7 +338,9 @@ export class LeaderboardsComponent extends LitElement {
 
       this.leaderboards = data.leaderboards;
       this.currentUser = data.currentUser;
-      try { await idbSet<LeaderboardsResponse>(cacheKey, data); } catch {}
+      try {
+        await idbSet<LeaderboardsResponse>(cacheKey, data);
+      } catch {}
       /* console.log('Fetched leaderboards:', this.leaderboards); */
 
       // Set the initial selected category to the first leaderboard or a default

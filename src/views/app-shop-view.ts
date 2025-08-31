@@ -352,9 +352,7 @@ export class AppShopView extends LitElement {
   async firstUpdated() {
     // Defer loading Google Billing details until user opens relevant tabs
     // (keep this method for other one-time setups if needed)
-  
     // Load Google Billing details for real-money SKUs (treat packs + premium)
-
   }
 
   renderShopItemReal = (item: ShopItemLocal) => html`
@@ -418,10 +416,14 @@ export class AppShopView extends LitElement {
     if (this.shopGoogleItems || !this.accessToken) return;
     if ('getDigitalGoodsService' in window) {
       try {
-        const service = await (window as any).getDigitalGoodsService('https://play.google.com/billing');
+        const service = await (window as any).getDigitalGoodsService(
+          'https://play.google.com/billing'
+        );
         const skuDetails: GoogleBillingItem[] = await service.getDetails(googleSkuIds);
         this.shopGoogleItems = skuDetails;
-      } catch (error) { /* ignore */ }
+      } catch (error) {
+        /* ignore */
+      }
     }
   }
 
@@ -440,10 +442,13 @@ export class AppShopView extends LitElement {
         </div>
         <div id="content">
           <div id="tabs-container">
-            <sl-tab-group class="shop-tabs" @sl-tab-show=${(e: any) => {
+            <sl-tab-group
+              class="shop-tabs"
+              @sl-tab-show=${(e: any) => {
                 const name = e.detail?.name || e.target?.activeTab?.panel;
                 if (name === 'buy-treats' || name === 'premium') this.ensureGoogleItemsLoaded();
-              }}>
+              }}
+            >
               <sl-tab slot="nav" panel="spend-treats">
                 <sl-icon name="handbag" style="margin-right: 6px;"></sl-icon>
                 Spend

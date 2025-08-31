@@ -32,10 +32,10 @@
     <link rel="manifest" href="/manifest.json" />
 
     <!-- Performance hints -->
-    <link rel="dns-prefetch" href="https://mydogapi.azurewebsites.net">
-    <link rel="preconnect" href="https://mydogapi.azurewebsites.net" crossorigin>
-    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://mydogapi.azurewebsites.net" />
+    <link rel="preconnect" href="https://mydogapi.azurewebsites.net" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
 
     <!-- light mode and dark(changed to light) mode CSS -->
     <link
@@ -45,10 +45,7 @@
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
-      <link
-        rel="stylesheet"
-        href="/shoelace/themes/light.css"
-      />
+      <link rel="stylesheet" href="/shoelace/themes/light.css" />
     </noscript>
     <script>
       (async () => {
@@ -58,7 +55,8 @@
         } catch (e) {
           const l = document.createElement('link');
           l.rel = 'stylesheet';
-          l.href = 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.73/dist/themes/light.css';
+          l.href =
+            'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.73/dist/themes/light.css';
           document.head.appendChild(l);
         }
         try {
@@ -112,20 +110,24 @@
             });
           }
           listenForWaiting(reg);
-          navigator.serviceWorker.addEventListener('controllerchange', () => window.location.reload());
+          navigator.serviceWorker.addEventListener('controllerchange', () =>
+            window.location.reload()
+          );
         });
       } else if ('serviceWorker' in navigator) {
         // In dev, make sure no SW controls the page to avoid caching dev modules
-        navigator.serviceWorker.getRegistrations().then(regs => regs.forEach(r => r.unregister()));
+        navigator.serviceWorker
+          .getRegistrations()
+          .then((regs) => regs.forEach((r) => r.unregister()));
       }
     </script>
     <!-- Additional preconnects used in map components (CDNs removed due to self-hosting) -->
-    <link rel="dns-prefetch" href="https://a.tile.openstreetmap.org">
-    <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin>
-    <link rel="dns-prefetch" href="https://b.tile.openstreetmap.org">
-    <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin>
-    <link rel="dns-prefetch" href="https://c.tile.openstreetmap.org">
-    <link rel="preconnect" href="https://c.tile.openstreetmap.org" crossorigin>
+    <link rel="dns-prefetch" href="https://a.tile.openstreetmap.org" />
+    <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
+    <link rel="dns-prefetch" href="https://b.tile.openstreetmap.org" />
+    <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
+    <link rel="dns-prefetch" href="https://c.tile.openstreetmap.org" />
+    <link rel="preconnect" href="https://c.tile.openstreetmap.org" crossorigin />
 
     <style>
       .sl-toast-stack {
