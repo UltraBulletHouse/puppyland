@@ -10,6 +10,7 @@ export const MapModalStyles = html`
       width: 100%;
       border-radius: var(--border-radius-medium);
       overflow: hidden;
+      will-change: transform, opacity;
     }
     .own-doghouse-modal {
       background: linear-gradient(
@@ -114,6 +115,7 @@ export const MapModalStyles = html`
       z-index: 2;
       position: relative;
       transition: transform 0.1s ease;
+      will-change: transform, opacity;
       -webkit-tap-highlight-color: transparent;
       -webkit-touch-callout: none;
       -webkit-user-select: none;
@@ -146,7 +148,7 @@ export const MapModalStyles = html`
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       border: 2px solid;
       text-align: center;
-      backdrop-filter: blur(10px);
+      /* backdrop-filter removed by default for mobile performance */
       max-width: 200px;
     }
 
@@ -190,7 +192,7 @@ export const MapModalStyles = html`
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       border: 2px solid;
       text-align: center;
-      backdrop-filter: blur(10px);
+      /* backdrop-filter removed by default for mobile performance */
       max-width: 220px;
     }
 
@@ -329,6 +331,7 @@ export const MapModalStyles = html`
       position: relative;
       overflow: hidden;
       background: linear-gradient(90deg, #4caf50, #2e7d32);
+      will-change: width, transform;
     }
 
     .hp-fill.enemy {
@@ -400,23 +403,18 @@ export const MapModalStyles = html`
     @keyframes repairSuccess {
       0% {
         transform: scale(1) rotate(0deg);
-        filter: brightness(1) hue-rotate(0deg);
       }
       25% {
         transform: scale(1.1) rotate(2deg);
-        filter: brightness(1.2) hue-rotate(-30deg);
       }
       50% {
         transform: scale(1.2) rotate(-2deg);
-        filter: brightness(1.4) hue-rotate(-60deg);
       }
       75% {
         transform: scale(1.1) rotate(1deg);
-        filter: brightness(1.2) hue-rotate(-30deg);
       }
       100% {
         transform: scale(1) rotate(0deg);
-        filter: brightness(1) hue-rotate(0deg);
       }
     }
 
@@ -483,6 +481,7 @@ export const MapModalStyles = html`
       animation: destructionFlash 1.5s ease-out forwards;
       pointer-events: none;
       z-index: 50;
+      will-change: opacity, transform;
     }
 
     @keyframes destructionFlash {
@@ -588,7 +587,8 @@ export const MapModalStyles = html`
       right: 0;
       bottom: 0;
       pointer-events: none;
-      z-index: 10;
+      /* Ensure feedback overlays above any in-content overlay (e.g., destruction) */
+      z-index: 100;
     }
 
     .feedback-indicator {
@@ -598,7 +598,7 @@ export const MapModalStyles = html`
       pointer-events: none;
       padding: 6px 12px;
       border-radius: 15px;
-      backdrop-filter: blur(10px);
+      /* backdrop-filter removed by default for mobile performance */
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       border: 2px solid;
       display: flex;
@@ -607,6 +607,8 @@ export const MapModalStyles = html`
       min-width: 100px;
       justify-content: center;
       white-space: nowrap;
+      will-change: transform, opacity;
+      z-index: 60; /* above doghouse icon, tap overlay, and destruction overlay */
     }
 
     .damage-indicator {
@@ -1280,6 +1282,66 @@ export const MapModalStyles = html`
 
       .hp-value {
         font-size: 14px;
+      }
+    }
+
+    /* Desktop-only blur effects for nicer visuals */
+    @media (pointer: fine) and (min-width: 768px) {
+      .tap-instructions-compact,
+      .repair-instructions-compact,
+      .attack-blocked-instructions-compact,
+      .repair-blocked-instructions-compact,
+      .feedback-indicator {
+        backdrop-filter: blur(8px);
+      }
+    }
+
+    /* Animations are always enabled (override OS reduced motion) */
+
+    /* Shorter animation durations on small screens for smoother performance */
+    @media (max-width: 600px) {
+      #doghouse-icon.shake {
+        animation-duration: 0.35s;
+      }
+      #doghouse-icon.attack-success,
+      #doghouse-icon.repair-success {
+        animation-duration: 0.7s;
+      }
+      .screen-shake {
+        animation-duration: 0.6s;
+      }
+      .destruction-overlay {
+        animation-duration: 1s;
+      }
+      .damage-indicator,
+      .energy-indicator,
+      .experience-indicator,
+      .repair-indicator {
+        animation-duration: 1.2s;
+      }
+      .damage-indicator.destruction-message {
+        animation-duration: 1.6s;
+      }
+      .tap-dot.active,
+      .repair-dot.active {
+        animation-duration: 0.3s;
+      }
+      .tap-dot.active::after,
+      .repair-dot.active::after {
+        animation-duration: 0.5s;
+      }
+    }
+
+    /* Lighter shadows on small screens */
+    @media (max-width: 480px) {
+      .feedback-indicator {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
+      .tap-instructions-compact,
+      .repair-instructions-compact,
+      .attack-blocked-instructions-compact,
+      .repair-blocked-instructions-compact {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
       }
     }
   </style>

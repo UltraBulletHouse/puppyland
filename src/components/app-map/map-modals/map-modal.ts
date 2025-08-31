@@ -129,6 +129,33 @@ export class MapModal extends LitElement {
   @state()
   private buffToConfirm: string | null = null;
 
+  // Low‑perf mode flag to reduce heavy effects on mobile/slow devices
+  @state()
+  private lowPerfMode: boolean = false;
+
+  // Lightweight tap throttle to avoid rapid reflows on mobile
+  private lastTapAt: number = 0;
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    try {
+      const isCoarsePointer =
+        typeof window !== 'undefined' &&
+        window.matchMedia &&
+        window.matchMedia('(pointer: coarse)').matches;
+      const isSmallViewport =
+        typeof window !== 'undefined' &&
+        window.matchMedia &&
+        window.matchMedia('(max-width: 480px)').matches;
+
+      // Low-perf mode only for coarse pointer / tiny screens.
+      // We no longer disable animations for reduced-motion preference.
+      this.lowPerfMode = Boolean(isCoarsePointer || isSmallViewport);
+    } catch {
+      this.lowPerfMode = false;
+    }
+  }
+
   private handleBuffClick(buffSku: string) {
     this.buffToConfirm = buffSku;
   }
@@ -214,6 +241,9 @@ export class MapModal extends LitElement {
 
   handleDoghouseTap = () => {
     if (this.btnLoading) return;
+    const now = Date.now();
+    if (now - this.lastTapAt < 80) return; // throttle rapid taps
+    this.lastTapAt = now;
 
     if (!this.isOwn) {
       // Check if attack is allowed
@@ -254,23 +284,25 @@ export class MapModal extends LitElement {
 
   triggerShakeAnimation = () => {
     this.isShaking = true;
+    // Shorter shake on low‑perf devices
+    const duration = this.lowPerfMode ? 300 : 500;
     setTimeout(() => {
       this.isShaking = false;
-    }, 500);
+    }, duration);
   };
 
   triggerAttackSuccessAnimation = () => {
     this.isAttackSuccess = true;
     setTimeout(() => {
       this.isAttackSuccess = false;
-    }, 1000);
+    }, this.lowPerfMode ? 600 : 1000);
   };
 
   triggerRepairSuccessAnimation = () => {
     this.isRepairSuccess = true;
     setTimeout(() => {
       this.isRepairSuccess = false;
-    }, 1000);
+    }, this.lowPerfMode ? 600 : 1000);
   };
 
   canRepairDoghouse = (): { canRepair: boolean; reason: string } => {
@@ -342,7 +374,9 @@ export class MapModal extends LitElement {
     if (!container) return;
 
     // Create multiple explosion particles
-    for (let i = 0; i < 12; i++) {
+    const particleCount = this.lowPerfMode ? 4 : 12;
+    const durationSec = this.lowPerfMode ? 0.9 : 1.5;
+    for (let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.className = 'explosion-particle';
       particle.style.cssText = `
@@ -355,7 +389,7 @@ export class MapModal extends LitElement {
         left: 50%;
         pointer-events: none;
         z-index: 100;
-        animation: explode-${i} 1.5s ease-out forwards;
+        animation: explode-${i} ${durationSec}s ease-out forwards;
       `;
 
       container.appendChild(particle);
@@ -365,7 +399,7 @@ export class MapModal extends LitElement {
         if (particle.parentNode) {
           particle.parentNode.removeChild(particle);
         }
-      }, 1500);
+      }, Math.ceil(durationSec * 1000));
     }
   };
 
@@ -382,19 +416,19 @@ export class MapModal extends LitElement {
     this.showDamageIndicator = true;
     setTimeout(() => {
       this.showDamageIndicator = false;
-    }, 2000);
+    }, this.lowPerfMode ? 1200 : 2000);
 
     // Show energy consumption indicator
     this.showEnergyIndicator = true;
     setTimeout(() => {
       this.showEnergyIndicator = false;
-    }, 2000);
+    }, this.lowPerfMode ? 1200 : 2000);
 
     // Show experience indicator
     this.showExperienceIndicator = true;
     setTimeout(() => {
       this.showExperienceIndicator = false;
-    }, 2000);
+    }, this.lowPerfMode ? 1200 : 2000);
   };
 
   showRepairVisualFeedback = (repairAmount: number) => {
@@ -404,13 +438,13 @@ export class MapModal extends LitElement {
     this.showRepairIndicator = true;
     setTimeout(() => {
       this.showRepairIndicator = false;
-    }, 2000);
+    }, this.lowPerfMode ? 1200 : 2000);
 
     // Show energy consumption indicator
     this.showEnergyIndicator = true;
     setTimeout(() => {
       this.showEnergyIndicator = false;
-    }, 2000);
+    }, this.lowPerfMode ? 1200 : 2000);
   };
 
   attackDoghouse = async () => {
