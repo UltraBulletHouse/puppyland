@@ -10,10 +10,10 @@
   --color-primary-light: #f2fbf5; /* light background wash */
   --color-primary-rgb: 82, 183, 136; /* for rgba blends */
 
-  /* Secondary: deeper sage for contrast */
-  --color-secondary: #7fb77e; /* friendly sage */
+  /* Secondary: richer green for contrast */
+  --color-secondary: #40916c; /* rich sage */
   --color-secondary-light: #e7f5ea; /* pale sage */
-  --color-secondary-rgb: 127, 183, 126; /* for rgba blends */
+  --color-secondary-rgb: 64, 145, 108; /* for rgba blends */
 
   /* SKY BLUE (utility) */
   /* --color-ternary: #00c5b7;
@@ -22,12 +22,28 @@
   --color-blue: #6ec1e4; /* sky blue */
 
   /* BACKGROUNDS */
-  /* Slight green tint across views */
-  --color-bg-start: color-mix(in srgb, var(--color-primary) 16%, #fff);
-  --color-bg-end: color-mix(in srgb, var(--color-primary) 6%, #fff);
+  /* Lime→mint→rich green layered background similar to reference */
+  --color-lime: #c7f36b; /* bright lime accent */
+  --color-bg-start: color-mix(in srgb, var(--color-lime) 70%, #fff);
+  --color-bg-end: color-mix(in srgb, var(--color-secondary) 40%, #fff);
+  --app-bg: 
+    radial-gradient(90% 60% at 100% 0%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(75% 55% at 0% 100%, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0) 60%),
+    linear-gradient(160deg, var(--color-lime) 0%, color-mix(in srgb, var(--color-primary) 50%, var(--color-lime) 50%) 45%, var(--color-secondary) 100%);
 
-  /* WHITE (mint-tinted) */
-  --color-white: #f7fdf9;
+  /* HEADER BAND */
+  --header-bg: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--color-secondary) 40%, #aaf06c) 0%,
+    color-mix(in srgb, var(--color-secondary) 86%, #000) 100%
+  );
+  --header-border: color-mix(in srgb, var(--color-secondary) 50%, #000);
+
+  /* SURFACES */
+  --color-white: #f4fbf7; /* legacy white */
+  --color-surface: #ecfaf3; /* default card surface (mint) */
+  --color-surface-strong: #e4f6ed; /* elevated or active surfaces */
+  --color-surface-border: color-mix(in srgb, var(--color-primary) 35%, #fff);
 
   /* BLACK */
   --color-black: #333;
@@ -67,7 +83,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+  background: var(--app-bg);
 }
 
 * {

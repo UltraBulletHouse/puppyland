@@ -41,7 +41,7 @@ export class AppDogView extends LitElement {
         flex-direction: column;
         height: 100%;
         width: 100%;
-        background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+        background: var(--app-bg);
         position: relative;
       }
       #manage-subscription {
@@ -56,8 +56,8 @@ export class AppDogView extends LitElement {
         flex-direction: column;
         align-items: center;
         padding: 20px 16px;
-        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
-        border-bottom: 1px solid var(--color-primary-medium);
+        background: var(--header-bg);
+        border-bottom: 1px solid var(--header-border);
       }
       #top-right-row {
         position: absolute;
@@ -81,7 +81,7 @@ export class AppDogView extends LitElement {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: rgba(255, 255, 255, 0.8);
+        background: color-mix(in srgb, var(--color-surface) 85%, transparent);
         padding: 6px 10px;
         border-radius: 999px;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
@@ -94,7 +94,7 @@ export class AppDogView extends LitElement {
         font-weight: 700;
         padding: 6px 10px;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.85);
+        background: color-mix(in srgb, var(--color-surface) 90%, transparent);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         backdrop-filter: blur(4px);
         cursor: pointer;
@@ -124,7 +124,7 @@ export class AppDogView extends LitElement {
         align-items: center;
         font-size: 18px;
         font-weight: 600;
-        color: var(--color-black);
+        color: #fff;
       }
       #dog-name sl-input {
         width: 290px;
@@ -211,7 +211,7 @@ export class AppDogView extends LitElement {
       }
 
       .stat-card {
-        background: var(--color-white);
+        background: var(--color-surface);
         border: 1px solid var(--color-primary-medium);
         border-radius: var(--border-radius-medium);
         padding: 16px;
@@ -438,7 +438,7 @@ export class AppDogView extends LitElement {
         gap: 8px;
         padding: 6px 8px;
         border-radius: var(--border-radius-medium);
-        background: var(--color-white);
+        background: var(--color-surface);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
       }
       .alloc-card .title-row {

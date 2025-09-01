@@ -20,9 +20,12 @@ export class AppFooter extends LitElement {
         left: 0;
         right: 0;
         height: 60px; /* A bit more spacious */
-        background-color: var(--color-white);
-        border-top: 1px solid var(--color-primary-light);
-        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+        background: linear-gradient(180deg,
+          color-mix(in srgb, var(--color-secondary) 90%, #000) 0%,
+          var(--color-secondary) 100%
+        );
+        border-top: none;
+        box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
         z-index: 2000;
         display: flex;
         justify-content: space-around;
@@ -37,7 +40,7 @@ export class AppFooter extends LitElement {
         align-items: center;
         justify-content: center;
         gap: 4px;
-        color: var(--color-black-light);
+        color: rgba(255, 255, 255, 0.8);
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -55,10 +58,10 @@ export class AppFooter extends LitElement {
         outline: none; /* Remove default focus outline */
       }
       .nav-button:hover {
-        color: var(--color-primary);
+        color: #fff;
       }
       .nav-button.active {
-        color: var(--color-primary);
+        color: #fff;
       }
       .nav-icon {
         font-size: 24px;
@@ -74,16 +77,16 @@ export class AppFooter extends LitElement {
         z-index: 1;
       }
       .map-button {
-        background: var(--color-white);
-        color: var(--color-black-light);
-        border: 1px solid var(--color-primary-light);
+        background: #fff;
+        color: var(--color-secondary);
+        border: 1px solid color-mix(in srgb, var(--color-secondary) 25%, #fff);
         border-radius: var(--border-radius-circle);
         width: 64px;
         height: 64px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
         transition:
           transform 0.2s ease,
           background-color 0.2s ease,
@@ -92,12 +95,12 @@ export class AppFooter extends LitElement {
       .map-button:hover {
         transform: scale(1.05);
         background: var(--color-primary-light);
-        color: var(--color-primary);
+        color: var(--color-secondary);
       }
       .map-button.active {
         background: var(--color-primary-light);
-        border-color: var(--color-primary);
-        color: var(--color-primary);
+        border-color: var(--color-secondary);
+        color: var(--color-secondary);
         transform: scale(1.02);
       }
       .map-button .nav-icon {

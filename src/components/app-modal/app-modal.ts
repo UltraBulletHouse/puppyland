@@ -34,7 +34,7 @@ export class AppModal extends LitElement {
             #modal-content {
               width: 100%;
               height: 100%;
-              background: var(--color-white);
+              background: var(--color-surface);
               border: 1px solid var(--color-primary-medium);
               border-radius: var(--border-radius-medium);
               animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;

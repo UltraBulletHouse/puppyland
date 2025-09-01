@@ -81,13 +81,13 @@ export class AppShopView extends LitElement {
         flex-direction: column;
         height: 100%;
         width: 100%;
-        background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+        background: var(--app-bg);
       }
 
       #header {
         padding: 20px 16px;
-        border-bottom: 1px solid var(--color-primary-light);
-        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+        border-bottom: 1px solid var(--header-border);
+        background: var(--header-bg);
         display: flex;
         align-items: center;
         gap: 12px;
@@ -96,7 +96,7 @@ export class AppShopView extends LitElement {
       #title {
         font-weight: 600;
         font-size: 20px;
-        color: var(--color-black);
+        color: #fff;
       }
 
       #content {
@@ -168,7 +168,7 @@ export class AppShopView extends LitElement {
       }
 
       .item-list {
-        background: var(--color-white);
+        background: var(--color-surface);
         border-radius: var(--border-radius-medium);
         border: 1px solid var(--color-primary-medium);
         overflow: hidden;

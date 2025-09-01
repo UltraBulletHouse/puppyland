@@ -16,7 +16,7 @@ export class DailyQuests extends LitElement {
     sharedStyles,
     css`
       #container {
-        background: var(--color-white);
+        background: var(--color-surface);
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -38,8 +38,8 @@ export class DailyQuests extends LitElement {
         align-items: center;
         margin-bottom: 16px;
         padding: 16px;
-        border-bottom: 1px solid var(--color-primary-light);
-        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+        border-bottom: 1px solid var(--header-border);
+        background: var(--header-bg);
       }
 
       #title {
@@ -48,7 +48,7 @@ export class DailyQuests extends LitElement {
         gap: 8px;
         font-weight: 600;
         font-size: 18px;
-        color: var(--color-black);
+        color: #fff;
       }
 
       #refresh-timer {
@@ -118,10 +118,10 @@ export class DailyQuests extends LitElement {
         display: flex;
         align-items: center;
         gap: 4px;
-        background: var(--color-white);
+        background: var(--color-surface);
         padding: 6px 8px;
         border-radius: var(--border-radius-small);
-        border: 1px solid var(--color-primary-medium);
+        border: 1px solid var(--color-surface-border);
         font-size: 12px;
         font-weight: 600;
         white-space: nowrap;
@@ -157,7 +157,7 @@ export class DailyQuests extends LitElement {
 
       sl-progress-bar {
         --height: 6px;
-        --track-color: var(--color-white);
+        --track-color: var(--color-surface);
         --indicator-color: var(--color-primary);
       }
 

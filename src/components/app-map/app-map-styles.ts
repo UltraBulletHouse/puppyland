@@ -31,9 +31,9 @@ export const AppMapStyles = [
       height: 44px;
       width: 70px;
       padding: 10px;
-      background: var(--color-white);
+      background: var(--color-surface);
       border-radius: var(--border-radius-medium);
-      border: 1px solid var(--color-primary-medium);
+      border: 1px solid var(--color-surface-border);
     }
     #info-box-line {
       display: flex;
@@ -62,10 +62,10 @@ export const AppMapStyles = [
       box-shadow: 0px 0px 12px 0px #0000002b;
     }
     .leaflet-popup-content-wrapper {
-      background-color: var(--color-white);
+      background-color: var(--color-surface);
     }
     .leaflet-popup-tip {
-      background-color: var(--color-white);
+      background-color: var(--color-surface);
     }
     .leaflet-popup-content {
       height: 150px;
@@ -94,7 +94,7 @@ export const AppMapStyles = [
       border-left: 1px solid var(--color-primary-medium);
       border-right: 1px solid var(--color-primary-medium);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
-      background-color: var(--color-white) !important;
+      background-color: var(--color-surface) !important;
     }
     .leaflet-control-zoom-out {
       height: 34px !important;
@@ -105,7 +105,7 @@ export const AppMapStyles = [
       border-left: 1px solid var(--color-primary-medium);
       border-right: 1px solid var(--color-primary-medium);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
-      background-color: var(--color-white) !important;
+      background-color: var(--color-surface) !important;
     }
     #controls {
       position: relative;
@@ -127,14 +127,14 @@ export const AppMapStyles = [
     #add-doghouse-btn::part(base):active {
       border-color: var(--color-primary);
       color: var(--color-primary);
-      background: var(--color-white);
+      background: var(--color-surface);
     }
     #center-position-btn::part(base),
     #center-position-btn::part(base):hover,
     #center-position-btn::part(base):active {
       border-color: var(--color-blue);
       color: var(--color-blue);
-      background: var(--color-white);
+      background: var(--color-surface);
     }
     #center-position-btn::part(base),
     #add-doghouse-btn::part(base) {

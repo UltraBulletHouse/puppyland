@@ -17,11 +17,11 @@ export const MapModalStyles = html`
         135deg,
         rgba(76, 175, 80, 0.15) 0%,
         rgba(129, 199, 132, 0.08) 50%,
-        var(--color-white) 100%
+        var(--color-surface) 100%
       );
     }
     .enemy-doghouse-modal {
-      background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+      background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-surface) 100%);
     }
     #map-modal-main-section {
       display: flex;
@@ -92,12 +92,12 @@ export const MapModalStyles = html`
     }
 
     #dh-info {
-      background: rgba(255, 255, 255, 0.15);
+      background: color-mix(in srgb, var(--color-surface) 80%, transparent);
       border-radius: var(--border-radius-medium);
       padding: 20px;
       margin-bottom: 15px;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid var(--color-surface-border);
       width: 100%;
     }
 
@@ -142,7 +142,7 @@ export const MapModalStyles = html`
 
     .tap-instructions-compact,
     .repair-instructions-compact {
-      background: rgba(255, 255, 255, 0.95);
+      background: color-mix(in srgb, var(--color-surface) 95%, transparent);
       border-radius: 12px;
       padding: 8px 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -237,7 +237,7 @@ export const MapModalStyles = html`
       width: 100%;
       margin: 20px 0;
       padding: 16px;
-      background: var(--color-white);
+      background: var(--color-surface);
       border-radius: var(--border-radius-medium);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       position: relative;
@@ -1005,7 +1005,7 @@ export const MapModalStyles = html`
       width: 100%;
       margin-top: 10px;
       padding: 16px;
-      background: var(--color-white);
+      background: var(--color-surface);
       border-radius: var(--border-radius-medium);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
@@ -1067,8 +1067,8 @@ export const MapModalStyles = html`
       cursor: pointer;
       padding: 8px;
       border-radius: var(--border-radius-medium);
-      background: var(--color-white);
-      border: 1px solid var(--sl-color-gray-300);
+      background: var(--color-surface);
+      border: 1px solid var(--color-surface-border);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       transition: all 0.2s ease;
       position: relative;
@@ -1076,7 +1076,7 @@ export const MapModalStyles = html`
     }
 
     .buff-item:hover {
-      background: var(--sl-color-gray-100);
+      background: var(--color-surface-strong);
       transform: translateY(-2px);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }

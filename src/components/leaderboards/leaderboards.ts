@@ -21,7 +21,7 @@ export class LeaderboardsComponent extends LitElement {
     sharedStyles,
     css`
       #container {
-        background: var(--color-white);
+        background: var(--color-surface);
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -30,8 +30,8 @@ export class LeaderboardsComponent extends LitElement {
 
       #header {
         padding: 16px;
-        border-bottom: 1px solid var(--color-primary-light);
-        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+        border-bottom: 1px solid var(--header-border);
+        background: var(--header-bg);
       }
 
       #title {
@@ -40,7 +40,7 @@ export class LeaderboardsComponent extends LitElement {
         gap: 8px;
         font-weight: 600;
         font-size: 18px;
-        color: var(--color-black);
+        color: #fff;
         margin-bottom: 12px;
       }
 
@@ -61,9 +61,9 @@ export class LeaderboardsComponent extends LitElement {
       .category-button::part(base) {
         font-size: 12px;
         padding: 8px;
-        background-color: var(--color-white);
+        background-color: var(--color-surface);
         color: var(--color-primary);
-        border: 1px solid var(--color-primary-light);
+        border: 1px solid var(--color-surface-border);
         transition:
           background-color 0.2s,
           color 0.2s;
@@ -133,9 +133,9 @@ export class LeaderboardsComponent extends LitElement {
       }
 
       #leaderboard-list {
-        background: var(--color-white);
+        background: var(--color-surface);
         border-radius: var(--border-radius-medium);
-        border: 1px solid var(--color-primary-medium);
+        border: 1px solid var(--color-surface-border);
         overflow: visible;
         margin-bottom: 16px;
       }

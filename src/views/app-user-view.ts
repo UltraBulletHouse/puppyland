@@ -30,7 +30,7 @@ export class AppUserView extends LitElement {
         display: flex;
         flex-direction: column;
         height: calc(100vh - 60px);
-        background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+        background: var(--app-bg);
         overflow-y: auto;
         padding: 0;
       }
@@ -40,9 +40,9 @@ export class AppUserView extends LitElement {
         flex-direction: column;
         align-items: center;
         padding: 2rem 1rem 1rem;
-        background: var(--color-white);
+        background: var(--header-bg);
         border-radius: 0 0 2rem 2rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         margin-bottom: 1rem;
       }
 
