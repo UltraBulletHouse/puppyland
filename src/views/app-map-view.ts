@@ -11,7 +11,7 @@ export class AppMapView extends LitElement {
     css`
       #container {
         height: 100%;
-        background: var(--color-white);
+        background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
       }
     `,
   ];

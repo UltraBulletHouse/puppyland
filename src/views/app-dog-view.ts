@@ -41,7 +41,7 @@ export class AppDogView extends LitElement {
         flex-direction: column;
         height: 100%;
         width: 100%;
-        background: var(--color-white);
+        background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
         position: relative;
       }
       #manage-subscription {

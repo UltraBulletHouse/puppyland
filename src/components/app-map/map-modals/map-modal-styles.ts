@@ -330,7 +330,11 @@ export const MapModalStyles = html`
       transition: width 0.6s ease;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(90deg, #4caf50, #2e7d32);
+      background: linear-gradient(
+        90deg,
+        var(--color-secondary),
+        color-mix(in srgb, var(--color-secondary) 70%, #000)
+      );
       will-change: width, transform;
     }
 
@@ -664,9 +668,13 @@ export const MapModalStyles = html`
     }
 
     .experience-indicator {
-      background: linear-gradient(135deg, rgba(76, 175, 80, 0.95), rgba(76, 175, 80, 0.8));
+      background: linear-gradient(
+        135deg,
+        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.95),
+        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.8)
+      );
       color: white;
-      border-color: #4caf50;
+      border-color: var(--color-secondary);
       top: 20%;
       left: 10%;
       animation: floatUpLeft 2.5s ease-out forwards;
@@ -823,7 +831,11 @@ export const MapModalStyles = html`
 
     /* Repair indicator styles */
     .repair-indicator {
-      background: linear-gradient(135deg, #4caf50, #81c784);
+      background: linear-gradient(
+        135deg,
+        var(--color-secondary),
+        color-mix(in srgb, var(--color-secondary) 60%, #fff)
+      );
       color: white;
       animation: floatUpCenter 2s ease-out forwards;
     }
@@ -891,7 +903,11 @@ export const MapModalStyles = html`
     }
 
     .repair-dot.active {
-      background: linear-gradient(135deg, var(--color-secondary), #4caf50);
+      background: linear-gradient(
+        135deg,
+        var(--color-secondary),
+        color-mix(in srgb, var(--color-secondary) 70%, #fff)
+      );
       border-color: var(--color-secondary);
       box-shadow: 0 4px 12px rgba(var(--color-secondary-rgb, 40, 167, 69), 0.4);
       animation: repairPulse 0.4s ease;
@@ -1110,9 +1126,13 @@ export const MapModalStyles = html`
     }
 
     .buff-applied-indicator {
-      background: linear-gradient(135deg, rgba(76, 175, 80, 0.95), rgba(76, 175, 80, 0.8));
+      background: linear-gradient(
+        135deg,
+        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.95),
+        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.8)
+      );
       color: white;
-      border-color: #4caf50;
+      border-color: var(--color-secondary);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);

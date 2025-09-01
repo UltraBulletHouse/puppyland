@@ -30,7 +30,7 @@ export class AppUserView extends LitElement {
         display: flex;
         flex-direction: column;
         height: calc(100vh - 60px);
-        background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-white) 100%);
+        background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
         overflow-y: auto;
         padding: 0;
       }
@@ -173,14 +173,14 @@ export class AppUserView extends LitElement {
       }
 
       .signout-button::part(base) {
-        background: #dc3545;
-        border-color: #dc3545;
+        background: #b54b3a; /* earthy danger */
+        border-color: #b54b3a;
         color: white;
       }
 
       .signout-button::part(base):hover {
-        background: #c82333;
-        border-color: #bd2130;
+        background: #9e3c2d;
+        border-color: #8a3427;
       }
 
       .attribution-card .setting-details a {

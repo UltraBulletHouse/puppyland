@@ -4,24 +4,30 @@
   --sl-z-index-toast: 1009;
 
   /* ----------------COLORS---------------------------- */
-  /* ORANGE */
-  --color-primary: #ff6100;
-  --color-primary-medium: #f2dacc;
-  --color-primary-light: #fff1e8;
+  /* Puppy palette: pastel green focus */
+  --color-primary: #52b788; /* vibrant mint */
+  --color-primary-medium: #d8f3dc; /* soft tint for borders */
+  --color-primary-light: #f2fbf5; /* light background wash */
+  --color-primary-rgb: 82, 183, 136; /* for rgba blends */
 
-  /* GREEN */
-  --color-secondary: #00bd31;
-  --color-secondary-light: #c4f4f0;
+  /* Secondary: deeper sage for contrast */
+  --color-secondary: #7fb77e; /* friendly sage */
+  --color-secondary-light: #e7f5ea; /* pale sage */
+  --color-secondary-rgb: 127, 183, 126; /* for rgba blends */
 
-  /* BLUE */
+  /* SKY BLUE (utility) */
   /* --color-ternary: #00c5b7;
   --color-ternary-light: #c4f4f0; */
 
-  /* BLUE tecnical */
-  --color-blue: #2e96f8;
+  --color-blue: #6ec1e4; /* sky blue */
 
-  /* WHITE */
-  --color-white: #f9f8f7;
+  /* BACKGROUNDS */
+  /* Slight green tint across views */
+  --color-bg-start: color-mix(in srgb, var(--color-primary) 16%, #fff);
+  --color-bg-end: color-mix(in srgb, var(--color-primary) 6%, #fff);
+
+  /* WHITE (mint-tinted) */
+  --color-white: #f7fdf9;
 
   /* BLACK */
   --color-black: #333;
@@ -61,6 +67,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
 }
 
 * {
