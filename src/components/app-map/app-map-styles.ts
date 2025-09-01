@@ -55,7 +55,8 @@ export const AppMapStyles = [
     }
     .map-layer,
     .leaflet-tile-container {
-      filter: grayscale(1);
+filter: grayscale(28%) hue-rotate(
+140deg) saturate(77%) brightness(108%) contrast(86%);
     }
     .leaflet-touch .leaflet-control-layers,
     .leaflet-touch .leaflet-bar {
