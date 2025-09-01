@@ -319,7 +319,7 @@ export class MapPopup extends LitElement {
         <div id="lower-section">
           <div id="owner-section">
             <div id="dog-icon">
-              <svg-icon name="dogFace"></svg-icon>
+              <svg-icon name="dogFaceSvg"></svg-icon>
             </div>
             <div id="dog-name">${decodeURIComponent(this.dogName ?? '')}</div>
           </div>

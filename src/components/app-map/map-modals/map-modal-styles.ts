@@ -1235,7 +1235,7 @@ export const MapModalStyles = html`
       }
 
       #doghouse-icon {
-        font-size: 50px;
+        font-size: 60px;
       }
 
       .tap-overlay {
