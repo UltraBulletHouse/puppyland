@@ -26,7 +26,9 @@ function makeResponsive(svg: string): string {
 
   // If no viewBox, try to infer from width/height numbers
   if (!/viewBox=/i.test(s)) {
-    const m = s.match(/<svg[^>]*\bwidth=["'](\d+(?:\.\d+)?)["'][^>]*\bheight=["'](\d+(?:\.\d+)?)["'][^>]*>/i);
+    const m = s.match(
+      /<svg[^>]*\bwidth=["'](\d+(?:\.\d+)?)["'][^>]*\bheight=["'](\d+(?:\.\d+)?)["'][^>]*>/i
+    );
     if (m) {
       const [w, h] = [m[1], m[2]];
       s = s.replace(/<svg([^>]*)>/i, `<svg$1 viewBox="0 0 ${w} ${h}">`);
