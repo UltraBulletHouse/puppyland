@@ -43,8 +43,21 @@ export class SvgIcon extends LitElement {
       if (!this.name) {
         throw new Error('"name" is not defined for svg-icon element');
       }
-      const svgIcon = await import(`../../assets/iconsTemplates/${this.name}.ts`);
-      this.svgElement = svgIcon[this.name];
+      // Try template export first
+      try {
+        const svgIcon = await import(`../../assets/iconsTemplates/${this.name}.ts`);
+        this.svgElement = svgIcon[this.name];
+        if (this.svgElement) return;
+      } catch {}
+
+      // Fallback to raw SVG from assets/icons
+      try {
+        const { getRawSvgIcon } = await import('../../assets/iconsTemplates/rawSvgIcon');
+        this.svgElement = await getRawSvgIcon(this.name);
+        if (this.svgElement) return;
+      } catch {}
+
+      throw new Error(`SVG icon not found: ${this.name}`);
     } catch (error) {
       console.error('Error loading SVG:', error);
     }

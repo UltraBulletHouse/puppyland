@@ -1101,7 +1101,7 @@ export class AppDogView extends LitElement {
               </div>
               <div id="dog-image">
                 <div id="dog-image-circle">
-                  <svg-icon name="dogHead"></svg-icon>
+                  <svg-icon name="dogFaceSvg"></svg-icon>
                 </div>
               </div>
               <div id="dog-name">
