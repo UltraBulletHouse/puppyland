@@ -116,7 +116,7 @@ export class AppDogView extends LitElement {
           var(--color-primary-light) 77%
         );
         border: 2px solid var(--sl-color-gray-50);
-        outline: 2px solid var(--color-primary-medium) ;
+        outline: 2px solid var(--color-primary-medium);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
       #dog-name {
