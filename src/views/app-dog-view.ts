@@ -110,7 +110,11 @@ export class AppDogView extends LitElement {
         justify-content: center;
         align-items: center;
         border-radius: var(--border-radius-circle);
-        background-color: var(--sl-color-gray-200);
+        background: linear-gradient(
+          128deg,
+          color-mix(in srgb, var(--color-primary) 29%, #fff) 0%,
+          var(--color-primary-light) 77%
+        );
         border: 2px solid var(--sl-color-gray-50);
         outline: 2px solid #37a26e;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
