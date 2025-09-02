@@ -20,7 +20,7 @@
 
   /* BACKGROUNDS */
   /* Lime accent */
-  --color-lime: #84cc16; /* lime 500 */
+  --color-lime: #7aba19; /* lime 500 */
   --color-bg-start: color-mix(in srgb, var(--color-lime) 70%, #fff);
   --color-bg-end: color-mix(in srgb, var(--color-primary) 40%, #fff);
   --app-bg: 
@@ -48,6 +48,11 @@
   --color-surface-border: color-mix(in srgb, var(--color-primary) 38%, #fff); /* slightly darker for definition */
   --text-on-surface: var(--color-black);
   --text-on-surface-muted: var(--color-black-medium);
+
+  /* Medals mapped to palette */
+  --color-medal-gold: var(--color-lime);
+  --color-medal-silver: color-mix(in srgb, var(--color-blue) 45%, #fff);
+  --color-medal-bronze: color-mix(in srgb, var(--color-primary) 85%, #000);
 
   /* BLACK */
   --color-black: #333;
