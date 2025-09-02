@@ -3,76 +3,60 @@
 
   --sl-z-index-toast: 1009;
 
-  /* ----------------COLORS---------------------------- */
-  /* Brand palette: Emerald, Lime, Blue */
-  --color-primary: #10b981; /* emerald 500 */
-  --color-primary-medium: #a7f3d0; /* emerald 200 (borders/tints) */
-  --color-primary-light: #ecfdf5; /* emerald 50 (light surfaces/background wash) */
-  --color-primary-rgb: 16, 185, 129; /* for rgba blends */
+  /* ----------------New Playful Palette---------------------------- */
+  /* Drop-in tokens (kept alongside existing for compatibility) */
+  --bg: #F3FBF6;
+  --card: #E7F4ED;
+  --border: #CFEADC;
+  --primary: #2DBC89;
+  --primary-700: #0E7A56;
+  --lime: #B9E66A;
+  --accent: #FFB88C;
+  --text: #0E2A1F;
+  --text-2: #547366;
+  --shadow: 0 6px 18px rgba(22, 94, 73, 0.12);
 
-  /* Secondary accent: Blue (softer) */
-  --color-secondary: #3b82f6; /* blue 500 */
-  --color-secondary-light: #dbeafe; /* blue 100 */
-  --color-secondary-rgb: 59, 130, 246; /* for rgba blends */
+  /* Backwards-compatible mappings to existing tokens */
+  --color-primary: var(--primary);
+  --color-primary-medium: var(--border); /* used as subtle borders/tints */
+  --color-primary-light: var(--card);    /* used as light surfaces */
+  --color-secondary: #3b82f6;            /* keep blue secondary unless overridden locally */
+  --color-secondary-light: #dbeafe;
+  --color-secondary-rgb: 59, 130, 246;
+  --color-blue: #60a5fa;
+  --color-lime: var(--lime);
 
-  /* Utility Blue (lighter) */
-  --color-blue: #60a5fa; /* blue 400 */
+  /* App background now very light; greens used as accents */
+  --app-bg: var(--bg);
 
-  /* BACKGROUNDS */
-  /* Lime accent */
-  --color-lime: #7aba19; /* lime 500 */
-  --color-bg-start: color-mix(in srgb, var(--color-lime) 70%, #fff);
-  --color-bg-end: color-mix(in srgb, var(--color-primary) 40%, #fff);
-  --app-bg:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, var(--color-primary) 6%, #fff) 0%,
-      color-mix(in srgb, var(--color-secondary) 4%, #fff) 100%
-    );
-
-  /* HEADER BAND (blends with app background) */
+  /* Header band remains subtle over light bg */
   --header-bg: linear-gradient(
     180deg,
-    color-mix(in srgb, var(--color-white) 10%, transparent) 0%,
+    color-mix(in srgb, #ffffff 60%, transparent) 0%,
     transparent 100%
   );
-  --header-border: color-mix(in srgb, var(--color-secondary) 15%, transparent);
+  --header-border: color-mix(in srgb, var(--primary) 25%, transparent);
 
-  /* SURFACES */
-  --color-white: #f6fefb; /* near-white with a mint hint */
-  --color-surface: color-mix(in srgb, var(--color-primary) 22%, #fff); /* richer emerald tint */
-  --color-surface-strong: color-mix(in srgb, var(--color-primary) 32%, #fff); /* more body for elevated cards */
-  --color-surface-border: color-mix(in srgb, var(--color-primary) 38%, #fff); /* slightly darker for definition */
-  --text-on-surface: var(--color-black);
-  --text-on-surface-muted: var(--color-black-medium);
+  /* SURFACES mapped to card variables */
+  --color-white: #ffffff;
+  --color-surface: var(--card);
+  --color-surface-strong: var(--card);
+  --color-surface-border: var(--border);
+  --text-on-surface: var(--text);
+  --text-on-surface-muted: var(--text-2);
 
-  /* Medals mapped to palette */
-  --color-medal-gold: var(--color-lime);
+  /* Medals + neutrals */
+  --color-medal-gold: var(--lime);
   --color-medal-silver: color-mix(in srgb, var(--color-blue) 45%, #fff);
-  --color-medal-bronze: color-mix(in srgb, var(--color-primary) 85%, #000);
-
-  /* NEUTRALS (softer than pure black) */
-  --color-black: #3f3f3f; /* neutral-700 */
-  --color-black-medium: #7a7a7a; /* neutral-500 */
-  --color-black-light: #c6c6c6; /* neutral-300 */
-
-  /* Mapping colors */
-  /* --sl-color-primary-50: var(--color-primary-light);
-  --sl-color-primary-100: var(--color-primary-light);
-  --sl-color-primary-200: var(--color-primary-light);
-  --sl-color-primary-300: var(--color-primary-light);
-  --sl-color-primary-400: var(--color-primary-medium);
-  --sl-color-primary-500: var(--color-primary-medium);
-  --sl-color-primary-600: var(--color-primary-medium);
-  --sl-color-primary-700: var(--color-primary-medium);
-  --sl-color-primary-800: var(--color-primary);
-  --sl-color-primary-900: var(--color-primary);
-  --sl-color-primary-950: var(--color-primary); */
+  --color-medal-bronze: color-mix(in srgb, var(--primary) 40%, #b5651d);
+  --color-black: var(--text);
+  --color-black-medium: var(--text-2);
+  --color-black-light: #c6c6c6;
 
   /* ----------------BORDER-RADIUS------------------- */
-  --border-radius-big: 24px;
-  --border-radius-medium: 16px;
-  --border-radius-small: 8px;
+  --border-radius-big: 24px;   /* cards */
+  --border-radius-medium: 16px;/* tiles */
+  --border-radius-small: 8px;  /* controls */
   --border-radius-circle: 999px;
 }
 
@@ -90,6 +74,7 @@ body {
   flex-direction: column;
   align-items: center;
   background: var(--app-bg);
+  color: var(--text);
 }
 
 * {
@@ -99,4 +84,48 @@ body {
   user-select: none; /* Standard syntax */
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none; /* iOS Safari */
+}
+
+/* ----------------Utility classes (drop-in)---------------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 12px;
+}
+
+.chip {
+  background: #F0FAF4;
+  color: var(--primary-700);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+.progress {
+  background: #DDEEE6;
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+}
+.progress > div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--lime));
+}
+
+.tab {
+  background: #EAF5EF;
+  border-radius: 999px;
+  padding: 4px;
+}
+.tab .active {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 12px;
 }

@@ -55,7 +55,7 @@ export class AppDogView extends LitElement {
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 20px 16px;
+        padding: 16px 12px;
         background: var(--header-bg);
         border-bottom: 1px solid var(--header-border);
       }
@@ -92,9 +92,13 @@ export class AppDogView extends LitElement {
         align-items: center;
         gap: 6px;
         font-weight: 700;
-        padding: 6px 10px;
+        padding: 4px 8px;
         border-radius: 999px;
-        background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+        background: linear-gradient(180deg,
+          color-mix(in srgb, var(--accent) 18%, #fff),
+          color-mix(in srgb, var(--accent) 28%, #fff)
+        );
+        color: var(--text);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
         backdrop-filter: blur(4px);
         cursor: pointer;
@@ -110,19 +114,15 @@ export class AppDogView extends LitElement {
         justify-content: center;
         align-items: center;
         border-radius: var(--border-radius-circle);
-        background: linear-gradient(
-          128deg,
-          color-mix(in srgb, var(--color-primary) 29%, #fff) 0%,
-          var(--color-primary-light) 77%
-        );
-        border: 2px solid var(--sl-color-gray-50);
+        background: linear-gradient(135deg, var(--lime), var(--primary));
+        border: 2px solid color-mix(in srgb, var(--lime) 60%, #fff);
         outline: 2px solid var(--color-primary-medium);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
       #dog-name {
         display: flex;
         align-items: center;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 600;
         color: var(--color-black);
       }
@@ -150,12 +150,13 @@ export class AppDogView extends LitElement {
         justify-content: center;
         flex-wrap: wrap;
         white-space: normal;
-        gap: 6px;
+        gap: 4px;
         width: fit-content;
         margin-left: auto;
         margin-right: auto;
-        padding-left: 0;
-        padding-right: 0;
+        padding: 4px;
+        background: #EAF5EF;
+        border-radius: 999px;
       }
       .dog-tabs::part(base) {
         border-radius: var(--border-radius-medium);
@@ -174,9 +175,26 @@ export class AppDogView extends LitElement {
       sl-tab::part(base) {
         display: inline-flex;
         align-items: center;
-        gap: 4px;
-        padding: 8px 12px;
-        font-size: 17px;
+        gap: 6px;
+        padding: 6px 12px;
+        font-size: 16px;
+        border-radius: 999px;
+        color: var(--text-2);
+      }
+      sl-tab[active]::part(base) {
+        background: var(--primary);
+        color: #fff;
+      }
+      /* Tiny paw indicator for active tab */
+      sl-tab[active]::after {
+        content: '🐾';
+        display: block;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1;
+        margin-top: 2px;
+        color: var(--primary);
+        filter: drop-shadow(0 1px 1px rgba(0,0,0,.15));
       }
 
       @media (max-width: 400px) {
@@ -233,33 +251,16 @@ export class AppDogView extends LitElement {
 
       .stat-icon {
         font-size: 14px;
-        padding: 4px;
+        padding: 2px;
         border-radius: var(--border-radius-circle);
         display: flex;
         align-items: center;
         justify-content: center;
         width: 24px;
         height: 24px;
-      }
-
-      .stat-icon.level {
-        background: linear-gradient(135deg, var(--color-medal-gold), color-mix(in srgb, var(--color-medal-gold) 70%, var(--color-primary) 30%));
-        color: white;
-      }
-
-      .stat-icon.experience {
-        background: linear-gradient(135deg, #9b59b6, #8e44ad);
-        color: white;
-      }
-
-      .stat-icon.energy {
-        background: linear-gradient(135deg, #e74c3c, #c0392b);
-        color: white;
-      }
-
-      .stat-icon.doghouses {
-        background: linear-gradient(135deg, #3498db, #2980b9);
-        color: white;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        background: #fff;
       }
 
       .stat-title {
@@ -299,23 +300,23 @@ export class AppDogView extends LitElement {
 
       .modern-progress-bar {
         width: 100%;
-        height: 8px;
-        background: var(--color-primary-light);
-        border-radius: 4px;
+        height: 12px;
+        background: #DDEEE6;
+        border-radius: 999px;
         overflow: hidden;
         position: relative;
       }
 
       .progress-fill {
         height: 100%;
-        border-radius: 4px;
-        transition: width 0.6s ease;
+        border-radius: 999px;
+        transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
         position: relative;
         overflow: hidden;
       }
 
       .progress-fill.experience {
-        background: linear-gradient(90deg, #9b59b6, #8e44ad);
+        background: linear-gradient(90deg, var(--primary), var(--lime));
       }
 
       .progress-fill.energy {
@@ -421,8 +422,8 @@ export class AppDogView extends LitElement {
         color: var(--color-black);
       }
       .chip.points {
-        border-color: var(--color-secondary);
-        background: color-mix(in srgb, var(--color-secondary) 15%, #fff);
+        border-color: var(--accent);
+        background: color-mix(in srgb, var(--accent) 22%, #fff);
       }
       .chip.muted {
         opacity: 0.8;
@@ -516,16 +517,18 @@ export class AppDogView extends LitElement {
         font-weight: 700;
         color: var(--color-primary);
       }
-      .modern-progress-bar.mini {
-        height: 6px;
-      }
+      .modern-progress-bar.mini { height: 10px; }
       .alloc-card .value {
         justify-self: end;
         font-weight: 800;
-        color: var(--color-primary);
-        min-width: 24px;
+        color: var(--text);
+        min-width: 28px;
         text-align: right;
-        font-size: 13px;
+        font-size: 12px;
+        background: color-mix(in srgb, var(--lime) 35%, #fff);
+        border: 1px solid color-mix(in srgb, var(--lime) 50%, #fff);
+        padding: 2px 8px;
+        border-radius: 999px;
       }
       .alloc-card .alloc-btn.plus.hidden-keep-space::part(base) {
         background: var(--sl-color-gray-300);
@@ -597,16 +600,15 @@ export class AppDogView extends LitElement {
         gap: 12px;
         padding: 10px 12px;
         border-radius: var(--border-radius-medium);
-        border: 1px solid var(--color-primary-medium);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), var(--sl-color-gray-50));
+        border: 1px solid var(--border);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), #fff);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
         margin: 8px 0 12px;
       }
       .points-panel.active {
-        border-color: color-mix(in srgb, var(--color-primary) 50%, #fff);
-        background: linear-gradient(
-          180deg,
-          color-mix(in srgb, var(--color-primary) 8%, #fff),
+        border-color: color-mix(in srgb, var(--accent) 55%, #fff);
+        background: linear-gradient(180deg,
+          color-mix(in srgb, var(--accent) 18%, #fff),
           #fff
         );
       }
@@ -625,7 +627,7 @@ export class AppDogView extends LitElement {
       }
       .points-left sl-icon::part(base) {
         font-size: 18px;
-        color: var(--color-primary);
+        color: var(--primary);
       }
       .points-panel.done .points-left sl-icon::part(base) {
         color: var(--sl-color-success-600);
@@ -633,7 +635,7 @@ export class AppDogView extends LitElement {
       .points-number {
         font-size: 18px;
         font-weight: 800;
-        color: var(--color-primary);
+        color: var(--primary);
         line-height: 1;
       }
       .points-subtitle {
@@ -1159,19 +1161,15 @@ export class AppDogView extends LitElement {
                               <sl-icon name="star"></sl-icon>
                             </div>
                             <div class="stat-title">Stats</div>
-                            <div class="level-badge" title="Your current level">Lvl ${level}</div>
+                            <div class="level-badge" title="Your current level">Level ${level}</div>
                           </div>
                           <!-- Compact Experience tile integrated into Attributes -->
                           <div class="mini-progress" title="XP to next level">
                             <div class="progress-info">
-                              <span class="progress-current"
-                                >${experience} / ${expForNextLevel} XP</span
-                              >
-                              <span class="progress-percentage"
-                                >${Math.round(
-                                  expForNextLevel ? (experience / expForNextLevel) * 100 : 0
-                                )}%</span
-                              >
+                              <span class="progress-current">
+                                ${experience} / ${expForNextLevel} XP
+                                (${Math.round(expForNextLevel ? (experience / expForNextLevel) * 100 : 0)}%)
+                              </span>
                             </div>
                             <div class="modern-progress-bar mini">
                               <div
@@ -1197,7 +1195,7 @@ export class AppDogView extends LitElement {
                                     <div class="points-number">${this.statPointsAvailable}</div>
                                     <div class="points-subtitle">points to allocate</div>
                                   </div>`
-                                : html`<div class="points-subtitle">All points assigned</div>`}
+                                : html``}
                             </div>
                             ${hasPending
                               ? html`<div class="points-actions">
@@ -1221,12 +1219,10 @@ export class AppDogView extends LitElement {
                               <div class="title-row">
                                 <div class="title">Power</div>
                                 <div class="bottom-row">
-                                  <span class="impact"
-                                    >Atk dmg ${atkMinPreview}–${atkMaxPreview}</span
-                                  >
+                                  <span class="impact">Attack: ${atkMinPreview}–${atkMaxPreview}</span>
                                   <sl-icon-button
                                     class="help-icon"
-                                    name="question-circle"
+                                    name="info-circle"
                                     label="What is Power?"
                                     @click=${() => this.openAttributeDetails('power')}
                                   ></sl-icon-button>
@@ -1257,7 +1253,7 @@ export class AppDogView extends LitElement {
                                   <span class="impact">Max energy ${energyMaxPreview}</span>
                                   <sl-icon-button
                                     class="help-icon"
-                                    name="question-circle"
+                                    name="info-circle"
                                     label="What is Stamina?"
                                     @click=${() => this.openAttributeDetails('stamina')}
                                   ></sl-icon-button>
@@ -1288,7 +1284,7 @@ export class AppDogView extends LitElement {
                                   <span class="impact">Range ${reachPreview}m</span>
                                   <sl-icon-button
                                     class="help-icon"
-                                    name="question-circle"
+                                    name="info-circle"
                                     label="What is Reach?"
                                     @click=${() => this.openAttributeDetails('reach')}
                                   ></sl-icon-button>
@@ -1319,7 +1315,7 @@ export class AppDogView extends LitElement {
                                   <span class="impact">Doghouse HP ${doghouseHpPreview}</span>
                                   <sl-icon-button
                                     class="help-icon"
-                                    name="question-circle"
+                                    name="info-circle"
                                     label="What is Fortification?"
                                     @click=${() => this.openAttributeDetails('fortification')}
                                   ></sl-icon-button>

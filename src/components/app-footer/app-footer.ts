@@ -62,7 +62,7 @@ export class AppFooter extends LitElement {
         color: var(--color-black);
       }
       .nav-button.active {
-        color: var(--color-black);
+        color: var(--primary);
       }
       .nav-icon {
         font-size: 24px;
@@ -78,30 +78,25 @@ export class AppFooter extends LitElement {
         z-index: 1;
       }
       .map-button {
-        background: #fff;
-        color: var(--color-black);
-        border: 1px solid color-mix(in srgb, var(--color-black) 15%, #fff);
+        background: linear-gradient(180deg, var(--primary), color-mix(in srgb, var(--primary) 85%, #000));
+        color: #fff;
+        border: none;
         border-radius: var(--border-radius-circle);
         width: 64px;
         height: 64px;
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 22px rgba(22, 94, 73, 0.25);
         transition:
           transform 0.2s ease,
           background-color 0.2s ease,
           color 0.2s ease;
       }
-      .map-button:hover {
-        transform: scale(1.05);
-        background: #fff;
-        color: var(--color-black);
-      }
+      .map-button:hover { transform: scale(1.05); }
       .map-button.active {
-        background: var(--color-primary-light);
-        border-color: var(--color-primary);
-        color: var(--color-primary);
+        background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 85%, #fff), var(--primary));
+        color: #fff;
         transform: scale(1.02);
       }
       .map-button .nav-icon {
