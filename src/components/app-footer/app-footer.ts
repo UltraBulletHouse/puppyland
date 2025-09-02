@@ -21,8 +21,8 @@ export class AppFooter extends LitElement {
         right: 0;
         height: 60px; /* A bit more spacious */
         background: linear-gradient(180deg,
-          color-mix(in srgb, var(--color-secondary) 90%, #000) 0%,
-          var(--color-secondary) 100%
+          color-mix(in srgb, var(--color-primary) 85%, #000) 0%,
+          var(--color-primary) 100%
         );
         border-top: none;
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
@@ -78,8 +78,8 @@ export class AppFooter extends LitElement {
       }
       .map-button {
         background: #fff;
-        color: var(--color-secondary);
-        border: 1px solid color-mix(in srgb, var(--color-secondary) 25%, #fff);
+        color: var(--color-primary);
+        border: 1px solid color-mix(in srgb, var(--color-primary) 25%, #fff);
         border-radius: var(--border-radius-circle);
         width: 64px;
         height: 64px;
@@ -95,12 +95,12 @@ export class AppFooter extends LitElement {
       .map-button:hover {
         transform: scale(1.05);
         background: var(--color-primary-light);
-        color: var(--color-secondary);
+        color: var(--color-primary);
       }
       .map-button.active {
         background: var(--color-primary-light);
-        border-color: var(--color-secondary);
-        color: var(--color-secondary);
+        border-color: var(--color-primary);
+        color: var(--color-primary);
         transform: scale(1.02);
       }
       .map-button .nav-icon {

@@ -170,16 +170,16 @@ export class DailyQuests extends LitElement {
       }
 
       .reward-icon.doghouse {
-        color: #8b4513;
+        color: var(--color-primary);
       }
       .reward-icon.experience {
-        color: #ffd700;
+        color: var(--color-lime);
       }
       .reward-icon.energy {
-        color: #ff6b6b;
+        color: var(--color-blue);
       }
       .reward-icon.coins {
-        color: #ffa500;
+        color: var(--color-lime);
       }
 
       .quest-type-icon {
@@ -188,19 +188,19 @@ export class DailyQuests extends LitElement {
       }
 
       .quest-type-icon.attack {
-        color: #e74c3c;
+        color: var(--color-blue);
       }
       .quest-type-icon.build {
-        color: #3498db;
+        color: var(--color-blue);
       }
       .quest-type-icon.experience {
-        color: #f39c12;
+        color: var(--color-lime);
       }
       .quest-type-icon.visit {
-        color: #9b59b6;
+        color: var(--color-secondary);
       }
       .quest-type-icon.repair {
-        color: #27ae60;
+        color: var(--color-primary);
       }
 
       #empty-state {

@@ -218,7 +218,7 @@ export class MapPopup extends LitElement {
         }
         #hp-fill {
           height: 100%;
-          background: linear-gradient(90deg, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
+          background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-lime) 50%, var(--color-primary) 100%);
           border-radius: 2px;
           transition: width 0.3s ease;
         }

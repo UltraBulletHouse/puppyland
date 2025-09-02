@@ -266,12 +266,12 @@ export const MapModalStyles = html`
       justify-content: center;
       width: 36px;
       height: 36px;
-      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      background: linear-gradient(135deg, var(--color-blue), var(--color-primary));
       color: white;
     }
 
     .hp-icon.enemy {
-      background: linear-gradient(135deg, var(--color-primary), #ff4757);
+      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
     }
 
     .hp-title {
@@ -339,15 +339,15 @@ export const MapModalStyles = html`
     }
 
     .hp-fill.enemy {
-      background: linear-gradient(90deg, var(--color-primary), #ff4757);
+      background: linear-gradient(90deg, var(--color-blue), var(--color-primary));
     }
 
     .hp-fill.low {
-      background: linear-gradient(90deg, #ff9800, #f57c00);
+      background: linear-gradient(90deg, var(--color-blue), var(--color-lime));
     }
 
     .hp-fill.critical {
-      background: linear-gradient(90deg, #f44336, #d32f2f);
+      background: linear-gradient(90deg, color-mix(in srgb, var(--color-blue) 80%, #000), var(--color-blue));
     }
 
     #doghouse-icon.shake {

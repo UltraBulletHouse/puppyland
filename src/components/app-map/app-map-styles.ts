@@ -55,7 +55,7 @@ export const AppMapStyles = [
     }
     .map-layer,
     .leaflet-tile-container {
-      filter: grayscale(28%) hue-rotate(140deg) saturate(77%) brightness(108%) contrast(86%);
+      filter: grayscale(35%) hue-rotate(120deg) saturate(65%) brightness(104%) contrast(88%);
     }
     .leaflet-touch .leaflet-control-layers,
     .leaflet-touch .leaflet-bar {
@@ -132,8 +132,8 @@ export const AppMapStyles = [
     #center-position-btn::part(base),
     #center-position-btn::part(base):hover,
     #center-position-btn::part(base):active {
-      border-color: var(--color-blue);
-      color: var(--color-blue);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
       background: var(--color-surface);
     }
     #center-position-btn::part(base),

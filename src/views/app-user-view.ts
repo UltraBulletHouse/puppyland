@@ -173,14 +173,14 @@ export class AppUserView extends LitElement {
       }
 
       .signout-button::part(base) {
-        background: #b54b3a; /* earthy danger */
-        border-color: #b54b3a;
-        color: white;
+        background: var(--color-secondary);
+        border-color: var(--color-secondary);
+        color: #fff;
       }
 
       .signout-button::part(base):hover {
-        background: #9e3c2d;
-        border-color: #8a3427;
+        background: color-mix(in srgb, var(--color-secondary) 85%, #000);
+        border-color: color-mix(in srgb, var(--color-secondary) 75%, #000);
       }
 
       .attribution-card .setting-details a {

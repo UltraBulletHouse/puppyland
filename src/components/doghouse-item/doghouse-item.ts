@@ -82,7 +82,7 @@ export class AppDoghouseItem extends LitElement {
         color: var(--color-secondary);
       }
       #edit-actions sl-icon[name='x'] {
-        color: #e74c3c;
+        color: var(--color-blue);
       }
       #edit-actions sl-icon[name='pencil'] {
         color: var(--color-primary);
@@ -101,7 +101,7 @@ export class AppDoghouseItem extends LitElement {
         color: var(--color-black-medium);
       }
       #hp-stat sl-icon {
-        color: #e74c3c;
+        color: var(--color-primary);
         font-size: 14px;
       }
       #date-stat sl-icon {
@@ -118,7 +118,7 @@ export class AppDoghouseItem extends LitElement {
       }
       #hp-fill {
         height: 100%;
-        background: linear-gradient(90deg, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
+        background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-lime) 50%, var(--color-primary) 100%);
         border-radius: 2px;
         transition: width 0.3s ease;
       }
