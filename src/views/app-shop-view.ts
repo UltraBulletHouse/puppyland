@@ -129,6 +129,9 @@ export class AppShopView extends LitElement {
         border: none;
         box-shadow: none;
       }
+      .shop-tabs::part(nav){
+        --track-width: 0;
+      }
       /* Hide Shoelace's sliding active tab indicator */
       .shop-tabs::part(active-tab-indicator),
       .shop-tabs::part(indicator) {
