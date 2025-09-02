@@ -20,9 +20,10 @@ export class AppFooter extends LitElement {
         left: 0;
         right: 0;
         height: 60px; /* A bit more spacious */
-        background: linear-gradient(180deg,
-          color-mix(in srgb, var(--color-primary) 85%, #000) 0%,
-          var(--color-primary) 100%
+        background: linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--color-primary) 12%, #fff) 0%,
+          color-mix(in srgb, var(--color-primary) 8%, #fff) 100%
         );
         border-top: none;
         box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
@@ -40,7 +41,7 @@ export class AppFooter extends LitElement {
         align-items: center;
         justify-content: center;
         gap: 4px;
-        color: rgba(255, 255, 255, 0.8);
+        color: var(--color-black);
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -58,10 +59,10 @@ export class AppFooter extends LitElement {
         outline: none; /* Remove default focus outline */
       }
       .nav-button:hover {
-        color: #fff;
+        color: var(--color-black);
       }
       .nav-button.active {
-        color: #fff;
+        color: var(--color-black);
       }
       .nav-icon {
         font-size: 24px;
@@ -78,8 +79,8 @@ export class AppFooter extends LitElement {
       }
       .map-button {
         background: #fff;
-        color: var(--color-primary);
-        border: 1px solid color-mix(in srgb, var(--color-primary) 25%, #fff);
+        color: var(--color-black);
+        border: 1px solid color-mix(in srgb, var(--color-black) 15%, #fff);
         border-radius: var(--border-radius-circle);
         width: 64px;
         height: 64px;
@@ -94,8 +95,8 @@ export class AppFooter extends LitElement {
       }
       .map-button:hover {
         transform: scale(1.05);
-        background: var(--color-primary-light);
-        color: var(--color-primary);
+        background: #fff;
+        color: var(--color-black);
       }
       .map-button.active {
         background: var(--color-primary-light);
@@ -105,6 +106,12 @@ export class AppFooter extends LitElement {
       }
       .map-button .nav-icon {
         font-size: 32px;
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
+      }
+      /* Active icon contrast on light footer */
+      .nav-button.active .nav-icon {
+        color: var(--color-primary);
+        filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
       }
     `,
   ];

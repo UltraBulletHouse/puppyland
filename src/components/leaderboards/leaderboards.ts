@@ -40,7 +40,7 @@ export class LeaderboardsComponent extends LitElement {
         gap: 8px;
         font-weight: 600;
         font-size: 18px;
-        color: #fff;
+        color: var(--color-black);
         margin-bottom: 12px;
       }
 
@@ -176,13 +176,13 @@ export class LeaderboardsComponent extends LitElement {
       }
 
       .rank.rank-1 {
-        color: #ffd700;
+        color: var(--color-medal-gold);
       }
       .rank.rank-2 {
-        color: #c0c0c0;
+        color: var(--color-medal-silver);
       }
       .rank.rank-3 {
-        color: #cd7f32;
+        color: var(--color-medal-bronze);
       }
 
       .player-avatar {
@@ -253,7 +253,7 @@ export class LeaderboardsComponent extends LitElement {
       .crown-icon {
         margin-right: 4px;
         font-size: 14px;
-        color: #ffd700;
+        color: var(--color-medal-gold);
       }
 
       #loading-state {

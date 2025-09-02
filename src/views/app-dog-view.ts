@@ -124,7 +124,7 @@ export class AppDogView extends LitElement {
         align-items: center;
         font-size: 18px;
         font-weight: 600;
-        color: #fff;
+        color: var(--color-black);
       }
       #dog-name sl-input {
         width: 290px;
@@ -243,7 +243,7 @@ export class AppDogView extends LitElement {
       }
 
       .stat-icon.level {
-        background: linear-gradient(135deg, #ffd700, #ffa500);
+        background: linear-gradient(135deg, var(--color-medal-gold), color-mix(in srgb, var(--color-medal-gold) 70%, var(--color-primary) 30%));
         color: white;
       }
 
@@ -323,7 +323,7 @@ export class AppDogView extends LitElement {
       }
 
       .level-badge {
-        background: linear-gradient(135deg, #ffd700, #ffa500);
+        background: linear-gradient(135deg, var(--color-medal-gold), color-mix(in srgb, var(--color-medal-gold) 70%, var(--color-primary) 30%));
         color: white;
         padding: 4px 12px;
         border-radius: var(--border-radius-circle);

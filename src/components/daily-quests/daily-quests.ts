@@ -48,7 +48,7 @@ export class DailyQuests extends LitElement {
         gap: 8px;
         font-weight: 600;
         font-size: 18px;
-        color: #fff;
+        color: var(--color-black);
       }
 
       #refresh-timer {

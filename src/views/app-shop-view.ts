@@ -96,7 +96,7 @@ export class AppShopView extends LitElement {
       #title {
         font-weight: 600;
         font-size: 20px;
-        color: #fff;
+        color: var(--color-black);
       }
 
       #content {

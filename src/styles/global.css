@@ -23,14 +23,11 @@
   --color-lime: #7aba19; /* lime 500 */
   --color-bg-start: color-mix(in srgb, var(--color-lime) 70%, #fff);
   --color-bg-end: color-mix(in srgb, var(--color-primary) 40%, #fff);
-  --app-bg: 
-    radial-gradient(90% 60% at 100% 0%, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.12) 40%, rgba(255, 255, 255, 0) 60%),
-    radial-gradient(75% 55% at 0% 100%, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0) 60%),
+  --app-bg:
     linear-gradient(
-      160deg,
-      var(--color-lime) 0%,
-      color-mix(in srgb, var(--color-primary) 65%, var(--color-lime) 35%) 55%,
-      color-mix(in srgb, var(--color-primary) 85%, var(--color-secondary) 15%) 100%
+      180deg,
+      color-mix(in srgb, var(--color-primary) 6%, #fff) 0%,
+      color-mix(in srgb, var(--color-secondary) 4%, #fff) 100%
     );
 
   /* HEADER BAND (blends with app background) */

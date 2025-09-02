@@ -23,7 +23,7 @@ export const LevelUpModalStyles = html`
       left: 0;
       right: 0;
       height: 3px;
-      background: linear-gradient(90deg, transparent, #ffd700, #ff6b35, #ffd700, transparent);
+      background: linear-gradient(90deg, transparent, var(--color-medal-gold), color-mix(in srgb, var(--color-medal-gold) 60%, var(--color-primary) 40%), var(--color-medal-gold), transparent);
       animation: levelUpGlow 2s ease-in-out infinite alternate;
     }
 
@@ -39,7 +39,7 @@ export const LevelUpModalStyles = html`
     #level-up-modal h2 {
       font-size: 32px;
       font-weight: 800;
-      background: linear-gradient(135deg, #ffd700, #ff6b35, #ffd700);
+      background: linear-gradient(135deg, var(--color-medal-gold), color-mix(in srgb, var(--color-medal-gold) 60%, var(--color-primary) 40%), var(--color-medal-gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -160,7 +160,7 @@ export const LevelUpModalStyles = html`
     .claim-btn::part(base) {
       font-size: 20px;
       font-weight: 700;
-      background: linear-gradient(135deg, #ffd700, #ff6b35);
+      background: linear-gradient(135deg, var(--color-medal-gold), color-mix(in srgb, var(--color-medal-gold) 60%, var(--color-primary) 40%));
       color: var(--color-white);
       border: none;
       box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
