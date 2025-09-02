@@ -133,7 +133,7 @@ export class LeaderboardsComponent extends LitElement {
       }
 
       #leaderboard-list {
-        background: var(--color-surface);
+        background: var(--color-surface-strong);
         border-radius: var(--border-radius-medium);
         border: 1px solid var(--color-surface-border);
         overflow: visible;

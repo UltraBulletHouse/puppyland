@@ -60,11 +60,11 @@ export class DailyQuests extends LitElement {
       }
 
       .quest-item {
-        background: var(--color-primary-light);
+        background: var(--color-surface-strong);
         border-radius: var(--border-radius-small);
         padding: 12px;
         margin-bottom: 12px;
-        border: 1px solid var(--color-primary-medium);
+        border: 1px solid var(--color-surface-border);
         transition: all 0.2s ease;
       }
 
@@ -73,7 +73,7 @@ export class DailyQuests extends LitElement {
       }
 
       .quest-item:hover {
-        background: var(--color-primary-light);
+        background: var(--color-surface);
       }
 
       .quest-item.completed {

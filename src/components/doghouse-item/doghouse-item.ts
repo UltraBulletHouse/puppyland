@@ -24,7 +24,7 @@ export class AppDoghouseItem extends LitElement {
         margin-bottom: 8px;
         padding: 12px 16px;
         border-radius: var(--border-radius-medium);
-        background-color: var(--color-surface);
+        background-color: var(--color-surface-strong);
         border: 1px solid var(--color-surface-border);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         transition: all 0.2s ease;

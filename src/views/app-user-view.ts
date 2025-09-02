@@ -81,6 +81,11 @@ export class AppUserView extends LitElement {
         border: none;
       }
 
+      .settings-card::part(base) {
+        background: var(--color-surface-strong);
+        border: 1px solid var(--color-surface-border);
+      }
+
       .settings-card::part(body) {
         padding: 1.5rem;
       }

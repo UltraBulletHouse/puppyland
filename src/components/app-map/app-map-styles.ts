@@ -31,7 +31,7 @@ export const AppMapStyles = [
       height: 44px;
       width: 70px;
       padding: 10px;
-      background: var(--color-surface);
+      background: var(--color-surface-strong);
       border-radius: var(--border-radius-medium);
       border: 1px solid var(--color-surface-border);
     }
@@ -62,10 +62,10 @@ export const AppMapStyles = [
       box-shadow: 0px 0px 12px 0px #0000002b;
     }
     .leaflet-popup-content-wrapper {
-      background-color: var(--color-surface);
+      background-color: var(--color-surface-strong);
     }
     .leaflet-popup-tip {
-      background-color: var(--color-surface);
+      background-color: var(--color-surface-strong);
     }
     .leaflet-popup-content {
       height: 150px;

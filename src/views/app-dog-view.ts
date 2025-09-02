@@ -211,8 +211,8 @@ export class AppDogView extends LitElement {
       }
 
       .stat-card {
-        background: var(--color-surface);
-        border: 1px solid var(--color-primary-medium);
+        background: var(--color-surface-strong);
+        border: 1px solid var(--color-surface-border);
         border-radius: var(--border-radius-medium);
         padding: 16px;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -438,7 +438,7 @@ export class AppDogView extends LitElement {
         gap: 8px;
         padding: 6px 8px;
         border-radius: var(--border-radius-medium);
-        background: var(--color-surface);
+        background: var(--color-surface-strong);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
       }
       .alloc-card .title-row {

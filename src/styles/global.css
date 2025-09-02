@@ -43,9 +43,11 @@
 
   /* SURFACES */
   --color-white: #f6fefb; /* near-white with a mint hint */
-  --color-surface: #ecfdf5; /* emerald 50: default card surface */
-  --color-surface-strong: #d1fae5; /* emerald 100: elevated/active surfaces */
-  --color-surface-border: color-mix(in srgb, var(--color-primary) 35%, #fff);
+  --color-surface: color-mix(in srgb, var(--color-primary) 22%, #fff); /* richer emerald tint */
+  --color-surface-strong: color-mix(in srgb, var(--color-primary) 32%, #fff); /* more body for elevated cards */
+  --color-surface-border: color-mix(in srgb, var(--color-primary) 38%, #fff); /* slightly darker for definition */
+  --text-on-surface: var(--color-black);
+  --text-on-surface-muted: var(--color-black-medium);
 
   /* BLACK */
   --color-black: #333;
