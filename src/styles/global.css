@@ -5,22 +5,22 @@
 
   /* ----------------New Playful Palette---------------------------- */
   /* Drop-in tokens (kept alongside existing for compatibility) */
-  --bg: #F3FBF6;
-  --card: #E7F4ED;
-  --border: #CFEADC;
-  --primary: #2DBC89;
-  --primary-700: #0E7A56;
-  --lime: #B9E66A;
-  --accent: #FFB88C;
-  --text: #0E2A1F;
+  --bg: #f3fbf6;
+  --card: #e7f4ed;
+  --border: #cfeadc;
+  --primary: #2dbc89;
+  --primary-700: #0e7a56;
+  --lime: #b9e66a;
+  --accent: #ffb88c;
+  --text: #0e2a1f;
   --text-2: #547366;
   --shadow: 0 6px 18px rgba(22, 94, 73, 0.12);
 
   /* Backwards-compatible mappings to existing tokens */
   --color-primary: var(--primary);
   --color-primary-medium: var(--border); /* used as subtle borders/tints */
-  --color-primary-light: var(--card);    /* used as light surfaces */
-  --color-secondary: #3b82f6;            /* keep blue secondary unless overridden locally */
+  --color-primary-light: var(--card); /* used as light surfaces */
+  --color-secondary: #3b82f6; /* keep blue secondary unless overridden locally */
   --color-secondary-light: #dbeafe;
   --color-secondary-rgb: 59, 130, 246;
   --color-blue: #60a5fa;
@@ -54,9 +54,9 @@
   --color-black-light: #c6c6c6;
 
   /* ----------------BORDER-RADIUS------------------- */
-  --border-radius-big: 24px;   /* cards */
-  --border-radius-medium: 16px;/* tiles */
-  --border-radius-small: 8px;  /* controls */
+  --border-radius-big: 24px; /* cards */
+  --border-radius-medium: 16px; /* tiles */
+  --border-radius-small: 8px; /* controls */
   --border-radius-circle: 999px;
 }
 
@@ -101,14 +101,14 @@ body {
 }
 
 .chip {
-  background: #F0FAF4;
+  background: #f0faf4;
   color: var(--primary-700);
   border-radius: 20px;
   padding: 4px 10px;
 }
 
 .progress {
-  background: #DDEEE6;
+  background: #ddeee6;
   border-radius: 999px;
   height: 12px;
   overflow: hidden;
@@ -119,7 +119,7 @@ body {
 }
 
 .tab {
-  background: #EAF5EF;
+  background: #eaf5ef;
   border-radius: 999px;
   padding: 4px;
 }

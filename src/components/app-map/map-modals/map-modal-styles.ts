@@ -347,7 +347,11 @@ export const MapModalStyles = html`
     }
 
     .hp-fill.critical {
-      background: linear-gradient(90deg, color-mix(in srgb, var(--color-blue) 80%, #000), var(--color-blue));
+      background: linear-gradient(
+        90deg,
+        color-mix(in srgb, var(--color-blue) 80%, #000),
+        var(--color-blue)
+      );
     }
 
     #doghouse-icon.shake {

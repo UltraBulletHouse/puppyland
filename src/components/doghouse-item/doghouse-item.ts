@@ -118,7 +118,12 @@ export class AppDoghouseItem extends LitElement {
       }
       #hp-fill {
         height: 100%;
-        background: linear-gradient(90deg, var(--color-blue) 0%, var(--color-lime) 50%, var(--color-primary) 100%);
+        background: linear-gradient(
+          90deg,
+          var(--color-blue) 0%,
+          var(--color-lime) 50%,
+          var(--color-primary) 100%
+        );
         border-radius: 2px;
         transition: width 0.3s ease;
       }

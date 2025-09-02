@@ -94,7 +94,8 @@ export class AppDogView extends LitElement {
         font-weight: 700;
         padding: 4px 8px;
         border-radius: 999px;
-        background: linear-gradient(180deg,
+        background: linear-gradient(
+          180deg,
           color-mix(in srgb, var(--accent) 18%, #fff),
           color-mix(in srgb, var(--accent) 28%, #fff)
         );
@@ -141,6 +142,7 @@ export class AppDogView extends LitElement {
       #tabs-container {
         display: flex;
         justify-content: center;
+        margin-top: 8px;
       }
       .dog-tabs {
         width: 100%;
@@ -155,7 +157,7 @@ export class AppDogView extends LitElement {
         margin-left: auto;
         margin-right: auto;
         padding: 4px;
-        background: #EAF5EF;
+        background: #eaf5ef;
         border-radius: 999px;
         border: none;
         box-shadow: none;
@@ -165,7 +167,7 @@ export class AppDogView extends LitElement {
       .dog-tabs::part(indicator) {
         display: none;
       }
-      .dog-tabs::part(nav){
+      .dog-tabs::part(nav) {
         --track-width: 0;
       }
       .dog-tabs::part(base) {
@@ -199,7 +201,6 @@ export class AppDogView extends LitElement {
         background: var(--primary);
         color: #fff;
       }
-      
 
       @media (max-width: 400px) {
         sl-tab::part(base) {
@@ -305,7 +306,7 @@ export class AppDogView extends LitElement {
       .modern-progress-bar {
         width: 100%;
         height: 12px;
-        background: #DDEEE6;
+        background: #ddeee6;
         border-radius: 999px;
         overflow: hidden;
         position: relative;
@@ -328,7 +329,11 @@ export class AppDogView extends LitElement {
       }
 
       .level-badge {
-        background: linear-gradient(135deg, var(--color-medal-gold), color-mix(in srgb, var(--color-medal-gold) 70%, var(--color-primary) 30%));
+        background: linear-gradient(
+          135deg,
+          var(--color-medal-gold),
+          color-mix(in srgb, var(--color-medal-gold) 70%, var(--color-primary) 30%)
+        );
         color: white;
         padding: 4px 12px;
         border-radius: var(--border-radius-circle);
@@ -521,7 +526,9 @@ export class AppDogView extends LitElement {
         font-weight: 700;
         color: var(--color-primary);
       }
-      .modern-progress-bar.mini { height: 10px; }
+      .modern-progress-bar.mini {
+        height: 10px;
+      }
       .alloc-card .value {
         justify-self: end;
         font-weight: 800;
@@ -611,10 +618,7 @@ export class AppDogView extends LitElement {
       }
       .points-panel.active {
         border-color: color-mix(in srgb, var(--accent) 55%, #fff);
-        background: linear-gradient(180deg,
-          color-mix(in srgb, var(--accent) 18%, #fff),
-          #fff
-        );
+        background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 18%, #fff), #fff);
       }
       .points-panel.done {
         border-color: color-mix(in srgb, var(--sl-color-success-600) 40%, #fff);
@@ -1172,7 +1176,9 @@ export class AppDogView extends LitElement {
                             <div class="progress-info">
                               <span class="progress-current">
                                 ${experience} / ${expForNextLevel} XP
-                                (${Math.round(expForNextLevel ? (experience / expForNextLevel) * 100 : 0)}%)
+                                (${Math.round(
+                                  expForNextLevel ? (experience / expForNextLevel) * 100 : 0
+                                )}%)
                               </span>
                             </div>
                             <div class="modern-progress-bar mini">
@@ -1223,7 +1229,9 @@ export class AppDogView extends LitElement {
                               <div class="title-row">
                                 <div class="title">Power</div>
                                 <div class="bottom-row">
-                                  <span class="impact">Attack: ${atkMinPreview}–${atkMaxPreview}</span>
+                                  <span class="impact"
+                                    >Attack: ${atkMinPreview}–${atkMaxPreview}</span
+                                  >
                                   <sl-icon-button
                                     class="help-icon"
                                     name="info-circle"

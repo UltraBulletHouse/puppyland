@@ -119,17 +119,17 @@ export class AppShopView extends LitElement {
         justify-content: center;
         flex-wrap: wrap;
         white-space: normal;
-        gap: 4px;
+        gap: 2px;
         width: fit-content;
         margin-left: auto;
         margin-right: auto;
-        padding: 4px;
-        background: #EAF5EF;
+        padding: 2px;
+        background: #eaf5ef;
         border-radius: 999px;
         border: none;
         box-shadow: none;
       }
-      .shop-tabs::part(nav){
+      .shop-tabs::part(nav) {
         --track-width: 0;
       }
       /* Hide Shoelace's sliding active tab indicator */
@@ -145,12 +145,12 @@ export class AppShopView extends LitElement {
       sl-tab::part(base) {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        padding: 6px 12px;
-        font-size: 16px;
+        gap: 4px;
+        padding: 4px 10px;
+        font-size: 14px;
         border-radius: 999px;
         color: var(--text-2);
-        min-height: 48px;
+        min-height: 40px;
       }
       sl-tab[active]::part(base) {
         background: var(--primary);
@@ -159,8 +159,9 @@ export class AppShopView extends LitElement {
 
       @media (max-width: 400px) {
         sl-tab::part(base) {
-          padding: 6px 8px;
-          font-size: 14px;
+          padding: 3px 8px;
+          font-size: 13px;
+          min-height: 36px;
         }
 
         .shop-tabs sl-tab sl-icon {
@@ -169,7 +170,7 @@ export class AppShopView extends LitElement {
       }
       /* Smaller icons inside tab labels */
       .shop-tabs sl-tab sl-icon {
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .category-section {
