@@ -51,10 +51,10 @@
   --color-medal-silver: color-mix(in srgb, var(--color-blue) 45%, #fff);
   --color-medal-bronze: color-mix(in srgb, var(--color-primary) 85%, #000);
 
-  /* BLACK */
-  --color-black: #333;
-  --color-black-medium: #666666;
-  --color-black-light: #b4b4b4;
+  /* NEUTRALS (softer than pure black) */
+  --color-black: #3f3f3f; /* neutral-700 */
+  --color-black-medium: #7a7a7a; /* neutral-500 */
+  --color-black-light: #c6c6c6; /* neutral-300 */
 
   /* Mapping colors */
   /* --sl-color-primary-50: var(--color-primary-light);
