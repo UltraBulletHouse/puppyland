@@ -157,15 +157,29 @@ export class AppDogView extends LitElement {
         padding: 4px;
         background: #EAF5EF;
         border-radius: 999px;
+        border: none;
+        box-shadow: none;
+      }
+      /* Hide Shoelace's sliding active tab indicator */
+      .dog-tabs::part(active-tab-indicator),
+      .dog-tabs::part(indicator) {
+        display: none;
+      }
+      .dog-tabs::part(nav){
+        --track-width: 0;
       }
       .dog-tabs::part(base) {
         border-radius: var(--border-radius-medium);
+        border: none;
+        box-shadow: none;
       }
       sl-tab-group {
         height: 100%;
       }
       sl-tab-group::part(nav) {
         padding: 8px;
+        border: none;
+        box-shadow: none;
       }
       sl-tab-panel {
         overflow-y: auto;
@@ -185,17 +199,7 @@ export class AppDogView extends LitElement {
         background: var(--primary);
         color: #fff;
       }
-      /* Tiny paw indicator for active tab */
-      sl-tab[active]::after {
-        content: '🐾';
-        display: block;
-        text-align: center;
-        font-size: 12px;
-        line-height: 1;
-        margin-top: 2px;
-        color: var(--primary);
-        filter: drop-shadow(0 1px 1px rgba(0,0,0,.15));
-      }
+      
 
       @media (max-width: 400px) {
         sl-tab::part(base) {

@@ -119,22 +119,39 @@ export class AppShopView extends LitElement {
         justify-content: center;
         flex-wrap: wrap;
         white-space: normal;
-        gap: 6px;
+        gap: 4px;
         width: fit-content;
         margin-left: auto;
         margin-right: auto;
-        padding-left: 0;
-        padding-right: 0;
+        padding: 4px;
+        background: #EAF5EF;
+        border-radius: 999px;
+        border: none;
+        box-shadow: none;
+      }
+      /* Hide Shoelace's sliding active tab indicator */
+      .shop-tabs::part(active-tab-indicator),
+      .shop-tabs::part(indicator) {
+        display: none;
       }
       .shop-tabs::part(base) {
         border-radius: var(--border-radius-medium);
+        border: none;
+        box-shadow: none;
       }
       sl-tab::part(base) {
         display: inline-flex;
         align-items: center;
-        gap: 4px;
-        padding: 8px 12px;
-        font-size: 17px;
+        gap: 6px;
+        padding: 6px 12px;
+        font-size: 16px;
+        border-radius: 999px;
+        color: var(--text-2);
+        min-height: 48px;
+      }
+      sl-tab[active]::part(base) {
+        background: var(--primary);
+        color: #fff;
       }
 
       @media (max-width: 400px) {
