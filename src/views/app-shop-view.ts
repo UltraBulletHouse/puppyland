@@ -34,7 +34,7 @@ import {
   ShopItemLocal,
 } from '../types/shop';
 import { UserInfoResponse } from '../types/userInfo';
-import { showSuccessModal } from '../utils/alertsUtils';
+import { showSuccessModal, alertNotifyDanger } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
 
 //TODO: Move it to .env
@@ -272,6 +272,12 @@ export class AppShopView extends LitElement {
   @state()
   shopGoogleItems: GoogleBillingItem[] | null = null;
 
+  // Track per-item loading state for treats purchases and real-money purchases
+  @state()
+  private processingTreatsItemId: string | null = null;
+  @state()
+  private processingRealItemId: string | null = null;
+
   @consume({ context: userInfoContext, subscribe: true })
   @property({ attribute: false })
   userInfo: import('../types/userInfo').UserInfo | null = null;
@@ -293,6 +299,9 @@ export class AppShopView extends LitElement {
 
   async buyWithTreats(item: string) {
     if (!this.accessToken) return;
+    // Prevent parallel purchases with treats
+    if (this.processingTreatsItemId) return;
+    this.processingTreatsItemId = item;
     try {
       const result = await apiCall(this.accessToken).post(API_PURCHASE_BUY_WITH_TREATS, {
         itemId: item,
@@ -311,6 +320,9 @@ export class AppShopView extends LitElement {
       );
     } catch (error) {
       console.log(error);
+      alertNotifyDanger('Purchase failed. Please try again.');
+    } finally {
+      this.processingTreatsItemId = null;
     }
   }
 
@@ -361,12 +373,15 @@ export class AppShopView extends LitElement {
   }
 
   async buyProduct(item: string) {
-    if ('getDigitalGoodsService' in window) {
-      try {
-        await this.makePurchase(item);
-      } catch (error) {
-        return;
-      }
+    if (!('getDigitalGoodsService' in window)) return;
+    if (this.processingRealItemId) return; // prevent parallel purchases
+    this.processingRealItemId = item;
+    try {
+      await this.makePurchase(item);
+    } catch (error) {
+      // ignored, handled inside makePurchase
+    } finally {
+      this.processingRealItemId = null;
     }
   }
 
@@ -388,7 +403,13 @@ export class AppShopView extends LitElement {
         <div class="item-description">${item.description}</div>
       </div>
       <div class="item-action">
-        <sl-button class="buy-button" @click=${() => this.buyProduct(item.id)} pill>
+        <sl-button
+          class="buy-button"
+          @click=${() => this.buyProduct(item.id)}
+          ?disabled=${this.processingRealItemId !== null}
+          ?loading=${this.processingRealItemId === item.id}
+          pill
+        >
           <span class="price-tag">${item.price.value} ${item.price.currency}</span>
         </sl-button>
       </div>
@@ -407,7 +428,13 @@ export class AppShopView extends LitElement {
         <div class="item-description">${item.description}</div>
       </div>
       <div class="item-action">
-        <sl-button class="buy-button" @click=${() => this.buyWithTreats(item.id)} pill>
+        <sl-button
+          class="buy-button"
+          @click=${() => this.buyWithTreats(item.id)}
+          ?disabled=${this.processingTreatsItemId !== null}
+          ?loading=${this.processingTreatsItemId === item.id}
+          pill
+        >
           <span class="price-tag">${item.price.value} ${item.price.currency}</span>
         </sl-button>
       </div>
