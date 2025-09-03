@@ -214,14 +214,21 @@ export class MapModal extends LitElement {
   // .withUrl('https://mydogapi.azurewebsites.net/doghouse-hub')
   // .build();
 
-  closeMapModal = () => {
+  closeMapModal = (manual: boolean = false) => {
     // WEBSOCKETS
     // this.connection.invoke("RemoveFromGroup", this.dhId).catch((err: Error) => {
     //   console.error(err.toString());
     // });
 
-    sendEvent(this, 'closeMapModal');
+    // If manual close, request near-user refresh
+    if (manual) {
+      sendEvent(this, 'updateDoghouses');
+    }
+
+    // Notify parent popup that modal is closing and whether it was manual
+    sendEvent(this, 'closeMapModal', { manual });
   };
+
 
   // WEBSOCKETS
   // runSignal = () => {
@@ -495,7 +502,8 @@ export class MapModal extends LitElement {
         this.triggerDestructionEffect();
         this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
         setTimeout(() => {
-          this.closeMapModal();
+          // Auto-close after destruction (not a manual close); don't trigger near-user refresh here
+          this.closeMapModal(false);
         }, 2500);
       } else {
         this.showVisualFeedback(attackResult.damageDealt, attackResult.experienceGained);
@@ -857,7 +865,7 @@ export class MapModal extends LitElement {
           <div
             id="close-btn"
             class=${!this.isOwn ? 'close-btn--enemy' : ''}
-            @click=${this.closeMapModal}
+            @click=${() => this.closeMapModal(true)}
           >
             <sl-icon name="x"></sl-icon>
           </div>

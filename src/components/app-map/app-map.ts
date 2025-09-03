@@ -195,8 +195,12 @@ export class AppMap extends LitElement {
     this.map.setMaxBounds(bounds);
   }
 
-  updateDoghousesHandler() {
-    this.getDoghousesList();
+  updateDoghousesHandler(event: CustomEvent<any>) {
+    // Only refresh doghouses when explicitly requested (manual modal close).
+    // Attack/repair flows inside the modal emit events with detail (HP), which we ignore here.
+    if (!event.detail) {
+      this.getDoghousesList();
+    }
   }
 
   /* OK - raczej */
