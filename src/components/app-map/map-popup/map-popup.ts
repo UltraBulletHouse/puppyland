@@ -64,13 +64,9 @@ export class MapPopup extends LitElement {
   @state()
   isOpen: boolean = false;
 
-  closeMapModal = (e?: CustomEvent<{ manual?: boolean }>) => {
+  closeMapModal = (_e?: CustomEvent<{ manual?: boolean }>) => {
     this.isOpen = false;
-    // If modal was closed manually, ask the map to refresh near-user data
-    const manual = Boolean(e?.detail?.manual);
-    if (manual) {
-      sendEvent(this, 'updateDoghouses');
-    }
+    // Map refresh is emitted by map-modal on manual close to avoid duplicate events
     this.closePopup();
   };
 
