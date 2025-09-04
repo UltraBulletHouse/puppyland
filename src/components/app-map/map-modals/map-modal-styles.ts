@@ -13,15 +13,10 @@ export const MapModalStyles = html`
       will-change: transform, opacity;
     }
     .own-doghouse-modal {
-      background: linear-gradient(
-        135deg,
-        rgba(76, 175, 80, 0.15) 0%,
-        rgba(129, 199, 132, 0.08) 50%,
-        var(--color-surface) 100%
-      );
+      background: color-mix(in srgb, var(--primary) 6%, #fff);
     }
     .enemy-doghouse-modal {
-      background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-surface) 100%);
+      background: color-mix(in srgb, var(--sky) 6%, #fff);
     }
     #map-modal-main-section {
       display: flex;
@@ -30,13 +25,8 @@ export const MapModalStyles = html`
       height: 100%;
       width: 100%;
       position: relative;
-      padding: 20px;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.1) 0%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.05) 100%
-      );
+      padding: 16px;
+      background: var(--app-bg);
     }
 
     #map-modal-main-section::before {
@@ -197,11 +187,11 @@ export const MapModalStyles = html`
     }
 
     .attack-blocked-instructions-compact {
-      border-color: #f44336;
+      border-color: var(--danger);
     }
 
     .repair-blocked-instructions-compact {
-      border-color: #ff9800;
+      border-color: var(--warning);
     }
 
     .attack-blocked-instructions-compact p,
@@ -217,11 +207,11 @@ export const MapModalStyles = html`
     }
 
     .attack-blocked-instructions-compact p {
-      color: #f44336;
+      color: var(--danger);
     }
 
     .repair-blocked-instructions-compact p {
-      color: #ff9800;
+      color: var(--warning);
     }
 
     .attack-blocked-instructions-compact sl-icon,
@@ -258,25 +248,26 @@ export const MapModalStyles = html`
     }
 
     .hp-icon {
-      font-size: 20px;
-      padding: 8px;
+      font-size: 14px;
+      padding: 2px;
       border-radius: var(--border-radius-circle);
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 36px;
-      height: 36px;
-      background: linear-gradient(135deg, var(--color-blue), var(--color-primary));
-      color: white;
+      width: 28px;
+      height: 28px;
+      background: #fff;
+      border: 2px solid var(--primary);
+      color: var(--primary);
     }
-
-    .hp-icon.enemy {
-      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    .enemy-doghouse-modal .hp-icon {
+      border-color: var(--sky);
+      color: var(--sky);
     }
 
     .hp-title {
-      font-weight: 600;
-      font-size: 16px;
+      font-weight: 700;
+      font-size: 18px;
       color: var(--color-black);
       flex: 1;
     }
@@ -312,34 +303,23 @@ export const MapModalStyles = html`
     .modern-hp-bar {
       width: 100%;
       height: 12px;
-      border-radius: 6px;
+      border-radius: 999px;
       overflow: hidden;
       position: relative;
-    }
-
-    .own-doghouse-modal .modern-hp-bar {
-      background: var(--color-secondary-light);
-    }
-    .enemy-doghouse-modal .modern-hp-bar {
-      background: var(--color-primary-light);
+      background: #ddeee6;
     }
 
     .hp-fill {
       height: 100%;
-      border-radius: 6px;
+      border-radius: 999px;
       transition: width 0.6s ease;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(
-        90deg,
-        var(--color-secondary),
-        color-mix(in srgb, var(--color-secondary) 70%, #000)
-      );
+      background: linear-gradient(90deg, var(--primary), var(--lime));
       will-change: width, transform;
     }
-
-    .hp-fill.enemy {
-      background: linear-gradient(90deg, var(--color-blue), var(--color-primary));
+    .enemy-doghouse-modal .hp-fill {
+      background: linear-gradient(90deg, var(--sky), color-mix(in srgb, var(--sky) 85%, #0b2030));
     }
 
     .hp-fill.low {
@@ -578,14 +558,18 @@ export const MapModalStyles = html`
       }
     }
     #attack-btn::part(base) {
-      font-size: 18px;
-      background-color: var(--color-primary);
-      color: var(--color-white);
+      font-size: 16px;
+      background: linear-gradient(var(--coral), var(--gold));
+      color: #3a1c12;
+      font-weight: 800;
+      border: none;
     }
     #heal-btn::part(base) {
-      font-size: 18px;
-      background-color: var(--color-secondary);
-      color: var(--color-white);
+      font-size: 16px;
+      background: linear-gradient(var(--sky), color-mix(in srgb, var(--sky) 82%, #0b2030));
+      color: #fff;
+      font-weight: 800;
+      border: none;
     }
 
     #visual-feedback-container {
@@ -1026,8 +1010,8 @@ export const MapModalStyles = html`
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      font-weight: 600;
-      font-size: 13px;
+      font-weight: 700;
+      font-size: 16px;
       color: var(--color-black);
       margin-bottom: 12px;
     }
@@ -1039,68 +1023,100 @@ export const MapModalStyles = html`
     }
 
     .buffs-header .user-energy {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--color-primary);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--gold-100);
+      border: 2px solid var(--gold);
+      color: #5a4200;
     }
 
     .buffs-header sl-icon {
-      font-size: 20px;
-      padding: 8px;
+      font-size: 14px;
+      padding: 2px;
       border-radius: var(--border-radius-circle);
-      background: linear-gradient(135deg, #9b59b6, #8e44ad);
-      color: white;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      background: #fff;
+      border: 2px solid var(--primary);
+      color: var(--primary);
     }
 
     .buffs-header .user-energy sl-icon {
-      background: linear-gradient(135deg, #ffeb3b, #ffc107);
-      color: var(--color-black);
+      font-size: 14px;
+      padding: 2px;
+      background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
+      border: none;
+      color: #8a5b13;
     }
 
     .buffs-list {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-      gap: 20px;
+      grid-template-columns: 1fr;
+      gap: 10px;
     }
 
     .buff-item {
       display: flex;
-      flex-direction: column;
       align-items: center;
-      text-align: center;
+      text-align: left;
       cursor: pointer;
-      padding: 8px;
+      padding: 12px;
       border-radius: var(--border-radius-medium);
       background: var(--color-surface-strong);
       border: 1px solid var(--color-surface-border);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+      transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
       position: relative;
-      min-height: 80px;
+      min-height: 60px;
     }
 
     .buff-item:hover {
-      background: var(--color-surface);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      background: var(--color-primary-light);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
     }
 
     .buff-item:active {
       transform: translateY(0);
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      background: var(--sl-color-gray-200);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.08);
     }
 
     .buff-item .buff-name {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--color-black-medium);
-      margin-top: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-black);
+      margin: 0;
     }
 
     .buff-item icon-png-badge {
-      --icon-png-badge-width: 36px;
-      --icon-png-badge-height: 36px;
+      --icon-png-badge-width: 32px;
+      --icon-png-badge-height: 32px;
+    }
+
+    /* Icon bubble like shop/dog view */
+    .buff-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--border-radius-circle);
+      background: color-mix(in srgb, var(--primary) 14%, #fff);
+      outline: 2px solid color-mix(in srgb, var(--primary) 35%, transparent);
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+    .buff-details {
+      flex: 1;
+      min-width: 0;
     }
 
     .buff-confirmation {

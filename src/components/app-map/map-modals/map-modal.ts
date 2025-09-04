@@ -823,15 +823,16 @@ export class MapModal extends LitElement {
                                     ></sl-button>
                                   </div>
                                 `
-                              : html`
-                                  <icon-png-badge
-                                    name="${buff.buffSku.includes('repair')
-                                      ? 'toolkit'
-                                      : 'energy-drink'}"
-                                    badge="${buff.quantity}"
-                                  ></icon-png-badge>
-                                  <span class="buff-name">${buff.name}</span>
-                                `}
+                              : html``}
+                            <div class="buff-icon">
+                              <icon-png-badge
+                                name="${buff.buffSku.includes('repair') ? 'toolkit' : 'energy-drink'}"
+                                badge="${buff.quantity}"
+                              ></icon-png-badge>
+                            </div>
+                            <div class="buff-details">
+                              <span class="buff-name">${buff.name}</span>
+                            </div>
                           </div>
                         `
                       )
