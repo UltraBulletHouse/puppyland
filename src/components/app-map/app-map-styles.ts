@@ -28,20 +28,29 @@ export const AppMapStyles = [
       right: 5px;
       top: 21px;
       z-index: 1000;
-      height: 44px;
-      width: 70px;
-      padding: 10px;
-      background: var(--color-surface-strong);
-      border-radius: var(--border-radius-medium);
-      border: 1px solid var(--color-surface-border);
+      display: inline-flex;
+      align-items: center;
+      height: auto;
+      width: auto;
+      padding: 6px 12px;
+      background: var(--gold-100);
+      border-radius: 999px;
+      border: 2px solid var(--gold);
+      color: #5a4200;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
     #info-box-line {
-      display: flex;
-      justify-content: center;
+      display: inline-flex;
       align-items: center;
+      gap: 6px;
+      font-weight: 800;
     }
     #info-box-icon {
-      margin-right: 5px;
+      font-size: 14px;
+      padding: 2px;
+      border-radius: var(--border-radius-circle);
+      background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
+      color: #8a5b13;
     }
     .leaflet-bottom {
       bottom: 7px;
