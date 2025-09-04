@@ -7,6 +7,7 @@ import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
+import '../icon-svg/svg-icon';
 import { sharedStyles } from '../../styles/shared-styles';
 import {
   LeaderboardCategory,
@@ -519,7 +520,7 @@ export class LeaderboardsComponent extends LitElement {
             ? html`
                 <div id="current-user-card">
                   <div id="current-user-header">
-                    <div id="current-user-avatar">🐕</div>
+                    <div id="current-user-avatar"><svg-icon name="dogFaceSvg"></svg-icon></div>
                     <div id="current-user-info">
                       <div id="current-user-dog">${this.currentUser.dogName}</div>
                     </div>
