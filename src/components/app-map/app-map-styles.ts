@@ -134,9 +134,9 @@ export const AppMapStyles = [
     #add-doghouse-btn::part(base),
     #add-doghouse-btn::part(base):hover,
     #add-doghouse-btn::part(base):active {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-      background: var(--color-surface);
+      border-color: var(--wood);
+      color: var(--wood);
+      background: color-mix(in srgb, var(--wood) 10%, #fff);
     }
     /* Use cool accent for recenter button to distinguish from primary add button */
     #center-position-btn::part(base),
@@ -154,12 +154,15 @@ export const AppMapStyles = [
     } */
     #add-doghouse-icon {
       font-size: 20px;
+      color: var(--wood);
     }
     #add-doghouse-badge {
       transform: translateX(-41px);
     }
     #add-doghouse-badge::part(base) {
-      background-color: var(--color-primary);
+      background-color: var(--wood);
+      color: #fff;
+      border-color: var(--wood);
     }
     /*    #center-position-btn::part(base) {
     } */
