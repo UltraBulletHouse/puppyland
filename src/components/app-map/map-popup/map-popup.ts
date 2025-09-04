@@ -228,6 +228,13 @@ export class MapPopup extends LitElement {
           border-radius: 2px;
           transition: width 0.3s ease;
         }
+        /* Ownership-specific HP colors */
+        .own-doghouse #hp-fill {
+          background: linear-gradient(90deg, var(--color-primary), var(--color-lime), var(--color-primary));
+        }
+        .enemy-doghouse #hp-fill {
+          background: linear-gradient(90deg, var(--color-secondary), var(--color-lime), var(--color-secondary));
+        }
         #owner-section {
           display: flex;
           flex-direction: column;
@@ -259,8 +266,12 @@ export class MapPopup extends LitElement {
           background-color: var(--color-primary);
           color: var(--color-white);
         }
-        #next-btn.next-btn-is-own {
+        /* Swap colors: enemy secondary, own primary */
+        .enemy-doghouse #next-btn {
           background-color: var(--color-secondary);
+        }
+        .own-doghouse #next-btn {
+          background-color: var(--color-primary);
         }
         #next-btn.next-btn-is-blocked {
           background-color: var(--color-black-light);
@@ -286,11 +297,11 @@ export class MapPopup extends LitElement {
           display: none;
         }
         .own-doghouse #doghouse-section {
-          background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+          background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
           color: var(--color-white);
         }
         .enemy-doghouse #doghouse-section {
-          background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+          background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
           color: var(--color-white);
         }
       </style>

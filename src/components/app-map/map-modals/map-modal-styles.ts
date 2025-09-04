@@ -40,10 +40,10 @@ export const MapModalStyles = html`
     }
 
     .own-doghouse-modal #map-modal-main-section::before {
-      background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+      background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
     }
     .enemy-doghouse-modal #map-modal-main-section::before {
-      background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+      background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
     }
 
     #close-btn-container {
@@ -64,7 +64,7 @@ export const MapModalStyles = html`
       color: var(--primary);
     }
     .close-btn--enemy {
-      color: var(--color-primary) !important;
+      color: var(--color-secondary) !important;
     }
     #dh-name {
       display: flex;
@@ -143,11 +143,11 @@ export const MapModalStyles = html`
     }
 
     .tap-instructions-compact {
-      border-color: var(--color-primary);
+      border-color: var(--color-secondary);
     }
 
     .repair-instructions-compact {
-      border-color: var(--color-secondary);
+      border-color: var(--color-primary);
     }
 
     .tap-instructions-compact p,
@@ -159,11 +159,11 @@ export const MapModalStyles = html`
     }
 
     .tap-instructions-compact p {
-      color: var(--color-primary);
+      color: var(--color-secondary);
     }
 
     .repair-instructions-compact p {
-      color: var(--color-secondary);
+      color: var(--color-primary);
     }
 
     .tap-progress-compact,
@@ -234,10 +234,10 @@ export const MapModalStyles = html`
     }
 
     .own-doghouse-modal #dh-hp-container {
-      border: 1px solid var(--color-secondary-light);
+      border: 1px solid var(--color-primary-light);
     }
     .enemy-doghouse-modal #dh-hp-container {
-      border: 1px solid var(--color-primary-light);
+      border: 1px solid var(--color-secondary-light);
     }
 
     .hp-header {
@@ -260,10 +260,10 @@ export const MapModalStyles = html`
       border: 2px solid var(--primary);
       color: var(--primary);
     }
-    .enemy-doghouse-modal .hp-icon {
+    /* .enemy-doghouse-modal .hp-icon {
       border-color: var(--sky);
       color: var(--sky);
-    }
+    } */
 
     .hp-title {
       font-weight: 700;
@@ -333,6 +333,14 @@ export const MapModalStyles = html`
         var(--primary)
       );
     }
+
+    /* Ensure enemy low/critical keep secondary (sky) accent */
+    .enemy-doghouse-modal .hp-fill.low {
+      background: linear-gradient(90deg, var(--sky), color-mix(in srgb, var(--sky) 85%, #0b2030));
+    }
+    /* .enemy-doghouse-modal .hp-fill.critical {
+      background: linear-gradient(90deg, color-mix(in srgb, var(--sky) 80%, #0b2030), var(--sky));
+    } */
 
     #doghouse-icon.shake {
       animation: shake 0.5s ease-in-out;
@@ -775,9 +783,9 @@ export const MapModalStyles = html`
     }
 
     .tap-dot.active {
-      background: linear-gradient(135deg, var(--color-primary), #ff4757);
-      border-color: var(--color-primary);
-      box-shadow: 0 4px 12px rgba(var(--color-primary-rgb, 220, 53, 69), 0.4);
+      background: linear-gradient(135deg, var(--color-secondary), #fff);
+      border-color: var(--color-secondary);
+      box-shadow: 0 4px 12px rgba(var(--color-secondary-rgb, 220, 53, 69), 0.4);
       animation: tapPulse 0.4s ease;
     }
 
@@ -789,7 +797,7 @@ export const MapModalStyles = html`
       right: -2px;
       bottom: -2px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-primary), transparent);
+      background: linear-gradient(135deg, var(--color-secondary), transparent);
       animation: ripple 0.6s ease-out;
       z-index: -1;
     }
@@ -893,11 +901,11 @@ export const MapModalStyles = html`
     .repair-dot.active {
       background: linear-gradient(
         135deg,
-        var(--color-secondary),
-        color-mix(in srgb, var(--color-secondary) 70%, #fff)
+        var(--color-primary),
+        color-mix(in srgb, var(--color-primary) 70%, #fff)
       );
-      border-color: var(--color-secondary);
-      box-shadow: 0 4px 12px rgba(var(--color-secondary-rgb, 40, 167, 69), 0.4);
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 12px rgba(var(--color-primary-rgb, 40, 167, 69), 0.4);
       animation: repairPulse 0.4s ease;
     }
 
