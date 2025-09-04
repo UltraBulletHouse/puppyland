@@ -3,27 +3,56 @@
 
   --sl-z-index-toast: 1009;
 
-  /* ----------------New Playful Palette---------------------------- */
-  /* Drop-in tokens (kept alongside existing for compatibility) */
+  /* ---------------- Core Palette ---------------------------- */
+  /* Background and surfaces */
   --bg: #f3fbf6;
   --card: #e7f4ed;
   --border: #cfeadc;
-  --primary: #2dbc89;
-  --primary-700: #0e7a56;
+
+  /* Mint hero + lime highlight */
+  --primary: #22b889; /* Mint / Primary */
+  --primary-700: #0e7a56; /* Mint Dark */
   --lime: #b9e66a;
-  --accent: #ffb88c;
-  --text: #0e2a1f;
-  --text-2: #547366;
+
+  /* Ink text */
+  --ink: #102a22;
+  --ink2: #547366;
+  --text: var(--ink);
+  --text-2: var(--ink2);
+
+  /* Accents */
+  --coral: #ff8a6c; /* warm accent */
+  --coral-100: #ffe1d8;
+  --sky: #48a7f2; /* cool accent */
+  --sky-100: #dff1ff;
+  --lav: #8e7bfa; /* prestige */
+  --lav-100: #eee9ff;
+  /* Back-compat alias for existing styles using --accent */
+  --accent: var(--coral);
+
+  /* Materials */
+  --gold: #ffc857;
+  --gold-100: #ffe9b3;
+  --wood: #c7865f; /* terracotta/wood */
+  --wood-100: #f3e2d6;
+
+  /* Utility states */
+  --success: #2dbe7f;
+  --warning: #f2b544;
+  --danger: #e05d5d;
+  --info: #46a1e0;
+
   --shadow: 0 6px 18px rgba(22, 94, 73, 0.12);
 
   /* Backwards-compatible mappings to existing tokens */
   --color-primary: var(--primary);
   --color-primary-medium: var(--border); /* used as subtle borders/tints */
   --color-primary-light: var(--card); /* used as light surfaces */
-  --color-secondary: #3b82f6; /* keep blue secondary unless overridden locally */
-  --color-secondary-light: #dbeafe;
-  --color-secondary-rgb: 59, 130, 246;
-  --color-blue: #60a5fa;
+  /* Use sky as secondary for cool/info contexts */
+  --color-secondary: var(--sky);
+  --color-secondary-light: var(--sky-100);
+  --color-secondary-rgb: 72, 167, 242;
+  --color-blue: var(--sky);
   --color-lime: var(--lime);
 
   /* App background now very light; greens used as accents */
@@ -46,7 +75,7 @@
   --text-on-surface-muted: var(--text-2);
 
   /* Medals + neutrals */
-  --color-medal-gold: var(--lime);
+  --color-medal-gold: var(--gold);
   --color-medal-silver: color-mix(in srgb, var(--color-blue) 45%, #fff);
   --color-medal-bronze: color-mix(in srgb, var(--primary) 40%, #b5651d);
   --color-black: var(--text);
@@ -87,45 +116,68 @@ body {
 }
 
 /* ----------------Utility classes (drop-in)---------------- */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
-}
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
 
-.btn {
-  background: var(--primary);
-  color: #fff;
-  border-radius: 12px;
-}
+  .btn {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 12px;
+  }
 
-.chip {
-  background: #f0faf4;
-  color: var(--primary-700);
-  border-radius: 20px;
-  padding: 4px 10px;
-}
+  /* Ready-to-use examples */
+  .btn-primary {
+    background: linear-gradient(var(--primary), var(--primary-700));
+    color: #fff;
+  }
+  .btn-warm {
+    background: linear-gradient(var(--coral), var(--gold));
+    color: #3a1c12;
+  }
+  .badge-rare {
+    background: var(--lav-100);
+    color: #4e3ccf;
+  }
+  .progress-xp > div {
+    background: linear-gradient(90deg, var(--primary), var(--lime));
+  }
 
-.progress {
-  background: #ddeee6;
-  border-radius: 999px;
-  height: 12px;
-  overflow: hidden;
-}
-.progress > div {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--lime));
-}
+  .chip {
+    background: #f0faf4;
+    color: var(--primary-700);
+    border-radius: 20px;
+    padding: 4px 10px;
+  }
+
+  .progress {
+    background: #ddeee6;
+    border-radius: 999px;
+    height: 12px;
+    overflow: hidden;
+  }
+  .progress > div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--lime));
+  }
 
 .tab {
   background: #eaf5ef;
   border-radius: 999px;
   padding: 4px;
 }
-.tab .active {
-  background: var(--primary);
-  color: #fff;
-  border-radius: 999px;
-  padding: 6px 12px;
-}
+  .tab .active {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+
+/* Usage tips:
+   - Green is hero; prefer either coral OR sky per screen.
+   - Reserve gold for currency/crowns.
+   - Use lavender sparingly for prestige/rarity moments.
+   - Ensure contrast: dark ink on light tints; white on solid fills. */

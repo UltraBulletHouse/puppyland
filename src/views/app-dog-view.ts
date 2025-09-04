@@ -91,19 +91,24 @@ export class AppDogView extends LitElement {
       #treats-balance {
         display: inline-flex;
         align-items: center;
-        gap: 6px;
-        font-weight: 700;
-        padding: 4px 8px;
+        gap: 8px;
+        font-weight: 800;
+        padding: 6px 12px;
         border-radius: 999px;
         background: linear-gradient(
           180deg,
-          color-mix(in srgb, var(--accent) 18%, #fff),
-          color-mix(in srgb, var(--accent) 28%, #fff)
+          var(--gold),
+          color-mix(in srgb, var(--gold) 70%, var(--primary) 30%)
         );
-        color: var(--text);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-        backdrop-filter: blur(4px);
+        color: #3a2a00;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         cursor: pointer;
+      }
+      #treats-balance sl-icon::part(base) {
+        color: #8a5b13;
+        background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
+        border-radius: 999px;
+        padding: 4px;
       }
       #dog-image {
         margin-bottom: 12px;
@@ -158,7 +163,7 @@ export class AppDogView extends LitElement {
         margin-left: auto;
         margin-right: auto;
         padding: 4px;
-        background: #eaf5ef;
+        background: color-mix(in srgb, var(--primary) 8%, #fff);
         border-radius: 999px;
         border: none;
         box-shadow: none;
@@ -268,10 +273,18 @@ export class AppDogView extends LitElement {
         color: var(--primary);
         background: #fff;
       }
+      .stat-icon.energy {
+        border-color: var(--coral);
+        color: var(--coral);
+      }
+      .stat-icon.doghouses {
+        border-color: var(--wood);
+        color: var(--wood);
+      }
 
       .stat-title {
-        font-weight: 600;
-        font-size: 16px;
+        font-weight: 700;
+        font-size: 18px;
         color: var(--color-black);
         flex: 1;
       }
@@ -326,30 +339,35 @@ export class AppDogView extends LitElement {
       }
 
       .progress-fill.energy {
-        background: linear-gradient(90deg, #e74c3c, #c0392b);
+        background: linear-gradient(90deg, var(--coral), color-mix(in srgb, var(--coral) 85%, #000));
       }
 
       .level-badge {
         background: linear-gradient(
           135deg,
-          var(--color-medal-gold),
-          color-mix(in srgb, var(--color-medal-gold) 70%, var(--color-primary) 30%)
+          var(--lime),
+          color-mix(in srgb, var(--primary) 40%, var(--lime))
         );
-        color: white;
+        color: #0b2a20;
         padding: 4px 12px;
         border-radius: var(--border-radius-circle);
-        font-weight: 700;
+        font-weight: 800;
         font-size: 14px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
 
       .doghouses-count {
-        background: var(--color-secondary);
-        color: white;
-        padding: 4px 12px;
-        border-radius: var(--border-radius-circle);
-        font-weight: 700;
-        font-size: 14px;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--gold-100);
+        color: #5a4200;
+        border: 2px solid var(--gold);
+        border-radius: 999px;
+        font-weight: 900;
+        font-size: 12px;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       }
       #pencil-wrapper {
@@ -447,10 +465,17 @@ export class AppDogView extends LitElement {
         display: flex;
         align-items: center;
         gap: 8px;
-        padding: 6px 8px;
-        border-radius: var(--border-radius-medium);
+        padding: 10px 12px;
+        border-radius: 16px;
         background: var(--color-surface-strong);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      }
+      /* Unify allocation cards to the same neutral surface */
+      .alloc-card.power,
+      .alloc-card.stamina,
+      .alloc-card.reach,
+      .alloc-card.fortification {
+        background: var(--color-surface-strong);
       }
       .alloc-card .title-row {
         flex-grow: 1;
@@ -463,12 +488,24 @@ export class AppDogView extends LitElement {
       }
       .alloc-card .stat-icon {
         font-size: 14px;
-        width: 22px;
-        height: 22px;
+        width: 28px;
+        height: 28px;
         padding: 2px;
+        border-radius: 999px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        background: #fff;
+      }
+      /* Unify icon accents as primary */
+      .alloc-card.power .stat-icon,
+      .alloc-card.stamina .stat-icon,
+      .alloc-card.reach .stat-icon,
+      .alloc-card.fortification .stat-icon {
+        border-color: var(--primary);
+        color: var(--primary);
       }
       .alloc-card .title {
         font-weight: 700;
@@ -532,14 +569,17 @@ export class AppDogView extends LitElement {
       }
       .alloc-card .value {
         justify-self: end;
-        font-weight: 800;
-        color: var(--text);
-        min-width: 28px;
-        text-align: right;
+        font-weight: 900;
+        color: #5a4200;
+        width: 28px;
+        height: 28px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
         font-size: 12px;
-        background: color-mix(in srgb, var(--lime) 35%, #fff);
-        border: 1px solid color-mix(in srgb, var(--lime) 50%, #fff);
-        padding: 2px 8px;
+        background: var(--gold-100);
+        border: 2px solid var(--gold);
         border-radius: 999px;
       }
       .alloc-card .alloc-btn.plus.hidden-keep-space::part(base) {
@@ -1225,7 +1265,7 @@ export class AppDogView extends LitElement {
                           </div>
 
                           <div class="alloc-grid">
-                            <div class="alloc-card alloc-card--floating">
+                            <div class="alloc-card alloc-card--floating power">
                               <sl-icon class="stat-icon level" name="fire"></sl-icon>
                               <div class="title-row">
                                 <div class="title">${t('power')}</div>
@@ -1258,7 +1298,7 @@ export class AppDogView extends LitElement {
                               <div class="value">${this.stats.power}</div>
                             </div>
 
-                            <div class="alloc-card alloc-card--floating">
+                            <div class="alloc-card alloc-card--floating stamina">
                               <sl-icon class="stat-icon energy" name="heart-pulse"></sl-icon>
                               <div class="title-row">
                                 <div class="title">${t('stamina')}</div>
@@ -1289,7 +1329,7 @@ export class AppDogView extends LitElement {
                               </div>
                             </div>
 
-                            <div class="alloc-card alloc-card--floating">
+                            <div class="alloc-card alloc-card--floating reach">
                               <sl-icon class="stat-icon doghouses" name="broadcast-pin"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Reach</div>
@@ -1320,7 +1360,7 @@ export class AppDogView extends LitElement {
                               </div>
                             </div>
 
-                            <div class="alloc-card alloc-card--floating">
+                            <div class="alloc-card alloc-card--floating fortification">
                               <sl-icon class="stat-icon experience" name="shield-shaded"></sl-icon>
                               <div class="title-row">
                                 <div class="title">Fortification</div>
@@ -1425,13 +1465,21 @@ export class AppDogView extends LitElement {
                   </sl-tab-panel>
 
                   <sl-tab-panel name="quests">
-                    <daily-quests .isActive=${this.activeTab === 'quests'}></daily-quests>
+                    <div id="stats-content">
+                      <div class="stat-card">
+                        <daily-quests .isActive=${this.activeTab === 'quests'}></daily-quests>
+                      </div>
+                    </div>
                   </sl-tab-panel>
 
                   <sl-tab-panel name="leaderboards">
-                    <leaderboards-component
-                      .isActive=${this.activeTab === 'leaderboards'}
-                    ></leaderboards-component>
+                    <div id="stats-content">
+                      <div class="stat-card">
+                        <leaderboards-component
+                          .isActive=${this.activeTab === 'leaderboards'}
+                        ></leaderboards-component>
+                      </div>
+                    </div>
                   </sl-tab-panel>
                 </sl-tab-group>
 

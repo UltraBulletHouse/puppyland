@@ -125,7 +125,7 @@ export class AppShopView extends LitElement {
         margin-left: auto;
         margin-right: auto;
         padding: 2px;
-        background: #eaf5ef;
+        background: color-mix(in srgb, var(--primary) 8%, #fff);
         border-radius: 999px;
         border: none;
         box-shadow: none;
@@ -190,10 +190,11 @@ export class AppShopView extends LitElement {
       }
 
       .item-list {
-        background: var(--color-surface-strong);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), var(--color-surface-strong));
         border-radius: var(--border-radius-medium);
         border: 1px solid var(--color-surface-border);
         overflow: hidden;
+        box-shadow: 0 6px 18px rgba(22, 94, 73, 0.08);
       }
 
       .shop-item {
@@ -218,8 +219,9 @@ export class AppShopView extends LitElement {
         display: flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--border-radius-small);
-        background: var(--color-primary-light);
+        border-radius: var(--border-radius-circle);
+        background: color-mix(in srgb, var(--primary) 14%, #fff);
+        outline: 2px solid color-mix(in srgb, var(--primary) 35%, transparent);
         margin-right: 16px;
       }
 
@@ -253,15 +255,45 @@ export class AppShopView extends LitElement {
       }
 
       .buy-button::part(base) {
-        background-color: var(--color-primary);
         color: var(--color-white);
         border: none;
-        font-weight: 600;
+        font-weight: 700;
+        box-shadow: 0 4px 12px rgba(16, 42, 34, 0.2);
+      }
+      .buy-button--treats::part(base) {
+        background: linear-gradient(var(--primary), var(--primary-700));
+      }
+      .buy-button--real::part(base) {
+        background: linear-gradient(var(--sky), color-mix(in srgb, var(--sky) 82%, #0b2030));
       }
 
       .price-tag {
-        font-weight: 700;
+        font-weight: 800;
         font-size: 16px;
+      }
+
+      /* Gold balance pill like the mock */
+      #balance-pill {
+        margin-left: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 800;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: linear-gradient(
+          180deg,
+          var(--gold),
+          color-mix(in srgb, var(--gold) 70%, var(--primary) 30%)
+        );
+        color: #3a2a00;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+      }
+      #balance-pill sl-icon::part(base) {
+        color: #8a5b13;
+        background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
+        border-radius: 999px;
+        padding: 4px;
       }
     `,
   ];
@@ -405,7 +437,7 @@ export class AppShopView extends LitElement {
       </div>
       <div class="item-action">
         <sl-button
-          class="buy-button"
+          class="buy-button buy-button--real"
           @click=${() => this.buyProduct(item.id)}
           ?disabled=${this.processingRealItemId !== null}
           ?loading=${this.processingRealItemId === item.id}
@@ -430,7 +462,7 @@ export class AppShopView extends LitElement {
       </div>
       <div class="item-action">
         <sl-button
-          class="buy-button"
+          class="buy-button buy-button--treats"
           @click=${() => this.buyWithTreats(item.id)}
           ?disabled=${this.processingTreatsItemId !== null}
           ?loading=${this.processingTreatsItemId === item.id}
@@ -482,9 +514,7 @@ export class AppShopView extends LitElement {
         <div id="header">
           <sl-icon name="shop" style="font-size: 24px;"></sl-icon>
           <div id="title">${t('shop')}</div>
-          <div
-            style="margin-left:auto; display:flex; align-items:center; gap:8px; font-weight:600;"
-          >
+          <div id="balance-pill" title="Treats">
             <sl-icon name="coin"></sl-icon>
             <span>${this.userInfo?.treatsBalance ?? 0}</span>
           </div>

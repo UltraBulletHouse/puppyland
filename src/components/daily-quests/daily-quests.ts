@@ -62,11 +62,12 @@ export class DailyQuests extends LitElement {
 
       .quest-item {
         background: var(--color-surface-strong);
-        border-radius: var(--border-radius-small);
+        border-radius: 16px;
         padding: 12px;
         margin-bottom: 12px;
         border: 1px solid var(--color-surface-border);
-        transition: all 0.2s ease;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
       }
 
       .quest-item:last-child {
@@ -75,6 +76,8 @@ export class DailyQuests extends LitElement {
 
       .quest-item:hover {
         background: var(--color-surface);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
       }
 
       .quest-item.completed {
@@ -95,8 +98,10 @@ export class DailyQuests extends LitElement {
       }
 
       .quest-title {
-        font-weight: 600;
-        font-size: 14px;
+        display: flex;
+        align-items: center;
+        font-weight: 700;
+        font-size: 16px;
         color: var(--color-black);
         margin-bottom: 4px;
         line-height: 1.3;
@@ -116,15 +121,16 @@ export class DailyQuests extends LitElement {
       }
 
       .quest-reward {
-        display: flex;
+        display: inline-flex;
         align-items: center;
-        gap: 4px;
-        background: var(--color-surface);
-        padding: 6px 8px;
-        border-radius: var(--border-radius-small);
-        border: 1px solid var(--color-surface-border);
+        gap: 6px;
+        background: var(--gold-100);
+        border: 2px solid var(--gold);
+        color: #5a4200;
+        padding: 4px 10px;
+        border-radius: 999px;
         font-size: 12px;
-        font-weight: 600;
+        font-weight: 800;
         white-space: nowrap;
       }
 
@@ -157,9 +163,9 @@ export class DailyQuests extends LitElement {
       }
 
       sl-progress-bar {
-        --height: 6px;
+        --height: 8px;
         --track-color: var(--color-surface);
-        --indicator-color: var(--color-primary);
+        --indicator-color: var(--primary);
       }
 
       .quest-item.completed sl-progress-bar {
@@ -183,25 +189,38 @@ export class DailyQuests extends LitElement {
         color: var(--color-lime);
       }
 
-      .quest-type-icon {
-        font-size: 16px;
+      .quest-title sl-icon {
+        width: 28px;
+        height: 28px;
         margin-right: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        border: 2px solid var(--primary);
+        color: var(--primary);
+        background: #fff;
+        font-size: 14px;
       }
-
-      .quest-type-icon.attack {
-        color: var(--color-blue);
+      .quest-type-icon.attack,
+      .quest-type-icon.destroy,
+      .quest-type-icon.energy {
+        border-color: var(--coral);
+        color: var(--coral);
       }
-      .quest-type-icon.build {
-        color: var(--color-blue);
-      }
-      .quest-type-icon.experience {
-        color: var(--color-lime);
-      }
+      .quest-type-icon.build,
       .quest-type-icon.visit {
-        color: var(--color-secondary);
+        border-color: var(--sky);
+        color: var(--sky);
+      }
+      .quest-type-icon.experience,
+      .quest-type-icon.level-up {
+        border-color: var(--lime);
+        color: var(--lime);
       }
       .quest-type-icon.repair {
-        color: var(--color-primary);
+        border-color: var(--primary);
+        color: var(--primary);
       }
 
       #empty-state {
