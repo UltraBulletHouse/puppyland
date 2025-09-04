@@ -73,8 +73,8 @@ export class LeaderboardsComponent extends LitElement {
       }
 
       .category-button::part(base) {
-        font-size: 12px;
-        padding: 4px 10px; /* compact like tabs */
+        font-size: 11px;
+        padding: 3px 8px; /* extra compact */
         background: transparent;
         color: var(--text-2);
         border: none;
@@ -84,11 +84,18 @@ export class LeaderboardsComponent extends LitElement {
         justify-content: center;
         box-shadow: none;
       }
+      .category-button::part(prefix) {
+        margin-right: 4px;
+        font-size: 14px;
+      }
 
       @media (max-width: 420px) {
         .category-button::part(base) {
+          font-size: 10px;
+          padding: 2px 6px;
+        }
+        .category-button::part(prefix) {
           font-size: 12px;
-          padding: 6px 10px;
         }
       }
 
