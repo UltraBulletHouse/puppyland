@@ -62,26 +62,31 @@ export class AppDoghousesView extends LitElement {
       #sort-by-selector {
         width: 120px;
       }
+      /* Segmented tab-like group (match Dog view tabs) */
       #sort-buttons {
         display: flex;
-        gap: 8px;
+        gap: 0;
+        padding: 2px;
+        background: color-mix(in srgb, var(--primary) 8%, #fff);
+        border-radius: 999px;
+        border: 1px solid var(--color-surface-border);
+        overflow: hidden;
       }
       .sort-button::part(base) {
         font-size: 12px;
-        padding: 8px;
-        background-color: var(--color-surface);
-        color: var(--color-primary);
-        border: 1px solid var(--color-primary-light);
-        transition:
-          background-color 0.2s,
-          color 0.2s;
+        padding: 4px 10px;
+        background: transparent;
+        color: var(--text-2);
+        border: none;
+        border-radius: 999px;
+        transition: background-color 0.2s, color 0.2s;
         align-items: center;
         justify-content: center;
+        box-shadow: none;
       }
       .sort-button.active::part(base) {
-        background-color: var(--color-primary);
-        color: var(--color-white);
-        border-color: var(--color-primary);
+        background: var(--primary);
+        color: #fff;
       }
       #edit-button {
         padding: 8px;
