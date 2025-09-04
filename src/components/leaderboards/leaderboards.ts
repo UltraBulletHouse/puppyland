@@ -29,9 +29,9 @@ export class LeaderboardsComponent extends LitElement {
       }
 
       #header {
-        padding: 16px;
-        border-bottom: 1px solid var(--header-border);
-        background: var(--header-bg);
+        padding: 0; /* stretch to full width of parent card */
+        border-bottom: none;
+        background: transparent;
       }
 
       #title {
@@ -50,31 +50,50 @@ export class LeaderboardsComponent extends LitElement {
 
       #category-buttons {
         display: flex;
-        gap: 8px;
-        margin-top: 12px;
+        gap: 0; /* compact segmented look */
+        margin-top: 0;
+        flex-wrap: nowrap; /* keep in a single row */
+        justify-content: center;
+        white-space: nowrap;
+        width: fit-content; /* shrink to content like tabs */
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 2px; /* segmented track padding */
+        background: color-mix(in srgb, var(--primary) 8%, #fff);
+        border-radius: 999px;
+        border: 1px solid var(--color-surface-border);
+        overflow-x: auto; /* allow horizontal scroll on very small phones */
+        -webkit-overflow-scrolling: touch;
       }
 
       .category-button {
-        flex: 1;
+        flex: 0 0 auto; /* let buttons size to content and wrap */
       }
 
       .category-button::part(base) {
         font-size: 12px;
-        padding: 8px;
-        background-color: var(--color-surface);
-        color: var(--color-primary);
-        border: 1px solid var(--color-surface-border);
-        transition:
-          background-color 0.2s,
-          color 0.2s;
+        padding: 4px 10px; /* compact like tabs */
+        background: transparent;
+        color: var(--text-2);
+        border: none;
+        border-radius: 999px;
+        transition: background-color 0.2s, color 0.2s;
         align-items: center;
         justify-content: center;
+        box-shadow: none;
+      }
+
+      @media (max-width: 420px) {
+        .category-button::part(base) {
+          font-size: 12px;
+          padding: 6px 10px;
+        }
       }
 
       .category-button.active::part(base) {
-        background-color: var(--color-primary);
-        color: var(--color-white);
-        border-color: var(--color-primary);
+        background: var(--primary);
+        color: #fff;
       }
 
       #content {
@@ -434,12 +453,7 @@ export class LeaderboardsComponent extends LitElement {
     if (this.isLoading) {
       return html`
         <div id="container">
-          <div id="header">
-            <div id="title">
-              <sl-icon name="trophy"></sl-icon>
-              Leaderboards
-            </div>
-          </div>
+          <div id="header"></div>
           <div id="loading-state">
             <sl-icon name="arrow-clockwise"></sl-icon>
             <p>Loading leaderboards...</p>
@@ -465,11 +479,6 @@ export class LeaderboardsComponent extends LitElement {
     return html`
       <div id="container">
         <div id="header">
-          <div id="title">
-            <sl-icon name="trophy"></sl-icon>
-            Leaderboards
-          </div>
-
           <div id="category-buttons">
             <sl-button
               class="category-button ${this.selectedCategory === LeaderboardCategory.LEVEL
