@@ -3,6 +3,7 @@ import { LitElement, css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
 import { sharedStyles } from '../styles/shared-styles';
+import { t } from '../i18n';
 import { alertNotifyDanger } from '../utils/alertsUtils';
 import { auth, googleProvider } from '../utils/firebase';
 
@@ -43,7 +44,7 @@ export class AppSignin extends LitElement {
       <div id="container">
         <div><sl-icon id="signpost-icon" name="signpost-split"></sl-icon></div>
         <sl-button id="google-btn" pill @click=${this.signInWithGoogle}>
-          <sl-icon name="google"></sl-icon> Sign-in with Google</sl-button
+          <sl-icon name="google"></sl-icon> ${t('signInWithGoogle')}</sl-button
         >
       </div>
     `;

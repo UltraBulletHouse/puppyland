@@ -4,6 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 
 import { userPosContext } from '../contexts/userPosContext';
 import { sharedStyles } from '../styles/shared-styles';
+import { t } from '../i18n';
 import { Coords } from '../types/geolocation';
 import { sendEvent } from '../utils/eventUtils';
 
@@ -48,13 +49,13 @@ export class AppLoadingMapView extends LitElement {
     return html`
       <div id="container">
         <sl-icon id="map-icon" name="map" label="Map"></sl-icon>
-        <div id="find-loc-hint">Please turn on location <sl-icon name="geo-alt"></sl-icon></div>
-        and click button below
+        <div id="find-loc-hint">${t('turnOnGpsWait')}</div>
+        ${t('clickButtonBelow')}
         <sl-button
           ?hidden=${Boolean(this.userPos)}
           id="find-loc-btn"
           @click=${this.watchUserPosEvent}
-          >Find your position</sl-button
+          >${t('findPosition')}</sl-button
         >
       </div>
     `;

@@ -27,6 +27,7 @@ import { updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { updateUserInfoEvent, userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
+import { t } from '../i18n';
 import {
   AcknowledgePurchaseResponse,
   GoogleBillingItem,
@@ -480,7 +481,7 @@ export class AppShopView extends LitElement {
       <div id="container">
         <div id="header">
           <sl-icon name="shop" style="font-size: 24px;"></sl-icon>
-          <div id="title">Shop</div>
+          <div id="title">${t('shop')}</div>
           <div
             style="margin-left:auto; display:flex; align-items:center; gap:8px; font-weight:600;"
           >
@@ -499,28 +500,28 @@ export class AppShopView extends LitElement {
             >
               <sl-tab slot="nav" panel="spend-treats">
                 <sl-icon name="handbag" style="margin-right: 6px;"></sl-icon>
-                Spend
+                ${t('spend')}
               </sl-tab>
               <sl-tab slot="nav" panel="buy-treats">
                 <sl-icon name="coin" style="margin-right: 6px;"></sl-icon>
-                Buy
+                ${t('buy')}
               </sl-tab>
               <sl-tab slot="nav" panel="premium">
                 <sl-icon name="star" style="margin-right: 6px;"></sl-icon>
-                Buy Premium
+                ${t('buyPremium')}
               </sl-tab>
 
               <sl-tab-panel name="spend-treats">
-                ${this.renderCategorySection('Doghouses', 'house-add', shopItemsDoghouse, (i) =>
+                ${this.renderCategorySection(t('doghouses'), 'house-add', shopItemsDoghouse, (i) =>
                   this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection('Rename Tokens', 'pencil', shopItemsRename, (i) =>
+                ${this.renderCategorySection(t('renameTokens'), 'pencil', shopItemsRename, (i) =>
                   this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection('Repair Kits', 'tools', shopItemsRepair, (i) =>
+                ${this.renderCategorySection(t('repairKits'), 'tools', shopItemsRepair, (i) =>
                   this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection('Energy', 'lightning-charge', shopItemsEnergy, (i) =>
+                ${this.renderCategorySection(t('energy'), 'lightning-charge', shopItemsEnergy, (i) =>
                   this.renderShopItemTreats(i)
                 )}
               </sl-tab-panel>
@@ -529,7 +530,7 @@ export class AppShopView extends LitElement {
                 ${this.shopGoogleItems
                   ? html`
                       ${this.renderCategorySection(
-                        'Treat Packs',
+                        t('treatPacks'),
                         'coin',
                         shopItemsTreatPacks,
                         (i) => this.renderShopItemReal(i),
@@ -542,7 +543,7 @@ export class AppShopView extends LitElement {
               <sl-tab-panel name="premium">
                 ${this.shopGoogleItems
                   ? html`${this.renderCategorySection(
-                      'Subscriptions',
+                      t('subscriptions'),
                       'star',
                       shopItemsSubscription,
                       (i) => this.renderShopItemReal(i),

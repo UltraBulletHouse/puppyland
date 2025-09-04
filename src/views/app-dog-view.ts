@@ -30,6 +30,7 @@ import { userInfoContext } from '../contexts/userInfoContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogDerivedStats, DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
 import { apiCall } from '../utils/apiUtils';
+import { t, ti } from '../i18n';
 
 @customElement('app-dog-view')
 export class AppDogView extends LitElement {
@@ -1148,15 +1149,15 @@ export class AppDogView extends LitElement {
                 <sl-tab-group class="dog-tabs" @sl-tab-show=${this.handleTabShow}>
                   <sl-tab slot="nav" panel="stats">
                     <sl-icon name="bar-chart"></sl-icon>
-                    Stats
+                    ${t('statsTab')}
                   </sl-tab>
                   <sl-tab slot="nav" panel="quests">
                     <sl-icon name="list-task"></sl-icon>
-                    Daily Quests
+                    ${t('dailyQuestsTab')}
                   </sl-tab>
                   <sl-tab slot="nav" panel="leaderboards">
                     <sl-icon name="trophy"></sl-icon>
-                    Leaderboards
+                    ${t('leaderboardsTab')}
                   </sl-tab>
 
                   <sl-tab-panel name="stats">
@@ -1168,14 +1169,14 @@ export class AppDogView extends LitElement {
                             <div class="stat-icon level">
                               <sl-icon name="star"></sl-icon>
                             </div>
-                            <div class="stat-title">Stats</div>
-                            <div class="level-badge" title="Your current level">Level ${level}</div>
+                            <div class="stat-title">${t('statsTitle')}</div>
+                            <div class="level-badge" title="${t('levelTooltip')}">${ti('levelWithNumber', { level })}</div>
                           </div>
                           <!-- Compact Experience tile integrated into Attributes -->
-                          <div class="mini-progress" title="XP to next level">
+                          <div class="mini-progress" title="${t('xpToNext')}">
                             <div class="progress-info">
                               <span class="progress-current">
-                                ${experience} / ${expForNextLevel} XP
+                                ${experience} / ${expForNextLevel} ${t('xpAbbrev')}
                                 (${Math.round(
                                   expForNextLevel ? (experience / expForNextLevel) * 100 : 0
                                 )}%)
@@ -1203,7 +1204,7 @@ export class AppDogView extends LitElement {
                               ${this.statPointsAvailable > 0
                                 ? html`<div>
                                     <div class="points-number">${this.statPointsAvailable}</div>
-                                    <div class="points-subtitle">points to allocate</div>
+                                    <div class="points-subtitle">${t('pointsToAllocate')}</div>
                                   </div>`
                                 : html``}
                             </div>
@@ -1214,10 +1215,10 @@ export class AppDogView extends LitElement {
                                     pill
                                     variant="primary"
                                     @click=${this.saveAttributes}
-                                    >Save</sl-button
+                                    >${t('save')}</sl-button
                                   >
                                   <sl-button size="small" pill @click=${this.resetAllocation}
-                                    >Reset</sl-button
+                                    >${t('reset')}</sl-button
                                   >
                                 </div>`
                               : ''}
@@ -1227,15 +1228,15 @@ export class AppDogView extends LitElement {
                             <div class="alloc-card alloc-card--floating">
                               <sl-icon class="stat-icon level" name="fire"></sl-icon>
                               <div class="title-row">
-                                <div class="title">Power</div>
+                                <div class="title">${t('power')}</div>
                                 <div class="bottom-row">
                                   <span class="impact"
-                                    >Attack: ${atkMinPreview}–${atkMaxPreview}</span
+                                    >${ti('attackLabel', { min: atkMinPreview, max: atkMaxPreview })}</span
                                   >
                                   <sl-icon-button
                                     class="help-icon"
                                     name="info-circle"
-                                    label="What is Power?"
+                                    label="${t('whatIsPower')}"
                                     @click=${() => this.openAttributeDetails('power')}
                                   ></sl-icon-button>
                                 </div>
@@ -1260,7 +1261,7 @@ export class AppDogView extends LitElement {
                             <div class="alloc-card alloc-card--floating">
                               <sl-icon class="stat-icon energy" name="heart-pulse"></sl-icon>
                               <div class="title-row">
-                                <div class="title">Stamina</div>
+                                <div class="title">${t('stamina')}</div>
                                 <div class="bottom-row">
                                   <span class="impact">Max energy ${energyMaxPreview}</span>
                                   <sl-icon-button

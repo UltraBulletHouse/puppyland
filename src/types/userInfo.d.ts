@@ -5,6 +5,7 @@ export interface UserInfo {
   id: string;
   email: string;
   name: string;
+  language?: string;
   availableDoghouses: number;
   availableAttacks: number;
   ownedDogHouses: number;

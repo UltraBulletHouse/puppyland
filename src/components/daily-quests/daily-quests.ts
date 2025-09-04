@@ -9,6 +9,7 @@ import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { sharedStyles } from '../../styles/shared-styles';
 import { DailyQuestsResponse, Quest, QuestType, RewardType } from '../../types/quest';
+import { t } from '../../i18n';
 
 @customElement('daily-quests')
 export class DailyQuests extends LitElement {
@@ -386,12 +387,12 @@ export class DailyQuests extends LitElement {
     const refreshTime = new Date(this.nextRefreshAt);
     const diff = refreshTime.getTime() - now.getTime();
 
-    if (diff <= 0) return 'Refreshing...';
+    if (diff <= 0) return t('refreshing');
 
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
 
-    return `${hours}h ${minutes}m`;
+    return `${hours}${t('hoursAbbrev')} ${minutes}${t('minutesAbbrev')}`;
   }
 
   render() {
@@ -401,13 +402,13 @@ export class DailyQuests extends LitElement {
           <div id="header">
             <div id="title">
               <sl-icon name="list-task"></sl-icon>
-              Daily Quests
+              ${t('dailyQuestsTab')}
             </div>
           </div>
           <div id="content">
             <div id="loading-state">
               <sl-icon name="arrow-clockwise"></sl-icon>
-              <p>Loading daily quests...</p>
+              <p>${t('loadingDailyQuests')}</p>
             </div>
           </div>
         </div>
@@ -420,13 +421,13 @@ export class DailyQuests extends LitElement {
           <div id="header">
             <div id="title">
               <sl-icon name="list-task"></sl-icon>
-              Daily Quests
+              ${t('dailyQuestsTab')}
             </div>
           </div>
           <div id="content">
             <div id="empty-state">
               <sl-icon name="calendar-x"></sl-icon>
-              <div>No quests available today</div>
+              <div>${t('noQuestsToday')}</div>
             </div>
           </div>
         </div>
@@ -438,7 +439,7 @@ export class DailyQuests extends LitElement {
         <div id="header">
           <div id="title">
             <sl-icon name="list-task"></sl-icon>
-            Daily Quests
+            ${t('dailyQuestsTab')}
           </div>
           <div id="refresh-timer">
             <sl-icon name="clock"></sl-icon>
@@ -479,14 +480,14 @@ export class DailyQuests extends LitElement {
                             @click=${() => this.claimReward(quest.id)}
                           >
                             <sl-icon name="gift" slot="prefix"></sl-icon>
-                            Claim
+                            ${t('claim')}
                           </sl-button>
                         `
                       : quest.isRewardClaimed
                         ? html`
                             <sl-badge variant="success">
                               <sl-icon name="check-circle"></sl-icon>
-                              Claimed
+                              ${t('claimed')}
                             </sl-badge>
                           `
                         : ''}

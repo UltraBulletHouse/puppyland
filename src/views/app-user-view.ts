@@ -12,17 +12,30 @@ import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/switch/switch.js';
 
 import { userInfoContext } from '../contexts/userInfoContext';
+import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { updateViewEvent } from '../contexts/viewContext';
 import { sharedStyles } from '../styles/shared-styles';
 import { UserInfo } from '../types/userInfo';
 import { View } from '../types/view';
 import { auth } from '../utils/firebase';
+import { apiCall } from '../utils/apiUtils';
+import { t, setLocale } from '../i18n';
+import { API_USER_INFO } from '../constants/apiConstants';
+import { updateUserInfoEvent } from '../contexts/userInfoContext';
 
 /**
  * @fires updateView
  */
 @customElement('app-user-view')
 export class AppUserView extends LitElement {
+  @consume({ context: accessTokenContext, subscribe: true })
+  @property({ attribute: false })
+  accessToken: string | null = null;
+
+  private getAccessToken() {
+    return this.accessToken;
+  }
+
   static styles = [
     sharedStyles,
     css`
@@ -260,9 +273,22 @@ export class AppUserView extends LitElement {
     updateViewEvent(this, View.SIGNIN_VIEW);
   }
 
-  private handleLanguageChange(event: CustomEvent) {
-    this.selectedLanguage = event.detail.item.value;
+  private async handleLanguageChange(event: Event) {
+    const selectEl = event.currentTarget as any; // <sl-select>
+    this.selectedLanguage = selectEl?.value || 'en';
+    setLocale(this.selectedLanguage as any);
     localStorage.setItem('puppyland-language', this.selectedLanguage);
+
+    // Persist to backend if logged in
+    try {
+      const accessToken = this.getAccessToken();
+      if (accessToken) {
+        const { API_USER_LANGUAGE } = await import('../constants/apiConstants');
+        await apiCall(accessToken).patch(API_USER_LANGUAGE, { language: this.selectedLanguage });
+        const refreshed = await apiCall(accessToken).get<{ user: UserInfo }>(API_USER_INFO);
+        updateUserInfoEvent(this, refreshed.data.user);
+      }
+    } catch {}
   }
 
   private handleNotificationToggle(event: CustomEvent) {
@@ -278,6 +304,7 @@ export class AppUserView extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.selectedLanguage = localStorage.getItem('puppyland-language') || 'en';
+    setLocale(this.selectedLanguage as any);
     this.notificationsEnabled = localStorage.getItem('puppyland-notifications') !== 'false';
     this.darkMode = localStorage.getItem('puppyland-darkmode') === 'true';
   }
@@ -286,7 +313,7 @@ export class AppUserView extends LitElement {
     return html`
       <sl-card class="settings-card">
         <div slot="header">
-          <strong>App Settings</strong>
+          <strong>${t('appSettings')}</strong>
         </div>
 
         <!-- Language Setting -->
@@ -294,8 +321,8 @@ export class AppUserView extends LitElement {
           <div class="setting-info">
             <sl-icon name="globe" class="setting-icon"></sl-icon>
             <div class="setting-details">
-              <div class="setting-title">Language</div>
-              <div class="setting-description">Choose your preferred language</div>
+              <div class="setting-title">${t('language')}</div>
+              <div class="setting-description">${t('chooseLanguage')}</div>
             </div>
           </div>
           <div class="setting-control">
@@ -321,8 +348,8 @@ export class AppUserView extends LitElement {
           <div class="setting-info">
             <sl-icon name="bell" class="setting-icon"></sl-icon>
             <div class="setting-details">
-              <div class="setting-title">Push Notifications</div>
-              <div class="setting-description">Get notified about game events</div>
+              <div class="setting-title">${t('notifications')}</div>
+              <div class="setting-description">${t('notificationsDesc')}</div>
             </div>
           </div>
           <div class="setting-control">
@@ -339,8 +366,8 @@ export class AppUserView extends LitElement {
           <div class="setting-info">
             <sl-icon name="moon" class="setting-icon"></sl-icon>
             <div class="setting-details">
-              <div class="setting-title">Dark Mode</div>
-              <div class="setting-description">Switch to dark theme</div>
+              <div class="setting-title">${t('darkMode')}</div>
+              <div class="setting-description">${t('darkModeDesc')}</div>
             </div>
           </div>
           <div class="setting-control">
@@ -357,7 +384,7 @@ export class AppUserView extends LitElement {
       <div class="danger-zone">
         <sl-button class="signout-button" variant="danger" size="large" @click=${this.signOut}>
           <sl-icon slot="prefix" name="box-arrow-right"></sl-icon>
-          Sign Out
+          ${t('signOut')}
         </sl-button>
       </div>
     `;
@@ -367,14 +394,14 @@ export class AppUserView extends LitElement {
     return html`
       <sl-card class="settings-card contact-card">
         <div slot="header">
-          <strong>Contact Us</strong>
+          <strong>${t('contactUs')}</strong>
         </div>
         <div class="setting-item">
           <div class="setting-info">
             <sl-icon name="envelope" class="setting-icon"></sl-icon>
             <div class="setting-details">
               <div class="setting-description">
-                For any inquiries, please email us at:
+                ${t('contactDesc')}
                 <a href="mailto:puppyhousedev@gmail.com">puppyhousedev@gmail.com </a>
               </div>
             </div>
@@ -388,7 +415,7 @@ export class AppUserView extends LitElement {
     return html`
       <sl-card class="settings-card attribution-card">
         <div slot="header">
-          <strong>Attributions</strong>
+          <strong>${t('attributions')}</strong>
         </div>
         <div class="setting-item">
           <div class="setting-info">

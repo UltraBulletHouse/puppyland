@@ -22,6 +22,7 @@ import '../../app-spinner/app-spinner';
 import '../../icon-png/icon-png';
 import '../../level-up-modal/level-up-modal';
 import { MapModalStyles } from './map-modal-styles';
+import { t, ti } from '../../../i18n';
 
 /**
  * @fires closeMapModal
@@ -324,11 +325,11 @@ export class MapModal extends LitElement {
     const userEnergy = this.dogInfo?.energy || 0;
 
     if (currentHp >= maxHp) {
-      return { canRepair: false, reason: 'Doghouse is already at full health!' };
+      return { canRepair: false, reason: t('doghouseFullHealth') };
     }
 
     if (userEnergy < repairEnergy) {
-      return { canRepair: false, reason: `Not enough energy! Need ${repairEnergy} energy.` };
+      return { canRepair: false, reason: ti('notEnoughEnergyNeed', { n: repairEnergy }) };
     }
 
     return { canRepair: true, reason: '' };
@@ -346,7 +347,7 @@ export class MapModal extends LitElement {
     const userEnergy = this.dogInfo?.energy || 0;
 
     if (userEnergy < attackEnergy) {
-      return { canAttack: false, reason: `Not enough energy! Need ${attackEnergy} energy.` };
+      return { canAttack: false, reason: ti('notEnoughEnergyNeed', { n: attackEnergy }) };
     }
 
     return { canAttack: true, reason: '' };
@@ -615,7 +616,7 @@ export class MapModal extends LitElement {
                     : ''}"
                 >
                   <sl-icon name="${this.isDestroyed ? 'explosion' : 'heartbreak'}"></sl-icon>
-                  ${this.isDestroyed ? 'DESTROYED!' : `-${this.damageAmount} HP`}
+                  ${this.isDestroyed ? t('destroyedText') : `-${this.damageAmount} HP`}
                 </div>
               `
             : ''}
@@ -690,8 +691,8 @@ export class MapModal extends LitElement {
                         <div class="tap-overlay">
                           <div class="tap-instructions-compact">
                             <p>
-                              Tap ${3 - this.tapCount} time${3 - this.tapCount !== 1 ? 's' : ''} to
-                              attack!
+                              ${ti('tapTimesToAttack', { n: 3 - this.tapCount })}
+                              
                             </p>
                             <div class="tap-progress-compact">
                               ${Array.from(
@@ -723,8 +724,8 @@ export class MapModal extends LitElement {
                           <div class="tap-overlay">
                             <div class="repair-instructions-compact">
                               <p>
-                                Tap ${3 - this.repairTapCount}
-                                time${3 - this.repairTapCount !== 1 ? 's' : ''} to repair!
+                                ${ti('tapTimesToRepair', { n: 3 - this.repairTapCount })}
+                                
                               </p>
                               <div class="repair-progress-compact">
                                 ${Array.from(
@@ -760,7 +761,7 @@ export class MapModal extends LitElement {
             <div class="hp-icon ${!this.isOwn ? 'enemy' : ''}">
               <sl-icon name="heart-pulse"></sl-icon>
             </div>
-            <div class="hp-title">Health</div>
+            <div class="hp-title">${t('health')}</div>
             <div class="hp-value">${this.dhHp}</div>
           </div>
           <div class="hp-progress">
@@ -785,7 +786,7 @@ export class MapModal extends LitElement {
           ? html`
               <div id="buffs-section">
                 <div class="buffs-header">
-                  <div><sl-icon name="magic"></sl-icon> Available Buffs</div>
+                  <div><sl-icon name="magic"></sl-icon> ${t('availableBuffs')}</div>
                   <div class="user-energy">
                     <sl-icon name="lightning-charge"></sl-icon> ${this.dogInfo?.energy}
                   </div>
@@ -802,7 +803,7 @@ export class MapModal extends LitElement {
                                       size="small"
                                       variant="success"
                                       pill
-                                      title="Confirm"
+                                      title="${t('confirm')}"
                                       @click=${(e: Event) => {
                                         e.stopPropagation();
                                         this.applyBuffToDoghouse(buff.buffSku);
@@ -813,7 +814,7 @@ export class MapModal extends LitElement {
                                       size="small"
                                       variant="danger"
                                       pill
-                                      title="Cancel"
+                                      title="${t('cancel')}"
                                       @click=${(e: Event) => {
                                         e.stopPropagation();
                                         this.cancelBuffConfirmation();
