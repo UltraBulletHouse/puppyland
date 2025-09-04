@@ -272,7 +272,7 @@ export class AppShopView extends LitElement {
         font-size: 16px;
       }
 
-      /* Gold balance pill like the mock */
+      /* Gold balance pill (flat, like modal energy) */
       #balance-pill {
         margin-left: auto;
         display: inline-flex;
@@ -281,13 +281,10 @@ export class AppShopView extends LitElement {
         font-weight: 800;
         padding: 6px 12px;
         border-radius: 999px;
-        background: linear-gradient(
-          180deg,
-          var(--gold),
-          color-mix(in srgb, var(--gold) 70%, var(--primary) 30%)
-        );
-        color: #3a2a00;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        background: var(--gold-100);
+        border: 2px solid var(--gold);
+        color: #5a4200;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
       #balance-pill sl-icon::part(base) {
         color: #8a5b13;
