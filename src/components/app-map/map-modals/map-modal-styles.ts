@@ -61,7 +61,7 @@ export const MapModalStyles = html`
       padding: 4px 0px;
       border-radius: 50px;
       font-size: 30px;
-      color: var(--color-secondary);
+      color: var(--primary);
     }
     .close-btn--enemy {
       color: var(--color-primary) !important;
@@ -323,14 +323,14 @@ export const MapModalStyles = html`
     }
 
     .hp-fill.low {
-      background: linear-gradient(90deg, var(--color-blue), var(--color-lime));
+      background: linear-gradient(90deg, var(--primary), var(--lime));
     }
 
     .hp-fill.critical {
       background: linear-gradient(
         90deg,
-        color-mix(in srgb, var(--color-blue) 80%, #000),
-        var(--color-blue)
+        color-mix(in srgb, var(--primary) 80%, #000),
+        var(--primary)
       );
     }
 
