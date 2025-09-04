@@ -35,29 +35,23 @@ export class DailyQuests extends LitElement {
 
       #header {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end; /* only timer on the right */
         align-items: center;
-        margin-bottom: 16px;
-        padding: 16px;
+        margin-bottom: 8px;
+        padding: 8px 12px; /* smaller header */
         border-bottom: 1px solid var(--header-border);
         background: var(--header-bg);
       }
 
-      #title {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 600;
-        font-size: 18px;
-        color: var(--color-black);
-      }
+      /* Title removed from header for compact look */
 
       #refresh-timer {
         font-size: 12px;
         color: var(--color-black-medium);
+        font-weight: 600;
         display: flex;
         align-items: center;
-        gap: 4px;
+        gap: 6px;
       }
 
       .quest-item {
@@ -419,9 +413,10 @@ export class DailyQuests extends LitElement {
       return html`
         <div id="container">
           <div id="header">
-            <div id="title">
-              <sl-icon name="list-task"></sl-icon>
-              ${t('dailyQuestsTab')}
+            <div id="refresh-timer">
+              <sl-icon name="clock"></sl-icon>
+              <span class="timer-label">Remaining time</span>
+              ${this.formatTimeRemaining()}
             </div>
           </div>
           <div id="content">
@@ -438,9 +433,10 @@ export class DailyQuests extends LitElement {
       return html`
         <div id="container">
           <div id="header">
-            <div id="title">
-              <sl-icon name="list-task"></sl-icon>
-              ${t('dailyQuestsTab')}
+            <div id="refresh-timer">
+              <sl-icon name="clock"></sl-icon>
+              <span class="timer-label">Remaining time</span>
+              ${this.formatTimeRemaining()}
             </div>
           </div>
           <div id="content">
@@ -456,16 +452,13 @@ export class DailyQuests extends LitElement {
     return html`
       <div id="container">
         <div id="header">
-          <div id="title">
-            <sl-icon name="list-task"></sl-icon>
-            ${t('dailyQuestsTab')}
-          </div>
           <div id="refresh-timer">
             <sl-icon name="clock"></sl-icon>
+            <span class="timer-label">Remaining time</span>
             ${this.formatTimeRemaining()}
           </div>
         </div>
-
+        
         <div id="content">
           ${this.quests.map((quest) => {
             const progressPercentage = Math.min((quest.progress / quest.target) * 100, 100);
