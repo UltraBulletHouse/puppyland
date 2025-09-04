@@ -138,12 +138,13 @@ export const AppMapStyles = [
       color: var(--color-primary);
       background: var(--color-surface);
     }
+    /* Use cool accent for recenter button to distinguish from primary add button */
     #center-position-btn::part(base),
     #center-position-btn::part(base):hover,
     #center-position-btn::part(base):active {
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-      background: var(--color-surface);
+      border-color: var(--sky);
+      color: var(--sky);
+      background: color-mix(in srgb, var(--sky) 8%, #fff);
     }
     #center-position-btn::part(base),
     #add-doghouse-btn::part(base) {
@@ -168,6 +169,7 @@ export const AppMapStyles = [
     #center-position-icon {
       font-size: 24px;
       margin-top: 11px;
+      color: var(--sky);
     }
     .control-counter {
       display: flex;

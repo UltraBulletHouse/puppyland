@@ -111,7 +111,7 @@ export class AppMap extends LitElement {
 
       this.setDoghousesMarkers();
     } else {
-      const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--color-primary)');
+      const pulsatingIcon = generatePulsatingMarker(L, 10, 'var(--sky)');
       this.userPosMarker = L.marker([lat, lng], {
         icon: pulsatingIcon,
         zIndexOffset: 999999,
