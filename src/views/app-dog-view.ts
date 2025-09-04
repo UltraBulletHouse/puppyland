@@ -398,29 +398,46 @@ export class AppDogView extends LitElement {
       }
       .buffs-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        gap: 16px;
+        grid-template-columns: 1fr;
+        gap: 10px;
         margin-top: 12px;
       }
       .buff-item-tile {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        text-align: center;
-        padding: 8px;
+        padding: 12px;
         border-radius: var(--border-radius-medium);
-        background: var(--sl-color-gray-100);
-        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        background: var(--color-surface-strong);
+        border: 1px solid var(--color-surface-border);
+        transition: background-color 0.2s ease;
+      }
+      .buff-item-tile:hover {
+        background: var(--color-primary-light);
+      }
+      .buff-icon {
+        width: 48px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: var(--border-radius-circle);
+        background: color-mix(in srgb, var(--primary) 14%, #fff);
+        outline: 2px solid color-mix(in srgb, var(--primary) 35%, transparent);
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+      .buff-details {
+        flex: 1;
+        min-width: 0;
       }
       .buff-item-tile .buff-name {
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--color-black-medium);
-        margin-top: 4px;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--color-black);
       }
       icon-png-badge {
-        --icon-png-badge-width: 36px;
-        --icon-png-badge-height: 36px;
+        --icon-png-badge-width: 32px;
+        --icon-png-badge-height: 32px;
       }
 
       /* RPG Stats Allocation */
@@ -1446,13 +1463,17 @@ export class AppDogView extends LitElement {
                                   ${this.dogInfo.buffsForDoghouses.map(
                                     (buff) => html`
                                       <div class="buff-item-tile">
-                                        <icon-png-badge
-                                          name="${buff.buffSku.includes('repair')
-                                            ? 'toolkit'
-                                            : 'energy-drink'}"
-                                          badge="${buff.quantity}"
-                                        ></icon-png-badge>
-                                        <span class="buff-name">${buff.name}</span>
+                                        <div class="buff-icon">
+                                          <icon-png-badge
+                                            name="${buff.buffSku.includes('repair')
+                                              ? 'toolkit'
+                                              : 'energy-drink'}"
+                                            badge="${buff.quantity}"
+                                          ></icon-png-badge>
+                                        </div>
+                                        <div class="buff-details">
+                                          <div class="buff-name">${buff.name}</div>
+                                        </div>
                                       </div>
                                     `
                                   )}
