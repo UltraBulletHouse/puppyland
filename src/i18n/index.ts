@@ -82,10 +82,29 @@ export const translations = {
     refreshing: 'Refreshing...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'm',
+      remainingTime: 'Remaining time',
+      loading: 'Loading...',
     loadingDailyQuests: 'Loading daily quests...',
     noQuestsToday: 'No quests available today',
     claim: 'Claim',
-    claimed: 'Claimed'
+    claimed: 'Claimed',
+
+    // Leaderboards
+    leaderboardTopLevels: 'Top Levels',
+    leaderboardMasterBuilders: 'Master Builders',
+    leaderboardTopDestroyers: 'Top Destroyers',
+    leaderboardGeneric: 'Leaderboard',
+    leaderboardColLevel: 'Level',
+    leaderboardColBuilt: 'Built',
+    leaderboardColDestroyed: 'Destroyed',
+    leaderboardColScore: 'Score',
+    leaderboardFooter: '{total} total players • Updated {date}',
+    leaderboardTotalPlayers: 'total players',
+    leaderboardUpdated: 'Updated',
+
+    // Bottom nav
+    navMyDog: 'My Dog',
+    navProfile: 'Profile'
   },
   pl: {
     statsTab: 'Statystyki',
@@ -153,6 +172,8 @@ export const translations = {
     refreshing: 'Odświeżanie...',
     hoursAbbrev: 'g',
     minutesAbbrev: 'min',
+    remainingTime: 'Pozostały czas',
+    loading: 'Ładowanie...',
     loadingDailyQuests: 'Ładowanie zadań dziennych...',
     noQuestsToday: 'Brak zadań na dziś',
     claim: 'Odbierz',
@@ -170,7 +191,24 @@ export const translations = {
     tapTimesToRepair: 'Stuknij {n} raz(y), aby naprawić!',
     notEnoughEnergyNeed: 'Za mało energii! Potrzeba {n} energii.',
     doghouseFullHealth: 'Buda ma już pełne zdrowie!',
-    destroyedText: 'ZNISZCZONA!'
+    destroyedText: 'ZNISZCZONA!',
+
+    // Leaderboards
+    leaderboardTopLevels: 'Najwyższe poziomy',
+    leaderboardMasterBuilders: 'Mistrzowie budowy',
+    leaderboardTopDestroyers: 'Najlepsi niszczyciele',
+    leaderboardGeneric: 'Ranking',
+    leaderboardColLevel: 'Poziom',
+    leaderboardColBuilt: 'Zbudowane',
+    leaderboardColDestroyed: 'Zniszczone',
+    leaderboardColScore: 'Wynik',
+    leaderboardFooter: '{total} graczy • Aktualizacja {date}',
+    leaderboardTotalPlayers: 'graczy',
+    leaderboardUpdated: 'Aktualizacja',
+
+    // Bottom nav
+    navMyDog: 'Mój pies',
+    navProfile: 'Profil'
   },
   es: {
     statsTab: 'Estadísticas',
@@ -238,6 +276,8 @@ export const translations = {
     refreshing: 'Actualizando...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'min',
+    remainingTime: 'Tiempo restante',
+    loading: 'Cargando...',
     loadingDailyQuests: 'Cargando misiones diarias...',
     noQuestsToday: 'No hay misiones hoy',
     claim: 'Reclamar',
@@ -256,7 +296,24 @@ export const translations = {
     tapTimesToRepair: 'Toca {n} veces para reparar!',
     notEnoughEnergyNeed: '¡Energía insuficiente! Necesitas {n} de energía.',
     doghouseFullHealth: '¡La caseta ya tiene la salud completa!',
-    destroyedText: '¡DESTRUIDA!'
+    destroyedText: '¡DESTRUIDA!',
+
+    // Leaderboards
+    leaderboardTopLevels: 'Mejores niveles',
+    leaderboardMasterBuilders: 'Maestros constructores',
+    leaderboardTopDestroyers: 'Mejores destructores',
+    leaderboardGeneric: 'Clasificación',
+    leaderboardColLevel: 'Nivel',
+    leaderboardColBuilt: 'Construidas',
+    leaderboardColDestroyed: 'Destruidas',
+    leaderboardColScore: 'Puntuación',
+    leaderboardFooter: '{total} jugadores • Actualizado {date}',
+    leaderboardTotalPlayers: 'jugadores',
+    leaderboardUpdated: 'Actualizado',
+
+    // Bottom nav
+    navMyDog: 'Mi perro',
+    navProfile: 'Perfil'
   },
   fr: {
     statsTab: 'Statistiques',
@@ -324,6 +381,8 @@ export const translations = {
     refreshing: 'Actualisation...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'min',
+    remainingTime: 'Temps restant',
+    loading: 'Chargement...',
     loadingDailyQuests: 'Chargement des quêtes quotidiennes...',
     noQuestsToday: 'Aucune quête aujourd’hui',
     claim: 'Réclamer',
@@ -342,7 +401,24 @@ export const translations = {
     tapTimesToRepair: 'Touchez {n} fois pour réparer !',
     notEnoughEnergyNeed: 'Pas assez d’énergie ! Il faut {n} énergie.',
     doghouseFullHealth: 'La niche est déjà en pleine santé !',
-    destroyedText: 'DÉTRUITE !'
+    destroyedText: 'DÉTRUITE !',
+
+    // Leaderboards
+    leaderboardTopLevels: 'Meilleurs niveaux',
+    leaderboardMasterBuilders: 'Maîtres bâtisseurs',
+    leaderboardTopDestroyers: 'Meilleurs destructeurs',
+    leaderboardGeneric: 'Classement',
+    leaderboardColLevel: 'Niveau',
+    leaderboardColBuilt: 'Construites',
+    leaderboardColDestroyed: 'Détruites',
+    leaderboardColScore: 'Score',
+    leaderboardFooter: '{total} joueurs • Mis à jour le {date}',
+    leaderboardTotalPlayers: 'joueurs',
+    leaderboardUpdated: 'Mis à jour le',
+
+    // Bottom nav
+    navMyDog: 'Mon chien',
+    navProfile: 'Profil'
   },
   de: {
     statsTab: 'Statistiken',
@@ -410,6 +486,8 @@ export const translations = {
     refreshing: 'Aktualisiere...',
     hoursAbbrev: 'Std',
     minutesAbbrev: 'Min',
+    remainingTime: 'Verbleibende Zeit',
+    loading: 'Laden...',
     loadingDailyQuests: 'Tägliche Quests werden geladen...',
     noQuestsToday: 'Heute keine Quests verfügbar',
     claim: 'Einlösen',
@@ -428,7 +506,24 @@ export const translations = {
     tapTimesToRepair: 'Tippe {n}‑mal zum Reparieren!',
     notEnoughEnergyNeed: 'Nicht genug Energie! Benötigt werden {n} Energie.',
     doghouseFullHealth: 'Die Hundehütte hat bereits volle Gesundheit!',
-    destroyedText: 'ZERSTÖRT!'
+    destroyedText: 'ZERSTÖRT!',
+
+    // Leaderboards
+    leaderboardTopLevels: 'Top-Level',
+    leaderboardMasterBuilders: 'Meisterbauer',
+    leaderboardTopDestroyers: 'Top-Zerstörer',
+    leaderboardGeneric: 'Bestenliste',
+    leaderboardColLevel: 'Level',
+    leaderboardColBuilt: 'Gebaut',
+    leaderboardColDestroyed: 'Zerstört',
+    leaderboardColScore: 'Punkte',
+    leaderboardFooter: '{total} Spieler • Aktualisiert am {date}',
+    leaderboardTotalPlayers: 'Spieler',
+    leaderboardUpdated: 'Aktualisiert am',
+
+    // Bottom nav
+    navMyDog: 'Mein Hund',
+    navProfile: 'Profil'
   },
   it: {
     statsTab: 'Statistiche',
@@ -496,6 +591,8 @@ export const translations = {
     refreshing: 'Aggiornamento...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'min',
+    remainingTime: 'Tempo rimanente',
+    loading: 'Caricamento...',
     loadingDailyQuests: 'Caricamento missioni giornaliere...',
     noQuestsToday: 'Nessuna missione disponibile oggi',
     claim: 'Riscatta',
@@ -514,7 +611,24 @@ export const translations = {
     tapTimesToRepair: 'Tocca {n} volte per riparare!',
     notEnoughEnergyNeed: 'Energia insufficiente! Servono {n} energia.',
     doghouseFullHealth: 'La cuccia è già alla salute massima!',
-    destroyedText: 'DISTRUTTA!'
+    destroyedText: 'DISTRUTTA!',
+
+    // Leaderboards
+    leaderboardTopLevels: 'Migliori livelli',
+    leaderboardMasterBuilders: 'Maestri costruttori',
+    leaderboardTopDestroyers: 'Migliori distruttori',
+    leaderboardGeneric: 'Classifica',
+    leaderboardColLevel: 'Livello',
+    leaderboardColBuilt: 'Costruite',
+    leaderboardColDestroyed: 'Distrutte',
+    leaderboardColScore: 'Punteggio',
+    leaderboardFooter: '{total} giocatori • Aggiornato il {date}',
+    leaderboardTotalPlayers: 'giocatori',
+    leaderboardUpdated: 'Aggiornato il',
+
+    // Bottom nav
+    navMyDog: 'Il mio cane',
+    navProfile: 'Profilo'
   },
   pt: {
     statsTab: 'Estatísticas',
@@ -582,6 +696,8 @@ export const translations = {
     refreshing: 'Atualizando...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'min',
+    remainingTime: 'Tempo restante',
+    loading: 'Carregando...',
     loadingDailyQuests: 'Carregando missões diárias...',
     noQuestsToday: 'Nenhuma missão disponível hoje',
     claim: 'Resgatar',
@@ -600,7 +716,24 @@ export const translations = {
     tapTimesToRepair: 'Toque {n} vezes para reparar!',
     notEnoughEnergyNeed: 'Energia insuficiente! É necessário {n} de energia.',
     doghouseFullHealth: 'A casinha já está com a saúde cheia!',
-    destroyedText: 'DESTRUÍDA!'
+    destroyedText: 'DESTRUÍDA!',
+
+    // Leaderboards
+    leaderboardTopLevels: 'Maiores níveis',
+    leaderboardMasterBuilders: 'Mestres construtores',
+    leaderboardTopDestroyers: 'Maiores destruidores',
+    leaderboardGeneric: 'Ranking',
+    leaderboardColLevel: 'Nível',
+    leaderboardColBuilt: 'Construídas',
+    leaderboardColDestroyed: 'Destruídas',
+    leaderboardColScore: 'Pontuação',
+    leaderboardFooter: '{total} jogadores • Atualizado em {date}',
+    leaderboardTotalPlayers: 'jogadores',
+    leaderboardUpdated: 'Atualizado em',
+
+    // Bottom nav
+    navMyDog: 'Meu cão',
+    navProfile: 'Perfil'
   }
 } as const;
 

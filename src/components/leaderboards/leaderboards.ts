@@ -9,6 +9,7 @@ import '@shoelace-style/shoelace/dist/components/select/select.js';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import '../icon-svg/svg-icon';
 import { sharedStyles } from '../../styles/shared-styles';
+import { t, ti } from '../../i18n';
 import {
   LeaderboardCategory,
   LeaderboardData,
@@ -406,26 +407,26 @@ export class LeaderboardsComponent extends LitElement {
   getCategoryLabel(category: string): string {
     switch (category) {
       case LeaderboardCategory.LEVEL:
-        return 'Top Levels';
+        return t('leaderboardTopLevels');
       case LeaderboardCategory.DOGHOUSES_BUILT:
-        return 'Master Builders';
+        return t('leaderboardMasterBuilders');
       case LeaderboardCategory.DOGHOUSES_DESTROYED:
-        return 'Top Destroyers';
+        return t('leaderboardTopDestroyers');
       default:
-        return 'Leaderboard';
+        return t('leaderboardGeneric');
     }
   }
 
   getScoreLabel(category: string): string {
     switch (category) {
       case LeaderboardCategory.LEVEL:
-        return 'Level';
+        return t('leaderboardColLevel');
       case LeaderboardCategory.DOGHOUSES_BUILT:
-        return 'Built';
+        return t('leaderboardColBuilt');
       case LeaderboardCategory.DOGHOUSES_DESTROYED:
-        return 'Destroyed';
+        return t('leaderboardColDestroyed');
       default:
-        return 'Score';
+        return t('leaderboardColScore');
     }
   }
 
@@ -496,7 +497,7 @@ export class LeaderboardsComponent extends LitElement {
               size="small"
             >
               <sl-icon name="star" slot="prefix"></sl-icon>
-              Top Levels
+              ${t('leaderboardTopLevels')}
             </sl-button>
             <sl-button
               class="category-button ${this.selectedCategory === LeaderboardCategory.DOGHOUSES_BUILT
@@ -506,7 +507,7 @@ export class LeaderboardsComponent extends LitElement {
               size="small"
             >
               <sl-icon name="hammer" slot="prefix"></sl-icon>
-              Builders
+              ${t('leaderboardMasterBuilders')}
             </sl-button>
             <sl-button
               class="category-button ${this.selectedCategory ===
@@ -517,7 +518,7 @@ export class LeaderboardsComponent extends LitElement {
               size="small"
             >
               <sl-icon name="lightning-charge" slot="prefix"></sl-icon>
-              Destroyers
+              ${t('leaderboardTopDestroyers')}
             </sl-button>
           </div>
         </div>

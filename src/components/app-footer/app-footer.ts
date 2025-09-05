@@ -5,6 +5,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { updateViewEvent, viewContext } from '../../contexts/viewContext';
 import { sharedStyles } from '../../styles/shared-styles';
 import { View } from '../../types/view';
+import { t } from '../../i18n';
 
 /**
  * @fires updateView
@@ -135,7 +136,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.DOG_VIEW)}"
         >
           <svg-icon name="dogPaw" class="nav-icon"></svg-icon>
-          <span>My Dog</span>
+          <span>${t('navMyDog')}</span>
         </button>
         <button
           class="nav-button ${this.view === View.DOGHOUSE_VIEW ? 'active' : ''}"
@@ -143,7 +144,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.DOGHOUSE_VIEW)}"
         >
           <sl-icon name="house-heart" class="nav-icon"></sl-icon>
-          <span>Doghouses</span>
+          <span>${t('doghouses')}</span>
         </button>
         <div class="map-button-container">
           <button
@@ -160,7 +161,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.SHOP_VIEW)}"
         >
           <sl-icon name="cart" class="nav-icon"></sl-icon>
-          <span>Shop</span>
+          <span>${t('shop')}</span>
         </button>
         <button
           class="nav-button ${this.view === View.USER_VIEW ? 'active' : ''}"
@@ -168,7 +169,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.USER_VIEW)}"
         >
           <sl-icon name="person-circle" class="nav-icon"></sl-icon>
-          <span>Profile</span>
+          <span>${t('navProfile')}</span>
         </button>
       </footer>
     `;

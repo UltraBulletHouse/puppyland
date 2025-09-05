@@ -394,7 +394,7 @@ export class DailyQuests extends LitElement {
   }
 
   formatTimeRemaining(): string {
-    if (!this.nextRefreshAt) return 'Loading...';
+    if (!this.nextRefreshAt) return t('loading');
 
     const now = new Date();
     const refreshTime = new Date(this.nextRefreshAt);
@@ -415,7 +415,7 @@ export class DailyQuests extends LitElement {
           <div id="header">
             <div id="refresh-timer">
               <sl-icon name="clock"></sl-icon>
-              <span class="timer-label">Remaining time</span>
+              <span class="timer-label">${t('remainingTime')}</span>
               ${this.formatTimeRemaining()}
             </div>
           </div>
@@ -435,7 +435,7 @@ export class DailyQuests extends LitElement {
           <div id="header">
             <div id="refresh-timer">
               <sl-icon name="clock"></sl-icon>
-              <span class="timer-label">Remaining time</span>
+              <span class="timer-label">${t('remainingTime')}</span>
               ${this.formatTimeRemaining()}
             </div>
           </div>
@@ -454,7 +454,7 @@ export class DailyQuests extends LitElement {
         <div id="header">
           <div id="refresh-timer">
             <sl-icon name="clock"></sl-icon>
-            <span class="timer-label">Remaining time</span>
+            <span class="timer-label">${t('remainingTime')}</span>
             ${this.formatTimeRemaining()}
           </div>
         </div>

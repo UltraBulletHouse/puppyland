@@ -968,24 +968,24 @@ export class AppDogView extends LitElement {
 
     switch (kind) {
       case 'power':
-        title = 'Power';
+        title = t('power');
         icon = 'fire';
-        text = `Damage dealt to doghouses. Current attack damage: ${dmgMin}–${dmgMax}. Each point increases both min and max by 1.`;
+        text = ti('powerDesc', { min: dmgMin, max: dmgMax });
         break;
       case 'stamina':
-        title = 'Stamina';
+        title = t('stamina');
         icon = 'heart-pulse';
-        text = `Increases max energy so you can attack or repair your doghouses more often. Current max energy: ${maxEnergy}. (+10 per point, starting from 100)`;
+        text = ti('staminaDesc', { n: maxEnergy });
         break;
       case 'reach':
-        title = 'Reach';
+        title = t('reach');
         icon = 'radar';
-        text = `Range on the map for interacting with doghouses (attack or repair). Current range: ${rangeM} m. (+10 m per point, starting from 200 m)`;
+        text = ti('reachDesc', { n: rangeM });
         break;
       case 'fortification':
-        title = 'Fortification';
+        title = t('fortification');
         icon = 'shield-shaded';
-        text = `Increases all your doghouses' max HP so they are harder to destroy. Current doghouse max HP: ${doghouseHp}. (+20 per point, starting from 100)`;
+        text = ti('fortificationDesc', { n: doghouseHp });
         break;
     }
 
@@ -1140,14 +1140,14 @@ export class AppDogView extends LitElement {
                         variant="success"
                         pill
                         title=${this.userInfo?.premiumExpiryUtc
-                          ? `Expires: ${new Date(this.userInfo.premiumExpiryUtc).toLocaleString()}`
+                          ? ti('premiumExpires', { date: new Date(this.userInfo.premiumExpiryUtc).toLocaleString() })
                           : ''}
-                        >Premium</sl-badge
+                        >${t('premiumBadge')}</sl-badge
                       >
-                      <sl-tooltip content="Manage subscription">
+                      <sl-tooltip content="${t('manageSubscription')}">
                         <sl-icon-button
                           name="gear"
-                          label="Manage subscription"
+                          label="${t('manageSubscription')}"
                           @click=${this.manageSubscription}
                         ></sl-icon-button>
                       </sl-tooltip>
@@ -1195,7 +1195,7 @@ export class AppDogView extends LitElement {
                   : html`<div id="pencil-wrapper">
                       <sl-icon name="pencil" @click=${this.editName}></sl-icon>
                       ${this.userInfo?.isPremium
-                        ? html`<div id="names-counter" title="Unlimited">∞</div>`
+                        ? html`<div id="names-counter" title="${t('unlimited')}">∞</div>`
                         : html`<div id="names-counter">${nameChangesCounter}</div>`}
                     </div>`}
               </div>
@@ -1320,11 +1320,11 @@ export class AppDogView extends LitElement {
                               <div class="title-row">
                                 <div class="title">${t('stamina')}</div>
                                 <div class="bottom-row">
-                                  <span class="impact">Max energy ${energyMaxPreview}</span>
+                                  <span class="impact">${ti('maxEnergyLabel', { n: energyMaxPreview })}</span>
                                   <sl-icon-button
                                     class="help-icon"
                                     name="info-circle"
-                                    label="What is Stamina?"
+                                    label="${t('whatIsStamina')}"
                                     @click=${() => this.openAttributeDetails('stamina')}
                                   ></sl-icon-button>
                                 </div>
@@ -1349,13 +1349,13 @@ export class AppDogView extends LitElement {
                             <div class="alloc-card alloc-card--floating reach">
                               <sl-icon class="stat-icon doghouses" name="broadcast-pin"></sl-icon>
                               <div class="title-row">
-                                <div class="title">Reach</div>
+                                <div class="title">${t('reach')}</div>
                                 <div class="bottom-row">
-                                  <span class="impact">Range ${reachPreview}m</span>
+                                  <span class="impact">${ti('rangeLabel', { n: reachPreview })}</span>
                                   <sl-icon-button
                                     class="help-icon"
                                     name="info-circle"
-                                    label="What is Reach?"
+                                    label="${t('whatIsReach')}"
                                     @click=${() => this.openAttributeDetails('reach')}
                                   ></sl-icon-button>
                                 </div>
@@ -1380,13 +1380,13 @@ export class AppDogView extends LitElement {
                             <div class="alloc-card alloc-card--floating fortification">
                               <sl-icon class="stat-icon experience" name="shield-shaded"></sl-icon>
                               <div class="title-row">
-                                <div class="title">Fortification</div>
+                                <div class="title">${t('fortification')}</div>
                                 <div class="bottom-row">
-                                  <span class="impact">Doghouse HP ${doghouseHpPreview}</span>
+                                  <span class="impact">${ti('doghouseHpLabel', { n: doghouseHpPreview })}</span>
                                   <sl-icon-button
                                     class="help-icon"
                                     name="info-circle"
-                                    label="What is Fortification?"
+                                    label="${t('whatIsFortification')}"
                                     @click=${() => this.openAttributeDetails('fortification')}
                                   ></sl-icon-button>
                                 </div>
@@ -1416,7 +1416,7 @@ export class AppDogView extends LitElement {
                             <div class="stat-icon doghouses">
                               <sl-icon name="house-add"></sl-icon>
                             </div>
-                            <div class="stat-title">Available Doghouses</div>
+                            <div class="stat-title">${t('availableDoghousesTitle')}</div>
                             <div class="doghouses-count">${availableDoghouses}</div>
                           </div>
                         </div>
@@ -1427,7 +1427,7 @@ export class AppDogView extends LitElement {
                             <div class="stat-icon energy">
                               <sl-icon name="lightning-charge"></sl-icon>
                             </div>
-                            <div class="stat-title">Energy</div>
+                            <div class="stat-title">${t('energyTitle')}</div>
                             <div class="stat-value">${energy}</div>
                           </div>
                           <div class="stat-progress">
@@ -1457,7 +1457,7 @@ export class AppDogView extends LitElement {
                                   <div class="stat-icon doghouses">
                                     <sl-icon name="tools"></sl-icon>
                                   </div>
-                                  <div class="stat-title">Doghouse Buffs</div>
+                                  <div class="stat-title">${t('doghouseBuffs')}</div>
                                 </div>
                                 <div class="buffs-grid">
                                   ${this.dogInfo.buffsForDoghouses.map(
@@ -1520,7 +1520,7 @@ export class AppDogView extends LitElement {
                   <p class="details-text">${this.detailsText}</p>
                   <div class="details-actions">
                     <sl-button variant="primary" pill @click=${this.onCloseAttributeDetails}
-                      >Got it</sl-button
+                      >${t('gotIt')}</sl-button
                     >
                   </div>
                 </sl-drawer>
