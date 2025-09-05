@@ -12,6 +12,7 @@ export const translations = {
     xpToNext: 'XP to next level',
     xpAbbrev: 'XP',
     pointsToAllocate: 'points to allocate',
+    allPointsAssigned: 'All points assigned',
     save: 'Save',
     reset: 'Reset',
     power: 'Power',
@@ -126,6 +127,7 @@ export const translations = {
     xpToNext: 'PD do następnego poziomu',
     xpAbbrev: 'PD',
     pointsToAllocate: 'punkty do rozdania',
+    allPointsAssigned: 'Wszystkie punkty przydzielone',
     save: 'Zapisz',
     reset: 'Resetuj',
     power: 'Siła',
@@ -222,11 +224,7 @@ export const translations = {
     leaderboardColScore: 'Wynik',
     leaderboardFooter: '{total} graczy • Aktualizacja {date}',
     leaderboardTotalPlayers: 'graczy',
-    leaderboardUpdated: 'Aktualizacja',
-
-    // Bottom nav
-    navMyDog: 'Mój pies',
-    navProfile: 'Profil'
+    leaderboardUpdated: 'Aktualizacja'
   },
   es: {
     statsTab: 'Estadísticas',
@@ -239,6 +237,7 @@ export const translations = {
     xpToNext: 'XP para el siguiente nivel',
     xpAbbrev: 'XP',
     pointsToAllocate: 'puntos para asignar',
+    allPointsAssigned: 'Todos los puntos asignados',
     save: 'Guardar',
     reset: 'Restablecer',
     power: 'Poder',
@@ -336,11 +335,7 @@ export const translations = {
     leaderboardColScore: 'Puntuación',
     leaderboardFooter: '{total} jugadores • Actualizado {date}',
     leaderboardTotalPlayers: 'jugadores',
-    leaderboardUpdated: 'Actualizado',
-
-    // Bottom nav
-    navMyDog: 'Mi perro',
-    navProfile: 'Perfil'
+    leaderboardUpdated: 'Actualizado'
   },
   fr: {
     statsTab: 'Statistiques',
@@ -353,6 +348,7 @@ export const translations = {
     xpToNext: 'XP jusqu\'au prochain niveau',
     xpAbbrev: 'XP',
     pointsToAllocate: 'points à attribuer',
+    allPointsAssigned: 'Tous les points sont attribués',
     save: 'Enregistrer',
     reset: 'Réinitialiser',
     power: 'Puissance',
@@ -387,6 +383,7 @@ export const translations = {
     doghouses: 'Niches',
     dateLabel: 'Date',
     hpAbbrev: 'PV',
+    sortBy: 'Trier par',
     exitEditMode: 'Quitter le mode édition',
     editDoghouses: 'Modifier les niches',
     noDoghousesYet: 'Aucune niche pour le moment',
@@ -450,11 +447,7 @@ export const translations = {
     leaderboardColScore: 'Score',
     leaderboardFooter: '{total} joueurs • Mis à jour le {date}',
     leaderboardTotalPlayers: 'joueurs',
-    leaderboardUpdated: 'Mis à jour le',
-
-    // Bottom nav
-    navMyDog: 'Mon chien',
-    navProfile: 'Profil'
+    leaderboardUpdated: 'Mis à jour le'
   },
   de: {
     statsTab: 'Statistiken',
@@ -467,6 +460,7 @@ export const translations = {
     xpToNext: 'EP bis zum nächsten Level',
     xpAbbrev: 'EP',
     pointsToAllocate: 'Punkte zu vergeben',
+    allPointsAssigned: 'Alle Punkte zugewiesen',
     save: 'Speichern',
     reset: 'Zurücksetzen',
     power: 'Stärke',
@@ -564,11 +558,7 @@ export const translations = {
     leaderboardColScore: 'Punkte',
     leaderboardFooter: '{total} Spieler • Aktualisiert am {date}',
     leaderboardTotalPlayers: 'Spieler',
-    leaderboardUpdated: 'Aktualisiert am',
-
-    // Bottom nav
-    navMyDog: 'Mein Hund',
-    navProfile: 'Profil'
+    leaderboardUpdated: 'Aktualisiert am'
   },
   it: {
     statsTab: 'Statistiche',
@@ -581,6 +571,7 @@ export const translations = {
     xpToNext: 'XP al prossimo livello',
     xpAbbrev: 'XP',
     pointsToAllocate: 'punti da assegnare',
+    allPointsAssigned: 'Tutti i punti assegnati',
     save: 'Salva',
     reset: 'Reimposta',
     power: 'Potenza',
@@ -618,7 +609,7 @@ export const translations = {
     exitEditMode: 'Esci dalla modalità modifica',
     editDoghouses: 'Modifica cuccie',
     noDoghousesYet: 'Nessuna cuccia ancora',
-    goToMapToBuildFirst: 'Vai alla mappa per costruire la tua prima cuccia!',
+    goToMapToBuildFirst: 'Vai alla mappa per construire la tua prima cuccia!',
     doghouseNamePlaceholder: 'Nome della cuccia',
     editName: 'Modifica nome',
     renameTokens: 'Rinomina',
@@ -678,11 +669,7 @@ export const translations = {
     leaderboardColScore: 'Punteggio',
     leaderboardFooter: '{total} giocatori • Aggiornato il {date}',
     leaderboardTotalPlayers: 'giocatori',
-    leaderboardUpdated: 'Aggiornato il',
-
-    // Bottom nav
-    navMyDog: 'Il mio cane',
-    navProfile: 'Profilo'
+    leaderboardUpdated: 'Aggiornato il'
   },
   pt: {
     statsTab: 'Estatísticas',
@@ -695,6 +682,7 @@ export const translations = {
     xpToNext: 'XP para o próximo nível',
     xpAbbrev: 'XP',
     pointsToAllocate: 'pontos para distribuir',
+    allPointsAssigned: 'Todos os pontos atribuídos',
     save: 'Salvar',
     reset: 'Redefinir',
     power: 'Força',
@@ -792,11 +780,7 @@ export const translations = {
     leaderboardColScore: 'Pontuação',
     leaderboardFooter: '{total} jogadores • Atualizado em {date}',
     leaderboardTotalPlayers: 'jogadores',
-    leaderboardUpdated: 'Atualizado em',
-
-    // Bottom nav
-    navMyDog: 'Meu cão',
-    navProfile: 'Perfil'
+    leaderboardUpdated: 'Atualizado em'
   },
   zh: {
     statsTab: '统计',
@@ -809,6 +793,7 @@ export const translations = {
     xpToNext: '到下一级所需的经验值',
     xpAbbrev: '经验值',
     pointsToAllocate: '待分配点数',
+    allPointsAssigned: '所有点数已分配',
     save: '保存',
     reset: '重置',
     power: '力量',
@@ -890,11 +875,7 @@ export const translations = {
     leaderboardColScore: '分数',
     leaderboardFooter: '{total} 位玩家 • 更新于 {date}',
     leaderboardTotalPlayers: '总玩家',
-    leaderboardUpdated: '已更新',
-
-    // Bottom nav
-    navMyDog: '我的狗',
-    navProfile: '个人资料'
+    leaderboardUpdated: '已更新'
   },
   ja: {
     statsTab: '統計',
@@ -907,6 +888,7 @@ export const translations = {
     xpToNext: '次のレベルまでのXP',
     xpAbbrev: 'XP',
     pointsToAllocate: '割り当てるポイント',
+    allPointsAssigned: 'すべてのポイントが割り当てられました',
     save: '保存',
     reset: 'リセット',
     power: 'パワー',
@@ -1004,11 +986,7 @@ export const translations = {
     leaderboardColScore: 'スコア',
     leaderboardFooter: '合計{total}人のプレイヤー • {date}に更新',
     leaderboardTotalPlayers: '総プレイヤー数',
-    leaderboardUpdated: '更新日',
-
-    // Bottom nav
-    navMyDog: '私の犬',
-    navProfile: 'プロフィール'
+    leaderboardUpdated: '更新日'
   },
   hi: {
     statsTab: 'आँकड़े',
@@ -1021,6 +999,7 @@ export const translations = {
     xpToNext: 'अगले स्तर के लिए XP',
     xpAbbrev: 'XP',
     pointsToAllocate: 'आवंटित करने के लिए अंक',
+    allPointsAssigned: 'सभी अंक आवंटित किए गए',
     save: 'सहेजें',
     reset: 'रीसेट करें',
     power: 'शक्ति',
@@ -1103,11 +1082,7 @@ export const translations = {
     leaderboardColScore: 'स्कोर',
     leaderboardFooter: '{total} कुल खिलाड़ी • {date} को अपडेट किया गया',
     leaderboardTotalPlayers: 'कुल खिलाड़ी',
-    leaderboardUpdated: 'अपडेट किया गया',
-
-    // Bottom nav
-    navMyDog: 'मेरा कुत्ता',
-    navProfile: 'प्रोफ़ाइल'
+    leaderboardUpdated: 'अपडेट किया गया'
   },
   ar: {
     statsTab: 'الإحصائيات',
@@ -1120,6 +1095,7 @@ export const translations = {
     xpToNext: 'نقاط الخبرة للمستوى التالي',
     xpAbbrev: 'XP',
     pointsToAllocate: 'نقاط لتخصيصها',
+    allPointsAssigned: 'تم تخصيص جميع النقاط',
     save: 'حفظ',
     reset: 'إعادة تعيين',
     power: 'قوة',
@@ -1181,12 +1157,12 @@ export const translations = {
     userNoEmail: 'لا يوجد بريد إلكتروني',
 
     // Daily quests UI strings
-    refreshing: 'جارٍ التحديث ...',
+    refreshing: 'جارٍ التحديث ...', 
     hoursAbbrev: 'ساعة',
     minutesAbbrev: 'دقيقة',
     remainingTime: 'الوقت المتبقي',
-    loading: 'جارٍ التحميل ...',
-    loadingDailyQuests: 'جارٍ تحميل المهام اليومية ...',
+    loading: 'جارٍ التحميل ...', 
+    loadingDailyQuests: 'جارٍ تحميل المهام اليومية ...', 
     noQuestsToday: 'لا توجد مهام متاحة اليوم',
     claim: 'مطالبة',
     claimed: 'تمت المطالبة به',
@@ -1202,11 +1178,7 @@ export const translations = {
     leaderboardColScore: 'نتيجة',
     leaderboardFooter: '{total} إجمالي اللاعبين • تم التحديث في {date}',
     leaderboardTotalPlayers: 'إجمالي اللاعبين',
-    leaderboardUpdated: 'تم التحديث',
-
-    // Bottom nav
-    navMyDog: 'كلبي',
-    navProfile: 'الملف الشخصي'
+    leaderboardUpdated: 'تم التحديث'
   },
   bn: {
     statsTab: 'পরিসংখ্যান',
@@ -1219,6 +1191,7 @@ export const translations = {
     xpToNext: 'পরবর্তী স্তরের জন্য XP',
     xpAbbrev: 'XP',
     pointsToAllocate: 'বরাদ্দ করার জন্য পয়েন্ট',
+    allPointsAssigned: 'সমস্ত পয়েন্ট বরাদ্দ করা হয়েছে',
     save: 'সংরক্ষণ করুন',
     reset: 'পুনরায় সেট করুন',
     power: 'শক্তি',
@@ -1288,24 +1261,7 @@ export const translations = {
     loadingDailyQuests: 'দৈনিক কোয়েস্ট লোড হচ্ছে...', 
     noQuestsToday: 'আজ কোন কোয়েস্ট উপলব্ধ নেই',
     claim: 'দাবি করুন',
-    claimed: 'দাবি করা হয়েছে',
-
-    // Leaderboards
-    leaderboardTopLevels: 'শীর্ষ স্তর',
-    leaderboardMasterBuilders: 'মাস্টার বিল্ডার',
-    leaderboardTopDestroyers: 'শীর্ষ ধ্বংসকারী',
-    leaderboardGeneric: 'লিডারবোর্ড',
-    leaderboardColLevel: 'স্তর',
-    leaderboardColBuilt: 'নির্মিত',
-    leaderboardColDestroyed: ' ধ্বংস',
-    leaderboardColScore: 'স্কোর',
-    leaderboardFooter: '{total} মোট খেলোয়াড় • {date} তারিখে আপডেট করা হয়েছে',
-    leaderboardTotalPlayers: 'মোট খেলোয়াড়',
-    leaderboardUpdated: 'আপডেট করা হয়েছে',
-
-    // Bottom nav
-    navMyDog: 'আমার কুকুর',
-    navProfile: 'প্রোফাইল'
+    claimed: 'দাবি করা হয়েছে'
   },
   ru: {
     statsTab: 'Статистика',
@@ -1318,6 +1274,7 @@ export const translations = {
     xpToNext: 'XP до следующего уровня',
     xpAbbrev: 'XP',
     pointsToAllocate: 'очки для распределения',
+    allPointsAssigned: 'Все очки распределены',
     save: 'Сохранить',
     reset: 'Сбросить',
     power: 'Сила',
@@ -1400,11 +1357,7 @@ export const translations = {
     leaderboardColScore: 'Счет',
     leaderboardFooter: '{total} всего игроков • Обновлено {date}',
     leaderboardTotalPlayers: 'всего игроков',
-    leaderboardUpdated: 'Обновлено',
-
-    // Bottom nav
-    navMyDog: 'Моя собака',
-    navProfile: 'Профиль'
+    leaderboardUpdated: 'Обновлено'
   },
   ur: {
     statsTab: 'اعداد و شمار',
@@ -1417,6 +1370,7 @@ export const translations = {
     xpToNext: 'اگلی سطح کے لیے XP',
     xpAbbrev: 'XP',
     pointsToAllocate: 'مختص کرنے کے لیے پوائنٹس',
+    allPointsAssigned: 'تمام پوائنٹس تفویض کر دیئے گئے ہیں۔',
     save: 'محفوظ کریں',
     reset: 'ری سیٹ کریں',
     power: 'طاقت',
@@ -1429,7 +1383,7 @@ export const translations = {
     doghouseHpLabel: 'ڈاگ ہاؤس HP {n}',
     whatIsPower: 'طاقت کیا ہے?',
     whatIsStamina: ' صلاحیت کیا ہے?',
-    whatIsReach: 'پahunch کیا ہے?',
+    whatIsReach: 'پہنچ کیا ہے?',
     whatIsFortification: 'قلعہ بندی کیا ہے?',
     availableDoghousesTitle: 'دستیاب ڈاگ ہاؤسز',
     energyTitle: 'توانائی',
@@ -1499,11 +1453,7 @@ export const translations = {
     leaderboardColScore: 'اسکور',
     leaderboardFooter: '{total} کل کھلاڑی • {date} کو اپ ڈیٹ کیا گیا',
     leaderboardTotalPlayers: 'کل کھلاڑی',
-    leaderboardUpdated: 'اپ ڈیٹ کیا گیا',
-
-    // Bottom nav
-    navMyDog: 'میرا کتا',
-    navProfile: 'پروفائل'
+    leaderboardUpdated: 'اپ ڈیٹ کیا گیا'
   }
 } as const;
 
@@ -1523,5 +1473,5 @@ export function t<K extends keyof typeof translations['en']>(key: K): string {
 
 export function ti<K extends keyof typeof translations['en']>(key: K, params: Record<string, string | number>): string {
   const template = t(key as any);
-  return Object.keys(params).reduce((acc, k) => acc.replace(new RegExp(`\\{${k}\\}`, 'g'), String(params[k])), template);
+  return Object.keys(params).reduce((acc, k) => acc.replace(new RegExp(`\{${k}\}`, 'g'), String(params[k])), template);
 }

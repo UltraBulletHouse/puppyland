@@ -1263,7 +1263,7 @@ export class AppDogView extends LitElement {
                                     <div class="points-number">${this.statPointsAvailable}</div>
                                     <div class="points-subtitle">${t('pointsToAllocate')}</div>
                                   </div>`
-                                : html``}
+                                : html`<div>${t('allPointsAssigned')}</div>`}
                             </div>
                             ${hasPending
                               ? html`<div class="points-actions">
