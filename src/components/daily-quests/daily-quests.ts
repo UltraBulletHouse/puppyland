@@ -177,7 +177,7 @@ export class DailyQuests extends LitElement {
         color: var(--color-lime);
       }
       .reward-icon.energy {
-        color: var(--color-blue);
+        color: var(--lav);
       }
       .reward-icon.coins {
         color: var(--color-lime);
@@ -197,10 +197,13 @@ export class DailyQuests extends LitElement {
         font-size: 14px;
       }
       .quest-type-icon.attack,
-      .quest-type-icon.destroy,
-      .quest-type-icon.energy {
+      .quest-type-icon.destroy {
         border-color: var(--coral);
         color: var(--coral);
+      }
+      .quest-type-icon.energy {
+        border-color: var(--lav);
+        color: var(--lav);
       }
       .quest-type-icon.build,
       .quest-type-icon.visit {

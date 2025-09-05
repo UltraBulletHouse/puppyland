@@ -274,8 +274,8 @@ export class AppDogView extends LitElement {
         background: #fff;
       }
       .stat-icon.energy {
-        border-color: var(--coral);
-        color: var(--coral);
+        border-color: var(--lav);
+        color: var(--lav);
       }
       .stat-icon.doghouses {
         border-color: var(--wood);
@@ -293,6 +293,10 @@ export class AppDogView extends LitElement {
         font-weight: 700;
         font-size: 18px;
         color: var(--color-primary);
+      }
+      /* Energy card value to violet */
+      .stat-header .stat-icon.energy ~ .stat-value {
+        color: var(--lav);
       }
 
       .stat-progress {
@@ -339,7 +343,7 @@ export class AppDogView extends LitElement {
       }
 
       .progress-fill.energy {
-        background: linear-gradient(90deg, var(--coral), color-mix(in srgb, var(--coral) 85%, #000));
+        background: linear-gradient(90deg, var(--lav), color-mix(in srgb, var(--lav) 85%, #000));
       }
 
       .level-badge {

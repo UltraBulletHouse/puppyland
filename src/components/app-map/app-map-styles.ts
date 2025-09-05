@@ -33,10 +33,10 @@ export const AppMapStyles = [
       height: auto;
       width: auto;
       padding: 6px 12px;
-      background: var(--gold-100);
+      background: var(--lav-100);
       border-radius: 999px;
-      border: 2px solid var(--gold);
-      color: #5a4200;
+      border: 2px solid var(--lav);
+      color: var(--lav);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
     #info-box-line {
@@ -49,8 +49,8 @@ export const AppMapStyles = [
       font-size: 14px;
       padding: 2px;
       border-radius: var(--border-radius-circle);
-      background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
-      color: #8a5b13;
+      background: color-mix(in srgb, var(--lav-100) 80%, #fff 20%);
+      color: var(--lav);
     }
     .leaflet-bottom {
       bottom: 7px;

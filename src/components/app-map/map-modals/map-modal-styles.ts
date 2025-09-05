@@ -655,9 +655,9 @@ export const MapModalStyles = html`
     }
 
     .energy-indicator {
-      background: linear-gradient(135deg, rgba(255, 149, 0, 0.95), rgba(255, 149, 0, 0.8));
+      background: linear-gradient(135deg, color-mix(in srgb, var(--lav) 92%, transparent), color-mix(in srgb, var(--lav) 75%, transparent));
       color: white;
-      border-color: #ff9500;
+      border-color: var(--lav);
       top: 20%;
       right: 10%;
       animation: floatUpRight 2.5s ease-out forwards;
@@ -1038,9 +1038,9 @@ export const MapModalStyles = html`
       font-weight: 800;
       padding: 4px 10px;
       border-radius: 999px;
-      background: var(--gold-100);
-      border: 2px solid var(--gold);
-      color: #5a4200;
+      background: var(--lav-100);
+      border: 2px solid var(--lav);
+      color: var(--lav);
     }
 
     .buffs-header sl-icon {
@@ -1060,9 +1060,9 @@ export const MapModalStyles = html`
     .buffs-header .user-energy sl-icon {
       font-size: 14px;
       padding: 2px;
-      background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
+      background: color-mix(in srgb, var(--lav-100) 80%, #fff 20%);
       border: none;
-      color: #8a5b13;
+      color: var(--lav);
     }
 
     .buffs-list {
