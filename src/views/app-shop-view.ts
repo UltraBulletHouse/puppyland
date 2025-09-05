@@ -102,19 +102,30 @@ export class AppShopView extends LitElement {
 
       #content {
         flex: 1;
-        overflow-y: auto;
+        overflow: hidden; /* scrolling handled by sl-tab-panel */
         padding: 16px;
-        -webkit-overflow-scrolling: touch;
       }
 
       /* Center the tabs wrapper and limit width for nicer mobile look */
       #tabs-container {
         display: flex;
         justify-content: center;
+        position: sticky;
+        top: 0;
+        z-index: 5;
+        background: var(--app-bg);
+        padding: 8px 0; /* ensures full-width background covers behind tabs */
       }
       .shop-tabs {
         width: 100%;
         max-width: 560px;
+      }
+      /* Make only the active tab panel scrollable */
+      .shop-tabs sl-tab-panel {
+        overflow-y: auto;
+        padding: 0;
+        height: calc(100vh - 220px);
+        -webkit-overflow-scrolling: touch;
       }
       .shop-tabs::part(nav) {
         justify-content: center;
@@ -129,6 +140,9 @@ export class AppShopView extends LitElement {
         border-radius: 999px;
         border: none;
         box-shadow: none;
+        position: sticky;
+        top: 0; /* ensure nav itself sticks inside the scroll area */
+        z-index: 6; /* slightly above container background */
       }
       .shop-tabs::part(nav) {
         --track-width: 0;
