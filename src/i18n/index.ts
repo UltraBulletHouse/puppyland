@@ -1512,6 +1512,7 @@ let currentLocale: Locale = (localStorage.getItem('puppyland-language') as Local
 export function setLocale(locale: Locale) {
   currentLocale = locale;
   localStorage.setItem('puppyland-language', locale);
+  window.dispatchEvent(new CustomEvent('locale-changed'));
 }
 
 export function t<K extends keyof typeof translations['en']>(key: K): string {

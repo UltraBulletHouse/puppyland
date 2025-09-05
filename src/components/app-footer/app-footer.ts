@@ -122,6 +122,16 @@ export class AppFooter extends LitElement {
   @property({ type: Boolean })
   hasShadow = false;
 
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('locale-changed', () => this.requestUpdate());
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    window.removeEventListener('locale-changed', () => this.requestUpdate());
+  }
+
   changeView(view: View) {
     updateViewEvent(this, view);
   }
