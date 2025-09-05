@@ -1249,37 +1249,37 @@ export class AppDogView extends LitElement {
                             </div>
                           </div>
 
-                          <div
-                            class="points-panel ${this.statPointsAvailable > 0 ? 'active' : 'done'}"
-                          >
-                            <div class="points-left">
-                              <sl-icon
-                                name="${this.statPointsAvailable > 0
-                                  ? 'plus-circle'
-                                  : 'check2-circle'}"
-                              ></sl-icon>
-                              ${this.statPointsAvailable > 0
-                                ? html`<div>
-                                    <div class="points-number">${this.statPointsAvailable}</div>
-                                    <div class="points-subtitle">${t('pointsToAllocate')}</div>
-                                  </div>`
-                                : html`<div>${t('allPointsAssigned')}</div>`}
-                            </div>
-                            ${hasPending
-                              ? html`<div class="points-actions">
-                                  <sl-button
-                                    size="small"
-                                    pill
-                                    variant="primary"
-                                    @click=${this.saveAttributes}
-                                    >${t('save')}</sl-button
-                                  >
-                                  <sl-button size="small" pill @click=${this.resetAllocation}
-                                    >${t('reset')}</sl-button
-                                  >
-                                </div>`
-                              : ''}
-                          </div>
+                          ${this.statPointsAvailable > 0 || hasPending
+                            ? html`<div class="points-panel active">
+                                <div class="points-left">
+                                  <sl-icon
+                                    name="${this.statPointsAvailable > 0
+                                      ? 'plus-circle'
+                                      : 'check2-circle'}"
+                                  ></sl-icon>
+                                  ${this.statPointsAvailable > 0
+                                    ? html`<div>
+                                        <div class="points-number">${this.statPointsAvailable}</div>
+                                        <div class="points-subtitle">${t('pointsToAllocate')}</div>
+                                      </div>`
+                                    : html`<div>${t('allPointsAssigned')}</div>`}
+                                </div>
+                                ${hasPending
+                                  ? html`<div class="points-actions">
+                                      <sl-button
+                                        size="small"
+                                        pill
+                                        variant="primary"
+                                        @click=${this.saveAttributes}
+                                        >${t('save')}</sl-button
+                                      >
+                                      <sl-button size="small" pill @click=${this.resetAllocation}
+                                        >${t('reset')}</sl-button
+                                      >
+                                    </div>`
+                                  : ''}
+                              </div>`
+                            : ''}
 
                           <div class="alloc-grid">
                             <div class="alloc-card alloc-card--floating power">
