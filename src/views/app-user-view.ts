@@ -418,54 +418,7 @@ export class AppUserView extends LitElement {
     `;
   }
 
-  private renderAttribution() {
-    return html`
-      <sl-card class="settings-card attribution-card">
-        <div slot="header">
-          <strong>${t('attributions')}</strong>
-        </div>
-        <div class="setting-item">
-          <div class="setting-info">
-            <sl-icon name="house" class="setting-icon"></sl-icon>
-            <div class="setting-details">
-              <a
-                href="https://www.flaticon.com/free-icons/dog-house"
-                title="dog house icons"
-                target="_blank"
-                >Dog house icons created by Freepik - Flaticon</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="setting-item">
-          <div class="setting-info">
-            <sl-icon name="lightning-charge" class="setting-icon"></sl-icon>
-            <div class="setting-details">
-              <a
-                href="https://www.flaticon.com/free-icons/energy-drink"
-                title="energy drink icons"
-                target="_blank"
-                >Energy drink icons created by Freepik - Flaticon</a
-              >
-            </div>
-          </div>
-        </div>
-        <div class="setting-item">
-          <div class="setting-info">
-            <sl-icon name="tools" class="setting-icon"></sl-icon>
-            <div class="setting-details">
-              <a
-                href="https://www.flaticon.com/free-icons/toolkit"
-                title="toolkit icons"
-                target="_blank"
-                >Toolkit icons created by Freepik - Flaticon</a
-              >
-            </div>
-          </div>
-        </div>
-      </sl-card>
-    `;
-  }
+  
 
   render() {
     const userInitials = this.userInfo?.name.slice(0, 2).toUpperCase() ?? 'XX';
@@ -484,7 +437,6 @@ export class AppUserView extends LitElement {
         <!-- Settings Content -->
         <div class="settings-content">
           ${this.renderAppSettings()} ${this.renderDangerZone()} ${this.renderContactUs()}
-          ${this.renderAttribution()}
         </div>
       </div>
     `;
