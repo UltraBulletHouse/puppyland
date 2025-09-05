@@ -546,7 +546,9 @@ export class LeaderboardsComponent extends LitElement {
                     ${entry.rank <= 3 ? this.getRankIcon(entry.rank) : `#${entry.rank}`}
                   </div>
 
-                  <div class="player-avatar">${entry.isCurrentUser ? '🐕' : '🐶'}</div>
+                  <div class="player-avatar">
+                    <svg-icon name="dogFaceSvg"></svg-icon>
+                  </div>
 
                   <div class="player-info">
                     <div class="dog-name">${entry.dogName}</div>
