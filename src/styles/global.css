@@ -181,3 +181,45 @@ body {
    - Reserve gold for currency/crowns.
    - Use lavender sparingly for prestige/rarity moments.
    - Ensure contrast: dark ink on light tints; white on solid fills. */
+
+/* ---------------- Focus reset for inputs ---------------- */
+/* Remove visual focus styles from native inputs */
+.input--standard.input--focused:not(.input--disabled),
+.input--focused,
+input:focus,
+input:focus-visible,
+input:focus-within,
+textarea:focus,
+textarea:focus-visible,
+textarea:focus-within,
+select:focus,
+select:focus-visible,
+select:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: none;
+}
+
+/* Disable Shoelace focus rings for inputs and selects */
+sl-input,
+sl-select {
+  --sl-focus-ring-width: 0 !important;
+  --sl-input-focus-ring-color: transparent !important;
+  --sl-focus-ring: none !important;
+  --sl-focus-ring-offset: 0 !important;
+}
+
+/* Force-remove any box-shadow/outline applied inside Shoelace parts */
+sl-input::part(base),
+sl-input::part(input),
+sl-select::part(combobox),
+sl-select::part(display-input) {
+  box-shadow: none !important;
+  outline: none !important;
+    border-color: none;
+      --sl-focus-ring-width: 0 !important;
+  --sl-input-focus-ring-color: transparent !important;
+  --sl-focus-ring: none !important;
+  --sl-focus-ring-offset: 0 !important;
+
+}
