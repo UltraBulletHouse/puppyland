@@ -341,6 +341,11 @@ export class AppUserView extends LitElement {
               <sl-option value="pl">Polish</sl-option>
               <sl-option value="zh">Chinese</sl-option>
               <sl-option value="ja">Japanese</sl-option>
+              <sl-option value="hi">Hindi</sl-option>
+              <sl-option value="ar">Arabic</sl-option>
+              <sl-option value="bn">Bengali</sl-option>
+              <sl-option value="ru">Russian</sl-option>
+              <sl-option value="ur">Urdu</sl-option>
             </sl-select>
           </div>
         </div>
