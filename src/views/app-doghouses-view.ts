@@ -18,6 +18,7 @@ import { sharedStyles } from '../styles/shared-styles';
 import { DogInfo } from '../types/dog';
 import { Doghouse, GetDoghouseResponse } from '../types/doghouse';
 import { apiCall } from '../utils/apiUtils';
+import { t } from '../i18n';
 
 @customElement('app-doghouses-view')
 export class AppDoghousesView extends LitElement {
@@ -220,7 +221,7 @@ export class AppDoghousesView extends LitElement {
         <div id="header">
           <div id="left">
             <sl-icon name="houses" style="font-size: 24px;"></sl-icon>
-            <div id="title">Doghouses</div>
+            <div id="title">${t('doghouses')}</div>
           </div>
           <div id="controls">
             <div id="sort-buttons">
@@ -230,7 +231,7 @@ export class AppDoghousesView extends LitElement {
                 size="small"
               >
                 <sl-icon name="calendar-date" slot="prefix"></sl-icon>
-                Date
+                ${t('dateLabel')}
               </sl-button>
               <sl-button
                 class="sort-button ${this.sortBy === 'hp' ? 'active' : ''}"
@@ -238,7 +239,7 @@ export class AppDoghousesView extends LitElement {
                 size="small"
               >
                 <sl-icon name="heart-pulse" slot="prefix"></sl-icon>
-                HP
+                ${t('hpAbbrev')}
               </sl-button>
             </div>
             <div id="edit-container">
@@ -250,10 +251,10 @@ export class AppDoghousesView extends LitElement {
                 0
                   ? 'disabled'
                   : ''}"
-                title=${this.editMode ? 'Exit edit mode' : 'Edit doghouses'}
+                title=${this.editMode ? t('exitEditMode') : t('editDoghouses') }
               ></sl-icon>
               ${this.userInfo?.isPremium
-                ? html`<sl-badge id="edit-badge" variant="success" pill title="Unlimited"
+                ? html`<sl-badge id="edit-badge" variant="success" pill title="${t('unlimited')}"
                     >∞</sl-badge
                   >`
                 : html`<sl-badge id="edit-badge" variant="warning" pill
@@ -282,9 +283,9 @@ export class AppDoghousesView extends LitElement {
                 : html`
                     <div id="empty-state">
                       <sl-icon name="house-add"></sl-icon>
-                      <div>No doghouses yet</div>
+                      <div>${t('noDoghousesYet')}</div>
                       <div style="font-size: 14px; margin-top: 8px;">
-                        Go to the map to build your first doghouse!
+                        ${t('goToMapToBuildFirst')}
                       </div>
                     </div>
                   `,

@@ -10,6 +10,7 @@ import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { sharedStyles } from '../../styles/shared-styles';
 import { Doghouse, UpdateDoghouseResponse } from '../../types/doghouse';
 import { apiCall } from '../../utils/apiUtils';
+import { t } from '../../i18n';
 import { sendEvent } from '../../utils/eventUtils';
 
 /**
@@ -210,7 +211,7 @@ export class AppDoghouseItem extends LitElement {
       autofocus
       required
       size="small"
-      placeholder="Doghouse name"
+      placeholder="${t('doghouseNamePlaceholder')}"
     ></sl-input>`;
 
     const nameText = html`
@@ -226,14 +227,14 @@ export class AppDoghouseItem extends LitElement {
           ${displayEdit
             ? html`
                 <div id="edit-actions">
-                  <sl-icon name="check-lg" @click=${this.saveNewName} title="Save"></sl-icon>
-                  <sl-icon name="x" @click=${this.onCloseEditing} title="Cancel"></sl-icon>
+                  <sl-icon name="check-lg" @click=${this.saveNewName} title="${t('save')}"></sl-icon>
+                  <sl-icon name="x" @click=${this.onCloseEditing} title="${t('cancel')}"></sl-icon>
                 </div>
               `
             : this.isEditMode
               ? html`
                   <div id="edit-actions">
-                    <sl-icon name="pencil" @click=${this.editName} title="Edit name"></sl-icon>
+                    <sl-icon name="pencil" @click=${this.editName} title="${t('editName')}"></sl-icon>
                   </div>
                 `
               : ''}
