@@ -270,6 +270,9 @@ export class AppShopView extends LitElement {
       .price-tag {
         font-weight: 800;
         font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
       }
 
       /* Gold balance pill (flat, like modal energy) */
@@ -465,7 +468,7 @@ export class AppShopView extends LitElement {
           ?loading=${this.processingTreatsItemId === item.id}
           pill
         >
-          <span class="price-tag">${item.price.value} ${item.price.currency}</span>
+          <span class="price-tag">${item.price.value} <sl-icon name="coin"></sl-icon></span>
         </sl-button>
       </div>
     </div>
