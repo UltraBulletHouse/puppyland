@@ -97,7 +97,7 @@ export class AppShopView extends LitElement {
       #title {
         font-weight: 600;
         font-size: 20px;
-        color: var(--color-black);
+        color: var(--primary);
       }
 
       #content {
@@ -512,7 +512,6 @@ export class AppShopView extends LitElement {
     return html`
       <div id="container">
         <div id="header">
-          <sl-icon name="shop" style="font-size: 24px;"></sl-icon>
           <div id="title">${t('shop')}</div>
           <div id="balance-pill" title="Treats">
             <sl-icon name="coin"></sl-icon>

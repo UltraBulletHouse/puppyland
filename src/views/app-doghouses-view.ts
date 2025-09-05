@@ -53,7 +53,7 @@ export class AppDoghousesView extends LitElement {
       #title {
         font-weight: 600;
         font-size: 20px;
-        color: var(--color-black);
+        color: var(--primary);
       }
       #controls {
         display: flex;
@@ -220,7 +220,6 @@ export class AppDoghousesView extends LitElement {
       <div id="container">
         <div id="header">
           <div id="left">
-            <sl-icon name="houses" style="font-size: 24px;"></sl-icon>
             <div id="title">${t('doghouses')}</div>
           </div>
           <div id="controls">
