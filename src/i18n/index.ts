@@ -728,8 +728,6 @@ export const translations = {
     goToMapToBuildFirst: 'Vá ao mapa para construir sua primeira casinha!',
     doghouseNamePlaceholder: 'Nome da casinha',
     editName: 'Editar nome',
-    doghouseNamePlaceholder: 'Nome da casinha',
-    editName: 'Editar nome',
     renameTokens: 'Renomear',
     repairKits: 'Kits de reparo',
     energy: 'Energia',
