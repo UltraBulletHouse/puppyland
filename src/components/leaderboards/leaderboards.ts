@@ -65,7 +65,6 @@ export class LeaderboardsComponent extends LitElement {
         background: color-mix(in srgb, var(--primary) 8%, #fff);
         border-radius: 999px;
         border: 1px solid var(--color-surface-border);
-        overflow-x: auto; /* allow horizontal scroll on very small phones */
         -webkit-overflow-scrolling: touch;
       }
 
@@ -496,7 +495,6 @@ export class LeaderboardsComponent extends LitElement {
               @click=${() => this.handleCategoryChange(LeaderboardCategory.LEVEL)}
               size="small"
             >
-              <sl-icon name="star" slot="prefix"></sl-icon>
               ${t('leaderboardTopLevels')}
             </sl-button>
             <sl-button
@@ -506,7 +504,6 @@ export class LeaderboardsComponent extends LitElement {
               @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_BUILT)}
               size="small"
             >
-              <sl-icon name="hammer" slot="prefix"></sl-icon>
               ${t('leaderboardMasterBuilders')}
             </sl-button>
             <sl-button
@@ -517,7 +514,6 @@ export class LeaderboardsComponent extends LitElement {
               @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_DESTROYED)}
               size="small"
             >
-              <sl-icon name="lightning-charge" slot="prefix"></sl-icon>
               ${t('leaderboardTopDestroyers')}
             </sl-button>
           </div>
