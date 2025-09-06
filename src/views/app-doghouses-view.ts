@@ -14,11 +14,11 @@ import { API_DOGHOUSE_GET } from '../constants/apiConstants';
 import { dogInfoContext } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
+import { t } from '../i18n';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogInfo } from '../types/dog';
 import { Doghouse, GetDoghouseResponse } from '../types/doghouse';
 import { apiCall } from '../utils/apiUtils';
-import { t } from '../i18n';
 
 @customElement('app-doghouses-view')
 export class AppDoghousesView extends LitElement {
@@ -80,7 +80,9 @@ export class AppDoghousesView extends LitElement {
         color: var(--text-2);
         border: none;
         border-radius: 999px;
-        transition: background-color 0.2s, color 0.2s;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
         align-items: center;
         justify-content: center;
         box-shadow: none;
@@ -250,7 +252,7 @@ export class AppDoghousesView extends LitElement {
                 0
                   ? 'disabled'
                   : ''}"
-                title=${this.editMode ? t('exitEditMode') : t('editDoghouses') }
+                title=${this.editMode ? t('exitEditMode') : t('editDoghouses')}
               ></sl-icon>
               ${this.userInfo?.isPremium
                 ? html`<sl-badge id="edit-badge" variant="success" pill title="${t('unlimited')}"

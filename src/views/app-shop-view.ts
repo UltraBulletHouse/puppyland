@@ -26,8 +26,8 @@ import {
 import { updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { updateUserInfoEvent, userInfoContext } from '../contexts/userInfoContext';
-import { sharedStyles } from '../styles/shared-styles';
 import { t } from '../i18n';
+import { sharedStyles } from '../styles/shared-styles';
 import {
   AcknowledgePurchaseResponse,
   GoogleBillingItem,
@@ -35,7 +35,7 @@ import {
   ShopItemLocal,
 } from '../types/shop';
 import { UserInfoResponse } from '../types/userInfo';
-import { showSuccessModal, alertNotifyDanger } from '../utils/alertsUtils';
+import { alertNotifyDanger, showSuccessModal } from '../utils/alertsUtils';
 import { apiCall } from '../utils/apiUtils';
 
 //TODO: Move it to .env
@@ -564,8 +564,11 @@ export class AppShopView extends LitElement {
                 ${this.renderCategorySection(t('repairKits'), 'tools', shopItemsRepair, (i) =>
                   this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection(t('energy'), 'lightning-charge', shopItemsEnergy, (i) =>
-                  this.renderShopItemTreats(i)
+                ${this.renderCategorySection(
+                  t('energy'),
+                  'lightning-charge',
+                  shopItemsEnergy,
+                  (i) => this.renderShopItemTreats(i)
                 )}
               </sl-tab-panel>
 

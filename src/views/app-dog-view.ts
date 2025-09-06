@@ -27,10 +27,10 @@ import {
 import { dogInfoContext, updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { userInfoContext } from '../contexts/userInfoContext';
+import { t, ti } from '../i18n';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogDerivedStats, DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
 import { apiCall } from '../utils/apiUtils';
-import { t, ti } from '../i18n';
 
 @customElement('app-dog-view')
 export class AppDogView extends LitElement {
@@ -1144,7 +1144,9 @@ export class AppDogView extends LitElement {
                         variant="success"
                         pill
                         title=${this.userInfo?.premiumExpiryUtc
-                          ? ti('premiumExpires', { date: new Date(this.userInfo.premiumExpiryUtc).toLocaleString() })
+                          ? ti('premiumExpires', {
+                              date: new Date(this.userInfo.premiumExpiryUtc).toLocaleString(),
+                            })
                           : ''}
                         >${t('premiumBadge')}</sl-badge
                       >
@@ -1190,6 +1192,7 @@ export class AppDogView extends LitElement {
                       maxlength="15"
                       autofocus
                       required
+                      pill
                       size="small"
                     ></sl-input>`
                   : this.newName ?? ''}
@@ -1231,7 +1234,9 @@ export class AppDogView extends LitElement {
                               <sl-icon name="star"></sl-icon>
                             </div>
                             <div class="stat-title">${t('statsTitle')}</div>
-                            <div class="level-badge" title="${t('levelTooltip')}">${ti('levelWithNumber', { level })}</div>
+                            <div class="level-badge" title="${t('levelTooltip')}">
+                              ${ti('levelWithNumber', { level })}
+                            </div>
                           </div>
                           <!-- Compact Experience tile integrated into Attributes -->
                           <div class="mini-progress" title="${t('xpToNext')}">
@@ -1292,7 +1297,10 @@ export class AppDogView extends LitElement {
                                 <div class="title">${t('power')}</div>
                                 <div class="bottom-row">
                                   <span class="impact"
-                                    >${ti('attackLabel', { min: atkMinPreview, max: atkMaxPreview })}</span
+                                    >${ti('attackLabel', {
+                                      min: atkMinPreview,
+                                      max: atkMaxPreview,
+                                    })}</span
                                   >
                                   <sl-icon-button
                                     class="help-icon"
@@ -1324,7 +1332,9 @@ export class AppDogView extends LitElement {
                               <div class="title-row">
                                 <div class="title">${t('stamina')}</div>
                                 <div class="bottom-row">
-                                  <span class="impact">${ti('maxEnergyLabel', { n: energyMaxPreview })}</span>
+                                  <span class="impact"
+                                    >${ti('maxEnergyLabel', { n: energyMaxPreview })}</span
+                                  >
                                   <sl-icon-button
                                     class="help-icon"
                                     name="info-circle"
@@ -1355,7 +1365,9 @@ export class AppDogView extends LitElement {
                               <div class="title-row">
                                 <div class="title">${t('reach')}</div>
                                 <div class="bottom-row">
-                                  <span class="impact">${ti('rangeLabel', { n: reachPreview })}</span>
+                                  <span class="impact"
+                                    >${ti('rangeLabel', { n: reachPreview })}</span
+                                  >
                                   <sl-icon-button
                                     class="help-icon"
                                     name="info-circle"
@@ -1386,7 +1398,9 @@ export class AppDogView extends LitElement {
                               <div class="title-row">
                                 <div class="title">${t('fortification')}</div>
                                 <div class="bottom-row">
-                                  <span class="impact">${ti('doghouseHpLabel', { n: doghouseHpPreview })}</span>
+                                  <span class="impact"
+                                    >${ti('doghouseHpLabel', { n: doghouseHpPreview })}</span
+                                  >
                                   <sl-icon-button
                                     class="help-icon"
                                     name="info-circle"

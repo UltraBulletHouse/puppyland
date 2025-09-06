@@ -7,9 +7,9 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
+import { t } from '../../i18n';
 import { sharedStyles } from '../../styles/shared-styles';
 import { DailyQuestsResponse, Quest, QuestType, RewardType } from '../../types/quest';
-import { t } from '../../i18n';
 
 @customElement('daily-quests')
 export class DailyQuests extends LitElement {
@@ -26,7 +26,6 @@ export class DailyQuests extends LitElement {
 
       #content {
         flex: 1;
-        overflow-y: auto;
         padding: 16px;
         min-height: 0;
         max-height: calc(100vh - 200px);
@@ -61,7 +60,10 @@ export class DailyQuests extends LitElement {
         margin-bottom: 12px;
         border: 1px solid var(--color-surface-border);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background 0.15s ease;
       }
 
       .quest-item:last-child {
@@ -461,7 +463,7 @@ export class DailyQuests extends LitElement {
             ${this.formatTimeRemaining()}
           </div>
         </div>
-        
+
         <div id="content">
           ${this.quests.map((quest) => {
             const progressPercentage = Math.min((quest.progress / quest.target) * 100, 100);

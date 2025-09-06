@@ -3,8 +3,8 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import { userPosContext } from '../contexts/userPosContext';
-import { sharedStyles } from '../styles/shared-styles';
 import { t } from '../i18n';
+import { sharedStyles } from '../styles/shared-styles';
 import { Coords } from '../types/geolocation';
 import { sendEvent } from '../utils/eventUtils';
 

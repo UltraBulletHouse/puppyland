@@ -11,17 +11,16 @@ import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 import '@shoelace-style/shoelace/dist/components/switch/switch.js';
 
-import { userInfoContext } from '../contexts/userInfoContext';
+import { API_USER_INFO } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
+import { updateUserInfoEvent, userInfoContext } from '../contexts/userInfoContext';
 import { updateViewEvent } from '../contexts/viewContext';
+import { setLocale, t } from '../i18n';
 import { sharedStyles } from '../styles/shared-styles';
 import { UserInfo } from '../types/userInfo';
 import { View } from '../types/view';
-import { auth } from '../utils/firebase';
 import { apiCall } from '../utils/apiUtils';
-import { t, setLocale } from '../i18n';
-import { API_USER_INFO } from '../constants/apiConstants';
-import { updateUserInfoEvent } from '../contexts/userInfoContext';
+import { auth } from '../utils/firebase';
 
 /**
  * @fires updateView
@@ -418,8 +417,6 @@ export class AppUserView extends LitElement {
       </sl-card>
     `;
   }
-
-  
 
   render() {
     const userInitials = this.userInfo?.name.slice(0, 2).toUpperCase() ?? 'XX';

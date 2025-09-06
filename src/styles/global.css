@@ -116,110 +116,68 @@ body {
 }
 
 /* ----------------Utility classes (drop-in)---------------- */
-  .card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    box-shadow: var(--shadow);
-  }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
 
-  .btn {
-    background: var(--primary);
-    color: #fff;
-    border-radius: 12px;
-  }
+.btn {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 12px;
+}
 
-  /* Ready-to-use examples */
-  .btn-primary {
-    background: linear-gradient(var(--primary), var(--primary-700));
-    color: #fff;
-  }
-  .btn-warm {
-    background: linear-gradient(var(--coral), var(--gold));
-    color: #3a1c12;
-  }
-  .badge-rare {
-    background: var(--lav-100);
-    color: #4e3ccf;
-  }
-  .progress-xp > div {
-    background: linear-gradient(90deg, var(--primary), var(--lime));
-  }
+/* Ready-to-use examples */
+.btn-primary {
+  background: linear-gradient(var(--primary), var(--primary-700));
+  color: #fff;
+}
+.btn-warm {
+  background: linear-gradient(var(--coral), var(--gold));
+  color: #3a1c12;
+}
+.badge-rare {
+  background: var(--lav-100);
+  color: #4e3ccf;
+}
+.progress-xp > div {
+  background: linear-gradient(90deg, var(--primary), var(--lime));
+}
 
-  .chip {
-    background: #f0faf4;
-    color: var(--primary-700);
-    border-radius: 20px;
-    padding: 4px 10px;
-  }
+.chip {
+  background: #f0faf4;
+  color: var(--primary-700);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
 
-  .progress {
-    background: #ddeee6;
-    border-radius: 999px;
-    height: 12px;
-    overflow: hidden;
-  }
-  .progress > div {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary), var(--lime));
-  }
+.progress {
+  background: #ddeee6;
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+}
+.progress > div {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--lime));
+}
 
 .tab {
   background: #eaf5ef;
   border-radius: 999px;
   padding: 4px;
 }
-  .tab .active {
-    background: var(--primary);
-    color: #fff;
-    border-radius: 999px;
-    padding: 6px 12px;
-  }
+.tab .active {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 12px;
+}
 
 /* Usage tips:
    - Green is hero; prefer either coral OR sky per screen.
    - Reserve gold for currency/crowns.
    - Use lavender sparingly for prestige/rarity moments.
    - Ensure contrast: dark ink on light tints; white on solid fills. */
-
-/* ---------------- Focus reset for inputs ---------------- */
-/* Remove visual focus styles from native inputs */
-.input--standard.input--focused:not(.input--disabled),
-.input--focused,
-input:focus,
-input:focus-visible,
-input:focus-within,
-textarea:focus,
-textarea:focus-visible,
-textarea:focus-within,
-select:focus,
-select:focus-visible,
-select:focus-within {
-  outline: none !important;
-  box-shadow: none !important;
-  border-color: none;
-}
-
-/* Disable Shoelace focus rings for inputs and selects */
-sl-input,
-sl-select {
-  --sl-focus-ring-width: 0 !important;
-  --sl-input-focus-ring-color: transparent !important;
-  --sl-focus-ring: none !important;
-  --sl-focus-ring-offset: 0 !important;
-}
-
-/* Force-remove any box-shadow/outline applied inside Shoelace parts */
-sl-input::part(base),
-sl-input::part(input),
-sl-select::part(combobox),
-sl-select::part(display-input) {
-  box-shadow: none !important;
-  outline: none !important;
-    border-color: none;
-      --sl-focus-ring-width: 0 !important;
-  --sl-input-focus-ring-color: transparent !important;
-  --sl-focus-ring: none !important;
-  --sl-focus-ring-offset: 0 !important;
-
-}

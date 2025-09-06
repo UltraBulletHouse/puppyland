@@ -230,10 +230,20 @@ export class MapPopup extends LitElement {
         }
         /* Ownership-specific HP colors */
         .own-doghouse #hp-fill {
-          background: linear-gradient(90deg, var(--color-primary), var(--color-lime), var(--color-primary));
+          background: linear-gradient(
+            90deg,
+            var(--color-primary),
+            var(--color-lime),
+            var(--color-primary)
+          );
         }
         .enemy-doghouse #hp-fill {
-          background: linear-gradient(90deg, var(--color-secondary), var(--color-lime), var(--color-secondary));
+          background: linear-gradient(
+            90deg,
+            var(--color-secondary),
+            var(--color-lime),
+            var(--color-secondary)
+          );
         }
         #owner-section {
           display: flex;

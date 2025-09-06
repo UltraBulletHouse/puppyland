@@ -7,15 +7,15 @@ import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
 
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
-import '../icon-svg/svg-icon';
-import { sharedStyles } from '../../styles/shared-styles';
 import { t, ti } from '../../i18n';
+import { sharedStyles } from '../../styles/shared-styles';
 import {
   LeaderboardCategory,
   LeaderboardData,
   LeaderboardEntry,
   LeaderboardsResponse,
 } from '../../types/leaderboard';
+import '../icon-svg/svg-icon';
 
 @customElement('leaderboards-component')
 export class LeaderboardsComponent extends LitElement {
@@ -79,7 +79,9 @@ export class LeaderboardsComponent extends LitElement {
         color: var(--text-2);
         border: none;
         border-radius: 999px;
-        transition: background-color 0.2s, color 0.2s;
+        transition:
+          background-color 0.2s,
+          color 0.2s;
         align-items: center;
         justify-content: center;
         box-shadow: none;
@@ -559,8 +561,10 @@ export class LeaderboardsComponent extends LitElement {
             })}
 
             <div id="stats-footer">
-              ${ti('leaderboardFooter', { total: leaderboard.totalPlayers.toLocaleString(), date: new Date(leaderboard.lastUpdated).toLocaleDateString() })}
-              
+              ${ti('leaderboardFooter', {
+                total: leaderboard.totalPlayers.toLocaleString(),
+                date: new Date(leaderboard.lastUpdated).toLocaleDateString(),
+              })}
             </div>
           </div>
         </div>

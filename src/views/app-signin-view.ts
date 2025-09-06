@@ -2,8 +2,8 @@ import { signInWithPopup } from 'firebase/auth';
 import { LitElement, css, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
 
-import { sharedStyles } from '../styles/shared-styles';
 import { t } from '../i18n';
+import { sharedStyles } from '../styles/shared-styles';
 import { alertNotifyDanger } from '../utils/alertsUtils';
 import { auth, googleProvider } from '../utils/firebase';
 

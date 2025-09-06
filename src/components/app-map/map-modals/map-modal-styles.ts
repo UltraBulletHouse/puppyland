@@ -655,7 +655,11 @@ export const MapModalStyles = html`
     }
 
     .energy-indicator {
-      background: linear-gradient(135deg, color-mix(in srgb, var(--lav) 92%, transparent), color-mix(in srgb, var(--lav) 75%, transparent));
+      background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--lav) 92%, transparent),
+        color-mix(in srgb, var(--lav) 75%, transparent)
+      );
       color: white;
       border-color: var(--lav);
       top: 20%;
@@ -1081,7 +1085,10 @@ export const MapModalStyles = html`
       background: var(--color-surface-strong);
       border: 1px solid var(--color-surface-border);
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
-      transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      transition:
+        background-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
       position: relative;
       min-height: 60px;
     }

@@ -1,4 +1,18 @@
-export type Locale = 'en' | 'pl' | 'es' | 'fr' | 'de' | 'it' | 'pt' | 'zh' | 'ja' | 'hi' | 'ar' | 'bn' | 'ru' | 'ur';
+export type Locale =
+  | 'en'
+  | 'pl'
+  | 'es'
+  | 'fr'
+  | 'de'
+  | 'it'
+  | 'pt'
+  | 'zh'
+  | 'ja'
+  | 'hi'
+  | 'ar'
+  | 'bn'
+  | 'ru'
+  | 'ur';
 
 export const translations = {
   en: {
@@ -35,10 +49,14 @@ export const translations = {
     premiumExpires: 'Expires: {date}',
     manageSubscription: 'Manage subscription',
     unlimited: 'Unlimited',
-    powerDesc: 'Damage dealt to doghouses. Current attack damage: {min}–{max}. Each point increases both min and max by 1.',
-    staminaDesc: 'Increases max energy so you can attack or repair your doghouses more often. Current max energy: {n}. (+10 per point, starting from 100)',
-    reachDesc: 'Range on the map for interacting with doghouses (attack or repair). Current range: {n} m. (+10 m per point, starting from 200 m)',
-    fortificationDesc: "Increases all your doghouses' max HP so they are harder to destroy. Current doghouse max HP: {n}. (+20 per point, starting from 100)",
+    powerDesc:
+      'Damage dealt to doghouses. Current attack damage: {min}–{max}. Each point increases both min and max by 1.',
+    staminaDesc:
+      'Increases max energy so you can attack or repair your doghouses more often. Current max energy: {n}. (+10 per point, starting from 100)',
+    reachDesc:
+      'Range on the map for interacting with doghouses (attack or repair). Current range: {n} m. (+10 m per point, starting from 200 m)',
+    fortificationDesc:
+      "Increases all your doghouses' max HP so they are harder to destroy. Current doghouse max HP: {n}. (+20 per point, starting from 100)",
 
     shop: 'Shop',
     spend: 'Spend',
@@ -89,12 +107,12 @@ export const translations = {
     userNoEmail: 'No email',
 
     // Daily quests UI strings
-    refreshing: 'Refreshing...', 
+    refreshing: 'Refreshing...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'm',
-      remainingTime: 'Remaining time',
-      loading: 'Loading...', 
-    loadingDailyQuests: 'Loading daily quests...', 
+    remainingTime: 'Remaining time',
+    loading: 'Loading...',
+    loadingDailyQuests: 'Loading daily quests...',
     noQuestsToday: 'No quests available today',
     claim: 'Claim',
     claimed: 'Claimed',
@@ -114,7 +132,7 @@ export const translations = {
 
     // Bottom nav
     navMyDog: 'My Dog',
-    navProfile: 'Profile'
+    navProfile: 'Profile',
   },
   pl: {
     statsTab: 'Statystyki',
@@ -150,10 +168,14 @@ export const translations = {
     premiumExpires: 'Wygasa: {date}',
     manageSubscription: 'Zarządzaj subskrypcją',
     unlimited: 'Bez limitu',
-    powerDesc: 'Zadawane obrażenia budom. Obecne obrażenia ataku: {min}–{max}. Każdy punkt zwiększa zarówno min, jak i max o 1.',
-    staminaDesc: 'Zwiększa maksymalną energię, dzięki czemu możesz częściej atakować lub naprawiać swoje budy. Obecna maks. energia: {n}. (+10 za punkt, start od 100)',
-    reachDesc: 'Zasięg na mapie do interakcji z budami (atak lub naprawa). Obecny zasięg: {n} m. (+10 m za punkt, start od 200 m)',
-    fortificationDesc: 'Zwiększa maks. HP wszystkich twoich bud, dzięki czemu trudniej je zniszczyć. Obecne maks. HP budy: {n}. (+20 za punkt, start od 100)',
+    powerDesc:
+      'Zadawane obrażenia budom. Obecne obrażenia ataku: {min}–{max}. Każdy punkt zwiększa zarówno min, jak i max o 1.',
+    staminaDesc:
+      'Zwiększa maksymalną energię, dzięki czemu możesz częściej atakować lub naprawiać swoje budy. Obecna maks. energia: {n}. (+10 za punkt, start od 100)',
+    reachDesc:
+      'Zasięg na mapie do interakcji z budami (atak lub naprawa). Obecny zasięg: {n} m. (+10 m za punkt, start od 200 m)',
+    fortificationDesc:
+      'Zwiększa maks. HP wszystkich twoich bud, dzięki czemu trudniej je zniszczyć. Obecne maks. HP budy: {n}. (+20 za punkt, start od 100)',
     shop: 'Sklep',
     spend: 'Wydaj',
     buy: 'Kup',
@@ -189,12 +211,12 @@ export const translations = {
     userNoEmail: 'Brak e-maila',
 
     // Daily quests UI strings
-    refreshing: 'Odświeżanie...', 
+    refreshing: 'Odświeżanie...',
     hoursAbbrev: 'g',
     minutesAbbrev: 'min',
     remainingTime: 'Pozostały czas',
-    loading: 'Ładowanie...', 
-    loadingDailyQuests: 'Ładowanie zadań dziennych...', 
+    loading: 'Ładowanie...',
+    loadingDailyQuests: 'Ładowanie zadań dziennych...',
     noQuestsToday: 'Brak zadań na dziś',
     claim: 'Odbierz',
     claimed: 'Odebrano',
@@ -224,7 +246,7 @@ export const translations = {
     leaderboardColScore: 'Wynik',
     leaderboardFooter: '{total} graczy • Aktualizacja {date}',
     leaderboardTotalPlayers: 'graczy',
-    leaderboardUpdated: 'Aktualizacja'
+    leaderboardUpdated: 'Aktualizacja',
   },
   es: {
     statsTab: 'Estadísticas',
@@ -260,10 +282,14 @@ export const translations = {
     premiumExpires: 'Expira: {date}',
     manageSubscription: 'Gestionar suscripción',
     unlimited: 'Ilimitado',
-    powerDesc: 'Daño infligido a las casetas. Daño de ataque actual: {min}–{max}. Cada punto aumenta el mínimo y el máximo en 1.',
-    staminaDesc: 'Aumenta la energía máxima para poder atacar o reparar tus casetas con más frecuencia. Energía máx. actual: {n}. (+10 por punto, a partir de 100)',
-    reachDesc: 'Alcance en el mapa para interactuar con las casetas (atacar o reparar). Alcance actual: {n} m. (+10 m por punto, a partir de 200 m)',
-    fortificationDesc: 'Aumenta el HP máx. de todas tus casetas, haciéndolas más difíciles de destruir. HP máx. actual de la caseta: {n}. (+20 por punto, a partir de 100)',
+    powerDesc:
+      'Daño infligido a las casetas. Daño de ataque actual: {min}–{max}. Cada punto aumenta el mínimo y el máximo en 1.',
+    staminaDesc:
+      'Aumenta la energía máxima para poder atacar o reparar tus casetas con más frecuencia. Energía máx. actual: {n}. (+10 por punto, a partir de 100)',
+    reachDesc:
+      'Alcance en el mapa para interactuar con las casetas (atacar o reparar). Alcance actual: {n} m. (+10 m por punto, a partir de 200 m)',
+    fortificationDesc:
+      'Aumenta el HP máx. de todas tus casetas, haciéndolas más difíciles de destruir. HP máx. actual de la caseta: {n}. (+20 por punto, a partir de 100)',
     shop: 'Tienda',
     spend: 'Gastar',
     buy: 'Comprar',
@@ -299,12 +325,12 @@ export const translations = {
     userNoEmail: 'Sin correo electrónico',
 
     // Daily quests UI strings
-    refreshing: 'Actualizando...', 
+    refreshing: 'Actualizando...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'min',
     remainingTime: 'Tiempo restante',
-    loading: 'Cargando...', 
-    loadingDailyQuests: 'Cargando misiones diarias...', 
+    loading: 'Cargando...',
+    loadingDailyQuests: 'Cargando misiones diarias...',
     noQuestsToday: 'No hay misiones hoy',
     claim: 'Reclamar',
     claimed: 'Reclamado',
@@ -335,7 +361,7 @@ export const translations = {
     leaderboardColScore: 'Puntuación',
     leaderboardFooter: '{total} jugadores • Actualizado {date}',
     leaderboardTotalPlayers: 'jugadores',
-    leaderboardUpdated: 'Actualizado'
+    leaderboardUpdated: 'Actualizado',
   },
   fr: {
     statsTab: 'Statistiques',
@@ -345,7 +371,7 @@ export const translations = {
     level: 'Niveau',
     levelWithNumber: 'Niveau {level}',
     levelTooltip: 'Votre niveau actuel',
-    xpToNext: 'XP jusqu\'au prochain niveau',
+    xpToNext: "XP jusqu'au prochain niveau",
     xpAbbrev: 'XP',
     pointsToAllocate: 'points à attribuer',
     allPointsAssigned: 'Tous les points sont attribués',
@@ -371,10 +397,14 @@ export const translations = {
     premiumExpires: 'Expire : {date}',
     manageSubscription: 'Gérer l’abonnement',
     unlimited: 'Illimité',
-    powerDesc: 'Dégâts infligés aux niches. Dégâts d’attaque actuels : {min}–{max}. Chaque point augmente le min et le max de 1.',
-    staminaDesc: 'Augmente l’énergie max pour attaquer ou réparer vos niches plus souvent. Énergie max actuelle : {n}. (+10 par point, à partir de 100)',
-    reachDesc: 'Portée sur la carte pour interagir avec les niches (attaquer ou réparer). Portée actuelle : {n} m. (+10 m par point, à partir de 200 m)',
-    fortificationDesc: "Increases all your doghouses' max HP so they are harder to destroy. Current doghouse max HP: {n}. (+20 per point, starting from 100)",
+    powerDesc:
+      'Dégâts infligés aux niches. Dégâts d’attaque actuels : {min}–{max}. Chaque point augmente le min et le max de 1.',
+    staminaDesc:
+      'Augmente l’énergie max pour attaquer ou réparer vos niches plus souvent. Énergie max actuelle : {n}. (+10 par point, à partir de 100)',
+    reachDesc:
+      'Portée sur la carte pour interagir avec les niches (attaquer ou réparer). Portée actuelle : {n} m. (+10 m par point, à partir de 200 m)',
+    fortificationDesc:
+      "Increases all your doghouses' max HP so they are harder to destroy. Current doghouse max HP: {n}. (+20 per point, starting from 100)",
 
     shop: 'Boutique',
     spend: 'Dépenser',
@@ -396,7 +426,7 @@ export const translations = {
     treatPacks: 'Packs de friandises',
     subscriptions: 'Abonnements',
 
-    appSettings: "Paramètres de l’application",
+    appSettings: 'Paramètres de l’application',
     language: 'Langue',
     chooseLanguage: 'Choisissez votre langue préférée',
     notifications: 'Notifications',
@@ -411,12 +441,12 @@ export const translations = {
     userNoEmail: 'Pas d’e-mail',
 
     // Daily quests UI strings
-    refreshing: 'Actualisation...', 
+    refreshing: 'Actualisation...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'min',
     remainingTime: 'Temps restant',
-    loading: 'Chargement...', 
-    loadingDailyQuests: 'Chargement des quêtes quotidiennes...', 
+    loading: 'Chargement...',
+    loadingDailyQuests: 'Chargement des quêtes quotidiennes...',
     noQuestsToday: 'Aucune quête aujourd’hui',
     claim: 'Réclamer',
     claimed: 'Réclamé',
@@ -447,7 +477,7 @@ export const translations = {
     leaderboardColScore: 'Score',
     leaderboardFooter: '{total} joueurs • Mis à jour le {date}',
     leaderboardTotalPlayers: 'joueurs',
-    leaderboardUpdated: 'Mis à jour le'
+    leaderboardUpdated: 'Mis à jour le',
   },
   de: {
     statsTab: 'Statistiken',
@@ -483,10 +513,14 @@ export const translations = {
     premiumExpires: 'Läuft ab: {date}',
     manageSubscription: 'Abonnement verwalten',
     unlimited: 'Unbegrenzt',
-    powerDesc: 'Schaden an Hundehütten. Aktueller Angriffsschaden: {min}–{max}. Jeder Punkt erhöht Min und Max um 1.',
-    staminaDesc: 'Erhöht die maximale Energie, damit du häufiger angreifen oder reparieren kannst. Aktuelle max. Energie: {n}. (+10 pro Punkt, ab 100)',
-    reachDesc: 'Reichweite auf der Karte zur Interaktion mit Hundehütten (Angriff oder Reparatur). Aktuelle Reichweite: {n} m. (+10 m pro Punkt, ab 200 m)',
-    fortificationDesc: 'Erhöht die max. HP aller Hundehütten, damit sie schwerer zu zerstören sind. Aktuelle max. HP der Hundehütte: {n}. (+20 pro Punkt, ab 100)',
+    powerDesc:
+      'Schaden an Hundehütten. Aktueller Angriffsschaden: {min}–{max}. Jeder Punkt erhöht Min und Max um 1.',
+    staminaDesc:
+      'Erhöht die maximale Energie, damit du häufiger angreifen oder reparieren kannst. Aktuelle max. Energie: {n}. (+10 pro Punkt, ab 100)',
+    reachDesc:
+      'Reichweite auf der Karte zur Interaktion mit Hundehütten (Angriff oder Reparatur). Aktuelle Reichweite: {n} m. (+10 m pro Punkt, ab 200 m)',
+    fortificationDesc:
+      'Erhöht die max. HP aller Hundehütten, damit sie schwerer zu zerstören sind. Aktuelle max. HP der Hundehütte: {n}. (+20 pro Punkt, ab 100)',
     shop: 'Shop',
     spend: 'Ausgeben',
     buy: 'Kaufen',
@@ -522,12 +556,12 @@ export const translations = {
     userNoEmail: 'Keine E‑Mail',
 
     // Daily quests UI strings
-    refreshing: 'Aktualisiere...', 
+    refreshing: 'Aktualisiere...',
     hoursAbbrev: 'Std',
     minutesAbbrev: 'Min',
     remainingTime: 'Verbleibende Zeit',
-    loading: 'Laden...', 
-    loadingDailyQuests: 'Tägliche Quests werden geladen...', 
+    loading: 'Laden...',
+    loadingDailyQuests: 'Tägliche Quests werden geladen...',
     noQuestsToday: 'Heute keine Quests verfügbar',
     claim: 'Einlösen',
     claimed: 'Eingelöst',
@@ -558,7 +592,7 @@ export const translations = {
     leaderboardColScore: 'Punkte',
     leaderboardFooter: '{total} Spieler • Aktualisiert am {date}',
     leaderboardTotalPlayers: 'Spieler',
-    leaderboardUpdated: 'Aktualisiert am'
+    leaderboardUpdated: 'Aktualisiert am',
   },
   it: {
     statsTab: 'Statistiche',
@@ -594,10 +628,14 @@ export const translations = {
     premiumExpires: 'Scade: {date}',
     manageSubscription: 'Gestisci abbonamento',
     unlimited: 'Illimitato',
-    powerDesc: 'Danni inflitti alle cuccie. Danno d’attacco attuale: {min}–{max}. Ogni punto aumenta sia il min che il max di 1.',
-    staminaDesc: 'Aumenta l’energia massima per poter attaccare o riparare più spesso. Energia max attuale: {n}. (+10 per punto, a partire da 100)',
-    reachDesc: 'Gittata sulla mappa per interagire con le cuccie (attacco o riparazione). Gittata attuale: {n} m. (+10 m per punto, a partire da 200 m)',
-    fortificationDesc: 'Aumenta gli HP massimi di tutte le tue cuccie, rendendole più difficili da distruggere. HP max attuali della cuccia: {n}. (+20 per punto, a partire da 100)',
+    powerDesc:
+      'Danni inflitti alle cuccie. Danno d’attacco attuale: {min}–{max}. Ogni punto aumenta sia il min che il max di 1.',
+    staminaDesc:
+      'Aumenta l’energia massima per poter attaccare o riparare più spesso. Energia max attuale: {n}. (+10 per punto, a partire da 100)',
+    reachDesc:
+      'Gittata sulla mappa per interagire con le cuccie (attacco o riparazione). Gittata attuale: {n} m. (+10 m per punto, a partire da 200 m)',
+    fortificationDesc:
+      'Aumenta gli HP massimi di tutte le tue cuccie, rendendole più difficili da distruggere. HP max attuali della cuccia: {n}. (+20 per punto, a partire da 100)',
     shop: 'Negozio',
     spend: 'Spendi',
     buy: 'Acquista',
@@ -633,12 +671,12 @@ export const translations = {
     userNoEmail: 'Nessuna e‑mail',
 
     // Daily quests UI strings
-    refreshing: 'Aggiornamento...', 
+    refreshing: 'Aggiornamento...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'min',
     remainingTime: 'Tempo rimanente',
-    loading: 'Caricamento...', 
-    loadingDailyQuests: 'Caricamento missioni giornaliere...', 
+    loading: 'Caricamento...',
+    loadingDailyQuests: 'Caricamento missioni giornaliere...',
     noQuestsToday: 'Nessuna missione disponibile oggi',
     claim: 'Riscatta',
     claimed: 'Riscattato',
@@ -669,7 +707,7 @@ export const translations = {
     leaderboardColScore: 'Punteggio',
     leaderboardFooter: '{total} giocatori • Aggiornato il {date}',
     leaderboardTotalPlayers: 'giocatori',
-    leaderboardUpdated: 'Aggiornato il'
+    leaderboardUpdated: 'Aggiornato il',
   },
   pt: {
     statsTab: 'Estatísticas',
@@ -705,10 +743,14 @@ export const translations = {
     premiumExpires: 'Expira: {date}',
     manageSubscription: 'Gerenciar assinatura',
     unlimited: 'Ilimitado',
-    powerDesc: 'Dano causado às casinhas. Dano de ataque atual: {min}–{max}. Cada ponto aumenta o mínimo e o máximo em 1.',
-    staminaDesc: 'Aumenta a energia máxima para você atacar ou reparar as casinhas com mais frequência. Energia máx. atual: {n}. (+10 por ponto, a partir de 100)',
-    reachDesc: 'Alcance no mapa para interagir com as casinhas (atacar ou reparar). Alcance atual: {n} m. (+10 m por ponto, a partir de 200 m)',
-    fortificationDesc: 'Aumenta o HP máximo de todas as suas casinhas, tornando-as mais difíceis de destruir. HP máx. atual da casinha: {n}. (+20 por ponto, a partir de 100)',
+    powerDesc:
+      'Dano causado às casinhas. Dano de ataque atual: {min}–{max}. Cada ponto aumenta o mínimo e o máximo em 1.',
+    staminaDesc:
+      'Aumenta a energia máxima para você atacar ou reparar as casinhas com mais frequência. Energia máx. atual: {n}. (+10 por ponto, a partir de 100)',
+    reachDesc:
+      'Alcance no mapa para interagir com as casinhas (atacar ou reparar). Alcance atual: {n} m. (+10 m por ponto, a partir de 200 m)',
+    fortificationDesc:
+      'Aumenta o HP máximo de todas as suas casinhas, tornando-as mais difíceis de destruir. HP máx. atual da casinha: {n}. (+20 por ponto, a partir de 100)',
     shop: 'Loja',
     spend: 'Gastar',
     buy: 'Comprar',
@@ -744,12 +786,12 @@ export const translations = {
     userNoEmail: 'Sem e‑mail',
 
     // Daily quests UI strings
-    refreshing: 'Atualizando...', 
+    refreshing: 'Atualizando...',
     hoursAbbrev: 'h',
     minutesAbbrev: 'min',
     remainingTime: 'Tempo restante',
-    loading: 'Carregando...', 
-    loadingDailyQuests: 'Carregando missões diárias...', 
+    loading: 'Carregando...',
+    loadingDailyQuests: 'Carregando missões diárias...',
     noQuestsToday: 'Nenhuma missão disponível hoje',
     claim: 'Resgatar',
     claimed: 'Resgatado',
@@ -780,7 +822,7 @@ export const translations = {
     leaderboardColScore: 'Pontuação',
     leaderboardFooter: '{total} jogadores • Atualizado em {date}',
     leaderboardTotalPlayers: 'jogadores',
-    leaderboardUpdated: 'Atualizado em'
+    leaderboardUpdated: 'Atualizado em',
   },
   zh: {
     statsTab: '统计',
@@ -817,9 +859,12 @@ export const translations = {
     manageSubscription: '管理订阅',
     unlimited: '无限',
     powerDesc: '对犬屋造成的伤害。当前攻击伤害: {min}–{max}。每点增加最小和最大伤害1点。',
-    staminaDesc: '增加最大能量，以便您可以更频繁地攻击或修复您的犬屋。当前最大能量: {n}。 (每点+10，从100开始)',
-    reachDesc: '在地图上与犬屋互动的范围（攻击或修复）。当前范围: {n} 米。 (每点+10米，从200米开始)',
-    fortificationDesc: '增加所有犬屋的最大生命值，使其更难被摧毁。当前犬屋最大生命值: {n}。 (每点+20，从100开始)',
+    staminaDesc:
+      '增加最大能量，以便您可以更频繁地攻击或修复您的犬屋。当前最大能量: {n}。 (每点+10，从100开始)',
+    reachDesc:
+      '在地图上与犬屋互动的范围（攻击或修复）。当前范围: {n} 米。 (每点+10米，从200米开始)',
+    fortificationDesc:
+      '增加所有犬屋的最大生命值，使其更难被摧毁。当前犬屋最大生命值: {n}。 (每点+20，从100开始)',
     shop: '商店',
     spend: '花费',
     buy: '购买',
@@ -855,12 +900,12 @@ export const translations = {
     userNoEmail: '无电子邮件',
 
     // Daily quests UI strings
-    refreshing: '刷新中...', 
+    refreshing: '刷新中...',
     hoursAbbrev: '小时',
     minutesAbbrev: '分钟',
     remainingTime: '剩余时间',
-    loading: '加载中...', 
-    loadingDailyQuests: '正在加载每日任务...', 
+    loading: '加载中...',
+    loadingDailyQuests: '正在加载每日任务...',
     noQuestsToday: '今天没有可用的任务',
     claim: '领取',
     claimed: '已领取',
@@ -875,7 +920,7 @@ export const translations = {
     leaderboardColScore: '分数',
     leaderboardFooter: '{total} 位玩家 • 更新于 {date}',
     leaderboardTotalPlayers: '总玩家',
-    leaderboardUpdated: '已更新'
+    leaderboardUpdated: '已更新',
   },
   ja: {
     statsTab: '統計',
@@ -911,10 +956,14 @@ export const translations = {
     premiumExpires: '有効期限: {date}',
     manageSubscription: 'サブスクリプションの管理',
     unlimited: '無制限',
-    powerDesc: '犬小屋に与えるダメージ。現在の攻撃ダメージ: {min}–{max}。1ポイントごとに最小値と最大値が1ずつ増加します。',
-    staminaDesc: '最大エネルギーを増やして、より頻繁に犬小屋を攻撃または修理できるようにします。現在の最大エネルギー: {n}。(1ポイントあたり+10、100から開始)',
-    reachDesc: '犬小屋と対話するためのマップ上の範囲（攻撃または修理）。現在の範囲: {n} m。(1ポイントあたり+10 m、200 mから開始)',
-    fortificationDesc: 'すべての犬小屋の最大HPを増やして、破壊されにくくします。現在の犬小屋の最大HP: {n}。(1ポイントあたり+20、100から開始)',
+    powerDesc:
+      '犬小屋に与えるダメージ。現在の攻撃ダメージ: {min}–{max}。1ポイントごとに最小値と最大値が1ずつ増加します。',
+    staminaDesc:
+      '最大エネルギーを増やして、より頻繁に犬小屋を攻撃または修理できるようにします。現在の最大エネルギー: {n}。(1ポイントあたり+10、100から開始)',
+    reachDesc:
+      '犬小屋と対話するためのマップ上の範囲（攻撃または修理）。現在の範囲: {n} m。(1ポイントあたり+10 m、200 mから開始)',
+    fortificationDesc:
+      'すべての犬小屋の最大HPを増やして、破壊されにくくします。現在の犬小屋の最大HP: {n}。(1ポイントあたり+20、100から開始)',
     shop: 'ショップ',
     spend: '使う',
     buy: '購入',
@@ -950,12 +999,12 @@ export const translations = {
     userNoEmail: 'メールなし',
 
     // Daily quests UI strings
-    refreshing: '更新中...', 
+    refreshing: '更新中...',
     hoursAbbrev: '時間',
     minutesAbbrev: '分',
     remainingTime: '残り時間',
-    loading: '読み込み中...', 
-    loadingDailyQuests: 'デイリークエストを読み込み中...', 
+    loading: '読み込み中...',
+    loadingDailyQuests: 'デイリークエストを読み込み中...',
     noQuestsToday: '今日は利用可能なクエストがありません',
     claim: '請求',
     claimed: '請求済み',
@@ -986,7 +1035,7 @@ export const translations = {
     leaderboardColScore: 'スコア',
     leaderboardFooter: '合計{total}人のプレイヤー • {date}に更新',
     leaderboardTotalPlayers: '総プレイヤー数',
-    leaderboardUpdated: '更新日'
+    leaderboardUpdated: '更新日',
   },
   hi: {
     statsTab: 'आँकड़े',
@@ -1022,10 +1071,14 @@ export const translations = {
     premiumExpires: 'समाप्त: {date}',
     manageSubscription: 'सदस्यता प्रबंधित करें',
     unlimited: 'असीमित',
-    powerDesc: 'डॉगहाउस को हुआ नुकसान। वर्तमान हमले का नुकसान: {min}–{max}। प्रत्येक बिंदु न्यूनतम और अधिकतम दोनों को 1 से बढ़ाता है।',
-    staminaDesc: 'अधिकतम ऊर्जा बढ़ाता है ताकि आप अपने डॉगहाउस पर अधिक बार हमला या मरम्मत कर सकें। वर्तमान अधिकतम ऊर्जा: {n}। (+10 प्रति बिंदु, 100 से शुरू)',
-    reachDesc: 'डॉगहाउस के साथ बातचीत के लिए मानचित्र पर सीमा (हमला या मरम्मत)। वर्तमान सीमा: {n} मी। (+10 मी प्रति बिंदु, 200 मी से शुरू)',
-    fortificationDesc: 'आपके सभी डॉगहाउस के अधिकतम एचपी को बढ़ाता है ताकि उन्हें नष्ट करना कठिन हो। वर्तमान डॉगहाउस अधिकतम एचपी: {n}। (+20 प्रति बिंदु, 100 से शुरू)',
+    powerDesc:
+      'डॉगहाउस को हुआ नुकसान। वर्तमान हमले का नुकसान: {min}–{max}। प्रत्येक बिंदु न्यूनतम और अधिकतम दोनों को 1 से बढ़ाता है।',
+    staminaDesc:
+      'अधिकतम ऊर्जा बढ़ाता है ताकि आप अपने डॉगहाउस पर अधिक बार हमला या मरम्मत कर सकें। वर्तमान अधिकतम ऊर्जा: {n}। (+10 प्रति बिंदु, 100 से शुरू)',
+    reachDesc:
+      'डॉगहाउस के साथ बातचीत के लिए मानचित्र पर सीमा (हमला या मरम्मत)। वर्तमान सीमा: {n} मी। (+10 मी प्रति बिंदु, 200 मी से शुरू)',
+    fortificationDesc:
+      'आपके सभी डॉगहाउस के अधिकतम एचपी को बढ़ाता है ताकि उन्हें नष्ट करना कठिन हो। वर्तमान डॉगहाउस अधिकतम एचपी: {n}। (+20 प्रति बिंदु, 100 से शुरू)',
     shop: 'दुकान',
     spend: 'खर्च करें',
     buy: ' खरीदें',
@@ -1061,12 +1114,12 @@ export const translations = {
     userNoEmail: 'कोई ईमेल नहीं',
 
     // Daily quests UI strings
-    refreshing: ' ताज़ा हो रहा है...', 
+    refreshing: ' ताज़ा हो रहा है...',
     hoursAbbrev: 'घंटे',
     minutesAbbrev: 'मिनट',
     remainingTime: 'शेष समय',
-    loading: ' लोड हो रहा है...', 
-    loadingDailyQuests: 'दैनिक खोज लोड हो रही हैं...', 
+    loading: ' लोड हो रहा है...',
+    loadingDailyQuests: 'दैनिक खोज लोड हो रही हैं...',
     noQuestsToday: 'आज कोई खोज उपलब्ध नहीं है',
     claim: 'दावा करें',
     claimed: 'दावा किया गया',
@@ -1082,7 +1135,7 @@ export const translations = {
     leaderboardColScore: 'स्कोर',
     leaderboardFooter: '{total} कुल खिलाड़ी • {date} को अपडेट किया गया',
     leaderboardTotalPlayers: 'कुल खिलाड़ी',
-    leaderboardUpdated: 'अपडेट किया गया'
+    leaderboardUpdated: 'अपडेट किया गया',
   },
   ar: {
     statsTab: 'الإحصائيات',
@@ -1118,10 +1171,14 @@ export const translations = {
     premiumExpires: 'ينتهي في: {date}',
     manageSubscription: 'إدارة الاشتراك',
     unlimited: 'غير محدود',
-    powerDesc: 'الضرر الذي يلحق ببيوت الكلاب. ضرر الهجوم الحالي: {min}–{max}. كل نقطة تزيد الحد الأدنى والأقصى بمقدار 1.',
-    staminaDesc: 'يزيد من طاقتك القصوى حتى تتمكن من مهاجمة أو إصلاح بيوت الكلاب الخاصة بك في كثير من الأحيان. الطاقة القصوى الحالية: {n}. (+10 لكل نقطة ، بدءًا من 100)',
-    reachDesc: 'المدى على الخريطة للتفاعل مع بيوت الكلاب (هجوم أو إصلاح). المدى الحالي: {n} م. (+10 م لكل نقطة ، بدءًا من 200 م)',
-    fortificationDesc: 'يزيد من نقاط الصحة القصوى لجميع بيوت الكلاب الخاصة بك مما يجعل تدميرها أكثر صعوبة. نقاط الصحة القصوى الحالية لبيت الكلب: {n}. (+20 لكل نقطة ، بدءًا من 100)',
+    powerDesc:
+      'الضرر الذي يلحق ببيوت الكلاب. ضرر الهجوم الحالي: {min}–{max}. كل نقطة تزيد الحد الأدنى والأقصى بمقدار 1.',
+    staminaDesc:
+      'يزيد من طاقتك القصوى حتى تتمكن من مهاجمة أو إصلاح بيوت الكلاب الخاصة بك في كثير من الأحيان. الطاقة القصوى الحالية: {n}. (+10 لكل نقطة ، بدءًا من 100)',
+    reachDesc:
+      'المدى على الخريطة للتفاعل مع بيوت الكلاب (هجوم أو إصلاح). المدى الحالي: {n} م. (+10 م لكل نقطة ، بدءًا من 200 م)',
+    fortificationDesc:
+      'يزيد من نقاط الصحة القصوى لجميع بيوت الكلاب الخاصة بك مما يجعل تدميرها أكثر صعوبة. نقاط الصحة القصوى الحالية لبيت الكلب: {n}. (+20 لكل نقطة ، بدءًا من 100)',
     shop: 'متجر',
     spend: 'أنفق',
     buy: 'شراء',
@@ -1157,12 +1214,12 @@ export const translations = {
     userNoEmail: 'لا يوجد بريد إلكتروني',
 
     // Daily quests UI strings
-    refreshing: 'جارٍ التحديث ...', 
+    refreshing: 'جارٍ التحديث ...',
     hoursAbbrev: 'ساعة',
     minutesAbbrev: 'دقيقة',
     remainingTime: 'الوقت المتبقي',
-    loading: 'جارٍ التحميل ...', 
-    loadingDailyQuests: 'جارٍ تحميل المهام اليومية ...', 
+    loading: 'جارٍ التحميل ...',
+    loadingDailyQuests: 'جارٍ تحميل المهام اليومية ...',
     noQuestsToday: 'لا توجد مهام متاحة اليوم',
     claim: 'مطالبة',
     claimed: 'تمت المطالبة به',
@@ -1178,7 +1235,7 @@ export const translations = {
     leaderboardColScore: 'نتيجة',
     leaderboardFooter: '{total} إجمالي اللاعبين • تم التحديث في {date}',
     leaderboardTotalPlayers: 'إجمالي اللاعبين',
-    leaderboardUpdated: 'تم التحديث'
+    leaderboardUpdated: 'تم التحديث',
   },
   bn: {
     statsTab: 'পরিসংখ্যান',
@@ -1214,10 +1271,14 @@ export const translations = {
     premiumExpires: 'মেয়াদ শেষ হবে: {date}',
     manageSubscription: 'সাবস্ক্রিপশন পরিচালনা করুন',
     unlimited: ' সীমাহীন',
-    powerDesc: 'ডগহাউসের ক্ষতি হয়েছে। বর্তমান আক্রমণের ক্ষতি: {min}–{max}। প্রতিটি পয়েন্ট न्यूनतम এবং সর্বোচ্চ উভয়ই 1 দ্বারা বৃদ্ধি করে।',
-    staminaDesc: 'সর্বাধিক শক্তি বাড়ায় যাতে আপনি প্রায়শই আপনার ডগহাউস আক্রমণ বা মেরামত করতে পারেন। বর্তমান সর্বাধিক শক্তি: {n}। (প্রতি পয়েন্টে +10, 100 থেকে শুরু)',
-    reachDesc: 'ডগহাউসের সাথে যোগাযোগের জন্য মানচিত্রের পরিসীমা (আക്രമণ বা মেরামত)। বর্তমান পরিসীমা: {n} মি। (প্রতি পয়েন্টে +10 মি, 200 মি থেকে শুরু)',
-    fortificationDesc: 'আপনার সমস্ত ডগহাউসের সর্বাধিক এইচপি বাড়ায় যাতে সেগুলি ধ্বংস করা কঠিন হয়। বর্তমান ডগহাউস সর্বাধিক এইচপি: {n}। (প্রতি পয়েন্টে +20, 100 থেকে শুরু)',
+    powerDesc:
+      'ডগহাউসের ক্ষতি হয়েছে। বর্তমান আক্রমণের ক্ষতি: {min}–{max}। প্রতিটি পয়েন্ট न्यूनतम এবং সর্বোচ্চ উভয়ই 1 দ্বারা বৃদ্ধি করে।',
+    staminaDesc:
+      'সর্বাধিক শক্তি বাড়ায় যাতে আপনি প্রায়শই আপনার ডগহাউস আক্রমণ বা মেরামত করতে পারেন। বর্তমান সর্বাধিক শক্তি: {n}। (প্রতি পয়েন্টে +10, 100 থেকে শুরু)',
+    reachDesc:
+      'ডগহাউসের সাথে যোগাযোগের জন্য মানচিত্রের পরিসীমা (আക്രമণ বা মেরামত)। বর্তমান পরিসীমা: {n} মি। (প্রতি পয়েন্টে +10 মি, 200 মি থেকে শুরু)',
+    fortificationDesc:
+      'আপনার সমস্ত ডগহাউসের সর্বাধিক এইচপি বাড়ায় যাতে সেগুলি ধ্বংস করা কঠিন হয়। বর্তমান ডগহাউস সর্বাধিক এইচপি: {n}। (প্রতি পয়েন্টে +20, 100 থেকে শুরু)',
     shop: ' দোকান',
     spend: ' ব্যয় করুন',
     buy: ' কিনুন',
@@ -1253,15 +1314,15 @@ export const translations = {
     userNoEmail: 'কোন ইমেল নেই',
 
     // Daily quests UI strings
-    refreshing: ' রিফ্রেশ হচ্ছে...', 
+    refreshing: ' রিফ্রেশ হচ্ছে...',
     hoursAbbrev: 'ঘন্টা',
     minutesAbbrev: 'মিনিট',
     remainingTime: 'বাকি সময়',
-    loading: ' লোড হচ্ছে...', 
-    loadingDailyQuests: 'দৈনিক কোয়েস্ট লোড হচ্ছে...', 
+    loading: ' লোড হচ্ছে...',
+    loadingDailyQuests: 'দৈনিক কোয়েস্ট লোড হচ্ছে...',
     noQuestsToday: 'আজ কোন কোয়েস্ট উপলব্ধ নেই',
     claim: 'দাবি করুন',
-    claimed: 'দাবি করা হয়েছে'
+    claimed: 'দাবি করা হয়েছে',
   },
   ru: {
     statsTab: 'Статистика',
@@ -1297,10 +1358,14 @@ export const translations = {
     premiumExpires: 'Истекает: {date}',
     manageSubscription: 'Управление подпиской',
     unlimited: 'Неограниченно',
-    powerDesc: 'Урон, наносимый собачьim будкам. Текущий урон от атаки: {min}–{max}. Каждое очко увеличивает как мин, так и макс на 1.',
-    staminaDesc: 'Увеличивает максимальную энергию, чтобы вы могли чаще атаковать или ремонтировать свои собачьи будки. Текущая максимальная энергия: {n}. (+10 за очко, начиная со 100)',
-    reachDesc: 'Дальность на карте для взаимодействия с собачьimi будками (атака или ремонт). Текущая дальность: {n} м. (+10 м за очко, начиная с 200 м)',
-    fortificationDesc: 'Увеличивает максимальное HP всех ваших собачьих будок, чтобы их было сложнее уничтожить. Текущее максимальное HP собачьей будки: {n}. (+20 за очко, начиная со 100)',
+    powerDesc:
+      'Урон, наносимый собачьim будкам. Текущий урон от атаки: {min}–{max}. Каждое очко увеличивает как мин, так и макс на 1.',
+    staminaDesc:
+      'Увеличивает максимальную энергию, чтобы вы могли чаще атаковать или ремонтировать свои собачьи будки. Текущая максимальная энергия: {n}. (+10 за очко, начиная со 100)',
+    reachDesc:
+      'Дальность на карте для взаимодействия с собачьimi будками (атака или ремонт). Текущая дальность: {n} м. (+10 м за очко, начиная с 200 м)',
+    fortificationDesc:
+      'Увеличивает максимальное HP всех ваших собачьих будок, чтобы их было сложнее уничтожить. Текущее максимальное HP собачьей будки: {n}. (+20 за очко, начиная со 100)',
     shop: 'Магазин',
     spend: 'Потратить',
     buy: 'Купить',
@@ -1336,12 +1401,12 @@ export const translations = {
     userNoEmail: 'Нет электронной почты',
 
     // Daily quests UI strings
-    refreshing: 'Обновление...', 
+    refreshing: 'Обновление...',
     hoursAbbrev: 'ч',
     minutesAbbrev: 'м',
     remainingTime: 'Оставшееся время',
-    loading: 'Загрузка...', 
-    loadingDailyQuests: 'Загрузка ежедневных квестов...', 
+    loading: 'Загрузка...',
+    loadingDailyQuests: 'Загрузка ежедневных квестов...',
     noQuestsToday: 'Сегодня нет доступных квестов',
     claim: 'Забрать',
     claimed: 'Забрано',
@@ -1357,7 +1422,7 @@ export const translations = {
     leaderboardColScore: 'Счет',
     leaderboardFooter: '{total} всего игроков • Обновлено {date}',
     leaderboardTotalPlayers: 'всего игроков',
-    leaderboardUpdated: 'Обновлено'
+    leaderboardUpdated: 'Обновлено',
   },
   ur: {
     statsTab: 'اعداد و شمار',
@@ -1393,10 +1458,14 @@ export const translations = {
     premiumExpires: 'میعاد ختم ہونے کی تاریخ: {date}',
     manageSubscription: 'سبسکرپشن کا نظم کریں',
     unlimited: 'لامحدود',
-    powerDesc: 'ڈاگ ہاؤسز کو پہنچنے والا نقصان۔ موجودہ حملے کا نقصان: {min}–{max}۔ ہر پوائنٹ न्यूनतम اور زیادہ سے زیادہ دونوں کو 1 سے بڑھاتا ہے۔',
-    staminaDesc: 'زیادہ سے زیادہ توانائی کو بڑھاتا ہے تاکہ آپ اپنے ڈاگ ہاؤسز پر زیادہ کثرت سے حملہ یا مرمت कर سکیں۔ موجودہ زیادہ سے زیادہ توانائی: {n}۔ (+10 فی پوائنٹ، 100 سے شروع)',
-    reachDesc: 'ڈاگ ہاؤسز کے ساتھ تعامل کے لیے نقشے پر رینج (حملہ یا مرمت)۔ موجودہ رینج: {n} m۔ (+10 m فی پوائنٹ، 200 m سے شروع)',
-    fortificationDesc: 'آپ کے تمام ڈاگ ہاؤسز کی زیادہ سے زیادہ HP کو بڑھاتا ہے تاکہ انہیں تباہ کرنا مشکل ہو جائے۔ موجودہ ڈاگ ہاؤس زیادہ سے زیادہ HP: {n}۔ (+20 فی پوائنٹ، 100 سے شروع)',
+    powerDesc:
+      'ڈاگ ہاؤسز کو پہنچنے والا نقصان۔ موجودہ حملے کا نقصان: {min}–{max}۔ ہر پوائنٹ न्यूनतम اور زیادہ سے زیادہ دونوں کو 1 سے بڑھاتا ہے۔',
+    staminaDesc:
+      'زیادہ سے زیادہ توانائی کو بڑھاتا ہے تاکہ آپ اپنے ڈاگ ہاؤسز پر زیادہ کثرت سے حملہ یا مرمت कर سکیں۔ موجودہ زیادہ سے زیادہ توانائی: {n}۔ (+10 فی پوائنٹ، 100 سے شروع)',
+    reachDesc:
+      'ڈاگ ہاؤسز کے ساتھ تعامل کے لیے نقشے پر رینج (حملہ یا مرمت)۔ موجودہ رینج: {n} m۔ (+10 m فی پوائنٹ، 200 m سے شروع)',
+    fortificationDesc:
+      'آپ کے تمام ڈاگ ہاؤسز کی زیادہ سے زیادہ HP کو بڑھاتا ہے تاکہ انہیں تباہ کرنا مشکل ہو جائے۔ موجودہ ڈاگ ہاؤس زیادہ سے زیادہ HP: {n}۔ (+20 فی پوائنٹ، 100 سے شروع)',
     shop: 'دکان',
     spend: 'خرچ کریں',
     buy: 'خریدیں',
@@ -1432,12 +1501,12 @@ export const translations = {
     userNoEmail: 'کوئی ای میل نہیں',
 
     // Daily quests UI strings
-    refreshing: 'ریفریش ہو رہا ہے...', 
+    refreshing: 'ریفریش ہو رہا ہے...',
     hoursAbbrev: 'گھنٹے',
     minutesAbbrev: 'منٹ',
     remainingTime: 'باقی وقت',
-    loading: 'لوڈ ہو رہا ہے...', 
-    loadingDailyQuests: 'روزانہ کی تلاشیں لوڈ ہو رہی ہیں...', 
+    loading: 'لوڈ ہو رہا ہے...',
+    loadingDailyQuests: 'روزانہ کی تلاشیں لوڈ ہو رہی ہیں...',
     noQuestsToday: 'آج کوئی تلاش دستیاب نہیں ہے',
     claim: 'دعوی کریں',
     claimed: 'دعوی کیا گیا',
@@ -1453,8 +1522,8 @@ export const translations = {
     leaderboardColScore: 'اسکور',
     leaderboardFooter: '{total} کل کھلاڑی • {date} کو اپ ڈیٹ کیا گیا',
     leaderboardTotalPlayers: 'کل کھلاڑی',
-    leaderboardUpdated: 'اپ ڈیٹ کیا گیا'
-  }
+    leaderboardUpdated: 'اپ ڈیٹ کیا گیا',
+  },
 } as const;
 
 let currentLocale: Locale = (localStorage.getItem('puppyland-language') as Locale) || 'en';
@@ -1465,13 +1534,19 @@ export function setLocale(locale: Locale) {
   window.dispatchEvent(new CustomEvent('locale-changed'));
 }
 
-export function t<K extends keyof typeof translations['en']>(key: K): string {
+export function t<K extends keyof (typeof translations)['en']>(key: K): string {
   const dict = translations[currentLocale] as any;
   const enDict = translations.en as any;
   return (dict && dict[key]) || enDict[key] || String(key);
 }
 
-export function ti<K extends keyof typeof translations['en']>(key: K, params: Record<string, string | number>): string {
+export function ti<K extends keyof (typeof translations)['en']>(
+  key: K,
+  params: Record<string, string | number>
+): string {
   const template = t(key as any);
-  return Object.keys(params).reduce((acc, k) => acc.replace(new RegExp(`\{${k}\}`, 'g'), String(params[k])), template);
+  return Object.keys(params).reduce(
+    (acc, k) => acc.replace(new RegExp(`\{${k}\}`, 'g'), String(params[k])),
+    template
+  );
 }

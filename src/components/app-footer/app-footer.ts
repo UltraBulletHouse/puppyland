@@ -3,9 +3,9 @@ import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import { updateViewEvent, viewContext } from '../../contexts/viewContext';
+import { t } from '../../i18n';
 import { sharedStyles } from '../../styles/shared-styles';
 import { View } from '../../types/view';
-import { t } from '../../i18n';
 
 /**
  * @fires updateView
@@ -98,7 +98,11 @@ export class AppFooter extends LitElement {
         transform: scale(1.05);
       }
       .map-button.active {
-        background: linear-gradient(180deg, color-mix(in srgb, var(--primary) 85%, #fff), var(--primary));
+        background: linear-gradient(
+          180deg,
+          color-mix(in srgb, var(--primary) 85%, #fff),
+          var(--primary)
+        );
         color: #fff;
         border-color: var(--primary);
         transform: scale(1.02);

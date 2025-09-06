@@ -13,6 +13,7 @@ import {
 import { attackEnergy, repairEnergy } from '../../../constants/config';
 import { dogInfoContext, updateDogInfoEvent } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
+import { t, ti } from '../../../i18n';
 import { DogInfo } from '../../../types/dog';
 import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
 import { apiCall } from '../../../utils/apiUtils';
@@ -22,7 +23,6 @@ import '../../app-spinner/app-spinner';
 import '../../icon-png/icon-png';
 import '../../level-up-modal/level-up-modal';
 import { MapModalStyles } from './map-modal-styles';
-import { t, ti } from '../../../i18n';
 
 /**
  * @fires closeMapModal
@@ -229,7 +229,6 @@ export class MapModal extends LitElement {
     // Notify parent popup that modal is closing and whether it was manual
     sendEvent(this, 'closeMapModal', { manual });
   };
-
 
   // WEBSOCKETS
   // runSignal = () => {
@@ -690,10 +689,7 @@ export class MapModal extends LitElement {
                     ? html`
                         <div class="tap-overlay">
                           <div class="tap-instructions-compact">
-                            <p>
-                              ${ti('tapTimesToAttack', { n: 3 - this.tapCount })}
-                              
-                            </p>
+                            <p>${ti('tapTimesToAttack', { n: 3 - this.tapCount })}</p>
                             <div class="tap-progress-compact">
                               ${Array.from(
                                 { length: 3 },
@@ -723,10 +719,7 @@ export class MapModal extends LitElement {
                       ? html`
                           <div class="tap-overlay">
                             <div class="repair-instructions-compact">
-                              <p>
-                                ${ti('tapTimesToRepair', { n: 3 - this.repairTapCount })}
-                                
-                              </p>
+                              <p>${ti('tapTimesToRepair', { n: 3 - this.repairTapCount })}</p>
                               <div class="repair-progress-compact">
                                 ${Array.from(
                                   { length: 3 },
@@ -826,7 +819,9 @@ export class MapModal extends LitElement {
                               : html``}
                             <div class="buff-icon">
                               <icon-png-badge
-                                name="${buff.buffSku.includes('repair') ? 'toolkit' : 'energy-drink'}"
+                                name="${buff.buffSku.includes('repair')
+                                  ? 'toolkit'
+                                  : 'energy-drink'}"
                                 badge="${buff.quantity}"
                               ></icon-png-badge>
                             </div>

@@ -7,10 +7,10 @@ import '@shoelace-style/shoelace/dist/components/relative-time/relative-time.js'
 
 import { API_DOGHOUSE_UPDATE } from '../../constants/apiConstants';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
+import { t } from '../../i18n';
 import { sharedStyles } from '../../styles/shared-styles';
 import { Doghouse, UpdateDoghouseResponse } from '../../types/doghouse';
 import { apiCall } from '../../utils/apiUtils';
-import { t } from '../../i18n';
 import { sendEvent } from '../../utils/eventUtils';
 
 /**
@@ -210,6 +210,7 @@ export class AppDoghouseItem extends LitElement {
       maxlength="15"
       autofocus
       required
+      pill
       size="small"
       placeholder="${t('doghouseNamePlaceholder')}"
     ></sl-input>`;
@@ -227,14 +228,22 @@ export class AppDoghouseItem extends LitElement {
           ${displayEdit
             ? html`
                 <div id="edit-actions">
-                  <sl-icon name="check-lg" @click=${this.saveNewName} title="${t('save')}"></sl-icon>
+                  <sl-icon
+                    name="check-lg"
+                    @click=${this.saveNewName}
+                    title="${t('save')}"
+                  ></sl-icon>
                   <sl-icon name="x" @click=${this.onCloseEditing} title="${t('cancel')}"></sl-icon>
                 </div>
               `
             : this.isEditMode
               ? html`
                   <div id="edit-actions">
-                    <sl-icon name="pencil" @click=${this.editName} title="${t('editName')}"></sl-icon>
+                    <sl-icon
+                      name="pencil"
+                      @click=${this.editName}
+                      title="${t('editName')}"
+                    ></sl-icon>
                   </div>
                 `
               : ''}
