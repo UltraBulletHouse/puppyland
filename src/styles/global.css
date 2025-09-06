@@ -1,5 +1,9 @@
 :root {
-  --font-family: sans-serif;
+  /* Fonts */
+  --font-head: 'Rubik', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  /* Back-compat: map legacy token */
+  --font-family: var(--font-body);
 
   --sl-z-index-toast: 1009;
 
@@ -91,7 +95,8 @@
 
 html,
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-body);
+  font-weight: 500;
   padding: 0;
   margin: 0;
   height: 100%;
@@ -123,11 +128,15 @@ body {
   box-shadow: var(--shadow);
 }
 
-.btn {
-  background: var(--primary);
-  color: #fff;
-  border-radius: 12px;
-}
+  .btn {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 12px;
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.1px;
+  }
 
 /* Ready-to-use examples */
 .btn-primary {
@@ -146,12 +155,16 @@ body {
   background: linear-gradient(90deg, var(--primary), var(--lime));
 }
 
-.chip {
-  background: #f0faf4;
-  color: var(--primary-700);
-  border-radius: 20px;
-  padding: 4px 10px;
-}
+  .chip {
+    background: #f0faf4;
+    color: var(--primary-700);
+    border-radius: 20px;
+    padding: 4px 10px;
+    font-family: var(--font-head);
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+  }
 
 .progress {
   background: #ddeee6;
@@ -168,12 +181,54 @@ body {
   background: #eaf5ef;
   border-radius: 999px;
   padding: 4px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.1px;
 }
-.tab .active {
-  background: var(--primary);
-  color: #fff;
-  border-radius: 999px;
-  padding: 6px 12px;
+  .tab .active {
+    background: var(--primary);
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 12px;
+  }
+
+/* Typography helpers */
+.h1 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
+  letter-spacing: -0.2px;
+}
+.h2 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+}
+.h3 {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+}
+.body {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+}
+.small {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+}
+.nums {
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
 }
 
 /* Usage tips:
