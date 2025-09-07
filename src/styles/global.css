@@ -151,15 +151,15 @@ h6 {
   box-shadow: var(--shadow);
 }
 
-  .btn {
-    background: var(--primary);
-    color: #fff;
-    border-radius: 12px;
-    font-family: var(--font-head);
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.1px;
-  }
+.btn {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 12px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.1px;
+}
 
 /* Ready-to-use examples */
 .btn-primary {
@@ -178,16 +178,16 @@ h6 {
   background: linear-gradient(90deg, var(--primary), var(--lime));
 }
 
-  .chip {
-    background: #f0faf4;
-    color: var(--primary-700);
-    border-radius: 20px;
-    padding: 4px 10px;
-    font-family: var(--font-head);
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.2px;
-  }
+.chip {
+  background: #f0faf4;
+  color: var(--primary-700);
+  border-radius: 20px;
+  padding: 4px 10px;
+  font-family: var(--font-head);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.2px;
+}
 
 .progress {
   background: #ddeee6;
@@ -209,12 +209,12 @@ h6 {
   font-size: 14px;
   letter-spacing: 0.1px;
 }
-  .tab .active {
-    background: var(--primary);
-    color: #fff;
-    border-radius: 999px;
-    padding: 6px 12px;
-  }
+.tab .active {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  padding: 6px 12px;
+}
 
 /* Typography helpers */
 .h1 {

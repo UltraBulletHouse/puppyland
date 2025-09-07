@@ -7,7 +7,6 @@ export interface QuestTitle {
   ns: any;
 }
 
-
 export interface Quest {
   isRewardClaimed: any;
   id: string;
@@ -32,7 +31,7 @@ export enum QuestType {
 }
 
 export interface QuestRewardDescription {
-    key: string;
+  key: string;
   ns: any;
 }
 
