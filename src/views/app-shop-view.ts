@@ -74,6 +74,8 @@ const parseShopItems = (items: ShopItemLocal[], googleItems: GoogleBillingItem[]
 
 @customElement('app-shop-view')
 export class AppShopView extends LitElement {
+  // PNG-backed icons available in src/assets/icons-png
+  private static readonly PNG_ICON_NAMES = new Set(['doghouse', 'toolkit', 'energy-drink']);
   static styles = [
     sharedStyles,
     css`
@@ -242,6 +244,10 @@ export class AppShopView extends LitElement {
       icon-png-badge {
         --icon-png-badge-width: 32px;
         --icon-png-badge-height: 32px;
+      }
+      .item-icon sl-icon {
+        font-size: 26px;
+        color: var(--primary);
       }
 
       .item-details {
@@ -441,9 +447,9 @@ export class AppShopView extends LitElement {
   renderShopItemReal = (item: ShopItemLocal) => html`
     <div class="shop-item">
       <div class="item-icon">
-        ${item.icon
+        ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
           ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
-          : html`<sl-icon name="star"></sl-icon>`}
+          : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
       </div>
       <div class="item-details">
         <div class="item-name">${item.name}</div>
@@ -466,9 +472,9 @@ export class AppShopView extends LitElement {
   renderShopItemTreats = (item: ShopItemLocal) => html`
     <div class="shop-item">
       <div class="item-icon">
-        ${item.icon
+        ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
           ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
-          : html`<sl-icon name="star"></sl-icon>`}
+          : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
       </div>
       <div class="item-details">
         <div class="item-name">${item.name}</div>

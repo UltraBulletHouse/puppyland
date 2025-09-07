@@ -17,11 +17,17 @@ const ensureStack = () => {
     // Position near top of the viewport, respecting safe areas
     stack.style.cssText = [
       'position: fixed',
-      'left: 50%','transform: translateX(-50%)',
-      'top: calc(12px + env(safe-area-inset-top))','z-index: 3000',
-      'display: flex','flex-direction: column','gap: 8px',
+      'left: 50%',
+      'transform: translateX(-50%)',
+      'top: calc(12px + env(safe-area-inset-top))',
+      'z-index: 3000',
+      'display: flex',
+      'flex-direction: column',
+      'gap: 8px',
       'pointer-events: none', // clicks go to children only
-      'padding: 0 12px','width: 100%','max-width: 560px',
+      'padding: 0 12px',
+      'width: 100%',
+      'max-width: 560px',
     ].join(';');
     document.body.appendChild(stack);
   }
@@ -30,11 +36,16 @@ const ensureStack = () => {
 
 const colorFor = (v: Variant) => {
   switch (v) {
-    case 'primary': return 'var(--primary)';
-    case 'success': return 'var(--success)';
-    case 'warning': return 'var(--warning)';
-    case 'danger': return 'var(--danger)';
-    default: return 'var(--sky)';
+    case 'primary':
+      return 'var(--primary)';
+    case 'success':
+      return 'var(--success)';
+    case 'warning':
+      return 'var(--warning)';
+    case 'danger':
+      return 'var(--danger)';
+    default:
+      return 'var(--sky)';
   }
 };
 
@@ -47,19 +58,25 @@ export const showToast = ({ message, variant = 'default', duration = 3000 }: Toa
   const accentColor = colorFor(variant);
   toast.style.cssText = [
     'pointer-events: auto',
-    'display: inline-flex','align-items: center','gap: 10px',
+    'display: inline-flex',
+    'align-items: center',
+    'gap: 10px',
     'margin: 0 auto',
-    'background: var(--color-surface-strong)','color: var(--text)',
+    'background: var(--color-surface-strong)',
+    'color: var(--text)',
     `border: 1px solid ${accentColor}`,
-    'box-shadow: var(--shadow)','border-radius: 12px',
+    'box-shadow: var(--shadow)',
+    'border-radius: 12px',
     'padding: 10px 14px',
-    'max-width: 100%','overflow: hidden',
+    'max-width: 100%',
+    'overflow: hidden',
     'animation: app-toast-in 160ms ease-out',
   ].join(';');
 
   const accent = document.createElement('div');
   accent.style.cssText = [
-    'width: 4px','align-self: stretch',
+    'width: 4px',
+    'align-self: stretch',
     `background: ${accentColor}`,
     'border-radius: 4px',
   ].join(';');
@@ -67,7 +84,9 @@ export const showToast = ({ message, variant = 'default', duration = 3000 }: Toa
   const text = document.createElement('div');
   text.textContent = message;
   text.style.cssText = [
-    'font-family: var(--font-body)','font-size: 14px','line-height: 18px',
+    'font-family: var(--font-body)',
+    'font-size: 14px',
+    'line-height: 18px',
   ].join(';');
 
   const close = document.createElement('button');
@@ -75,9 +94,14 @@ export const showToast = ({ message, variant = 'default', duration = 3000 }: Toa
   close.ariaLabel = 'Close';
   close.textContent = '×';
   close.style.cssText = [
-    'margin-left: 8px','border: none','background: transparent',
-    'color: var(--text)','cursor: pointer','font-size: 18px',
-    'line-height: 1','padding: 0 2px',
+    'margin-left: 8px',
+    'border: none',
+    'background: transparent',
+    'color: var(--text)',
+    'cursor: pointer',
+    'font-size: 18px',
+    'line-height: 1',
+    'padding: 0 2px',
   ].join(';');
 
   const style = document.createElement('style');
@@ -108,7 +132,7 @@ export const showToast = ({ message, variant = 'default', duration = 3000 }: Toa
   return remove;
 };
 
-const TOAST_DURATION = 5000
+const TOAST_DURATION = 5000;
 
 export const toastWarning = (message: string, duration = TOAST_DURATION) =>
   showToast({ message, variant: 'warning', duration });
