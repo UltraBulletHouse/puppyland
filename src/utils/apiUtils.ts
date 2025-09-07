@@ -27,14 +27,8 @@ export const apiCall = (accesToken?: string) => {
   api.interceptors.response.use(
     (response) => response,
     (error: AxiosError<ApiError>) => {
-      // const msg = error.response?.data?.message;
-      const errorStatus = error.response?.status;
-
-      if (errorStatus === 409) {
-        // alertNotifyWarning(msg ?? error.message);
-      } else {
-        // alertNotifyDanger(msg ?? error.message);
-      }
+      // Always propagate errors so callers can handle context-specific UX
+      return Promise.reject(error);
     }
   );
 

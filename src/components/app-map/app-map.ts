@@ -24,6 +24,7 @@ import { Coords } from '../../types/geolocation';
 import { TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
+import { toastDanger, toastWarning } from '../../utils/toastUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
 import '../level-up-modal/level-up-modal';
@@ -206,27 +207,37 @@ export class AppMap extends LitElement {
   /* OK - raczej */
   async addDoghouse() {
     if (!this.accessToken || !this.userPos || !this.dogInfo) return;
-    const createDoghouseResponse = await apiCall(this.accessToken).post<CreateDoghouseResponse>(
-      API_DOGHOUSE_CREATE,
-      {
-        dogId: this.dogInfo.id,
-        lat: this.userPos.lat,
-        lng: this.userPos.lng,
+    try {
+      const createDoghouseResponse = await apiCall(this.accessToken).post<CreateDoghouseResponse>(
+        API_DOGHOUSE_CREATE,
+        {
+          dogId: this.dogInfo.id,
+          lat: this.userPos.lat,
+          lng: this.userPos.lng,
+        }
+      );
+
+      if (createDoghouseResponse.status === 200) {
+        const { createResult, dog, isLevelUp } = createDoghouseResponse.data;
+
+        if (isLevelUp) {
+          this.isLevelUp = isLevelUp;
+        }
+
+        updateDogInfoEvent(this, dog);
+
+        this.getDoghousesList();
+
+        this.openPopup(createResult.id);
       }
-    );
-
-    if (createDoghouseResponse.status === 200) {
-      const { createResult, dog, isLevelUp } = createDoghouseResponse.data;
-
-      if (isLevelUp) {
-        this.isLevelUp = isLevelUp;
+    } catch (err: any) {
+      const status = err?.response?.status;
+      const msg = err?.response?.data?.message || err?.message;
+      if (status === 409) {
+        toastWarning(msg || 'Too close to another doghouse. Move a bit farther and try again.');
+      } else {
+        toastDanger(msg || 'Failed to create doghouse. Please try again.');
       }
-
-      updateDogInfoEvent(this, dog);
-
-      this.getDoghousesList();
-
-      this.openPopup(createResult.id);
     }
   }
 
