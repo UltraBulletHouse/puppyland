@@ -5,6 +5,9 @@
   /* Back-compat: map legacy token */
   --font-family: var(--font-body);
 
+  /* Shoelace font mapping */
+  --sl-font-sans: var(--font-body);
+
   --sl-z-index-toast: 1009;
 
   /* ---------------- Core Palette ---------------------------- */
@@ -102,6 +105,13 @@ body {
   height: 100%;
   overscroll-behavior-y: contain;
 }
+/* Ensure form controls inherit Nunito */
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+}
 
 body {
   display: flex;
@@ -118,6 +128,17 @@ body {
   user-select: none; /* Standard syntax */
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none; /* iOS Safari */
+}
+
+/* Headings default to Rubik */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-head);
+  font-weight: 600;
 }
 
 /* ----------------Utility classes (drop-in)---------------- */

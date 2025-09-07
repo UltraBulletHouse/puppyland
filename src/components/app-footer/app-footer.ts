@@ -116,6 +116,10 @@ export class AppFooter extends LitElement {
         color: var(--color-primary);
         filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
       }
+      /* Ensure label text uses Nunito */
+      .nav-button span {
+        font-family: var(--font-body);
+      }
     `,
   ];
 

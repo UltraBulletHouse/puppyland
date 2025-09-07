@@ -2,6 +2,9 @@ import { html } from 'lit';
 
 export const LevelUpModalStyles = html`
   <style>
+    :host {
+      font-family: var(--font-body);
+    }
     #level-up-modal {
       display: flex;
       flex-direction: column;

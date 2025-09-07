@@ -1,6 +1,16 @@
 import { css } from 'lit';
 
 export const sharedStyles = css`
+  :host {
+    font-family: var(--font-body);
+  }
+  /* Ensure form controls use body font within shadow roots */
+  button,
+  input,
+  select,
+  textarea {
+    font-family: var(--font-body);
+  }
   * {
     box-sizing: border-box;
   }
@@ -11,6 +21,8 @@ export const sharedStyles = css`
   h5,
   h6 {
     margin: 0;
+    font-family: var(--font-head);
+    font-weight: 600;
   }
   .icon-button:active:not(.icon-button--disabled),
   .icon-button:focus-visible:not(.icon-button--disabled) {

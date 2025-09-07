@@ -2,6 +2,9 @@ import { html } from 'lit';
 
 export const MapModalStyles = html`
   <style>
+    :host {
+      font-family: var(--font-body);
+    }
     #map-modal-container {
       display: flex;
       flex-direction: column;
