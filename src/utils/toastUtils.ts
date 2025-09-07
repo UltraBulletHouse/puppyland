@@ -44,12 +44,13 @@ export const showToast = ({ message, variant = 'default', duration = 3000 }: Toa
   const toast = document.createElement('div');
   toast.setAttribute('role', 'status');
   toast.setAttribute('aria-live', 'polite');
+  const accentColor = colorFor(variant);
   toast.style.cssText = [
     'pointer-events: auto',
     'display: inline-flex','align-items: center','gap: 10px',
     'margin: 0 auto',
     'background: var(--color-surface-strong)','color: var(--text)',
-    'border: 1px solid var(--color-surface-border)',
+    `border: 1px solid ${accentColor}`,
     'box-shadow: var(--shadow)','border-radius: 12px',
     'padding: 10px 14px',
     'max-width: 100%','overflow: hidden',
@@ -59,7 +60,7 @@ export const showToast = ({ message, variant = 'default', duration = 3000 }: Toa
   const accent = document.createElement('div');
   accent.style.cssText = [
     'width: 4px','align-self: stretch',
-    `background: ${colorFor(variant)}`,
+    `background: ${accentColor}`,
     'border-radius: 4px',
   ].join(';');
 
