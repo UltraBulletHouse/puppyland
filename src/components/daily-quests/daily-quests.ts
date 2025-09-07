@@ -477,9 +477,9 @@ export class DailyQuests extends LitElement {
                         name="${this.getQuestTypeIcon(quest.type)}"
                         class="quest-type-icon ${this.getQuestTypeClass(quest.type)}"
                       ></sl-icon>
-                      ${quest.title}
+                      ${quest.title.key}
                     </div>
-                    <div class="quest-description">${quest.description}</div>
+                    <div class="quest-description">${quest.description.key}</div>
                   </div>
                   <div class="quest-actions">
                     <div class="quest-reward ${quest.isCompleted ? 'completed' : ''}">
@@ -487,7 +487,7 @@ export class DailyQuests extends LitElement {
                         name="${this.getRewardIcon(quest.reward.type)}"
                         class="reward-icon ${this.getRewardClass(quest.reward.type)}"
                       ></sl-icon>
-                      ${quest.reward.description}
+                      ${quest.reward.description.key}
                     </div>
                     ${quest.isCompleted && !quest.isRewardClaimed
                       ? html`

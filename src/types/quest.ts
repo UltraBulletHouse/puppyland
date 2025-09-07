@@ -1,8 +1,18 @@
+export interface QuestDescription {
+  key: string;
+  ns: any;
+}
+export interface QuestTitle {
+  key: string;
+  ns: any;
+}
+
+
 export interface Quest {
   isRewardClaimed: any;
   id: string;
-  title: string;
-  description: string;
+  title: QuestTitle;
+  description: QuestDescription;
   type: QuestType;
   target: number;
   progress: number;
@@ -21,10 +31,15 @@ export enum QuestType {
   SPEND_ENERGY = 'SPEND_ENERGY',
 }
 
+export interface QuestRewardDescription {
+    key: string;
+  ns: any;
+}
+
 export interface QuestReward {
   type: RewardType;
   amount: number;
-  description: string;
+  description: QuestRewardDescription;
 }
 
 export enum RewardType {
