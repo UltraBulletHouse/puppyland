@@ -42,8 +42,9 @@
   /* Materials */
   --gold: #ffc857;
   --gold-100: #ffe9b3;
-  --wood: #c7865f; /* terracotta/wood */
-  --wood-100: #f3e2d6;
+  /* Wood accent — slightly deeper/more saturated for prominence */
+  --wood: #b56b3e; /* terracotta/wood (more contrast) */
+  --wood-100: #efd6c6;
 
   /* Utility states */
   --success: #2dbe7f;
