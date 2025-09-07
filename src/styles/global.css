@@ -9,6 +9,8 @@
   --sl-font-sans: var(--font-body);
 
   --sl-z-index-toast: 1009;
+  /* Dim overlays consistently across dialogs/drawers */
+  --sl-overlay-background-color: rgba(16, 42, 34, 0.45);
 
   /* ---------------- Core Palette ---------------------------- */
   /* Background and surfaces */

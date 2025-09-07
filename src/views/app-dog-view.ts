@@ -736,6 +736,7 @@ export class AppDogView extends LitElement {
         font-weight: 800;
         font-size: 16px;
         margin-bottom: 8px;
+        font-family: var(--font-head);
       }
       .details-header sl-icon::part(base) {
         background: var(--color-primary);
@@ -752,6 +753,24 @@ export class AppDogView extends LitElement {
       .details-actions {
         display: flex;
         justify-content: flex-end;
+      }
+      /* Unify details drawer buttons with app buttons */
+      .details-actions sl-button::part(base) {
+        background: linear-gradient(var(--primary), var(--primary-700));
+        color: #fff;
+        border: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        font-family: var(--font-head);
+        font-weight: 600;
+        letter-spacing: 0.1px;
+      }
+      .details-actions sl-button:hover::part(base) {
+        transform: translateY(-1px);
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+      }
+      .details-actions sl-button:active::part(base) {
+        transform: translateY(1px);
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
       }
     `,
   ];
@@ -787,6 +806,23 @@ export class AppDogView extends LitElement {
     .details-actions {
       display: flex;
       justify-content: flex-end;
+    }
+    .details-actions sl-button::part(base) {
+      background: linear-gradient(var(--primary), var(--primary-700));
+      color: #fff;
+      border: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      font-family: var(--font-head);
+      font-weight: 600;
+      letter-spacing: 0.1px;
+    }
+    .details-actions sl-button:hover::part(base) {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    }
+    .details-actions sl-button:active::part(base) {
+      transform: translateY(1px);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
     }
   `;
 

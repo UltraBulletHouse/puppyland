@@ -11,6 +11,63 @@ export const sharedStyles = css`
   textarea {
     font-family: var(--font-body);
   }
+  /* Consistent styling for Shoelace drawers */
+  sl-drawer {
+    /* spacing tokens (supported by Shoelace drawers/dialogs) */
+    --header-spacing: 16px;
+    --body-spacing: 16px;
+    --footer-spacing: 16px;
+  }
+  sl-drawer::part(panel) {
+    background: var(--color-surface-strong);
+    border: 1px solid var(--color-surface-border);
+    box-shadow: var(--shadow);
+    border-radius: var(--border-radius-medium);
+    color: var(--text);
+    font-family: var(--font-body);
+  }
+  sl-drawer::part(overlay) {
+    background-color: var(--sl-overlay-background-color);
+    /* keep blur minimal for perf */
+    backdrop-filter: blur(1px);
+  }
+  sl-drawer::part(header),
+  sl-drawer::part(title) {
+    font-family: var(--font-head);
+    font-weight: 600;
+    color: var(--text);
+  }
+  sl-drawer::part(body) {
+    font-family: var(--font-body);
+    color: var(--text);
+  }
+  sl-drawer::part(close-button) {
+    color: var(--primary);
+  }
+  sl-drawer[placement='bottom']::part(panel) {
+    border-top-left-radius: var(--border-radius-medium);
+    border-top-right-radius: var(--border-radius-medium);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  sl-drawer[placement='top']::part(panel) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: var(--border-radius-medium);
+    border-bottom-right-radius: var(--border-radius-medium);
+  }
+  sl-drawer[placement='start']::part(panel) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: var(--border-radius-medium);
+    border-bottom-right-radius: var(--border-radius-medium);
+  }
+  sl-drawer[placement='end']::part(panel) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: var(--border-radius-medium);
+    border-bottom-left-radius: var(--border-radius-medium);
+  }
   * {
     box-sizing: border-box;
   }
