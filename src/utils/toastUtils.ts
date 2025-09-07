@@ -107,11 +107,13 @@ export const showToast = ({ message, variant = 'default', duration = 3000 }: Toa
   return remove;
 };
 
-export const toastWarning = (message: string, duration = 3000) =>
+const TOAST_DURATION = 5000
+
+export const toastWarning = (message: string, duration = TOAST_DURATION) =>
   showToast({ message, variant: 'warning', duration });
-export const toastDanger = (message: string, duration = 3000) =>
+export const toastDanger = (message: string, duration = TOAST_DURATION) =>
   showToast({ message, variant: 'danger', duration });
-export const toastSuccess = (message: string, duration = 3000) =>
+export const toastSuccess = (message: string, duration = TOAST_DURATION) =>
   showToast({ message, variant: 'success', duration });
-export const toastPrimary = (message: string, duration = 3000) =>
+export const toastPrimary = (message: string, duration = TOAST_DURATION) =>
   showToast({ message, variant: 'primary', duration });
