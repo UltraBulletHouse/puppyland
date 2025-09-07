@@ -25,6 +25,7 @@ import { TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
 import { toastDanger, toastWarning } from '../../utils/toastUtils';
+import { getI18nMessage } from '../../utils/errorUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
 import '../level-up-modal/level-up-modal';
@@ -232,11 +233,13 @@ export class AppMap extends LitElement {
       }
     } catch (err: any) {
       const status = err?.response?.status;
-      const msg = err?.response?.data?.message || err?.message;
+      const i18nMsg = getI18nMessage(err);
+      const fallbackTooClose = 'Too close to another doghouse. Move a bit farther and try again.';
+      const fallbackGeneric = 'Failed to create doghouse. Please try again.';
       if (status === 409) {
-        toastWarning(msg || 'Too close to another doghouse. Move a bit farther and try again.');
+        toastWarning(i18nMsg || fallbackTooClose);
       } else {
-        toastDanger(msg || 'Failed to create doghouse. Please try again.');
+        toastDanger(i18nMsg || fallbackGeneric);
       }
     }
   }
