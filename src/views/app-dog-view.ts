@@ -343,7 +343,11 @@ export class AppDogView extends LitElement {
       }
 
       .progress-fill.energy {
-        background: linear-gradient(90deg, var(--lav), color-mix(in srgb, var(--lav) 85%, #000));
+        background: linear-gradient(
+          242deg,
+          var(--lav),
+          color-mix(in srgb, var(--lav) 39%, #ffffff)
+        );
       }
 
       .level-badge {
