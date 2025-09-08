@@ -54,10 +54,30 @@
     "energy": "ऊर्जा",
     "treatPacks": "ट्रीट पैक",
     "subscriptions": "सदस्यता",
+    "total": "कुल",
+    "purchaseSuccessTitle": "खरीद सफल",
+    "purchaseTreatsSuccessDesc": "{item} पर आपने {spent} ट्रिट्स खर्च किए।",
+    "purchaseRealSuccessDesc": "आपने सफलतापूर्वक {quantity} × {item} खरीदा।",
+    "purchaseFailed": "खरीद विफल रही। कृपया पुनः प्रयास करें。",
     "product": {
       "treats": "ट्रीट्स",
       "premiumSubscription": "प्रीमियम सदस्यता",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": { "name": "1 कुत्ताघर पैक", "description": "आप 1 अतिरिक्त कुत्ताघर रख सकते हैं" },
+      "doghouse_3_pack": { "name": "3 कुत्ताघर पैक", "description": "आप 3 अतिरिक्त कुत्ताघर रख सकते हैं" },
+      "doghouse_6_pack": { "name": "6 कुत्ताघर पैक", "description": "आप 6 अतिरिक्त कुत्ताघर रख सकते हैं" },
+      "dog_rename": { "name": "कुत्ते का नाम बदलने का टोकन", "description": "अपने कुत्ते के लिए एक बार नाम बदलें" },
+      "doghouse_rename": { "name": "कुत्ताघर नाम बदलने का टोकन", "description": "अपने कुत्ताघर के लिए एक बार नाम बदलें" },
+      "repair_50": { "name": "मरम्मत 50", "description": "" },
+      "repair_max": { "name": "पूर्ण मरम्मत", "description": "" },
+      "energy_10_boost": { "name": "ऊर्जा 10 बूस्ट", "description": "" },
+      "energy_50_boost": { "name": "ऊर्जा 50 बूस्ट", "description": "" },
+      "small_treats": { "name": "छोटे ट्रिट्स", "description": "100 ट्रिट्स" },
+      "tasty_handful": { "name": "स्वादिष्ट मुट्ठी", "description": "700 ट्रिट्स" },
+      "snack_sack": { "name": "नाश्ते की थैली", "description": "1600 ट्रिट्स" },
+      "mega_munch": { "name": "मेगा मंच बैग", "description": "3600 ट्रिट्स" },
+      "ultimate_treat": { "name": "अल्टीमेट ट्रीट क्रेट", "description": "12500 ट्रिट्स" },
+      "premium": { "name": "प्रीमियम", "description": "प्रीमियम सुविधाएँ अनलॉक करें" }
     }
   },
   "quests": {

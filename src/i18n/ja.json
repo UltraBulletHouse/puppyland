@@ -54,10 +54,30 @@
     "energy": "エネルギー",
     "treatPacks": "おやつパック",
     "subscriptions": "サブスクリプション",
+    "total": "合計",
+    "purchaseSuccessTitle": "購入に成功しました",
+    "purchaseTreatsSuccessDesc": "{item} に {spent} 個のおやつを使いました。",
+    "purchaseRealSuccessDesc": "{item} を {quantity} 個購入しました。",
+    "purchaseFailed": "購入に失敗しました。もう一度お試しください。",
     "product": {
       "treats": "おやつ",
       "premiumSubscription": "プレミアムサブスクリプション",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": { "name": "犬小屋 1 パック", "description": "犬小屋を 1 つ追加で設置できます" },
+      "doghouse_3_pack": { "name": "犬小屋 3 パック", "description": "犬小屋を 3 つ追加で設置できます" },
+      "doghouse_6_pack": { "name": "犬小屋 6 パック", "description": "犬小屋を 6 つ追加で設置できます" },
+      "dog_rename": { "name": "犬の改名トークン", "description": "愛犬の名前を 1 回変更できます" },
+      "doghouse_rename": { "name": "犬小屋の改名トークン", "description": "犬小屋の名前を 1 回変更できます" },
+      "repair_50": { "name": "修理 50", "description": "" },
+      "repair_max": { "name": "完全修理", "description": "" },
+      "energy_10_boost": { "name": "エネルギー 10 ブースト", "description": "" },
+      "energy_50_boost": { "name": "エネルギー 50 ブースト", "description": "" },
+      "small_treats": { "name": "小さなおやつ", "description": "おやつ 100 個" },
+      "tasty_handful": { "name": "おいしいひとにぎり", "description": "おやつ 700 個" },
+      "snack_sack": { "name": "スナック袋", "description": "おやつ 1600 個" },
+      "mega_munch": { "name": "メガむしゃむしゃ袋", "description": "おやつ 3600 個" },
+      "ultimate_treat": { "name": "究極のごちそう箱", "description": "おやつ 12500 個" },
+      "premium": { "name": "プレミアム", "description": "プレミアム機能をアンロック" }
     }
   },
   "quests": {

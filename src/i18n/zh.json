@@ -54,10 +54,30 @@
     "energy": "能量",
     "treatPacks": "零食包",
     "subscriptions": "订阅",
+    "total": "总计",
+    "purchaseSuccessTitle": "购买成功",
+    "purchaseTreatsSuccessDesc": "您花费了 {spent} 个零食购买 {item}。",
+    "purchaseRealSuccessDesc": "您已成功购买 {quantity} × {item}。",
+    "purchaseFailed": "购买失败。请重试。",
     "product": {
       "treats": "零食",
       "premiumSubscription": "高级订阅",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": { "name": "1 个狗屋包", "description": "您可以额外放置 1 个狗屋" },
+      "doghouse_3_pack": { "name": "3 个狗屋包", "description": "您可以额外放置 3 个狗屋" },
+      "doghouse_6_pack": { "name": "6 个狗屋包", "description": "您可以额外放置 6 个狗屋" },
+      "dog_rename": { "name": "狗改名令牌", "description": "为您的爱犬购买一次改名" },
+      "doghouse_rename": { "name": "狗屋改名令牌", "description": "为您的狗屋购买一次改名" },
+      "repair_50": { "name": "修复 50", "description": "" },
+      "repair_max": { "name": "完全修复", "description": "" },
+      "energy_10_boost": { "name": "能量提升 10", "description": "" },
+      "energy_50_boost": { "name": "能量提升 50", "description": "" },
+      "small_treats": { "name": "小份零食", "description": "100 个零食" },
+      "tasty_handful": { "name": "美味一把", "description": "700 个零食" },
+      "snack_sack": { "name": "零食袋", "description": "1600 个零食" },
+      "mega_munch": { "name": "超大零食袋", "description": "3600 个零食" },
+      "ultimate_treat": { "name": "终极零食箱", "description": "12500 个零食" },
+      "premium": { "name": "高级", "description": "解锁高级功能" }
     }
   },
   "quests": {

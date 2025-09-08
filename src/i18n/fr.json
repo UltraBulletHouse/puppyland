@@ -54,10 +54,30 @@
     "energy": "Énergie",
     "treatPacks": "Packs de friandises",
     "subscriptions": "Abonnements",
+    "total": "Total",
+    "purchaseSuccessTitle": "Achat réussi",
+    "purchaseTreatsSuccessDesc": "Vous avez dépensé {spent} friandises pour {item}.",
+    "purchaseRealSuccessDesc": "Vous avez acheté avec succès {quantity} × {item}.",
+    "purchaseFailed": "Échec de l'achat. Veuillez réessayer.",
     "product": {
       "treats": "Friandises",
       "premiumSubscription": "Abonnement Premium",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": { "name": "Pack 1 niche", "description": "Vous pouvez placer 1 niche supplémentaire" },
+      "doghouse_3_pack": { "name": "Pack 3 niches", "description": "Vous pouvez placer 3 niches supplémentaires" },
+      "doghouse_6_pack": { "name": "Pack 6 niches", "description": "Vous pouvez placer 6 niches supplémentaires" },
+      "dog_rename": { "name": "Jeton renommage chien", "description": "Achetez un renommage pour votre chien" },
+      "doghouse_rename": { "name": "Jeton renommage niche", "description": "Achetez un renommage pour votre niche" },
+      "repair_50": { "name": "Réparation 50", "description": "" },
+      "repair_max": { "name": "Réparation complète", "description": "" },
+      "energy_10_boost": { "name": "Boost énergie 10", "description": "" },
+      "energy_50_boost": { "name": "Boost énergie 50", "description": "" },
+      "small_treats": { "name": "Petites friandises", "description": "100 friandises" },
+      "tasty_handful": { "name": "Poignée savoureuse", "description": "700 friandises" },
+      "snack_sack": { "name": "Sac de snacks", "description": "1600 friandises" },
+      "mega_munch": { "name": "Sac méga grignotage", "description": "3600 friandises" },
+      "ultimate_treat": { "name": "Caisse ultime de friandises", "description": "12500 friandises" },
+      "premium": { "name": "Premium", "description": "Débloquez des fonctionnalités premium" }
     }
   },
   "quests": {

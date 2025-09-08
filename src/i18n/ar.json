@@ -54,10 +54,30 @@
     "energy": "طاقة",
     "treatPacks": "حزم المكافآت",
     "subscriptions": "الاشتراكات",
+    "total": "الإجمالي",
+    "purchaseSuccessTitle": "اكتملت عملية الشراء",
+    "purchaseTreatsSuccessDesc": "أنفقت {spent} من المكافآت على {item}.",
+    "purchaseRealSuccessDesc": "لقد اشتريت بنجاح {quantity} × {item}.",
+    "purchaseFailed": "فشلت عملية الشراء. حاول مرة أخرى.",
     "product": {
       "treats": "مكافآت",
       "premiumSubscription": "اشتراك بريميوم",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": { "name": "حزمة 1 بيت كلاب", "description": "يمكنك وضع بيت كلاب إضافي واحد" },
+      "doghouse_3_pack": { "name": "حزمة 3 بيوت كلاب", "description": "يمكنك وضع 3 بيوت كلاب إضافية" },
+      "doghouse_6_pack": { "name": "حزمة 6 بيوت كلاب", "description": "يمكنك وضع 6 بيوت كلاب إضافية" },
+      "dog_rename": { "name": "رمز إعادة تسمية الكلب", "description": "اشترِ إعادة تسمية واحدة لكلبك" },
+      "doghouse_rename": { "name": "رمز إعادة تسمية بيت الكلب", "description": "اشترِ إعادة تسمية واحدة لبيت كلبك" },
+      "repair_50": { "name": "إصلاح 50", "description": "" },
+      "repair_max": { "name": "إصلاح كامل", "description": "" },
+      "energy_10_boost": { "name": "تعزيز طاقة 10", "description": "" },
+      "energy_50_boost": { "name": "تعزيز طاقة 50", "description": "" },
+      "small_treats": { "name": "حلويات صغيرة", "description": "100 مكافأة" },
+      "tasty_handful": { "name": "قبضة لذيذة", "description": "700 مكافأة" },
+      "snack_sack": { "name": "كيس وجبات خفيفة", "description": "1600 مكافأة" },
+      "mega_munch": { "name": "حقيبة قضمات عملاقة", "description": "3600 مكافأة" },
+      "ultimate_treat": { "name": "صندوق الحلويات النهائي", "description": "12500 مكافأة" },
+      "premium": { "name": "بريميوم", "description": "فتح الميزات المميزة" }
     }
   },
   "quests": {

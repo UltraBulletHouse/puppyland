@@ -54,10 +54,30 @@
     "energy": "শক্তি",
     "treatPacks": "ট্রিট প্যাক",
     "subscriptions": "সাবস্ক্রিপশন",
+    "total": "মোট",
+    "purchaseSuccessTitle": "ক্রয় সফল",
+    "purchaseTreatsSuccessDesc": "{item} এর জন্য আপনি {spent} ট্রিট খরচ করেছেন।",
+    "purchaseRealSuccessDesc": "আপনি সফলভাবে {quantity} × {item} ক্রয় করেছেন।",
+    "purchaseFailed": "ক্রয় ব্যর্থ। আবার চেষ্টা করুন।",
     "product": {
       "treats": "ট্রিটস",
       "premiumSubscription": "প্রিমিয়াম সাবস্ক্রিপশন",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": { "name": "১ কুকুরঘর প্যাক", "description": "আপনি ১টি অতিরিক্ত কুকুরঘর বসাতে পারবেন" },
+      "doghouse_3_pack": { "name": "৩ কুকুরঘর প্যাক", "description": "আপনি ৩টি অতিরিক্ত কুকুরঘর বসাতে পারবেন" },
+      "doghouse_6_pack": { "name": "৬ কুকুরঘর প্যাক", "description": "আপনি ৬টি অতিরিক্ত কুকুরঘর বসাতে পারবেন" },
+      "dog_rename": { "name": "কুকুরের নাম পরিবর্তন টোকেন", "description": "আপনার কুকুরের জন্য একবার নাম পরিবর্তন করুন" },
+      "doghouse_rename": { "name": "কুকুরঘরের নাম পরিবর্তন টোকেন", "description": "আপনার কুকুরঘরের জন্য একবার নাম পরিবর্তন করুন" },
+      "repair_50": { "name": "মেরামত ৫০", "description": "" },
+      "repair_max": { "name": "পূর্ণ মেরামত", "description": "" },
+      "energy_10_boost": { "name": "শক্তি ১০ বুস্ট", "description": "" },
+      "energy_50_boost": { "name": "শক্তি ৫০ বুস্ট", "description": "" },
+      "small_treats": { "name": "ছোট ট্রিটস", "description": "১০০ ট্রিটস" },
+      "tasty_handful": { "name": "সুস্বাদু এক মুঠো", "description": "৭০০ ট্রিটস" },
+      "snack_sack": { "name": "স্ন্যাক ব্যাগ", "description": "১৬০০ ট্রিটস" },
+      "mega_munch": { "name": "মেগা মাঞ্চ ব্যাগ", "description": "৩৬০০ ট্রিটস" },
+      "ultimate_treat": { "name": "চূড়ান্ত ট্রিটস বক্স", "description": "১২৫০০ ট্রিটস" },
+      "premium": { "name": "প্রিমিয়াম", "description": "প্রিমিয়াম বৈশিষ্ট্য আনলক করুন" }
     }
   },
   "quests": {

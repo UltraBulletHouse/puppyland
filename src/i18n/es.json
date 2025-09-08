@@ -54,10 +54,30 @@
     "energy": "Energía",
     "treatPacks": "Paquetes de golosinas",
     "subscriptions": "Suscripciones",
+    "total": "Total",
+    "purchaseSuccessTitle": "Compra exitosa",
+    "purchaseTreatsSuccessDesc": "Has gastado {spent} golosinas en {item}.",
+    "purchaseRealSuccessDesc": "Has comprado correctamente {quantity} × {item}.",
+    "purchaseFailed": "La compra falló. Inténtalo de nuevo.",
     "product": {
       "treats": "Golosinas",
       "premiumSubscription": "Suscripción Premium",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": { "name": "Paquete de 1 caseta", "description": "Puedes colocar 1 caseta adicional" },
+      "doghouse_3_pack": { "name": "Paquete de 3 casetas", "description": "Puedes colocar 3 casetas adicionales" },
+      "doghouse_6_pack": { "name": "Paquete de 6 casetas", "description": "Puedes colocar 6 casetas adicionales" },
+      "dog_rename": { "name": "Ficha cambio nombre perro", "description": "Compra un renombrado para tu perro" },
+      "doghouse_rename": { "name": "Ficha cambio nombre caseta", "description": "Compra un renombrado para tu caseta" },
+      "repair_50": { "name": "Reparar 50", "description": "" },
+      "repair_max": { "name": "Reparación completa", "description": "" },
+      "energy_10_boost": { "name": "Impulso de energía 10", "description": "" },
+      "energy_50_boost": { "name": "Impulso de energía 50", "description": "" },
+      "small_treats": { "name": "Golosinas pequeñas", "description": "100 golosinas" },
+      "tasty_handful": { "name": "Puñado sabroso", "description": "700 golosinas" },
+      "snack_sack": { "name": "Saco de snacks", "description": "1600 golosinas" },
+      "mega_munch": { "name": "Bolsa mega mordisco", "description": "3600 golosinas" },
+      "ultimate_treat": { "name": "Caja de golosinas definitiva", "description": "12500 golosinas" },
+      "premium": { "name": "Premium", "description": "Desbloquea funciones premium" }
     }
   },
   "quests": {

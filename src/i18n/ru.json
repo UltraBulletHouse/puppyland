@@ -54,10 +54,30 @@
     "energy": "Энергия",
     "treatPacks": "Пакеты с лакомствами",
     "subscriptions": "Подписки",
+    "total": "Итого",
+    "purchaseSuccessTitle": "Покупка выполнена",
+    "purchaseTreatsSuccessDesc": "Вы потратили {spent} лакомств на {item}.",
+    "purchaseRealSuccessDesc": "Вы успешно приобрели {quantity} × {item}.",
+    "purchaseFailed": "Не удалось выполнить покупку. Повторите попытку.",
     "product": {
       "treats": "Лакомства",
       "premiumSubscription": "Премиум-подписка",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": { "name": "Набор из 1 будки", "description": "Вы можете разместить 1 дополнительную будку" },
+      "doghouse_3_pack": { "name": "Набор из 3 будок", "description": "Вы можете разместить 3 дополнительные будки" },
+      "doghouse_6_pack": { "name": "Набор из 6 будок", "description": "Вы можете разместить 6 дополнительных будок" },
+      "dog_rename": { "name": "Токен переименования собаки", "description": "Купите одно переименование для вашей собаки" },
+      "doghouse_rename": { "name": "Токен переименования будки", "description": "Купите одно переименование для вашей будки" },
+      "repair_50": { "name": "Ремонт 50", "description": "" },
+      "repair_max": { "name": "Полный ремонт", "description": "" },
+      "energy_10_boost": { "name": "Буст энергии 10", "description": "" },
+      "energy_50_boost": { "name": "Буст энергии 50", "description": "" },
+      "small_treats": { "name": "Небольшие лакомства", "description": "100 лакомств" },
+      "tasty_handful": { "name": "Вкусная горсть", "description": "700 лакомств" },
+      "snack_sack": { "name": "Мешок снеков", "description": "1600 лакомств" },
+      "mega_munch": { "name": "Сумка мега-кусняшек", "description": "3600 лакомств" },
+      "ultimate_treat": { "name": "Ящик ультимативных лакомств", "description": "12500 лакомств" },
+      "premium": { "name": "Премиум", "description": "Разблокируйте премиум-функции" }
     }
   },
   "quests": {

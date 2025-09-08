@@ -54,10 +54,30 @@
     "energy": "Energia",
     "treatPacks": "Pacchetti di dolcetti",
     "subscriptions": "Abbonamenti",
+    "total": "Totale",
+    "purchaseSuccessTitle": "Acquisto riuscito",
+    "purchaseTreatsSuccessDesc": "Hai speso {spent} dolcetti per {item}.",
+    "purchaseRealSuccessDesc": "Hai acquistato con successo {quantity} × {item}.",
+    "purchaseFailed": "Acquisto non riuscito. Riprova.",
     "product": {
       "treats": "Dolcetti",
       "premiumSubscription": "Abbonamento Premium",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": { "name": "Pacchetto 1 cuccia", "description": "Puoi posizionare 1 cuccia aggiuntiva" },
+      "doghouse_3_pack": { "name": "Pacchetto 3 cucce", "description": "Puoi posizionare 3 cucce aggiuntive" },
+      "doghouse_6_pack": { "name": "Pacchetto 6 cucce", "description": "Puoi posizionare 6 cucce aggiuntive" },
+      "dog_rename": { "name": "Gettone rinomina cane", "description": "Acquista una rinomina per il tuo cane" },
+      "doghouse_rename": { "name": "Gettone rinomina cuccia", "description": "Acquista una rinomina per la tua cuccia" },
+      "repair_50": { "name": "Riparazione 50", "description": "" },
+      "repair_max": { "name": "Riparazione completa", "description": "" },
+      "energy_10_boost": { "name": "Boost energia 10", "description": "" },
+      "energy_50_boost": { "name": "Boost energia 50", "description": "" },
+      "small_treats": { "name": "Piccoli dolcetti", "description": "100 dolcetti" },
+      "tasty_handful": { "name": "Manciata gustosa", "description": "700 dolcetti" },
+      "snack_sack": { "name": "Sacco di snack", "description": "1600 dolcetti" },
+      "mega_munch": { "name": "Sacco mega boccone", "description": "3600 dolcetti" },
+      "ultimate_treat": { "name": "Cassa di dolcetti definitiva", "description": "12500 dolcetti" },
+      "premium": { "name": "Premium", "description": "Sblocca funzionalità premium" }
     }
   },
   "quests": {
