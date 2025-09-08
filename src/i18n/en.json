@@ -1,0 +1,118 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "Missing coordinates"
+    },
+    "reach": {
+      "outOfReach": "Out of reach. Distance: {distanceMeters}m, reach: {reachMeters}m"
+    },
+    "name": {
+      "tooLong": "Name too long",
+      "exists": "Name already exists",
+      "cannotChangeAnymore": "You can't change name anymore"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "This doghouse is fully healed!"
+    },
+    "buff": {
+      "notAvailable": "You don't have this buff available anymore!"
+    },
+    "purchase": {
+      "verifyFailed": "Error verifying purchase: {statusCode}",
+      "ackFailed": "Acknowledge purchase failed: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "Error verifying subscription: {statusCode}",
+      "invalidExpiry": "Invalid subscription expiry time",
+      "ackFailed": "Acknowledge subscription failed: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "Not enough Treats"
+    },
+    "quest": {
+      "notFound": "Quest not found",
+      "notOwner": "Quest does not belong to current user",
+      "notCompleted": "Quest is not completed yet",
+      "alreadyClaimed": "Quest reward already claimed"
+    },
+    "language": {
+      "required": "Language must be provided"
+    },
+    "oauth": {
+      "refreshFailed": "Token refresh failed: {statusCode}"
+    },
+    "internal": "Internal Server Error"
+  },
+
+  "shop": {
+    "product": {
+      "treats": "Treats",
+      "premiumSubscription": "Premium Subscription",
+      "{itemId}": "{itemId}"
+    }
+  },
+
+  "quests": {
+    "claim": {
+      "success": "Claimed: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "First Steps",
+        "2": "Builder",
+        "3": "Master Builder"
+      },
+      "SPEND_ENERGY": {
+        "1": "Energy Burner",
+        "2": "Energy Master",
+        "3": "Energy Titan"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "Energy Saver",
+        "2": "Experience Hunter",
+        "3": "Experience Master"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "Handyman",
+        "2": "Repair Expert",
+        "3": "Master Mechanic"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "Attacker",
+        "2": "Raid Leader",
+        "3": "Warlord"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "Destroyer",
+        "2": "Demolition Expert",
+        "3": "Destroyer of Worlds"
+      },
+      "LEVEL_UP": {
+        "1": "Level Up",
+        "2": "Rising Star",
+        "3": "Elite Champion"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "Build {target} doghouse(s)",
+      "SPEND_ENERGY": "Spend {target} energy",
+      "GAIN_EXPERIENCE": "Gain {target} XP",
+      "REPAIR_DOGHOUSES": "Repair {target} doghouse(s)",
+      "ATTACK_DOGHOUSES": "Attack {target} doghouse(s)",
+      "DESTROY_DOGHOUSES": "Destroy {target} doghouse(s)",
+      "LEVEL_UP": "Reach {target} new level(s)"
+    }
+  },
+
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} Treats",
+      "ENERGY": "{amount} Energy",
+      "EXPERIENCE": "{amount} XP",
+      "DOG_RENAME": "Dog rename token",
+      "DOGHOUSE_RENAME": "Doghouse rename token",
+      "DOGHOUSES": "{amount} Extra Doghouse",
+      "ENERGY_RESTORE": "Full Energy Restore"
+    }
+  }
+}
