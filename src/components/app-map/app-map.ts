@@ -14,6 +14,7 @@ import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { userInfoContext } from '../../contexts/userInfoContext';
 import { GeolocationController } from '../../controllers/GeolocationController';
 import '../../scripts/leaflet-canvas-markers';
+import { t } from '../../i18n';
 import { DogInfo } from '../../types/dog';
 import {
   CreateDoghouseResponse,
@@ -342,7 +343,7 @@ export class AppMap extends LitElement {
           <div id="geolocation-overlay-content">
             <div id="geolocation-position" @click=${this.watchUserPos}>
               <svg-icon name="accurate" id="geolocation-position-icon"></svg-icon>
-              <p id="geolocation-position-text">Please turn on your GPS and wait to load</p>
+              <p id="geolocation-position-text">${t('turnOnGpsWait')}</p>
             </div>
           </div>
         </div>`}
