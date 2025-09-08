@@ -103,22 +103,36 @@
     },
     "description": {
       "BUILD_DOGHOUSES": "Build {target} doghouse(s)",
+      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
       "SPEND_ENERGY": "Spend {target} energy",
       "GAIN_EXPERIENCE": "Gain {target} XP",
       "REPAIR_DOGHOUSES": "Repair {target} doghouse(s)",
+      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
       "ATTACK_DOGHOUSES": "Attack {target} doghouse(s)",
+      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
       "DESTROY_DOGHOUSES": "Destroy {target} doghouse(s)",
-      "LEVEL_UP": "Reach {target} new level(s)"
+      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP": "Reach {target} new level(s)",
+      "LEVEL_UP_one": "Reach {target} new level",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
     "description": {
       "TREATS": "{amount} Treats",
+      "TREATS_one": "{amount} Treat",
+      "TREATS_other": "{amount} Treats",
       "ENERGY": "{amount} Energy",
       "EXPERIENCE": "{amount} XP",
       "DOG_RENAME": "Dog rename token",
       "DOGHOUSE_RENAME": "Doghouse rename token",
       "DOGHOUSES": "{amount} Extra Doghouse",
+      "DOGHOUSES_one": "{amount} Extra Doghouse",
+      "DOGHOUSES_other": "{amount} Extra Doghouses",
       "ENERGY_RESTORE": "Full Energy Restore"
     }
   },

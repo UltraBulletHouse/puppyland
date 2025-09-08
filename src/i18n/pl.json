@@ -103,22 +103,43 @@
     },
     "description": {
       "BUILD_DOGHOUSES": "Zbuduj {target} bud(y)",
+      "BUILD_DOGHOUSES_one": "Zbuduj {target} budę",
+      "BUILD_DOGHOUSES_few": "Zbuduj {target} budy",
+      "BUILD_DOGHOUSES_many": "Zbuduj {target} bud",
       "SPEND_ENERGY": "Wydaj {target} energii",
       "GAIN_EXPERIENCE": "Zdobądź {target} PD",
       "REPAIR_DOGHOUSES": "Napraw {target} bud(y)",
+      "REPAIR_DOGHOUSES_one": "Napraw {target} budę",
+      "REPAIR_DOGHOUSES_few": "Napraw {target} budy",
+      "REPAIR_DOGHOUSES_many": "Napraw {target} bud",
       "ATTACK_DOGHOUSES": "Zaatakuj {target} bud(y)",
+      "ATTACK_DOGHOUSES_one": "Zaatakuj {target} budę",
+      "ATTACK_DOGHOUSES_few": "Zaatakuj {target} budy",
+      "ATTACK_DOGHOUSES_many": "Zaatakuj {target} bud",
       "DESTROY_DOGHOUSES": "Zniszcz {target} bud(y)",
-      "LEVEL_UP": "Osiągnij {target} nowy(e) poziom(y)"
+      "DESTROY_DOGHOUSES_one": "Zniszcz {target} budę",
+      "DESTROY_DOGHOUSES_few": "Zniszcz {target} budy",
+      "DESTROY_DOGHOUSES_many": "Zniszcz {target} bud",
+      "LEVEL_UP": "Osiągnij {target} nowy(e) poziom(y)",
+      "LEVEL_UP_one": "Osiągnij {target} nowy poziom",
+      "LEVEL_UP_few": "Osiągnij {target} nowe poziomy",
+      "LEVEL_UP_many": "Osiągnij {target} nowych poziomów"
     }
   },
   "rewards": {
     "description": {
       "TREATS": "{amount} smakołyków",
+      "TREATS_one": "{amount} smakołyk",
+      "TREATS_few": "{amount} smakołyki",
+      "TREATS_many": "{amount} smakołyków",
       "ENERGY": "{amount} energii",
       "EXPERIENCE": "{amount} PD",
       "DOG_RENAME": "Token zmiany imienia psa",
       "DOGHOUSE_RENAME": "Token zmiany nazwy budy",
       "DOGHOUSES": "{amount} dodatkowych bud",
+      "DOGHOUSES_one": "{amount} dodatkowa buda",
+      "DOGHOUSES_few": "{amount} dodatkowe budy",
+      "DOGHOUSES_many": "{amount} dodatkowych bud",
       "ENERGY_RESTORE": "Pełne odnowienie energii"
     }
   },
