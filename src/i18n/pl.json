@@ -188,7 +188,12 @@
       "LEVEL_UP": "Osiągnij {target} nowy(e) poziom(y)",
       "LEVEL_UP_one": "Osiągnij {target} nowy poziom",
       "LEVEL_UP_few": "Osiągnij {target} nowe poziomy",
-      "LEVEL_UP_many": "Osiągnij {target} nowych poziomów"
+      "LEVEL_UP_many": "Osiągnij {target} nowych poziomów",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
@@ -205,7 +210,9 @@
       "DOGHOUSES_one": "{amount} dodatkowa buda",
       "DOGHOUSES_few": "{amount} dodatkowe budy",
       "DOGHOUSES_many": "{amount} dodatkowych bud",
-      "ENERGY_RESTORE": "Pełne odnowienie energii"
+      "ENERGY_RESTORE": "Pełne odnowienie energii",
+      "TREATS_other": "{amount} Treats",
+      "DOGHOUSES_other": "{amount} Extra Doghouses"
     }
   },
   "statsTab": "Statystyki",

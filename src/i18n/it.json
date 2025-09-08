@@ -63,21 +63,66 @@
       "treats": "Dolcetti",
       "premiumSubscription": "Abbonamento Premium",
       "{itemId}": "{itemId}",
-      "doghouse_1_pack": { "name": "Pacchetto 1 cuccia", "description": "Puoi posizionare 1 cuccia aggiuntiva" },
-      "doghouse_3_pack": { "name": "Pacchetto 3 cucce", "description": "Puoi posizionare 3 cucce aggiuntive" },
-      "doghouse_6_pack": { "name": "Pacchetto 6 cucce", "description": "Puoi posizionare 6 cucce aggiuntive" },
-      "dog_rename": { "name": "Gettone rinomina cane", "description": "Acquista una rinomina per il tuo cane" },
-      "doghouse_rename": { "name": "Gettone rinomina cuccia", "description": "Acquista una rinomina per la tua cuccia" },
-      "repair_50": { "name": "Riparazione 50", "description": "" },
-      "repair_max": { "name": "Riparazione completa", "description": "" },
-      "energy_10_boost": { "name": "Boost energia 10", "description": "" },
-      "energy_50_boost": { "name": "Boost energia 50", "description": "" },
-      "small_treats": { "name": "Piccoli dolcetti", "description": "100 dolcetti" },
-      "tasty_handful": { "name": "Manciata gustosa", "description": "700 dolcetti" },
-      "snack_sack": { "name": "Sacco di snack", "description": "1600 dolcetti" },
-      "mega_munch": { "name": "Sacco mega boccone", "description": "3600 dolcetti" },
-      "ultimate_treat": { "name": "Cassa di dolcetti definitiva", "description": "12500 dolcetti" },
-      "premium": { "name": "Premium", "description": "Sblocca funzionalità premium" }
+      "doghouse_1_pack": {
+        "name": "Pacchetto 1 cuccia",
+        "description": "Puoi posizionare 1 cuccia aggiuntiva"
+      },
+      "doghouse_3_pack": {
+        "name": "Pacchetto 3 cucce",
+        "description": "Puoi posizionare 3 cucce aggiuntive"
+      },
+      "doghouse_6_pack": {
+        "name": "Pacchetto 6 cucce",
+        "description": "Puoi posizionare 6 cucce aggiuntive"
+      },
+      "dog_rename": {
+        "name": "Gettone rinomina cane",
+        "description": "Acquista una rinomina per il tuo cane"
+      },
+      "doghouse_rename": {
+        "name": "Gettone rinomina cuccia",
+        "description": "Acquista una rinomina per la tua cuccia"
+      },
+      "repair_50": {
+        "name": "Riparazione 50",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "Riparazione completa",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "Boost energia 10",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "Boost energia 50",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "Piccoli dolcetti",
+        "description": "100 dolcetti"
+      },
+      "tasty_handful": {
+        "name": "Manciata gustosa",
+        "description": "700 dolcetti"
+      },
+      "snack_sack": {
+        "name": "Sacco di snack",
+        "description": "1600 dolcetti"
+      },
+      "mega_munch": {
+        "name": "Sacco mega boccone",
+        "description": "3600 dolcetti"
+      },
+      "ultimate_treat": {
+        "name": "Cassa di dolcetti definitiva",
+        "description": "12500 dolcetti"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Sblocca funzionalità premium"
+      }
     }
   },
   "quests": {
@@ -128,7 +173,17 @@
       "REPAIR_DOGHOUSES": "Ripara {target} cuccia(e)",
       "ATTACK_DOGHOUSES": "Attacca {target} cuccia(e)",
       "DESTROY_DOGHOUSES": "Distruggi {target} cuccia(e)",
-      "LEVEL_UP": "Raggiungi {target} nuovo(i) livello(i)"
+      "LEVEL_UP": "Raggiungi {target} nuovo(i) livello(i)",
+      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
+      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
+      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
+      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP_one": "Reach {target} new level",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
@@ -139,7 +194,11 @@
       "DOG_RENAME": "Gettone per rinominare il cane",
       "DOGHOUSE_RENAME": "Gettone per rinominare la cuccia",
       "DOGHOUSES": "{amount} cuccia(e) extra",
-      "ENERGY_RESTORE": "Ripristino completo dell'energia"
+      "ENERGY_RESTORE": "Ripristino completo dell'energia",
+      "TREATS_one": "{amount} Treat",
+      "TREATS_other": "{amount} Treats",
+      "DOGHOUSES_one": "{amount} Extra Doghouse",
+      "DOGHOUSES_other": "{amount} Extra Doghouses"
     }
   },
   "statsTab": "Statistiche",

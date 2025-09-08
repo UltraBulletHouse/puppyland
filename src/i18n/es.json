@@ -63,21 +63,66 @@
       "treats": "Golosinas",
       "premiumSubscription": "Suscripción Premium",
       "{itemId}": "{itemId}",
-      "doghouse_1_pack": { "name": "Paquete de 1 caseta", "description": "Puedes colocar 1 caseta adicional" },
-      "doghouse_3_pack": { "name": "Paquete de 3 casetas", "description": "Puedes colocar 3 casetas adicionales" },
-      "doghouse_6_pack": { "name": "Paquete de 6 casetas", "description": "Puedes colocar 6 casetas adicionales" },
-      "dog_rename": { "name": "Ficha cambio nombre perro", "description": "Compra un renombrado para tu perro" },
-      "doghouse_rename": { "name": "Ficha cambio nombre caseta", "description": "Compra un renombrado para tu caseta" },
-      "repair_50": { "name": "Reparar 50", "description": "" },
-      "repair_max": { "name": "Reparación completa", "description": "" },
-      "energy_10_boost": { "name": "Impulso de energía 10", "description": "" },
-      "energy_50_boost": { "name": "Impulso de energía 50", "description": "" },
-      "small_treats": { "name": "Golosinas pequeñas", "description": "100 golosinas" },
-      "tasty_handful": { "name": "Puñado sabroso", "description": "700 golosinas" },
-      "snack_sack": { "name": "Saco de snacks", "description": "1600 golosinas" },
-      "mega_munch": { "name": "Bolsa mega mordisco", "description": "3600 golosinas" },
-      "ultimate_treat": { "name": "Caja de golosinas definitiva", "description": "12500 golosinas" },
-      "premium": { "name": "Premium", "description": "Desbloquea funciones premium" }
+      "doghouse_1_pack": {
+        "name": "Paquete de 1 caseta",
+        "description": "Puedes colocar 1 caseta adicional"
+      },
+      "doghouse_3_pack": {
+        "name": "Paquete de 3 casetas",
+        "description": "Puedes colocar 3 casetas adicionales"
+      },
+      "doghouse_6_pack": {
+        "name": "Paquete de 6 casetas",
+        "description": "Puedes colocar 6 casetas adicionales"
+      },
+      "dog_rename": {
+        "name": "Ficha cambio nombre perro",
+        "description": "Compra un renombrado para tu perro"
+      },
+      "doghouse_rename": {
+        "name": "Ficha cambio nombre caseta",
+        "description": "Compra un renombrado para tu caseta"
+      },
+      "repair_50": {
+        "name": "Reparar 50",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "Reparación completa",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "Impulso de energía 10",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "Impulso de energía 50",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "Golosinas pequeñas",
+        "description": "100 golosinas"
+      },
+      "tasty_handful": {
+        "name": "Puñado sabroso",
+        "description": "700 golosinas"
+      },
+      "snack_sack": {
+        "name": "Saco de snacks",
+        "description": "1600 golosinas"
+      },
+      "mega_munch": {
+        "name": "Bolsa mega mordisco",
+        "description": "3600 golosinas"
+      },
+      "ultimate_treat": {
+        "name": "Caja de golosinas definitiva",
+        "description": "12500 golosinas"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Desbloquea funciones premium"
+      }
     }
   },
   "quests": {
@@ -128,7 +173,17 @@
       "REPAIR_DOGHOUSES": "Repara {target} caseta(s) de perro",
       "ATTACK_DOGHOUSES": "Ataca {target} caseta(s) de perro",
       "DESTROY_DOGHOUSES": "Destruye {target} caseta(s) de perro",
-      "LEVEL_UP": "Alcanza {target} nuevo(s) nivel(es)"
+      "LEVEL_UP": "Alcanza {target} nuevo(s) nivel(es)",
+      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
+      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
+      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
+      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP_one": "Reach {target} new level",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
@@ -139,7 +194,11 @@
       "DOG_RENAME": "Ficha para cambiar el nombre del perro",
       "DOGHOUSE_RENAME": "Ficha para cambiar el nombre de la caseta",
       "DOGHOUSES": "{amount} Caseta(s) de perro extra",
-      "ENERGY_RESTORE": "Restauración completa de energía"
+      "ENERGY_RESTORE": "Restauración completa de energía",
+      "TREATS_one": "{amount} Treat",
+      "TREATS_other": "{amount} Treats",
+      "DOGHOUSES_one": "{amount} Extra Doghouse",
+      "DOGHOUSES_other": "{amount} Extra Doghouses"
     }
   },
   "statsTab": "Estadísticas",

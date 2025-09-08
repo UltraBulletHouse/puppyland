@@ -63,21 +63,66 @@
       "treats": "ট্রিটস",
       "premiumSubscription": "প্রিমিয়াম সাবস্ক্রিপশন",
       "{itemId}": "{itemId}",
-      "doghouse_1_pack": { "name": "১ কুকুরঘর প্যাক", "description": "আপনি ১টি অতিরিক্ত কুকুরঘর বসাতে পারবেন" },
-      "doghouse_3_pack": { "name": "৩ কুকুরঘর প্যাক", "description": "আপনি ৩টি অতিরিক্ত কুকুরঘর বসাতে পারবেন" },
-      "doghouse_6_pack": { "name": "৬ কুকুরঘর প্যাক", "description": "আপনি ৬টি অতিরিক্ত কুকুরঘর বসাতে পারবেন" },
-      "dog_rename": { "name": "কুকুরের নাম পরিবর্তন টোকেন", "description": "আপনার কুকুরের জন্য একবার নাম পরিবর্তন করুন" },
-      "doghouse_rename": { "name": "কুকুরঘরের নাম পরিবর্তন টোকেন", "description": "আপনার কুকুরঘরের জন্য একবার নাম পরিবর্তন করুন" },
-      "repair_50": { "name": "মেরামত ৫০", "description": "" },
-      "repair_max": { "name": "পূর্ণ মেরামত", "description": "" },
-      "energy_10_boost": { "name": "শক্তি ১০ বুস্ট", "description": "" },
-      "energy_50_boost": { "name": "শক্তি ৫০ বুস্ট", "description": "" },
-      "small_treats": { "name": "ছোট ট্রিটস", "description": "১০০ ট্রিটস" },
-      "tasty_handful": { "name": "সুস্বাদু এক মুঠো", "description": "৭০০ ট্রিটস" },
-      "snack_sack": { "name": "স্ন্যাক ব্যাগ", "description": "১৬০০ ট্রিটস" },
-      "mega_munch": { "name": "মেগা মাঞ্চ ব্যাগ", "description": "৩৬০০ ট্রিটস" },
-      "ultimate_treat": { "name": "চূড়ান্ত ট্রিটস বক্স", "description": "১২৫০০ ট্রিটস" },
-      "premium": { "name": "প্রিমিয়াম", "description": "প্রিমিয়াম বৈশিষ্ট্য আনলক করুন" }
+      "doghouse_1_pack": {
+        "name": "১ কুকুরঘর প্যাক",
+        "description": "আপনি ১টি অতিরিক্ত কুকুরঘর বসাতে পারবেন"
+      },
+      "doghouse_3_pack": {
+        "name": "৩ কুকুরঘর প্যাক",
+        "description": "আপনি ৩টি অতিরিক্ত কুকুরঘর বসাতে পারবেন"
+      },
+      "doghouse_6_pack": {
+        "name": "৬ কুকুরঘর প্যাক",
+        "description": "আপনি ৬টি অতিরিক্ত কুকুরঘর বসাতে পারবেন"
+      },
+      "dog_rename": {
+        "name": "কুকুরের নাম পরিবর্তন টোকেন",
+        "description": "আপনার কুকুরের জন্য একবার নাম পরিবর্তন করুন"
+      },
+      "doghouse_rename": {
+        "name": "কুকুরঘরের নাম পরিবর্তন টোকেন",
+        "description": "আপনার কুকুরঘরের জন্য একবার নাম পরিবর্তন করুন"
+      },
+      "repair_50": {
+        "name": "মেরামত ৫০",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "পূর্ণ মেরামত",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "শক্তি ১০ বুস্ট",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "শক্তি ৫০ বুস্ট",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "ছোট ট্রিটস",
+        "description": "১০০ ট্রিটস"
+      },
+      "tasty_handful": {
+        "name": "সুস্বাদু এক মুঠো",
+        "description": "৭০০ ট্রিটস"
+      },
+      "snack_sack": {
+        "name": "স্ন্যাক ব্যাগ",
+        "description": "১৬০০ ট্রিটস"
+      },
+      "mega_munch": {
+        "name": "মেগা মাঞ্চ ব্যাগ",
+        "description": "৩৬০০ ট্রিটস"
+      },
+      "ultimate_treat": {
+        "name": "চূড়ান্ত ট্রিটস বক্স",
+        "description": "১২৫০০ ট্রিটস"
+      },
+      "premium": {
+        "name": "প্রিমিয়াম",
+        "description": "প্রিমিয়াম বৈশিষ্ট্য আনলক করুন"
+      }
     }
   },
   "quests": {
@@ -128,7 +173,17 @@
       "REPAIR_DOGHOUSES": "{target} টি কুকুর ঘর মেরামত করুন",
       "ATTACK_DOGHOUSES": "{target} টি কুকুর ঘর আক্রমণ করুন",
       "DESTROY_DOGHOUSES": "{target} টি কুকুর ঘর ধ্বংস করুন",
-      "LEVEL_UP": "{target} টি নতুন স্তরে পৌঁছান"
+      "LEVEL_UP": "{target} টি নতুন স্তরে পৌঁছান",
+      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
+      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
+      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
+      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP_one": "Reach {target} new level",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
@@ -139,7 +194,11 @@
       "DOG_RENAME": "কুকুরের নাম পরিবর্তনের টোকেন",
       "DOGHOUSE_RENAME": "কুকুর ঘরের নাম পরিবর্তনের টোকেন",
       "DOGHOUSES": "{amount} টি অতিরিক্ত কুকুর ঘর",
-      "ENERGY_RESTORE": "সম্পূর্ণ শক্তি পুনরুদ্ধার"
+      "ENERGY_RESTORE": "সম্পূর্ণ শক্তি পুনরুদ্ধার",
+      "TREATS_one": "{amount} Treat",
+      "TREATS_other": "{amount} Treats",
+      "DOGHOUSES_one": "{amount} Extra Doghouse",
+      "DOGHOUSES_other": "{amount} Extra Doghouses"
     }
   },
   "statsTab": "পরিসংখ্যান",

@@ -63,21 +63,66 @@
       "treats": "Leckerlis",
       "premiumSubscription": "Premium-Abonnement",
       "{itemId}": "{itemId}",
-      "doghouse_1_pack": { "name": "1er-Pack Hundehütte", "description": "Du kannst 1 zusätzliche Hundehütte platzieren" },
-      "doghouse_3_pack": { "name": "3er-Pack Hundehütten", "description": "Du kannst 3 zusätzliche Hundehütten platzieren" },
-      "doghouse_6_pack": { "name": "6er-Pack Hundehütten", "description": "Du kannst 6 zusätzliche Hundehütten platzieren" },
-      "dog_rename": { "name": "Token Hund umbenennen", "description": "Kaufe eine Umbenennung für deinen Hund" },
-      "doghouse_rename": { "name": "Token Hundehütte umbenennen", "description": "Kaufe eine Umbenennung für deine Hundehütte" },
-      "repair_50": { "name": "Reparatur 50", "description": "" },
-      "repair_max": { "name": "Vollreparatur", "description": "" },
-      "energy_10_boost": { "name": "Energie-Boost 10", "description": "" },
-      "energy_50_boost": { "name": "Energie-Boost 50", "description": "" },
-      "small_treats": { "name": "Kleine Leckerlis", "description": "100 Leckerlis" },
-      "tasty_handful": { "name": "Leckere Handvoll", "description": "700 Leckerlis" },
-      "snack_sack": { "name": "Snack-Sack", "description": "1600 Leckerlis" },
-      "mega_munch": { "name": "Mega-Munch-Beutel", "description": "3600 Leckerlis" },
-      "ultimate_treat": { "name": "Ultimative Leckerli-Kiste", "description": "12500 Leckerlis" },
-      "premium": { "name": "Premium", "description": "Premium-Funktionen freischalten" }
+      "doghouse_1_pack": {
+        "name": "1er-Pack Hundehütte",
+        "description": "Du kannst 1 zusätzliche Hundehütte platzieren"
+      },
+      "doghouse_3_pack": {
+        "name": "3er-Pack Hundehütten",
+        "description": "Du kannst 3 zusätzliche Hundehütten platzieren"
+      },
+      "doghouse_6_pack": {
+        "name": "6er-Pack Hundehütten",
+        "description": "Du kannst 6 zusätzliche Hundehütten platzieren"
+      },
+      "dog_rename": {
+        "name": "Token Hund umbenennen",
+        "description": "Kaufe eine Umbenennung für deinen Hund"
+      },
+      "doghouse_rename": {
+        "name": "Token Hundehütte umbenennen",
+        "description": "Kaufe eine Umbenennung für deine Hundehütte"
+      },
+      "repair_50": {
+        "name": "Reparatur 50",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "Vollreparatur",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "Energie-Boost 10",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "Energie-Boost 50",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "Kleine Leckerlis",
+        "description": "100 Leckerlis"
+      },
+      "tasty_handful": {
+        "name": "Leckere Handvoll",
+        "description": "700 Leckerlis"
+      },
+      "snack_sack": {
+        "name": "Snack-Sack",
+        "description": "1600 Leckerlis"
+      },
+      "mega_munch": {
+        "name": "Mega-Munch-Beutel",
+        "description": "3600 Leckerlis"
+      },
+      "ultimate_treat": {
+        "name": "Ultimative Leckerli-Kiste",
+        "description": "12500 Leckerlis"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Premium-Funktionen freischalten"
+      }
     }
   },
   "quests": {
@@ -128,7 +173,17 @@
       "REPAIR_DOGHOUSES": "Repariere {target} Hundehütte(n)",
       "ATTACK_DOGHOUSES": "Greife {target} Hundehütte(n) an",
       "DESTROY_DOGHOUSES": "Zerstöre {target} Hundehütte(n)",
-      "LEVEL_UP": "Erreiche {target} neue(s) Level"
+      "LEVEL_UP": "Erreiche {target} neue(s) Level",
+      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
+      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
+      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
+      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP_one": "Reach {target} new level",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
@@ -139,7 +194,11 @@
       "DOG_RENAME": "Token zum Umbenennen des Hundes",
       "DOGHOUSE_RENAME": "Token zum Umbenennen der Hundehütte",
       "DOGHOUSES": "{amount} zusätzliche Hundehütte(n)",
-      "ENERGY_RESTORE": "Vollständige Energiewiederherstellung"
+      "ENERGY_RESTORE": "Vollständige Energiewiederherstellung",
+      "TREATS_one": "{amount} Treat",
+      "TREATS_other": "{amount} Treats",
+      "DOGHOUSES_one": "{amount} Extra Doghouse",
+      "DOGHOUSES_other": "{amount} Extra Doghouses"
     }
   },
   "statsTab": "Statistiken",

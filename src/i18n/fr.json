@@ -63,21 +63,66 @@
       "treats": "Friandises",
       "premiumSubscription": "Abonnement Premium",
       "{itemId}": "{itemId}",
-      "doghouse_1_pack": { "name": "Pack 1 niche", "description": "Vous pouvez placer 1 niche supplémentaire" },
-      "doghouse_3_pack": { "name": "Pack 3 niches", "description": "Vous pouvez placer 3 niches supplémentaires" },
-      "doghouse_6_pack": { "name": "Pack 6 niches", "description": "Vous pouvez placer 6 niches supplémentaires" },
-      "dog_rename": { "name": "Jeton renommage chien", "description": "Achetez un renommage pour votre chien" },
-      "doghouse_rename": { "name": "Jeton renommage niche", "description": "Achetez un renommage pour votre niche" },
-      "repair_50": { "name": "Réparation 50", "description": "" },
-      "repair_max": { "name": "Réparation complète", "description": "" },
-      "energy_10_boost": { "name": "Boost énergie 10", "description": "" },
-      "energy_50_boost": { "name": "Boost énergie 50", "description": "" },
-      "small_treats": { "name": "Petites friandises", "description": "100 friandises" },
-      "tasty_handful": { "name": "Poignée savoureuse", "description": "700 friandises" },
-      "snack_sack": { "name": "Sac de snacks", "description": "1600 friandises" },
-      "mega_munch": { "name": "Sac méga grignotage", "description": "3600 friandises" },
-      "ultimate_treat": { "name": "Caisse ultime de friandises", "description": "12500 friandises" },
-      "premium": { "name": "Premium", "description": "Débloquez des fonctionnalités premium" }
+      "doghouse_1_pack": {
+        "name": "Pack 1 niche",
+        "description": "Vous pouvez placer 1 niche supplémentaire"
+      },
+      "doghouse_3_pack": {
+        "name": "Pack 3 niches",
+        "description": "Vous pouvez placer 3 niches supplémentaires"
+      },
+      "doghouse_6_pack": {
+        "name": "Pack 6 niches",
+        "description": "Vous pouvez placer 6 niches supplémentaires"
+      },
+      "dog_rename": {
+        "name": "Jeton renommage chien",
+        "description": "Achetez un renommage pour votre chien"
+      },
+      "doghouse_rename": {
+        "name": "Jeton renommage niche",
+        "description": "Achetez un renommage pour votre niche"
+      },
+      "repair_50": {
+        "name": "Réparation 50",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "Réparation complète",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "Boost énergie 10",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "Boost énergie 50",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "Petites friandises",
+        "description": "100 friandises"
+      },
+      "tasty_handful": {
+        "name": "Poignée savoureuse",
+        "description": "700 friandises"
+      },
+      "snack_sack": {
+        "name": "Sac de snacks",
+        "description": "1600 friandises"
+      },
+      "mega_munch": {
+        "name": "Sac méga grignotage",
+        "description": "3600 friandises"
+      },
+      "ultimate_treat": {
+        "name": "Caisse ultime de friandises",
+        "description": "12500 friandises"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Débloquez des fonctionnalités premium"
+      }
     }
   },
   "quests": {
@@ -128,7 +173,17 @@
       "REPAIR_DOGHOUSES": "Réparer {target} niche(s)",
       "ATTACK_DOGHOUSES": "Attaquer {target} niche(s)",
       "DESTROY_DOGHOUSES": "Détruire {target} niche(s)",
-      "LEVEL_UP": "Atteindre {target} nouveau(x) niveau(x)"
+      "LEVEL_UP": "Atteindre {target} nouveau(x) niveau(x)",
+      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
+      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
+      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
+      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP_one": "Reach {target} new level",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
@@ -139,7 +194,11 @@
       "DOG_RENAME": "Jeton de renommage de chien",
       "DOGHOUSE_RENAME": "Jeton de renommage de niche",
       "DOGHOUSES": "{amount} niche(s) supplémentaire(s)",
-      "ENERGY_RESTORE": "Restauration complète de l'énergie"
+      "ENERGY_RESTORE": "Restauration complète de l'énergie",
+      "TREATS_one": "{amount} Treat",
+      "TREATS_other": "{amount} Treats",
+      "DOGHOUSES_one": "{amount} Extra Doghouse",
+      "DOGHOUSES_other": "{amount} Extra Doghouses"
     }
   },
   "statsTab": "Statistiques",

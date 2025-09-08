@@ -63,21 +63,66 @@
       "treats": "ٹریٹس",
       "premiumSubscription": "پریمیم سبسکرپشن",
       "{itemId}": "{itemId}",
-      "doghouse_1_pack": { "name": "1 کتے کے گھر کا پیک", "description": "آپ 1 اضافی کتے کا گھر رکھ سکتے ہیں" },
-      "doghouse_3_pack": { "name": "3 کتوں کے گھروں کا پیک", "description": "آپ 3 اضافی کتوں کے گھر رکھ سکتے ہیں" },
-      "doghouse_6_pack": { "name": "6 کتوں کے گھروں کا پیک", "description": "آپ 6 اضافی کتوں کے گھر رکھ سکتے ہیں" },
-      "dog_rename": { "name": "کتے کا نام بدلنے کا ٹوکن", "description": "اپنے کتے کے لیے ایک بار نام بدلیں" },
-      "doghouse_rename": { "name": "کتے کے گھر کا نام بدلنے کا ٹوکن", "description": "اپنے کتے کے گھر کے لیے ایک بار نام بدلیں" },
-      "repair_50": { "name": "مرمت 50", "description": "" },
-      "repair_max": { "name": "مکمل مرمت", "description": "" },
-      "energy_10_boost": { "name": "توانائی 10 بوسٹ", "description": "" },
-      "energy_50_boost": { "name": "توانائی 50 بوسٹ", "description": "" },
-      "small_treats": { "name": "چھوٹی ٹریٹس", "description": "100 ٹریٹس" },
-      "tasty_handful": { "name": "مزے دار مٹھّھی", "description": "700 ٹریٹس" },
-      "snack_sack": { "name": "سنیک بیگ", "description": "1600 ٹریٹس" },
-      "mega_munch": { "name": "میگا منچ بیگ", "description": "3600 ٹریٹس" },
-      "ultimate_treat": { "name": "حتمی ٹریٹس کریٹ", "description": "12500 ٹریٹس" },
-      "premium": { "name": "پریمیم", "description": "پریمیم خصوصیات کو ان لاک کریں" }
+      "doghouse_1_pack": {
+        "name": "1 کتے کے گھر کا پیک",
+        "description": "آپ 1 اضافی کتے کا گھر رکھ سکتے ہیں"
+      },
+      "doghouse_3_pack": {
+        "name": "3 کتوں کے گھروں کا پیک",
+        "description": "آپ 3 اضافی کتوں کے گھر رکھ سکتے ہیں"
+      },
+      "doghouse_6_pack": {
+        "name": "6 کتوں کے گھروں کا پیک",
+        "description": "آپ 6 اضافی کتوں کے گھر رکھ سکتے ہیں"
+      },
+      "dog_rename": {
+        "name": "کتے کا نام بدلنے کا ٹوکن",
+        "description": "اپنے کتے کے لیے ایک بار نام بدلیں"
+      },
+      "doghouse_rename": {
+        "name": "کتے کے گھر کا نام بدلنے کا ٹوکن",
+        "description": "اپنے کتے کے گھر کے لیے ایک بار نام بدلیں"
+      },
+      "repair_50": {
+        "name": "مرمت 50",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "مکمل مرمت",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "توانائی 10 بوسٹ",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "توانائی 50 بوسٹ",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "چھوٹی ٹریٹس",
+        "description": "100 ٹریٹس"
+      },
+      "tasty_handful": {
+        "name": "مزے دار مٹھّھی",
+        "description": "700 ٹریٹس"
+      },
+      "snack_sack": {
+        "name": "سنیک بیگ",
+        "description": "1600 ٹریٹس"
+      },
+      "mega_munch": {
+        "name": "میگا منچ بیگ",
+        "description": "3600 ٹریٹس"
+      },
+      "ultimate_treat": {
+        "name": "حتمی ٹریٹس کریٹ",
+        "description": "12500 ٹریٹس"
+      },
+      "premium": {
+        "name": "پریمیم",
+        "description": "پریمیم خصوصیات کو ان لاک کریں"
+      }
     }
   },
   "quests": {
@@ -128,7 +173,17 @@
       "REPAIR_DOGHOUSES": "{target} کتے کے گھر کی مرمت کریں",
       "ATTACK_DOGHOUSES": "{target} کتے کے گھر پر حملہ کریں",
       "DESTROY_DOGHOUSES": "{target} کتے کے گھر کو تباہ کریں",
-      "LEVEL_UP": "{target} نئے لیول تک پہنچیں"
+      "LEVEL_UP": "{target} نئے لیول تک پہنچیں",
+      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
+      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
+      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
+      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP_one": "Reach {target} new level",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
@@ -139,7 +194,11 @@
       "DOG_RENAME": "کتے کا نام تبدیل کرنے کا ٹوکن",
       "DOGHOUSE_RENAME": "کتے کے گھر کا نام تبدیل کرنے کا ٹوکن",
       "DOGHOUSES": "{amount} اضافی کتے کے گھر",
-      "ENERGY_RESTORE": "مکمل توانائی کی بحالی"
+      "ENERGY_RESTORE": "مکمل توانائی کی بحالی",
+      "TREATS_one": "{amount} Treat",
+      "TREATS_other": "{amount} Treats",
+      "DOGHOUSES_one": "{amount} Extra Doghouse",
+      "DOGHOUSES_other": "{amount} Extra Doghouses"
     }
   },
   "statsTab": "اعداد و شمار",

@@ -63,21 +63,66 @@
       "treats": "おやつ",
       "premiumSubscription": "プレミアムサブスクリプション",
       "{itemId}": "{itemId}",
-      "doghouse_1_pack": { "name": "犬小屋 1 パック", "description": "犬小屋を 1 つ追加で設置できます" },
-      "doghouse_3_pack": { "name": "犬小屋 3 パック", "description": "犬小屋を 3 つ追加で設置できます" },
-      "doghouse_6_pack": { "name": "犬小屋 6 パック", "description": "犬小屋を 6 つ追加で設置できます" },
-      "dog_rename": { "name": "犬の改名トークン", "description": "愛犬の名前を 1 回変更できます" },
-      "doghouse_rename": { "name": "犬小屋の改名トークン", "description": "犬小屋の名前を 1 回変更できます" },
-      "repair_50": { "name": "修理 50", "description": "" },
-      "repair_max": { "name": "完全修理", "description": "" },
-      "energy_10_boost": { "name": "エネルギー 10 ブースト", "description": "" },
-      "energy_50_boost": { "name": "エネルギー 50 ブースト", "description": "" },
-      "small_treats": { "name": "小さなおやつ", "description": "おやつ 100 個" },
-      "tasty_handful": { "name": "おいしいひとにぎり", "description": "おやつ 700 個" },
-      "snack_sack": { "name": "スナック袋", "description": "おやつ 1600 個" },
-      "mega_munch": { "name": "メガむしゃむしゃ袋", "description": "おやつ 3600 個" },
-      "ultimate_treat": { "name": "究極のごちそう箱", "description": "おやつ 12500 個" },
-      "premium": { "name": "プレミアム", "description": "プレミアム機能をアンロック" }
+      "doghouse_1_pack": {
+        "name": "犬小屋 1 パック",
+        "description": "犬小屋を 1 つ追加で設置できます"
+      },
+      "doghouse_3_pack": {
+        "name": "犬小屋 3 パック",
+        "description": "犬小屋を 3 つ追加で設置できます"
+      },
+      "doghouse_6_pack": {
+        "name": "犬小屋 6 パック",
+        "description": "犬小屋を 6 つ追加で設置できます"
+      },
+      "dog_rename": {
+        "name": "犬の改名トークン",
+        "description": "愛犬の名前を 1 回変更できます"
+      },
+      "doghouse_rename": {
+        "name": "犬小屋の改名トークン",
+        "description": "犬小屋の名前を 1 回変更できます"
+      },
+      "repair_50": {
+        "name": "修理 50",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "完全修理",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "エネルギー 10 ブースト",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "エネルギー 50 ブースト",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "小さなおやつ",
+        "description": "おやつ 100 個"
+      },
+      "tasty_handful": {
+        "name": "おいしいひとにぎり",
+        "description": "おやつ 700 個"
+      },
+      "snack_sack": {
+        "name": "スナック袋",
+        "description": "おやつ 1600 個"
+      },
+      "mega_munch": {
+        "name": "メガむしゃむしゃ袋",
+        "description": "おやつ 3600 個"
+      },
+      "ultimate_treat": {
+        "name": "究極のごちそう箱",
+        "description": "おやつ 12500 個"
+      },
+      "premium": {
+        "name": "プレミアム",
+        "description": "プレミアム機能をアンロック"
+      }
     }
   },
   "quests": {
@@ -128,7 +173,17 @@
       "REPAIR_DOGHOUSES": "{target}個の犬小屋を修理する",
       "ATTACK_DOGHOUSES": "{target}個の犬小屋を攻撃する",
       "DESTROY_DOGHOUSES": "{target}個の犬小屋を破壊する",
-      "LEVEL_UP": "{target}の新しいレベルに到達する"
+      "LEVEL_UP": "{target}の新しいレベルに到達する",
+      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
+      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
+      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
+      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP_one": "Reach {target} new level",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
@@ -139,7 +194,11 @@
       "DOG_RENAME": "犬の名前変更トークン",
       "DOGHOUSE_RENAME": "犬小屋の名前変更トークン",
       "DOGHOUSES": "{amount}個の追加の犬小屋",
-      "ENERGY_RESTORE": "エネルギーの完全回復"
+      "ENERGY_RESTORE": "エネルギーの完全回復",
+      "TREATS_one": "{amount} Treat",
+      "TREATS_other": "{amount} Treats",
+      "DOGHOUSES_one": "{amount} Extra Doghouse",
+      "DOGHOUSES_other": "{amount} Extra Doghouses"
     }
   },
   "statsTab": "統計",

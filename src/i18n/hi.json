@@ -63,21 +63,66 @@
       "treats": "ट्रीट्स",
       "premiumSubscription": "प्रीमियम सदस्यता",
       "{itemId}": "{itemId}",
-      "doghouse_1_pack": { "name": "1 कुत्ताघर पैक", "description": "आप 1 अतिरिक्त कुत्ताघर रख सकते हैं" },
-      "doghouse_3_pack": { "name": "3 कुत्ताघर पैक", "description": "आप 3 अतिरिक्त कुत्ताघर रख सकते हैं" },
-      "doghouse_6_pack": { "name": "6 कुत्ताघर पैक", "description": "आप 6 अतिरिक्त कुत्ताघर रख सकते हैं" },
-      "dog_rename": { "name": "कुत्ते का नाम बदलने का टोकन", "description": "अपने कुत्ते के लिए एक बार नाम बदलें" },
-      "doghouse_rename": { "name": "कुत्ताघर नाम बदलने का टोकन", "description": "अपने कुत्ताघर के लिए एक बार नाम बदलें" },
-      "repair_50": { "name": "मरम्मत 50", "description": "" },
-      "repair_max": { "name": "पूर्ण मरम्मत", "description": "" },
-      "energy_10_boost": { "name": "ऊर्जा 10 बूस्ट", "description": "" },
-      "energy_50_boost": { "name": "ऊर्जा 50 बूस्ट", "description": "" },
-      "small_treats": { "name": "छोटे ट्रिट्स", "description": "100 ट्रिट्स" },
-      "tasty_handful": { "name": "स्वादिष्ट मुट्ठी", "description": "700 ट्रिट्स" },
-      "snack_sack": { "name": "नाश्ते की थैली", "description": "1600 ट्रिट्स" },
-      "mega_munch": { "name": "मेगा मंच बैग", "description": "3600 ट्रिट्स" },
-      "ultimate_treat": { "name": "अल्टीमेट ट्रीट क्रेट", "description": "12500 ट्रिट्स" },
-      "premium": { "name": "प्रीमियम", "description": "प्रीमियम सुविधाएँ अनलॉक करें" }
+      "doghouse_1_pack": {
+        "name": "1 कुत्ताघर पैक",
+        "description": "आप 1 अतिरिक्त कुत्ताघर रख सकते हैं"
+      },
+      "doghouse_3_pack": {
+        "name": "3 कुत्ताघर पैक",
+        "description": "आप 3 अतिरिक्त कुत्ताघर रख सकते हैं"
+      },
+      "doghouse_6_pack": {
+        "name": "6 कुत्ताघर पैक",
+        "description": "आप 6 अतिरिक्त कुत्ताघर रख सकते हैं"
+      },
+      "dog_rename": {
+        "name": "कुत्ते का नाम बदलने का टोकन",
+        "description": "अपने कुत्ते के लिए एक बार नाम बदलें"
+      },
+      "doghouse_rename": {
+        "name": "कुत्ताघर नाम बदलने का टोकन",
+        "description": "अपने कुत्ताघर के लिए एक बार नाम बदलें"
+      },
+      "repair_50": {
+        "name": "मरम्मत 50",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "पूर्ण मरम्मत",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "ऊर्जा 10 बूस्ट",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "ऊर्जा 50 बूस्ट",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "छोटे ट्रिट्स",
+        "description": "100 ट्रिट्स"
+      },
+      "tasty_handful": {
+        "name": "स्वादिष्ट मुट्ठी",
+        "description": "700 ट्रिट्स"
+      },
+      "snack_sack": {
+        "name": "नाश्ते की थैली",
+        "description": "1600 ट्रिट्स"
+      },
+      "mega_munch": {
+        "name": "मेगा मंच बैग",
+        "description": "3600 ट्रिट्स"
+      },
+      "ultimate_treat": {
+        "name": "अल्टीमेट ट्रीट क्रेट",
+        "description": "12500 ट्रिट्स"
+      },
+      "premium": {
+        "name": "प्रीमियम",
+        "description": "प्रीमियम सुविधाएँ अनलॉक करें"
+      }
     }
   },
   "quests": {
@@ -128,7 +173,17 @@
       "REPAIR_DOGHOUSES": "{target} डॉगहाउस की मरम्मत करें",
       "ATTACK_DOGHOUSES": "{target} डॉगहाउस पर हमला करें",
       "DESTROY_DOGHOUSES": "{target} डॉгहाउस को नष्ट करें",
-      "LEVEL_UP": "{target} नए स्तर पर पहुंचें"
+      "LEVEL_UP": "{target} नए स्तर पर पहुंचें",
+      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
+      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
+      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
+      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
+      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
+      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
+      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
+      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
+      "LEVEL_UP_one": "Reach {target} new level",
+      "LEVEL_UP_other": "Reach {target} new levels"
     }
   },
   "rewards": {
@@ -139,7 +194,11 @@
       "DOG_RENAME": "कुत्ते का नाम बदलने वाला टोकन",
       "DOGHOUSE_RENAME": "डॉगहाउस का नाम बदलने वाला टोकन",
       "DOGHOUSES": "{amount} अतिरिक्त डॉगहाउस",
-      "ENERGY_RESTORE": "पूर्ण ऊर्जा बहाली"
+      "ENERGY_RESTORE": "पूर्ण ऊर्जा बहाली",
+      "TREATS_one": "{amount} Treat",
+      "TREATS_other": "{amount} Treats",
+      "DOGHOUSES_one": "{amount} Extra Doghouse",
+      "DOGHOUSES_other": "{amount} Extra Doghouses"
     }
   },
   "statsTab": "आँकड़े",
