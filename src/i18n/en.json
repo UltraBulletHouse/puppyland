@@ -54,10 +54,75 @@
     "energy": "Energy",
     "treatPacks": "Treat Packs",
     "subscriptions": "Subscriptions",
+    "total": "Total",
+    "purchaseSuccessTitle": "Purchase Successful",
+    "purchaseTreatsSuccessDesc": "You spent {spent} Treats on {item}.",
+    "purchaseRealSuccessDesc": "You have successfully purchased {quantity} of {item}.",
+    "purchaseFailed": "Purchase failed. Please try again.",
     "product": {
       "treats": "Treats",
       "premiumSubscription": "Premium Subscription",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": {
+        "name": "Doghouse 1 pack",
+        "description": "You can place 1 additional doghouse"
+      },
+      "doghouse_3_pack": {
+        "name": "Doghouse 3 pack",
+        "description": "You can place 3 additional doghouses"
+      },
+      "doghouse_6_pack": {
+        "name": "Doghouse 6 pack",
+        "description": "You can place 6 additional doghouses"
+      },
+      "dog_rename": {
+        "name": "Dog rename token",
+        "description": "Buy one rename for your dog"
+      },
+      "doghouse_rename": {
+        "name": "Doghouse rename token",
+        "description": "Buy one rename for your doghouse"
+      },
+      "repair_50": {
+        "name": "Repair 50",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "Full repair",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "Energy 10 boost",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "Energy 50 boost",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "Small Treats",
+        "description": "100 Treats"
+      },
+      "tasty_handful": {
+        "name": "Tasty Handful",
+        "description": "700 Treats"
+      },
+      "snack_sack": {
+        "name": "Snack Sack",
+        "description": "1600 Treats"
+      },
+      "mega_munch": {
+        "name": "Mega munch bag",
+        "description": "3600 Treats"
+      },
+      "ultimate_treat": {
+        "name": "Ultimate treat crate",
+        "description": "12500 Treats"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Unlock premium features"
+      }
     }
   },
   "quests": {

@@ -26,7 +26,7 @@ import {
 import { updateDogInfoEvent } from '../contexts/dogInfoContext';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { updateUserInfoEvent, userInfoContext } from '../contexts/userInfoContext';
-import { t } from '../i18n';
+import { t, ti } from '../i18n';
 import { sharedStyles } from '../styles/shared-styles';
 import {
   AcknowledgePurchaseResponse,
@@ -368,12 +368,12 @@ export class AppShopView extends LitElement {
       updateUserInfoEvent(this, refreshed.data.user);
 
       showSuccessModal(
-        'Purchase Successful',
-        `You spent ${data?.spentTreats} Treats on ${data?.itemBought}.`
+        t('shop.purchaseSuccessTitle'),
+        ti('shop.purchaseTreatsSuccessDesc', { spent: data?.spentTreats ?? 0, item: data?.itemBought ?? '' })
       );
     } catch (error) {
       console.log(error);
-      alertNotifyDanger('Purchase failed. Please try again.');
+      alertNotifyDanger(t('shop.purchaseFailed'));
     } finally {
       this.processingTreatsItemId = null;
     }
@@ -391,7 +391,7 @@ export class AppShopView extends LitElement {
 
     const paymentDetails = {
       total: {
-        label: `Total`,
+        label: t('shop.total'),
         amount: { currency: `EUR`, value: `0` },
       },
     };
@@ -417,8 +417,8 @@ export class AppShopView extends LitElement {
       }
 
       showSuccessModal(
-        'Purchase Successful',
-        `You have successfully purchased ${quantity} of ${itemBought}.`
+        t('shop.purchaseSuccessTitle'),
+        ti('shop.purchaseRealSuccessDesc', { quantity: quantity ?? 1, item: itemBought ?? '' })
       );
     } catch (error) {
       console.log(error);
@@ -444,55 +444,71 @@ export class AppShopView extends LitElement {
     // Load Google Billing details for real-money SKUs (treat packs + premium)
   }
 
-  renderShopItemReal = (item: ShopItemLocal) => html`
-    <div class="shop-item">
-      <div class="item-icon">
-        ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
-          ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
-          : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
+  renderShopItemReal = (item: ShopItemLocal) => {
+    const nameKey = `shop.product.${item.id}.name`;
+    const descKey = `shop.product.${item.id}.description`;
+    const tn = t(nameKey);
+    const td = t(descKey);
+    const displayName = tn === nameKey ? item.name : tn;
+    const displayDesc = td === descKey ? item.description : td;
+    return html`
+      <div class="shop-item">
+        <div class="item-icon">
+          ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
+            ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
+            : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
+        </div>
+        <div class="item-details">
+          <div class="item-name">${displayName}</div>
+          <div class="item-description">${displayDesc}</div>
+        </div>
+        <div class="item-action">
+          <sl-button
+            class="buy-button buy-button--real"
+            @click=${() => this.buyProduct(item.id)}
+            ?disabled=${this.processingRealItemId !== null}
+            ?loading=${this.processingRealItemId === item.id}
+            pill
+          >
+            <span class="price-tag">${item.price.value} ${item.price.currency}</span>
+          </sl-button>
+        </div>
       </div>
-      <div class="item-details">
-        <div class="item-name">${item.name}</div>
-        <div class="item-description">${item.description}</div>
-      </div>
-      <div class="item-action">
-        <sl-button
-          class="buy-button buy-button--real"
-          @click=${() => this.buyProduct(item.id)}
-          ?disabled=${this.processingRealItemId !== null}
-          ?loading=${this.processingRealItemId === item.id}
-          pill
-        >
-          <span class="price-tag">${item.price.value} ${item.price.currency}</span>
-        </sl-button>
-      </div>
-    </div>
-  `;
+    `;
+  };
 
-  renderShopItemTreats = (item: ShopItemLocal) => html`
-    <div class="shop-item">
-      <div class="item-icon">
-        ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
-          ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
-          : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
+  renderShopItemTreats = (item: ShopItemLocal) => {
+    const nameKey = `shop.product.${item.id}.name`;
+    const descKey = `shop.product.${item.id}.description`;
+    const tn = t(nameKey);
+    const td = t(descKey);
+    const displayName = tn === nameKey ? item.name : tn;
+    const displayDesc = td === descKey ? item.description : td;
+    return html`
+      <div class="shop-item">
+        <div class="item-icon">
+          ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
+            ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
+            : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
+        </div>
+        <div class="item-details">
+          <div class="item-name">${displayName}</div>
+          <div class="item-description">${displayDesc}</div>
+        </div>
+        <div class="item-action">
+          <sl-button
+            class="buy-button buy-button--treats"
+            @click=${() => this.buyWithTreats(item.id)}
+            ?disabled=${this.processingTreatsItemId !== null}
+            ?loading=${this.processingTreatsItemId === item.id}
+            pill
+          >
+            <span class="price-tag">${item.price.value} <sl-icon name="coin"></sl-icon></span>
+          </sl-button>
+        </div>
       </div>
-      <div class="item-details">
-        <div class="item-name">${item.name}</div>
-        <div class="item-description">${item.description}</div>
-      </div>
-      <div class="item-action">
-        <sl-button
-          class="buy-button buy-button--treats"
-          @click=${() => this.buyWithTreats(item.id)}
-          ?disabled=${this.processingTreatsItemId !== null}
-          ?loading=${this.processingTreatsItemId === item.id}
-          pill
-        >
-          <span class="price-tag">${item.price.value} <sl-icon name="coin"></sl-icon></span>
-        </sl-button>
-      </div>
-    </div>
-  `;
+    `;
+  };
 
   renderCategorySection(
     title: string,
@@ -533,7 +549,7 @@ export class AppShopView extends LitElement {
       <div id="container">
         <div id="header">
           <div id="title">${t('shop.title')}</div>
-          <div id="balance-pill" title="Treats">
+          <div id="balance-pill" title="${t('shop.product.treats')}">
             <sl-icon name="coin"></sl-icon>
             <span>${this.userInfo?.treatsBalance ?? 0}</span>
           </div>

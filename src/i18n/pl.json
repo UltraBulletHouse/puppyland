@@ -54,10 +54,75 @@
     "energy": "Energia",
     "treatPacks": "Paczki smakołyków",
     "subscriptions": "Subskrypcje",
+    "total": "Suma",
+    "purchaseSuccessTitle": "Zakup udany",
+    "purchaseTreatsSuccessDesc": "Wydano {spent} smakołyków na {item}.",
+    "purchaseRealSuccessDesc": "Pomyślnie zakupiono {quantity} × {item}.",
+    "purchaseFailed": "Zakup nie powiódł się. Spróbuj ponownie.",
     "product": {
       "treats": "Smakołyki",
       "premiumSubscription": "Subskrypcja Premium",
-      "{itemId}": "{itemId}"
+      "{itemId}": "{itemId}",
+      "doghouse_1_pack": {
+        "name": "Pakiet 1 buda",
+        "description": "Możesz postawić 1 dodatkową budę"
+      },
+      "doghouse_3_pack": {
+        "name": "Pakiet 3 budy",
+        "description": "Możesz postawić 3 dodatkowe budy"
+      },
+      "doghouse_6_pack": {
+        "name": "Pakiet 6 bud",
+        "description": "Możesz postawić 6 dodatkowych bud"
+      },
+      "dog_rename": {
+        "name": "Token zmiany imienia psa",
+        "description": "Kup jedną zmianę imienia dla swojego psa"
+      },
+      "doghouse_rename": {
+        "name": "Token zmiany nazwy budy",
+        "description": "Kup jedną zmianę nazwy dla swojej budy"
+      },
+      "repair_50": {
+        "name": "Naprawa 50",
+        "description": ""
+      },
+      "repair_max": {
+        "name": "Pełna naprawa",
+        "description": ""
+      },
+      "energy_10_boost": {
+        "name": "Dopalacz energii 10",
+        "description": ""
+      },
+      "energy_50_boost": {
+        "name": "Dopalacz energii 50",
+        "description": ""
+      },
+      "small_treats": {
+        "name": "Mała paczka smakołyków",
+        "description": "100 smakołyków"
+      },
+      "tasty_handful": {
+        "name": "Pyszna garść",
+        "description": "700 smakołyków"
+      },
+      "snack_sack": {
+        "name": "Worek przekąsek",
+        "description": "1600 smakołyków"
+      },
+      "mega_munch": {
+        "name": "Mega worek przysmaków",
+        "description": "3600 smakołyków"
+      },
+      "ultimate_treat": {
+        "name": "Skrzynia przysmaków",
+        "description": "12500 smakołyków"
+      },
+      "premium": {
+        "name": "Premium",
+        "description": "Odblokuj funkcje premium"
+      }
     }
   },
   "quests": {
