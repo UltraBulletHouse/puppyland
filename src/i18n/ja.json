@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "座標がありません"
+    },
+    "reach": {
+      "outOfReach": "範囲外です。距離: {distanceMeters}m, 範囲: {reachMeters}m"
+    },
+    "name": {
+      "tooLong": "名前が長すぎます",
+      "exists": "名前はすでに存在します",
+      "cannotChangeAnymore": "もう名前を変更することはできません"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "この犬小屋は完全に回復しています！"
+    },
+    "buff": {
+      "notAvailable": "このバフはもう利用できません！"
+    },
+    "purchase": {
+      "verifyFailed": "購入の確認中にエラーが発生しました: {statusCode}",
+      "ackFailed": "購入の確認に失敗しました: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "サブスクリプションの確認中にエラーが発生しました: {statusCode}",
+      "invalidExpiry": "サブスクリプションの有効期限が無効です",
+      "ackFailed": "サブスクリプションの確認に失敗しました: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "おやつが足りません"
+    },
+    "quest": {
+      "notFound": "クエストが見つかりません",
+      "notOwner": "クエストは現在のユーザーのものではありません",
+      "notCompleted": "クエストはまだ完了していません",
+      "alreadyClaimed": "クエストの報酬はすでに受け取っています"
+    },
+    "language": {
+      "required": "言語を指定する必要があります"
+    },
+    "oauth": {
+      "refreshFailed": "トークンの更新に失敗しました: {statusCode}"
+    },
+    "internal": "内部サーバーエラー"
+  },
+  "shop": {
+    "title": "ショップ",
+    "spend": "使う",
+    "buy": "購入",
+    "buyPremium": "プレミアムを購入",
+    "doghouses": "犬小屋",
+    "renameTokens": "名前変更トークン",
+    "repairKits": "修理キット",
+    "energy": "エネルギー",
+    "treatPacks": "おやつパック",
+    "subscriptions": "サブスクリプション",
+    "product": {
+      "treats": "おやつ",
+      "premiumSubscription": "プレミアムサブスクリプション",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "受け取りました: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "はじめの一歩",
+        "2": "ビルダー",
+        "3": "マスタービルダー"
+      },
+      "SPEND_ENERGY": {
+        "1": "エネルギーバーナー",
+        "2": "エネルギーマスター",
+        "3": "エネルギータイタン"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "エネルギーセーバー",
+        "2": "経験値ハンター",
+        "3": "経験値マスター"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "便利屋",
+        "2": "修理の専門家",
+        "3": "マスターメカニック"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "アタッカー",
+        "2": "レイドリーダー",
+        "3": "ウォーロード"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "デストロイヤー",
+        "2": "解体の専門家",
+        "3": "世界の破壊者"
+      },
+      "LEVEL_UP": {
+        "1": "レベルアップ",
+        "2": "ライジングスター",
+        "3": "エリートチャンピオン"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "{target}個の犬小屋を建てる",
+      "SPEND_ENERGY": "{target}のエネルギーを使う",
+      "GAIN_EXPERIENCE": "{target}のXPを獲得する",
+      "REPAIR_DOGHOUSES": "{target}個の犬小屋を修理する",
+      "ATTACK_DOGHOUSES": "{target}個の犬小屋を攻撃する",
+      "DESTROY_DOGHOUSES": "{target}個の犬小屋を破壊する",
+      "LEVEL_UP": "{target}の新しいレベルに到達する"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount}個のおやつ",
+      "ENERGY": "{amount}のエネルギー",
+      "EXPERIENCE": "{amount}のXP",
+      "DOG_RENAME": "犬の名前変更トークン",
+      "DOGHOUSE_RENAME": "犬小屋の名前変更トークン",
+      "DOGHOUSES": "{amount}個の追加の犬小屋",
+      "ENERGY_RESTORE": "エネルギーの完全回復"
+    }
+  },
+  "statsTab": "統計",
+  "dailyQuestsTab": "デイリークエスト",
+  "leaderboardsTab": "リーダーボード",
+  "statsTitle": "統計",
+  "level": "レベル",
+  "levelWithNumber": "レベル {level}",
+  "levelTooltip": "現在のレベル",
+  "xpToNext": "次のレベルまでのXP",
+  "xpAbbrev": "XP",
+  "pointsToAllocate": "割り当てるポイント",
+  "allPointsAssigned": "すべてのポイントが割り当てられました",
+  "save": "保存",
+  "reset": "リセット",
+  "power": "パワー",
+  "stamina": "スタミナ",
+  "reach": "範囲",
+  "fortification": "要塞化",
+  "attackLabel": "攻撃: {min}–{max}",
+  "maxEnergyLabel": "最大エネルギー {n}",
+  "rangeLabel": "範囲 {n}m",
+  "doghouseHpLabel": "犬小屋のHP {n}",
+  "whatIsPower": "パワーとは？",
+  "whatIsStamina": "スタミナとは？",
+  "whatIsReach": "範囲とは？",
+  "whatIsFortification": "要塞化とは？",
+  "availableDoghousesTitle": "利用可能な犬小屋",
+  "energyTitle": "エネルギー",
+  "doghouseBuffs": "犬小屋のバフ",
+  "gotIt": "了解",
+  "premiumBadge": "プレミアム",
+  "premiumExpires": "有効期限: {date}",
+  "manageSubscription": "サブスクリプションの管理",
+  "unlimited": "無制限",
+  "powerDesc": "犬小屋に与えるダメージ。現在の攻撃ダメージ: {min}–{max}。1ポイントごとに最小値と最大値が1ずつ増加します。",
+  "staminaDesc": "最大エネルギーを増やして、より頻繁に犬小屋を攻撃または修理できるようにします。現在の最大エネルギー: {n}。(1ポイントあたり+10、100から開始)",
+  "reachDesc": "犬小屋と対話するためのマップ上の範囲（攻撃または修理）。現在の範囲: {n} m。(1ポイントあたり+10 m、200 mから開始)",
+  "fortificationDesc": "すべての犬小屋の最大HPを増やして、破壊されにくくします。現在の犬小屋の最大HP: {n}。(1ポイントあたり+20、100から開始)",
+  "dateLabel": "日付",
+  "hpAbbrev": "HP",
+  "sortBy": "並べ替え",
+  "exitEditMode": "編集モードを終了",
+  "editDoghouses": "犬小屋を編集",
+  "noDoghousesYet": "まだ犬小屋がありません",
+  "goToMapToBuildFirst": "マップに移動して最初の犬小屋を建てましょう！",
+  "doghouseNamePlaceholder": "犬小屋の名前",
+  "editName": "名前を編集",
+  "findPosition": "現在地を検索",
+  "turnOnLocation": "位置情報をオンにしてください",
+  "turnOnGpsWait": "GPSをオンにして読み込みをお待ちください",
+  "clickButtonBelow": "そして下のボタンをクリックしてください",
+  "signInWithGoogle": "Googleでサインイン",
+  "health": "ヘルス",
+  "availableBuffs": "利用可能なバフ",
+  "confirm": "確認",
+  "cancel": "キャンセル",
+  "tapTimesToAttack": "{n}回タップして攻撃！",
+  "tapTimesToRepair": "{n}回タップして修理！",
+  "notEnoughEnergyNeed": "エネルギーが足りません！{n}エネルギーが必要です。",
+  "doghouseFullHealth": "犬小屋のヘルスはすでに満タンです！",
+  "destroyedText": "破壊されました！",
+  "appSettings": "アプリ設定",
+  "language": "言語",
+  "chooseLanguage": "ご希望の言語を選択してください",
+  "notifications": "プッシュ通知",
+  "notificationsDesc": "ゲームイベントに関する通知を受け取る",
+  "darkMode": "ダークモード",
+  "darkModeDesc": "ダークテーマに切り替える",
+  "signOut": "サインアウト",
+  "contactUs": "お問い合わせ",
+  "contactDesc": "ご不明な点がございましたら、メールでお問い合わせください：",
+  "attributions": "帰属",
+  "userUnknown": "不明なユーザー",
+  "userNoEmail": "メールなし",
+  "refreshing": "更新中...",
+  "hoursAbbrev": "時間",
+  "minutesAbbrev": "分",
+  "remainingTime": "残り時間",
+  "loading": "読み込み中...",
+  "loadingDailyQuests": "デイリークエストを読み込み中...",
+  "noQuestsToday": "今日は利用可能なクエストがありません",
+  "claim": "請求",
+  "claimed": "請求済み",
+  "leaderboardTopLevels": "トップレベル",
+  "leaderboardMasterBuilders": "マスタービルダー",
+  "leaderboardTopDestroyers": "トップデストロイヤー",
+  "leaderboardGeneric": "リーダーボード",
+  "leaderboardColLevel": "レベル",
+  "leaderboardColBuilt": "建てられた",
+  "leaderboardColDestroyed": "破壊された",
+  "leaderboardColScore": "スコア",
+  "leaderboardFooter": "合計{total}人のプレイヤー • {date}に更新",
+  "leaderboardTotalPlayers": "総プレイヤー数",
+  "leaderboardUpdated": "更新日",
+  "navMyDog": "マイ ドッグ",
+  "doghousesTitle": "犬小屋",
+  "navProfile": "プロフィール"
+}

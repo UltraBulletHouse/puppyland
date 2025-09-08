@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "缺少坐标"
+    },
+    "reach": {
+      "outOfReach": "超出范围。距离：{distanceMeters}米，范围：{reachMeters}米"
+    },
+    "name": {
+      "tooLong": "名称太长",
+      "exists": "名称已存在",
+      "cannotChangeAnymore": "您不能再更改名称了"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "这个狗屋已经完全治愈了！"
+    },
+    "buff": {
+      "notAvailable": "您不再拥有此增益！"
+    },
+    "purchase": {
+      "verifyFailed": "验证购买时出错：{statusCode}",
+      "ackFailed": "确认购买失败：{statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "验证订阅时出错：{statusCode}",
+      "invalidExpiry": "订阅到期时间无效",
+      "ackFailed": "确认订阅失败：{statusCode}"
+    },
+    "treats": {
+      "notEnough": "零食不足"
+    },
+    "quest": {
+      "notFound": "未找到任务",
+      "notOwner": "任务不属于当前用户",
+      "notCompleted": "任务尚未完成",
+      "alreadyClaimed": "任务奖励已领取"
+    },
+    "language": {
+      "required": "必须提供语言"
+    },
+    "oauth": {
+      "refreshFailed": "令牌刷新失败：{statusCode}"
+    },
+    "internal": "内部服务器错误"
+  },
+  "shop": {
+    "title": "商店",
+    "spend": "花费",
+    "buy": "购买",
+    "buyPremium": "购买高级会员",
+    "doghouses": "狗屋",
+    "renameTokens": "重命名令牌",
+    "repairKits": "修理工具",
+    "energy": "能量",
+    "treatPacks": "零食包",
+    "subscriptions": "订阅",
+    "product": {
+      "treats": "零食",
+      "premiumSubscription": "高级订阅",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "已领取：{reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "第一步",
+        "2": "建造者",
+        "3": "建筑大师"
+      },
+      "SPEND_ENERGY": {
+        "1": "能量燃烧者",
+        "2": "能量大师",
+        "3": "能量泰坦"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "节能者",
+        "2": "经验猎人",
+        "3": "经验大师"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "勤杂工",
+        "2": "维修专家",
+        "3": "机械大师"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "攻击者",
+        "2": "突袭队长",
+        "3": "军阀"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "毁灭者",
+        "2": "爆破专家",
+        "3": "世界毁灭者"
+      },
+      "LEVEL_UP": {
+        "1": "升级",
+        "2": "后起之秀",
+        "3": "精英冠军"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "建造{target}个狗屋",
+      "SPEND_ENERGY": "花费{target}点能量",
+      "GAIN_EXPERIENCE": "获得{target}点经验值",
+      "REPAIR_DOGHOUSES": "修理{target}个狗屋",
+      "ATTACK_DOGHOUSES": "攻击{target}个狗屋",
+      "DESTROY_DOGHOUSES": "摧毁{target}个狗屋",
+      "LEVEL_UP": "达到{target}个新等级"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount}个零食",
+      "ENERGY": "{amount}点能量",
+      "EXPERIENCE": "{amount}点经验值",
+      "DOG_RENAME": "狗重命名令牌",
+      "DOGHOUSE_RENAME": "狗屋重命名令牌",
+      "DOGHOUSES": "{amount}个额外的狗屋",
+      "ENERGY_RESTORE": "完全恢复能量"
+    }
+  },
+  "statsTab": "统计",
+  "dailyQuestsTab": "每日任务",
+  "leaderboardsTab": "排行榜",
+  "statsTitle": "统计",
+  "level": "等级",
+  "levelWithNumber": "等级 {level}",
+  "levelTooltip": "您当前的等级",
+  "xpToNext": "到下一级所需的经验值",
+  "xpAbbrev": "经验值",
+  "pointsToAllocate": "待分配点数",
+  "allPointsAssigned": "所有点数已分配",
+  "save": "保存",
+  "reset": "重置",
+  "power": "力量",
+  "stamina": "耐力",
+  "reach": "范围",
+  "fortification": "防御",
+  "attackLabel": "攻击: {min}–{max}",
+  "maxEnergyLabel": "最大能量 {n}",
+  "rangeLabel": "范围 {n}米",
+  "doghouseHpLabel": "犬屋生命值 {n}",
+  "whatIsPower": "什么是力量？",
+  "whatIsStamina": "什么是耐力？",
+  "whatIsReach": "什么是范围？",
+  "whatIsFortification": "什么是防御？",
+  "availableDoghousesTitle": "可用的犬屋",
+  "energyTitle": "能量",
+  "doghouseBuffs": "犬屋增益",
+  "gotIt": "知道了",
+  "premiumBadge": "高级会员",
+  "premiumExpires": "到期时间: {date}",
+  "manageSubscription": "管理订阅",
+  "unlimited": "无限",
+  "powerDesc": "对犬屋造成的伤害。当前攻击伤害: {min}–{max}。每点增加最小和最大伤害1点。",
+  "staminaDesc": "增加最大能量，以便您可以更频繁地攻击或修复您的犬屋。当前最大能量: {n}。 (每点+10，从100开始)",
+  "reachDesc": "在地图上与犬屋互动的范围（攻击或修复）。当前范围: {n} 米。 (每点+10米，从200米开始)",
+  "fortificationDesc": "增加所有犬屋的最大生命值，使其更难被摧毁。当前犬屋最大生命值: {n}。 (每点+20，从100开始)",
+  "dateLabel": "日期",
+  "hpAbbrev": "生命值",
+  "sortBy": "排序方式",
+  "exitEditMode": "退出编辑模式",
+  "editDoghouses": "编辑犬屋",
+  "noDoghousesYet": "还没有犬屋",
+  "goToMapToBuildFirst": "去地图上建造你的第一个犬屋！",
+  "doghouseNamePlaceholder": "犬屋名称",
+  "editName": "编辑名称",
+  "findPosition": "找到你的位置",
+  "turnOnLocation": "请打开位置信息",
+  "turnOnGpsWait": "请打开GPS并等待加载",
+  "clickButtonBelow": "然后点击下面的按钮",
+  "signInWithGoogle": "使用Google登录",
+  "health": "生命值",
+  "availableBuffs": "可用增益",
+  "confirm": "确认",
+  "cancel": "取消",
+  "tapTimesToAttack": "点击{n}次进行攻击！",
+  "tapTimesToRepair": "点击{n}次进行修理！",
+  "notEnoughEnergyNeed": "能量不足！需要{n}点能量。",
+  "doghouseFullHealth": "狗屋生命值已满！",
+  "destroyedText": "已摧毁！",
+  "appSettings": "应用设置",
+  "language": "语言",
+  "chooseLanguage": "选择您的首选语言",
+  "notifications": "推送通知",
+  "notificationsDesc": "获取游戏事件通知",
+  "darkMode": "深色模式",
+  "darkModeDesc": "切换到深色主题",
+  "signOut": "登出",
+  "contactUs": "联系我们",
+  "contactDesc": "如有任何疑问，请发送电子邮件至：",
+  "attributions": "致谢",
+  "userUnknown": "未知用户",
+  "userNoEmail": "无电子邮件",
+  "refreshing": "刷新中...",
+  "hoursAbbrev": "小时",
+  "minutesAbbrev": "分钟",
+  "remainingTime": "剩余时间",
+  "loading": "加载中...",
+  "loadingDailyQuests": "正在加载每日任务...",
+  "noQuestsToday": "今天没有可用的任务",
+  "claim": "领取",
+  "claimed": "已领取",
+  "leaderboardTopLevels": "最高等级",
+  "leaderboardMasterBuilders": "建筑大师",
+  "leaderboardTopDestroyers": "顶级驱逐舰",
+  "leaderboardGeneric": "排行榜",
+  "leaderboardColLevel": "等级",
+  "leaderboardColBuilt": "已建",
+  "leaderboardColDestroyed": "已摧毁",
+  "leaderboardColScore": "分数",
+  "leaderboardFooter": "{total} 位玩家 • 更新于 {date}",
+  "leaderboardTotalPlayers": "总玩家",
+  "leaderboardUpdated": "已更新",
+  "navMyDog": "我的狗",
+  "doghousesTitle": "犬屋",
+  "navProfile": "个人资料"
+}

@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "کوآرڈینیٹ غائب ہیں"
+    },
+    "reach": {
+      "outOfReach": "پہنچ سے باہر۔ فاصلہ: {distanceMeters}m، پہنچ: {reachMeters}m"
+    },
+    "name": {
+      "tooLong": "نام بہت لمبا ہے",
+      "exists": "نام پہلے سے موجود ہے",
+      "cannotChangeAnymore": "اب آپ نام تبدیل نہیں کر سکتے"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "یہ کتے کا گھر پہلے ہی پوری طرح سے ٹھیک ہو چکا ہے!"
+    },
+    "buff": {
+      "notAvailable": "یہ بف اب آپ کے لیے دستیاب نہیں ہے!"
+    },
+    "purchase": {
+      "verifyFailed": "خریداری کی تصدیق میں خرابی: {statusCode}",
+      "ackFailed": "خریداری تسلیم کرنے میں ناکام: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "سبسکرپشن کی تصدیق میں خرابی: {statusCode}",
+      "invalidExpiry": "سبسکرپشن کی میعاد ختم ہونے کا وقت غلط ہے",
+      "ackFailed": "سبسکرپشن تسلیم کرنے میں ناکام: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "کافی ٹریٹس نہیں ہیں"
+    },
+    "quest": {
+      "notFound": "کویسٹ نہیں ملا",
+      "notOwner": "کویسٹ موجودہ صارف کا نہیں ہے",
+      "notCompleted": "کویسٹ ابھی مکمل نہیں ہوا ہے",
+      "alreadyClaimed": "کویسٹ کا انعام پہلے ہی حاصل کر لیا گیا ہے"
+    },
+    "language": {
+      "required": "زبان فراہم کی جانی چاہیے"
+    },
+    "oauth": {
+      "refreshFailed": "ٹوکن ریفریش کرنے میں ناکام: {statusCode}"
+    },
+    "internal": "اندرونی سرور کی خرابی"
+  },
+  "shop": {
+    "title": "دکان",
+    "spend": "خرچ کریں",
+    "buy": "خریدیں",
+    "buyPremium": "پریمیم خریدیں",
+    "doghouses": "کتے کے گھر",
+    "renameTokens": "نام تبدیل کرنے والے ٹوکن",
+    "repairKits": "مرمت کٹس",
+    "energy": "توانائی",
+    "treatPacks": "ٹریٹ پیکس",
+    "subscriptions": "سبسکرپشنز",
+    "product": {
+      "treats": "ٹریٹس",
+      "premiumSubscription": "پریمیم سبسکرپشن",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "دعوی کیا گیا: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "پہلا قدم",
+        "2": "بنانے والا",
+        "3": "ماسٹر بنانے والا"
+      },
+      "SPEND_ENERGY": {
+        "1": "انرجی برنر",
+        "2": "انرجی ماسٹر",
+        "3": "انرجی ٹائٹن"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "انرجی سیور",
+        "2": "تجربہ ہنٹر",
+        "3": "تجربہ ماسٹر"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "ہینڈی مین",
+        "2": "مرمت کا ماہر",
+        "3": "ماسٹر مکینک"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "حملہ آور",
+        "2": "حملے کا رہنما",
+        "3": "جنگی سردار"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "تباہ کرنے والا",
+        "2": "تباہی کا ماہر",
+        "3": "دنیاؤں کا تباہ کرنے والا"
+      },
+      "LEVEL_UP": {
+        "1": "لیول اپ",
+        "2": "ابھرتا ہوا ستارہ",
+        "3": "ایلیٹ چیمپیئن"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "{target} کتے کے گھر بنائیں",
+      "SPEND_ENERGY": "{target} توانائی خرچ کریں",
+      "GAIN_EXPERIENCE": "{target} XP حاصل کریں",
+      "REPAIR_DOGHOUSES": "{target} کتے کے گھر کی مرمت کریں",
+      "ATTACK_DOGHOUSES": "{target} کتے کے گھر پر حملہ کریں",
+      "DESTROY_DOGHOUSES": "{target} کتے کے گھر کو تباہ کریں",
+      "LEVEL_UP": "{target} نئے لیول تک پہنچیں"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} ٹریٹس",
+      "ENERGY": "{amount} توانائی",
+      "EXPERIENCE": "{amount} XP",
+      "DOG_RENAME": "کتے کا نام تبدیل کرنے کا ٹوکن",
+      "DOGHOUSE_RENAME": "کتے کے گھر کا نام تبدیل کرنے کا ٹوکن",
+      "DOGHOUSES": "{amount} اضافی کتے کے گھر",
+      "ENERGY_RESTORE": "مکمل توانائی کی بحالی"
+    }
+  },
+  "statsTab": "اعداد و شمار",
+  "dailyQuestsTab": "روزانہ کی تلاش",
+  "leaderboardsTab": "لیڈر بورڈز",
+  "statsTitle": "اعداد و شمار",
+  "level": "سطح",
+  "levelWithNumber": "سطح {level}",
+  "levelTooltip": "آپ کی موجودہ سطح",
+  "xpToNext": "اگلی سطح کے لیے XP",
+  "xpAbbrev": "XP",
+  "pointsToAllocate": "مختص کرنے کے لیے پوائنٹس",
+  "allPointsAssigned": "تمام پوائنٹس تفویض کر دیئے گئے ہیں۔",
+  "save": "محفوظ کریں",
+  "reset": "ری سیٹ کریں",
+  "power": "طاقت",
+  "stamina": " صلاحیت",
+  "reach": "پہنچ",
+  "fortification": "قلعہ بندی",
+  "attackLabel": "حملہ: {min}–{max}",
+  "maxEnergyLabel": "زیادہ سے زیادہ توانائی {n}",
+  "rangeLabel": "رینج {n}m",
+  "doghouseHpLabel": "ڈاگ ہاؤس HP {n}",
+  "whatIsPower": "طاقت کیا ہے?",
+  "whatIsStamina": " صلاحیت کیا ہے?",
+  "whatIsReach": "پہنچ کیا ہے?",
+  "whatIsFortification": "قلعہ بندی کیا ہے?",
+  "availableDoghousesTitle": "دستیاب ڈاگ ہاؤسز",
+  "energyTitle": "توانائی",
+  "doghouseBuffs": "ڈاگ ہاؤس بفز",
+  "gotIt": "سمجھ گیا",
+  "premiumBadge": "پریمیم",
+  "premiumExpires": "میعاد ختم ہونے کی تاریخ: {date}",
+  "manageSubscription": "سبسکرپشن کا نظم کریں",
+  "unlimited": "لامحدود",
+  "powerDesc": "ڈاگ ہاؤسز کو پہنچنے والا نقصان۔ موجودہ حملے کا نقصان: {min}–{max}۔ ہر پوائنٹ न्यूनतम اور زیادہ سے زیادہ دونوں کو 1 سے بڑھاتا ہے۔",
+  "staminaDesc": "زیادہ سے زیادہ توانائی کو بڑھاتا ہے تاکہ آپ اپنے ڈاگ ہاؤسز پر زیادہ کثرت سے حملہ یا مرمت कर سکیں۔ موجودہ زیادہ سے زیادہ توانائی: {n}۔ (+10 فی پوائنٹ، 100 سے شروع)",
+  "reachDesc": "ڈاگ ہاؤسز کے ساتھ تعامل کے لیے نقشے پر رینج (حملہ یا مرمت)۔ موجودہ رینج: {n} m۔ (+10 m فی پوائنٹ، 200 m سے شروع)",
+  "fortificationDesc": "آپ کے تمام ڈاگ ہاؤسز کی زیادہ سے زیادہ HP کو بڑھاتا ہے تاکہ انہیں تباہ کرنا مشکل ہو جائے۔ موجودہ ڈاگ ہاؤس زیادہ سے زیادہ HP: {n}۔ (+20 فی پوائنٹ، 100 سے شروع)",
+  "dateLabel": "تاریخ",
+  "hpAbbrev": "HP",
+  "sortBy": "ترتیب دیں",
+  "exitEditMode": "ترمیم موڈ سے باہر نکلیں",
+  "editDoghouses": "ڈاگ ہاؤسز میں ترمیم کریں",
+  "noDoghousesYet": "ابھی تک کوئی ڈاگ ہاؤس نہیں ہے",
+  "goToMapToBuildFirst": "اپنا پہلا ڈاگ ہاؤس بنانے کے لیے نقشے پر جائیں!",
+  "doghouseNamePlaceholder": "ڈاگ ہاؤس کا نام",
+  "editName": "نام میں ترمیم کریں",
+  "findPosition": "اپنی پوزیشن تلاش کریں",
+  "turnOnLocation": "براہ کرم لوکیشن آن کریں",
+  "turnOnGpsWait": "براہ کرم اپنا GPS آن کریں اور لوڈ ہونے کا انتظار کریں",
+  "clickButtonBelow": "اور نیچے دیے گئے بٹن پر کلک کریں",
+  "signInWithGoogle": "گوگل کے ساتھ سائن ان کریں",
+  "health": "صحت",
+  "availableBuffs": "دستیاب بفز",
+  "confirm": "تصدیق کریں",
+  "cancel": "منسوخ کریں",
+  "tapTimesToAttack": "حملہ کرنے کے لیے {n} بار ٹیپ کریں!",
+  "tapTimesToRepair": "مرمت کرنے کے لیے {n} بار ٹیپ کریں!",
+  "notEnoughEnergyNeed": "کافی توانائی نہیں! {n} توانائی درکار ہے۔",
+  "doghouseFullHealth": "کتے کا گھر پہلے ہی پوری صحت پر ہے!",
+  "destroyedText": "تباہ!",
+  "appSettings": "ایپ کی ترتیبات",
+  "language": "زبان",
+  "chooseLanguage": "اپنی پسندیدہ زبان منتخب کریں",
+  "notifications": "پش اطلاعات",
+  "notificationsDesc": "گیم ایونٹس کے بارے میں اطلاعات حاصل کریں",
+  "darkMode": "ڈارک موڈ",
+  "darkModeDesc": "ڈارک تھیم پر سوئچ کریں",
+  "signOut": "سائن آؤٹ",
+  "contactUs": "ہم سے رابطہ کریں",
+  "contactDesc": "کسی بھی پوچھ گچھ کے لیے، براہ کرم ہمیں ای میل کریں:",
+  "attributions": "انتسابات",
+  "userUnknown": "نامعلوم صارف",
+  "userNoEmail": "کوئی ای میل نہیں",
+  "refreshing": "ریفریش ہو رہا ہے...",
+  "hoursAbbrev": "گھنٹے",
+  "minutesAbbrev": "منٹ",
+  "remainingTime": "باقی وقت",
+  "loading": "لوڈ ہو رہا ہے...",
+  "loadingDailyQuests": "روزانہ کی تلاشیں لوڈ ہو رہی ہیں...",
+  "noQuestsToday": "آج کوئی تلاش دستیاب نہیں ہے",
+  "claim": "دعوی کریں",
+  "claimed": "دعوی کیا گیا",
+  "leaderboardTopLevels": "اعلیٰ سطحیں",
+  "leaderboardMasterBuilders": "ماسٹر بلڈرز",
+  "leaderboardTopDestroyers": "ٹاپ ڈسٹرائرز",
+  "leaderboardGeneric": "لیڈر بورڈ",
+  "leaderboardColLevel": "سطح",
+  "leaderboardColBuilt": "تعمیر شدہ",
+  "leaderboardColDestroyed": "تباہ",
+  "leaderboardColScore": "اسکور",
+  "leaderboardFooter": "{total} کل کھلاڑی • {date} کو اپ ڈیٹ کیا گیا",
+  "leaderboardTotalPlayers": "کل کھلاڑی",
+  "leaderboardUpdated": "اپ ڈیٹ کیا गया",
+  "navMyDog": "میرا کتا",
+  "doghousesTitle": "کتے کے گھر",
+  "navProfile": "پروفائل"
+}

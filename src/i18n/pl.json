@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "Brakujące współrzędne"
+    },
+    "reach": {
+      "outOfReach": "Poza zasięgiem. Odległość: {distanceMeters}m, zasięg: {reachMeters}m"
+    },
+    "name": {
+      "tooLong": "Nazwa zbyt długa",
+      "exists": "Nazwa już istnieje",
+      "cannotChangeAnymore": "Nie możesz już zmienić nazwy"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "Ta buda jest już w pełni uleczona!"
+    },
+    "buff": {
+      "notAvailable": "Nie masz już dostępnego tego wzmocnienia!"
+    },
+    "purchase": {
+      "verifyFailed": "Błąd weryfikacji zakupu: {statusCode}",
+      "ackFailed": "Potwierdzenie zakupu nie powiodło się: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "Błąd weryfikacji subskrypcji: {statusCode}",
+      "invalidExpiry": "Nieprawidłowy czas wygaśnięcia subskrypcji",
+      "ackFailed": "Potwierdzenie subskrypcji nie powiodło się: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "Za mało smakołyków"
+    },
+    "quest": {
+      "notFound": "Nie znaleziono zadania",
+      "notOwner": "Zadanie nie należy do obecnego użytkownika",
+      "notCompleted": "Zadanie nie zostało jeszcze ukończone",
+      "alreadyClaimed": "Nagroda za zadanie została już odebrana"
+    },
+    "language": {
+      "required": "Język musi być podany"
+    },
+    "oauth": {
+      "refreshFailed": "Odświeżenie tokena nie powiodło się: {statusCode}"
+    },
+    "internal": "Wewnętrzny błąd serwera"
+  },
+  "shop": {
+    "title": "Sklep",
+    "spend": "Wydaj",
+    "buy": "Kup",
+    "buyPremium": "Kup Premium",
+    "doghouses": "Budy",
+    "renameTokens": "Tokeny zmiany nazwy",
+    "repairKits": "Zestawy naprawcze",
+    "energy": "Energia",
+    "treatPacks": "Paczki smakołyków",
+    "subscriptions": "Subskrypcje",
+    "product": {
+      "treats": "Smakołyki",
+      "premiumSubscription": "Subskrypcja Premium",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "Odebrano: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "Pierwsze kroki",
+        "2": "Budowniczy",
+        "3": "Mistrz budowniczy"
+      },
+      "SPEND_ENERGY": {
+        "1": "Spalacz energii",
+        "2": "Mistrz energii",
+        "3": "Tytan energii"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "Oszczędzacz energii",
+        "2": "Łowca doświadczenia",
+        "3": "Mistrz doświadczenia"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "Złota rączka",
+        "2": "Ekspert od napraw",
+        "3": "Mistrz mechaniki"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "Napastnik",
+        "2": "Dowódca najazdu",
+        "3": "Watażka"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "Niszczyciel",
+        "2": "Ekspert od demolki",
+        "3": "Niszczyciel światów"
+      },
+      "LEVEL_UP": {
+        "1": "Awans",
+        "2": "Wschodząca gwiazda",
+        "3": "Elitarny mistrz"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "Zbuduj {target} bud(y)",
+      "SPEND_ENERGY": "Wydaj {target} energii",
+      "GAIN_EXPERIENCE": "Zdobądź {target} PD",
+      "REPAIR_DOGHOUSES": "Napraw {target} bud(y)",
+      "ATTACK_DOGHOUSES": "Zaatakuj {target} bud(y)",
+      "DESTROY_DOGHOUSES": "Zniszcz {target} bud(y)",
+      "LEVEL_UP": "Osiągnij {target} nowy(e) poziom(y)"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} smakołyków",
+      "ENERGY": "{amount} energii",
+      "EXPERIENCE": "{amount} PD",
+      "DOG_RENAME": "Token zmiany imienia psa",
+      "DOGHOUSE_RENAME": "Token zmiany nazwy budy",
+      "DOGHOUSES": "{amount} dodatkowych bud",
+      "ENERGY_RESTORE": "Pełne odnowienie energii"
+    }
+  },
+  "statsTab": "Statystyki",
+  "dailyQuestsTab": "Zadania dzienne",
+  "leaderboardsTab": "Rankingi",
+  "statsTitle": "Statystyki",
+  "level": "Poziom",
+  "levelWithNumber": "Poziom {level}",
+  "levelTooltip": "Twój obecny poziom",
+  "xpToNext": "PD do następnego poziomu",
+  "xpAbbrev": "PD",
+  "pointsToAllocate": "punkty do rozdania",
+  "allPointsAssigned": "Wszystkie punkty przydzielone",
+  "save": "Zapisz",
+  "reset": "Resetuj",
+  "power": "Siła",
+  "stamina": "Wytrzymałość",
+  "reach": "Zasięg",
+  "fortification": "Umocnienie",
+  "attackLabel": "Atak: {min}–{max}",
+  "maxEnergyLabel": "Maks. energia {n}",
+  "rangeLabel": "Zasięg {n} m",
+  "doghouseHpLabel": "HP budy {n}",
+  "whatIsPower": "Co to jest Siła?",
+  "whatIsStamina": "Co to jest Wytrzymałość?",
+  "whatIsReach": "Co to jest Zasięg?",
+  "whatIsFortification": "Co to jest Umocnienie?",
+  "availableDoghousesTitle": "Dostępne budy",
+  "energyTitle": "Energia",
+  "doghouseBuffs": "Wzmocnienia budy",
+  "gotIt": "Rozumiem",
+  "premiumBadge": "Premium",
+  "premiumExpires": "Wygasa: {date}",
+  "manageSubscription": "Zarządzaj subskrypcją",
+  "unlimited": "Bez limitu",
+  "powerDesc": "Zadawane obrażenia budom. Obecne obrażenia ataku: {min}–{max}. Każdy punkt zwiększa zarówno min, jak i max o 1.",
+  "staminaDesc": "Zwiększa maksymalną energię, dzięki czemu możesz częściej atakować lub naprawiać swoje budy. Obecna maks. energia: {n}. (+10 za punkt, start od 100)",
+  "reachDesc": "Zasięg na mapie do interakcji z budami (atak lub naprawa). Obecny zasięg: {n} m. (+10 m za punkt, start od 200 m)",
+  "fortificationDesc": "Zwiększa maks. HP wszystkich twoich bud, dzięki czemu trudniej je zniszczyć. Obecne maks. HP budy: {n}. (+20 za punkt, start od 100)",
+  "dateLabel": "Data",
+  "hpAbbrev": "HP",
+  "sortBy": "Sortuj według",
+  "exitEditMode": "Zakończ tryb edycji",
+  "editDoghouses": "Edytuj budy",
+  "noDoghousesYet": "Brak bud",
+  "goToMapToBuildFirst": "Przejdź do mapy, aby zbudować pierwszą budę!",
+  "doghouseNamePlaceholder": "Nazwa budy",
+  "editName": "Edytuj nazwę",
+  "findPosition": "Znajdź swoją pozycję",
+  "turnOnLocation": "Proszę włączyć lokalizację",
+  "turnOnGpsWait": "Proszę włączyć GPS i poczekać na załadowanie",
+  "clickButtonBelow": "i kliknij przycisk poniżej",
+  "signInWithGoogle": "Zaloguj się przez Google",
+  "health": "Zdrowie",
+  "availableBuffs": "Dostępne wzmocnienia",
+  "confirm": "Potwierdź",
+  "cancel": "Anuluj",
+  "tapTimesToAttack": "Stuknij {n} raz(y), aby zaatakować!",
+  "tapTimesToRepair": "Stuknij {n} raz(y), aby naprawić!",
+  "notEnoughEnergyNeed": "Za mało energii! Potrzeba {n} energii.",
+  "doghouseFullHealth": "Buda ma już pełne zdrowie!",
+  "destroyedText": "ZNISZCZONA!",
+  "appSettings": "Ustawienia aplikacji",
+  "language": "Język",
+  "chooseLanguage": "Wybierz preferowany język",
+  "notifications": "Powiadomienia",
+  "notificationsDesc": "Otrzymuj powiadomienia o wydarzeniach w grze",
+  "darkMode": "Tryb ciemny",
+  "darkModeDesc": "Przełącz na ciemny motyw",
+  "signOut": "Wyloguj się",
+  "contactUs": "Kontakt",
+  "contactDesc": "W razie pytań napisz do nas na:",
+  "attributions": "Podziękowania",
+  "userUnknown": "Nieznany użytkownik",
+  "userNoEmail": "Brak e-maila",
+  "refreshing": "Odświeżanie...",
+  "hoursAbbrev": "g",
+  "minutesAbbrev": "min",
+  "remainingTime": "Pozostały czas",
+  "loading": "Ładowanie...",
+  "loadingDailyQuests": "Ładowanie zadań dziennych...",
+  "noQuestsToday": "Brak zadań na dziś",
+  "claim": "Odbierz",
+  "claimed": "Odebrano",
+  "leaderboardTopLevels": "Najwyższe poziomy",
+  "leaderboardMasterBuilders": "Mistrzowie budowy",
+  "leaderboardTopDestroyers": "Najlepsi niszczyciele",
+  "leaderboardGeneric": "Ranking",
+  "leaderboardColLevel": "Poziom",
+  "leaderboardColBuilt": "Zbudowane",
+  "leaderboardColDestroyed": "Zniszczone",
+  "leaderboardColScore": "Wynik",
+  "leaderboardFooter": "{total} graczy • Aktualizacja {date}",
+  "leaderboardTotalPlayers": "graczy",
+  "leaderboardUpdated": "Aktualizacja",
+  "navMyDog": "Mój pies",
+  "doghousesTitle": "Budy",
+  "navProfile": "Profil"
+}

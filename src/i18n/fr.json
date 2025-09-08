@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "Coordonnées manquantes"
+    },
+    "reach": {
+      "outOfReach": "Hors de portée. Distance : {distanceMeters}m, portée : {reachMeters}m"
+    },
+    "name": {
+      "tooLong": "Nom trop long",
+      "exists": "Le nom existe déjà",
+      "cannotChangeAnymore": "Vous ne pouvez plus changer de nom"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "Cette niche est déjà entièrement soignée !"
+    },
+    "buff": {
+      "notAvailable": "Vous n'avez plus ce buff disponible !"
+    },
+    "purchase": {
+      "verifyFailed": "Erreur lors de la vérification de l'achat : {statusCode}",
+      "ackFailed": "Échec de la confirmation de l'achat : {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "Erreur lors de la vérification de l'abonnement : {statusCode}",
+      "invalidExpiry": "Date d'expiration de l'abonnement non valide",
+      "ackFailed": "Échec de la confirmation de l'abonnement : {statusCode}"
+    },
+    "treats": {
+      "notEnough": "Pas assez de friandises"
+    },
+    "quest": {
+      "notFound": "Quête non trouvée",
+      "notOwner": "La quête n'appartient pas à l'utilisateur actuel",
+      "notCompleted": "La quête n'est pas encore terminée",
+      "alreadyClaimed": "Récompense de quête déjà réclamée"
+    },
+    "language": {
+      "required": "La langue doit être fournie"
+    },
+    "oauth": {
+      "refreshFailed": "Échec de l'actualisation du jeton : {statusCode}"
+    },
+    "internal": "Erreur interne du serveur"
+  },
+  "shop": {
+    "title": "Boutique",
+    "spend": "Dépenser",
+    "buy": "Acheter",
+    "buyPremium": "Acheter Premium",
+    "doghouses": "Niches",
+    "renameTokens": "Jetons de renommage",
+    "repairKits": "Kits de réparation",
+    "energy": "Énergie",
+    "treatPacks": "Packs de friandises",
+    "subscriptions": "Abonnements",
+    "product": {
+      "treats": "Friandises",
+      "premiumSubscription": "Abonnement Premium",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "Réclamé : {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "Premiers pas",
+        "2": "Constructeur",
+        "3": "Maître constructeur"
+      },
+      "SPEND_ENERGY": {
+        "1": "Brûleur d'énergie",
+        "2": "Maître de l'énergie",
+        "3": "Titan de l'énergie"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "Économiseur d'énergie",
+        "2": "Chasseur d'expérience",
+        "3": "Maître de l'expérience"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "Bricoleur",
+        "2": "Expert en réparation",
+        "3": "Maître mécanicien"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "Attaquant",
+        "2": "Chef de raid",
+        "3": "Seigneur de guerre"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "Destructeur",
+        "2": "Expert en démolition",
+        "3": "Destructeur de mondes"
+      },
+      "LEVEL_UP": {
+        "1": "Niveau supérieur",
+        "2": "Étoile montante",
+        "3": "Champion d'élite"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "Construire {target} niche(s)",
+      "SPEND_ENERGY": "Dépenser {target} d'énergie",
+      "GAIN_EXPERIENCE": "Gagner {target} XP",
+      "REPAIR_DOGHOUSES": "Réparer {target} niche(s)",
+      "ATTACK_DOGHOUSES": "Attaquer {target} niche(s)",
+      "DESTROY_DOGHOUSES": "Détruire {target} niche(s)",
+      "LEVEL_UP": "Atteindre {target} nouveau(x) niveau(x)"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} friandises",
+      "ENERGY": "{amount} d'énergie",
+      "EXPERIENCE": "{amount} XP",
+      "DOG_RENAME": "Jeton de renommage de chien",
+      "DOGHOUSE_RENAME": "Jeton de renommage de niche",
+      "DOGHOUSES": "{amount} niche(s) supplémentaire(s)",
+      "ENERGY_RESTORE": "Restauration complète de l'énergie"
+    }
+  },
+  "statsTab": "Statistiques",
+  "dailyQuestsTab": "Quêtes quotidiennes",
+  "leaderboardsTab": "Classements",
+  "statsTitle": "Statistiques",
+  "level": "Niveau",
+  "levelWithNumber": "Niveau {level}",
+  "levelTooltip": "Votre niveau actuel",
+  "xpToNext": "XP jusqu'au prochain niveau",
+  "xpAbbrev": "XP",
+  "pointsToAllocate": "points à attribuer",
+  "allPointsAssigned": "Tous les points sont attribués",
+  "save": "Enregistrer",
+  "reset": "Réinitialiser",
+  "power": "Puissance",
+  "stamina": "Endurance",
+  "reach": "Portée",
+  "fortification": "Fortification",
+  "attackLabel": "Attaque : {min}–{max}",
+  "maxEnergyLabel": "Énergie max {n}",
+  "rangeLabel": "Portée {n} m",
+  "doghouseHpLabel": "PV de la niche {n}",
+  "whatIsPower": "Qu’est-ce que la Puissance ?",
+  "whatIsStamina": "Qu’est-ce que l’Endurance ?",
+  "whatIsReach": "Qu’est-ce que la Portée ?",
+  "whatIsFortification": "Qu’est-ce que la Fortification ?",
+  "availableDoghousesTitle": "Niches disponibles",
+  "energyTitle": "Énergie",
+  "doghouseBuffs": "Améliorations de la niche",
+  "gotIt": "J’ai compris",
+  "premiumBadge": "Premium",
+  "premiumExpires": "Expire : {date}",
+  "manageSubscription": "Gérer l’abonnement",
+  "unlimited": "Illimité",
+  "powerDesc": "Dégâts infligés aux niches. Dégâts d’attaque actuels : {min}–{max}. Chaque point augmente le min et le max de 1.",
+  "staminaDesc": "Augmente l’énergie max pour attaquer ou réparer vos niches plus souvent. Énergie max actuelle : {n}. (+10 par point, à partir de 100)",
+  "reachDesc": "Portée sur la carte pour interagir avec les niches (attaquer ou réparer). Portée actuelle : {n} m. (+10 m par point, à partir de 200 m)",
+  "fortificationDesc": "Augmente les PV max de toutes vos niches pour les rendre plus difficiles à détruire. PV max actuels de la niche : {n}. (+20 par point, à partir de 100)",
+  "dateLabel": "Date",
+  "hpAbbrev": "PV",
+  "sortBy": "Trier par",
+  "exitEditMode": "Quitter le mode édition",
+  "editDoghouses": "Modifier les niches",
+  "noDoghousesYet": "Aucune niche pour le moment",
+  "goToMapToBuildFirst": "Allez sur la carte pour construire votre première niche !",
+  "doghouseNamePlaceholder": "Nom de la niche",
+  "editName": "Modifier le nom",
+  "findPosition": "Trouver votre position",
+  "turnOnLocation": "Veuillez activer la localisation",
+  "turnOnGpsWait": "Veuillez activer le GPS et patienter",
+  "clickButtonBelow": "puis cliquez sur le bouton ci-dessous",
+  "signInWithGoogle": "Se connecter avec Google",
+  "health": "Santé",
+  "availableBuffs": "Améliorations disponibles",
+  "confirm": "Confirmer",
+  "cancel": "Annuler",
+  "tapTimesToAttack": "Touchez {n} fois pour attaquer !",
+  "tapTimesToRepair": "Touchez {n} fois pour réparer !",
+  "notEnoughEnergyNeed": "Pas assez d’énergie ! Il faut {n} énergie.",
+  "doghouseFullHealth": "La niche est déjà en pleine santé !",
+  "destroyedText": "DÉTRUITE !",
+  "appSettings": "Paramètres de l’application",
+  "language": "Langue",
+  "chooseLanguage": "Choisissez votre langue préférée",
+  "notifications": "Notifications",
+  "notificationsDesc": "Recevez des notifications sur les événements du jeu",
+  "darkMode": "Mode sombre",
+  "darkModeDesc": "Basculer en thème sombre",
+  "signOut": "Se déconnecter",
+  "contactUs": "Contact",
+  "contactDesc": "Pour toute question, écrivez-nous à :",
+  "attributions": "Crédits",
+  "userUnknown": "Utilisateur inconnu",
+  "userNoEmail": "Pas d’e-mail",
+  "refreshing": "Actualisation...",
+  "hoursAbbrev": "h",
+  "minutesAbbrev": "min",
+  "remainingTime": "Temps restant",
+  "loading": "Chargement...",
+  "loadingDailyQuests": "Chargement des quêtes quotidiennes...",
+  "noQuestsToday": "Aucune quête aujourd’hui",
+  "claim": "Réclamer",
+  "claimed": "Réclamé",
+  "leaderboardTopLevels": "Meilleurs niveaux",
+  "leaderboardMasterBuilders": "Maîtres bâtisseurs",
+  "leaderboardTopDestroyers": "Meilleurs destructeurs",
+  "leaderboardGeneric": "Classement",
+  "leaderboardColLevel": "Niveau",
+  "leaderboardColBuilt": "Construites",
+  "leaderboardColDestroyed": "Détruites",
+  "leaderboardColScore": "Score",
+  "leaderboardFooter": "{total} joueurs • Mis à jour le {date}",
+  "leaderboardTotalPlayers": "joueurs",
+  "leaderboardUpdated": "Mis à jour le",
+  "navMyDog": "Mon chien",
+  "doghousesTitle": "Niches",
+  "navProfile": "Profil"
+}

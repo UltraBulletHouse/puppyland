@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "Fehlende Koordinaten"
+    },
+    "reach": {
+      "outOfReach": "Außer Reichweite. Entfernung: {distanceMeters}m, Reichweite: {reachMeters}m"
+    },
+    "name": {
+      "tooLong": "Name zu lang",
+      "exists": "Name existiert bereits",
+      "cannotChangeAnymore": "Du kannst den Namen nicht mehr ändern"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "Diese Hundehütte ist bereits vollständig geheilt!"
+    },
+    "buff": {
+      "notAvailable": "Dieser Buff ist für dich nicht mehr verfügbar!"
+    },
+    "purchase": {
+      "verifyFailed": "Fehler beim Überprüfen des Kaufs: {statusCode}",
+      "ackFailed": "Bestätigung des Kaufs fehlgeschlagen: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "Fehler beim Überprüfen des Abonnements: {statusCode}",
+      "invalidExpiry": "Ungültige Abonnement-Ablaufzeit",
+      "ackFailed": "Bestätigung des Abonnements fehlgeschlagen: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "Nicht genügend Leckerlis"
+    },
+    "quest": {
+      "notFound": "Quest nicht gefunden",
+      "notOwner": "Quest gehört nicht dem aktuellen Benutzer",
+      "notCompleted": "Quest ist noch не abgeschlossen",
+      "alreadyClaimed": "Quest-Belohnung bereits eingefordert"
+    },
+    "language": {
+      "required": "Sprache muss angegeben werden"
+    },
+    "oauth": {
+      "refreshFailed": "Token-Aktualisierung fehlgeschlagen: {statusCode}"
+    },
+    "internal": "Interner Serverfehler"
+  },
+  "shop": {
+    "title": "Shop",
+    "spend": "Ausgeben",
+    "buy": "Kaufen",
+    "buyPremium": "Premium kaufen",
+    "doghouses": "Hundehütten",
+    "renameTokens": "Token umbenennen",
+    "repairKits": "Reparatursets",
+    "energy": "Energie",
+    "treatPacks": "Leckerli-Pakete",
+    "subscriptions": "Abonnements",
+    "product": {
+      "treats": "Leckerlis",
+      "premiumSubscription": "Premium-Abonnement",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "Eingefordert: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "Erste Schritte",
+        "2": "Baumeister",
+        "3": "Meister-Baumeister"
+      },
+      "SPEND_ENERGY": {
+        "1": "Energie-Verbrenner",
+        "2": "Energie-Meister",
+        "3": "Energie-Titan"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "Energie-Sparer",
+        "2": "Erfahrungs-Jäger",
+        "3": "Erfahrungs-Meister"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "Handwerker",
+        "2": "Reparatur-Experte",
+        "3": "Meister-Mechaniker"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "Angreifer",
+        "2": "Anführer des Überfalls",
+        "3": "Kriegsherr"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "Zerstörer",
+        "2": "Sprengstoff-Experte",
+        "3": "Zerstörer der Welten"
+      },
+      "LEVEL_UP": {
+        "1": "Level aufsteigen",
+        "2": "Aufgehender Stern",
+        "3": "Elite-Champion"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "Baue {target} Hundehütte(n)",
+      "SPEND_ENERGY": "Gib {target} Energie aus",
+      "GAIN_EXPERIENCE": "Sammle {target} EP",
+      "REPAIR_DOGHOUSES": "Repariere {target} Hundehütte(n)",
+      "ATTACK_DOGHOUSES": "Greife {target} Hundehütte(n) an",
+      "DESTROY_DOGHOUSES": "Zerstöre {target} Hundehütte(n)",
+      "LEVEL_UP": "Erreiche {target} neue(s) Level"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} Leckerlis",
+      "ENERGY": "{amount} Energie",
+      "EXPERIENCE": "{amount} EP",
+      "DOG_RENAME": "Token zum Umbenennen des Hundes",
+      "DOGHOUSE_RENAME": "Token zum Umbenennen der Hundehütte",
+      "DOGHOUSES": "{amount} zusätzliche Hundehütte(n)",
+      "ENERGY_RESTORE": "Vollständige Energiewiederherstellung"
+    }
+  },
+  "statsTab": "Statistiken",
+  "dailyQuestsTab": "Tägliche Quests",
+  "leaderboardsTab": "Bestenlisten",
+  "statsTitle": "Statistiken",
+  "level": "Level",
+  "levelWithNumber": "Level {level}",
+  "levelTooltip": "Dein aktuelles Level",
+  "xpToNext": "EP bis zum nächsten Level",
+  "xpAbbrev": "EP",
+  "pointsToAllocate": "Punkte zu vergeben",
+  "allPointsAssigned": "Alle Punkte zugewiesen",
+  "save": "Speichern",
+  "reset": "Zurücksetzen",
+  "power": "Stärke",
+  "stamina": "Ausdauer",
+  "reach": "Reichweite",
+  "fortification": "Befestigung",
+  "attackLabel": "Angriff: {min}–{max}",
+  "maxEnergyLabel": "Max. Energie {n}",
+  "rangeLabel": "Reichweite {n} m",
+  "doghouseHpLabel": "Hundehütte HP {n}",
+  "whatIsPower": "Was ist Stärke?",
+  "whatIsStamina": "Was ist Ausdauer?",
+  "whatIsReach": "Was ist Reichweite?",
+  "whatIsFortification": "Was ist Befestigung?",
+  "availableDoghousesTitle": "Verfügbare Hundehütten",
+  "energyTitle": "Energie",
+  "doghouseBuffs": "Verbesserungen der Hundehütte",
+  "gotIt": "Verstanden",
+  "premiumBadge": "Premium",
+  "premiumExpires": "Läuft ab: {date}",
+  "manageSubscription": "Abonnement verwalten",
+  "unlimited": "Unbegrenzt",
+  "powerDesc": "Schaden an Hundehütten. Aktueller Angriffsschaden: {min}–{max}. Jeder Punkt erhöht Min und Max um 1.",
+  "staminaDesc": "Erhöht die maximale Energie, damit du häufiger angreifen oder reparieren kannst. Aktuelle max. Energie: {n}. (+10 pro Punkt, ab 100)",
+  "reachDesc": "Reichweite auf der Karte zur Interaktion mit Hundehütten (Angriff oder Reparatur). Aktuelle Reichweite: {n} m. (+10 m pro Punkt, ab 200 m)",
+  "fortificationDesc": "Erhöht die max. HP aller Hundehütten, damit sie schwerer zu zerstören sind. Aktuelle max. HP der Hundehütte: {n}. (+20 pro Punkt, ab 100)",
+  "dateLabel": "Datum",
+  "hpAbbrev": "HP",
+  "sortBy": "Sortieren nach",
+  "exitEditMode": "Bearbeitungsmodus beenden",
+  "editDoghouses": "Hundehütten bearbeiten",
+  "noDoghousesYet": "Noch keine Hundehütten",
+  "goToMapToBuildFirst": "Gehe zur Karte, um deine erste Hundehütte zu bauen!",
+  "doghouseNamePlaceholder": "Name der Hundehütte",
+  "editName": "Namen bearbeiten",
+  "findPosition": "Position finden",
+  "turnOnLocation": "Bitte Standort aktivieren",
+  "turnOnGpsWait": "Bitte GPS aktivieren und kurz warten",
+  "clickButtonBelow": "und dann unten auf den Button klicken",
+  "signInWithGoogle": "Mit Google anmelden",
+  "health": "Gesundheit",
+  "availableBuffs": "Verfügbare Buffs",
+  "confirm": "Bestätigen",
+  "cancel": "Abbrechen",
+  "tapTimesToAttack": "Tippe {n}‑mal zum Angreifen!",
+  "tapTimesToRepair": "Tippe {n}‑mal zum Reparieren!",
+  "notEnoughEnergyNeed": "Nicht genug Energie! Benötigt werden {n} Energie.",
+  "doghouseFullHealth": "Die Hundehütte hat bereits volle Gesundheit!",
+  "destroyedText": "ZERSTÖRT!",
+  "appSettings": "App-Einstellungen",
+  "language": "Sprache",
+  "chooseLanguage": "Bevorzugte Sprache auswählen",
+  "notifications": "Benachrichtigungen",
+  "notificationsDesc": "Benachrichtigungen zu Spielevents erhalten",
+  "darkMode": "Dunkler Modus",
+  "darkModeDesc": "Zum dunklen Thema wechseln",
+  "signOut": "Abmelden",
+  "contactUs": "Kontakt",
+  "contactDesc": "Für Anfragen schreiben Sie an:",
+  "attributions": "Danksagungen",
+  "userUnknown": "Unbekannter Benutzer",
+  "userNoEmail": "Keine E‑Mail",
+  "refreshing": "Aktualisiere...",
+  "hoursAbbrev": "Std",
+  "minutesAbbrev": "Min",
+  "remainingTime": "Verbleibende Zeit",
+  "loading": "Laden...",
+  "loadingDailyQuests": "Tägliche Quests werden geladen...",
+  "noQuestsToday": "Heute keine Quests verfügbar",
+  "claim": "Einlösen",
+  "claimed": "Eingelöst",
+  "leaderboardTopLevels": "Top-Level",
+  "leaderboardMasterBuilders": "Meisterbauer",
+  "leaderboardTopDestroyers": "Top-Zerstörer",
+  "leaderboardGeneric": "Bestenliste",
+  "leaderboardColLevel": "Level",
+  "leaderboardColBuilt": "Gebaut",
+  "leaderboardColDestroyed": "Zerstört",
+  "leaderboardColScore": "Punkte",
+  "leaderboardFooter": "{total} Spieler • Aktualisiert am {date}",
+  "leaderboardTotalPlayers": "Spieler",
+  "leaderboardUpdated": "Aktualisiert am",
+  "navMyDog": "Mein Hund",
+  "doghousesTitle": "Hundehütten",
+  "navProfile": "Profil"
+}

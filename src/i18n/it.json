@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "Coordinate mancanti"
+    },
+    "reach": {
+      "outOfReach": "Fuori portata. Distanza: {distanceMeters}m, portata: {reachMeters}m"
+    },
+    "name": {
+      "tooLong": "Nome troppo lungo",
+      "exists": "Il nome esiste già",
+      "cannotChangeAnymore": "Non puoi più cambiare nome"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "Questa cuccia è già completamente guarita!"
+    },
+    "buff": {
+      "notAvailable": "Non hai più questo potenziamento disponibile!"
+    },
+    "purchase": {
+      "verifyFailed": "Errore durante la verifica dell'acquisto: {statusCode}",
+      "ackFailed": "Conferma dell'acquisto non riuscita: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "Errore durante la verifica dell'abbonamento: {statusCode}",
+      "invalidExpiry": "Tempo di scadenza dell'abbonamento non valido",
+      "ackFailed": "Conferma dell'abbonamento non riuscita: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "Non abbastanza dolcetti"
+    },
+    "quest": {
+      "notFound": "Missione non trovata",
+      "notOwner": "La missione non appartiene all'utente corrente",
+      "notCompleted": "Missione non ancora completata",
+      "alreadyClaimed": "Ricompensa della missione già riscattata"
+    },
+    "language": {
+      "required": "La lingua deve essere fornita"
+    },
+    "oauth": {
+      "refreshFailed": "Aggiornamento del token non riuscito: {statusCode}"
+    },
+    "internal": "Errore interno del server"
+  },
+  "shop": {
+    "title": "Negozio",
+    "spend": "Spendi",
+    "buy": "Acquista",
+    "buyPremium": "Acquista Premium",
+    "doghouses": "Cuccie",
+    "renameTokens": "Gettoni per rinominare",
+    "repairKits": "Kit di riparazione",
+    "energy": "Energia",
+    "treatPacks": "Pacchetti di dolcetti",
+    "subscriptions": "Abbonamenti",
+    "product": {
+      "treats": "Dolcetti",
+      "premiumSubscription": "Abbonamento Premium",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "Riscattato: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "Primi passi",
+        "2": "Costruttore",
+        "3": "Maestro costruttore"
+      },
+      "SPEND_ENERGY": {
+        "1": "Consumatore di energia",
+        "2": "Maestro di energia",
+        "3": "Titano di energia"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "Risparmiatore di energia",
+        "2": "Cacciatore di esperienza",
+        "3": "Maestro di esperienza"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "Tuttofare",
+        "2": "Esperto di riparazioni",
+        "3": "Maestro meccanico"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "Attaccante",
+        "2": "Capo incursione",
+        "3": "Signore della guerra"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "Distruttore",
+        "2": "Esperto di demolizioni",
+        "3": "Distruttore di mondi"
+      },
+      "LEVEL_UP": {
+        "1": "Sali di livello",
+        "2": "Stella nascente",
+        "3": "Campione d'élite"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "Costruisci {target} cuccia(e)",
+      "SPEND_ENERGY": "Spendi {target} energia",
+      "GAIN_EXPERIENCE": "Guadagna {target} XP",
+      "REPAIR_DOGHOUSES": "Ripara {target} cuccia(e)",
+      "ATTACK_DOGHOUSES": "Attacca {target} cuccia(e)",
+      "DESTROY_DOGHOUSES": "Distruggi {target} cuccia(e)",
+      "LEVEL_UP": "Raggiungi {target} nuovo(i) livello(i)"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} dolcetti",
+      "ENERGY": "{amount} energia",
+      "EXPERIENCE": "{amount} XP",
+      "DOG_RENAME": "Gettone per rinominare il cane",
+      "DOGHOUSE_RENAME": "Gettone per rinominare la cuccia",
+      "DOGHOUSES": "{amount} cuccia(e) extra",
+      "ENERGY_RESTORE": "Ripristino completo dell'energia"
+    }
+  },
+  "statsTab": "Statistiche",
+  "dailyQuestsTab": "Missioni giornaliere",
+  "leaderboardsTab": "Classifiche",
+  "statsTitle": "Statistiche",
+  "level": "Livello",
+  "levelWithNumber": "Livello {level}",
+  "levelTooltip": "Il tuo livello attuale",
+  "xpToNext": "XP al prossimo livello",
+  "xpAbbrev": "XP",
+  "pointsToAllocate": "punti da assegnare",
+  "allPointsAssigned": "Tutti i punti assegnati",
+  "save": "Salva",
+  "reset": "Reimposta",
+  "power": "Potenza",
+  "stamina": "Resistenza",
+  "reach": "Gittata",
+  "fortification": "Fortificazione",
+  "attackLabel": "Attacco: {min}–{max}",
+  "maxEnergyLabel": "Energia max {n}",
+  "rangeLabel": "Gittata {n} m",
+  "doghouseHpLabel": "HP cuccia {n}",
+  "whatIsPower": "Cos’è la Potenza?",
+  "whatIsStamina": "Cos’è la Resistenza?",
+  "whatIsReach": "Cos’è la Gittata?",
+  "whatIsFortification": "Cos’è la Fortificazione?",
+  "availableDoghousesTitle": "Cuccie disponibili",
+  "energyTitle": "Energia",
+  "doghouseBuffs": "Potenziamenti cuccia",
+  "gotIt": "Capito",
+  "premiumBadge": "Premium",
+  "premiumExpires": "Scade: {date}",
+  "manageSubscription": "Gestisci abbonamento",
+  "unlimited": "Illimitato",
+  "powerDesc": "Danni inflitti alle cuccie. Danno d’attacco attuale: {min}–{max}. Ogni punto aumenta sia il min che il max di 1.",
+  "staminaDesc": "Aumenta l’energia massima per poter attaccare o riparare più spesso. Energia max attuale: {n}. (+10 per punto, a partire da 100)",
+  "reachDesc": "Gittata sulla mappa per interagire con le cuccie (attacco o riparazione). Gittata attuale: {n} m. (+10 m per punto, a partire da 200 m)",
+  "fortificationDesc": "Aumenta gli HP massimi di tutte le tue cuccie, rendendole più difficili da distruggere. HP max attuali della cuccia: {n}. (+20 per punto, a partire da 100)",
+  "dateLabel": "Data",
+  "hpAbbrev": "HP",
+  "sortBy": "Ordina per",
+  "exitEditMode": "Esci dalla modalità modifica",
+  "editDoghouses": "Modifica cuccie",
+  "noDoghousesYet": "Nessuna cuccia ancora",
+  "goToMapToBuildFirst": "Vai alla mappa per construire la tua prima cuccia!",
+  "doghouseNamePlaceholder": "Nome della cuccia",
+  "editName": "Modifica nome",
+  "findPosition": "Trova la tua posizione",
+  "turnOnLocation": "Attiva la localizzazione",
+  "turnOnGpsWait": "Attiva il GPS e attendi il caricamento",
+  "clickButtonBelow": "poi clicca il pulsante qui sotto",
+  "signInWithGoogle": "Accedi con Google",
+  "health": "Salute",
+  "availableBuffs": "Potenziamenti disponibili",
+  "confirm": "Conferma",
+  "cancel": "Annulla",
+  "tapTimesToAttack": "Tocca {n} volte per attaccare!",
+  "tapTimesToRepair": "Tocca {n} volte per riparare!",
+  "notEnoughEnergyNeed": "Energia insufficiente! Servono {n} energia.",
+  "doghouseFullHealth": "La cuccia è già alla salute massima!",
+  "destroyedText": "DISTRUTTA!",
+  "appSettings": "Impostazioni app",
+  "language": "Lingua",
+  "chooseLanguage": "Scegli la tua lingua preferita",
+  "notifications": "Notifiche",
+  "notificationsDesc": "Ricevi notifiche sugli eventi di gioco",
+  "darkMode": "Tema scuro",
+  "darkModeDesc": "Passa al tema scuro",
+  "signOut": "Esci",
+  "contactUs": "Contatti",
+  "contactDesc": "Per qualsiasi richiesta scrivici a:",
+  "attributions": "Riconoscimenti",
+  "userUnknown": "Utente sconosciuto",
+  "userNoEmail": "Nessuna e‑mail",
+  "refreshing": "Aggiornamento...",
+  "hoursAbbrev": "h",
+  "minutesAbbrev": "min",
+  "remainingTime": "Tempo rimanente",
+  "loading": "Caricamento...",
+  "loadingDailyQuests": "Caricamento missioni giornaliere...",
+  "noQuestsToday": "Nessuna missione disponibile oggi",
+  "claim": "Riscatta",
+  "claimed": "Riscattato",
+  "leaderboardTopLevels": "Migliori livelli",
+  "leaderboardMasterBuilders": "Maestri costruttori",
+  "leaderboardTopDestroyers": "Migliori distruttori",
+  "leaderboardGeneric": "Classifica",
+  "leaderboardColLevel": "Livello",
+  "leaderboardColBuilt": "Costruite",
+  "leaderboardColDestroyed": "Distrutte",
+  "leaderboardColScore": "Punteggio",
+  "leaderboardFooter": "{total} giocatori • Aggiornato il {date}",
+  "leaderboardTotalPlayers": "giocatori",
+  "leaderboardUpdated": "Aggiornato il",
+  "navMyDog": "Il mio cane",
+  "doghousesTitle": "Cuccie",
+  "navProfile": "Profilo"
+}

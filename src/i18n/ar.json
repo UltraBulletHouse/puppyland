@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "إحداثيات مفقودة"
+    },
+    "reach": {
+      "outOfReach": "خارج النطاق. المسافة: {distanceMeters}م، النطاق: {reachMeters}م"
+    },
+    "name": {
+      "tooLong": "الاسم طويل جدا",
+      "exists": "الاسم موجود بالفعل",
+      "cannotChangeAnymore": "لا يمكنك تغيير الاسم بعد الآن"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "بيت الكلب هذا معافى تماما!"
+    },
+    "buff": {
+      "notAvailable": "لم يعد هذا التعزيز متاحا لك!"
+    },
+    "purchase": {
+      "verifyFailed": "خطأ في التحقق من الشراء: {statusCode}",
+      "ackFailed": "فشل تأكيد الشراء: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "خطأ في التحقق من الاشتراك: {statusCode}",
+      "invalidExpiry": "وقت انتهاء صلاحية الاشتراك غير صالح",
+      "ackFailed": "فشل تأكيد الاشتراك: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "لا توجد مكافآت كافية"
+    },
+    "quest": {
+      "notFound": "المهمة غير موجودة",
+      "notOwner": "المهمة لا تنتمي إلى المستخدم الحالي",
+      "notCompleted": "المهمة لم تكتمل بعد",
+      "alreadyClaimed": "تمت المطالبة بمكافأة المهمة بالفعل"
+    },
+    "language": {
+      "required": "يجب توفير اللغة"
+    },
+    "oauth": {
+      "refreshFailed": "فشل تحديث الرمز: {statusCode}"
+    },
+    "internal": "خطأ داخلي في الخادم"
+  },
+  "shop": {
+    "title": "متجر",
+    "spend": "أنفق",
+    "buy": "شراء",
+    "buyPremium": "شراء بريميوم",
+    "doghouses": "بيوت الكلاب",
+    "renameTokens": "رموز إعادة التسمية",
+    "repairKits": "مجموعات الإصلاح",
+    "energy": "طاقة",
+    "treatPacks": "حزم المكافآت",
+    "subscriptions": "الاشتراكات",
+    "product": {
+      "treats": "مكافآت",
+      "premiumSubscription": "اشتراك بريميوم",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "تمت المطالبة: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "الخطوات الأولى",
+        "2": "باني",
+        "3": "باني رئيسي"
+      },
+      "SPEND_ENERGY": {
+        "1": "حارق الطاقة",
+        "2": "سيد الطاقة",
+        "3": "عملاق الطاقة"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "موفر الطاقة",
+        "2": "صياد الخبرة",
+        "3": "سيد الخبرة"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "عامل بارع",
+        "2": "خبير إصلاح",
+        "3": "ميكانيكي رئيسي"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "مهاجم",
+        "2": "قائد غارة",
+        "3": "أمير حرب"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "مدمر",
+        "2": "خبير هدم",
+        "3": "مدمر العوالم"
+      },
+      "LEVEL_UP": {
+        "1": "رفع المستوى",
+        "2": "نجم صاعد",
+        "3": "بطل النخبة"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "بناء {target} بيت (بيوت) كلاب",
+      "SPEND_ENERGY": "إنفاق {target} طاقة",
+      "GAIN_EXPERIENCE": "كسب {target} خبرة",
+      "REPAIR_DOGHOUSES": "إصلاح {target} بيت (بيوت) كلاب",
+      "ATTACK_DOGHOUSES": "مهاجمة {target} بيت (بيوت) كلاب",
+      "DESTROY_DOGHOUSES": "تدمير {target} بيت (بيوت) كلاب",
+      "LEVEL_UP": "الوصول إلى {target} مستوى (مستويات) جديد"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} مكافآت",
+      "ENERGY": "{amount} طاقة",
+      "EXPERIENCE": "{amount} خبرة",
+      "DOG_RENAME": "رمز إعادة تسمية الكلب",
+      "DOGHOUSE_RENAME": "رمز إعادة تسمية بيت الكلب",
+      "DOGHOUSES": "{amount} بيت (بيوت) كلاب إضافي",
+      "ENERGY_RESTORE": "استعادة كاملة للطاقة"
+    }
+  },
+  "statsTab": "الإحصائيات",
+  "dailyQuestsTab": "المهام اليومية",
+  "leaderboardsTab": "لوحات الصدارة",
+  "statsTitle": "الإحصائيات",
+  "level": "المستوى",
+  "levelWithNumber": "المستوى {level}",
+  "levelTooltip": "المستوى الحالي الخاص بك",
+  "xpToNext": "نقاط الخبرة للمستوى التالي",
+  "xpAbbrev": "XP",
+  "pointsToAllocate": "نقاط لتخصيصها",
+  "allPointsAssigned": "تم تخصيص جميع النقاط",
+  "save": "حفظ",
+  "reset": "إعادة تعيين",
+  "power": "قوة",
+  "stamina": "قدرة على التحمل",
+  "reach": "مدى",
+  "fortification": "تحصين",
+  "attackLabel": "هجوم: {min}–{max}",
+  "maxEnergyLabel": "الطاقة القصوى {n}",
+  "rangeLabel": "المدى {n} م",
+  "doghouseHpLabel": "نقاط صحة بيت الكلب {n}",
+  "whatIsPower": "ما هي القوة؟",
+  "whatIsStamina": "ما هي القدرة على التحمل؟",
+  "whatIsReach": "ما هو المدى؟",
+  "whatIsFortification": "ما هو التحصin؟",
+  "availableDoghousesTitle": "بيوت الكلاب المتاحة",
+  "energyTitle": "طاقة",
+  "doghouseBuffs": "هواة بيت الكلب",
+  "gotIt": "فهمت",
+  "premiumBadge": "ممتاز",
+  "premiumExpires": "ينتهي في: {date}",
+  "manageSubscription": "إدارة الاشتراك",
+  "unlimited": "غير محدود",
+  "powerDesc": "الضرر الذي يلحق ببيوت الكلاب. ضرر الهجوم الحالي: {min}–{max}. كل نقطة تزيد الحد الأدنى والأقصى بمقدار 1.",
+  "staminaDesc": "يزيد من طاقتك القصوى حتى تتمكن من مهاجمة أو إصلاح بيوت الكلاب الخاصة بك في كثير من الأحيان. الطاقة القصوى الحالية: {n}. (+10 لكل نقطة ، بدءًا من 100)",
+  "reachDesc": "المدى على الخريطة للتفاعل مع بيوت الكلاب (هجوم أو إصلاح). المدى الحالي: {n} م. (+10 م لكل نقطة ، بدءًا من 200 م)",
+  "fortificationDesc": "يزيد من نقاط الصحة القصوى لجميع بيوت الكلاب الخاصة بك مما يجعل تدميرها أكثر صعوبة. نقاط الصحة القصوى الحالية لبيت الكلب: {n}. (+20 لكل نقطة ، بدءًا من 100)",
+  "dateLabel": "تاريخ",
+  "hpAbbrev": "HP",
+  "sortBy": "فرز حسب",
+  "exitEditMode": "الخروج من وضع التحرير",
+  "editDoghouses": "تحرير بيوت الكلاب",
+  "noDoghousesYet": "لا توجد بيوت كلاب حتى الآن",
+  "goToMapToBuildFirst": "اذهب إلى الخريطة لبناء أول بيت كلب لك!",
+  "doghouseNamePlaceholder": "اسم بيت الكلب",
+  "editName": "تحرير الاسم",
+  "findPosition": "العثور على موقعك",
+  "turnOnLocation": "يرجى تشغيل الموقع",
+  "turnOnGpsWait": "يرجى تشغيل GPS والانتظار حتى يتم التحميل",
+  "clickButtonBelow": "والنقر على الزر أدناه",
+  "signInWithGoogle": "تسجيل الدخول باستخدام جوجل",
+  "health": "صحة",
+  "availableBuffs": "التعزيزات المتاحة",
+  "confirm": "تأكيد",
+  "cancel": "إلغاء",
+  "tapTimesToAttack": "انقر {n} مرة (مرات) للهجوم!",
+  "tapTimesToRepair": "انقر {n} مرة (مرات) للإصلاح!",
+  "notEnoughEnergyNeed": "طاقة غير كافية! تحتاج إلى {n} طاقة.",
+  "doghouseFullHealth": "بيت الكلب بصحة كاملة بالفعل!",
+  "destroyedText": "مدمر!",
+  "appSettings": "إعدادات التطبيق",
+  "language": "لغة",
+  "chooseLanguage": "اختر لغتك المفضلة",
+  "notifications": "دفع الإخطارات",
+  "notificationsDesc": "الحصول على إخطارات حول أحداث اللعبة",
+  "darkMode": "الوضع المظلم",
+  "darkModeDesc": "التبديل إلى المظهر المظلم",
+  "signOut": "خروج",
+  "contactUs": "اتصل بنا",
+  "contactDesc": "لأية استفسارات ، يرجى مراسلتنا عبر البريد الإلكتروني على:",
+  "attributions": "الإسناد",
+  "userUnknown": "مستخدم غير معروف",
+  "userNoEmail": "لا يوجد بريد إلكتروني",
+  "refreshing": "جارٍ التحديث ...",
+  "hoursAbbrev": "ساعة",
+  "minutesAbbrev": "دقيقة",
+  "remainingTime": "الوقت المتبقي",
+  "loading": "جارٍ التحميل ...",
+  "loadingDailyQuests": "جارٍ تحميل المهام اليومية ...",
+  "noQuestsToday": "لا توجد مهام متاحة اليوم",
+  "claim": "مطالبة",
+  "claimed": "تمت المطالبة به",
+  "leaderboardTopLevels": "أعلى المستويات",
+  "leaderboardMasterBuilders": "بناة رئيسيون",
+  "leaderboardTopDestroyers": "أفضل المدمرات",
+  "leaderboardGeneric": "لوحة الصدارة",
+  "leaderboardColLevel": "المستوى",
+  "leaderboardColBuilt": "بنيت",
+  "leaderboardColDestroyed": "دمرت",
+  "leaderboardColScore": "نتيجة",
+  "leaderboardFooter": "{total} إجمالي اللاعبين • تم التحديث في {date}",
+  "leaderboardTotalPlayers": "إجمالي اللاعبين",
+  "leaderboardUpdated": "تم التحديث",
+  "navMyDog": "كلبي",
+  "doghousesTitle": "بيوت الكلاب",
+  "navProfile": "الملف الشخصي"
+}

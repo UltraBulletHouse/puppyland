@@ -7,7 +7,7 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
-import { t } from '../../i18n';
+import { t, ti } from '../../i18n';
 import { sharedStyles } from '../../styles/shared-styles';
 import { DailyQuestsResponse, Quest, QuestType, RewardType } from '../../types/quest';
 
@@ -477,9 +477,9 @@ export class DailyQuests extends LitElement {
                         name="${this.getQuestTypeIcon(quest.type)}"
                         class="quest-type-icon ${this.getQuestTypeClass(quest.type)}"
                       ></sl-icon>
-                      ${quest.title.key}
+                      ${t(quest.title.key)}
                     </div>
-                    <div class="quest-description">${quest.description.key}</div>
+                    <div class="quest-description">${ti(quest.description.key, { target: quest.target })}</div>
                   </div>
                   <div class="quest-actions">
                     <div class="quest-reward ${quest.isCompleted ? 'completed' : ''}">
@@ -487,7 +487,7 @@ export class DailyQuests extends LitElement {
                         name="${this.getRewardIcon(quest.reward.type)}"
                         class="reward-icon ${this.getRewardClass(quest.reward.type)}"
                       ></sl-icon>
-                      ${quest.reward.description.key}
+                      ${ti(quest.reward.description.key, { amount: quest.reward.amount })}
                     </div>
                     ${quest.isCompleted && !quest.isRewardClaimed
                       ? html`

@@ -532,7 +532,7 @@ export class AppShopView extends LitElement {
     return html`
       <div id="container">
         <div id="header">
-          <div id="title">${t('shop')}</div>
+          <div id="title">${t('shop.title')}</div>
           <div id="balance-pill" title="Treats">
             <sl-icon name="coin"></sl-icon>
             <span>${this.userInfo?.treatsBalance ?? 0}</span>
@@ -549,29 +549,29 @@ export class AppShopView extends LitElement {
             >
               <sl-tab slot="nav" panel="spend-treats">
                 <sl-icon name="handbag" style="margin-right: 6px;"></sl-icon>
-                ${t('spend')}
+                ${t('shop.spend')}
               </sl-tab>
               <sl-tab slot="nav" panel="buy-treats">
                 <sl-icon name="coin" style="margin-right: 6px;"></sl-icon>
-                ${t('buy')}
+                ${t('shop.buy')}
               </sl-tab>
               <sl-tab slot="nav" panel="premium">
                 <sl-icon name="star" style="margin-right: 6px;"></sl-icon>
-                ${t('buyPremium')}
+                ${t('shop.buyPremium')}
               </sl-tab>
 
               <sl-tab-panel name="spend-treats">
-                ${this.renderCategorySection(t('doghouses'), 'house-add', shopItemsDoghouse, (i) =>
+                ${this.renderCategorySection(t('shop.doghouses'), 'house-add', shopItemsDoghouse, (i) =>
                   this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection(t('renameTokens'), 'pencil', shopItemsRename, (i) =>
+                ${this.renderCategorySection(t('shop.renameTokens'), 'pencil', shopItemsRename, (i) =>
                   this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection(t('repairKits'), 'tools', shopItemsRepair, (i) =>
+                ${this.renderCategorySection(t('shop.repairKits'), 'tools', shopItemsRepair, (i) =>
                   this.renderShopItemTreats(i)
                 )}
                 ${this.renderCategorySection(
-                  t('energy'),
+                  t('shop.energy'),
                   'lightning-charge',
                   shopItemsEnergy,
                   (i) => this.renderShopItemTreats(i)
@@ -582,7 +582,7 @@ export class AppShopView extends LitElement {
                 ${this.shopGoogleItems
                   ? html`
                       ${this.renderCategorySection(
-                        t('treatPacks'),
+                        t('shop.treatPacks'),
                         'coin',
                         shopItemsTreatPacks,
                         (i) => this.renderShopItemReal(i),
@@ -595,7 +595,7 @@ export class AppShopView extends LitElement {
               <sl-tab-panel name="premium">
                 ${this.shopGoogleItems
                   ? html`${this.renderCategorySection(
-                      t('subscriptions'),
+                      t('shop.subscriptions'),
                       'star',
                       shopItemsSubscription,
                       (i) => this.renderShopItemReal(i),

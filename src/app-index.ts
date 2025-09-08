@@ -27,12 +27,8 @@ import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
 import { auth } from './utils/firebase';
 import { idbGet, idbSet } from './utils/idb';
-import {
-  preloadAllPngBadges,
-  preloadShoelaceIcons,
-  preloadStaticUrls,
-  preloadSvgTemplates,
-} from './utils/preloadImages';
+import { translationsReady } from './i18n';
+import { preloadAllPngBadges, preloadShoelaceIcons, preloadStaticUrls, preloadSvgTemplates } from './utils/preloadImages';
 import './views/app-loading-map-view';
 import './views/app-loading-view';
 
@@ -95,6 +91,7 @@ export class AppIndex extends LitElement {
   }
 
   async firstUpdated() {
+    await translationsReady;
     // Request persistent storage to improve offline reliability (best effort)
     try {
       await (navigator as any).storage?.persist?.();

@@ -222,7 +222,7 @@ export class AppDoghousesView extends LitElement {
       <div id="container">
         <div id="header">
           <div id="left">
-            <div id="title">${t('doghouses')}</div>
+            <div id="title">${t('doghousesTitle')}</div>
           </div>
           <div id="controls">
             <div id="sort-buttons">

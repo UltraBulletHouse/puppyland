@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "निर्देशांक गुम हैं"
+    },
+    "reach": {
+      "outOfReach": "पहुंच से बाहर। दूरी: {distanceMeters} मीटर, पहुंच: {reachMeters} मीटर"
+    },
+    "name": {
+      "tooLong": "नाम बहुत लंबा है",
+      "exists": "नाम पहले से मौजूद है",
+      "cannotChangeAnymore": "अब आप नाम नहीं बदल सकते"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "यह डॉगहाउस पूरी तरह से ठीक हो गया है!"
+    },
+    "buff": {
+      "notAvailable": "अब आपके पास यह बफ़ उपलब्ध नहीं है!"
+    },
+    "purchase": {
+      "verifyFailed": "खरीद की पुष्टि करने में त्रुटि: {statusCode}",
+      "ackFailed": "खरीद को स्वीकार करने में विफल: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "सदस्यता की पुष्टि करने में त्रुटि: {statusCode}",
+      "invalidExpiry": "अमान्य सदस्यता समाप्ति समय",
+      "ackFailed": "सदस्यता को स्वीकार करने में विफल: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "पर्याप्त ट्रीट नहीं हैं"
+    },
+    "quest": {
+      "notFound": "खोज नहीं मिली",
+      "notOwner": "खोज वर्तमान उपयोगकर्ता की नहीं है",
+      "notCompleted": "खोज अभी पूरी नहीं हुई है",
+      "alreadyClaimed": "खोज का इनाम पहले ही प्राप्त कर लिया गया है"
+    },
+    "language": {
+      "required": "भाषा प्रदान की जानी चाहिए"
+    },
+    "oauth": {
+      "refreshFailed": "टोकन रीफ्रेश करने में विफल: {statusCode}"
+    },
+    "internal": "आंतरिक सर्वर त्रुटि"
+  },
+  "shop": {
+    "title": "दुकान",
+    "spend": "खर्च करें",
+    "buy": " खरीदें",
+    "buyPremium": "प्रीमियम खरीदें",
+    "doghouses": "डॉगहाउस",
+    "renameTokens": "नाम बदलने वाले टोकन",
+    "repairKits": "मरम्मत किट",
+    "energy": "ऊर्जा",
+    "treatPacks": "ट्रीट पैक",
+    "subscriptions": "सदस्यता",
+    "product": {
+      "treats": "ट्रीट्स",
+      "premiumSubscription": "प्रीमियम सदस्यता",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "दावा किया गया: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "पहला कदम",
+        "2": "बिल्डर",
+        "3": "मास्टर बिल्डर"
+      },
+      "SPEND_ENERGY": {
+        "1": "ऊर्जा बर्नर",
+        "2": "ऊर्जा मास्टर",
+        "3": "ऊर्जा टाइटन"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "ऊर्जा सेवर",
+        "2": "अनुभव हंटर",
+        "3": "अनुभव मास्टर"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "हैंडीमैन",
+        "2": "मरम्मत विशेषज्ञ",
+        "3": "मास्टर मैकेनिक"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "हमलावर",
+        "2": "रेड लीडर",
+        "3": "सरदार"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "विनाशक",
+        "2": "विध्वंस विशेषज्ञ",
+        "3": "दुनिया का विनाशक"
+      },
+      "LEVEL_UP": {
+        "1": "स्तर ऊपर",
+        "2": "उभरता सितारा",
+        "3": "अभिजात वर्ग चैंपियन"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "{target} डॉगहाउस बनाएं",
+      "SPEND_ENERGY": "{target} ऊर्जा खर्च करें",
+      "GAIN_EXPERIENCE": "{target} XP प्राप्त करें",
+      "REPAIR_DOGHOUSES": "{target} डॉगहाउस की मरम्मत करें",
+      "ATTACK_DOGHOUSES": "{target} डॉगहाउस पर हमला करें",
+      "DESTROY_DOGHOUSES": "{target} डॉгहाउस को नष्ट करें",
+      "LEVEL_UP": "{target} नए स्तर पर पहुंचें"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} ट्रीट्स",
+      "ENERGY": "{amount} ऊर्जा",
+      "EXPERIENCE": "{amount} XP",
+      "DOG_RENAME": "कुत्ते का नाम बदलने वाला टोकन",
+      "DOGHOUSE_RENAME": "डॉगहाउस का नाम बदलने वाला टोकन",
+      "DOGHOUSES": "{amount} अतिरिक्त डॉगहाउस",
+      "ENERGY_RESTORE": "पूर्ण ऊर्जा बहाली"
+    }
+  },
+  "statsTab": "आँकड़े",
+  "dailyQuestsTab": "दैनिक खोज",
+  "leaderboardsTab": "लीडरबोर्ड",
+  "statsTitle": "आँकड़े",
+  "level": "स्तर",
+  "levelWithNumber": "स्तर {level}",
+  "levelTooltip": "आपका वर्तमान स्तर",
+  "xpToNext": "अगले स्तर के लिए XP",
+  "xpAbbrev": "XP",
+  "pointsToAllocate": "आवंटित करने के लिए अंक",
+  "allPointsAssigned": "सभी अंक आवंटित किए गए",
+  "save": "सहेजें",
+  "reset": "रीसेट करें",
+  "power": "शक्ति",
+  "stamina": " सहनशक्ति",
+  "reach": "पहुंच",
+  "fortification": "किलेबंदी",
+  "attackLabel": "हमला: {min}–{max}",
+  "maxEnergyLabel": "अधिकतम ऊर्जा {n}",
+  "rangeLabel": "रेंज {n} मी",
+  "doghouseHpLabel": "डॉगहाउस एचपी {n}",
+  "whatIsPower": "शक्ति क्या है?",
+  "whatIsStamina": " सहनशक्ति क्या है?",
+  "whatIsReach": "पहुंच क्या है?",
+  "whatIsFortification": "किलेबंदी क्या है?",
+  "availableDoghousesTitle": "उपलब्ध डॉगहाउस",
+  "energyTitle": "ऊर्जा",
+  "doghouseBuffs": "डॉगहाउस बफ्स",
+  "gotIt": "समझ गया",
+  "premiumBadge": "प्रीमियम",
+  "premiumExpires": "समाप्त: {date}",
+  "manageSubscription": "सदस्यता प्रबंधित करें",
+  "unlimited": "असीमित",
+  "powerDesc": "डॉगहाउस को हुआ नुकसान। वर्तमान हमले का नुकसान: {min}–{max}। प्रत्येक बिंदु न्यूनतम और अधिकतम दोनों को 1 से बढ़ाता है।",
+  "staminaDesc": "अधिकतम ऊर्जा बढ़ाता है ताकि आप अपने डॉगहाउस पर अधिक बार हमला या मरम्मत कर सकें। वर्तमान अधिकतम ऊर्जा: {n}। (+10 प्रति बिंदु, 100 से शुरू)",
+  "reachDesc": "डॉगहाउस के साथ बातचीत के लिए मानचित्र पर सीमा (हमला या मरम्मत)। वर्तमान सीमा: {n} मी। (+10 मी प्रति बिंदु, 200 मी से शुरू)",
+  "fortificationDesc": "आपके सभी डॉगहाउस के अधिकतम एचपी को बढ़ाता है ताकि उन्हें नष्ट करना कठिन हो। वर्तमान डॉगहाउस अधिकतम एचपी: {n}। (+20 प्रति बिंदु, 100 से शुरू)",
+  "dateLabel": "दिनांक",
+  "hpAbbrev": "एचपी",
+  "sortBy": "इसके अनुसार क्रमबद्ध करें",
+  "exitEditMode": "संपादन मोड से बाहर निकलें",
+  "editDoghouses": "डॉगहाउस संपादित करें",
+  "noDoghousesYet": "अभी तक कोई डॉगहाउस नहीं है",
+  "goToMapToBuildFirst": "अपना पहला डॉगहाउस बनाने के लिए मानचित्र पर जाएं!",
+  "doghouseNamePlaceholder": "डॉगहाउस का नाम",
+  "editName": "नाम संपादित करें",
+  "findPosition": "अपनी स्थिति ज्ञात करें",
+  "turnOnLocation": "कृपया स्थान चालू करें",
+  "turnOnGpsWait": "कृपया अपना GPS चालू करें और लोड होने की प्रतीक्षा करें",
+  "clickButtonBelow": "और नीचे दिए गए बटन पर क्लिक करें",
+  "signInWithGoogle": "Google से साइन-इन करें",
+  "health": "स्वास्थ्य",
+  "availableBuffs": "उपलब्ध बफ़्स",
+  "confirm": "पुष्टि करें",
+  "cancel": "रद्द करें",
+  "tapTimesToAttack": "हमला करने के लिए {n} बार टैप करें!",
+  "tapTimesToRepair": "मरम्मत करने के लिए {n} बार टैप करें!",
+  "notEnoughEnergyNeed": "पर्याप्त ऊर्जा नहीं! {n} ऊर्जा की आवश्यकता है।",
+  "doghouseFullHealth": "डॉगहाउस का स्वास्थ्य पहले से ही पूरा है!",
+  "destroyedText": "नष्ट हो गया!",
+  "appSettings": "ऐप सेटिंग",
+  "language": "भाषा",
+  "chooseLanguage": "अपनी पसंदीदा भाषा चुनें",
+  "notifications": "पुश सूचनाएं",
+  "notificationsDesc": "गेम ईवेंट के बारे में सूचनाएं प्राप्त करें",
+  "darkMode": "डार्क मोड",
+  "darkModeDesc": "डार्क थीम पर स्विच करें",
+  "signOut": "साइन आउट",
+  "contactUs": "हमसे संपर्क करें",
+  "contactDesc": "किसी भी पूछताछ के लिए, कृपया हमें यहां ईमेल करें:",
+  "attributions": "जिम्मेदारियाँ",
+  "userUnknown": "अज्ञात उपयोगकर्ता",
+  "userNoEmail": "कोई ईमेल नहीं",
+  "refreshing": " ताज़ा हो रहा है...",
+  "hoursAbbrev": "घंटे",
+  "minutesAbbrev": "मिनट",
+  "remainingTime": "शेष समय",
+  "loading": " लोड हो रहा है...",
+  "loadingDailyQuests": "दैनिक खोज लोड हो रही हैं...",
+  "noQuestsToday": "आज कोई खोज उपलब्ध नहीं है",
+  "claim": "दावा करें",
+  "claimed": "दावा किया गया",
+  "leaderboardTopLevels": "शीर्ष स्तर",
+  "leaderboardMasterBuilders": "मास्टर बिल्डर्स",
+  "leaderboardTopDestroyers": "शीर्ष विध्वंसक",
+  "leaderboardGeneric": "लीडरबोर्ड",
+  "leaderboardColLevel": "स्तर",
+  "leaderboardColBuilt": "निर्मित",
+  "leaderboardColDestroyed": "नष्ट हो गया",
+  "leaderboardColScore": "स्कोर",
+  "leaderboardFooter": "{total} कुल खिलाड़ी • {date} को अपडेट किया गया",
+  "leaderboardTotalPlayers": "कुल खिलाड़ी",
+  "leaderboardUpdated": "अपडेट किया गया",
+  "navMyDog": "मेरा कुत्ता",
+  "doghousesTitle": "डॉगहाउस",
+  "navProfile": "प्रोफ़ाइल"
+}

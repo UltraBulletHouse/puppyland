@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "Faltan coordenadas"
+    },
+    "reach": {
+      "outOfReach": "Fuera de alcance. Distancia: {distanceMeters}m, alcance: {reachMeters}m"
+    },
+    "name": {
+      "tooLong": "Nombre demasiado largo",
+      "exists": "El nombre ya existe",
+      "cannotChangeAnymore": "Ya no puedes cambiar el nombre"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "¡Esta caseta de perro está completamente curada!"
+    },
+    "buff": {
+      "notAvailable": "¡Ya no tienes este beneficio disponible!"
+    },
+    "purchase": {
+      "verifyFailed": "Error al verificar la compra: {statusCode}",
+      "ackFailed": "Error al confirmar la compra: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "Error al verificar la suscripción: {statusCode}",
+      "invalidExpiry": "Tiempo de caducidad de la suscripción no válido",
+      "ackFailed": "Error al confirmar la suscripción: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "No hay suficientes golosinas"
+    },
+    "quest": {
+      "notFound": "Misión no encontrada",
+      "notOwner": "La misión no pertenece al usuario actual",
+      "notCompleted": "La misión aún no se ha completado",
+      "alreadyClaimed": "La recompensa de la misión ya ha sido reclamada"
+    },
+    "language": {
+      "required": "Se debe proporcionar el idioma"
+    },
+    "oauth": {
+      "refreshFailed": "Error al actualizar el token: {statusCode}"
+    },
+    "internal": "Error interno del servidor"
+  },
+  "shop": {
+    "title": "Tienda",
+    "spend": "Gastar",
+    "buy": "Comprar",
+    "buyPremium": "Comprar Premium",
+    "doghouses": "Casetas",
+    "renameTokens": "Fichas para cambiar el nombre",
+    "repairKits": "Kits de reparación",
+    "energy": "Energía",
+    "treatPacks": "Paquetes de golosinas",
+    "subscriptions": "Suscripciones",
+    "product": {
+      "treats": "Golosinas",
+      "premiumSubscription": "Suscripción Premium",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "Reclamado: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "Primeros pasos",
+        "2": "Constructor",
+        "3": "Maestro constructor"
+      },
+      "SPEND_ENERGY": {
+        "1": "Quemador de energía",
+        "2": "Maestro de la energía",
+        "3": "Titán de la energía"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "Ahorrador de energía",
+        "2": "Cazador de experiencia",
+        "3": "Maestro de la experiencia"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "Manitas",
+        "2": "Experto en reparaciones",
+        "3": "Maestro mecánico"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "Atacante",
+        "2": "Líder de incursión",
+        "3": "Señor de la guerra"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "Destructor",
+        "2": "Experto en demoliciones",
+        "3": "Destructor de mundos"
+      },
+      "LEVEL_UP": {
+        "1": "Subir de nivel",
+        "2": "Estrella en ascenso",
+        "3": "Campeón de élite"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "Construye {target} caseta(s) de perro",
+      "SPEND_ENERGY": "Gasta {target} de energía",
+      "GAIN_EXPERIENCE": "Gana {target} de XP",
+      "REPAIR_DOGHOUSES": "Repara {target} caseta(s) de perro",
+      "ATTACK_DOGHOUSES": "Ataca {target} caseta(s) de perro",
+      "DESTROY_DOGHOUSES": "Destruye {target} caseta(s) de perro",
+      "LEVEL_UP": "Alcanza {target} nuevo(s) nivel(es)"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} Golosinas",
+      "ENERGY": "{amount} Energía",
+      "EXPERIENCE": "{amount} XP",
+      "DOG_RENAME": "Ficha para cambiar el nombre del perro",
+      "DOGHOUSE_RENAME": "Ficha para cambiar el nombre de la caseta",
+      "DOGHOUSES": "{amount} Caseta(s) de perro extra",
+      "ENERGY_RESTORE": "Restauración completa de energía"
+    }
+  },
+  "statsTab": "Estadísticas",
+  "dailyQuestsTab": "Misiones diarias",
+  "leaderboardsTab": "Clasificaciones",
+  "statsTitle": "Estadísticas",
+  "level": "Nivel",
+  "levelWithNumber": "Nivel {level}",
+  "levelTooltip": "Tu nivel actual",
+  "xpToNext": "XP para el siguiente nivel",
+  "xpAbbrev": "XP",
+  "pointsToAllocate": "puntos para asignar",
+  "allPointsAssigned": "Todos los puntos asignados",
+  "save": "Guardar",
+  "reset": "Restablecer",
+  "power": "Poder",
+  "stamina": "Resistencia",
+  "reach": "Alcance",
+  "fortification": "Fortificación",
+  "attackLabel": "Ataque: {min}–{max}",
+  "maxEnergyLabel": "Energía máx. {n}",
+  "rangeLabel": "Alcance {n} m",
+  "doghouseHpLabel": "HP de la caseta {n}",
+  "whatIsPower": "¿Qué es el Poder?",
+  "whatIsStamina": "¿Qué es la Resistencia?",
+  "whatIsReach": "¿Qué es el Alcance?",
+  "whatIsFortification": "¿Qué es la Fortificación?",
+  "availableDoghousesTitle": "Casetas disponibles",
+  "energyTitle": "Energía",
+  "doghouseBuffs": "Mejoras de la caseta",
+  "gotIt": "Entendido",
+  "premiumBadge": "Premium",
+  "premiumExpires": "Expira: {date}",
+  "manageSubscription": "Gestionar suscripción",
+  "unlimited": "Ilimitado",
+  "powerDesc": "Daño infligido a las casetas. Daño de ataque actual: {min}–{max}. Cada punto aumenta el mínimo y el máximo en 1.",
+  "staminaDesc": "Aumenta la energía máxima para poder atacar o reparar tus casetas con más frecuencia. Energía máx. actual: {n}. (+10 por punto, a partir de 100)",
+  "reachDesc": "Alcance en el mapa para interactuar con las casetas (atacar o reparar). Alcance actual: {n} m. (+10 m por punto, a partir de 200 m)",
+  "fortificationDesc": "Aumenta el HP máx. de todas tus casetas, haciéndolas más difíciles de destruir. HP máx. actual de la caseta: {n}. (+20 por punto, a partir de 100)",
+  "dateLabel": "Fecha",
+  "hpAbbrev": "HP",
+  "sortBy": "Ordenar por",
+  "exitEditMode": "Salir del modo edición",
+  "editDoghouses": "Editar casetas",
+  "noDoghousesYet": "Aún no hay casetas",
+  "goToMapToBuildFirst": "¡Ve al mapa para construir tu primera caseta!",
+  "doghouseNamePlaceholder": "Nombre de la caseta",
+  "editName": "Editar nombre",
+  "findPosition": "Encontrar tu posición",
+  "turnOnLocation": "Por favor, activa la ubicación",
+  "turnOnGpsWait": "Por favor, activa el GPS y espera a que cargue",
+  "clickButtonBelow": "y haz clic en el botón de abajo",
+  "signInWithGoogle": "Iniciar sesión con Google",
+  "health": "Salud",
+  "availableBuffs": "Mejoras disponibles",
+  "confirm": "Confirmar",
+  "cancel": "Cancelar",
+  "tapTimesToAttack": "Toca {n} veces para atacar!",
+  "tapTimesToRepair": "Toca {n} veces para reparar!",
+  "notEnoughEnergyNeed": "¡Energía insuficiente! Necesitas {n} de energía.",
+  "doghouseFullHealth": "¡La caseta ya tiene la salud completa!",
+  "destroyedText": "¡DESTRUIDA!",
+  "appSettings": "Configuración de la app",
+  "language": "Idioma",
+  "chooseLanguage": "Elige tu idioma preferido",
+  "notifications": "Notificaciones",
+  "notificationsDesc": "Recibe notificaciones de eventos del juego",
+  "darkMode": "Modo oscuro",
+  "darkModeDesc": "Cambiar al tema oscuro",
+  "signOut": "Cerrar sesión",
+  "contactUs": "Contacto",
+  "contactDesc": "Para cualquier consulta, escríbenos a:",
+  "attributions": "Atribuciones",
+  "userUnknown": "Usuario desconocido",
+  "userNoEmail": "Sin correo electrónico",
+  "refreshing": "Actualizando...",
+  "hoursAbbrev": "h",
+  "minutesAbbrev": "min",
+  "remainingTime": "Tiempo restante",
+  "loading": "Cargando...",
+  "loadingDailyQuests": "Cargando misiones diarias...",
+  "noQuestsToday": "No hay misiones hoy",
+  "claim": "Reclamar",
+  "claimed": "Reclamado",
+  "leaderboardTopLevels": "Mejores niveles",
+  "leaderboardMasterBuilders": "Maestros constructores",
+  "leaderboardTopDestroyers": "Mejores destructores",
+  "leaderboardGeneric": "Clasificación",
+  "leaderboardColLevel": "Nivel",
+  "leaderboardColBuilt": "Construidas",
+  "leaderboardColDestroyed": "Destruidas",
+  "leaderboardColScore": "Puntuación",
+  "leaderboardFooter": "{total} jugadores • Actualizado {date}",
+  "leaderboardTotalPlayers": "jugadores",
+  "leaderboardUpdated": "Actualizado",
+  "navMyDog": "Mi perro",
+  "doghousesTitle": "Casetas",
+  "navProfile": "Perfil"
+}

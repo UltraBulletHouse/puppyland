@@ -162,7 +162,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.DOGHOUSE_VIEW)}"
         >
           <sl-icon name="house-heart" class="nav-icon"></sl-icon>
-          <span>${t('doghouses')}</span>
+          <span>${t('doghousesTitle')}</span>
         </button>
         <div class="map-button-container">
           <button
@@ -179,7 +179,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.SHOP_VIEW)}"
         >
           <sl-icon name="cart" class="nav-icon"></sl-icon>
-          <span>${t('shop')}</span>
+          <span>${t('shop.title')}</span>
         </button>
         <button
           class="nav-button ${this.view === View.USER_VIEW ? 'active' : ''}"

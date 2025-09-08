@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "স্থানাঙ্ক অনুপস্থিত"
+    },
+    "reach": {
+      "outOfReach": " নাগালের বাইরে। দূরত্ব: {distanceMeters}মি, নাগাল: {reachMeters}মি"
+    },
+    "name": {
+      "tooLong": "নামটি খুব দীর্ঘ",
+      "exists": "নামটি ইতিমধ্যে বিদ্যমান",
+      "cannotChangeAnymore": "আপনি আর নাম পরিবর্তন করতে পারবেন না"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "এই কুকুর ঘরটি ইতিমধ্যে পুরোপুরি সুস্থ হয়ে গেছে!"
+    },
+    "buff": {
+      "notAvailable": "আপনার কাছে এই বাফটি আর উপলব্ধ নেই!"
+    },
+    "purchase": {
+      "verifyFailed": "ক্রয় যাচাই করতে ত্রুটি: {statusCode}",
+      "ackFailed": "ক্রয় স্বীকার করতে ব্যর্থ: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "সাবস্ক্রিপশন যাচাই করতে ত্রুটি: {statusCode}",
+      "invalidExpiry": "অবৈধ সাবস্ক্রিপশন মেয়াদ শেষ হওয়ার সময়",
+      "ackFailed": "সাবস্ক্রিপশন স্বীকার করতে ব্যর্থ: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "পর্যাপ্ত ট্রিট নেই"
+    },
+    "quest": {
+      "notFound": "অনুসন্ধান পাওয়া যায়নি",
+      "notOwner": "অনুসন্ধানটি বর্তমান ব্যবহারকারীর নয়",
+      "notCompleted": "অনুসন্ধান এখনও সম্পন্ন হয়নি",
+      "alreadyClaimed": "অনুসন্ধানের পুরস্কার ইতিমধ্যে দাবি করা হয়েছে"
+    },
+    "language": {
+      "required": "ভাষা সরবরাহ করতে হবে"
+    },
+    "oauth": {
+      "refreshFailed": "টোকেন রিফ্রেশ করতে ব্যর্থ: {statusCode}"
+    },
+    "internal": "অভ্যন্তরীণ সার্ভার ত্রুটি"
+  },
+  "shop": {
+    "title": " দোকান",
+    "spend": " ব্যয় করুন",
+    "buy": " কিনুন",
+    "buyPremium": "প্রিমিয়াম কিনুন",
+    "doghouses": "ডগহাউস",
+    "renameTokens": "টোকেনগুলির নাম পরিবর্তন করুন",
+    "repairKits": "মেরামত ಕಿಟ್",
+    "energy": "শক্তি",
+    "treatPacks": "ট্রিট প্যাক",
+    "subscriptions": "সাবস্ক্রিপশন",
+    "product": {
+      "treats": "ট্রিটস",
+      "premiumSubscription": "প্রিমিয়াম সাবস্ক্রিপশন",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "দাবি করা হয়েছে: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "প্রথম পদক্ষেপ",
+        "2": "নির্মাতা",
+        "3": "মাস্টার নির্মাতা"
+      },
+      "SPEND_ENERGY": {
+        "1": "শক্তি বার্নার",
+        "2": "শক্তি মাস্টার",
+        "3": "শক্তি টাইটান"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "শক্তি সঞ্চয়কারী",
+        "2": "অভিজ্ঞতা শিকারী",
+        "3": "অভিজ্ঞতা মাস্টার"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "হ্যান্ডিম্যান",
+        "2": "মেরামত বিশেষজ্ঞ",
+        "3": "মাস্টার মেকানিক"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "আক্রমণকারী",
+        "2": "রেড লিডার",
+        "3": "যুদ্ধবাজ"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "ধ্বংসকারী",
+        "2": "ধ্বংস বিশেষজ্ঞ",
+        "3": "বিশ্বের ধ্বংসকারী"
+      },
+      "LEVEL_UP": {
+        "1": "স্তর আপ",
+        "2": "উদীয়মান তারকা",
+        "3": "অভিজাত চ্যাম্পিয়ন"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "{target} টি কুকুর ঘর তৈরি করুন",
+      "SPEND_ENERGY": "{target} শক্তি ব্যয় করুন",
+      "GAIN_EXPERIENCE": "{target} এক্সপি অর্জন করুন",
+      "REPAIR_DOGHOUSES": "{target} টি কুকুর ঘর মেরামত করুন",
+      "ATTACK_DOGHOUSES": "{target} টি কুকুর ঘর আক্রমণ করুন",
+      "DESTROY_DOGHOUSES": "{target} টি কুকুর ঘর ধ্বংস করুন",
+      "LEVEL_UP": "{target} টি নতুন স্তরে পৌঁছান"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} টি ট্রিট",
+      "ENERGY": "{amount} শক্তি",
+      "EXPERIENCE": "{amount} এক্সপি",
+      "DOG_RENAME": "কুকুরের নাম পরিবর্তনের টোকেন",
+      "DOGHOUSE_RENAME": "কুকুর ঘরের নাম পরিবর্তনের টোকেন",
+      "DOGHOUSES": "{amount} টি অতিরিক্ত কুকুর ঘর",
+      "ENERGY_RESTORE": "সম্পূর্ণ শক্তি পুনরুদ্ধার"
+    }
+  },
+  "statsTab": "পরিসংখ্যান",
+  "dailyQuestsTab": "দৈনিক কোয়েস্ট",
+  "leaderboardsTab": "লিডারবোর্ড",
+  "statsTitle": "পরিসংখ্যান",
+  "level": "স্তর",
+  "levelWithNumber": "স্তর {level}",
+  "levelTooltip": "আপনার বর্তমান স্তর",
+  "xpToNext": "পরবর্তী স্তরের জন্য XP",
+  "xpAbbrev": "XP",
+  "pointsToAllocate": "বরাদ্দ করার জন্য পয়েন্ট",
+  "allPointsAssigned": "সমস্ত পয়েন্ট বরাদ্দ করা হয়েছে",
+  "save": "সংরক্ষণ করুন",
+  "reset": "পুনরায় সেট করুন",
+  "power": "শক্তি",
+  "stamina": " सहनशक्ति",
+  "reach": " নাগাল",
+  "fortification": " দুর্গ",
+  "attackLabel": "আക്രമণ: {min}–{max}",
+  "maxEnergyLabel": "সর্বোচ্চ শক্তি {n}",
+  "rangeLabel": "পরিসীমা {n}m",
+  "doghouseHpLabel": "ডগহাউস এইচপি {n}",
+  "whatIsPower": "শক্তি কি?",
+  "whatIsStamina": " सहनशक्ति কি?",
+  "whatIsReach": " নাগাল কি?",
+  "whatIsFortification": " দুর্গ কি?",
+  "availableDoghousesTitle": "উপলব্ধ ডগহাউস",
+  "energyTitle": "শক্তি",
+  "doghouseBuffs": "ডগহাউস বাফস",
+  "gotIt": "পেয়েছি",
+  "premiumBadge": "প্রিমিয়াম",
+  "premiumExpires": "মেয়াদ শেষ হবে: {date}",
+  "manageSubscription": "সাবস্ক্রিপশন পরিচালনা করুন",
+  "unlimited": " সীমাহীন",
+  "powerDesc": "ডগহাউসের ক্ষতি হয়েছে। বর্তমান আক্রমণের ক্ষতি: {min}–{max}। প্রতিটি পয়েন্ট न्यूनतम এবং সর্বোচ্চ উভয়ই 1 দ্বারা বৃদ্ধি করে।",
+  "staminaDesc": "সর্বাধিক শক্তি বাড়ায় যাতে আপনি প্রায়শই আপনার ডগহাউস আক্রমণ বা মেরামত করতে পারেন। বর্তমান সর্বাধিক শক্তি: {n}। (প্রতি পয়েন্টে +10, 100 থেকে শুরু)",
+  "reachDesc": "ডগহাউসের সাথে যোগাযোগের জন্য মানচিত্রের পরিসীমা (আക്രമণ বা মেরামত)। বর্তমান পরিসীমা: {n} মি। (প্রতি পয়েন্টে +10 মি, 200 মি থেকে শুরু)",
+  "fortificationDesc": "আপনার সমস্ত ডগহাউসের সর্বাধিক এইচপি বাড়ায় যাতে সেগুলি ধ্বংস করা কঠিন হয়। বর্তমান ডগহাউস সর্বাধিক এইচপি: {n}। (প্রতি পয়েন্টে +20, 100 থেকে শুরু)",
+  "dateLabel": "তারিখ",
+  "hpAbbrev": "এইচপি",
+  "sortBy": "বাছাই করুন",
+  "exitEditMode": "সম্পাদনা মোড থেকে প্রস্থান করুন",
+  "editDoghouses": "ডগহাউস সম্পাদনা করুন",
+  "noDoghousesYet": "এখনও কোন ডগহাউস নেই",
+  "goToMapToBuildFirst": "আপনার প্রথম ডগহাউস তৈরি করতে মানচিত্রে যান!",
+  "doghouseNamePlaceholder": "ডগহাউসের নাম",
+  "editName": "নাম সম্পাদনা করুন",
+  "findPosition": "আপনার অবস্থান খুঁজুন",
+  "turnOnLocation": "অনুগ্রহ করে অবস্থান চালু করুন",
+  "turnOnGpsWait": "অনুগ্রহ করে আপনার GPS চালু করুন এবং লোড হওয়ার জন্য অপেক্ষা করুন",
+  "clickButtonBelow": "এবং নীচের বোতামে ক্লিক করুন",
+  "signInWithGoogle": "Google দিয়ে সাইন ইন করুন",
+  "health": "স্বাস্থ্য",
+  "availableBuffs": "উপলব্ধ বাফ",
+  "confirm": "নিশ্চিত করুন",
+  "cancel": "বাতিল করুন",
+  "tapTimesToAttack": "আক্রমণ করতে {n} বার আলতো চাপুন!",
+  "tapTimesToRepair": "মেরামত করতে {n} বার আলতো চাপুন!",
+  "notEnoughEnergyNeed": "পর্যাপ্ত শক্তি নেই! {n} শক্তি প্রয়োজন।",
+  "doghouseFullHealth": "কুকুর ঘর ইতিমধ্যে সম্পূর্ণ সুস্থ!",
+  "destroyedText": "ধ্বংস!",
+  "appSettings": "অ্যাপ সেটিংস",
+  "language": "ভাষা",
+  "chooseLanguage": "আপনার পছন্দের ভাষা চয়ন করুন",
+  "notifications": "পুশ বিজ্ঞপ্তি",
+  "notificationsDesc": "গেম ইভেন্ট সম্পর্কে বিজ্ঞপ্তি পান",
+  "darkMode": "ডার্ক মোড",
+  "darkModeDesc": "ডার্ক থিমে স্যুইচ করুন",
+  "signOut": "সাইন আউট",
+  "contactUs": "আমাদের সাথে যোগাযোগ করুন",
+  "contactDesc": "যেকোনো অনুসন্ধানের জন্য, অনুগ্রহ করে আমাদের এখানে ইমেল করুন:",
+  "attributions": "আরোপ",
+  "userUnknown": "অজানা ব্যবহারকারী",
+  "userNoEmail": "কোন ইমেল নেই",
+  "refreshing": " রিফ্রেশ হচ্ছে...",
+  "hoursAbbrev": "ঘন্টা",
+  "minutesAbbrev": "মিনিট",
+  "remainingTime": "বাকি সময়",
+  "loading": " লোড হচ্ছে...",
+  "loadingDailyQuests": "দৈনিক কোয়েস্ট লোড হচ্ছে...",
+  "noQuestsToday": "আজ কোন কোয়েস্ট উপলব্ধ নেই",
+  "claim": "দাবি করুন",
+  "claimed": "দাবি করা হয়েছে",
+  "leaderboardTopLevels": "শীর্ষ স্তর",
+  "leaderboardMasterBuilders": "মাস্টার বিল্ডার",
+  "leaderboardTopDestroyers": "শীর্ষ ধ্বংসকারী",
+  "leaderboardGeneric": "লিডারবোর্ড",
+  "leaderboardColLevel": "স্তর",
+  "leaderboardColBuilt": "নির্মিত",
+  "leaderboardColDestroyed": "ধ্বংস হয়েছে",
+  "leaderboardColScore": "স্কোর",
+  "leaderboardFooter": "{total} মোট খেলোয়াড় • {date} তারিখে আপডেট করা হয়েছে",
+  "leaderboardTotalPlayers": "মোট খেলোয়াড়",
+  "leaderboardUpdated": "আপডেট করা হয়েছে",
+  "navMyDog": "আমার কুকুর",
+  "doghousesTitle": "ডগহাউস",
+  "navProfile": "প্রোফাইল"
+}

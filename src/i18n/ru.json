@@ -1,0 +1,221 @@
+{
+  "errors": {
+    "coords": {
+      "missing": "Отсутствуют координаты"
+    },
+    "reach": {
+      "outOfReach": "Вне досягаемости. Расстояние: {distanceMeters}м, досягаемость: {reachMeters}м"
+    },
+    "name": {
+      "tooLong": "Слишком длинное имя",
+      "exists": "Имя уже существует",
+      "cannotChangeAnymore": "Вы больше не можете изменить имя"
+    },
+    "doghouse": {
+      "alreadyFullyHealed": "Эта собачья будка уже полностью исцелена!"
+    },
+    "buff": {
+      "notAvailable": "Этот бафф больше не доступен для вас!"
+    },
+    "purchase": {
+      "verifyFailed": "Ошибка при проверке покупки: {statusCode}",
+      "ackFailed": "Не удалось подтвердить покупку: {statusCode}"
+    },
+    "subscription": {
+      "verifyFailed": "Ошибка при проверке подписки: {statusCode}",
+      "invalidExpiry": "Неверное время окончания подписки",
+      "ackFailed": "Не удалось подтвердить подписку: {statusCode}"
+    },
+    "treats": {
+      "notEnough": "Недостаточно лакомств"
+    },
+    "quest": {
+      "notFound": "Квест не найден",
+      "notOwner": "Квест не принадлежит текущему пользователю",
+      "notCompleted": "Квест еще не выполнен",
+      "alreadyClaimed": "Награда за квест уже получена"
+    },
+    "language": {
+      "required": "Необходимо указать язык"
+    },
+    "oauth": {
+      "refreshFailed": "Не удалось обновить токен: {statusCode}"
+    },
+    "internal": "Внутренняя ошибка сервера"
+  },
+  "shop": {
+    "title": "Магазин",
+    "spend": "Потратить",
+    "buy": "Купить",
+    "buyPremium": "Купить Премиум",
+    "doghouses": "Собачьи будки",
+    "renameTokens": "Жетоны переименования",
+    "repairKits": "Ремонтные комплекты",
+    "energy": "Энергия",
+    "treatPacks": "Пакеты с лакомствами",
+    "subscriptions": "Подписки",
+    "product": {
+      "treats": "Лакомства",
+      "premiumSubscription": "Премиум-подписка",
+      "{itemId}": "{itemId}"
+    }
+  },
+  "quests": {
+    "claim": {
+      "success": "Получено: {reward}"
+    },
+    "title": {
+      "BUILD_DOGHOUSES": {
+        "1": "Первые шаги",
+        "2": "Строитель",
+        "3": "Мастер-строитель"
+      },
+      "SPEND_ENERGY": {
+        "1": "Сжигатель энергии",
+        "2": "Мастер энергии",
+        "3": "Титан энергии"
+      },
+      "GAIN_EXPERIENCE": {
+        "1": "Экономия энергии",
+        "2": "Охотник за опытом",
+        "3": "Мастер опыта"
+      },
+      "REPAIR_DOGHOUSES": {
+        "1": "Мастер на все руки",
+        "2": "Эксперт по ремонту",
+        "3": "Мастер-механик"
+      },
+      "ATTACK_DOGHOUSES": {
+        "1": "Атакующий",
+        "2": "Лидер рейда",
+        "3": "Военачальник"
+      },
+      "DESTROY_DOGHOUSES": {
+        "1": "Разрушитель",
+        "2": "Эксперт по сносу",
+        "3": "Разрушитель миров"
+      },
+      "LEVEL_UP": {
+        "1": "Повышение уровня",
+        "2": "Восходящая звезда",
+        "3": "Элитный чемпион"
+      }
+    },
+    "description": {
+      "BUILD_DOGHOUSES": "Построить {target} собачью(и) будку(и)",
+      "SPEND_ENERGY": "Потратить {target} энергии",
+      "GAIN_EXPERIENCE": "Получить {target} опыта",
+      "REPAIR_DOGHOUSES": "Отремонтировать {target} собачью(и) будку(и)",
+      "ATTACK_DOGHOUSES": "Атаковать {target} собачью(и) будку(и)",
+      "DESTROY_DOGHOUSES": "Уничтожить {target} собачью(и) будку(и)",
+      "LEVEL_UP": "Достигнуть {target} нового(ых) уровня(ей)"
+    }
+  },
+  "rewards": {
+    "description": {
+      "TREATS": "{amount} лакомств",
+      "ENERGY": "{amount} энергии",
+      "EXPERIENCE": "{amount} опыта",
+      "DOG_RENAME": "Жетон переименования собаки",
+      "DOGHOUSE_RENAME": "Жетон переименования собачьей будки",
+      "DOGHOUSES": "{amount} дополнительная(ые) собачья(и) будка(и)",
+      "ENERGY_RESTORE": "Полное восстановление энергии"
+    }
+  },
+  "statsTab": "Статистика",
+  "dailyQuestsTab": "Ежедневные квесты",
+  "leaderboardsTab": "Таблицы лидеров",
+  "statsTitle": "Статистика",
+  "level": "Уровень",
+  "levelWithNumber": "Уровень {level}",
+  "levelTooltip": "Ваш текущий уровень",
+  "xpToNext": "XP до следующего уровня",
+  "xpAbbrev": "XP",
+  "pointsToAllocate": "очки для распределения",
+  "allPointsAssigned": "Все очки распределены",
+  "save": "Сохранить",
+  "reset": "Сбросить",
+  "power": "Сила",
+  "stamina": "Выносливость",
+  "reach": "Досягаемость",
+  "fortification": "Укрепление",
+  "attackLabel": "Атака: {min}–{max}",
+  "maxEnergyLabel": "Макс. энергия {n}",
+  "rangeLabel": "Диапазон {n} м",
+  "doghouseHpLabel": "HP собачьей будки {n}",
+  "whatIsPower": "Что такое сила?",
+  "whatIsStamina": "Что такое выносливость?",
+  "whatIsReach": "Что такое досягаемость?",
+  "whatIsFortification": "Что такое укрепление?",
+  "availableDoghousesTitle": "Доступные собачьи будки",
+  "energyTitle": "Энергия",
+  "doghouseBuffs": "Баффы собачьей будки",
+  "gotIt": "Понятно",
+  "premiumBadge": "Премиум",
+  "premiumExpires": "Истекает: {date}",
+  "manageSubscription": "Управление подпиской",
+  "unlimited": "Неограниченно",
+  "powerDesc": "Урон, наносимый собачьim будкам. Текущий урон от атаки: {min}–{max}. Каждое очко увеличивает как мин, так и макс на 1.",
+  "staminaDesc": "Увеличивает максимальную энергию, чтобы вы могли чаще атаковать или ремонтировать свои собачьи будки. Текущая максимальная энергия: {n}. (+10 за очко, начиная со 100)",
+  "reachDesc": "Дальность на карте для взаимодействия с собачьimi будками (атака или ремонт). Текущая дальность: {n} м. (+10 м за очко, начиная с 200 м)",
+  "fortificationDesc": "Увеличивает максимальное HP всех ваших собачьих будок, чтобы их было сложнее уничтожить. Текущее максимальное HP собачьей будки: {n}. (+20 за очко, начиная со 100)",
+  "dateLabel": "Дата",
+  "hpAbbrev": "HP",
+  "sortBy": "Сортировать по",
+  "exitEditMode": "Выйти из режима редактирования",
+  "editDoghouses": "Редактировать собачьи будки",
+  "noDoghousesYet": "Собачьих будок пока нет",
+  "goToMapToBuildFirst": "Перейдите на карту, чтобы построить свою первую собачью будку!",
+  "doghouseNamePlaceholder": "Название собачьей будки",
+  "editName": "Изменить имя",
+  "findPosition": "Найти свое местоположение",
+  "turnOnLocation": "Включите геолокацию",
+  "turnOnGpsWait": "Включите GPS и подождите загрузки",
+  "clickButtonBelow": "и нажмите кнопку ниже",
+  "signInWithGoogle": "Войти через Google",
+  "health": "Здоровье",
+  "availableBuffs": "Доступные баффы",
+  "confirm": "Подтвердить",
+  "cancel": "Отмена",
+  "tapTimesToAttack": "Нажмите {n} раз, чтобы атаковать!",
+  "tapTimesToRepair": "Нажмите {n} раз, чтобы отремонтировать!",
+  "notEnoughEnergyNeed": "Недостаточно энергии! Требуется {n} энергии.",
+  "doghouseFullHealth": "Собачья будка уже полностью здорова!",
+  "destroyedText": "УНИЧТОЖЕНО!",
+  "appSettings": "Настройки приложения",
+  "language": "Язык",
+  "chooseLanguage": "Выберите предпочитаемый язык",
+  "notifications": "Push-уведомления",
+  "notificationsDesc": "Получать уведомления о событиях в игре",
+  "darkMode": "Темный режим",
+  "darkModeDesc": "Переключиться на темную тему",
+  "signOut": "Выйти",
+  "contactUs": "Связаться с нами",
+  "contactDesc": "По любым вопросам, пожалуйста, напишите нам по адресу:",
+  "attributions": "Атрибуции",
+  "userUnknown": "Неизвестный пользователь",
+  "userNoEmail": "Нет электронной почты",
+  "refreshing": "Обновление...",
+  "hoursAbbrev": "ч",
+  "minutesAbbrev": "м",
+  "remainingTime": "Оставшееся время",
+  "loading": "Загрузка...",
+  "loadingDailyQuests": "Загрузка ежедневных квестов...",
+  "noQuestsToday": "Сегодня нет доступных квестов",
+  "claim": "Забрать",
+  "claimed": "Забрано",
+  "leaderboardTopLevels": "Высшие уровни",
+  "leaderboardMasterBuilders": "Мастера-строители",
+  "leaderboardTopDestroyers": "Лучшие разрушители",
+  "leaderboardGeneric": "Таблица лидеров",
+  "leaderboardColLevel": "Уровень",
+  "leaderboardColBuilt": "Построено",
+  "leaderboardColDestroyed": "Уничтожено",
+  "leaderboardColScore": "Счет",
+  "leaderboardFooter": "{total} всего игроков • Обновлено {date}",
+  "leaderboardTotalPlayers": "всего игроков",
+  "leaderboardUpdated": "Обновлено",
+  "navMyDog": "Моя собака",
+  "doghousesTitle": "Собачьи будки",
+  "navProfile": "Профиль"
+}
