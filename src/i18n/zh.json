@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "攻击{target}个狗屋",
       "DESTROY_DOGHOUSES": "摧毁{target}个狗屋",
       "LEVEL_UP": "达到{target}个新等级",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "建造{target}个狗屋",
+      "BUILD_DOGHOUSES_other": "建造{target}个狗屋",
+      "REPAIR_DOGHOUSES_one": "修理{target}个狗屋",
+      "REPAIR_DOGHOUSES_other": "修理{target}个狗屋",
+      "ATTACK_DOGHOUSES_one": "攻击{target}个狗屋",
+      "ATTACK_DOGHOUSES_other": "攻击{target}个狗屋",
+      "DESTROY_DOGHOUSES_one": "摧毁{target}个狗屋",
+      "DESTROY_DOGHOUSES_other": "摧毁{target}个狗屋",
+      "LEVEL_UP_one": "达到{target}个新等级",
+      "LEVEL_UP_other": "达到{target}个新等级"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "狗屋重命名令牌",
       "DOGHOUSES": "{amount}个额外的狗屋",
       "ENERGY_RESTORE": "完全恢复能量",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount}个零食",
+      "TREATS_other": "{amount}个零食",
+      "DOGHOUSES_one": "{amount}个额外的狗屋",
+      "DOGHOUSES_other": "{amount}个额外的狗屋"
     }
   },
   "statsTab": "统计",

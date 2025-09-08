@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "{target} डॉगहाउस पर हमला करें",
       "DESTROY_DOGHOUSES": "{target} डॉгहाउस को नष्ट करें",
       "LEVEL_UP": "{target} नए स्तर पर पहुंचें",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "{target} डॉगहाउस बनाएं",
+      "BUILD_DOGHOUSES_other": "{target} डॉगहाउस बनाएं",
+      "REPAIR_DOGHOUSES_one": "{target} डॉगहाउस की मरम्मत करें",
+      "REPAIR_DOGHOUSES_other": "{target} डॉगहाउस की मरम्मत करें",
+      "ATTACK_DOGHOUSES_one": "{target} डॉगहाउस पर हमला करें",
+      "ATTACK_DOGHOUSES_other": "{target} डॉगहाउस पर हमला करें",
+      "DESTROY_DOGHOUSES_one": "{target} डॉгहाउस को नष्ट करें",
+      "DESTROY_DOGHOUSES_other": "{target} डॉгहाउस को नष्ट करें",
+      "LEVEL_UP_one": "{target} नए स्तर पर पहुंचें",
+      "LEVEL_UP_other": "{target} नए स्तर पर पहुंचें"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "डॉगहाउस का नाम बदलने वाला टोकन",
       "DOGHOUSES": "{amount} अतिरिक्त डॉगहाउस",
       "ENERGY_RESTORE": "पूर्ण ऊर्जा बहाली",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} ट्रीट्स",
+      "TREATS_other": "{amount} ट्रीट्स",
+      "DOGHOUSES_one": "{amount} अतिरिक्त डॉगहाउस",
+      "DOGHOUSES_other": "{amount} अतिरिक्त डॉगहाउस"
     }
   },
   "statsTab": "आँकड़े",

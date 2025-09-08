@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "Attaquer {target} niche(s)",
       "DESTROY_DOGHOUSES": "Détruire {target} niche(s)",
       "LEVEL_UP": "Atteindre {target} nouveau(x) niveau(x)",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "Construire {target} niche(s)",
+      "BUILD_DOGHOUSES_other": "Construire {target} niche(s)",
+      "REPAIR_DOGHOUSES_one": "Réparer {target} niche(s)",
+      "REPAIR_DOGHOUSES_other": "Réparer {target} niche(s)",
+      "ATTACK_DOGHOUSES_one": "Attaquer {target} niche(s)",
+      "ATTACK_DOGHOUSES_other": "Attaquer {target} niche(s)",
+      "DESTROY_DOGHOUSES_one": "Détruire {target} niche(s)",
+      "DESTROY_DOGHOUSES_other": "Détruire {target} niche(s)",
+      "LEVEL_UP_one": "Atteindre {target} nouveau(x) niveau(x)",
+      "LEVEL_UP_other": "Atteindre {target} nouveau(x) niveau(x)"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "Jeton de renommage de niche",
       "DOGHOUSES": "{amount} niche(s) supplémentaire(s)",
       "ENERGY_RESTORE": "Restauration complète de l'énergie",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} friandises",
+      "TREATS_other": "{amount} friandises",
+      "DOGHOUSES_one": "{amount} niche(s) supplémentaire(s)",
+      "DOGHOUSES_other": "{amount} niche(s) supplémentaire(s)"
     }
   },
   "statsTab": "Statistiques",

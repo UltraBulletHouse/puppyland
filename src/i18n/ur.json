@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "{target} کتے کے گھر پر حملہ کریں",
       "DESTROY_DOGHOUSES": "{target} کتے کے گھر کو تباہ کریں",
       "LEVEL_UP": "{target} نئے لیول تک پہنچیں",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "{target} کتے کے گھر بنائیں",
+      "BUILD_DOGHOUSES_other": "{target} کتے کے گھر بنائیں",
+      "REPAIR_DOGHOUSES_one": "{target} کتے کے گھر کی مرمت کریں",
+      "REPAIR_DOGHOUSES_other": "{target} کتے کے گھر کی مرمت کریں",
+      "ATTACK_DOGHOUSES_one": "{target} کتے کے گھر پر حملہ کریں",
+      "ATTACK_DOGHOUSES_other": "{target} کتے کے گھر پر حملہ کریں",
+      "DESTROY_DOGHOUSES_one": "{target} کتے کے گھر کو تباہ کریں",
+      "DESTROY_DOGHOUSES_other": "{target} کتے کے گھر کو تباہ کریں",
+      "LEVEL_UP_one": "{target} نئے لیول تک پہنچیں",
+      "LEVEL_UP_other": "{target} نئے لیول تک پہنچیں"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "کتے کے گھر کا نام تبدیل کرنے کا ٹوکن",
       "DOGHOUSES": "{amount} اضافی کتے کے گھر",
       "ENERGY_RESTORE": "مکمل توانائی کی بحالی",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} ٹریٹس",
+      "TREATS_other": "{amount} ٹریٹس",
+      "DOGHOUSES_one": "{amount} اضافی کتے کے گھر",
+      "DOGHOUSES_other": "{amount} اضافی کتے کے گھر"
     }
   },
   "statsTab": "اعداد و شمار",

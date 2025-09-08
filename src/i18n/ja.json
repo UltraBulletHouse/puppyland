@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "{target}個の犬小屋を攻撃する",
       "DESTROY_DOGHOUSES": "{target}個の犬小屋を破壊する",
       "LEVEL_UP": "{target}の新しいレベルに到達する",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "{target}個の犬小屋を建てる",
+      "BUILD_DOGHOUSES_other": "{target}個の犬小屋を建てる",
+      "REPAIR_DOGHOUSES_one": "{target}個の犬小屋を修理する",
+      "REPAIR_DOGHOUSES_other": "{target}個の犬小屋を修理する",
+      "ATTACK_DOGHOUSES_one": "{target}個の犬小屋を攻撃する",
+      "ATTACK_DOGHOUSES_other": "{target}個の犬小屋を攻撃する",
+      "DESTROY_DOGHOUSES_one": "{target}個の犬小屋を破壊する",
+      "DESTROY_DOGHOUSES_other": "{target}個の犬小屋を破壊する",
+      "LEVEL_UP_one": "{target}の新しいレベルに到達する",
+      "LEVEL_UP_other": "{target}の新しいレベルに到達する"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "犬小屋の名前変更トークン",
       "DOGHOUSES": "{amount}個の追加の犬小屋",
       "ENERGY_RESTORE": "エネルギーの完全回復",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount}個のおやつ",
+      "TREATS_other": "{amount}個のおやつ",
+      "DOGHOUSES_one": "{amount}個の追加の犬小屋",
+      "DOGHOUSES_other": "{amount}個の追加の犬小屋"
     }
   },
   "statsTab": "統計",

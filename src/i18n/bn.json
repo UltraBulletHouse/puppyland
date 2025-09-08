@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "{target} টি কুকুর ঘর আক্রমণ করুন",
       "DESTROY_DOGHOUSES": "{target} টি কুকুর ঘর ধ্বংস করুন",
       "LEVEL_UP": "{target} টি নতুন স্তরে পৌঁছান",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "{target} টি কুকুর ঘর তৈরি করুন",
+      "BUILD_DOGHOUSES_other": "{target} টি কুকুর ঘর তৈরি করুন",
+      "REPAIR_DOGHOUSES_one": "{target} টি কুকুর ঘর মেরামত করুন",
+      "REPAIR_DOGHOUSES_other": "{target} টি কুকুর ঘর মেরামত করুন",
+      "ATTACK_DOGHOUSES_one": "{target} টি কুকুর ঘর আক্রমণ করুন",
+      "ATTACK_DOGHOUSES_other": "{target} টি কুকুর ঘর আক্রমণ করুন",
+      "DESTROY_DOGHOUSES_one": "{target} টি কুকুর ঘর ধ্বংস করুন",
+      "DESTROY_DOGHOUSES_other": "{target} টি কুকুর ঘর ধ্বংস করুন",
+      "LEVEL_UP_one": "{target} টি নতুন স্তরে পৌঁছান",
+      "LEVEL_UP_other": "{target} টি নতুন স্তরে পৌঁছান"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "কুকুর ঘরের নাম পরিবর্তনের টোকেন",
       "DOGHOUSES": "{amount} টি অতিরিক্ত কুকুর ঘর",
       "ENERGY_RESTORE": "সম্পূর্ণ শক্তি পুনরুদ্ধার",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} টি ট্রিট",
+      "TREATS_other": "{amount} টি ট্রিট",
+      "DOGHOUSES_one": "{amount} টি অতিরিক্ত কুকুর ঘর",
+      "DOGHOUSES_other": "{amount} টি অতিরিক্ত কুকুর ঘর"
     }
   },
   "statsTab": "পরিসংখ্যান",

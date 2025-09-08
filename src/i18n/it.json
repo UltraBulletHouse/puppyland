@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "Attacca {target} cuccia(e)",
       "DESTROY_DOGHOUSES": "Distruggi {target} cuccia(e)",
       "LEVEL_UP": "Raggiungi {target} nuovo(i) livello(i)",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "Costruisci {target} cuccia(e)",
+      "BUILD_DOGHOUSES_other": "Costruisci {target} cuccia(e)",
+      "REPAIR_DOGHOUSES_one": "Ripara {target} cuccia(e)",
+      "REPAIR_DOGHOUSES_other": "Ripara {target} cuccia(e)",
+      "ATTACK_DOGHOUSES_one": "Attacca {target} cuccia(e)",
+      "ATTACK_DOGHOUSES_other": "Attacca {target} cuccia(e)",
+      "DESTROY_DOGHOUSES_one": "Distruggi {target} cuccia(e)",
+      "DESTROY_DOGHOUSES_other": "Distruggi {target} cuccia(e)",
+      "LEVEL_UP_one": "Raggiungi {target} nuovo(i) livello(i)",
+      "LEVEL_UP_other": "Raggiungi {target} nuovo(i) livello(i)"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "Gettone per rinominare la cuccia",
       "DOGHOUSES": "{amount} cuccia(e) extra",
       "ENERGY_RESTORE": "Ripristino completo dell'energia",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} dolcetti",
+      "TREATS_other": "{amount} dolcetti",
+      "DOGHOUSES_one": "{amount} cuccia(e) extra",
+      "DOGHOUSES_other": "{amount} cuccia(e) extra"
     }
   },
   "statsTab": "Statistiche",

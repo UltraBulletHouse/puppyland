@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "Ataca {target} caseta(s) de perro",
       "DESTROY_DOGHOUSES": "Destruye {target} caseta(s) de perro",
       "LEVEL_UP": "Alcanza {target} nuevo(s) nivel(es)",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "Construye {target} caseta(s) de perro",
+      "BUILD_DOGHOUSES_other": "Construye {target} caseta(s) de perro",
+      "REPAIR_DOGHOUSES_one": "Repara {target} caseta(s) de perro",
+      "REPAIR_DOGHOUSES_other": "Repara {target} caseta(s) de perro",
+      "ATTACK_DOGHOUSES_one": "Ataca {target} caseta(s) de perro",
+      "ATTACK_DOGHOUSES_other": "Ataca {target} caseta(s) de perro",
+      "DESTROY_DOGHOUSES_one": "Destruye {target} caseta(s) de perro",
+      "DESTROY_DOGHOUSES_other": "Destruye {target} caseta(s) de perro",
+      "LEVEL_UP_one": "Alcanza {target} nuevo(s) nivel(es)",
+      "LEVEL_UP_other": "Alcanza {target} nuevo(s) nivel(es)"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "Ficha para cambiar el nombre de la caseta",
       "DOGHOUSES": "{amount} Caseta(s) de perro extra",
       "ENERGY_RESTORE": "Restauración completa de energía",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} Golosinas",
+      "TREATS_other": "{amount} Golosinas",
+      "DOGHOUSES_one": "{amount} Caseta(s) de perro extra",
+      "DOGHOUSES_other": "{amount} Caseta(s) de perro extra"
     }
   },
   "statsTab": "Estadísticas",

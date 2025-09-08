@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "Атаковать {target} собачью(и) будку(и)",
       "DESTROY_DOGHOUSES": "Уничтожить {target} собачью(и) будку(и)",
       "LEVEL_UP": "Достигнуть {target} нового(ых) уровня(ей)",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "Построить {target} собачью(и) будку(и)",
+      "BUILD_DOGHOUSES_other": "Построить {target} собачью(и) будку(и)",
+      "REPAIR_DOGHOUSES_one": "Отремонтировать {target} собачью(и) будку(и)",
+      "REPAIR_DOGHOUSES_other": "Отремонтировать {target} собачью(и) будку(и)",
+      "ATTACK_DOGHOUSES_one": "Атаковать {target} собачью(и) будку(и)",
+      "ATTACK_DOGHOUSES_other": "Атаковать {target} собачью(и) будку(и)",
+      "DESTROY_DOGHOUSES_one": "Уничтожить {target} собачью(и) будку(и)",
+      "DESTROY_DOGHOUSES_other": "Уничтожить {target} собачью(и) будку(и)",
+      "LEVEL_UP_one": "Достигнуть {target} нового(ых) уровня(ей)",
+      "LEVEL_UP_other": "Достигнуть {target} нового(ых) уровня(ей)"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "Жетон переименования собачьей будки",
       "DOGHOUSES": "{amount} дополнительная(ые) собачья(и) будка(и)",
       "ENERGY_RESTORE": "Полное восстановление энергии",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} лакомств",
+      "TREATS_other": "{amount} лакомств",
+      "DOGHOUSES_one": "{amount} дополнительная(ые) собачья(и) будка(и)",
+      "DOGHOUSES_other": "{amount} дополнительная(ые) собачья(и) будка(и)"
     }
   },
   "statsTab": "Статистика",

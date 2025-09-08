@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "Atacar {target} casota(s)",
       "DESTROY_DOGHOUSES": "Destruir {target} casota(s)",
       "LEVEL_UP": "Alcançar {target} novo(s) nível(eis)",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "Construir {target} casota(s)",
+      "BUILD_DOGHOUSES_other": "Construir {target} casota(s)",
+      "REPAIR_DOGHOUSES_one": "Reparar {target} casota(s)",
+      "REPAIR_DOGHOUSES_other": "Reparar {target} casota(s)",
+      "ATTACK_DOGHOUSES_one": "Atacar {target} casota(s)",
+      "ATTACK_DOGHOUSES_other": "Atacar {target} casota(s)",
+      "DESTROY_DOGHOUSES_one": "Destruir {target} casota(s)",
+      "DESTROY_DOGHOUSES_other": "Destruir {target} casota(s)",
+      "LEVEL_UP_one": "Alcançar {target} novo(s) nível(eis)",
+      "LEVEL_UP_other": "Alcançar {target} novo(s) nível(eis)"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "Ficha de renomeação de casota",
       "DOGHOUSES": "{amount} casota(s) extra",
       "ENERGY_RESTORE": "Restauro completo de energia",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} guloseimas",
+      "TREATS_other": "{amount} guloseimas",
+      "DOGHOUSES_one": "{amount} casota(s) extra",
+      "DOGHOUSES_other": "{amount} casota(s) extra"
     }
   },
   "statsTab": "Estatísticas",

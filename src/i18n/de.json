@@ -32,7 +32,7 @@
     "quest": {
       "notFound": "Quest nicht gefunden",
       "notOwner": "Quest gehört nicht dem aktuellen Benutzer",
-      "notCompleted": "Quest ist noch не abgeschlossen",
+      "notCompleted": "Quest ist noch nicht abgeschlossen",
       "alreadyClaimed": "Quest-Belohnung bereits eingefordert"
     },
     "language": {
@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "Greife {target} Hundehütte(n) an",
       "DESTROY_DOGHOUSES": "Zerstöre {target} Hundehütte(n)",
       "LEVEL_UP": "Erreiche {target} neue(s) Level",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "Baue {target} Hundehütte(n)",
+      "BUILD_DOGHOUSES_other": "Baue {target} Hundehütte(n)",
+      "REPAIR_DOGHOUSES_one": "Repariere {target} Hundehütte(n)",
+      "REPAIR_DOGHOUSES_other": "Repariere {target} Hundehütte(n)",
+      "ATTACK_DOGHOUSES_one": "Greife {target} Hundehütte(n) an",
+      "ATTACK_DOGHOUSES_other": "Greife {target} Hundehütte(n) an",
+      "DESTROY_DOGHOUSES_one": "Zerstöre {target} Hundehütte(n)",
+      "DESTROY_DOGHOUSES_other": "Zerstöre {target} Hundehütte(n)",
+      "LEVEL_UP_one": "Erreiche {target} neue(s) Level",
+      "LEVEL_UP_other": "Erreiche {target} neue(s) Level"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "Token zum Umbenennen der Hundehütte",
       "DOGHOUSES": "{amount} zusätzliche Hundehütte(n)",
       "ENERGY_RESTORE": "Vollständige Energiewiederherstellung",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} Leckerlis",
+      "TREATS_other": "{amount} Leckerlis",
+      "DOGHOUSES_one": "{amount} zusätzliche Hundehütte(n)",
+      "DOGHOUSES_other": "{amount} zusätzliche Hundehütte(n)"
     }
   },
   "statsTab": "Statistiken",

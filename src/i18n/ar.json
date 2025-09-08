@@ -174,16 +174,16 @@
       "ATTACK_DOGHOUSES": "مهاجمة {target} بيت (بيوت) كلاب",
       "DESTROY_DOGHOUSES": "تدمير {target} بيت (بيوت) كلاب",
       "LEVEL_UP": "الوصول إلى {target} مستوى (مستويات) جديد",
-      "BUILD_DOGHOUSES_one": "Build {target} doghouse",
-      "BUILD_DOGHOUSES_other": "Build {target} doghouses",
-      "REPAIR_DOGHOUSES_one": "Repair {target} doghouse",
-      "REPAIR_DOGHOUSES_other": "Repair {target} doghouses",
-      "ATTACK_DOGHOUSES_one": "Attack {target} doghouse",
-      "ATTACK_DOGHOUSES_other": "Attack {target} doghouses",
-      "DESTROY_DOGHOUSES_one": "Destroy {target} doghouse",
-      "DESTROY_DOGHOUSES_other": "Destroy {target} doghouses",
-      "LEVEL_UP_one": "Reach {target} new level",
-      "LEVEL_UP_other": "Reach {target} new levels"
+      "BUILD_DOGHOUSES_one": "بناء {target} بيت (بيوت) كلاب",
+      "BUILD_DOGHOUSES_other": "بناء {target} بيت (بيوت) كلاب",
+      "REPAIR_DOGHOUSES_one": "إصلاح {target} بيت (بيوت) كلاب",
+      "REPAIR_DOGHOUSES_other": "إصلاح {target} بيت (بيوت) كلاب",
+      "ATTACK_DOGHOUSES_one": "مهاجمة {target} بيت (بيوت) كلاب",
+      "ATTACK_DOGHOUSES_other": "مهاجمة {target} بيت (بيوت) كلاب",
+      "DESTROY_DOGHOUSES_one": "تدمير {target} بيت (بيوت) كلاب",
+      "DESTROY_DOGHOUSES_other": "تدمير {target} بيت (بيوت) كلاب",
+      "LEVEL_UP_one": "الوصول إلى {target} مستوى (مستويات) جديد",
+      "LEVEL_UP_other": "الوصول إلى {target} مستوى (مستويات) جديد"
     }
   },
   "rewards": {
@@ -195,10 +195,10 @@
       "DOGHOUSE_RENAME": "رمز إعادة تسمية بيت الكلب",
       "DOGHOUSES": "{amount} بيت (بيوت) كلاب إضافي",
       "ENERGY_RESTORE": "استعادة كاملة للطاقة",
-      "TREATS_one": "{amount} Treat",
-      "TREATS_other": "{amount} Treats",
-      "DOGHOUSES_one": "{amount} Extra Doghouse",
-      "DOGHOUSES_other": "{amount} Extra Doghouses"
+      "TREATS_one": "{amount} مكافآت",
+      "TREATS_other": "{amount} مكافآت",
+      "DOGHOUSES_one": "{amount} بيت (بيوت) كلاب إضافي",
+      "DOGHOUSES_other": "{amount} بيت (بيوت) كلاب إضافي"
     }
   },
   "statsTab": "الإحصائيات",
