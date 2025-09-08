@@ -196,6 +196,16 @@ export class AppDoghouseItem extends LitElement {
     this.newName = this.dogouseInfo.name;
   }
 
+  private onLocaleChanged = () => this.requestUpdate();
+  connectedCallback() {
+    super.connectedCallback();
+    window.addEventListener('locale-changed', this.onLocaleChanged);
+  }
+  disconnectedCallback() {
+    window.removeEventListener('locale-changed', this.onLocaleChanged);
+    super.disconnectedCallback();
+  }
+
   render() {
     if (!this.dogouseInfo) return null;
     const { name, hp, maxHp, createdDate } = this.dogouseInfo;
@@ -260,7 +270,7 @@ export class AppDoghouseItem extends LitElement {
 
           <div id="date-stat">
             <sl-icon name="calendar-check"></sl-icon>
-            <sl-relative-time date=${createdDate}></sl-relative-time>
+            <sl-relative-time lang="${document.documentElement.lang || 'en'}" date=${createdDate}></sl-relative-time>
           </div>
         </div>
       </div>

@@ -15,6 +15,14 @@ export type Locale =
   | 'ur';
 
 let currentLocale: Locale = (localStorage.getItem('puppyland-language') as Locale) || 'en';
+
+function applyDocumentLocale(locale: Locale) {
+  try {
+    document.documentElement.lang = locale;
+    const rtlLocales = new Set<Locale>(['ar', 'ur']);
+    document.documentElement.dir = rtlLocales.has(locale) ? 'rtl' : 'ltr';
+  } catch {}
+}
 let translations: Record<string, any> = {};
 let enTranslations: Record<string, any> = {};
 
@@ -41,6 +49,7 @@ async function loadEnTranslations() {
 
 export const translationsReady = new Promise<void>(async (resolve) => {
     await Promise.all([loadTranslations(currentLocale), loadEnTranslations()]);
+    applyDocumentLocale(currentLocale);
     resolve();
 });
 
@@ -48,6 +57,7 @@ export async function setLocale(locale: Locale) {
   currentLocale = locale;
   localStorage.setItem('puppyland-language', locale);
   await loadTranslations(locale);
+  applyDocumentLocale(locale);
   window.dispatchEvent(new CustomEvent('locale-changed'));
 }
 
