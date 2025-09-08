@@ -255,6 +255,8 @@
   "dateLabel": "Data",
   "hpAbbrev": "HP",
   "sortBy": "Sortuj według",
+  "sortByDate": "Data",
+  "sortByHp": "HP",
   "exitEditMode": "Zakończ tryb edycji",
   "editDoghouses": "Edytuj budy",
   "noDoghousesYet": "Brak bud",

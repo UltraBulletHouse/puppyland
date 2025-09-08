@@ -241,6 +241,8 @@
   "dateLabel": "Date",
   "hpAbbrev": "HP",
   "sortBy": "Sort by",
+  "sortByDate": "Date",
+  "sortByHp": "HP",
   "exitEditMode": "Exit edit mode",
   "editDoghouses": "Edit doghouses",
   "noDoghousesYet": "No doghouses yet",

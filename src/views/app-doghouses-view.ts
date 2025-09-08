@@ -60,6 +60,10 @@ export class AppDoghousesView extends LitElement {
         align-items: center;
         gap: 8px;
       }
+      #sort-label {
+        font-size: 12px;
+        color: var(--text-2);
+      }
       #sort-by-selector {
         width: 120px;
       }
@@ -225,6 +229,7 @@ export class AppDoghousesView extends LitElement {
             <div id="title">${t('doghousesTitle')}</div>
           </div>
           <div id="controls">
+            <span id="sort-label">${t('sortBy')}</span>
             <div id="sort-buttons">
               <sl-button
                 class="sort-button ${this.sortBy === 'date' ? 'active' : ''}"
@@ -232,7 +237,7 @@ export class AppDoghousesView extends LitElement {
                 size="small"
               >
                 <sl-icon name="calendar-date" slot="prefix"></sl-icon>
-                ${t('dateLabel')}
+                ${t('sortByDate') || t('dateLabel')}
               </sl-button>
               <sl-button
                 class="sort-button ${this.sortBy === 'hp' ? 'active' : ''}"
@@ -240,7 +245,7 @@ export class AppDoghousesView extends LitElement {
                 size="small"
               >
                 <sl-icon name="heart-pulse" slot="prefix"></sl-icon>
-                ${t('hpAbbrev')}
+                ${t('sortByHp') || t('hpAbbrev')}
               </sl-button>
             </div>
             <div id="edit-container">
