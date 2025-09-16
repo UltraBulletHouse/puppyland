@@ -563,7 +563,9 @@ export class LeaderboardsComponent extends LitElement {
             <div id="stats-footer">
               ${ti('leaderboardFooter', {
                 total: leaderboard.totalPlayers.toLocaleString(),
-                date: new Date(leaderboard.lastUpdated).toLocaleDateString(document.documentElement.lang || undefined),
+                date: new Date(leaderboard.lastUpdated).toLocaleDateString(
+                  document.documentElement.lang || undefined
+                ),
               })}
             </div>
           </div>

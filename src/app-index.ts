@@ -19,6 +19,7 @@ import { dogInfoContext } from './contexts/dogInfoContext';
 import { accessTokenContext } from './contexts/userFirebaseContext';
 import { userInfoContext } from './contexts/userInfoContext';
 import { viewContext } from './contexts/viewContext';
+import { translationsReady } from './i18n';
 import './styles/global.css';
 import { sharedStyles } from './styles/shared-styles';
 import { DogInfo } from './types/dog';
@@ -27,8 +28,12 @@ import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
 import { auth } from './utils/firebase';
 import { idbGet, idbSet } from './utils/idb';
-import { translationsReady } from './i18n';
-import { preloadAllPngBadges, preloadShoelaceIcons, preloadStaticUrls, preloadSvgTemplates } from './utils/preloadImages';
+import {
+  preloadAllPngBadges,
+  preloadShoelaceIcons,
+  preloadStaticUrls,
+  preloadSvgTemplates,
+} from './utils/preloadImages';
 import './views/app-loading-map-view';
 import './views/app-loading-view';
 

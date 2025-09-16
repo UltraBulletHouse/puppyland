@@ -369,7 +369,10 @@ export class AppShopView extends LitElement {
 
       showSuccessModal(
         t('shop.purchaseSuccessTitle'),
-        ti('shop.purchaseTreatsSuccessDesc', { spent: data?.spentTreats ?? 0, item: data?.itemBought ?? '' })
+        ti('shop.purchaseTreatsSuccessDesc', {
+          spent: data?.spentTreats ?? 0,
+          item: data?.itemBought ?? '',
+        })
       );
     } catch (error) {
       console.log(error);
@@ -455,7 +458,10 @@ export class AppShopView extends LitElement {
       <div class="shop-item">
         <div class="item-icon">
           ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
-            ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
+            ? html`<icon-png-badge
+                name=${item.icon}
+                badge=${ifDefined(item.badge)}
+              ></icon-png-badge>`
             : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
         </div>
         <div class="item-details">
@@ -488,7 +494,10 @@ export class AppShopView extends LitElement {
       <div class="shop-item">
         <div class="item-icon">
           ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
-            ? html`<icon-png-badge name=${item.icon} badge=${ifDefined(item.badge)}></icon-png-badge>`
+            ? html`<icon-png-badge
+                name=${item.icon}
+                badge=${ifDefined(item.badge)}
+              ></icon-png-badge>`
             : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
         </div>
         <div class="item-details">
@@ -577,11 +586,17 @@ export class AppShopView extends LitElement {
               </sl-tab>
 
               <sl-tab-panel name="spend-treats">
-                ${this.renderCategorySection(t('shop.doghouses'), 'house-add', shopItemsDoghouse, (i) =>
-                  this.renderShopItemTreats(i)
+                ${this.renderCategorySection(
+                  t('shop.doghouses'),
+                  'house-add',
+                  shopItemsDoghouse,
+                  (i) => this.renderShopItemTreats(i)
                 )}
-                ${this.renderCategorySection(t('shop.renameTokens'), 'pencil', shopItemsRename, (i) =>
-                  this.renderShopItemTreats(i)
+                ${this.renderCategorySection(
+                  t('shop.renameTokens'),
+                  'pencil',
+                  shopItemsRename,
+                  (i) => this.renderShopItemTreats(i)
                 )}
                 ${this.renderCategorySection(t('shop.repairKits'), 'tools', shopItemsRepair, (i) =>
                   this.renderShopItemTreats(i)

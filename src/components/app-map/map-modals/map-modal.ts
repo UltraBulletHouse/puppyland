@@ -689,7 +689,13 @@ export class MapModal extends LitElement {
                     ? html`
                         <div class="tap-overlay">
                           <div class="tap-instructions-compact">
-                            <p>${(() => { const n = 3 - this.tapCount; const k = n === 1 ? 'tapTimesToAttack_one' : 'tapTimesToAttack'; return ti(k, { n }); })()}</p>
+                            <p>
+                              ${(() => {
+                                const n = 3 - this.tapCount;
+                                const k = n === 1 ? 'tapTimesToAttack_one' : 'tapTimesToAttack';
+                                return ti(k, { n });
+                              })()}
+                            </p>
                             <div class="tap-progress-compact">
                               ${Array.from(
                                 { length: 3 },
@@ -719,7 +725,13 @@ export class MapModal extends LitElement {
                       ? html`
                           <div class="tap-overlay">
                             <div class="repair-instructions-compact">
-                              <p>${(() => { const n = 3 - this.repairTapCount; const k = n === 1 ? 'tapTimesToRepair_one' : 'tapTimesToRepair'; return ti(k, { n }); })()}</p>
+                              <p>
+                                ${(() => {
+                                  const n = 3 - this.repairTapCount;
+                                  const k = n === 1 ? 'tapTimesToRepair_one' : 'tapTimesToRepair';
+                                  return ti(k, { n });
+                                })()}
+                              </p>
                               <div class="repair-progress-compact">
                                 ${Array.from(
                                   { length: 3 },

@@ -39,18 +39,18 @@ async function loadTranslations(locale: Locale) {
 }
 
 async function loadEnTranslations() {
-    try {
-        const langModule = await import('./en.json?raw');
-        enTranslations = JSON.parse(langModule.default);
-    } catch (error) {
-        console.error(`Failed to load translation file for locale: en`, error);
-    }
+  try {
+    const langModule = await import('./en.json?raw');
+    enTranslations = JSON.parse(langModule.default);
+  } catch (error) {
+    console.error(`Failed to load translation file for locale: en`, error);
+  }
 }
 
 export const translationsReady = new Promise<void>(async (resolve) => {
-    await Promise.all([loadTranslations(currentLocale), loadEnTranslations()]);
-    applyDocumentLocale(currentLocale);
-    resolve();
+  await Promise.all([loadTranslations(currentLocale), loadEnTranslations()]);
+  applyDocumentLocale(currentLocale);
+  resolve();
 });
 
 export async function setLocale(locale: Locale) {
@@ -62,9 +62,9 @@ export async function setLocale(locale: Locale) {
 }
 
 function resolve(path: string, obj: any): string | null {
-    return path.split('.').reduce((prev, curr) => {
-        return prev ? prev[curr] : null;
-    }, obj);
+  return path.split('.').reduce((prev, curr) => {
+    return prev ? prev[curr] : null;
+  }, obj);
 }
 
 export function t(key: string): string {

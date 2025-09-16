@@ -270,7 +270,10 @@ export class AppDoghouseItem extends LitElement {
 
           <div id="date-stat">
             <sl-icon name="calendar-check"></sl-icon>
-            <sl-relative-time lang="${document.documentElement.lang || 'en'}" date=${createdDate}></sl-relative-time>
+            <sl-relative-time
+              lang="${document.documentElement.lang || 'en'}"
+              date=${createdDate}
+            ></sl-relative-time>
           </div>
         </div>
       </div>

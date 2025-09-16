@@ -416,19 +416,19 @@ export class DailyQuests extends LitElement {
   getPluralizedKey(key: string, count: number): string {
     const locale = localStorage.getItem('puppyland-language') || 'en';
     if (locale === 'pl') {
-        if (count === 1) {
-            return `${key}_one`;
-        }
-        const lastDigit = count % 10;
-        const lastTwoDigits = count % 100;
-        if (lastDigit >= 2 && lastDigit <= 4 && (lastTwoDigits < 12 || lastTwoDigits > 14)) {
-            return `${key}_few`;
-        }
-        return `${key}_many`;
+      if (count === 1) {
+        return `${key}_one`;
+      }
+      const lastDigit = count % 10;
+      const lastTwoDigits = count % 100;
+      if (lastDigit >= 2 && lastDigit <= 4 && (lastTwoDigits < 12 || lastTwoDigits > 14)) {
+        return `${key}_few`;
+      }
+      return `${key}_many`;
     }
     // For English and other languages
     if (count === 1) {
-        return `${key}_one`;
+      return `${key}_one`;
     }
     return `${key}_other`;
   }
@@ -499,7 +499,11 @@ export class DailyQuests extends LitElement {
                       ></sl-icon>
                       ${t(quest.title.key)}
                     </div>
-                    <div class="quest-description">${ti(this.getPluralizedKey(quest.description.key, quest.target), { target: quest.target })}</div>
+                    <div class="quest-description">
+                      ${ti(this.getPluralizedKey(quest.description.key, quest.target), {
+                        target: quest.target,
+                      })}
+                    </div>
                   </div>
                   <div class="quest-actions">
                     <div class="quest-reward ${quest.isCompleted ? 'completed' : ''}">

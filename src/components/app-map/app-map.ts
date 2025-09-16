@@ -13,8 +13,8 @@ import { dogInfoContext, updateDogInfoEvent } from '../../contexts/dogInfoContex
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { userInfoContext } from '../../contexts/userInfoContext';
 import { GeolocationController } from '../../controllers/GeolocationController';
-import '../../scripts/leaflet-canvas-markers';
 import { t } from '../../i18n';
+import '../../scripts/leaflet-canvas-markers';
 import { DogInfo } from '../../types/dog';
 import {
   CreateDoghouseResponse,
