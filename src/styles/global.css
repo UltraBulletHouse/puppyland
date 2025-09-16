@@ -14,43 +14,43 @@
 
   /* ---------------- Core Palette ---------------------------- */
   /* Background and surfaces */
-  --bg: #f3fbf6;
-  --card: #e7f4ed;
-  --border: #cfeadc;
+  --bg: #f2fbf6; /* slightly fresher mint */
+  --card: #e3f3ea; /* a touch more saturated */
+  --border: #c6e6d3; /* greener tint for visibility */
 
   /* Mint hero + lime highlight */
-  --primary: #22b889; /* Mint / Primary */
-  --primary-700: #0e7a56; /* Mint Dark */
-  --lime: #b9e66a;
+  --primary: #16c38a; /* Mint / Primary (more vivid) */
+  --primary-700: #0b6f4b; /* Mint Dark (deeper) */
+  --lime: #aeea4a; /* brighter lime */
 
   /* Ink text */
   --ink: #102a22;
-  --ink2: #547366;
+  --ink2: #4b6d5f; /* slightly richer secondary text */
   --text: var(--ink);
   --text-2: var(--ink2);
 
   /* Accents */
-  --coral: #ff8a6c; /* warm accent */
-  --coral-100: #ffe1d8;
-  --sky: #48a7f2; /* cool accent */
-  --sky-100: #dff1ff;
-  --lav: #8e7bfa; /* prestige */
-  --lav-100: #eee9ff;
+  --coral: #ff7659; /* warm accent (more saturated) */
+  --coral-100: #ffd9cf;
+  --sky: #2ea0ff; /* cool accent (punchier) */
+  --sky-100: #d6ecff;
+  --lav: #7b69ff; /* prestige (richer) */
+  --lav-100: #e8e3ff;
   /* Back-compat alias for existing styles using --accent */
   --accent: var(--coral);
 
   /* Materials */
-  --gold: #ffc857;
-  --gold-100: #ffe9b3;
+  --gold: #ffc233; /* brighter gold */
+  --gold-100: #ffe39a;
   /* Wood accent — slightly deeper/more saturated for prominence */
-  --wood: #b56b3e; /* terracotta/wood (more contrast) */
+  --wood: #bf6a3a; /* terracotta/wood (more contrast) */
   --wood-100: #efd6c6;
 
   /* Utility states */
-  --success: #2dbe7f;
-  --warning: #f2b544;
-  --danger: #e05d5d;
-  --info: #46a1e0;
+  --success: #22c178;
+  --warning: #ffb52a;
+  --danger: #f25e5e;
+  --info: #2e9eff;
 
   --shadow: 0 6px 18px rgba(22, 94, 73, 0.12);
 
@@ -61,7 +61,7 @@
   /* Use sky as secondary for cool/info contexts */
   --color-secondary: var(--sky);
   --color-secondary-light: var(--sky-100);
-  --color-secondary-rgb: 72, 167, 242;
+  --color-secondary-rgb: 46, 160, 255;
   --color-blue: var(--sky);
   --color-lime: var(--lime);
 
