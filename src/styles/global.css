@@ -43,8 +43,8 @@
   --gold: #ffc233; /* brighter gold */
   --gold-100: #ffe39a;
   /* Wood accent — slightly deeper/more saturated for prominence */
-  --wood: #bf6a3a; /* terracotta/wood (more contrast) */
-  --wood-100: #efd6c6;
+  --wood: #c65f2d; /* terracotta/wood (slightly more vivid) */
+  --wood-100: #f5e2d9; /* light tint to match --wood */
 
   /* Utility states */
   --success: #22c178;
