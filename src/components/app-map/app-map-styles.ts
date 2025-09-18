@@ -62,10 +62,14 @@ export const AppMapStyles = [
     .leaflet-control-attribution.leaflet-control {
       pointer-events: none;
     }
-    .map-layer,
     .leaflet-tile-container {
-      filter:  grayscale(62%) hue-rotate(
-200deg) saturate(72%) brightness(102%) contrast(82%);
+      filter: grayscale(48%) brightness(91%) contrast(99%) sepia(44%) hue-rotate(100deg)
+        saturate(126%);
+    }
+    .leaflet-container img.leaflet-tile.leaflet-tile-loaded {
+      mix-blend-mode: plus-lighter;
+      background: #022a02;
+      filter: grayscale(0%) hue-rotate(9deg) saturate(96%) brightness(97%) contrast(102%);
     }
     .leaflet-touch .leaflet-control-layers,
     .leaflet-touch .leaflet-bar {
