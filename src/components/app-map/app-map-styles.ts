@@ -63,8 +63,8 @@ export const AppMapStyles = [
       pointer-events: none;
     }
     .leaflet-tile-container {
-      filter: grayscale(48%) brightness(91%) contrast(99%) sepia(44%) hue-rotate(100deg)
-        saturate(126%);
+      filter: grayscale(88%) brightness(91%) contrast(88%) sepia(71%) hue-rotate(91deg)
+        saturate(48%);
     }
     .leaflet-container img.leaflet-tile.leaflet-tile-loaded {
       mix-blend-mode: plus-lighter;
