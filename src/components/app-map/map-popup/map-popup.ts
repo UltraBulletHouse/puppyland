@@ -219,24 +219,14 @@ export class MapPopup extends LitElement {
         }
         #hp-fill {
           height: 100%;
-          background: linear-gradient(
-            90deg,
-            #4d0404 0%,
-            #c62828 55%,
-            #ff7a7a 100%
-          );
+          background: linear-gradient(90deg, #4d0404 0%, #c62828 55%, #ff7a7a 100%);
           border-radius: 2px;
           transition: width 0.3s ease;
         }
         /* Ownership-specific HP colors share the same red gradient for consistency */
         .own-doghouse #hp-fill,
         .enemy-doghouse #hp-fill {
-          background: linear-gradient(
-            90deg,
-            #4d0404 0%,
-            #c62828 55%,
-            #ff7a7a 100%
-          );
+          background: linear-gradient(90deg, #4d0404 0%, #c62828 55%, #ff7a7a 100%);
         }
         #owner-section {
           display: flex;

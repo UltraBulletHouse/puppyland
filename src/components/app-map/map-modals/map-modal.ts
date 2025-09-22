@@ -770,8 +770,7 @@ export class MapModal extends LitElement {
             <div class="hp-value">${this.dhHp} / ${this.dhMaxHp}</div>
           </div>
           <div class="hp-progress">
-            <div class="hp-progress-info">
-            </div>
+            <div class="hp-progress-info"></div>
             <div class="modern-hp-bar">
               <div
                 class="hp-fill ${!this.isOwn ? 'enemy' : ''} ${hpPercent < 30
