@@ -9,8 +9,6 @@ import '@shoelace-style/shoelace/dist/components/dialog/dialog.js';
 import '@shoelace-style/shoelace/dist/components/divider/divider.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
-import '@shoelace-style/shoelace/dist/components/switch/switch.js';
-
 import { API_USER_INFO } from '../constants/apiConstants';
 import { accessTokenContext } from '../contexts/userFirebaseContext';
 import { updateUserInfoEvent, userInfoContext } from '../contexts/userInfoContext';
@@ -261,12 +259,6 @@ export class AppUserView extends LitElement {
   @state()
   private selectedLanguage = 'en';
 
-  @state()
-  private notificationsEnabled = true;
-
-  @state()
-  private darkMode = false;
-
   async signOut() {
     await auth.signOut();
     updateViewEvent(this, View.SIGNIN_VIEW);
@@ -290,22 +282,10 @@ export class AppUserView extends LitElement {
     } catch {}
   }
 
-  private handleNotificationToggle(event: CustomEvent) {
-    this.notificationsEnabled = (event.target as any).checked;
-    localStorage.setItem('puppyland-notifications', this.notificationsEnabled.toString());
-  }
-
-  private handleDarkModeToggle(event: CustomEvent) {
-    this.darkMode = (event.target as any).checked;
-    localStorage.setItem('puppyland-darkmode', this.darkMode.toString());
-  }
-
   connectedCallback() {
     super.connectedCallback();
     this.selectedLanguage = localStorage.getItem('puppyland-language') || 'en';
     setLocale(this.selectedLanguage as any);
-    this.notificationsEnabled = localStorage.getItem('puppyland-notifications') !== 'false';
-    this.darkMode = localStorage.getItem('puppyland-darkmode') === 'true';
   }
 
   private renderAppSettings() {
@@ -350,38 +330,6 @@ export class AppUserView extends LitElement {
           </div>
         </div>
 
-        <!-- Notifications Setting -->
-        <div class="setting-item">
-          <div class="setting-info">
-            <sl-icon name="bell" class="setting-icon"></sl-icon>
-            <div class="setting-details">
-              <div class="setting-title">${t('notifications')}</div>
-              <div class="setting-description">${t('notificationsDesc')}</div>
-            </div>
-          </div>
-          <div class="setting-control">
-            <sl-switch
-              ?checked=${this.notificationsEnabled}
-              @sl-change=${this.handleNotificationToggle}
-            >
-            </sl-switch>
-          </div>
-        </div>
-
-        <!-- Dark Mode Setting -->
-        <div class="setting-item">
-          <div class="setting-info">
-            <sl-icon name="moon" class="setting-icon"></sl-icon>
-            <div class="setting-details">
-              <div class="setting-title">${t('darkMode')}</div>
-              <div class="setting-description">${t('darkModeDesc')}</div>
-            </div>
-          </div>
-          <div class="setting-control">
-            <sl-switch ?checked=${this.darkMode} @sl-change=${this.handleDarkModeToggle}>
-            </sl-switch>
-          </div>
-        </div>
       </sl-card>
     `;
   }

@@ -169,7 +169,11 @@
     "description": {
       "BUILD_DOGHOUSES": "Construir {target} casota(s)",
       "SPEND_ENERGY": "Gastar {target} de energia",
+"SPEND_ENERGY_one": "Gastar {target} de energia",
+"SPEND_ENERGY_other": "Gastar {target} de energia",
       "GAIN_EXPERIENCE": "Ganhar {target} de XP",
+"GAIN_EXPERIENCE_one": "Ganhar {target} de XP",
+"GAIN_EXPERIENCE_other": "Ganhar {target} de XP",
       "REPAIR_DOGHOUSES": "Reparar {target} casota(s)",
       "ATTACK_DOGHOUSES": "Atacar {target} casota(s)",
       "DESTROY_DOGHOUSES": "Destruir {target} casota(s)",

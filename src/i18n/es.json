@@ -169,7 +169,11 @@
     "description": {
       "BUILD_DOGHOUSES": "Construye {target} caseta(s) de perro",
       "SPEND_ENERGY": "Gasta {target} de energía",
+"SPEND_ENERGY_one": "Gasta {target} de energía",
+"SPEND_ENERGY_other": "Gasta {target} de energía",
       "GAIN_EXPERIENCE": "Gana {target} de XP",
+"GAIN_EXPERIENCE_one": "Gana {target} de XP",
+"GAIN_EXPERIENCE_other": "Gana {target} de XP",
       "REPAIR_DOGHOUSES": "Repara {target} caseta(s) de perro",
       "ATTACK_DOGHOUSES": "Ataca {target} caseta(s) de perro",
       "DESTROY_DOGHOUSES": "Destruye {target} caseta(s) de perro",
