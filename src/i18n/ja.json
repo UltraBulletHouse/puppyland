@@ -169,7 +169,11 @@
     "description": {
       "BUILD_DOGHOUSES": "{target}個の犬小屋を建てる",
       "SPEND_ENERGY": "{target}のエネルギーを使う",
+"SPEND_ENERGY_one": "{target}のエネルギーを使う",
+"SPEND_ENERGY_other": "{target}のエネルギーを使う",
       "GAIN_EXPERIENCE": "{target}のXPを獲得する",
+"GAIN_EXPERIENCE_one": "{target}のXPを獲得する",
+"GAIN_EXPERIENCE_other": "{target}のXPを獲得する",
       "REPAIR_DOGHOUSES": "{target}個の犬小屋を修理する",
       "ATTACK_DOGHOUSES": "{target}個の犬小屋を攻撃する",
       "DESTROY_DOGHOUSES": "{target}個の犬小屋を破壊する",

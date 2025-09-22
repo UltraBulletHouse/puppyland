@@ -169,7 +169,11 @@
     "description": {
       "BUILD_DOGHOUSES": "Costruisci {target} cuccia(e)",
       "SPEND_ENERGY": "Spendi {target} energia",
+"SPEND_ENERGY_one": "Spendi {target} energia",
+"SPEND_ENERGY_other": "Spendi {target} energia",
       "GAIN_EXPERIENCE": "Guadagna {target} XP",
+"GAIN_EXPERIENCE_one": "Guadagna {target} XP",
+"GAIN_EXPERIENCE_other": "Guadagna {target} XP",
       "REPAIR_DOGHOUSES": "Ripara {target} cuccia(e)",
       "ATTACK_DOGHOUSES": "Attacca {target} cuccia(e)",
       "DESTROY_DOGHOUSES": "Distruggi {target} cuccia(e)",

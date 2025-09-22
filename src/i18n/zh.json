@@ -169,7 +169,11 @@
     "description": {
       "BUILD_DOGHOUSES": "建造{target}个狗屋",
       "SPEND_ENERGY": "花费{target}点能量",
+"SPEND_ENERGY_one": "花费{target}点能量",
+"SPEND_ENERGY_other": "花费{target}点能量",
       "GAIN_EXPERIENCE": "获得{target}点经验值",
+"GAIN_EXPERIENCE_one": "获得{target}点经验值",
+"GAIN_EXPERIENCE_other": "获得{target}点经验值",
       "REPAIR_DOGHOUSES": "修理{target}个狗屋",
       "ATTACK_DOGHOUSES": "攻击{target}个狗屋",
       "DESTROY_DOGHOUSES": "摧毁{target}个狗屋",

@@ -169,7 +169,11 @@
     "description": {
       "BUILD_DOGHOUSES": "{target} টি কুকুর ঘর তৈরি করুন",
       "SPEND_ENERGY": "{target} শক্তি ব্যয় করুন",
+"SPEND_ENERGY_one": "{target} শক্তি ব্যয় করুন",
+"SPEND_ENERGY_other": "{target} শক্তি ব্যয় করুন",
       "GAIN_EXPERIENCE": "{target} এক্সপি অর্জন করুন",
+"GAIN_EXPERIENCE_one": "{target} এক্সপি অর্জন করুন",
+"GAIN_EXPERIENCE_other": "{target} এক্সপি অর্জন করুন",
       "REPAIR_DOGHOUSES": "{target} টি কুকুর ঘর মেরামত করুন",
       "ATTACK_DOGHOUSES": "{target} টি কুকুর ঘর আক্রমণ করুন",
       "DESTROY_DOGHOUSES": "{target} টি কুকুর ঘর ধ্বংস করুন",
