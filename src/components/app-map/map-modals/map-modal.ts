@@ -767,12 +767,10 @@ export class MapModal extends LitElement {
               <sl-icon name="heart-pulse"></sl-icon>
             </div>
             <div class="hp-title">${t('health')}</div>
-            <div class="hp-value">${this.dhHp}</div>
+            <div class="hp-value">${this.dhHp} / ${this.dhMaxHp}</div>
           </div>
           <div class="hp-progress">
             <div class="hp-progress-info">
-              <span class="hp-progress-current">${this.dhHp} / ${this.dhMaxHp} HP</span>
-              <span class="hp-progress-percentage">${hpPercent}%</span>
             </div>
             <div class="modern-hp-bar">
               <div

@@ -221,28 +221,21 @@ export class MapPopup extends LitElement {
           height: 100%;
           background: linear-gradient(
             90deg,
-            var(--color-blue) 0%,
-            var(--color-lime) 50%,
-            var(--color-primary) 100%
+            #4d0404 0%,
+            #c62828 55%,
+            #ff7a7a 100%
           );
           border-radius: 2px;
           transition: width 0.3s ease;
         }
-        /* Ownership-specific HP colors */
-        .own-doghouse #hp-fill {
-          background: linear-gradient(
-            90deg,
-            var(--color-primary),
-            var(--color-lime),
-            var(--color-primary)
-          );
-        }
+        /* Ownership-specific HP colors share the same red gradient for consistency */
+        .own-doghouse #hp-fill,
         .enemy-doghouse #hp-fill {
           background: linear-gradient(
             90deg,
-            var(--color-secondary),
-            var(--color-lime),
-            var(--color-secondary)
+            #4d0404 0%,
+            #c62828 55%,
+            #ff7a7a 100%
           );
         }
         #owner-section {

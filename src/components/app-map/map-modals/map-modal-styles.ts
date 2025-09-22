@@ -287,20 +287,10 @@ export const MapModalStyles = html`
 
     .hp-progress-info {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       margin-bottom: 6px;
       font-size: 12px;
-    }
-
-    .hp-progress-current {
-      color: var(--color-black-medium);
-      font-weight: 500;
-    }
-
-    .hp-progress-percentage {
-      color: var(--color-primary);
-      font-weight: 600;
     }
 
     .modern-hp-bar {
@@ -318,32 +308,24 @@ export const MapModalStyles = html`
       transition: width 0.6s ease;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(90deg, var(--primary), var(--lime));
+      background: linear-gradient(90deg, #4d0404 0%, #c62828 55%, #ff7a7a 100%);
       will-change: width, transform;
     }
     .enemy-doghouse-modal .hp-fill {
-      background: linear-gradient(90deg, var(--sky), color-mix(in srgb, var(--sky) 85%, #0b2030));
+      background: linear-gradient(90deg, #4d0404 0%, #c62828 55%, #ff7a7a 100%);
     }
 
     .hp-fill.low {
-      background: linear-gradient(90deg, var(--primary), var(--lime));
+      background: linear-gradient(90deg, #440303 0%, #b71c1c 55%, #ff5f5f 100%);
     }
 
     .hp-fill.critical {
-      background: linear-gradient(
-        90deg,
-        color-mix(in srgb, var(--primary) 80%, #000),
-        var(--primary)
-      );
+      background: linear-gradient(90deg, #2f0202 0%, #8b1212 55%, #f44343 100%);
     }
 
-    /* Ensure enemy low/critical keep secondary (sky) accent */
     .enemy-doghouse-modal .hp-fill.low {
-      background: linear-gradient(90deg, var(--sky), color-mix(in srgb, var(--sky) 85%, #0b2030));
+      background: linear-gradient(90deg, #440303 0%, #b71c1c 55%, #ff5f5f 100%);
     }
-    /* .enemy-doghouse-modal .hp-fill.critical {
-      background: linear-gradient(90deg, color-mix(in srgb, var(--sky) 80%, #0b2030), var(--sky));
-    } */
 
     #doghouse-icon.shake {
       animation: shake 0.5s ease-in-out;
