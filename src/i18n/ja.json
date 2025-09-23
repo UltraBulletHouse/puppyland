@@ -75,29 +75,29 @@
         "name": "犬小屋 6 パック",
         "description": "犬小屋を 6 つ追加で設置できます"
       },
-      "dog_rename": {
+      "dog_rename_token": {
         "name": "犬の改名トークン",
         "description": "愛犬の名前を 1 回変更できます"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "犬小屋の改名トークン",
         "description": "犬小屋の名前を 1 回変更できます"
       },
       "repair_50": {
         "name": "修理 50",
-        "description": ""
+        "description": "犬小屋のHPを50回復します"
       },
       "repair_max": {
         "name": "完全修理",
-        "description": ""
+        "description": "犬小屋を完全に修理します"
       },
       "energy_10_boost": {
         "name": "エネルギー 10 ブースト",
-        "description": ""
+        "description": "エネルギーが10回復します"
       },
       "energy_50_boost": {
         "name": "エネルギー 50 ブースト",
-        "description": ""
+        "description": "エネルギーが50回復します"
       },
       "small_treats": {
         "name": "小さなおやつ",

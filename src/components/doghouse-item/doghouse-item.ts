@@ -227,7 +227,7 @@ export class AppDoghouseItem extends LitElement {
 
     const nameText = html`
       <div id="doghouse-name-wrapper">
-        <span id="doghouse-name-text">${displayName}</span>
+        <span id="doghouse-name-text" data-autofit>${displayName}</span>
       </div>
     `;
 

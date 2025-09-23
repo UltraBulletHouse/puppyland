@@ -75,29 +75,29 @@
         "name": "Pack 6 niches",
         "description": "Vous pouvez placer 6 niches supplémentaires"
       },
-      "dog_rename": {
+      "dog_rename_token": {
         "name": "Jeton renommage chien",
         "description": "Achetez un renommage pour votre chien"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "Jeton renommage niche",
         "description": "Achetez un renommage pour votre niche"
       },
       "repair_50": {
         "name": "Réparation 50",
-        "description": ""
+        "description": "Cela réparera 50hp de votre niche"
       },
       "repair_max": {
         "name": "Réparation complète",
-        "description": ""
+        "description": "Cela réparera entièrement votre niche"
       },
       "energy_10_boost": {
         "name": "Boost énergie 10",
-        "description": ""
+        "description": "Vous obtiendrez 10 d'énergie"
       },
       "energy_50_boost": {
         "name": "Boost énergie 50",
-        "description": ""
+        "description": "Vous obtiendrez 50 d'énergie"
       },
       "small_treats": {
         "name": "Petites friandises",

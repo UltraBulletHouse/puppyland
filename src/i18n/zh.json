@@ -79,25 +79,25 @@
         "name": "狗改名令牌",
         "description": "为您的爱犬购买一次改名"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "狗屋改名令牌",
         "description": "为您的狗屋购买一次改名"
       },
       "repair_50": {
         "name": "修复 50",
-        "description": ""
+        "description": "这将修复您的狗屋50hp"
       },
       "repair_max": {
         "name": "完全修复",
-        "description": ""
+        "description": "这将完全修复您的狗屋"
       },
       "energy_10_boost": {
         "name": "能量提升 10",
-        "description": ""
+        "description": "您将获得10点能量"
       },
       "energy_50_boost": {
         "name": "能量提升 50",
-        "description": ""
+        "description": "您将获得50点能量"
       },
       "small_treats": {
         "name": "小份零食",

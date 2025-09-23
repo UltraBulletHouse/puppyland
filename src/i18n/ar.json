@@ -75,29 +75,29 @@
         "name": "حزمة 6 بيوت كلاب",
         "description": "يمكنك وضع 6 بيوت كلاب إضافية"
       },
-      "dog_rename": {
+      "dog_rename_token": {
         "name": "رمز إعادة تسمية الكلب",
         "description": "اشترِ إعادة تسمية واحدة لكلبك"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "رمز إعادة تسمية بيت الكلب",
         "description": "اشترِ إعادة تسمية واحدة لبيت كلبك"
       },
       "repair_50": {
         "name": "إصلاح 50",
-        "description": ""
+        "description": "سيؤدي هذا إلى إصلاح 50 حصانًا من بيت الكلب الخاص بك"
       },
       "repair_max": {
         "name": "إصلاح كامل",
-        "description": ""
+        "description": "سيؤدي هذا إلى إصلاح بيت الكلب الخاص بك بالكامل"
       },
       "energy_10_boost": {
         "name": "تعزيز طاقة 10",
-        "description": ""
+        "description": "ستحصل على 10 طاقة"
       },
       "energy_50_boost": {
         "name": "تعزيز طاقة 50",
-        "description": ""
+        "description": "ستحصل على 50 طاقة"
       },
       "small_treats": {
         "name": "حلويات صغيرة",

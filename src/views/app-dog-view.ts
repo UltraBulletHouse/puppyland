@@ -1253,15 +1253,15 @@ export class AppDogView extends LitElement {
                 <sl-tab-group class="dog-tabs" @sl-tab-show=${this.handleTabShow}>
                   <sl-tab slot="nav" panel="stats">
                     <sl-icon name="bar-chart"></sl-icon>
-                    ${t('statsTab')}
+                    <span data-autofit>${t('statsTab')}</span>
                   </sl-tab>
                   <sl-tab slot="nav" panel="quests">
                     <sl-icon name="list-task"></sl-icon>
-                    ${t('dailyQuestsTab')}
+                    <span data-autofit>${t('dailyQuestsTab')}</span>
                   </sl-tab>
                   <sl-tab slot="nav" panel="leaderboards">
                     <sl-icon name="trophy"></sl-icon>
-                    ${t('leaderboardsTab')}
+                    <span data-autofit>${t('leaderboardsTab')}</span>
                   </sl-tab>
 
                   <sl-tab-panel name="stats">

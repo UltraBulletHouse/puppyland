@@ -75,29 +75,29 @@
         "name": "Pacchetto 6 cucce",
         "description": "Puoi posizionare 6 cucce aggiuntive"
       },
-      "dog_rename": {
+      "dog_rename_token": {
         "name": "Gettone rinomina cane",
         "description": "Acquista una rinomina per il tuo cane"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "Gettone rinomina cuccia",
         "description": "Acquista una rinomina per la tua cuccia"
       },
       "repair_50": {
         "name": "Riparazione 50",
-        "description": ""
+        "description": "Questo riparerà 50hp della tua cuccia"
       },
       "repair_max": {
         "name": "Riparazione completa",
-        "description": ""
+        "description": "Questo riparerà completamente la tua cuccia"
       },
       "energy_10_boost": {
         "name": "Boost energia 10",
-        "description": ""
+        "description": "Otterrai 10 energia"
       },
       "energy_50_boost": {
         "name": "Boost energia 50",
-        "description": ""
+        "description": "Otterrai 50 energia"
       },
       "small_treats": {
         "name": "Piccoli dolcetti",

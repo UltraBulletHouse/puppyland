@@ -51,13 +51,15 @@ export class LeaderboardsComponent extends LitElement {
       }
 
       #category-buttons {
+         overflow-x: hidden;
+\n        overflow-x: hidden; /* keep segmented look without scroll */\n
         display: flex;
         gap: 0; /* compact segmented look */
         margin-top: 0;
         flex-wrap: nowrap; /* keep in a single row */
         justify-content: center;
         white-space: nowrap;
-        width: fit-content; /* shrink to content like tabs */
+        width: 100%; /* occupy full width to give labels space */
         max-width: 100%;
         margin-left: auto;
         margin-right: auto;
@@ -69,7 +71,9 @@ export class LeaderboardsComponent extends LitElement {
       }
 
       .category-button {
-        flex: 0 0 auto; /* let buttons size to content and wrap */
+        flex: 1 1 0;
+        min-width: 0;
+
       }
 
       .category-button::part(base) {
@@ -91,7 +95,7 @@ export class LeaderboardsComponent extends LitElement {
         font-size: 14px;
       }
 
-      @media (max-width: 420px) {
+      @media (max-width: 420px) {\n        .category-button::part(base) { padding: 1px 4px; }
         .category-button::part(base) {
           font-size: 10px;
           padding: 2px 6px;
@@ -497,7 +501,7 @@ export class LeaderboardsComponent extends LitElement {
               @click=${() => this.handleCategoryChange(LeaderboardCategory.LEVEL)}
               size="small"
             >
-              ${t('leaderboardTopLevels')}
+              <span class="category-label" data-autofit data-min-font="10" data-max-lines="3">${t('leaderboardTopLevels')}</span>
             </sl-button>
             <sl-button
               class="category-button ${this.selectedCategory === LeaderboardCategory.DOGHOUSES_BUILT
@@ -506,7 +510,7 @@ export class LeaderboardsComponent extends LitElement {
               @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_BUILT)}
               size="small"
             >
-              ${t('leaderboardMasterBuilders')}
+              <span class="category-label" data-autofit data-min-font="10" data-max-lines="3">${t('leaderboardMasterBuilders')}</span>
             </sl-button>
             <sl-button
               class="category-button ${this.selectedCategory ===
@@ -516,7 +520,7 @@ export class LeaderboardsComponent extends LitElement {
               @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_DESTROYED)}
               size="small"
             >
-              ${t('leaderboardTopDestroyers')}
+              <span class="category-label" data-autofit data-min-font="10" data-max-lines="3">${t('leaderboardTopDestroyers')}</span>
             </sl-button>
           </div>
         </div>
@@ -549,12 +553,12 @@ export class LeaderboardsComponent extends LitElement {
                   </div>
 
                   <div class="player-info">
-                    <div class="dog-name">${entry.dogName}</div>
+                    <div class="dog-name" data-autofit>${entry.dogName}</div>
                   </div>
 
                   <div class="score">
                     <div class="score-value">${this.getScoreValue(entry)}</div>
-                    <div class="score-label">${this.getScoreLabel(this.selectedCategory)}</div>
+                    <div class="score-label" data-autofit>${this.getScoreLabel(this.selectedCategory)}</div>
                   </div>
                 </div>
               `;
