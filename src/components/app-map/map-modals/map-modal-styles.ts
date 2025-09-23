@@ -308,23 +308,23 @@ export const MapModalStyles = html`
       transition: width 0.6s ease;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(90deg, #4d0404 0%, #c62828 55%, #ff7a7a 100%);
+      background: linear-gradient(90deg, #9b0808 0%, #c62828 55%, #ff7a7a 100%);
       will-change: width, transform;
     }
     .enemy-doghouse-modal .hp-fill {
-      background: linear-gradient(90deg, #4d0404 0%, #c62828 55%, #ff7a7a 100%);
+      background: linear-gradient(90deg, #9b0808 0%, #c62828 55%, #ff7a7a 100%);
     }
 
     .hp-fill.low {
-      background: linear-gradient(90deg, #440303 0%, #b71c1c 55%, #ff5f5f 100%);
+      background: linear-gradient(90deg, #9b0808 0%, #b71c1c 55%, #ff5f5f 100%);
     }
 
     .hp-fill.critical {
-      background: linear-gradient(90deg, #2f0202 0%, #8b1212 55%, #f44343 100%);
+      background: linear-gradient(90deg, #9b0808 0%, #8b1212 55%, #f44343 100%);
     }
 
     .enemy-doghouse-modal .hp-fill.low {
-      background: linear-gradient(90deg, #440303 0%, #b71c1c 55%, #ff5f5f 100%);
+      background: linear-gradient(90deg, #9b0808 0%, #b71c1c 55%, #ff5f5f 100%);
     }
 
     #doghouse-icon.shake {
