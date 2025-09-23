@@ -75,29 +75,29 @@
         "name": "Paquete de 6 casetas",
         "description": "Puedes colocar 6 casetas adicionales"
       },
-      "dog_rename": {
+      "dog_rename_token": {
         "name": "Ficha cambio nombre perro",
         "description": "Compra un renombrado para tu perro"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "Ficha cambio nombre caseta",
         "description": "Compra un renombrado para tu caseta"
       },
       "repair_50": {
         "name": "Reparar 50",
-        "description": ""
+        "description": "Esto reparará 50hp de tu caseta de perro"
       },
       "repair_max": {
         "name": "Reparación completa",
-        "description": ""
+        "description": "Esto reparará completamente tu caseta de perro"
       },
       "energy_10_boost": {
         "name": "Impulso de energía 10",
-        "description": ""
+        "description": "Obtendrás 10 de energía"
       },
       "energy_50_boost": {
         "name": "Impulso de energía 50",
-        "description": ""
+        "description": "Obtendrás 50 de energía"
       },
       "small_treats": {
         "name": "Golosinas pequeñas",

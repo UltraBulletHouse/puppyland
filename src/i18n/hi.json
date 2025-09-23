@@ -75,29 +75,29 @@
         "name": "6 कुत्ताघर पैक",
         "description": "आप 6 अतिरिक्त कुत्ताघर रख सकते हैं"
       },
-      "dog_rename": {
+      "dog_rename_token": {
         "name": "कुत्ते का नाम बदलने का टोकन",
         "description": "अपने कुत्ते के लिए एक बार नाम बदलें"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "कुत्ताघर नाम बदलने का टोकन",
         "description": "अपने कुत्ताघर के लिए एक बार नाम बदलें"
       },
       "repair_50": {
         "name": "मरम्मत 50",
-        "description": ""
+        "description": "यह आपके डॉगहाउस के 50hp की मरम्मत करेगा"
       },
       "repair_max": {
-        "name": "पूर्ण मरम्मत",
-        "description": ""
+        "name": "पूरी मरम्मत",
+        "description": "यह आपके डॉगहाउस की पूरी तरह से मरम्मत करेगा"
       },
       "energy_10_boost": {
         "name": "ऊर्जा 10 बूस्ट",
-        "description": ""
+        "description": "आपको 10 ऊर्जा मिलेगी"
       },
       "energy_50_boost": {
         "name": "ऊर्जा 50 बूस्ट",
-        "description": ""
+        "description": "आपको 50 ऊर्जा मिलेगी"
       },
       "small_treats": {
         "name": "छोटे ट्रिट्स",

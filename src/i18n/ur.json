@@ -79,25 +79,25 @@
         "name": "کتے کا نام بدلنے کا ٹوکن",
         "description": "اپنے کتے کے لیے ایک بار نام بدلیں"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "کتے کے گھر کا نام بدلنے کا ٹوکن",
         "description": "اپنے کتے کے گھر کے لیے ایک بار نام بدلیں"
       },
       "repair_50": {
         "name": "مرمت 50",
-        "description": ""
+        "description": "یہ آپ کے کتے کے گھر کے 50hp کی مرمت کرے گا"
       },
       "repair_max": {
         "name": "مکمل مرمت",
-        "description": ""
+        "description": "یہ آپ کے کتے کے گھر کی مکمل مرمت کرے گا"
       },
       "energy_10_boost": {
         "name": "توانائی 10 بوسٹ",
-        "description": ""
+        "description": "آپ کو 10 توانائی ملے گی"
       },
       "energy_50_boost": {
         "name": "توانائی 50 بوسٹ",
-        "description": ""
+        "description": "آپ کو 50 توانائی ملے گی"
       },
       "small_treats": {
         "name": "چھوٹی ٹریٹس",

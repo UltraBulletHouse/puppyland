@@ -75,29 +75,29 @@
         "name": "Doghouse 6 pack",
         "description": "You can place 6 additional doghouses"
       },
-      "dog_rename": {
+      "dog_rename_token": {
         "name": "Dog rename token",
         "description": "Buy one rename for your dog"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "Doghouse rename token",
         "description": "Buy one rename for your doghouse"
       },
       "repair_50": {
         "name": "Repair 50",
-        "description": ""
+        "description": "This will repair 50hp of your doghouse"
       },
       "repair_max": {
         "name": "Full repair",
-        "description": ""
+        "description": "This will fully repair your doghouse"
       },
       "energy_10_boost": {
         "name": "Energy 10 boost",
-        "description": ""
+        "description": "You will get 10 energy"
       },
       "energy_50_boost": {
         "name": "Energy 50 boost",
-        "description": ""
+        "description": "You will get 50 energy"
       },
       "small_treats": {
         "name": "Small Treats",

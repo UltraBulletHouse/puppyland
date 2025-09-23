@@ -79,25 +79,25 @@
         "name": "Ficha renomear cão",
         "description": "Compre uma renomeação para o seu cão"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "Ficha renomear casinha",
         "description": "Compre uma renomeação para sua casinha"
       },
       "repair_50": {
         "name": "Reparo 50",
-        "description": ""
+        "description": "Isso reparará 50hp da sua casinha de cachorro"
       },
       "repair_max": {
-        "name": "Reparo total",
-        "description": ""
+        "name": "Reparo completo",
+        "description": "Isso reparará totalmente a sua casinha de cachorro"
       },
       "energy_10_boost": {
         "name": "Impulso de energia 10",
-        "description": ""
+        "description": "Você receberá 10 de energia"
       },
       "energy_50_boost": {
         "name": "Impulso de energia 50",
-        "description": ""
+        "description": "Você receberá 50 de energia"
       },
       "small_treats": {
         "name": "Guloseimas pequenas",

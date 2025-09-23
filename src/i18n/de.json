@@ -75,29 +75,29 @@
         "name": "6er-Pack Hundehütten",
         "description": "Du kannst 6 zusätzliche Hundehütten platzieren"
       },
-      "dog_rename": {
+      "dog_rename_token": {
         "name": "Token Hund umbenennen",
         "description": "Kaufe eine Umbenennung für deinen Hund"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "Token Hundehütte umbenennen",
         "description": "Kaufe eine Umbenennung für deine Hundehütte"
       },
       "repair_50": {
         "name": "Reparatur 50",
-        "description": ""
+        "description": "Dadurch werden 50 PS Ihres Hundehauses repariert"
       },
       "repair_max": {
-        "name": "Vollreparatur",
-        "description": ""
+        "name": "Vollständige Reparatur",
+        "description": "Dadurch wird Ihr Hundehaus vollständig repariert"
       },
       "energy_10_boost": {
         "name": "Energie-Boost 10",
-        "description": ""
+        "description": "Du erhältst 10 Energie"
       },
       "energy_50_boost": {
         "name": "Energie-Boost 50",
-        "description": ""
+        "description": "Du erhältst 50 Energie"
       },
       "small_treats": {
         "name": "Kleine Leckerlis",

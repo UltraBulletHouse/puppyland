@@ -75,29 +75,29 @@
         "name": "৬ কুকুরঘর প্যাক",
         "description": "আপনি ৬টি অতিরিক্ত কুকুরঘর বসাতে পারবেন"
       },
-      "dog_rename": {
+      "dog_rename_token": {
         "name": "কুকুরের নাম পরিবর্তন টোকেন",
         "description": "আপনার কুকুরের জন্য একবার নাম পরিবর্তন করুন"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "কুকুরঘরের নাম পরিবর্তন টোকেন",
         "description": "আপনার কুকুরঘরের জন্য একবার নাম পরিবর্তন করুন"
       },
       "repair_50": {
         "name": "মেরামত ৫০",
-        "description": ""
+        "description": "এটি আপনার কুকুরছানাটির ৫০ এইচপি মেরামত করবে"
       },
       "repair_max": {
-        "name": "পূর্ণ মেরামত",
-        "description": ""
+        "name": "সম্পূর্ণ মেরামত",
+        "description": "এটি আপনার কুকুরছানাটিকে পুরোপুরি মেরামত করবে"
       },
       "energy_10_boost": {
         "name": "শক্তি ১০ বুস্ট",
-        "description": ""
+        "description": "আপনি ১০ শক্তি পাবেন"
       },
       "energy_50_boost": {
         "name": "শক্তি ৫০ বুস্ট",
-        "description": ""
+        "description": "আপনি ৫০ শক্তি পাবেন"
       },
       "small_treats": {
         "name": "ছোট ট্রিটস",

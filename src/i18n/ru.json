@@ -79,25 +79,25 @@
         "name": "Токен переименования собаки",
         "description": "Купите одно переименование для вашей собаки"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "Токен переименования будки",
         "description": "Купите одно переименование для вашей будки"
       },
       "repair_50": {
         "name": "Ремонт 50",
-        "description": ""
+        "description": "Это отремонтирует 50 л.с. вашей будки"
       },
       "repair_max": {
         "name": "Полный ремонт",
-        "description": ""
+        "description": "Это полностью отремонтирует вашу будку"
       },
       "energy_10_boost": {
         "name": "Буст энергии 10",
-        "description": ""
+        "description": "Вы получите 10 энергии"
       },
       "energy_50_boost": {
         "name": "Буст энергии 50",
-        "description": ""
+        "description": "Вы получите 50 энергии"
       },
       "small_treats": {
         "name": "Небольшие лакомства",

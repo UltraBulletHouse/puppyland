@@ -79,25 +79,25 @@
         "name": "Token zmiany imienia psa",
         "description": "Kup jedną zmianę imienia dla swojego psa"
       },
-      "doghouse_rename": {
+      "doghouse_rename_token": {
         "name": "Token zmiany nazwy budy",
         "description": "Kup jedną zmianę nazwy dla swojej budy"
       },
       "repair_50": {
         "name": "Naprawa 50",
-        "description": ""
+        "description": "To naprawi 50hp twojej budy"
       },
       "repair_max": {
         "name": "Pełna naprawa",
-        "description": ""
+        "description": "To w pełni naprawi twoją budę"
       },
       "energy_10_boost": {
         "name": "Dopalacz energii 10",
-        "description": ""
+        "description": "Otrzymasz 10 energii"
       },
       "energy_50_boost": {
         "name": "Dopalacz energii 50",
-        "description": ""
+        "description": "Otrzymasz 50 energii"
       },
       "small_treats": {
         "name": "Mała paczka smakołyków",
