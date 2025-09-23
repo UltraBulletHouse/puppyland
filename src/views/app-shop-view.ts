@@ -557,7 +557,7 @@ export class AppShopView extends LitElement {
     return html`
       <div id="container">
         <div id="header">
-          <div id="title">${t('shop.title')}</div>
+          <div id="title" data-autofit>${t('shop.title')}</div>
           <div id="balance-pill" title="${t('shop.product.treats')}">
             <sl-icon name="coin"></sl-icon>
             <span>${this.userInfo?.treatsBalance ?? 0}</span>
@@ -574,15 +574,15 @@ export class AppShopView extends LitElement {
             >
               <sl-tab slot="nav" panel="spend-treats">
                 <sl-icon name="handbag" style="margin-right: 6px;"></sl-icon>
-                ${t('shop.spend')}
+                <span data-autofit>${t('shop.spend')}</span>
               </sl-tab>
               <sl-tab slot="nav" panel="buy-treats">
                 <sl-icon name="coin" style="margin-right: 6px;"></sl-icon>
-                ${t('shop.buy')}
+                <span data-autofit>${t('shop.buy')}</span>
               </sl-tab>
               <sl-tab slot="nav" panel="premium">
                 <sl-icon name="star" style="margin-right: 6px;"></sl-icon>
-                ${t('shop.buyPremium')}
+                <span data-autofit>${t('shop.buyPremium')}</span>
               </sl-tab>
 
               <sl-tab-panel name="spend-treats">

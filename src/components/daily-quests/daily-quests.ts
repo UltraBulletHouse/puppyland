@@ -492,14 +492,14 @@ export class DailyQuests extends LitElement {
               <div class="quest-item ${quest.isCompleted ? 'completed' : ''}">
                 <div class="quest-header">
                   <div class="quest-info">
-                    <div class="quest-title">
+                    <div class="quest-title" data-autofit>
                       <sl-icon
                         name="${this.getQuestTypeIcon(quest.type)}"
                         class="quest-type-icon ${this.getQuestTypeClass(quest.type)}"
                       ></sl-icon>
                       ${t(quest.title.key)}
                     </div>
-                    <div class="quest-description">
+                    <div class="quest-description" data-autofit>
                       ${ti(this.getPluralizedKey(quest.description.key, quest.target), {
                         target: quest.target,
                       })}

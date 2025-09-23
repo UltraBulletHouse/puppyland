@@ -154,7 +154,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.DOG_VIEW)}"
         >
           <svg-icon name="dogPaw" class="nav-icon"></svg-icon>
-          <span>${t('navMyDog')}</span>
+          <span data-autofit>${t('navMyDog')}</span>
         </button>
         <button
           class="nav-button ${this.view === View.DOGHOUSE_VIEW ? 'active' : ''}"
@@ -162,7 +162,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.DOGHOUSE_VIEW)}"
         >
           <sl-icon name="house-heart" class="nav-icon"></sl-icon>
-          <span>${t('doghousesTitle')}</span>
+          <span data-autofit>${t('doghousesTitle')}</span>
         </button>
         <div class="map-button-container">
           <button
@@ -179,7 +179,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.SHOP_VIEW)}"
         >
           <sl-icon name="cart" class="nav-icon"></sl-icon>
-          <span>${t('shop.title')}</span>
+          <span data-autofit>${t('shop.title')}</span>
         </button>
         <button
           class="nav-button ${this.view === View.USER_VIEW ? 'active' : ''}"
@@ -187,7 +187,7 @@ export class AppFooter extends LitElement {
           @click="${() => this.changeView(View.USER_VIEW)}"
         >
           <sl-icon name="person-circle" class="nav-icon"></sl-icon>
-          <span>${t('navProfile')}</span>
+          <span data-autofit>${t('navProfile')}</span>
         </button>
       </footer>
     `;

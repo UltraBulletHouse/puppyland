@@ -292,7 +292,7 @@ export class AppUserView extends LitElement {
     return html`
       <sl-card class="settings-card">
         <div slot="header">
-          <strong>${t('appSettings')}</strong>
+          <strong data-autofit>${t('appSettings')}</strong>
         </div>
 
         <!-- Language Setting -->
@@ -349,7 +349,7 @@ export class AppUserView extends LitElement {
     return html`
       <sl-card class="settings-card contact-card">
         <div slot="header">
-          <strong>${t('contactUs')}</strong>
+          <strong data-autofit>${t('contactUs')}</strong>
         </div>
         <div class="setting-item">
           <div class="setting-info">
@@ -376,8 +376,8 @@ export class AppUserView extends LitElement {
         <!-- Header Section -->
         <div class="header">
           <sl-avatar class="user-avatar" initials=${userInitials} label="User Avatar"> </sl-avatar>
-          <div class="user-name">${userName}</div>
-          <div class="user-email">${userEmail}</div>
+          <div class="user-name" data-autofit>${userName}</div>
+          <div class="user-email" data-autofit>${userEmail}</div>
         </div>
 
         <!-- Settings Content -->

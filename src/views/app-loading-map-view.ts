@@ -49,8 +49,8 @@ export class AppLoadingMapView extends LitElement {
     return html`
       <div id="container">
         <sl-icon id="map-icon" name="map" label="Map"></sl-icon>
-        <div id="find-loc-hint">${t('turnOnGpsWait')}</div>
-        ${t('clickButtonBelow')}
+        <div id="find-loc-hint" data-autofit>${t('turnOnGpsWait')}</div>
+        <div data-autofit>${t('clickButtonBelow')}</div>
         <sl-button
           ?hidden=${Boolean(this.userPos)}
           id="find-loc-btn"
