@@ -281,6 +281,11 @@ export class AppDogView extends LitElement {
         border-color: var(--wood);
         color: var(--wood);
       }
+      
+      .stat-icon.doghouse-buffs-card {
+        border-color: var(--sky);
+        color: var(--sky);
+      }
 
       .stat-title {
         font-weight: 700;
@@ -1512,7 +1517,7 @@ export class AppDogView extends LitElement {
                           ? html`
                               <div class="stat-card doghouse-buffs-card">
                                 <div class="stat-header">
-                                  <div class="stat-icon doghouses">
+                                  <div class="stat-icon doghouse-buffs-card">
                                     <sl-icon name="tools"></sl-icon>
                                   </div>
                                   <div class="stat-title">${t('doghouseBuffs')}</div>
