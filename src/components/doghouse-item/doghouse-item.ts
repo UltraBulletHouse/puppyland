@@ -112,21 +112,22 @@ export class AppDoghouseItem extends LitElement {
       #hp-bar {
         width: 60px;
         height: 4px;
-        background: var(--color-black-light);
+        background: #ddeee6;
         border-radius: 2px;
         overflow: hidden;
         margin-left: 4px;
       }
       #hp-fill {
         height: 100%;
-        background: linear-gradient(
-          90deg,
-          var(--color-blue) 0%,
-          var(--color-lime) 50%,
-          var(--color-primary) 100%
-        );
+        background: linear-gradient(90deg, #9b0808 0%, #c62828 55%, #ff7a7a 100%);
         border-radius: 2px;
         transition: width 0.3s ease;
+      }
+      #hp-fill.low {
+        background: linear-gradient(90deg, #9b0808 0%, #b71c1c 55%, #ff5f5f 100%);
+      }
+      #hp-fill.critical {
+        background: linear-gradient(90deg, #9b0808 0%, #8b1212 55%, #f44343 100%);
       }
       p {
         margin: 0;
@@ -211,7 +212,9 @@ export class AppDoghouseItem extends LitElement {
     const { name, hp, maxHp, createdDate } = this.dogouseInfo;
     const displayName = this.newName ?? name ?? '';
     const displayEdit = this.isEditingName && this.isEditMode;
-    const hpPercentage = (hp / maxHp) * 100;
+    const rawHpPercentage = maxHp > 0 ? (hp / maxHp) * 100 : 0;
+    const hpPercentage = Math.max(0, Math.min(100, rawHpPercentage));
+    const hpStateClass = hpPercentage < 30 ? 'critical' : hpPercentage < 60 ? 'low' : '';
 
     const nameInput = html`<sl-input
       value=${displayName}
@@ -264,7 +267,7 @@ export class AppDoghouseItem extends LitElement {
             <sl-icon name="heart-pulse"></sl-icon>
             <span>${hp}/${maxHp}</span>
             <div id="hp-bar">
-              <div id="hp-fill" style="width: ${hpPercentage}%"></div>
+              <div id="hp-fill" class="${hpStateClass}" style="width: ${hpPercentage}%"></div>
             </div>
           </div>
 
