@@ -679,17 +679,18 @@ export class AppDogView extends LitElement {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
-        padding: 10px 12px;
+        gap: 10px;
+        padding: 8px 12px;
         border-radius: var(--border-radius-medium);
-        border: 1px solid var(--border);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), #fff);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
-        margin: 8px 0 12px;
+        border: 1px solid color-mix(in srgb, var(--border) 60%, #fff 40%);
+        background: color-mix(in srgb, var(--color-surface) 90%, #fff 10%);
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        margin: 6px 0 10px;
       }
       .points-panel.active {
-        border-color: color-mix(in srgb, var(--accent) 55%, #fff);
-        background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 18%, #fff), #fff);
+        border-color: color-mix(in srgb, var(--coral) 55%, #fff);
+        background: color-mix(in srgb, var(--coral) 20%, #fff);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
       }
       .points-panel.done {
         border-color: color-mix(in srgb, var(--sl-color-success-600) 40%, #fff);
@@ -702,28 +703,40 @@ export class AppDogView extends LitElement {
       .points-left {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
       }
       .points-left sl-icon::part(base) {
-        font-size: 18px;
-        color: var(--primary);
+        font-size: 16px;
+        color: var(--coral);
       }
       .points-panel.done .points-left sl-icon::part(base) {
         color: var(--sl-color-success-600);
       }
+      .points-details {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 6px;
+      }
       .points-number {
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 800;
-        color: var(--primary);
+        color: var(--coral);
         line-height: 1;
       }
       .points-subtitle {
+        font-size: 12px;
+        color: color-mix(in srgb, var(--coral) 35%, var(--color-black-medium));
+      }
+      .points-panel.active .points-subtitle {
+        color: color-mix(in srgb, var(--coral) 55%, var(--color-black-medium));
+      }
+      .points-message {
         font-size: 12px;
         color: var(--color-black-medium);
       }
       .points-actions {
         display: inline-flex;
-        gap: 8px;
+        gap: 6px;
       }
       .alloc-card .alloc-btn::part(label) {
         line-height: 1;
@@ -1312,11 +1325,11 @@ export class AppDogView extends LitElement {
                                       : 'check2-circle'}"
                                   ></sl-icon>
                                   ${this.statPointsAvailable > 0
-                                    ? html`<div>
-                                        <div class="points-number">${this.statPointsAvailable}</div>
-                                        <div class="points-subtitle">${t('pointsToAllocate')}</div>
+                                    ? html`<div class="points-details">
+                                        <span class="points-number">${this.statPointsAvailable}</span>
+                                        <span class="points-subtitle">${t('pointsToAllocate')}</span>
                                       </div>`
-                                    : html`<div>${t('allPointsAssigned')}</div>`}
+                                    : html`<span class="points-message">${t('allPointsAssigned')}</span>`}
                                 </div>
                                 ${hasPending
                                   ? html`<div class="points-actions">
