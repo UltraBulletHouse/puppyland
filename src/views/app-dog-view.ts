@@ -620,7 +620,7 @@ export class AppDogView extends LitElement {
       }
       .alloc-btn-slot {
         position: absolute;
-        right: 26px;
+        right: 44px;
         top: 50%;
         transform: translateY(-50%);
         display: flex;
@@ -632,7 +632,7 @@ export class AppDogView extends LitElement {
       }
       .alloc-card.alloc-card--floating .alloc-btn-slot {
         position: absolute;
-        right: 26px;
+        right: 44px;
         top: 50%;
         transform: translateY(-50%);
       }
