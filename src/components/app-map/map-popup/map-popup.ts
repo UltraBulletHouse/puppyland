@@ -164,6 +164,10 @@ export class MapPopup extends LitElement {
           font-size: 14px;
           margin: 14px 0 6px;
         }
+        .enemy-doghouse {
+          --enemy-accent: #f3a248;
+          --enemy-accent-light: color-mix(in srgb, var(--enemy-accent) 45%, #fff);
+        }
         #dh-features-wrapper {
           display: flex;
           border: 1px solid var(--color-black-light);
@@ -261,7 +265,7 @@ export class MapPopup extends LitElement {
         }
         /* Swap colors: enemy secondary, own primary */
         .enemy-doghouse #next-btn {
-          background-color: var(--color-secondary);
+          background-color: var(--enemy-accent);
         }
         .own-doghouse #next-btn {
           background-color: var(--color-primary);
@@ -294,7 +298,11 @@ export class MapPopup extends LitElement {
           color: var(--color-white);
         }
         .enemy-doghouse #doghouse-section {
-          background: linear-gradient(135deg, var(--color-secondary-light), var(--color-secondary));
+          background: linear-gradient(
+            135deg,
+            var(--enemy-accent-light),
+            var(--enemy-accent)
+          );
           color: var(--color-white);
         }
       </style>

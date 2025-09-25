@@ -19,7 +19,10 @@ export const MapModalStyles = html`
       background: color-mix(in srgb, var(--primary) 6%, #fff);
     }
     .enemy-doghouse-modal {
-      background: color-mix(in srgb, var(--sky) 6%, #fff);
+      --enemy-accent: #f3a248;
+      --enemy-accent-light: color-mix(in srgb, var(--enemy-accent) 45%, #fff);
+      --enemy-accent-rgb: 243, 162, 72;
+      background: color-mix(in srgb, var(--enemy-accent) 6%, #fff);
     }
     #map-modal-main-section {
       display: flex;
@@ -46,7 +49,7 @@ export const MapModalStyles = html`
       background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
     }
     .enemy-doghouse-modal #map-modal-main-section::before {
-      background: linear-gradient(90deg, transparent, var(--color-secondary), transparent);
+      background: linear-gradient(90deg, transparent, var(--enemy-accent), transparent);
     }
 
     #close-btn-container {
@@ -67,7 +70,7 @@ export const MapModalStyles = html`
       color: var(--primary);
     }
     .close-btn--enemy {
-      color: var(--color-secondary) !important;
+      color: var(--enemy-accent) !important;
     }
     #dh-name {
       display: flex;
@@ -146,7 +149,7 @@ export const MapModalStyles = html`
     }
 
     .tap-instructions-compact {
-      border-color: var(--color-secondary);
+      border-color: var(--enemy-accent, #f3a248);
     }
 
     .repair-instructions-compact {
@@ -162,7 +165,7 @@ export const MapModalStyles = html`
     }
 
     .tap-instructions-compact p {
-      color: var(--color-secondary);
+      color: var(--enemy-accent, #f3a248);
     }
 
     .repair-instructions-compact p {
@@ -240,7 +243,7 @@ export const MapModalStyles = html`
       border: 1px solid var(--color-primary-light);
     }
     .enemy-doghouse-modal #dh-hp-container {
-      border: 1px solid var(--color-secondary-light);
+      border: 1px solid var(--enemy-accent-light);
     }
 
     .hp-header {
@@ -655,11 +658,11 @@ export const MapModalStyles = html`
     .experience-indicator {
       background: linear-gradient(
         135deg,
-        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.95),
-        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.8)
+        rgba(var(--enemy-accent-rgb, 243, 162, 72), 0.95),
+        rgba(var(--enemy-accent-rgb, 243, 162, 72), 0.8)
       );
       color: white;
-      border-color: var(--color-secondary);
+      border-color: var(--enemy-accent, #f3a248);
       top: 20%;
       left: 10%;
       animation: floatUpLeft 2.5s ease-out forwards;
@@ -772,9 +775,9 @@ export const MapModalStyles = html`
     }
 
     .tap-dot.active {
-      background: linear-gradient(135deg, var(--color-secondary), #fff);
-      border-color: var(--color-secondary);
-      box-shadow: 0 4px 12px rgba(var(--color-secondary-rgb, 220, 53, 69), 0.4);
+      background: linear-gradient(135deg, var(--enemy-accent, #f3a248), #fff);
+      border-color: var(--enemy-accent, #f3a248);
+      box-shadow: 0 4px 12px rgba(var(--enemy-accent-rgb, 243, 162, 72), 0.4);
       animation: tapPulse 0.4s ease;
     }
 
@@ -786,7 +789,7 @@ export const MapModalStyles = html`
       right: -2px;
       bottom: -2px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-secondary), transparent);
+      background: linear-gradient(135deg, var(--enemy-accent, #f3a248), transparent);
       animation: ripple 0.6s ease-out;
       z-index: -1;
     }
@@ -818,8 +821,8 @@ export const MapModalStyles = html`
     .repair-indicator {
       background: linear-gradient(
         135deg,
-        var(--color-secondary),
-        color-mix(in srgb, var(--color-secondary) 60%, #fff)
+        var(--enemy-accent, #f3a248),
+        color-mix(in srgb, var(--enemy-accent, #f3a248) 60%, #fff)
       );
       color: white;
       animation: floatUpCenter 2s ease-out forwards;
@@ -854,17 +857,17 @@ export const MapModalStyles = html`
       padding: 15px;
       background: linear-gradient(
         135deg,
-        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.1),
-        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.05)
+        rgba(var(--enemy-accent-rgb, 243, 162, 72), 0.1),
+        rgba(var(--enemy-accent-rgb, 243, 162, 72), 0.05)
       );
       border-radius: 15px;
-      border: 1px solid rgba(var(--color-secondary-rgb, 40, 167, 69), 0.2);
+      border: 1px solid rgba(var(--enemy-accent-rgb, 243, 162, 72), 0.2);
     }
 
     #repair-instructions p {
       margin: 10px 0;
       font-size: 16px;
-      color: var(--color-secondary);
+      color: var(--enemy-accent, #f3a248);
       font-weight: 600;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     }
@@ -906,7 +909,7 @@ export const MapModalStyles = html`
       right: -2px;
       bottom: -2px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--color-secondary), transparent);
+      background: linear-gradient(135deg, var(--enemy-accent, #f3a248), transparent);
       animation: repairRipple 0.6s ease-out;
       z-index: -1;
     }
@@ -1148,11 +1151,11 @@ export const MapModalStyles = html`
     .buff-applied-indicator {
       background: linear-gradient(
         135deg,
-        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.95),
-        rgba(var(--color-secondary-rgb, 40, 167, 69), 0.8)
+        rgba(var(--enemy-accent-rgb, 243, 162, 72), 0.95),
+        rgba(var(--enemy-accent-rgb, 243, 162, 72), 0.8)
       );
       color: white;
-      border-color: var(--color-secondary);
+      border-color: var(--enemy-accent, #f3a248);
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
