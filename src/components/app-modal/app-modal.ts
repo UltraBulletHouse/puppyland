@@ -20,9 +20,7 @@ export class AppModal extends LitElement {
     const containerClasses = this.noBackdrop
       ? 'modal-container modal-container--plain'
       : 'modal-container';
-    const contentClasses = this.noBackdrop
-      ? 'modal-content modal-content--plain'
-      : 'modal-content';
+    const contentClasses = this.noBackdrop ? 'modal-content modal-content--plain' : 'modal-content';
 
     return this.open
       ? html`<div>

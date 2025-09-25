@@ -281,7 +281,7 @@ export class AppDogView extends LitElement {
         border-color: var(--wood);
         color: var(--wood);
       }
-      
+
       .stat-icon.doghouse-buffs-card {
         border-color: var(--sky);
         color: var(--sky);
@@ -1326,10 +1326,16 @@ export class AppDogView extends LitElement {
                                   ></sl-icon>
                                   ${this.statPointsAvailable > 0
                                     ? html`<div class="points-details">
-                                        <span class="points-number">${this.statPointsAvailable}</span>
-                                        <span class="points-subtitle">${t('pointsToAllocate')}</span>
+                                        <span class="points-number"
+                                          >${this.statPointsAvailable}</span
+                                        >
+                                        <span class="points-subtitle"
+                                          >${t('pointsToAllocate')}</span
+                                        >
                                       </div>`
-                                    : html`<span class="points-message">${t('allPointsAssigned')}</span>`}
+                                    : html`<span class="points-message"
+                                        >${t('allPointsAssigned')}</span
+                                      >`}
                                 </div>
                                 ${hasPending
                                   ? html`<div class="points-actions">

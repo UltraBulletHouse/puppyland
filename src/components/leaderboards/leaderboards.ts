@@ -501,7 +501,9 @@ export class LeaderboardsComponent extends LitElement {
               @click=${() => this.handleCategoryChange(LeaderboardCategory.LEVEL)}
               size="small"
             >
-              <span class="category-label" data-autofit data-min-font="10" data-max-lines="3">${t('leaderboardTopLevels')}</span>
+              <span class="category-label" data-autofit data-min-font="10" data-max-lines="3"
+                >${t('leaderboardTopLevels')}</span
+              >
             </sl-button>
             <sl-button
               class="category-button ${this.selectedCategory === LeaderboardCategory.DOGHOUSES_BUILT
@@ -510,7 +512,9 @@ export class LeaderboardsComponent extends LitElement {
               @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_BUILT)}
               size="small"
             >
-              <span class="category-label" data-autofit data-min-font="10" data-max-lines="3">${t('leaderboardMasterBuilders')}</span>
+              <span class="category-label" data-autofit data-min-font="10" data-max-lines="3"
+                >${t('leaderboardMasterBuilders')}</span
+              >
             </sl-button>
             <sl-button
               class="category-button ${this.selectedCategory ===
@@ -520,7 +524,9 @@ export class LeaderboardsComponent extends LitElement {
               @click=${() => this.handleCategoryChange(LeaderboardCategory.DOGHOUSES_DESTROYED)}
               size="small"
             >
-              <span class="category-label" data-autofit data-min-font="10" data-max-lines="3">${t('leaderboardTopDestroyers')}</span>
+              <span class="category-label" data-autofit data-min-font="10" data-max-lines="3"
+                >${t('leaderboardTopDestroyers')}</span
+              >
             </sl-button>
           </div>
         </div>
@@ -558,7 +564,9 @@ export class LeaderboardsComponent extends LitElement {
 
                   <div class="score">
                     <div class="score-value">${this.getScoreValue(entry)}</div>
-                    <div class="score-label" data-autofit>${this.getScoreLabel(this.selectedCategory)}</div>
+                    <div class="score-label" data-autofit>
+                      ${this.getScoreLabel(this.selectedCategory)}
+                    </div>
                   </div>
                 </div>
               `;

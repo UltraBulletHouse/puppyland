@@ -34,9 +34,9 @@ import {
   preloadStaticUrls,
   preloadSvgTemplates,
 } from './utils/preloadImages';
+import { installAutoFit } from './utils/textFit';
 import './views/app-loading-map-view';
 import './views/app-loading-view';
-import { installAutoFit } from './utils/textFit';
 
 // import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
@@ -98,7 +98,11 @@ export class AppIndex extends LitElement {
 
   async firstUpdated() {
     // Install global auto-fit for labels with data-autofit
-    try { installAutoFit('[data-autofit], .timer-label, .stat-title, #title, .setting-title, .setting-description, .dog-name, .score-label, .quest-title, .quest-description, #find-loc-hint, #geolocation-position-text, .user-name, .user-email'); } catch {}
+    try {
+      installAutoFit(
+        '[data-autofit], .timer-label, .stat-title, #title, .setting-title, .setting-description, .dog-name, .score-label, .quest-title, .quest-description, #find-loc-hint, #geolocation-position-text, .user-name, .user-email'
+      );
+    } catch {}
 
     await translationsReady;
     // Request persistent storage to improve offline reliability (best effort)
@@ -168,7 +172,6 @@ export class AppIndex extends LitElement {
         'trophy',
         'x',
         'x-lg',
-        
       ]);
       // Warm dynamic svg templates used by <svg-icon>
       preloadSvgTemplates(['doghouseOne', 'dogFace', 'dogHead', 'accurate', 'dogPaw']);

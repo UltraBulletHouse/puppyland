@@ -298,11 +298,7 @@ export class MapPopup extends LitElement {
           color: var(--color-white);
         }
         .enemy-doghouse #doghouse-section {
-          background: linear-gradient(
-            135deg,
-            var(--enemy-accent-light),
-            var(--enemy-accent)
-          );
+          background: linear-gradient(135deg, var(--enemy-accent-light), var(--enemy-accent));
           color: var(--color-white);
         }
       </style>
