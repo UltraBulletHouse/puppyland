@@ -9,15 +9,25 @@ export class AppModal extends LitElement {
   @property({ type: Boolean })
   open: boolean = false;
 
+  @property({ type: Boolean, attribute: 'no-backdrop' })
+  noBackdrop: boolean = false;
+
   protected createRenderRoot() {
     return document.body;
   }
 
   render() {
+    const containerClasses = this.noBackdrop
+      ? 'modal-container modal-container--plain'
+      : 'modal-container';
+    const contentClasses = this.noBackdrop
+      ? 'modal-content modal-content--plain'
+      : 'modal-content';
+
     return this.open
       ? html`<div>
           <style>
-            #modal-container {
+            .modal-container {
               display: flex;
               justify-content: space-evenly;
               align-items: flex-start;
@@ -31,13 +41,26 @@ export class AppModal extends LitElement {
               padding: 20px 20px 80px 20px;
               box-sizing: border-box;
             }
-            #modal-content {
+            .modal-container.modal-container--plain {
+              justify-content: center;
+              align-items: center;
+              padding: 0;
+              background: transparent;
+            }
+            .modal-content {
               width: 100%;
               height: 100%;
               background: var(--color-surface-strong);
               border: 1px solid var(--color-surface-border);
               border-radius: var(--border-radius-medium);
               animation: blowUpModal 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            }
+            .modal-content.modal-content--plain {
+              width: auto;
+              height: auto;
+              background: transparent;
+              border: none;
+              animation: none;
             }
             @keyframes blowUpModal {
               0% {
@@ -48,8 +71,8 @@ export class AppModal extends LitElement {
               }
             }
           </style>
-          <div id="modal-container">
-            <div id="modal-content">${this.element}</div>
+          <div class="${containerClasses}">
+            <div class="${contentClasses}">${this.element}</div>
           </div>
         </div> `
       : null;

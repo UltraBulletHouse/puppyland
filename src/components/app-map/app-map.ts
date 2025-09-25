@@ -77,7 +77,7 @@ export class AppMap extends LitElement {
   openPopupId: string | null = null;
 
   @state()
-  isLevelUp: boolean = false;
+  isLevelUp: boolean = true;
 
   openPopup(id: string | null) {
     this.openPopupId = id;
@@ -296,12 +296,19 @@ export class AppMap extends LitElement {
       <link rel="stylesheet" href="/leaflet/leaflet.css" />
       <div id="container" @updateDoghouses=${this.updateDoghousesHandler}>
         ${this.isLevelUp
-          ? html` <app-modal class="level-up-modal" .open=${this.isLevelUp}
-              ><level-up-modal
-                .dogInfo=${this.dogInfo}
-                @close=${this.closeLevelUpModal}
-              ></level-up-modal
-            ></app-modal>`
+          ? html`
+              <app-modal
+                class="level-up-modal"
+                .open=${this.isLevelUp}
+                no-backdrop
+                .element=${html`
+                  <level-up-modal
+                    .dogInfo=${this.dogInfo}
+                    @close=${this.closeLevelUpModal}
+                  ></level-up-modal>
+                `}
+              ></app-modal>
+            `
           : ''}
         <div id="info-box">
           <div id="info-box-line">

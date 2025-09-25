@@ -182,7 +182,6 @@ export const LevelUpModalStyles = html`
       );
       color: var(--color-white);
       border: none;
-      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
       transition: all 0.3s ease;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     }
