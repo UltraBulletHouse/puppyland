@@ -77,7 +77,7 @@ export class AppMap extends LitElement {
   openPopupId: string | null = null;
 
   @state()
-  isLevelUp: boolean = true;
+  isLevelUp: boolean = false;
 
   openPopup(id: string | null) {
     this.openPopupId = id;
@@ -297,17 +297,12 @@ export class AppMap extends LitElement {
       <div id="container" @updateDoghouses=${this.updateDoghousesHandler}>
         ${this.isLevelUp
           ? html`
-              <app-modal
-                class="level-up-modal"
-                .open=${this.isLevelUp}
-                no-backdrop
-                .element=${html`
-                  <level-up-modal
-                    .dogInfo=${this.dogInfo}
-                    @close=${this.closeLevelUpModal}
-                  ></level-up-modal>
-                `}
-              ></app-modal>
+              <div class="level-up-modal-wrapper">
+                <level-up-modal
+                  .dogInfo=${this.dogInfo}
+                  @close=${this.closeLevelUpModal}
+                ></level-up-modal>
+              </div>
             `
           : ''}
         <div id="info-box">
