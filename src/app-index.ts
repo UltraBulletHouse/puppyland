@@ -168,7 +168,7 @@ export class AppIndex extends LitElement {
         'trophy',
         'x',
         'x-lg',
-        'explosion',
+        
       ]);
       // Warm dynamic svg templates used by <svg-icon>
       preloadSvgTemplates(['doghouseOne', 'dogFace', 'dogHead', 'accurate', 'dogPaw']);
