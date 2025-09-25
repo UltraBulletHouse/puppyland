@@ -3,6 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 
 import { DogInfo } from '../../types/dog';
 import { LevelUpModalStyles } from './level-up-modal-styles';
+import { sendEvent } from '../../utils/eventUtils';
 
 @customElement('level-up-modal')
 export class LevelUpModal extends LitElement {
@@ -10,7 +11,7 @@ export class LevelUpModal extends LitElement {
   dogInfo: DogInfo | null = null;
 
   closeModal = () => {
-    // sendEvent(this, 'close');
+    sendEvent(this, 'close');
   };
 
   render() {
