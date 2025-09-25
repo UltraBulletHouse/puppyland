@@ -22,6 +22,10 @@ export const MapModalStyles = html`
       --enemy-accent: #f3a248;
       --enemy-accent-light: color-mix(in srgb, var(--enemy-accent) 45%, #fff);
       --enemy-accent-rgb: 243, 162, 72;
+      --primary: var(--enemy-accent);
+      --color-primary: var(--enemy-accent);
+      --color-primary-light: var(--enemy-accent-light);
+      --color-primary-rgb: var(--enemy-accent-rgb);
       background: color-mix(in srgb, var(--enemy-accent) 6%, #fff);
     }
     #map-modal-main-section {
