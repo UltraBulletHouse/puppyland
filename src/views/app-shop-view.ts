@@ -74,6 +74,58 @@ const parseShopItems = (items: ShopItemLocal[], googleItems: GoogleBillingItem[]
 
 @customElement('app-shop-view')
 export class AppShopView extends LitElement {
+  // Resolve a human-friendly, localized product name from an id or object
+  private getProductName(itemBought: any): string {
+    try {
+      // If it's just an id string
+      if (typeof itemBought === 'string') {
+        const id = itemBought;
+        const key = `shop.product.${id}.name`;
+        const localized = t(key);
+        if (localized !== key) return localized;
+        // Try known alias keys used in translations
+        const aliasMap: Record<string, string> = {
+          dog_rename: 'dog_rename_token',
+          doghouse_rename: 'doghouse_rename_token',
+        };
+        const alias = aliasMap[id];
+        if (alias) {
+          const aliasKey = `shop.product.${alias}.name`;
+          const aliasLoc = t(aliasKey);
+          if (aliasLoc !== aliasKey) return aliasLoc;
+        }
+        const local = this.findLocalItemById(id);
+        return local?.name || id;
+      }
+      // If it's an object, try id first
+      if (itemBought && typeof itemBought === 'object') {
+        const id = (itemBought as any).id || (itemBought as any).itemId;
+        const fallbackName = (itemBought as any).name || (itemBought as any).title || '';
+        if (id) {
+          const key = `shop.product.${id}.name`;
+          const localized = t(key);
+          if (localized !== key) return localized;
+          const local = this.findLocalItemById(id);
+          return local?.name || fallbackName || id;
+        }
+        return fallbackName || '[unknown item]';
+      }
+      return String(itemBought ?? '');
+    } catch {
+      return '[unknown item]';
+    }
+  }
+
+  private findLocalItemById(id: string) {
+    return (
+      shopItemsDoghouse.find((i) => i.id === id) ||
+      shopItemsRename.find((i) => i.id === id) ||
+      shopItemsRepair.find((i) => i.id === id) ||
+      shopItemsEnergy.find((i) => i.id === id) ||
+      shopItemsTreatPacks.find((i) => i.id === id) ||
+      shopItemsSubscription.find((i) => i.id === id)
+    );
+  }
   // PNG-backed icons available in src/assets/icons-png
   private static readonly PNG_ICON_NAMES = new Set(['doghouse', 'toolkit', 'energy-drink']);
   static styles = [
@@ -371,7 +423,7 @@ export class AppShopView extends LitElement {
         t('shop.purchaseSuccessTitle'),
         ti('shop.purchaseTreatsSuccessDesc', {
           spent: data?.spentTreats ?? 0,
-          item: data?.itemBought ?? '',
+          item: this.getProductName(item),
         })
       );
     } catch (error) {
@@ -421,7 +473,7 @@ export class AppShopView extends LitElement {
 
       showSuccessModal(
         t('shop.purchaseSuccessTitle'),
-        ti('shop.purchaseRealSuccessDesc', { quantity: quantity ?? 1, item: itemBought ?? '' })
+        ti('shop.purchaseRealSuccessDesc', { quantity: quantity ?? 1, item: this.getProductName(itemBought ?? item) })
       );
     } catch (error) {
       console.log(error);
