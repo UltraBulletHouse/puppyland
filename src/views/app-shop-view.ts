@@ -473,7 +473,7 @@ export class AppShopView extends LitElement {
 
       showSuccessModal(
         t('shop.purchaseSuccessTitle'),
-        ti('shop.purchaseRealSuccessDesc', { quantity: quantity ?? 1, item: this.getProductName(itemBought ?? item) })
+        ti('shop.purchaseRealSuccessDesc', { quantity: quantity ?? 1, item: this.getProductName(item) })
       );
     } catch (error) {
       console.log(error);
