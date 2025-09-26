@@ -80,6 +80,10 @@
         "description": "Acquista una rinomina per il tuo cane"
       },
       "doghouse_rename_token": {
+        "name": "Token rinomina cuccia",
+        "description": "Acquista un cambio nome per la tua cuccia"
+      },
+      "doghouse_rename": {
         "name": "Gettone rinomina cuccia",
         "description": "Acquista una rinomina per la tua cuccia"
       },

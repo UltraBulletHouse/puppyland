@@ -80,6 +80,10 @@
         "description": "Compre uma renomeação para o seu cão"
       },
       "doghouse_rename_token": {
+        "name": "Token de renomear casota",
+        "description": "Compre uma alteração de nome para a sua casota"
+      },
+      "doghouse_rename": {
         "name": "Ficha renomear casinha",
         "description": "Compre uma renomeação para sua casinha"
       },

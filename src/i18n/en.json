@@ -83,6 +83,10 @@
         "name": "Doghouse rename token",
         "description": "Buy one rename for your doghouse"
       },
+      "doghouse_rename": {
+        "name": "Doghouse rename token",
+        "description": "Buy one rename for your doghouse"
+      },
       "repair_50": {
         "name": "Repair 50",
         "description": "This will repair 50hp of your doghouse"

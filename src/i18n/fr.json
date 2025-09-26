@@ -80,6 +80,10 @@
         "description": "Achetez un renommage pour votre chien"
       },
       "doghouse_rename_token": {
+        "name": "Jeton de changement de nom de niche",
+        "description": "Achetez un changement de nom pour votre niche"
+      },
+      "doghouse_rename": {
         "name": "Jeton renommage niche",
         "description": "Achetez un renommage pour votre niche"
       },

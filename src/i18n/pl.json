@@ -83,6 +83,10 @@
         "name": "Token zmiany nazwy budy",
         "description": "Kup jedną zmianę nazwy dla swojej budy"
       },
+      "doghouse_rename": {
+        "name": "Token zmiany nazwy budy",
+        "description": "Kup jedną zmianę nazwy dla swojej budy"
+      },
       "repair_50": {
         "name": "Naprawa 50",
         "description": "To naprawi 50hp twojej budy"
