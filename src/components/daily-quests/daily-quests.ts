@@ -9,10 +9,19 @@ import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { t, ti } from '../../i18n';
 import { sharedStyles } from '../../styles/shared-styles';
-import { DailyQuestsResponse, Quest, QuestType, RewardType } from '../../types/quest';
+import { DailyQuestsResponse, Quest, QuestType, RewardType, QuestReward } from '../../types/quest';
 
 @customElement('daily-quests')
 export class DailyQuests extends LitElement {
+  renderRewardText(reward: QuestReward) {
+    // If treats, render with coin icon inline; else fallback to translation string.
+    const key = reward?.description?.key ?? '';
+    if (key.toUpperCase().includes('TREATS')) {
+      // Render amount followed by treats icon (black)
+      return html`<span>${reward.amount}</span> <sl-icon name="coin" class="reward-icon treats"></sl-icon>`;
+    }
+    return ti(reward.description.key, { amount: reward.amount });
+  }
   static styles = [
     sharedStyles,
     css`
@@ -183,6 +192,9 @@ export class DailyQuests extends LitElement {
       }
       .reward-icon.coins {
         color: var(--color-lime);
+      }
+      .reward-icon.treats {
+        color: var(--color-black);
       }
 
       .quest-title sl-icon {
@@ -378,7 +390,7 @@ export class DailyQuests extends LitElement {
         return 'lightning-charge';
       case RewardType.ENERGY_RESTORE:
         return 'lightning-charge';
-      default:
+            default:
         return 'gift';
     }
   }
@@ -391,9 +403,7 @@ export class DailyQuests extends LitElement {
         return 'experience';
       case RewardType.ENERGY:
         return 'energy';
-      case RewardType.COINS:
-        return 'coins';
-      default:
+            default:
         return '';
     }
   }
@@ -511,7 +521,7 @@ export class DailyQuests extends LitElement {
                         name="${this.getRewardIcon(quest.reward.type)}"
                         class="reward-icon ${this.getRewardClass(quest.reward.type)}"
                       ></sl-icon>
-                      ${ti(quest.reward.description.key, { amount: quest.reward.amount })}
+                      ${this.renderRewardText(quest.reward)}
                     </div>
                     ${quest.isCompleted && !quest.isRewardClaimed
                       ? html`
