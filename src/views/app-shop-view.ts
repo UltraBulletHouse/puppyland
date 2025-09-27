@@ -108,7 +108,7 @@ export class AppShopView extends LitElement {
           const local = this.findLocalItemById(id);
           return local?.name || fallbackName || id;
         }
-        return fallbackName || '[unknown item]';
+        return fallbackName || id || 'Treats';
       }
       return String(itemBought ?? '');
     } catch {
@@ -460,7 +460,7 @@ export class AppShopView extends LitElement {
       const result = await this.acknowledgePurchase(item, purchaseToken);
       await paymentResponse.complete('success');
 
-      const { itemBought, quantity, dog } = result as AcknowledgePurchaseResponse;
+      const { quantity, dog } = result as AcknowledgePurchaseResponse;
 
       updateDogInfoEvent(this, dog);
       // Refresh user info (for treats balance updates after treat pack purchases)

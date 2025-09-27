@@ -75,6 +75,10 @@
         "name": "Pacchetto 6 cucce",
         "description": "Puoi posizionare 6 cucce aggiuntive"
       },
+      "dog_rename": {
+        "name": "Token rinomina cane",
+        "description": "Acquista una rinomina per il tuo cane"
+      },
       "dog_rename_token": {
         "name": "Gettone rinomina cane",
         "description": "Acquista una rinomina per il tuo cane"

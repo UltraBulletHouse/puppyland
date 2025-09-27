@@ -75,6 +75,10 @@
         "name": "Pack 6 niches",
         "description": "Vous pouvez placer 6 niches supplémentaires"
       },
+      "dog_rename": {
+        "name": "Jeton de renommage du chien",
+        "description": "Achetez un renommage pour votre chien"
+      },
       "dog_rename_token": {
         "name": "Jeton renommage chien",
         "description": "Achetez un renommage pour votre chien"
