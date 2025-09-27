@@ -825,11 +825,23 @@ export const MapModalStyles = html`
     .repair-indicator {
       background: linear-gradient(
         135deg,
-        var(--enemy-accent, #f3a248),
-        color-mix(in srgb, var(--enemy-accent, #f3a248) 60%, #fff)
+        color-mix(in srgb, var(--color-primary) 92%, transparent),
+        color-mix(in srgb, var(--color-primary) 70%, transparent)
       );
       color: white;
-      animation: floatUpCenter 2s ease-out forwards;
+      border-color: var(--color-primary);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: healRise 2.3s ease-out forwards;
+    }
+
+    @keyframes healRise {
+      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
+      15% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
+      30% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      65% { opacity: 1; transform: translate(-50%, -160%) scale(0.95); }
+      100% { opacity: 0; transform: translate(-50%, -260%) scale(0.85); }
     }
 
     /* Repair blocked indicator styles */
