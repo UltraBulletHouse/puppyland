@@ -600,9 +600,6 @@ export class MapModal extends LitElement {
     // this.runSignal()
     const hpPercent = Math.round((Number(this.dhHp) / Number(this.dhMaxHp)) * 100);
 
-    const hasDoghouseBuffs =
-      this.dogInfo?.buffsForDoghouses && this.dogInfo.buffsForDoghouses.length > 0;
-
     const mainSection = html`
       <div id="map-modal-main-section" style="position: relative;">
         <!-- Visual Feedback Indicators -->
@@ -784,67 +781,62 @@ export class MapModal extends LitElement {
           </div>
         </div>
 
-        ${hasDoghouseBuffs
-          ? html`
-              <div id="buffs-section">
-                <div class="buffs-header">
-                  <div><sl-icon name="magic"></sl-icon> ${t('availableBuffs')}</div>
-                  <div class="user-energy">
-                    <sl-icon name="lightning-charge"></sl-icon> ${this.dogInfo?.energy}
-                  </div>
-                </div>
-                <div class="buffs-list">
-                  ${this.isOwn
-                    ? this.dogInfo?.buffsForDoghouses?.map(
-                        (buff) => html`
-                          <div class="buff-item" @click=${() => this.handleBuffClick(buff.buffSku)}>
-                            ${this.buffToConfirm === buff.buffSku
-                              ? html`
-                                  <div class="buff-confirmation">
-                                    <sl-button
-                                      size="small"
-                                      variant="success"
-                                      pill
-                                      title="${t('confirm')}"
-                                      @click=${(e: Event) => {
-                                        e.stopPropagation();
-                                        this.applyBuffToDoghouse(buff.buffSku);
-                                      }}
-                                      ><sl-icon name="check-lg"></sl-icon
-                                    ></sl-button>
-                                    <sl-button
-                                      size="small"
-                                      variant="danger"
-                                      pill
-                                      title="${t('cancel')}"
-                                      @click=${(e: Event) => {
-                                        e.stopPropagation();
-                                        this.cancelBuffConfirmation();
-                                      }}
-                                      ><sl-icon name="x-lg"></sl-icon
-                                    ></sl-button>
-                                  </div>
-                                `
-                              : html``}
-                            <div class="buff-icon">
-                              <icon-png-badge
-                                name="${buff.buffSku.includes('repair')
-                                  ? 'toolkit'
-                                  : 'energy-drink'}"
-                                badge="${buff.quantity}"
-                              ></icon-png-badge>
+        <div id="buffs-section">
+          <div class="buffs-header">
+            <div><sl-icon name="magic"></sl-icon> ${t('availableBuffs')}</div>
+            <div class="user-energy">
+              <sl-icon name="lightning-charge"></sl-icon> ${this.dogInfo?.energy}
+            </div>
+          </div>
+          <div class="buffs-list">
+            ${this.isOwn
+              ? this.dogInfo?.buffsForDoghouses?.map(
+                  (buff) => html`
+                    <div class="buff-item" @click=${() => this.handleBuffClick(buff.buffSku)}>
+                      ${this.buffToConfirm === buff.buffSku
+                        ? html`
+                            <div class="buff-confirmation">
+                              <sl-button
+                                size="small"
+                                variant="success"
+                                pill
+                                title="${t('confirm')}"
+                                @click=${(e: Event) => {
+                                  e.stopPropagation();
+                                  this.applyBuffToDoghouse(buff.buffSku);
+                                }}
+                                ><sl-icon name="check-lg"></sl-icon
+                              ></sl-button>
+                              <sl-button
+                                size="small"
+                                variant="danger"
+                                pill
+                                title="${t('cancel')}"
+                                @click=${(e: Event) => {
+                                  e.stopPropagation();
+                                  this.cancelBuffConfirmation();
+                                }}
+                                ><sl-icon name="x-lg"></sl-icon
+                              ></sl-button>
                             </div>
-                            <div class="buff-details">
-                              <span class="buff-name">${buff.name}</span>
-                            </div>
-                          </div>
-                        `
-                      )
-                    : ''}
-                </div>
-              </div>
-            `
-          : ''}
+                          `
+                        : html``}
+                      <div class="buff-icon">
+                        <icon-png-badge
+                          name="${buff.buffSku.includes('repair') ? 'toolkit' : 'energy-drink'}"
+                          badge="${buff.quantity}"
+                        ></icon-png-badge>
+                      </div>
+                      <div class="buff-details">
+                        <span class="buff-name">${buff.name}</span>
+                      </div>
+                    </div>
+                  `
+                )
+              : ''}
+          </div>
+        </div>
+
         ${this.showBuffAppliedMessage
           ? html`
               <div class="feedback-indicator buff-applied-indicator">
