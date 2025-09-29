@@ -34,8 +34,8 @@ import {
   preloadStaticUrls,
   preloadSvgTemplates,
 } from './utils/preloadImages';
-import { installAutoFit } from './utils/textFit';
 import { setupPWA } from './utils/pwaRegistration';
+import { installAutoFit } from './utils/textFit';
 import './views/app-loading-map-view';
 import './views/app-loading-view';
 

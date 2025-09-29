@@ -837,11 +837,26 @@ export const MapModalStyles = html`
     }
 
     @keyframes healRise {
-      0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
-      15% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
-      30% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-      65% { opacity: 1; transform: translate(-50%, -160%) scale(0.95); }
-      100% { opacity: 0; transform: translate(-50%, -260%) scale(0.85); }
+      0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+      }
+      15% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.15);
+      }
+      30% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+      65% {
+        opacity: 1;
+        transform: translate(-50%, -160%) scale(0.95);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(-50%, -260%) scale(0.85);
+      }
     }
 
     /* Repair blocked indicator styles */
