@@ -74,6 +74,25 @@ const parseShopItems = (items: ShopItemLocal[], googleItems: GoogleBillingItem[]
 
 @customElement('app-shop-view')
 export class AppShopView extends LitElement {
+  private isTreatPack(id: string): boolean {
+    return !!shopItemsTreatPacks.find(i => i.id === id);
+  }
+
+  private getTreatsCountForPack(id: string): number {
+    const found = shopItemsTreatPacks.find(i => i.id === id);
+    if (found?.description) {
+      const m = found.description.match(/\d+/);
+      if (m) return parseInt(m[0], 10);
+    }
+    const fallback: Record<string, number> = {
+      small_treats: 100,
+      tasty_handful: 700,
+      snack_sack: 1600,
+      mega_munch: 3600,
+      ultimate_treat: 12500
+    };
+    return fallback[id] ?? 0;
+  }
   // Resolve a human-friendly, localized product name from an id or object
   private getProductName(itemBought: any): string {
     try {
@@ -473,7 +492,15 @@ export class AppShopView extends LitElement {
 
       showSuccessModal(
         t('shop.purchaseSuccessTitle'),
-        ti('shop.purchaseRealSuccessDesc', { quantity: quantity ?? 1, item: this.getProductName(item) })
+        (() => {
+          // For treat packs, show amount + localized word for Treats instead of box name
+          if (this.isTreatPack(item)) {
+            const count = this.getTreatsCountForPack(item);
+            const reward = ti('rewards.description.TREATS', { amount: count });
+            return reward;
+          }
+          return ti('shop.purchaseRealSuccessDesc', { quantity: quantity ?? 1, item: this.getProductName(item) });
+        })()
       );
     } catch (error) {
       console.log(error);
