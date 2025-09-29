@@ -35,6 +35,7 @@ import {
   preloadSvgTemplates,
 } from './utils/preloadImages';
 import { installAutoFit } from './utils/textFit';
+import { setupPWA } from './utils/pwaRegistration';
 import './views/app-loading-map-view';
 import './views/app-loading-view';
 
@@ -97,6 +98,8 @@ export class AppIndex extends LitElement {
   }
 
   async firstUpdated() {
+    setupPWA();
+
     // Install global auto-fit for labels with data-autofit
     try {
       installAutoFit(
