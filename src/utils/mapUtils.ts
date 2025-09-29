@@ -89,7 +89,9 @@ export const drawMarker = ({
   canvasMarkerImg,
   openPopup,
   closePopupHandler,
-}: DrawMarker) => {
+}: DrawMarker): L.Marker | null => {
+  if (!self.map) return null;
+
   const marker = (L as any).canvasMarker(L.latLng(coords.lat, coords.lng), {
     radius: radius ?? 30, // WAZNE zeby nie bylo artefaktow
     img: {
@@ -120,6 +122,8 @@ export const drawMarker = ({
   if (openPopup) {
     mark.openPopup();
   }
+
+  return mark;
 };
 
 /* -------------------------- OLD --------------------------- */

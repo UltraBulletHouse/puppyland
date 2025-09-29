@@ -64,6 +64,8 @@ export class AppMap extends LitElement {
   @state()
   doghouses?: Doghouse[];
 
+  private doghouseMarkers: L.Marker[] = [];
+
   @state()
   doghouseOwnPath: string | null = null;
 
@@ -127,7 +129,13 @@ export class AppMap extends LitElement {
   };
 
   setDoghousesMarkers() {
-    if (!this.map || !this.userPos || !this.doghouses) return;
+    if (!this.map) return;
+
+    // Remove any previously rendered doghouse markers before drawing replacements
+    this.doghouseMarkers.forEach((marker) => marker.remove());
+    this.doghouseMarkers = [];
+
+    if (!this.userPos || !this.doghouses) return;
 
     const dogInfoId = this.dogInfo?.id;
 
@@ -163,7 +171,7 @@ export class AppMap extends LitElement {
             ></map-popup>
             `;
 
-      drawMarker({
+      const marker = drawMarker({
         self: this,
         coords: { lat, lng },
         popupContent,
@@ -173,6 +181,10 @@ export class AppMap extends LitElement {
         openPopup: this.openPopupId === id,
         closePopupHandler: this.closePopupHandler,
       });
+
+      if (marker) {
+        this.doghouseMarkers.push(marker);
+      }
     });
   }
 
@@ -190,6 +202,7 @@ export class AppMap extends LitElement {
 
     if (!doghousesList) return;
     this.doghouses = doghousesList;
+    this.setDoghousesMarkers();
 
     const { latitudeMax, latitudeMin, longitudeMax, longitudeMin } = geoRange;
     const northEast = L.latLng(latitudeMax, longitudeMax);
