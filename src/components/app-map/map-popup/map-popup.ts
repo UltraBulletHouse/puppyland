@@ -112,8 +112,30 @@ export class MapPopup extends LitElement {
     }
   }
 
-  updateDoghousesHandler(event: CustomEvent<string>) {
-    this.dhHpLocal = event.detail;
+  updateDoghousesHandler(event: CustomEvent<any>) {
+    const detail = event.detail;
+
+    if (detail && typeof detail === 'object') {
+      if (detail.doghouseId && detail.doghouseId !== this.dhId) {
+        return;
+      }
+
+      if (typeof detail.hp === 'number') {
+        this.dhHpLocal = detail.hp.toString();
+      } else if (typeof detail.hp === 'string') {
+        this.dhHpLocal = detail.hp;
+      }
+
+      if (detail.isDestroyed) {
+        this.dhHpLocal = '0';
+      }
+
+      return;
+    }
+
+    if (typeof detail === 'string') {
+      this.dhHpLocal = detail;
+    }
   }
 
   protected createRenderRoot() {

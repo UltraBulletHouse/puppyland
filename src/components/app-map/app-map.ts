@@ -212,11 +212,65 @@ export class AppMap extends LitElement {
   }
 
   updateDoghousesHandler(event: CustomEvent<any>) {
-    // Only refresh doghouses when explicitly requested (manual modal close).
-    // Attack/repair flows inside the modal emit events with detail (HP), which we ignore here.
-    if (!event.detail) {
+    const detail = event.detail;
+
+    // Manual refresh request or legacy events without detail
+    if (!detail) {
       this.getDoghousesList();
+      return;
     }
+
+    if (typeof detail !== 'object') {
+      this.getDoghousesList();
+      return;
+    }
+
+    const { doghouseId, hp, isDestroyed } = detail as {
+      doghouseId?: string;
+      hp?: number;
+      isDestroyed?: boolean;
+    };
+
+    if (!doghouseId) {
+      this.getDoghousesList();
+      return;
+    }
+
+    if (!this.doghouses) {
+      this.getDoghousesList();
+      return;
+    }
+
+    if (isDestroyed) {
+      this.doghouses = this.doghouses.filter((doghouse) => doghouse.id !== doghouseId);
+      if (this.openPopupId === doghouseId) {
+        this.openPopupId = null;
+        this.closePopup();
+      }
+      this.setDoghousesMarkers();
+      return;
+    }
+
+    if (typeof hp !== 'number') {
+      this.getDoghousesList();
+      return;
+    }
+
+    let hasMatch = false;
+    this.doghouses = this.doghouses.map((doghouse) => {
+      if (doghouse.id === doghouseId) {
+        hasMatch = true;
+        return { ...doghouse, hp };
+      }
+      return doghouse;
+    });
+
+    if (!hasMatch) {
+      this.getDoghousesList();
+      return;
+    }
+
+    this.setDoghousesMarkers();
   }
 
   /* OK - raczej */

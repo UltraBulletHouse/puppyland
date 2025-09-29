@@ -189,7 +189,10 @@ export class MapModal extends LitElement {
 
       if (doghouseInfoResponse) {
         this.dhHp = doghouseInfoResponse.hp.toString();
-        sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
+        sendEvent(this, 'updateDoghouses', {
+          doghouseId: doghouseInfoResponse.id ?? this.dhId,
+          hp: doghouseInfoResponse.hp,
+        });
       }
 
       this.showBuffAppliedMessageWithReason(`Buff ${buffSku} applied successfully!`);
@@ -514,11 +517,18 @@ export class MapModal extends LitElement {
       }
       if (attackResult?.isDoghouseDestroyed) {
         this.dhHp = '0';
+        sendEvent(this, 'updateDoghouses', {
+          doghouseId: this.dhId,
+          hp: 0,
+          isDestroyed: true,
+        });
       } else if (doghouseInfoResponse) {
         this.dhHp = doghouseInfoResponse.hp.toString();
+        sendEvent(this, 'updateDoghouses', {
+          doghouseId: doghouseInfoResponse.id ?? this.dhId,
+          hp: doghouseInfoResponse.hp,
+        });
       }
-
-      sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse?.hp.toString());
     } catch (error) {
       console.error('Error attacking doghouse:', error);
     } finally {
@@ -544,7 +554,10 @@ export class MapModal extends LitElement {
 
     if (doghouseInfoResponse) {
       this.dhHp = doghouseInfoResponse.hp.toString();
-      sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
+      sendEvent(this, 'updateDoghouses', {
+        doghouseId: doghouseInfoResponse.id ?? this.dhId,
+        hp: doghouseInfoResponse.hp,
+      });
     }
   };
 
@@ -585,7 +598,10 @@ export class MapModal extends LitElement {
 
       if (doghouseInfoResponse) {
         this.dhHp = doghouseInfoResponse.hp.toString();
-        sendEvent<string>(this, 'updateDoghouses', doghouseInfoResponse.hp.toString());
+        sendEvent(this, 'updateDoghouses', {
+          doghouseId: doghouseInfoResponse.id ?? this.dhId,
+          hp: doghouseInfoResponse.hp,
+        });
       }
     } catch (error) {
       console.error('Error repairing doghouse:', error);
