@@ -18,6 +18,7 @@ export interface Quest {
   reward: QuestReward;
   isCompleted: boolean;
   expiresAt: string; // ISO date string
+  claiming?: boolean;
 }
 
 export enum QuestType {

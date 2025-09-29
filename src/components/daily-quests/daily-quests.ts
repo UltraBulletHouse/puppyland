@@ -9,10 +9,19 @@ import '@shoelace-style/shoelace/dist/components/progress-bar/progress-bar.js';
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { t, ti } from '../../i18n';
 import { sharedStyles } from '../../styles/shared-styles';
-import { DailyQuestsResponse, Quest, QuestType, RewardType } from '../../types/quest';
+import { DailyQuestsResponse, Quest, QuestType, RewardType, QuestReward } from '../../types/quest';
 
 @customElement('daily-quests')
 export class DailyQuests extends LitElement {
+  renderRewardText(reward: QuestReward) {
+    // If treats, render with coin icon inline; else fallback to translation string.
+    const key = reward?.description?.key ?? '';
+    if (key.toUpperCase().includes('TREATS')) {
+      // Render amount followed by treats icon (black)
+      return html`<span>${reward.amount}</span> <sl-icon name="coin" class="reward-icon treats"></sl-icon>`;
+    }
+    return ti(reward.description.key, { amount: reward.amount });
+  }
   static styles = [
     sharedStyles,
     css`
@@ -80,6 +89,46 @@ export class DailyQuests extends LitElement {
         background: var(--color-secondary-light);
         border-left: 4px solid var(--color-secondary);
       }
+
+      .quest-item.claimed {
+        opacity: 0.7;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+
+      .claimed-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--color-secondary);
+        color: var(--color-white);
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      .claimed-badge sl-icon {
+        font-size: 14px;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .claim-button {
+        animation: pulse 1.5s infinite;
+      }
+
 
       .quest-header {
         display: flex;
@@ -183,6 +232,9 @@ export class DailyQuests extends LitElement {
       }
       .reward-icon.coins {
         color: var(--color-lime);
+      }
+      .reward-icon.treats {
+        color: var(--color-black);
       }
 
       .quest-title sl-icon {
@@ -309,15 +361,21 @@ export class DailyQuests extends LitElement {
     }
   }
 
-  private async claimReward(questId: string) {
+  private async claimReward(quest: Quest) {
     if (!this.accessToken) return;
+
+    // Set the claiming state to true to trigger the animation
+    quest.claiming = true;
+    this.requestUpdate();
+
+    // Wait for the animation to complete
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     try {
       const { apiCall } = await import('../../utils/apiUtils');
       const { API_QUEST_CLAIM } = await import('../../constants/apiConstants');
 
-      await apiCall(this.accessToken).post(`${API_QUEST_CLAIM}/${questId}`);
-      /* console.log('Claimed reward:', response.data); */
+      await apiCall(this.accessToken).post(`${API_QUEST_CLAIM}/${quest.id}`);
 
       // Refresh quests after claiming
       await this.fetchDailyQuests();
@@ -378,7 +436,7 @@ export class DailyQuests extends LitElement {
         return 'lightning-charge';
       case RewardType.ENERGY_RESTORE:
         return 'lightning-charge';
-      default:
+            default:
         return 'gift';
     }
   }
@@ -391,9 +449,7 @@ export class DailyQuests extends LitElement {
         return 'experience';
       case RewardType.ENERGY:
         return 'energy';
-      case RewardType.COINS:
-        return 'coins';
-      default:
+            default:
         return '';
     }
   }
@@ -489,58 +545,84 @@ export class DailyQuests extends LitElement {
             const progressPercentage = Math.min((quest.progress / quest.target) * 100, 100);
 
             return html`
-              <div class="quest-item ${quest.isCompleted ? 'completed' : ''}">
+              <div
+                class="quest-item ${
+                  quest.isCompleted ? 'completed' : ''
+                } ${quest.isRewardClaimed ? 'claimed' : ''}"
+              >
                 <div class="quest-header">
                   <div class="quest-info">
                     <div class="quest-title" data-autofit>
                       <sl-icon
                         name="${this.getQuestTypeIcon(quest.type)}"
-                        class="quest-type-icon ${this.getQuestTypeClass(quest.type)}"
+                        class="quest-type-icon ${this.getQuestTypeClass(
+                          quest.type
+                        )}"
                       ></sl-icon>
                       ${t(quest.title.key)}
                     </div>
                     <div class="quest-description" data-autofit>
-                      ${ti(this.getPluralizedKey(quest.description.key, quest.target), {
-                        target: quest.target,
-                      })}
+                      ${ti(
+                        this.getPluralizedKey(
+                          quest.description.key,
+                          quest.target
+                        ),
+                        {
+                          target: quest.target,
+                        }
+                      )}
                     </div>
                   </div>
                   <div class="quest-actions">
-                    <div class="quest-reward ${quest.isCompleted ? 'completed' : ''}">
+                    <div
+                      class="quest-reward ${
+                        quest.isCompleted ? 'completed' : ''
+                      }"
+                    >
                       <sl-icon
                         name="${this.getRewardIcon(quest.reward.type)}"
-                        class="reward-icon ${this.getRewardClass(quest.reward.type)}"
+                        class="reward-icon ${this.getRewardClass(
+                          quest.reward.type
+                        )}"
                       ></sl-icon>
-                      ${ti(quest.reward.description.key, { amount: quest.reward.amount })}
+                      ${this.renderRewardText(quest.reward)}
                     </div>
                     ${quest.isCompleted && !quest.isRewardClaimed
                       ? html`
                           <sl-button
                             variant="success"
                             size="small"
-                            @click=${() => this.claimReward(quest.id)}
+                            class="claim-button"
+                            .loading="${quest.claiming}"
+                            @click=${() => this.claimReward(quest)}
                           >
                             <sl-icon name="gift" slot="prefix"></sl-icon>
                             ${t('claim')}
                           </sl-button>
                         `
                       : quest.isRewardClaimed
-                        ? html`
-                            <sl-badge variant="success">
-                              <sl-icon name="check-circle"></sl-icon>
-                              ${t('claimed')}
-                            </sl-badge>
-                          `
-                        : ''}
+                      ? html`
+                          <div class="claimed-badge">
+                            <sl-icon name="check-circle-fill"></sl-icon>
+                            <span>${t('claimed')}</span>
+                          </div>
+                        `
+                      : ''}
                   </div>
                 </div>
 
                 <div class="quest-progress">
                   <div class="progress-info">
-                    <span class="progress-text"> ${quest.progress} / ${quest.target} </span>
-                    <span class="progress-percentage"> ${Math.round(progressPercentage)}% </span>
+                    <span class="progress-text">
+                      ${quest.progress} / ${quest.target}
+                    </span>
+                    <span class="progress-percentage">
+                      ${Math.round(progressPercentage)}%
+                    </span>
                   </div>
-                  <sl-progress-bar value="${progressPercentage}"></sl-progress-bar>
+                  <sl-progress-bar
+                    value="${progressPercentage}"
+                  ></sl-progress-bar>
                 </div>
               </div>
             `;

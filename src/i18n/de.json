@@ -80,6 +80,10 @@
         "description": "Kaufe eine Umbenennung für deinen Hund"
       },
       "doghouse_rename_token": {
+        "name": "Token zur Umbenennung der Hundehütte",
+        "description": "Kaufe eine Umbenennung für deine Hundehütte"
+      },
+      "doghouse_rename": {
         "name": "Token Hundehütte umbenennen",
         "description": "Kaufe eine Umbenennung für deine Hundehütte"
       },

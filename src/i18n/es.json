@@ -75,11 +75,19 @@
         "name": "Paquete de 6 casetas",
         "description": "Puedes colocar 6 casetas adicionales"
       },
+      "dog_rename": {
+        "name": "Ficha de cambio de nombre de perro",
+        "description": "Compra un renombrado para tu perro"
+      },
       "dog_rename_token": {
         "name": "Ficha cambio nombre perro",
         "description": "Compra un renombrado para tu perro"
       },
       "doghouse_rename_token": {
+        "name": "Token de cambio de nombre de caseta",
+        "description": "Compra un cambio de nombre para tu caseta"
+      },
+      "doghouse_rename": {
         "name": "Ficha cambio nombre caseta",
         "description": "Compra un renombrado para tu caseta"
       },

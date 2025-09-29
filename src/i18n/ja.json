@@ -75,11 +75,19 @@
         "name": "犬小屋 6 パック",
         "description": "犬小屋を 6 つ追加で設置できます"
       },
+      "dog_rename": {
+        "name": "犬のリネームトークン",
+        "description": "愛犬の名前を1回変更できます"
+      },
       "dog_rename_token": {
         "name": "犬の改名トークン",
         "description": "愛犬の名前を 1 回変更できます"
       },
       "doghouse_rename_token": {
+        "name": "犬小屋のリネームトークン",
+        "description": "犬小屋の名前を1回変更できます"
+      },
+      "doghouse_rename": {
         "name": "犬小屋の改名トークン",
         "description": "犬小屋の名前を 1 回変更できます"
       },

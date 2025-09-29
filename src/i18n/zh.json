@@ -80,6 +80,10 @@
         "description": "为您的爱犬购买一次改名"
       },
       "doghouse_rename_token": {
+        "name": "狗屋重命名代币",
+        "description": "为你的狗屋购买一次重命名"
+      },
+      "doghouse_rename": {
         "name": "狗屋改名令牌",
         "description": "为您的狗屋购买一次改名"
       },
