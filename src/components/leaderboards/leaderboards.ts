@@ -5,6 +5,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import '@shoelace-style/shoelace/dist/components/badge/badge.js';
 import '@shoelace-style/shoelace/dist/components/option/option.js';
 import '@shoelace-style/shoelace/dist/components/select/select.js';
+import '../icon-svg/svg-icon';
 
 import { accessTokenContext } from '../../contexts/userFirebaseContext';
 import { t, ti } from '../../i18n';
@@ -15,7 +16,6 @@ import {
   LeaderboardEntry,
   LeaderboardsResponse,
 } from '../../types/leaderboard';
-import '../icon-svg/svg-icon';
 
 @customElement('leaderboards-component')
 export class LeaderboardsComponent extends LitElement {
@@ -144,6 +144,11 @@ export class LeaderboardsComponent extends LitElement {
         align-items: center;
         justify-content: center;
         font-size: 24px;
+      }
+      #current-user-avatar svg-icon,
+      .player-avatar svg-icon {
+        width: 70%;
+        height: 70%;
       }
 
       #current-user-info {
@@ -536,7 +541,7 @@ export class LeaderboardsComponent extends LitElement {
             ? html`
                 <div id="current-user-card">
                   <div id="current-user-header">
-                    <div id="current-user-avatar"><svg-icon name="dogFaceSvg"></svg-icon></div>
+                    <div id="current-user-avatar"><svg-icon name="dogface-basic"></svg-icon></div>
                     <div id="current-user-info">
                       <div id="current-user-dog">${this.currentUser.dogName}</div>
                     </div>
@@ -555,7 +560,7 @@ export class LeaderboardsComponent extends LitElement {
                   </div>
 
                   <div class="player-avatar">
-                    <svg-icon name="dogFaceSvg"></svg-icon>
+                    <svg-icon name="dogface-basic"></svg-icon>
                   </div>
 
                   <div class="player-info">

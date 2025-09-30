@@ -11,6 +11,7 @@ import { classNames } from '../../../utils/classNames';
 import { sendEvent } from '../../../utils/eventUtils';
 import { checkHowClose } from '../../../utils/mapUtils';
 import '../map-modals/map-modal';
+import '../../icon-svg/svg-icon';
 
 /**
  * @fires closePopup
@@ -183,6 +184,10 @@ export class MapPopup extends LitElement {
           display: flex;
           justify-content: center;
           font-size: 40px;
+        }
+        #dog-icon svg-icon {
+          width: 48px;
+          height: 48px;
         }
         #dog-name {
           overflow: hidden;
@@ -363,7 +368,7 @@ export class MapPopup extends LitElement {
         <div id="lower-section">
           <div id="owner-section">
             <div id="dog-icon">
-              <svg-icon name="dogFaceSvg"></svg-icon>
+              <svg-icon name="dogface-basic"></svg-icon>
             </div>
             <div id="dog-name">${this.decodeValue(this.dogName, 'dogName=')}</div>
           </div>
