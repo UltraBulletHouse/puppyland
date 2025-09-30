@@ -64,6 +64,14 @@ export class MapPopup extends LitElement {
   @state()
   isOpen: boolean = false;
 
+  private decodeValue(value: string | undefined | null, preferredPrefix?: string): string {
+    if (!value) return '';
+    const decoded = decodeURIComponent(value);
+    const prefixes = preferredPrefix ? [preferredPrefix, 'dhName=', 'dogName='] : ['dhName=', 'dogName='];
+    const matched = prefixes.find((prefix) => decoded.startsWith(prefix));
+    return matched ? decoded.slice(matched.length) : decoded;
+  }
+
   closeMapModal = (_e?: CustomEvent<{ manual?: boolean }>) => {
     this.isOpen = false;
     // Map refresh is emitted by map-modal on manual close to avoid duplicate events
@@ -337,7 +345,7 @@ export class MapPopup extends LitElement {
           <div id="close-btn" @click=${this.closePopup}>
             <sl-icon name="x"></sl-icon>
           </div>
-          <p id="dh-name">${decodeURIComponent(this.dhName ?? '')}</p>
+          <p id="dh-name">${this.decodeValue(this.dhName, 'dhName=')}</p>
           <div id="stats">
             <div id="hp-stat">
               <sl-icon name="heart-pulse"></sl-icon>
@@ -357,7 +365,7 @@ export class MapPopup extends LitElement {
             <div id="dog-icon">
               <svg-icon name="dogFaceSvg"></svg-icon>
             </div>
-            <div id="dog-name">${decodeURIComponent(this.dogName ?? '')}</div>
+            <div id="dog-name">${this.decodeValue(this.dogName, 'dogName=')}</div>
           </div>
           <div id="popup-actions">
             <div
@@ -377,7 +385,7 @@ export class MapPopup extends LitElement {
           .open=${this.isOpen}
           .isOwn=${Boolean(this.isOwn)}
           .dhId=${this.dhId}
-          .dhName=${decodeURIComponent(this.dhName ?? '')}
+          .dhName=${this.decodeValue(this.dhName, 'dhName=')}
           .dhHp=${this.dhHp}
           .dhMaxHp=${this.dhMaxHp}
           .lat=${Number(this.userCoords?.split('/')[0] ?? '0')}
