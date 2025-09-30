@@ -1194,7 +1194,9 @@ export class AppDogView extends LitElement {
     const energyMaxPreview = (this.derived?.energyMax ?? 100) + 10 * staminaDelta;
     const reachPreview = (this.derived?.reachMeters ?? 200) + 10 * reachDelta;
     const doghouseHpPreview = (this.derived?.doghouseMaxHp ?? 100) + 20 * fortDelta;
-    const doghouseBuffs = (this.dogInfo?.buffsForDoghouses ?? []).filter((buff) => buff.quantity > 0);
+    const doghouseBuffs = (this.dogInfo?.buffsForDoghouses ?? []).filter(
+      (buff) => buff.quantity > 0
+    );
 
     return this.dogInfo && this.newName
       ? html`

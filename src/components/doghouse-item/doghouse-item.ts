@@ -123,7 +123,11 @@ export class AppDoghouseItem extends LitElement {
         font-weight: 600;
         padding: 6px 14px;
         border-radius: 999px;
-        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-medium) 100%);
+        background: linear-gradient(
+          135deg,
+          var(--color-primary) 0%,
+          var(--color-primary-medium) 100%
+        );
         color: var(--color-white);
         border: none;
         display: inline-flex;

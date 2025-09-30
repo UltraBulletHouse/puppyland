@@ -10,8 +10,8 @@ import { View } from '../../../types/view';
 import { classNames } from '../../../utils/classNames';
 import { sendEvent } from '../../../utils/eventUtils';
 import { checkHowClose } from '../../../utils/mapUtils';
-import '../map-modals/map-modal';
 import '../../icon-svg/svg-icon';
+import '../map-modals/map-modal';
 
 /**
  * @fires closePopup
@@ -68,7 +68,9 @@ export class MapPopup extends LitElement {
   private decodeValue(value: string | undefined | null, preferredPrefix?: string): string {
     if (!value) return '';
     const decoded = decodeURIComponent(value);
-    const prefixes = preferredPrefix ? [preferredPrefix, 'dhName=', 'dogName='] : ['dhName=', 'dogName='];
+    const prefixes = preferredPrefix
+      ? [preferredPrefix, 'dhName=', 'dogName=']
+      : ['dhName=', 'dogName='];
     const matched = prefixes.find((prefix) => decoded.startsWith(prefix));
     return matched ? decoded.slice(matched.length) : decoded;
   }

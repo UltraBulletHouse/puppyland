@@ -26,10 +26,10 @@ import { TileLayerOptionsPlugins } from '../../types/map';
 import { UserInfo } from '../../types/userInfo';
 import { apiCall } from '../../utils/apiUtils';
 import { getI18nMessage } from '../../utils/errorUtils';
+import { sendEvent } from '../../utils/eventUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
 import { toastDanger, toastWarning } from '../../utils/toastUtils';
-import { sendEvent } from '../../utils/eventUtils';
 import '../level-up-modal/level-up-modal';
 import { AppMapStyles } from './app-map-styles';
 import './map-popup/map-popup';
@@ -280,7 +280,9 @@ export class AppMap extends LitElement {
     if (!doghousesList) return;
     let mergedDoghouses = [...doghousesList];
     if (this.lastFocusedDoghouse) {
-      const exists = mergedDoghouses.some((doghouse) => doghouse.id === this.lastFocusedDoghouse?.id);
+      const exists = mergedDoghouses.some(
+        (doghouse) => doghouse.id === this.lastFocusedDoghouse?.id
+      );
       if (!exists) {
         mergedDoghouses = [...mergedDoghouses, this.lastFocusedDoghouse];
       }

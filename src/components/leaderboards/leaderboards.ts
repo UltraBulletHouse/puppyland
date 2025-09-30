@@ -51,8 +51,8 @@ export class LeaderboardsComponent extends LitElement {
       }
 
       #category-buttons {
-         overflow-x: hidden;
-\n        overflow-x: hidden; /* keep segmented look without scroll */\n
+        overflow-x: hidden;
+        overflow-x: hidden; /* keep segmented look without scroll */
         display: flex;
         gap: 0; /* compact segmented look */
         margin-top: 0;
@@ -73,7 +73,6 @@ export class LeaderboardsComponent extends LitElement {
       .category-button {
         flex: 1 1 0;
         min-width: 0;
-
       }
 
       .category-button::part(base) {
@@ -95,7 +94,10 @@ export class LeaderboardsComponent extends LitElement {
         font-size: 14px;
       }
 
-      @media (max-width: 420px) {\n        .category-button::part(base) { padding: 1px 4px; }
+      @media (max-width: 420px) {
+        \n .category-button::part(base) {
+          padding: 1px 4px;
+        }
         .category-button::part(base) {
           font-size: 10px;
           padding: 2px 6px;
