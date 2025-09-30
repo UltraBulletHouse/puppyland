@@ -5,10 +5,7 @@ import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 const rawSvgs = import.meta.glob('../icons/*.svg', {
   import: 'default',
   query: '?raw',
-}) as Record<
-  string,
-  () => Promise<string>
->;
+}) as Record<string, () => Promise<string>>;
 
 // Build a lookup from base filename to importer
 const byName: Record<string, () => Promise<string>> = {};

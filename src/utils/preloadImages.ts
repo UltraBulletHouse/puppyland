@@ -109,10 +109,12 @@ export function preloadAllSvgTemplates(): Promise<void> {
   return svgTemplatePreloadPromise;
 }
 
-export function preloadImagesAndIconsOnAppLoad(options: {
-  shoelaceIcons?: string[];
-  staticAssetUrls?: string[];
-} = {}) {
+export function preloadImagesAndIconsOnAppLoad(
+  options: {
+    shoelaceIcons?: string[];
+    staticAssetUrls?: string[];
+  } = {}
+) {
   try {
     preloadAllPngBadges();
   } catch {}
