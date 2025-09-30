@@ -120,9 +120,26 @@ export class AppDoghouseItem extends LitElement {
       }
       #view-on-map-button::part(base) {
         font-size: 13px;
-        padding: 6px 12px;
-        border-radius: var(--border-radius-small);
-        box-shadow: none;
+        font-weight: 600;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-medium) 100%);
+        color: var(--color-white);
+        border: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        transition:
+          transform 0.2s ease,
+          filter 0.2s ease;
+      }
+      #view-on-map-button::part(base):hover {
+        transform: translateY(-1px);
+        filter: brightness(1.05);
+      }
+      #view-on-map-button::part(base):active {
+        transform: translateY(0);
+        filter: brightness(0.97);
       }
       #view-on-map-button sl-icon {
         font-size: 16px;
@@ -302,6 +319,7 @@ export class AppDoghouseItem extends LitElement {
             id="view-on-map-button"
             variant="default"
             size="small"
+            pill
             @click=${this.goToMap}
             title="${t('viewOnMap')}"
           >
