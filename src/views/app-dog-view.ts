@@ -1190,6 +1190,7 @@ export class AppDogView extends LitElement {
     const energyMaxPreview = (this.derived?.energyMax ?? 100) + 10 * staminaDelta;
     const reachPreview = (this.derived?.reachMeters ?? 200) + 10 * reachDelta;
     const doghouseHpPreview = (this.derived?.doghouseMaxHp ?? 100) + 20 * fortDelta;
+    const doghouseBuffs = (this.dogInfo?.buffsForDoghouses ?? []).filter((buff) => buff.quantity > 0);
 
     return this.dogInfo && this.newName
       ? html`
@@ -1531,8 +1532,7 @@ export class AppDogView extends LitElement {
                         <!-- Experience is shown in the Attributes card as a compact tile -->
 
                         <!-- Doghouse Buffs Card -->
-                        ${this.dogInfo?.buffsForDoghouses &&
-                        this.dogInfo.buffsForDoghouses.length > 0
+                        ${doghouseBuffs.length > 0
                           ? html`
                               <div class="stat-card doghouse-buffs-card">
                                 <div class="stat-header">
@@ -1542,7 +1542,7 @@ export class AppDogView extends LitElement {
                                   <div class="stat-title">${t('doghouseBuffs')}</div>
                                 </div>
                                 <div class="buffs-grid">
-                                  ${this.dogInfo.buffsForDoghouses.map(
+                                  ${doghouseBuffs.map(
                                     (buff) => html`
                                       <div class="buff-item-tile">
                                         <div class="buff-icon">

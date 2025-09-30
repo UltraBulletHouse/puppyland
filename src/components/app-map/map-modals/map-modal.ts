@@ -615,6 +615,9 @@ export class MapModal extends LitElement {
     // WEBSOCKETS
     // this.runSignal()
     const hpPercent = Math.round((Number(this.dhHp) / Number(this.dhMaxHp)) * 100);
+    const availableBuffs = this.isOwn
+      ? (this.dogInfo?.buffsForDoghouses ?? []).filter((buff) => buff.quantity > 0)
+      : [];
 
     const mainSection = html`
       <div id="map-modal-main-section" style="position: relative;">
@@ -806,7 +809,7 @@ export class MapModal extends LitElement {
           </div>
           <div class="buffs-list">
             ${this.isOwn
-              ? this.dogInfo?.buffsForDoghouses?.map(
+              ? availableBuffs.map(
                   (buff) => html`
                     <div class="buff-item" @click=${() => this.handleBuffClick(buff.buffSku)}>
                       ${this.buffToConfirm === buff.buffSku
