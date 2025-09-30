@@ -694,7 +694,7 @@ export class MapModal extends LitElement {
               @click=${this.handleDoghouseTap}
               style="cursor: pointer"
             >
-              <svg-icon name="dog-house-basic"></svg-icon>
+              <svg-icon name="doghouse-basic"></svg-icon>
             </div>
 
             <!-- Tapping instructions and progress dots overlaid on doghouse -->
