@@ -2,6 +2,7 @@ import { consume } from '@lit/context';
 import { LitElement, PropertyValueMap, css, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 
+import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
 import '@shoelace-style/shoelace/dist/components/relative-time/relative-time.js';
 
@@ -88,10 +89,18 @@ export class AppDoghouseItem extends LitElement {
       #edit-actions sl-icon[name='pencil'] {
         color: var(--color-primary);
       }
+      #footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
       #stats {
         display: flex;
         gap: 16px;
         align-items: center;
+        flex-wrap: wrap;
       }
       #hp-stat,
       #date-stat {
@@ -108,6 +117,15 @@ export class AppDoghouseItem extends LitElement {
       #date-stat sl-icon {
         color: var(--color-black-light);
         font-size: 14px;
+      }
+      #view-on-map-button::part(base) {
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: var(--border-radius-small);
+        box-shadow: none;
+      }
+      #view-on-map-button sl-icon {
+        font-size: 16px;
       }
       #hp-bar {
         width: 60px;
@@ -262,24 +280,42 @@ export class AppDoghouseItem extends LitElement {
               : ''}
         </div>
 
-        <div id="stats">
-          <div id="hp-stat">
-            <sl-icon name="heart-pulse"></sl-icon>
-            <span>${hp}/${maxHp}</span>
-            <div id="hp-bar">
-              <div id="hp-fill" class="${hpStateClass}" style="width: ${hpPercentage}%"></div>
+        <div id="footer">
+          <div id="stats">
+            <div id="hp-stat">
+              <sl-icon name="heart-pulse"></sl-icon>
+              <span>${hp}/${maxHp}</span>
+              <div id="hp-bar">
+                <div id="hp-fill" class="${hpStateClass}" style="width: ${hpPercentage}%"></div>
+              </div>
+            </div>
+
+            <div id="date-stat">
+              <sl-icon name="calendar-check"></sl-icon>
+              <sl-relative-time
+                lang="${document.documentElement.lang || 'en'}"
+                date=${createdDate}
+              ></sl-relative-time>
             </div>
           </div>
-
-          <div id="date-stat">
-            <sl-icon name="calendar-check"></sl-icon>
-            <sl-relative-time
-              lang="${document.documentElement.lang || 'en'}"
-              date=${createdDate}
-            ></sl-relative-time>
-          </div>
+          <sl-button
+            id="view-on-map-button"
+            variant="default"
+            size="small"
+            @click=${this.goToMap}
+            title="${t('viewOnMap')}"
+          >
+            <sl-icon slot="prefix" name="map"></sl-icon>
+            ${t('viewOnMap')}
+          </sl-button>
         </div>
       </div>
     `;
   }
+
+  private goToMap = () => {
+    if (!this.dogouseInfo) return;
+    const detail = { ...this.dogouseInfo };
+    sendEvent<{ doghouse: Doghouse }>(this, 'focusDoghouse', { doghouse: detail });
+  };
 }

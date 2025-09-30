@@ -2,7 +2,7 @@ import { provide } from '@lit/context';
 import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
 import { User } from 'firebase/auth';
 import { LitElement, css, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { cache } from 'lit/directives/cache.js';
 
 /* Common components loaded here */
@@ -23,6 +23,7 @@ import { translationsReady } from './i18n';
 import './styles/global.css';
 import { sharedStyles } from './styles/shared-styles';
 import { DogInfo } from './types/dog';
+import { Doghouse } from './types/doghouse';
 import { UserInfo, UserInfoResponse } from './types/userInfo';
 import { View } from './types/view';
 import { apiCall } from './utils/apiUtils';
@@ -87,6 +88,9 @@ export class AppIndex extends LitElement {
 
   @property({ type: Boolean })
   isLoading: boolean = true;
+
+  @state()
+  private pendingMapFocus: Doghouse | null = null;
 
   updateDogInfo(event: CustomEvent<DogInfo>) {
     this.dogInfo = event.detail;
@@ -262,6 +266,17 @@ export class AppIndex extends LitElement {
     window.addEventListener('focus', handler);
   }
 
+  private focusDoghouse = (event: CustomEvent<{ doghouse: Doghouse }>) => {
+    const doghouse = event.detail?.doghouse;
+    if (!doghouse) return;
+    this.pendingMapFocus = { ...doghouse };
+    this.view = View.MAP_VIEW;
+  };
+
+  private handleMapFocusConsumed = () => {
+    this.pendingMapFocus = null;
+  };
+
   renderContent(view: View) {
     if (this.isLoading) {
       return html`<app-loading-view></app-loading-view>`;
@@ -274,7 +289,10 @@ export class AppIndex extends LitElement {
       }
       case View.MAP_VIEW: {
         import('./views/app-map-view');
-        return html`<app-map-view @updateDogInfo=${this.updateDogInfo}></app-map-view>`;
+        return html`<app-map-view
+          @updateDogInfo=${this.updateDogInfo}
+          .focusTarget=${this.pendingMapFocus}
+        ></app-map-view>`;
       }
       case View.USER_VIEW: {
         import('./views/app-user-view');
@@ -310,6 +328,8 @@ export class AppIndex extends LitElement {
         @updateView=${this.updateView}
         @updateUserInfo=${this.updateUserInfo}
         @updateDogInfo=${this.updateDogInfo}
+        @focusDoghouse=${this.focusDoghouse}
+        @mapFocusConsumed=${this.handleMapFocusConsumed}
       >
         <!-- <div id="content">${cache(
           this.renderContent(this.view)

@@ -1,8 +1,9 @@
 import { LitElement, css, html } from 'lit';
-import { customElement } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 import '../components/app-map/app-map';
 import { sharedStyles } from '../styles/shared-styles';
+import { Doghouse } from '../types/doghouse';
 
 @customElement('app-map-view')
 export class AppMapView extends LitElement {
@@ -16,10 +17,13 @@ export class AppMapView extends LitElement {
     `,
   ];
 
+  @property({ attribute: false })
+  focusTarget: Doghouse | null = null;
+
   render() {
     return html`
       <div id="container">
-        <app-map></app-map>
+        <app-map .focusTarget=${this.focusTarget}></app-map>
       </div>
     `;
   }

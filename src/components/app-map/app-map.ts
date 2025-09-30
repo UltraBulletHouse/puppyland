@@ -29,6 +29,7 @@ import { getI18nMessage } from '../../utils/errorUtils';
 import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
 import { toastDanger, toastWarning } from '../../utils/toastUtils';
+import { sendEvent } from '../../utils/eventUtils';
 import '../level-up-modal/level-up-modal';
 import { AppMapStyles } from './app-map-styles';
 import './map-popup/map-popup';
@@ -81,12 +82,86 @@ export class AppMap extends LitElement {
   @state()
   isLevelUp: boolean = false;
 
+  @property({ attribute: false })
+  focusTarget: Doghouse | null = null;
+
+  private pendingFocus: Doghouse | null = null;
+
+  private hasCenteredForPendingFocus = false;
+
+  private lastFocusedDoghouse: Doghouse | null = null;
+
   openPopup(id: string | null) {
     this.openPopupId = id;
   }
 
   closePopup() {
     this.map?.closePopup();
+  }
+
+  private ensureDoghousePresent(target: Doghouse) {
+    if (!target) return;
+    if (!this.doghouses) {
+      this.doghouses = [target];
+      this.setDoghousesMarkers();
+      return;
+    }
+
+    const index = this.doghouses.findIndex((doghouse) => doghouse.id === target.id);
+    if (index === -1) {
+      this.doghouses = [...this.doghouses, target];
+      this.setDoghousesMarkers();
+      return;
+    }
+
+    const existing = this.doghouses[index];
+    if (
+      existing.lat !== target.lat ||
+      existing.lng !== target.lng ||
+      existing.hp !== target.hp ||
+      existing.maxHp !== target.maxHp ||
+      existing.name !== target.name
+    ) {
+      const next = [...this.doghouses];
+      next[index] = target;
+      this.doghouses = next;
+      this.setDoghousesMarkers();
+    }
+  }
+
+  private ensureBoundsInclude(lat: number, lng: number) {
+    if (!this.map) return;
+    const targetLatLng = L.latLng(lat, lng);
+    const currentBounds = this.map.options.maxBounds as L.LatLngBounds | undefined | null;
+    if (currentBounds && !currentBounds.contains(targetLatLng)) {
+      const expanded = L.latLngBounds(currentBounds.getSouthWest(), currentBounds.getNorthEast());
+      expanded.extend(targetLatLng);
+      this.map.setMaxBounds(expanded);
+    }
+  }
+
+  private attemptPendingFocus() {
+    if (!this.pendingFocus || !this.map) return;
+
+    const target = this.pendingFocus;
+
+    if (!this.hasCenteredForPendingFocus) {
+      this.ensureBoundsInclude(target.lat, target.lng);
+      const currentZoom = this.map.getZoom();
+      const desiredZoom = Number.isFinite(currentZoom) ? Math.max(currentZoom, 17) : 17;
+      this.map.flyTo([target.lat, target.lng], desiredZoom, { animate: true });
+      this.hasCenteredForPendingFocus = true;
+    }
+
+    if (!this.doghouses || !this.doghouses.some((doghouse) => doghouse.id === target.id)) {
+      return;
+    }
+
+    this.openPopup(target.id);
+    this.pendingFocus = null;
+    this.hasCenteredForPendingFocus = false;
+    this.setDoghousesMarkers();
+    sendEvent(this, 'mapFocusConsumed', { id: target.id });
   }
 
   centerPosition() {
@@ -186,6 +261,8 @@ export class AppMap extends LitElement {
         this.doghouseMarkers.push(marker);
       }
     });
+
+    this.attemptPendingFocus();
   }
 
   async getDoghousesList() {
@@ -201,8 +278,16 @@ export class AppMap extends LitElement {
     });
 
     if (!doghousesList) return;
-    this.doghouses = doghousesList;
+    let mergedDoghouses = [...doghousesList];
+    if (this.lastFocusedDoghouse) {
+      const exists = mergedDoghouses.some((doghouse) => doghouse.id === this.lastFocusedDoghouse?.id);
+      if (!exists) {
+        mergedDoghouses = [...mergedDoghouses, this.lastFocusedDoghouse];
+      }
+    }
+    this.doghouses = mergedDoghouses;
     this.setDoghousesMarkers();
+    this.attemptPendingFocus();
 
     const { latitudeMax, latitudeMin, longitudeMax, longitudeMin } = geoRange;
     const northEast = L.latLng(latitudeMax, longitudeMax);
@@ -313,6 +398,24 @@ export class AppMap extends LitElement {
   }
 
   updated(changedProperties: PropertyValues<this>): void {
+    if (changedProperties.has('focusTarget')) {
+      if (this.focusTarget) {
+        const target = { ...this.focusTarget };
+        this.pendingFocus = target;
+        this.lastFocusedDoghouse = target;
+        this.hasCenteredForPendingFocus = false;
+        this.ensureDoghousePresent(target);
+        this.attemptPendingFocus();
+      } else {
+        this.pendingFocus = null;
+        this.hasCenteredForPendingFocus = false;
+      }
+    }
+
+    if (changedProperties.has('doghouses')) {
+      this.attemptPendingFocus();
+    }
+
     if (changedProperties.has('userPos') && this.map && this.userPos) {
       const { lat, lng } = this.userPos;
       this.map.setView([lat, lng], 17);
@@ -352,6 +455,7 @@ export class AppMap extends LitElement {
     this.map.attributionControl.setPosition('topright');
 
     this.watchUserPos();
+    this.attemptPendingFocus();
   }
 
   closeLevelUpModal = () => {
