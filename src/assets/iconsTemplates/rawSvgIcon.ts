@@ -2,7 +2,10 @@ import { html, TemplateResult } from 'lit';
 import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 
 // Lazily import all SVGs in ../icons as raw strings
-const rawSvgs = import.meta.glob('../icons/*.svg', { as: 'raw' }) as Record<
+const rawSvgs = import.meta.glob('../icons/*.svg', {
+  import: 'default',
+  query: '?raw',
+}) as Record<
   string,
   () => Promise<string>
 >;
@@ -13,6 +16,23 @@ for (const path in rawSvgs) {
   const base = path.split('/').pop() || path;
   const name = base.replace(/\.svg$/i, '');
   byName[name] = rawSvgs[path];
+}
+
+let rawSvgPreloadPromise: Promise<void> | null = null;
+
+export function preloadRawSvgIcons(): Promise<void> {
+  if (!rawSvgPreloadPromise) {
+    rawSvgPreloadPromise = Promise.all(
+      Object.values(byName).map(async (loader) => {
+        try {
+          await loader();
+        } catch {}
+      })
+    )
+      .then(() => {})
+      .catch(() => {});
+  }
+  return rawSvgPreloadPromise;
 }
 
 function normalizeName(name: string): string {

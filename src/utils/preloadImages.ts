@@ -1,25 +1,25 @@
 // Lightweight image and icon preloader to avoid first-use flicker
 // Uses the same URL resolution helpers as components so paths match Vite bundling
 
+import { preloadRawSvgIcons } from '../assets/iconsTemplates/rawSvgIcon';
 import { getImagePngUrl } from './getImage';
 
 let preloadedBitmaps: HTMLImageElement[] = [];
+
+function addBitmap(src: string) {
+  const img = new Image();
+  (img as any).fetchpriority = 'low';
+  img.decoding = 'async';
+  img.src = src;
+  preloadedBitmaps.push(img);
+  if ('decode' in img) (img as any).decode?.().catch(() => {});
+}
 
 export function preloadPngBadges(names: string[]) {
   try {
     names.forEach((name) => {
       const src = getImagePngUrl(name);
-      const img = new Image();
-      // Hint lower priority; these are small but not critical
-      (img as any).fetchpriority = 'low';
-      img.decoding = 'async';
-      img.src = src;
-      // Keep a reference so the GC doesn't collect before decode finishes
-      preloadedBitmaps.push(img);
-      // Trigger decode to avoid paint hitch on first display
-      if ('decode' in img) {
-        (img as any).decode?.().catch(() => {});
-      }
+      addBitmap(src);
     });
   } catch {}
 }
@@ -30,17 +30,23 @@ export function preloadAllPngBadges() {
     // The 'as: "url"' option returns resolved URLs for the files
     const files = import.meta.glob('../assets/icons-png/*.png', {
       eager: true,
-      as: 'url',
+      import: 'default',
+      query: '?url',
     }) as Record<string, string>;
     const urls = Object.values(files);
-    urls.forEach((src) => {
-      const img = new Image();
-      (img as any).fetchpriority = 'low';
-      img.decoding = 'async';
-      img.src = src;
-      preloadedBitmaps.push(img);
-      if ('decode' in img) (img as any).decode?.().catch(() => {});
-    });
+    urls.forEach((src) => addBitmap(src));
+  } catch {}
+}
+
+// Preload all inline SVG marker/icon assets
+export function preloadAllSvgIcons() {
+  try {
+    const files = import.meta.glob('../assets/icons/*.svg', {
+      eager: true,
+      import: 'default',
+      query: '?url',
+    }) as Record<string, string>;
+    Object.values(files).forEach((src) => addBitmap(src));
   } catch {}
 }
 
@@ -81,4 +87,48 @@ export async function preloadSvgTemplates(names: string[]) {
       } catch {}
     })
   );
+}
+
+let svgTemplatePreloadPromise: Promise<void> | null = null;
+
+export function preloadAllSvgTemplates(): Promise<void> {
+  if (!svgTemplatePreloadPromise) {
+    const modules = import.meta.glob('../assets/iconsTemplates/*.ts');
+    svgTemplatePreloadPromise = Promise.all(
+      Object.entries(modules)
+        .filter(([path]) => !path.endsWith('/rawSvgIcon.ts'))
+        .map(async ([, loader]) => {
+          try {
+            await loader();
+          } catch {}
+        })
+    )
+      .then(() => {})
+      .catch(() => {});
+  }
+  return svgTemplatePreloadPromise;
+}
+
+export function preloadImagesAndIconsOnAppLoad(options: {
+  shoelaceIcons?: string[];
+  staticAssetUrls?: string[];
+} = {}) {
+  try {
+    preloadAllPngBadges();
+  } catch {}
+  try {
+    preloadAllSvgIcons();
+  } catch {}
+  void preloadAllSvgTemplates();
+  void preloadRawSvgIcons();
+
+  if (options.shoelaceIcons?.length) {
+    const unique = [...new Set(options.shoelaceIcons)];
+    void preloadShoelaceIcons(unique);
+  }
+
+  if (options.staticAssetUrls?.length) {
+    const unique = [...new Set(options.staticAssetUrls)];
+    void preloadStaticUrls(unique);
+  }
 }
