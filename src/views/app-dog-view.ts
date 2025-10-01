@@ -190,7 +190,9 @@ export class AppDogView extends LitElement {
         background: color-mix(in srgb, var(--color-surface-strong) 90%, transparent);
         box-shadow: 0 6px 10px rgba(0, 0, 0, 0.18);
         cursor: pointer;
-        transition: background 0.2s ease, transform 0.2s ease;
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
         padding: 0;
       }
       .icon-switch sl-icon::part(base) {
@@ -1440,11 +1442,7 @@ export class AppDogView extends LitElement {
                 </div>
               </div>
               <div id="dog-image">
-                <div
-                  id="dog-image-circle"
-                  class=${circleClass}
-                  @click=${this.confirmIconSelection}
-                >
+                <div id="dog-image-circle" class=${circleClass} @click=${this.confirmIconSelection}>
                   ${this.iconPickerOpen
                     ? html`
                         <button
