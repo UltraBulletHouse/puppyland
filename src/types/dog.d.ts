@@ -17,6 +17,7 @@ export interface DogInfo {
   expForNextLevel: number;
   buffsForDoghouses: DogBuffs[] | null;
   buffsForDog: DogBuffs[] | null;
+  iconKey?: string | null;
   photo: null;
 }
 
@@ -35,7 +36,8 @@ export interface DogInfoResponse {
 
 export interface DogInfoUpdateRequest {
   dogId: string;
-  name: string;
+  name?: string;
+  iconKey?: string;
 }
 
 export interface DogInfoUpdateResponse {
