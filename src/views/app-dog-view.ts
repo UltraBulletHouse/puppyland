@@ -7,7 +7,6 @@ import '@shoelace-style/shoelace/dist/components/button/button.js';
 import '@shoelace-style/shoelace/dist/components/drawer/drawer.js';
 import '@shoelace-style/shoelace/dist/components/icon-button/icon-button.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
-import '@shoelace-style/shoelace/dist/components/popup/popup.js';
 import '@shoelace-style/shoelace/dist/components/range/range.js';
 import '@shoelace-style/shoelace/dist/components/tab-group/tab-group.js';
 import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
@@ -31,6 +30,33 @@ import { t, ti } from '../i18n';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogDerivedStats, DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
 import { apiCall } from '../utils/apiUtils';
+
+type IconKey =
+  | 'dogface-basic'
+  | 'dogface-husky'
+  | 'dogface-shiba'
+  | 'dogface-french'
+  | 'dogface-bull'
+  | 'dogface-chihuahua';
+
+type IconOption = { key: IconKey; premium: boolean };
+
+const ICON_OPTIONS: ReadonlyArray<IconOption> = [
+  { key: 'dogface-basic', premium: false },
+  { key: 'dogface-husky', premium: true },
+  { key: 'dogface-shiba', premium: true },
+  { key: 'dogface-french', premium: true },
+  { key: 'dogface-bull', premium: true },
+  { key: 'dogface-chihuahua', premium: true },
+];
+
+const DEFAULT_ICON: IconKey = 'dogface-basic';
+
+const isIconKey = (value: unknown): value is IconKey =>
+  ICON_OPTIONS.some((option) => option.key === value);
+
+const isPremiumIcon = (key: IconKey): boolean =>
+  ICON_OPTIONS.some((option) => option.key === key && option.premium);
 
 @customElement('app-dog-view')
 export class AppDogView extends LitElement {
@@ -114,6 +140,7 @@ export class AppDogView extends LitElement {
         margin-bottom: 12px;
       }
       #dog-image-circle {
+        position: relative;
         font-size: 70px;
         height: 100px;
         width: 100px;
@@ -126,9 +153,58 @@ export class AppDogView extends LitElement {
         outline: 2px solid var(--color-primary-medium);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       }
+      #dog-image-circle.picker-open {
+        cursor: pointer;
+        outline-width: 3px;
+      }
+      #dog-image-circle.premium-locked {
+        outline-color: var(--gold);
+      }
       #dog-image-circle svg-icon {
         width: 70%;
         height: 70%;
+      }
+      .icon-pro-pill {
+        position: absolute;
+        top: -10px;
+        right: -12px;
+        background: var(--gold);
+        color: #3a2a00;
+        font-size: 10px;
+        font-weight: 800;
+        padding: 4px 8px;
+        border-radius: 999px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+      .icon-switch {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 32px;
+        height: 32px;
+        border-radius: 999px;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: color-mix(in srgb, var(--color-surface-strong) 90%, transparent);
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.18);
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+        padding: 0;
+      }
+      .icon-switch sl-icon::part(base) {
+        font-size: 18px;
+      }
+      .icon-switch--left {
+        left: -44px;
+      }
+      .icon-switch--right {
+        right: -44px;
+      }
+      .icon-switch:hover {
+        background: color-mix(in srgb, var(--color-surface-strong) 100%, var(--primary) 10%);
+        transform: translateY(-50%) scale(1.05);
       }
       #dog-name {
         display: flex;
@@ -1008,6 +1084,12 @@ export class AppDogView extends LitElement {
   @state()
   iconPickerOpen: boolean = false;
 
+  @state()
+  iconPreviewKey: IconKey | null = null;
+
+  @state()
+  previewRequiresPremium: boolean = false;
+
   // Derived stats from backend for display
   @state()
   derived: DogDerivedStats | null = null;
@@ -1112,13 +1194,72 @@ export class AppDogView extends LitElement {
     this.isEditingName = false;
   }
 
+  private getIconOption(key: IconKey): IconOption {
+    return ICON_OPTIONS.find((option) => option.key === key) ?? ICON_OPTIONS[0];
+  }
+
+  private getCurrentIconKey(): IconKey {
+    const key = this.dogInfo?.iconKey;
+    return isIconKey(key) ? key : DEFAULT_ICON;
+  }
+
   toggleIconPicker = () => {
-    this.iconPickerOpen = !this.iconPickerOpen;
+    const isOpening = !this.iconPickerOpen;
+    this.iconPickerOpen = isOpening;
+    if (isOpening) {
+      const currentKey = this.getCurrentIconKey();
+      this.iconPreviewKey = currentKey;
+      this.previewRequiresPremium = this.getIconOption(currentKey).premium;
+    } else {
+      this.iconPreviewKey = null;
+      this.previewRequiresPremium = false;
+    }
   };
 
-  async selectIcon(key: 'dogface-basic' | 'dogHead' | 'dogPaw') {
-    // Premium gating on frontend for UX (backend also enforces)
-    const premiumRequired = key === 'dogPaw';
+  handleNavigateClick(event: Event, direction: -1 | 1) {
+    event.stopPropagation();
+    this.navigateIcon(direction);
+  }
+
+  navigateIcon(direction: -1 | 1) {
+    if (!ICON_OPTIONS.length || !this.iconPickerOpen) return;
+
+    const activeKey = this.iconPreviewKey ?? this.getCurrentIconKey();
+    const total = ICON_OPTIONS.length;
+    let currentIndex = ICON_OPTIONS.findIndex((option) => option.key === activeKey);
+    if (currentIndex === -1) {
+      currentIndex = 0;
+    }
+
+    for (let step = 0; step < total; step += 1) {
+      currentIndex = (currentIndex + direction + total) % total;
+      const candidate = ICON_OPTIONS[currentIndex];
+      if (candidate.key === activeKey) {
+        continue;
+      }
+      this.iconPreviewKey = candidate.key;
+      this.previewRequiresPremium = candidate.premium;
+      return;
+    }
+  }
+
+  confirmIconSelection = () => {
+    if (!this.iconPickerOpen) return;
+
+    const currentKey = this.getCurrentIconKey();
+    const selectedKey = this.iconPreviewKey ?? currentKey;
+    if (selectedKey === currentKey) {
+      this.iconPickerOpen = false;
+      this.iconPreviewKey = null;
+      this.previewRequiresPremium = false;
+      return;
+    }
+
+    this.selectIcon(selectedKey);
+  };
+
+  async selectIcon(key: IconKey) {
+    const premiumRequired = isPremiumIcon(key);
     const isPremium = this.userInfo?.isPremium === true;
     if (premiumRequired && !isPremium) {
       const { toastWarning } = await import('../utils/toastUtils');
@@ -1139,6 +1280,8 @@ export class AppDogView extends LitElement {
       const { toastSuccess } = await import('../utils/toastUtils');
       toastSuccess(t('iconUpdated') || 'Icon updated.');
       this.iconPickerOpen = false;
+      this.iconPreviewKey = null;
+      this.previewRequiresPremium = false;
     } catch (err) {
       const { getI18nMessage } = await import('../utils/errorUtils');
       const msg = getI18nMessage(err) ?? (t('iconUpdateFailed') || 'Failed to update icon.');
@@ -1237,6 +1380,21 @@ export class AppDogView extends LitElement {
       (buff) => buff.quantity > 0
     );
 
+    const previousIconLabel = t('previousIcon') || 'Previous icon';
+    const nextIconLabel = t('nextIcon') || 'Next icon';
+    const currentIconKey = this.getCurrentIconKey();
+    const displayIconKey = this.iconPickerOpen
+      ? this.iconPreviewKey ?? currentIconKey
+      : currentIconKey;
+    const isPremiumPreview = this.iconPickerOpen && this.previewRequiresPremium;
+    const isPremiumUser = this.userInfo?.isPremium === true;
+    const circleClass = [
+      this.iconPickerOpen ? 'picker-open' : '',
+      isPremiumPreview && !isPremiumUser ? 'premium-locked' : '',
+    ]
+      .filter(Boolean)
+      .join(' ');
+
     return this.dogInfo && this.newName
       ? html`
           <div id="container">
@@ -1282,33 +1440,44 @@ export class AppDogView extends LitElement {
                 </div>
               </div>
               <div id="dog-image">
-                <div id="dog-image-circle">
-                  <svg-icon name="${this.dogInfo?.iconKey || 'dogface-basic'}"></svg-icon>
-                </div>
-                <sl-popup
-                  .active=${this.iconPickerOpen}
-                  placement="bottom"
-                  strategy="fixed"
-                  distance="8"
-                  flip
+                <div
+                  id="dog-image-circle"
+                  class=${circleClass}
+                  @click=${this.confirmIconSelection}
                 >
-                  <div style="background: var(--color-surface-strong); border: 1px solid var(--color-surface-border); padding: 8px; border-radius: 12px; display: grid; grid-template-columns: repeat(3, 48px); gap: 8px;">
-                    <button title="Basic" style="all: unset; cursor: pointer; width: 48px; height: 48px; display:flex; align-items:center; justify-content:center; border: 1px solid var(--color-surface-border); border-radius: 10px; background: #fff;"
-                      @click=${() => this.selectIcon('dogface-basic')}>
-                      <svg-icon name="dogface-basic"></svg-icon>
-                    </button>
-                    <button title="Dog Head" style="all: unset; cursor: pointer; width: 48px; height: 48px; display:flex; align-items:center; justify-content:center; border: 1px solid var(--color-surface-border); border-radius: 10px; background: #fff;"
-                      @click=${() => this.selectIcon('dogHead')}>
-                      <svg-icon name="dogHead"></svg-icon>
-                    </button>
-                    <button title="Paw (Premium)" style="all: unset; cursor: pointer; width: 48px; height: 48px; display:flex; align-items:center; justify-content:center; border: 1px solid var(--color-surface-border); border-radius: 10px; background: #fff; position: relative;"
-                      @click=${() => this.selectIcon('dogPaw')}>
-                      <svg-icon name="dogPaw"></svg-icon>
-                      ${this.userInfo?.isPremium ? '' : html`<span style="position:absolute; top: -6px; right:-6px; background: var(--gold); color:#3a2a00; font-size: 10px; padding: 2px 4px; border-radius: 999px; font-weight: 800;">PRO</span>`}
-                    </button>
-                  </div>
-                </sl-popup>
-                <sl-icon-button name="palette" label="Change icon" @click=${this.toggleIconPicker}></sl-icon-button>
+                  ${this.iconPickerOpen
+                    ? html`
+                        <button
+                          class="icon-switch icon-switch--left"
+                          type="button"
+                          @click=${(event: Event) => this.handleNavigateClick(event, -1)}
+                          aria-label="${previousIconLabel}"
+                          title="${previousIconLabel}"
+                        >
+                          <sl-icon name="chevron-left"></sl-icon>
+                        </button>
+                        <button
+                          class="icon-switch icon-switch--right"
+                          type="button"
+                          @click=${(event: Event) => this.handleNavigateClick(event, 1)}
+                          aria-label="${nextIconLabel}"
+                          title="${nextIconLabel}"
+                        >
+                          <sl-icon name="chevron-right"></sl-icon>
+                        </button>
+                      `
+                    : ''}
+                  <svg-icon name="${displayIconKey}"></svg-icon>
+                  ${isPremiumPreview && !isPremiumUser
+                    ? html`<span class="icon-pro-pill">PRO</span>`
+                    : ''}
+                </div>
+                <sl-icon-button
+                  name="palette"
+                  label="${t('changeIcon') || 'Change icon'}"
+                  aria-pressed="${this.iconPickerOpen}"
+                  @click=${this.toggleIconPicker}
+                ></sl-icon-button>
               </div>
               <div id="dog-name">
                 ${this.isEditingName

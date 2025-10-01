@@ -35,6 +35,7 @@ export class SvgIcon extends LitElement {
       if (!this.name) {
         throw new Error('"name" is not defined for svg-icon element');
       }
+      this.svgElement = undefined;
       // First try a named template export from iconsTemplates/{name}.ts
       try {
         const svgIcon = await import(`../../assets/iconsTemplates/${this.name}.ts`);
@@ -58,6 +59,12 @@ export class SvgIcon extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this.loadSVG();
+  }
+
+  updated(changed: Map<string, unknown>) {
+    if (changed.has('name') && changed.get('name') !== this.name) {
+      this.loadSVG();
+    }
   }
 
   render() {
