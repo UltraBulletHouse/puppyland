@@ -137,6 +137,7 @@ export class AppDogView extends LitElement {
         padding: 4px;
       }
       #dog-image {
+        margin-top: 28px;
         margin-bottom: 24px;
         display: inline-flex;
         justify-content: center;
