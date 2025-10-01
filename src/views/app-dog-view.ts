@@ -1004,6 +1004,10 @@ export class AppDogView extends LitElement {
   @state()
   detailsIcon: string = 'info-circle';
 
+  // Icon picker state
+  @state()
+  iconPickerOpen: boolean = false;
+
   // Derived stats from backend for display
   @state()
   derived: DogDerivedStats | null = null;
@@ -1106,6 +1110,41 @@ export class AppDogView extends LitElement {
 
   onCloseEditing() {
     this.isEditingName = false;
+  }
+
+  toggleIconPicker = () => {
+    this.iconPickerOpen = !this.iconPickerOpen;
+  };
+
+  async selectIcon(key: 'dogface-basic' | 'dogHead' | 'dogPaw') {
+    // Premium gating on frontend for UX (backend also enforces)
+    const premiumRequired = key === 'dogPaw';
+    const isPremium = this.userInfo?.isPremium === true;
+    if (premiumRequired && !isPremium) {
+      const { toastWarning } = await import('../utils/toastUtils');
+      toastWarning(t('premiumRequired') || 'Premium required for this icon.');
+      return;
+    }
+
+    if (!this.accessToken || !this.dogInfo) return;
+    try {
+      const resp = await apiCall(this.accessToken).patch<DogInfoUpdateResponse>(API_DOG_UPDATE, {
+        dogId: this.dogInfo.id,
+        iconKey: key,
+      });
+      const updated = resp.data?.dog;
+      if (updated) {
+        updateDogInfoEvent(this, updated);
+      }
+      const { toastSuccess } = await import('../utils/toastUtils');
+      toastSuccess(t('iconUpdated') || 'Icon updated.');
+      this.iconPickerOpen = false;
+    } catch (err) {
+      const { getI18nMessage } = await import('../utils/errorUtils');
+      const msg = getI18nMessage(err) ?? (t('iconUpdateFailed') || 'Failed to update icon.');
+      const { toastDanger } = await import('../utils/toastUtils');
+      toastDanger(msg);
+    }
   }
 
   async firstUpdated() {
@@ -1244,8 +1283,32 @@ export class AppDogView extends LitElement {
               </div>
               <div id="dog-image">
                 <div id="dog-image-circle">
-                  <svg-icon name="dogface-basic"></svg-icon>
+                  <svg-icon name="${this.dogInfo?.iconKey || 'dogface-basic'}"></svg-icon>
                 </div>
+                <sl-popup
+                  .active=${this.iconPickerOpen}
+                  placement="bottom"
+                  strategy="fixed"
+                  distance="8"
+                  flip
+                >
+                  <div style="background: var(--color-surface-strong); border: 1px solid var(--color-surface-border); padding: 8px; border-radius: 12px; display: grid; grid-template-columns: repeat(3, 48px); gap: 8px;">
+                    <button title="Basic" style="all: unset; cursor: pointer; width: 48px; height: 48px; display:flex; align-items:center; justify-content:center; border: 1px solid var(--color-surface-border); border-radius: 10px; background: #fff;"
+                      @click=${() => this.selectIcon('dogface-basic')}>
+                      <svg-icon name="dogface-basic"></svg-icon>
+                    </button>
+                    <button title="Dog Head" style="all: unset; cursor: pointer; width: 48px; height: 48px; display:flex; align-items:center; justify-content:center; border: 1px solid var(--color-surface-border); border-radius: 10px; background: #fff;"
+                      @click=${() => this.selectIcon('dogHead')}>
+                      <svg-icon name="dogHead"></svg-icon>
+                    </button>
+                    <button title="Paw (Premium)" style="all: unset; cursor: pointer; width: 48px; height: 48px; display:flex; align-items:center; justify-content:center; border: 1px solid var(--color-surface-border); border-radius: 10px; background: #fff; position: relative;"
+                      @click=${() => this.selectIcon('dogPaw')}>
+                      <svg-icon name="dogPaw"></svg-icon>
+                      ${this.userInfo?.isPremium ? '' : html`<span style="position:absolute; top: -6px; right:-6px; background: var(--gold); color:#3a2a00; font-size: 10px; padding: 2px 4px; border-radius: 999px; font-weight: 800;">PRO</span>`}
+                    </button>
+                  </div>
+                </sl-popup>
+                <sl-icon-button name="palette" label="Change icon" @click=${this.toggleIconPicker}></sl-icon-button>
               </div>
               <div id="dog-name">
                 ${this.isEditingName
