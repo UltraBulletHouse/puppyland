@@ -137,7 +137,12 @@ export class AppDogView extends LitElement {
         padding: 4px;
       }
       #dog-image {
-        margin-bottom: 12px;
+        margin-bottom: 24px;
+        display: inline-flex;
+        justify-content: center;
+        position: relative;
+        width: 120px;
+        padding-bottom: 18px;
       }
       #dog-image-circle {
         position: relative;
@@ -175,6 +180,11 @@ export class AppDogView extends LitElement {
         padding: 4px 8px;
         border-radius: 999px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+      }
+      .palette-trigger {
+        position: absolute;
+        bottom: 0;
+        left: 0;
       }
       .icon-switch {
         position: absolute;
@@ -1474,6 +1484,7 @@ export class AppDogView extends LitElement {
                   name="palette"
                   label="${t('changeIcon') || 'Change icon'}"
                   aria-pressed="${this.iconPickerOpen}"
+                  class="palette-trigger"
                   @click=${this.toggleIconPicker}
                 ></sl-icon-button>
               </div>
