@@ -285,7 +285,7 @@ export class AppDogView extends LitElement {
       sl-tab-panel {
         overflow-y: auto;
         padding: 0;
-        height: calc(100vh - 270px);
+        height: calc(-320px + 100vh);
       }
       sl-tab::part(base) {
         display: inline-flex;
