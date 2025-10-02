@@ -25,7 +25,7 @@ export class IconSvgBadge extends LitElement {
 
       .badge {
         position: absolute;
-        right: -4px;
+        right: -14px;
         top: -6px;
         font-size: 13px;
         padding: 1px 4px 0;
