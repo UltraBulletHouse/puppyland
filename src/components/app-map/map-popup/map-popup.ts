@@ -53,6 +53,9 @@ export class MapPopup extends LitElement {
   @property({ type: String })
   dhMaxHp?: string;
 
+  @property({ type: String })
+  dogIcon?: string;
+
   @state()
   dhHpLocal?: string;
 
@@ -73,6 +76,17 @@ export class MapPopup extends LitElement {
       : ['dhName=', 'dogName='];
     const matched = prefixes.find((prefix) => decoded.startsWith(prefix));
     return matched ? decoded.slice(matched.length) : decoded;
+  }
+
+  private decodeDogIcon(value: string | undefined | null): string {
+    if (!value) {
+      return 'dogface-basic';
+    }
+    try {
+      return decodeURIComponent(value);
+    } catch (_error) {
+      return 'dogface-basic';
+    }
   }
 
   closeMapModal = (_e?: CustomEvent<{ manual?: boolean }>) => {
@@ -370,7 +384,7 @@ export class MapPopup extends LitElement {
         <div id="lower-section">
           <div id="owner-section">
             <div id="dog-icon">
-              <svg-icon name="dogface-basic"></svg-icon>
+              <svg-icon .name=${this.decodeDogIcon(this.dogIcon)}></svg-icon>
             </div>
             <div id="dog-name">${this.decodeValue(this.dogName, 'dogName=')}</div>
           </div>

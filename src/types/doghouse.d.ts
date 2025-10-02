@@ -4,6 +4,7 @@ export interface Doghouse {
   id: string;
   dogId: string;
   dogName: string;
+  dogIcon: string;
   name: string;
   lat: number;
   lng: number;
