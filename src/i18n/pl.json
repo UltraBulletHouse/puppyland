@@ -58,6 +58,7 @@
     "purchaseSuccessTitle": "Zakup udany",
     "purchaseTreatsSuccessDesc": "Wydano {spent} smakołyków na {item}.",
     "purchaseRealSuccessDesc": "Pomyślnie zakupiono {quantity} × {item}.",
+    "purchaseTreatsReceivedDesc": "Otrzymano {quantity} × {item}.",
     "purchaseFailed": "Zakup nie powiódł się. Spróbuj ponownie.",
     "product": {
       "treats": "Smakołyki",

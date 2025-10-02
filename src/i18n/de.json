@@ -58,6 +58,7 @@
     "purchaseSuccessTitle": "Kauf erfolgreich",
     "purchaseTreatsSuccessDesc": "Du hast {spent} Leckerlis für {item} ausgegeben.",
     "purchaseRealSuccessDesc": "Du hast erfolgreich {quantity} × {item} gekauft.",
+    "purchaseTreatsReceivedDesc": "Du hast {quantity} × {item} erhalten.",
     "purchaseFailed": "Kauf fehlgeschlagen. Bitte versuche es erneut.",
     "product": {
       "treats": "Leckerlis",

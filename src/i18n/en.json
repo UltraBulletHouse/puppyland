@@ -57,7 +57,8 @@
     "total": "Total",
     "purchaseSuccessTitle": "Purchase Successful",
     "purchaseTreatsSuccessDesc": "You spent {spent} Treats on {item}.",
-    "purchaseRealSuccessDesc": "You have successfully purchased {quantity} of {item}.",
+    "purchaseRealSuccessDesc": "You have successfully purchased {quantity} × {item}.",
+    "purchaseTreatsReceivedDesc": "You have received {quantity} × {item}.",
     "purchaseFailed": "Purchase failed. Please try again.",
     "product": {
       "treats": "Treats",
