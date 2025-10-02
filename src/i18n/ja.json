@@ -58,6 +58,7 @@
     "purchaseSuccessTitle": "購入に成功しました",
     "purchaseTreatsSuccessDesc": "{item} に {spent} 個のおやつを使いました。",
     "purchaseRealSuccessDesc": "{item} を {quantity} 個購入しました。",
+    "purchaseTreatsReceivedDesc": "{item} を {quantity} 個受け取りました。",
     "purchaseFailed": "購入に失敗しました。もう一度お試しください。",
     "product": {
       "treats": "おやつ",

@@ -58,6 +58,7 @@
     "purchaseSuccessTitle": "购买成功",
     "purchaseTreatsSuccessDesc": "您花费了 {spent} 个零食购买 {item}。",
     "purchaseRealSuccessDesc": "您已成功购买 {quantity} × {item}。",
+    "purchaseTreatsReceivedDesc": "您已收到 {quantity} × {item}。",
     "purchaseFailed": "购买失败。请重试。",
     "product": {
       "treats": "零食",

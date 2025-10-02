@@ -496,8 +496,10 @@ export class AppShopView extends LitElement {
           // For treat packs, show amount + localized word for Treats instead of box name
           if (this.isTreatPack(item)) {
             const count = this.getTreatsCountForPack(item);
-            const reward = ti('rewards.description.TREATS', { amount: count });
-            return reward;
+            return ti('shop.purchaseTreatsReceivedDesc', {
+              quantity: count,
+              item: t('shop.product.treats'),
+            });
           }
           return ti('shop.purchaseRealSuccessDesc', {
             quantity: quantity ?? 1,

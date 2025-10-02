@@ -58,6 +58,7 @@
     "purchaseSuccessTitle": "ক্রয় সফল",
     "purchaseTreatsSuccessDesc": "{item} এর জন্য আপনি {spent} ট্রিট খরচ করেছেন।",
     "purchaseRealSuccessDesc": "আপনি সফলভাবে {quantity} × {item} ক্রয় করেছেন।",
+    "purchaseTreatsReceivedDesc": "আপনি {quantity} × {item} পেয়েছেন।",
     "purchaseFailed": "ক্রয় ব্যর্থ। আবার চেষ্টা করুন।",
     "product": {
       "treats": "ট্রিটস",

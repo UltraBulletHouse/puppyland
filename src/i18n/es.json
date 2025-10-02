@@ -58,6 +58,7 @@
     "purchaseSuccessTitle": "Compra exitosa",
     "purchaseTreatsSuccessDesc": "Has gastado {spent} golosinas en {item}.",
     "purchaseRealSuccessDesc": "Has comprado correctamente {quantity} × {item}.",
+    "purchaseTreatsReceivedDesc": "Has recibido {quantity} × {item}.",
     "purchaseFailed": "La compra falló. Inténtalo de nuevo.",
     "product": {
       "treats": "Golosinas",

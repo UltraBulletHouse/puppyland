@@ -58,6 +58,7 @@
     "purchaseSuccessTitle": "اكتملت عملية الشراء",
     "purchaseTreatsSuccessDesc": "أنفقت {spent} من المكافآت على {item}.",
     "purchaseRealSuccessDesc": "لقد اشتريت بنجاح {quantity} × {item}.",
+    "purchaseTreatsReceivedDesc": "لقد حصلت على {quantity} × {item}.",
     "purchaseFailed": "فشلت عملية الشراء. حاول مرة أخرى.",
     "product": {
       "treats": "مكافآت",

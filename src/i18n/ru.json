@@ -58,6 +58,7 @@
     "purchaseSuccessTitle": "Покупка выполнена",
     "purchaseTreatsSuccessDesc": "Вы потратили {spent} лакомств на {item}.",
     "purchaseRealSuccessDesc": "Вы успешно приобрели {quantity} × {item}.",
+    "purchaseTreatsReceivedDesc": "Вы получили {quantity} × {item}.",
     "purchaseFailed": "Не удалось выполнить покупку. Повторите попытку.",
     "product": {
       "treats": "Лакомства",

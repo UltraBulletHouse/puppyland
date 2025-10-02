@@ -58,6 +58,7 @@
     "purchaseSuccessTitle": "خریداری مکمل",
     "purchaseTreatsSuccessDesc": "آپ نے {item} پر {spent} ٹریٹس خرچ کیے۔",
     "purchaseRealSuccessDesc": "آپ نے کامیابی سے {quantity} × {item} خرید لیا۔",
+    "purchaseTreatsReceivedDesc": "آپ نے {quantity} × {item} وصول کیے ہیں۔",
     "purchaseFailed": "خریداری ناکام رہی۔ دوبارہ کوشش کریں۔",
     "product": {
       "treats": "ٹریٹس",
