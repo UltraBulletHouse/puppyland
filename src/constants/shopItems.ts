@@ -14,7 +14,7 @@ export const shopItemsDoghouse: ShopItemLocal[] = [
   {
     id: 'doghouse_1_pack',
     name: 'Doghouse 1 pack',
-    icon: 'doghouse',
+    icon: 'doghouse-plus',
     badge: '1',
     price: { currency: 'Treats', value: '100' },
     description: 'You can place 1 additional doghouses',
@@ -22,7 +22,7 @@ export const shopItemsDoghouse: ShopItemLocal[] = [
   {
     id: 'doghouse_3_pack',
     name: 'Doghouse 3 pack',
-    icon: 'doghouse',
+    icon: 'doghouse-plus',
     badge: '3',
     price: { currency: 'Treats', value: '200' },
     description: 'You can place 3 additional doghouses',
@@ -30,7 +30,7 @@ export const shopItemsDoghouse: ShopItemLocal[] = [
   {
     id: 'doghouse_6_pack',
     name: 'Doghouse 6 pack',
-    icon: 'doghouse',
+    icon: 'doghouse-plus',
     badge: '6',
     price: { currency: 'Treats', value: '300' },
     description: 'You can place 6 additional doghouses',
@@ -41,7 +41,7 @@ export const shopItemsRename: ShopItemLocal[] = [
   {
     id: 'dog_rename',
     name: 'Dog rename token',
-    icon: 'doghouse',
+    icon: 'dogface-pencil',
     badge: '1',
     price: { currency: 'Treats', value: '100' },
     description: 'Buy one rename for your dog',
@@ -49,7 +49,7 @@ export const shopItemsRename: ShopItemLocal[] = [
   {
     id: 'doghouse_rename',
     name: 'Doghouse rename token',
-    icon: 'doghouse',
+    icon: 'doghouse-pencil',
     badge: '1',
     price: { currency: 'Treats', value: '100' },
     description: 'Buy one rename for your doghouse',
@@ -60,7 +60,7 @@ export const shopItemsRepair: ShopItemLocal[] = [
   {
     id: 'repair_50',
     name: 'Repair 50',
-    icon: 'toolkit',
+    icon: 'doghouse-hammer',
     badge: '50',
     price: { currency: 'Treats', value: '100' },
     description: '',
@@ -68,7 +68,7 @@ export const shopItemsRepair: ShopItemLocal[] = [
   {
     id: 'repair_max',
     name: 'Full repair',
-    icon: 'toolkit',
+    icon: 'doghouse-hammer',
     badge: 'MAX',
     price: { currency: 'Treats', value: '300' },
     description: '',

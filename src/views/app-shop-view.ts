@@ -8,7 +8,7 @@ import '@shoelace-style/shoelace/dist/components/tab-panel/tab-panel.js';
 import '@shoelace-style/shoelace/dist/components/tab/tab.js';
 
 import '../components/app-spinner/app-spinner';
-import '../components/icon-png/icon-png';
+import '../components/icon-svg/icon-svg-badge';
 import {
   API_PURCHASE_ACKNOWLEDGE,
   API_PURCHASE_BUY_WITH_TREATS,
@@ -145,8 +145,30 @@ export class AppShopView extends LitElement {
       shopItemsSubscription.find((i) => i.id === id)
     );
   }
+
+  private renderShopItemIcon(item: ShopItemLocal) {
+    const iconName = item.icon;
+    if (!iconName) {
+      return html`<sl-icon name="star"></sl-icon>`;
+    }
+
+    if (AppShopView.PNG_ICON_NAMES.has(iconName)) {
+      return html`<icon-svg-badge
+        format="png"
+        name=${iconName}
+        badge=${ifDefined(item.badge)}
+      ></icon-svg-badge>`;
+    }
+
+    if (AppShopView.SHOELACE_ICON_NAMES.has(iconName)) {
+      return html`<sl-icon name="${iconName}"></sl-icon>`;
+    }
+
+    return html`<icon-svg-badge name=${iconName} badge=${ifDefined(item.badge)}></icon-svg-badge>`;
+  }
   // PNG-backed icons available in src/assets/icons-png
   private static readonly PNG_ICON_NAMES = new Set(['doghouse', 'toolkit', 'energy-drink']);
+  private static readonly SHOELACE_ICON_NAMES = new Set(['star']);
   static styles = [
     sharedStyles,
     css`
@@ -312,9 +334,9 @@ export class AppShopView extends LitElement {
         margin-right: 16px;
       }
 
-      icon-png-badge {
-        --icon-png-badge-width: 32px;
-        --icon-png-badge-height: 32px;
+      icon-svg-badge {
+        --icon-svg-badge-width: 32px;
+        --icon-svg-badge-height: 32px;
       }
       .item-icon sl-icon {
         font-size: 26px;
@@ -539,12 +561,7 @@ export class AppShopView extends LitElement {
     return html`
       <div class="shop-item">
         <div class="item-icon">
-          ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
-            ? html`<icon-png-badge
-                name=${item.icon}
-                badge=${ifDefined(item.badge)}
-              ></icon-png-badge>`
-            : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
+          ${this.renderShopItemIcon(item)}
         </div>
         <div class="item-details">
           <div class="item-name">${displayName}</div>
@@ -575,12 +592,7 @@ export class AppShopView extends LitElement {
     return html`
       <div class="shop-item">
         <div class="item-icon">
-          ${item.icon && AppShopView.PNG_ICON_NAMES.has(item.icon)
-            ? html`<icon-png-badge
-                name=${item.icon}
-                badge=${ifDefined(item.badge)}
-              ></icon-png-badge>`
-            : html`<sl-icon name="${item.icon || 'star'}"></sl-icon>`}
+          ${this.renderShopItemIcon(item)}
         </div>
         <div class="item-details">
           <div class="item-name">${displayName}</div>

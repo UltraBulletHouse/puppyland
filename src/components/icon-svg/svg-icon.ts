@@ -18,8 +18,6 @@ export class SvgIcon extends LitElement {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        height: 1em;
-        width: 1em;
       }
     `,
   ];

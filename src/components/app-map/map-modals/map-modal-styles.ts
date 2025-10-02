@@ -126,6 +126,10 @@ export const MapModalStyles = html`
       outline: none;
     }
 
+    #doghouse-icon svg-icon {
+      width: 66px;
+    }
+
     .tap-overlay {
       position: absolute;
       top: 100px;
