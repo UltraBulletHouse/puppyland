@@ -15,7 +15,7 @@ import '@shoelace-style/shoelace/dist/components/tooltip/tooltip.js';
 
 import '../components/app-spinner/app-spinner';
 import '../components/daily-quests/daily-quests';
-import '../components/icon-png/icon-png';
+import '../components/icon-svg/icon-svg-badge';
 import '../components/leaderboards/leaderboards';
 import {
   API_DOG_GET,
@@ -541,9 +541,9 @@ export class AppDogView extends LitElement {
         font-weight: 600;
         color: var(--color-black);
       }
-      icon-png-badge {
-        --icon-png-badge-width: 32px;
-        --icon-png-badge-height: 32px;
+      icon-svg-badge {
+        --icon-svg-badge-width: 32px;
+        --icon-svg-badge-height: 32px;
       }
 
       /* RPG Stats Allocation */
@@ -1794,12 +1794,13 @@ export class AppDogView extends LitElement {
                                     (buff) => html`
                                       <div class="buff-item-tile">
                                         <div class="buff-icon">
-                                          <icon-png-badge
+                                          <icon-svg-badge
+                                            format="${buff.buffSku.includes('repair') ? 'svg' : 'png'}"
                                             name="${buff.buffSku.includes('repair')
-                                              ? 'toolkit'
+                                              ? 'doghouse-hammer'
                                               : 'energy-drink'}"
                                             badge="${buff.quantity}"
-                                          ></icon-png-badge>
+                                          ></icon-svg-badge>
                                         </div>
                                         <div class="buff-details">
                                           <div class="buff-name">${buff.name}</div>
