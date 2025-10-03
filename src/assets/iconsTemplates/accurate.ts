@@ -16,7 +16,7 @@ export const accurate = html`<?xml version="1.0" encoding="utf-8"?><svg
     xml:space="preserve"
     fill="currentColor"
       width="24px"
-  height=24px"
+  height="24px"
   >
     <g>
       <path

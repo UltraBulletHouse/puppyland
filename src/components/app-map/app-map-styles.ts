@@ -112,7 +112,7 @@ export const AppMapStyles = [
       width: 34px !important;
       border-top-right-radius: 20px !important;
       border-top-left-radius: 20px !important;
-      border-top: 1px solid var(--color-primary-medium);
+      border-top: none !important;
       border-left: 1px solid var(--color-primary-medium);
       border-right: 1px solid var(--color-primary-medium);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
@@ -123,12 +123,60 @@ export const AppMapStyles = [
       width: 34px !important;
       border-bottom-right-radius: 20px !important;
       border-bottom-left-radius: 20px !important;
-      border-bottom: 1px solid var(--color-primary-medium) !important;
+      border-bottom: none !important;
       border-left: 1px solid var(--color-primary-medium);
       border-right: 1px solid var(--color-primary-medium);
       box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
       background-color: var(--color-surface) !important;
     }
+    .help-btn {
+      position: fixed;
+      left: 10px;
+      top: calc(10px + 34px + 34px + 8px);
+      /* below Leaflet zoom in/out which are 34px each with 10px margin + small gap */
+      height: 34px;
+      width: 34px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      background: var(--color-surface);
+      color: var(--color-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
+      z-index: 10000;
+      pointer-events: all;
+    }
+    .help-btn .help-icon {
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 1;
+    }
+    @media (max-width: 360px) {
+      .help-btn { top: calc(10px + 34px + 34px + 4px); }
+    }
+
+    .leaflet-control-zoom a,
+    .leaflet-bar,
+    .leaflet-bar a {
+      border: none !important;
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    .leaflet-control-zoom a:focus,
+    .leaflet-control-zoom a:focus-visible,
+    .leaflet-bar a:focus,
+    .leaflet-bar a:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+    .help-btn:focus,
+    .help-btn:focus-visible {
+      outline: none !important;
+      box-shadow: none !important;
+    }
+
     #controls {
       position: relative;
       display: flex;
@@ -211,12 +259,17 @@ export const AppMapStyles = [
       width: 100vw;
       background-color: color-mix(in srgb, var(--color-primary-medium) 70%, transparent);
       z-index: 1001;
+      pointer-events: none;
     }
     #geolocation-position {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+    #geolocation-position {
+      pointer-events: all;
+      cursor: pointer;
     }
     #geolocation-position-icon {
       font-size: 64px;

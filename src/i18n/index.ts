@@ -86,3 +86,12 @@ export function ti(key: string, params: Record<string, string | number>): string
     template
   );
 }
+
+// Return any type (arrays/objects) from translations with fallback to English
+export function ta<T = any>(key: string): T | undefined {
+  const val = resolve(key, translations);
+  if (val !== undefined && val !== null) return val as T;
+  const enVal = resolve(key, enTranslations);
+  if (enVal !== undefined && enVal !== null) return enVal as T;
+  return undefined;
+}

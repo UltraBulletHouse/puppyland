@@ -33,6 +33,7 @@ import { toastDanger, toastWarning } from '../../utils/toastUtils';
 import '../level-up-modal/level-up-modal';
 import { AppMapStyles } from './app-map-styles';
 import './map-popup/map-popup';
+import '../walkthrough/walkthrough-overlay';
 
 /**
  * @fires updateDogInfo
@@ -81,6 +82,9 @@ export class AppMap extends LitElement {
 
   @state()
   isLevelUp: boolean = false;
+
+  @state()
+  isWalkthroughOpen: boolean = false;
 
   @property({ attribute: false })
   focusTarget: Doghouse | null = null;
@@ -467,6 +471,13 @@ export class AppMap extends LitElement {
     this.isLevelUp = false;
   };
 
+  openWalkthrough = () => {
+    this.isWalkthroughOpen = true;
+  };
+  closeWalkthrough = () => {
+    this.isWalkthroughOpen = false;
+  };
+
   render() {
     return html`
       <link rel="stylesheet" href="/leaflet/leaflet.css" />
@@ -488,6 +499,10 @@ export class AppMap extends LitElement {
         </div>
 
         <div id="map" @closePopup=${this.closePopup}></div>
+
+       <button id="help-btn" class="help-btn" type="button" @click=${this.openWalkthrough} aria-label="Help and walkthrough">
+         <span class="help-icon">?</span>
+       </button>
 
         <div id="controls">
           <div id="left-side">
@@ -525,6 +540,11 @@ export class AppMap extends LitElement {
             </div>
           </div>
         </div>`}
+
+        <walkthrough-overlay
+          .open=${this.isWalkthroughOpen}
+          @close=${this.closeWalkthrough}
+        ></walkthrough-overlay>
       </div>
     `;
   }

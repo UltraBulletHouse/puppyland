@@ -317,5 +317,55 @@
   "leaderboardUpdated": "Updated",
   "navMyDog": "My Dog",
   "doghousesTitle": "Doghouses",
-  "navProfile": "Profile"
+  "navProfile": "Profile",
+  "walkthrough": {
+    "steps": {
+      "gainingExperience": {
+        "title": "Gaining Experience",
+        "desc": "Earn XP by placing your own doghouses and by attacking enemy doghouses. When you level up, you get skill points to make your dog stronger.",
+        "hint": "Turn on GPS and place houses a little apart from existing ones.",
+        "howto": [
+          "Bottom-left: tap the doghouse + button (doghouse icon with a small plus) to place a doghouse at your current location.",
+          "To attack: tap an enemy doghouse marker to open its panel, then tap Attack three times.",
+          "To heal: tap your own doghouse marker to open its panel, then tap Heal three times.",
+          "On Level Up: claim rewards, then open Dog view and assign your skill point."
+        ]
+      },
+      "energyMechanics": {
+        "title": "Energy Mechanics",
+        "desc": "Attacking and healing cost energy. Energy refills automatically: +1 per doghouse you own, each day.",
+        "hint": "Plan bigger battles when you have more energy or more owned doghouses.",
+        "howto": [
+          "Check your energy in the top-right lightning badge.",
+          "Attack spends energy; healing your own doghouse also spends energy.",
+          "Own more doghouses to increase your daily energy refill."
+        ]
+      },
+      "dailyQuests": {
+        "title": "Daily Quests and Leaderboards",
+        "desc": "Finish daily quests to earn rewards and see how you rank on the leaderboards.",
+        "hint": "Do a few quick quests every day to keep climbing.",
+        "howto": [
+          "Open Daily Quests to view today’s tasks and claim rewards after completing them.",
+          "Open Leaderboards to see your rank, scores, and how you compare to others."
+        ]
+      },
+      "premiumShop": {
+        "title": "Premium & Shop",
+        "desc": "Upgrade to Premium to unlock premium dog icons and unlimited name changes. In the Shop, buy Snacks (in-game currency) to get more doghouses, more name changes, and repair packs.",
+        "hint": "Premium customizes your identity; Snacks fuel progression.",
+        "howto": [
+          "Open Shop to view Premium and in-game offers.",
+          "Buy Premium to enable premium dog icons and unlimited renames for your dog and doghouses.",
+          "Purchase Snacks to get extra doghouses, rename tokens, and repair packs."
+        ]
+      }
+    },
+    "buttons": {
+      "back": "Back",
+      "next": "Next",
+      "done": "Done",
+      "close": "Close"
+    }
+  }
 }
