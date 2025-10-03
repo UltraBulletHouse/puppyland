@@ -311,5 +311,14 @@
   "leaderboardUpdated": "已更新",
   "navMyDog": "我的狗",
   "doghousesTitle": "犬屋",
-  "navProfile": "个人资料"
+  "navProfile": "个人资料",
+  "signIn": {
+    "heroEyebrow": "Join the pack",
+    "heroHeadline": "Lead your dog to victory",
+    "heroSubtitle": "Sign in to launch raids, repair doghouses, and climb the leaderboards.",
+    "featureExplore": "Explore the shared world map",
+    "featureBuild": "Build and defend doghouses",
+    "featureCompete": "Compete on daily quests",
+    "secondaryHint": "You can switch accounts later from the profile menu."
+  }
 }

@@ -315,5 +315,14 @@
   "leaderboardUpdated": "अपडेट किया गया",
   "navMyDog": "मेरा कुत्ता",
   "doghousesTitle": "डॉगहाउस",
-  "navProfile": "प्रोफ़ाइल"
+  "navProfile": "प्रोफ़ाइल",
+  "signIn": {
+    "heroEyebrow": "Join the pack",
+    "heroHeadline": "Lead your dog to victory",
+    "heroSubtitle": "Sign in to launch raids, repair doghouses, and climb the leaderboards.",
+    "featureExplore": "Explore the shared world map",
+    "featureBuild": "Build and defend doghouses",
+    "featureCompete": "Compete on daily quests",
+    "secondaryHint": "You can switch accounts later from the profile menu."
+  }
 }
