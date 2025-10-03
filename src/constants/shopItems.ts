@@ -98,7 +98,7 @@ export const shopItemsSubscription: ShopItemLocal[] = [
   {
     id: 'premium',
     name: 'Premium',
-    icon: 'star',
+    icon: 'premium-star',
     price: { currency: 'EUR', value: '' },
     description: 'Unlock premium features',
   },
