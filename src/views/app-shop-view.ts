@@ -167,7 +167,7 @@ export class AppShopView extends LitElement {
     return html`<icon-svg-badge name=${iconName} badge=${ifDefined(item.badge)}></icon-svg-badge>`;
   }
   // PNG-backed icons available in src/assets/icons-png
-  private static readonly PNG_ICON_NAMES = new Set(['doghouse', 'toolkit', 'energy-drink']);
+  private static readonly PNG_ICON_NAMES = new Set(['doghouse', 'toolkit']);
   private static readonly SHOELACE_ICON_NAMES = new Set(['star']);
   static styles = [
     sharedStyles,
