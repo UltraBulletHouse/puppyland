@@ -127,7 +127,9 @@ export const AppMapStyles = [
       color: #0e2b1d !important;
       background: linear-gradient(180deg, #ffffff, #e3f1ea) !important;
       border: none !important;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
     }
 
     .leaflet-control-zoom a + a {
