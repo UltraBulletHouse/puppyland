@@ -500,9 +500,11 @@ export class AppMap extends LitElement {
 
         <div id="map" @closePopup=${this.closePopup}></div>
 
-       <button id="help-btn" class="help-btn" type="button" @click=${this.openWalkthrough} aria-label="Help and walkthrough">
-         <span class="help-icon">?</span>
-       </button>
+       ${!this.isWalkthroughOpen
+         ? html`<button id="help-btn" class="help-btn" type="button" @click=${this.openWalkthrough} aria-label="Help and walkthrough">
+             <span class="help-icon">?</span>
+           </button>`
+         : null}
 
         <div id="controls">
           <div id="left-side">

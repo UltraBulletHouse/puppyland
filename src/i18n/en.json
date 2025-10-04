@@ -319,6 +319,26 @@
   "doghousesTitle": "Doghouses",
   "navProfile": "Profile",
   "walkthrough": {
+    "ui": {
+      "levelUp": "Level Up!",
+      "plusOneSkillPoint": "+1 skill point",
+      "place": "Place",
+      "healX3": "Heal ×3",
+      "attackX3": "Attack ×3",
+      "addDoghouse": "Add doghouse",
+      "energyUsedAttackHeal": "-2 energy used to Attack • -1 to Heal",
+      "energyPerDay": "+1 energy/day for each doghouse you own",
+      "questPlaceDoghouse": "Place 1 doghouse",
+      "questAttackEnemy": "Attack an enemy doghouse",
+      "questHealOwn": "Heal your doghouse",
+      "premiumTitle": "Premium",
+      "premiumFeatures": "Premium dog icons • Unlimited renames",
+      "buy": "Buy",
+      "extraDoghouse": "Extra doghouse",
+      "renameToken": "Rename token",
+      "repairPack": "Repair pack",
+      "snacks": "Snacks"
+    },
     "steps": {
       "gainingExperience": {
         "title": "Gaining Experience",

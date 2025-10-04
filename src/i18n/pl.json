@@ -335,6 +335,26 @@
   "doghousesTitle": "Budy",
   "navProfile": "Profil",
   "walkthrough": {
+    "ui": {
+      "levelUp": "Awans!",
+      "plusOneSkillPoint": "+1 punkt umiejętności",
+      "place": "Postaw",
+      "healX3": "Napraw ×3",
+      "attackX3": "Atak ×3",
+      "addDoghouse": "Postaw budę",
+      "energyUsedAttackHeal": "-2 energii na Atak • -1 na Naprawę",
+      "energyPerDay": "+1 energia/dzień za każdą posiadaną budę",
+      "questPlaceDoghouse": "Postaw 1 budę",
+      "questAttackEnemy": "Zaatakuj wrogą budę",
+      "questHealOwn": "Napraw swoją budę",
+      "premiumTitle": "Premium",
+      "premiumFeatures": "Premium ikony psów • Nielimitowane zmiany nazw",
+      "buy": "Kup",
+      "extraDoghouse": "Dodatkowa buda",
+      "renameToken": "Token zmiany nazwy",
+      "repairPack": "Pakiet naprawczy",
+      "snacks": "Smakołyki"
+    },
     "steps": {
       "gainingExperience": {
         "title": "Zdobywanie doświadczenia",
