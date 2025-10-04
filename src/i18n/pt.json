@@ -383,12 +383,12 @@
     }
   },
   "signIn": {
-    "heroEyebrow": "Join the pack",
-    "heroHeadline": "Lead your dog to victory",
-    "heroSubtitle": "Sign in to launch raids, repair doghouses, and climb the leaderboards.",
-    "featureExplore": "Explore the shared world map",
-    "featureBuild": "Build and defend doghouses",
-    "featureCompete": "Compete on daily quests",
-    "secondaryHint": "You can switch accounts later from the profile menu."
+    "heroEyebrow": "Junte-se à matilha",
+    "heroHeadline": "Lidere seu cão à vitória",
+    "heroSubtitle": "Faça login para lançar ataques, reparar casotas e subir nos placares de líderes.",
+    "featureExplore": "Explore o mapa-múndi compartilhado",
+    "featureBuild": "Construa e defenda casotas",
+    "featureCompete": "Compita em missões diárias",
+    "secondaryHint": "Você pode trocar de conta mais tarde no menu do perfil."
   }
 }

@@ -383,12 +383,12 @@
     }
   },
   "signIn": {
-    "heroEyebrow": "Join the pack",
-    "heroHeadline": "Lead your dog to victory",
-    "heroSubtitle": "Sign in to launch raids, repair doghouses, and climb the leaderboards.",
-    "featureExplore": "Explore the shared world map",
-    "featureBuild": "Build and defend doghouses",
-    "featureCompete": "Compete on daily quests",
-    "secondaryHint": "You can switch accounts later from the profile menu."
+    "heroEyebrow": "প্যাকে যোগ দিন",
+    "heroHeadline": "আপনার কুকুরকে বিজয়ের দিকে নিয়ে যান",
+    "heroSubtitle": "অভিযান শুরু করতে, কুকুর ঘর মেরামত করতে এবং লিডারবোর্ডে আরোহণ করতে সাইн ইন করুন।",
+    "featureExplore": "ভাগ করা বিশ্ব মানচিত্র অন্বেষণ করুন",
+    "featureBuild": "কুকুর ঘর তৈরি করুন এবং রক্ষা করুন",
+    "featureCompete": "দৈনিক অনুসন্ধানে প্রতিযোগিতা করুন",
+    "secondaryHint": "আপনি পরে প্রোফাইল মেনু থেকে অ্যাকাউন্ট পরিবর্তন করতে পারেন।"
   }
 }

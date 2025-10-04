@@ -387,12 +387,12 @@
     }
   },
   "signIn": {
-    "heroEyebrow": "Join the pack",
-    "heroHeadline": "Lead your dog to victory",
-    "heroSubtitle": "Sign in to launch raids, repair doghouses, and climb the leaderboards.",
-    "featureExplore": "Explore the shared world map",
-    "featureBuild": "Build and defend doghouses",
-    "featureCompete": "Compete on daily quests",
-    "secondaryHint": "You can switch accounts later from the profile menu."
+    "heroEyebrow": "群れに参加しよう",
+    "heroHeadline": "あなたの犬を勝利に導こう",
+    "heroSubtitle": "レイドを開始し、犬小屋を修理し、リーダーボードを駆け上がるにはサインインしてください。",
+    "featureExplore": "共有ワールドマップを探索する",
+    "featureBuild": "犬小屋を建設し、守る",
+    "featureCompete": "デイリークエストで競争する",
+    "secondaryHint": "後でプロフィールメニューからアカウントを切り替えることができます。"
   }
 }
