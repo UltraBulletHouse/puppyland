@@ -72,22 +72,24 @@ export class AppSignin extends LitElement {
       }
       .header {
         display: flex;
+        flex-direction: column;
         gap: 20px;
         align-items: center;
+        text-align: center;
       }
       .hero-icon {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 72px;
-        height: 72px;
+        width: 120px;
+        height: 120px;
         border-radius: 18px;
         background: rgba(22, 195, 138, 0.12);
         border: 1px solid rgba(22, 195, 138, 0.25);
       }
       .hero-icon svg-icon {
-        width: 48px;
-        height: 48px;
+        width: 96px;
+        height: 96px;
       }
       .eyebrow {
         text-transform: uppercase;
@@ -174,7 +176,7 @@ export class AppSignin extends LitElement {
         <section class="content-card" aria-labelledby="signin-heading">
           <header class="header">
             <div class="hero-icon">
-              <svg-icon name="dogface-basic"></svg-icon>
+              <svg-icon name="logo"></svg-icon>
             </div>
             <div>
               <div class="eyebrow">${t('signIn.heroEyebrow')}</div>
