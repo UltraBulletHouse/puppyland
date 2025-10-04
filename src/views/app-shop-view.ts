@@ -9,6 +9,7 @@ import '@shoelace-style/shoelace/dist/components/tab/tab.js';
 
 import '../components/app-spinner/app-spinner';
 import '../components/icon-svg/icon-svg-badge';
+import '../components/icon-svg/svg-icon';
 import {
   API_PURCHASE_ACKNOWLEDGE,
   API_PURCHASE_BUY_WITH_TREATS,
@@ -273,14 +274,14 @@ export class AppShopView extends LitElement {
           font-size: 13px;
           min-height: 36px;
         }
-
-        .shop-tabs sl-tab sl-icon {
-          font-size: 16px;
-        }
       }
       /* Smaller icons inside tab labels */
       .shop-tabs sl-tab sl-icon {
         font-size: 16px;
+      }
+      .shop-tabs sl-tab svg-icon {
+        width: 24px;
+        height: 24px;
       }
 
       .category-section {
@@ -387,6 +388,14 @@ export class AppShopView extends LitElement {
         align-items: center;
         gap: 4px;
       }
+      .coin-icon {
+        width: 28px;
+        height: 28px;
+      }
+      .price-tag .coin-icon {
+        width: 28px;
+        height: 28px;
+      }
 
       /* Gold balance pill (flat, like modal energy) */
       #balance-pill {
@@ -402,11 +411,10 @@ export class AppShopView extends LitElement {
         color: #5a4200;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       }
-      #balance-pill sl-icon::part(base) {
-        color: #8a5b13;
-        background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
+      #balance-pill .coin-icon {
+        padding: 2px;
         border-radius: 999px;
-        padding: 4px;
+        background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
       }
     `,
   ];
@@ -608,7 +616,10 @@ export class AppShopView extends LitElement {
             ?loading=${this.processingTreatsItemId === item.id}
             pill
           >
-            <span class="price-tag">${item.price.value} <sl-icon name="coin"></sl-icon></span>
+            <span class="price-tag">
+              ${item.price.value}
+              <svg-icon class="coin-icon" name="coin"></svg-icon>
+            </span>
           </sl-button>
         </div>
       </div>
@@ -623,10 +634,14 @@ export class AppShopView extends LitElement {
     googleItems: GoogleBillingItem[] | null = null
   ) {
     const parsedItems = googleItems ? parseShopItems(items, googleItems) : items;
+    const iconTemplate =
+      icon === 'coin'
+        ? html`<svg-icon class="coin-icon" name="coin"></svg-icon>`
+        : html`<sl-icon name=${icon}></sl-icon>`;
     return html`
       <div class="category-section">
         <div class="category-title">
-          <sl-icon name=${icon}></sl-icon>
+          ${iconTemplate}
           ${title}
         </div>
         <div class="item-list">${parsedItems.map((item) => renderer(item as ShopItemLocal))}</div>
@@ -655,7 +670,7 @@ export class AppShopView extends LitElement {
         <div id="header">
           <div id="title" data-autofit>${t('shop.title')}</div>
           <div id="balance-pill" title="${t('shop.product.treats')}">
-            <sl-icon name="coin"></sl-icon>
+            <svg-icon class="coin-icon" name="coin"></svg-icon>
             <span>${this.userInfo?.treatsBalance ?? 0}</span>
           </div>
         </div>
@@ -669,15 +684,15 @@ export class AppShopView extends LitElement {
               }}
             >
               <sl-tab slot="nav" panel="spend-treats">
-                <sl-icon name="handbag" style="margin-right: 6px;"></sl-icon>
+                <svg-icon name="doghouse-plus" style="margin-right: 6px;"></svg-icon>
                 <span data-autofit>${t('shop.spend')}</span>
               </sl-tab>
               <sl-tab slot="nav" panel="buy-treats">
-                <sl-icon name="coin" style="margin-right: 6px;"></sl-icon>
+                <svg-icon class="coin-icon" name="coin" style="margin-right: 6px;"></svg-icon>
                 <span data-autofit>${t('shop.buy')}</span>
               </sl-tab>
               <sl-tab slot="nav" panel="premium">
-                <sl-icon name="star" style="margin-right: 6px;"></sl-icon>
+                <svg-icon name="premium-star" style="margin-right: 6px;"></svg-icon>
                 <span data-autofit>${t('shop.buyPremium')}</span>
               </sl-tab>
 

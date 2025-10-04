@@ -130,11 +130,14 @@ export class AppDogView extends LitElement {
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         cursor: pointer;
       }
-      #treats-balance sl-icon::part(base) {
-        color: #8a5b13;
-        background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
+      .coin-icon {
+        width: 28px;
+        height: 28px;
+      }
+      #treats-balance .coin-icon {
+        padding: 2px;
         border-radius: 999px;
-        padding: 4px;
+        background: color-mix(in srgb, var(--gold-100) 80%, #fff 20%);
       }
       #dog-image {
         margin-top: 28px;
@@ -1448,7 +1451,7 @@ export class AppDogView extends LitElement {
                       })
                     )}
                 >
-                  <sl-icon name="coin"></sl-icon>
+                  <svg-icon class="coin-icon" name="coin"></svg-icon>
                   <span>${this.userInfo?.treatsBalance ?? 0}</span>
                 </div>
               </div>

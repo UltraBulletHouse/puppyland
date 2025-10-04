@@ -19,7 +19,7 @@ export class DailyQuests extends LitElement {
     if (key.toUpperCase().includes('TREATS')) {
       // Render amount followed by treats icon (black)
       return html`<span>${reward.amount}</span>
-        <sl-icon name="coin" class="reward-icon treats"></sl-icon>`;
+        <svg-icon name="coin" class="reward-icon treats"></svg-icon>`;
     }
     return ti(reward.description.key, { amount: reward.amount });
   }
@@ -219,6 +219,11 @@ export class DailyQuests extends LitElement {
 
       .reward-icon {
         font-size: 14px;
+        width: 20px;
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .reward-icon.doghouse {
