@@ -104,36 +104,66 @@ export const AppMapStyles = [
       border: none !important;
       box-shadow: none !important;
     }
-    .leaflet-touch .leaflet-bar a {
-      line-height: 32px;
+
+    .leaflet-control-zoom.leaflet-bar {
+      border-radius: 18px;
+      border: 1px solid rgba(31, 59, 45, 0.18) !important;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.22),
+        0 0 0 1px rgba(255, 255, 255, 0.65);
     }
-    .leaflet-control-zoom-in {
-      height: 34px !important;
+
+    .leaflet-control-zoom a {
       width: 34px !important;
-      border-top-right-radius: 20px !important;
-      border-top-left-radius: 20px !important;
-      border-top: none !important;
-      border-left: 1px solid var(--color-primary-medium);
-      border-right: 1px solid var(--color-primary-medium);
-      box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
-      background-color: var(--color-surface) !important;
+      height: 40px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 900;
+      color: #0e2b1d !important;
+      background: linear-gradient(180deg, #ffffff, #e3f1ea) !important;
+      border: none !important;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
+
+    .leaflet-control-zoom a + a {
+      border-top: 1px solid rgba(31, 59, 45, 0.15) !important;
+    }
+
+    .leaflet-control-zoom a:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+    }
+
+    .leaflet-control-zoom a:active {
+      transform: scale(0.96);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.16);
+    }
+
+    .leaflet-control-zoom-in,
     .leaflet-control-zoom-out {
-      height: 34px !important;
-      width: 34px !important;
-      border-bottom-right-radius: 20px !important;
-      border-bottom-left-radius: 20px !important;
-      border-bottom: none !important;
-      border-left: 1px solid var(--color-primary-medium);
-      border-right: 1px solid var(--color-primary-medium);
-      box-shadow: rgba(0, 0, 0, 0.17) 0px 0px 12px 0px;
-      background-color: var(--color-surface) !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+    }
+
+    .leaflet-control-zoom-in {
+      border-top-left-radius: 16px !important;
+      border-top-right-radius: 16px !important;
+    }
+
+    .leaflet-control-zoom-out {
+      border-bottom-left-radius: 16px !important;
+      border-bottom-right-radius: 16px !important;
     }
     .help-btn {
       position: fixed;
       left: 10px;
-      top: calc(10px + 34px + 34px + 8px);
-      /* below Leaflet zoom in/out which are 34px each with 10px margin + small gap */
+      top: calc(10px + 40px + 40px + 8px);
+      /* below Leaflet zoom in/out which are 40px each with 10px margin + small gap */
       height: 34px;
       width: 34px;
       border-radius: 20px;
@@ -155,19 +185,22 @@ export const AppMapStyles = [
     }
     @media (max-width: 360px) {
       .help-btn {
-        top: calc(10px + 34px + 34px + 4px);
+        top: calc(10px + 40px + 40px + 4px);
       }
     }
 
-    .leaflet-control-zoom a,
-    .leaflet-bar,
-    .leaflet-bar a {
+    .leaflet-bar:not(.leaflet-control-zoom),
+    .leaflet-bar:not(.leaflet-control-zoom) a {
       border: none !important;
       outline: none !important;
       box-shadow: none !important;
     }
     .leaflet-control-zoom a:focus,
-    .leaflet-control-zoom a:focus-visible,
+    .leaflet-control-zoom a:focus-visible {
+      outline: 2px solid rgba(31, 59, 45, 0.55);
+      outline-offset: 2px;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.65);
+    }
     .leaflet-bar a:focus,
     .leaflet-bar a:focus-visible {
       outline: none !important;
