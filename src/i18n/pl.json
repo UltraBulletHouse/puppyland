@@ -357,43 +357,43 @@
     },
     "steps": {
       "gainingExperience": {
-        "title": "Zdobywanie doświadczenia",
-        "desc": "Zdobywaj PD, stawiając własne budy i atakując wrogie budy. Po awansie dostajesz punkty umiejętności, by wzmocnić swojego psa.",
-        "hint": "Włącz GPS i stawiaj budy w niewielkiej odległości od innych.",
+        "title": "Zdobywanie PD",
+        "desc": "Stawiaj swoje budy i atakuj wrogie, aby zdobywać PD. Awansuj, aby wzmocnić swojego psa.",
+        "hint": "Aby uzyskać najlepsze wyniki, włącz GPS. Stawiaj budy z dala od innych.",
         "howto": [
-          "Lewy dolny róg: stuknij przycisk z budą i plusem, aby postawić budę w swojej lokalizacji.",
-          "Aby zaatakować: stuknij wrogi znacznik budy, otwórz panel i stuknij Atak trzy razy.",
-          "Aby uleczyć: stuknij swoją budę, otwórz panel i stuknij Napraw trzy razy.",
-          "Po awansie: odbierz nagrody, potem otwórz widok Psa i przydziel punkt umiejętności."
+          "Stuknij ikonę budy, aby postawić ją w miejscu, w którym się znajdujesz.",
+          "Stuknij wrogą budę, aby ją zaatakować.",
+          "Stuknij własną budę, aby ją uleczyć.",
+          "Po awansie odbierz nagrody i przydziel punkty umiejętności w widoku Psa."
         ]
       },
       "energyMechanics": {
         "title": "Energia",
-        "desc": "Atak i leczenie zużywają energię. Energia odnawia się automatycznie: +1 dziennie za każdą posiadaną budę.",
-        "hint": "Planuj większe starcia, gdy masz więcej energii lub więcej bud.",
+        "desc": "Potrzebujesz energii, aby atakować i leczyć. Twoja energia odnawia się codziennie, a im więcej masz bud, tym więcej energii dostajesz.",
+        "hint": "Więcej bud = więcej energii. Używaj jej mądrze.",
         "howto": [
-          "Sprawdź energię w prawym górnym rogu (ikona pioruna).",
-          "Atak zużywa energię; naprawa własnej budy również zużywa energię.",
-          "Im więcej bud posiadasz, tym większy dzienny przyrost energii."
+          "Swoją energię widzisz w prawym górnym rogu.",
+          "Atakowanie i leczenie zużywają energię.",
+          "Buduj więcej bud, aby codziennie zyskiwać więcej energii."
         ]
       },
       "dailyQuests": {
-        "title": "Zadania dzienne i Rankingi",
-        "desc": "Wykonuj zadania dzienne, aby zdobywać nagrody i sprawdzać swoją pozycję w rankingach.",
-        "hint": "Codziennie zrób kilka szybkich zadań, by piąć się w górę.",
+        "title": "Zadania i rankingi",
+        "desc": "Ukończ codzienne zadania, aby otrzymać nagrody. Wspinaj się w rankingach i zobacz, jak wypadasz na tle innych graczy.",
+        "hint": "Loguj się codziennie, aby wykonywać zadania i utrzymywać swoją pozycję w rankingu.",
         "howto": [
-          "Otwórz Zadania dzienne, zobacz dzisiejsze cele i odbierz nagrody po ukończeniu.",
-          "Otwórz Rankingi, by zobaczyć swój wynik i porównać się z innymi."
+          "Przejdź do zakładki Codzienne zadania, aby zobaczyć swoje zadania i odebrać nagrody.",
+          "Przejdź do Rankingów, aby zobaczyć swoją pozycję."
         ]
       },
       "premiumShop": {
-        "title": "Premium i Sklep",
-        "desc": "Kup Premium, aby odblokować premium ikony psów i nielimitowane zmiany nazw. W Sklepie kupisz Smakołyki (waluta w grze) — za nie kupisz dodatkowe budy, tokeny zmiany nazw i pakiety naprawcze.",
-        "hint": "Premium to personalizacja; Smakołyki przyspieszają postępy.",
+        "title": "Premium i sklep",
+        "desc": "Dzięki Premium otrzymujesz fajne ikony psów i nieograniczoną liczbę zmian imion. W Sklepie możesz używać Przysmaków, aby kupować więcej bud, zmian imion i napraw.",
+        "hint": "Premium służy do wyglądu, a Przysmaki pomagają szybciej się rozwijać.",
         "howto": [
-          "Wejdź do Sklepu, aby zobaczyć Premium i inne oferty.",
-          "Kup Premium, aby włączyć premium ikony psów i nielimitowane zmiany nazw psa i bud.",
-          "Kup Smakołyki, aby zdobyć dodatkowe budy, tokeny zmiany nazw i pakiety naprawcze."
+          "Przejdź do Sklepu, aby zobaczyć, co jest w sprzedaży.",
+          "Kup Premium, aby uzyskać ekskluzywne ikony i nieograniczoną liczbę zmian imion.",
+          "Kupuj Przysmaki, aby zdobyć więcej bud, zmian imion i napraw."
         ]
       }
     },

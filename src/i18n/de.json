@@ -312,6 +312,76 @@
   "navMyDog": "Mein Hund",
   "doghousesTitle": "Hundehütten",
   "navProfile": "Profil",
+  "walkthrough": {
+    "ui": {
+      "levelUp": "Level aufgestiegen!",
+      "plusOneSkillPoint": "+1 Fähigkeitspunkt",
+      "place": "Platzieren",
+      "healX3": "Heilen ×3",
+      "attackX3": "Angreifen ×3",
+      "addDoghouse": "Hundehütte hinzufügen",
+      "energyUsedAttackHeal": "-2 Energie für Angriff • -1 für Heilung",
+      "energyPerDay": "+1 Energie/Tag für jede eigene Hundehütte",
+      "questPlaceDoghouse": "1 Hundehütte platzieren",
+      "questAttackEnemy": "Eine feindliche Hundehütte angreifen",
+      "questHealOwn": "Deine eigene Hundehütte heilen",
+      "premiumTitle": "Premium",
+      "premiumFeatures": "Premium-Hundesymbole • Unbegrenzte Umbenennungen",
+      "buy": "Kaufen",
+      "extraDoghouse": "Zusätzliche Hundehütte",
+      "renameToken": "Token umbenennen",
+      "repairPack": "Reparaturpaket",
+      "snacks": "Snacks"
+    },
+    "steps": {
+      "gainingExperience": {
+        "title": "EP sammeln",
+        "desc": "Platziere deine Hundehütten und greife feindliche an, um EP zu erhalten. Steige im Level auf, um deinen Hund stärker zu machen.",
+        "hint": "Für beste Ergebnisse, schalte dein GPS ein. Platziere Hundehütten nicht direkt neben anderen.",
+        "howto": [
+          "Tippe auf das Hundehüttensymbol, um eine an deinem Standort zu platzieren.",
+          "Tippe auf eine feindliche Hundehütte, um sie anzugreifen.",
+          "Tippe auf deine eigene Hundehütte, um sie zu heilen.",
+          "Wenn du im Level aufsteigst, fordere deine Belohnungen ein und weise Fähigkeitspunkte in der Hundeansicht zu."
+        ]
+      },
+      "energyMechanics": {
+        "title": "Energie",
+        "desc": "Du benötigst Energie, um anzugreifen und zu heilen. Deine Energie füllt sich jeden Tag auf, und je mehr Hundehütten du hast, desto mehr Energie bekommst du.",
+        "hint": "Mehr Hundehütten = mehr Energie. Setze sie weise ein.",
+        "howto": [
+          "Deine Energie siehst du in der oberen rechten Ecke.",
+          "Angreifen und Heilen verbrauchen beide Energie.",
+          "Baue mehr Hundehütten, um jeden Tag mehr Energie zu bekommen."
+        ]
+      },
+      "dailyQuests": {
+        "title": "Quests & Bestenlisten",
+        "desc": "Schließe tägliche Quests ab, um Belohnungen zu erhalten. Klettere in den Bestenlisten nach oben und sieh, wie du im Vergleich zu anderen Spielern abschneidest.",
+        "hint": "Logge dich jeden Tag ein, um deine Quests zu erledigen und deinen Rang zu halten.",
+        "howto": [
+          "Gehe zum Tab „Tägliche Quests“, um deine Aufgaben zu sehen und deine Belohnungen zu erhalten.",
+          "Gehe zu den Bestenlisten, um zu sehen, wie du rangierst."
+        ]
+      },
+      "premiumShop": {
+        "title": "Premium & Shop",
+        "desc": "Mit Premium erhältst du coole Hundesymbole und unbegrenzte Umbenennungen. Im Shop kannst du Snacks verwenden, um mehr Hundehütten, Umbenennungen und Reparaturen zu kaufen.",
+        "hint": "Premium ist für das Aussehen, und Snacks helfen dir, schneller voranzukommen.",
+        "howto": [
+          "Gehe zum Shop, um zu sehen, was zum Verkauf steht.",
+          "Kaufe Premium, um exklusive Symbole und unbegrenzte Umbenennungen zu erhalten.",
+          "Kaufe Snacks, um mehr Hundehütten, Umbenennungen und Reparaturen zu erhalten."
+        ]
+      }
+    },
+    "buttons": {
+      "back": "Zurück",
+      "next": "Weiter",
+      "done": "Fertig",
+      "close": "Schließen"
+    }
+  },
   "signIn": {
     "heroEyebrow": "Join the pack",
     "heroHeadline": "Lead your dog to victory",

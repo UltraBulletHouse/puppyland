@@ -341,43 +341,43 @@
     },
     "steps": {
       "gainingExperience": {
-        "title": "Gaining Experience",
-        "desc": "Earn XP by placing your own doghouses and by attacking enemy doghouses. When you level up, you get skill points to make your dog stronger.",
-        "hint": "Turn on GPS and place houses a little apart from existing ones.",
+        "title": "Earning XP",
+        "desc": "Place your doghouses and attack enemy ones to get XP. Level up to make your dog stronger.",
+        "hint": "For best results, turn on your GPS. Place doghouses away from others.",
         "howto": [
-          "Bottom-left: tap the doghouse + button (doghouse icon with a small plus) to place a doghouse at your current location.",
-          "To attack: tap an enemy doghouse marker to open its panel, then tap Attack three times.",
-          "To heal: tap your own doghouse marker to open its panel, then tap Heal three times.",
-          "On Level Up: claim rewards, then open Dog view and assign your skill point."
+          "Tap the doghouse icon to place one where you are.",
+          "Tap an enemy doghouse to attack it.",
+          "Tap your own doghouse to heal it.",
+          "When you level up, claim your rewards and assign skill points in the Dog view."
         ]
       },
       "energyMechanics": {
-        "title": "Energy Mechanics",
-        "desc": "Attacking and healing cost energy. Energy refills automatically: +1 per doghouse you own, each day.",
-        "hint": "Plan bigger battles when you have more energy or more owned doghouses.",
+        "title": "Energy",
+        "desc": "You need energy to attack and heal. Your energy refills every day, and the more doghouses you have, the more energy you get.",
+        "hint": "More doghouses = more energy. Use it wisely.",
         "howto": [
-          "Check your energy in the top-right lightning badge.",
-          "Attack spends energy; healing your own doghouse also spends energy.",
-          "Own more doghouses to increase your daily energy refill."
+          "See your energy in the top-right corner.",
+          "Attacking and healing both use energy.",
+          "Build more doghouses to get more energy each day."
         ]
       },
       "dailyQuests": {
-        "title": "Daily Quests and Leaderboards",
-        "desc": "Finish daily quests to earn rewards and see how you rank on the leaderboards.",
-        "hint": "Do a few quick quests every day to keep climbing.",
+        "title": "Quests & Leaderboards",
+        "desc": "Finish daily quests to get rewards. Climb the leaderboards and see how you rank against other players.",
+        "hint": "Log in every day to do your quests and keep your rank up.",
         "howto": [
-          "Open Daily Quests to view today’s tasks and claim rewards after completing them.",
-          "Open Leaderboards to see your rank, scores, and how you compare to others."
+          "Go to the Daily Quests tab to see your tasks and get your rewards.",
+          "Go to the Leaderboards to see how you rank."
         ]
       },
       "premiumShop": {
         "title": "Premium & Shop",
-        "desc": "Upgrade to Premium to unlock premium dog icons and unlimited name changes. In the Shop, buy Snacks (in-game currency) to get more doghouses, more name changes, and repair packs.",
-        "hint": "Premium customizes your identity; Snacks fuel progression.",
+        "desc": "With Premium, you get cool dog icons and unlimited renames. In the Shop, you can use Snacks to buy more doghouses, renames, and repairs.",
+        "hint": "Premium is for looks, and Snacks help you get ahead.",
         "howto": [
-          "Open Shop to view Premium and in-game offers.",
-          "Buy Premium to enable premium dog icons and unlimited renames for your dog and doghouses.",
-          "Purchase Snacks to get extra doghouses, rename tokens, and repair packs."
+          "Go to the Shop to see what’s for sale.",
+          "Buy Premium to get exclusive icons and unlimited renames.",
+          "Buy Snacks to get more doghouses, renames, and repairs."
         ]
       }
     },

@@ -371,40 +371,18 @@ export class WalkthroughOverlay extends LitElement {
                   <div class="zoom-btn">+</div>
                   <div class="zoom-btn">−</div>
                 </div>
-                <div class="energy-chip"><sl-icon name="lightning-charge"></sl-icon>120</div>
-                <sl-button
-                  class="add-mini"
-                  size="small"
-                  circle
-                  title="${t('walkthrough.ui.addDoghouse')}"
-                >
-                  <sl-badge class="count-mini" variant="warning" pill>2</sl-badge>
-                  <sl-icon name="house-add"></sl-icon>
-                </sl-button>
-
+                <div class="energy-chip"><icon-svg name="energy-drink"></icon-svg>120</div>
                 <span class="map-pin own"
-                  ><icon-svg-badge name="doghouse-plus"></icon-svg-badge
+                  ><icon-svg-badge name="doghouse-plus"-large></icon-svg-badge
                 ></span>
                 <span class="map-pin enemy"
-                  ><icon-svg-badge name="doghouse-star"></icon-svg-badge
+                  ><icon-svg-badge name="doghouse-star"-large></icon-svg-badge
                 ></span>
 
                 <div class="levelup-popup">
                   <strong>${t('walkthrough.ui.levelUp')}</strong>
                   <div>${t('walkthrough.ui.plusOneSkillPoint')}</div>
                 </div>
-              </div>
-              <div class="chips">
-                ><span class="chip"
-                  ><sl-icon name="house-add"></sl-icon> ${t('walkthrough.ui.place')}</span
-                >
-                <span class="chip"
-                  ><sl-icon name="shield-shaded"></sl-icon> ${t('walkthrough.ui.healX3')}</span
-                >
-                <span class="chip"
-                  ><sl-icon name="lightning-charge"></sl-icon> ${t('walkthrough.ui.attackX3')}</span
-                >
-              </div>
             </div>
           </div>
         </div>
@@ -425,7 +403,7 @@ export class WalkthroughOverlay extends LitElement {
                 style="height: 80px; border: 1px solid #d3d9d4; border-radius: 8px; background: #fff; position: relative;"
               >
                 <div class="energy-chip" style="top: 6px; right: 6px;">
-                  <sl-icon name="lightning-charge"></sl-icon>120
+                  <icon-svg name="energy-drink"></icon-svg>120
                 </div>
               </div>
               <div class="energy-bar"><div class="energy-fill" style="--energy:58%"></div></div>
@@ -448,15 +426,15 @@ export class WalkthroughOverlay extends LitElement {
             <div class="phone-content" style="display:grid; gap:8px;">
               <div class="list">
                 <div class="list-item">
-                  ><span>${t('walkthrough.ui.questPlaceDoghouse')}</span>
+                  <span>${t('walkthrough.ui.questPlaceDoghouse')}</span>
                   <span class="score">+50</span>
                 </div>
                 <div class="list-item">
-                  ><span>${t('walkthrough.ui.questAttackEnemy')}</span>
+                  <span>${t('walkthrough.ui.questAttackEnemy')}</span>
                   <span class="score">+40</span>
                 </div>
                 <div class="list-item">
-                  ><span>${t('walkthrough.ui.questHealOwn')}</span>
+                  <span>${t('walkthrough.ui.questHealOwn')}</span>
                   <span class="score">+25</span>
                 </div>
               </div>
@@ -476,7 +454,6 @@ export class WalkthroughOverlay extends LitElement {
                   <span class="name">ShibaPro</span>
                   <span class="score">990</span>
                 </div>
-              </div>
             </div>
           </div>
         </div>
@@ -496,36 +473,34 @@ export class WalkthroughOverlay extends LitElement {
                 <div style="display:flex; align-items:center; gap:8px;">
                   <icon-svg-badge name="doghouse-star"></icon-svg-badge>
                   <div>
-                    >
                     <div><strong>${t('walkthrough.ui.premiumTitle')}</strong></div>
                     <div class="dh-note">${t('walkthrough.ui.premiumFeatures')}</div>
                   </div>
                 </div>
-                ><span class="score">${t('walkthrough.ui.buy')}</span>
+                <span class="score">${t('walkthrough.ui.buy')}</span>
               </div>
               <div class="list">
                 <div class="list-item">
                   <div style="display:flex; align-items:center; gap:8px;">
                     <icon-svg-badge name="doghouse-plus"></icon-svg-badge>
-                    ><span>${t('walkthrough.ui.extraDoghouse')}</span>
+                    <span>${t('walkthrough.ui.extraDoghouse')}</span>
                   </div>
                   <span class="score">Snacks</span>
                 </div>
                 <div class="list-item">
                   <div style="display:flex; align-items:center; gap:8px;">
                     <icon-svg-badge name="dogface-pencil"></icon-svg-badge>
-                    ><span>${t('walkthrough.ui.renameToken')}</span>
+                    <span>${t('walkthrough.ui.renameToken')}</span>
                   </div>
                   <span class="score">Snacks</span>
                 </div>
                 <div class="list-item">
                   <div style="display:flex; align-items:center; gap:8px;">
                     <icon-svg-badge name="doghouse-hammer"></icon-svg-badge>
-                    ><span>${t('walkthrough.ui.repairPack')}</span>
+                    <span>${t('walkthrough.ui.repairPack')}</span>
                   </div>
                   <span class="score">Snacks</span>
                 </div>
-              </div>
             </div>
           </div>
         </div>

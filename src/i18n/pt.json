@@ -312,6 +312,76 @@
   "navMyDog": "Meu cão",
   "doghousesTitle": "Casotas",
   "navProfile": "Perfil",
+  "walkthrough": {
+    "ui": {
+      "levelUp": "Subiu de nível!",
+      "plusOneSkillPoint": "+1 ponto de habilidade",
+      "place": "Colocar",
+      "healX3": "Curar ×3",
+      "attackX3": "Atacar ×3",
+      "addDoghouse": "Adicionar casota",
+      "energyUsedAttackHeal": "-2 de energia usados para atacar • -1 para curar",
+      "energyPerDay": "+1 de energia/dia por cada casota que possui",
+      "questPlaceDoghouse": "Coloque 1 casota",
+      "questAttackEnemy": "Ataque uma casota inimiga",
+      "questHealOwn": "Cure a sua própria casota",
+      "premiumTitle": "Premium",
+      "premiumFeatures": "Ícones de cão premium • Renomeações ilimitadas",
+      "buy": "Comprar",
+      "extraDoghouse": "Casota extra",
+      "renameToken": "Ficha de renomeação",
+      "repairPack": "Pacote de reparação",
+      "snacks": "Snacks"
+    },
+    "steps": {
+      "gainingExperience": {
+        "title": "A ganhar XP",
+        "desc": "Coloque as suas casotas e ataque as dos inimigos para obter XP. Suba de nível para tornar o seu cão mais forte.",
+        "hint": "Para obter os melhores resultados, ligue o seu GPS. Coloque as casotas longe das outras.",
+        "howto": [
+          "Toque no ícone da casota para colocar uma onde está.",
+          "Toque numa casota inimiga para a atacar.",
+          "Toque na sua própria casota para a curar.",
+          "Quando subir de nível, reclame as suas recompensas e atribua pontos de habilidade na vista do Cão."
+        ]
+      },
+      "energyMechanics": {
+        "title": "Energia",
+        "desc": "Precisa de energia para atacar e curar. A sua energia recarrega todos os dias, e quantas mais casotas tiver, mais energia obtém.",
+        "hint": "Mais casotas = mais energia. Use-a com sabedoria.",
+        "howto": [
+          "Veja a sua energia no canto superior direito.",
+          "Atacar e curar consomem ambos energia.",
+          "Construa mais casotas para obter mais energia todos os dias."
+        ]
+      },
+      "dailyQuests": {
+        "title": "Missões e classificações",
+        "desc": "Complete missões diárias para obter recompensas. Suba nas classificações e veja a sua posição em relação a outros jogadores.",
+        "hint": "Inicie sessão todos os dias para fazer as suas missões e manter a sua classificação.",
+        "howto": [
+          "Vá para o separador Missões diárias para ver as suas tarefas e obter as suas recompensas.",
+          "Vá para as Classificações para ver a sua posição."
+        ]
+      },
+      "premiumShop": {
+        "title": "Premium e Loja",
+        "desc": "Com o Premium, obtém ícones de cão fantásticos e renomeações ilimitadas. Na Loja, pode usar Snacks para comprar mais casotas, renomeações e reparações.",
+        "hint": "O Premium é para o estilo, e os Snacks ajudam-no a progredir mais rapidamente.",
+        "howto": [
+          "Vá à Loja para ver o que está à venda.",
+          "Compre Premium para obter ícones exclusivos e renomeações ilimitadas.",
+          "Compre Snacks para obter mais casotas, renomeações e reparações."
+        ]
+      }
+    },
+    "buttons": {
+      "back": "Voltar",
+      "next": "Seguinte",
+      "done": "Concluído",
+      "close": "Fechar"
+    }
+  },
   "signIn": {
     "heroEyebrow": "Join the pack",
     "heroHeadline": "Lead your dog to victory",

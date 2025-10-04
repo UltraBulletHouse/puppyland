@@ -312,6 +312,76 @@
   "navMyDog": "我的狗",
   "doghousesTitle": "犬屋",
   "navProfile": "个人资料",
+  "walkthrough": {
+    "ui": {
+      "levelUp": "升级！",
+      "plusOneSkillPoint": "+1技能点",
+      "place": "放置",
+      "healX3": "治疗×3",
+      "attackX3": "攻击×3",
+      "addDoghouse": "添加狗屋",
+      "energyUsedAttackHeal": "攻击消耗2点能量 • 治疗消耗1点能量",
+      "energyPerDay": "每拥有一间狗屋，每天+1能量",
+      "questPlaceDoghouse": "放置1个狗屋",
+      "questAttackEnemy": "攻击敌方狗屋",
+      "questHealOwn": "治疗自己的狗屋",
+      "premiumTitle": "高级会员",
+      "premiumFeatures": "高级狗图标 • 无限次重命名",
+      "buy": "购买",
+      "extraDoghouse": "额外的狗屋",
+      "renameToken": "重命名令牌",
+      "repairPack": "修理包",
+      "snacks": "零食"
+    },
+    "steps": {
+      "gainingExperience": {
+        "title": "获得经验值",
+        "desc": "放置自己的狗屋并攻击敌人的狗屋以获得经验值。升级以使您的狗更强大。",
+        "hint": "为获得最佳效果，请打开GPS。将狗屋放置在远离其他狗屋的地方。",
+        "howto": [
+          "点击狗屋图标，在您所在的位置放置一个。",
+          "点击敌人的狗屋进行攻击。",
+          "点击自己的狗屋进行治疗。",
+          "升级后，在“狗”视图中领取奖励并分配技能点。"
+        ]
+      },
+      "energyMechanics": {
+        "title": "能量",
+        "desc": "您需要能量来攻击和治疗。您的能量每天都会补充，您拥有的狗屋越多，您获得的能量就越多。",
+        "hint": "更多的狗屋=更多的能量。明智地使用它。",
+        "howto": [
+          "在右上角查看您的能量。",
+          "攻击和治疗都会消耗能量。",
+          "建造更多的狗屋以每天获得更多的能量。"
+        ]
+      },
+      "dailyQuests": {
+        "title": "任务和排行榜",
+        "desc": "完成每日任务以获得奖励。攀登排行榜，看看您与其他玩家的排名如何。",
+        "hint": "每天登录以完成任务并保持排名。",
+        "howto": [
+          "转到“每日任务”选项卡以查看您的任务并获得奖励。",
+          "转到排行榜查看您的排名。"
+        ]
+      },
+      "premiumShop": {
+        "title": "高级会员和商店",
+        "desc": "通过高级会员，您可以获得酷炫的狗图标和无限次重命名。在商店中，您可以使用零食购买更多的狗屋、重命名和修理。",
+        "hint": "高级会员是为了外观，而零食可以帮助您更快地进步。",
+        "howto": [
+          "前往商店查看正在出售的商品。",
+          "购买高级会员以获得独家图标和无限次重命名。",
+          "购买零食以获得更多的狗屋、重命名和修理。"
+        ]
+      }
+    },
+    "buttons": {
+      "back": "返回",
+      "next": "下一步",
+      "done": "完成",
+      "close": "关闭"
+    }
+  },
   "signIn": {
     "heroEyebrow": "Join the pack",
     "heroHeadline": "Lead your dog to victory",

@@ -316,6 +316,76 @@
   "navMyDog": "Il mio cane",
   "doghousesTitle": "Cuccie",
   "navProfile": "Profilo",
+  "walkthrough": {
+    "ui": {
+      "levelUp": "Aumento di livello!",
+      "plusOneSkillPoint": "+1 punto abilità",
+      "place": "Piazza",
+      "healX3": "Cura ×3",
+      "attackX3": "Attacca ×3",
+      "addDoghouse": "Aggiungi cuccia",
+      "energyUsedAttackHeal": "-2 energia usata per attaccare • -1 per curare",
+      "energyPerDay": "+1 energia/giorno per ogni cuccia che possiedi",
+      "questPlaceDoghouse": "Piazza 1 cuccia",
+      "questAttackEnemy": "Attacca una cuccia nemica",
+      "questHealOwn": "Cura la tua cuccia",
+      "premiumTitle": "Premium",
+      "premiumFeatures": "Icone per cani premium • Rinomine illimitate",
+      "buy": "Acquista",
+      "extraDoghouse": "Cuccia extra",
+      "renameToken": "Gettone per rinominare",
+      "repairPack": "Pacco di riparazione",
+      "snacks": "Snack"
+    },
+    "steps": {
+      "gainingExperience": {
+        "title": "Guadagnare XP",
+        "desc": "Piazza le tue cucce e attacca quelle nemiche per ottenere XP. Sali di livello per rendere il tuo cane più forte.",
+        "hint": "Per risultati ottimali, attiva il GPS. Piazza le cucce lontano dalle altre.",
+        "howto": [
+          "Tocca l'icona della cuccia per piazzarne una dove ti trovi.",
+          "Tocca una cuccia nemica per attaccarla.",
+          "Tocca la tua cuccia per curarla.",
+          "Quando sali di livello, riscatta le tue ricompense e assegna i punti abilità nella vista Cane."
+        ]
+      },
+      "energyMechanics": {
+        "title": "Energia",
+        "desc": "Hai bisogno di energia per attaccare e curare. La tua energia si ricarica ogni giorno, e più cucce hai, più energia ottieni.",
+        "hint": "Più cucce = più energia. Usala saggiamente.",
+        "howto": [
+          "Vedi la tua energia nell'angolo in alto a destra.",
+          "Attaccare e curare consumano entrambi energia.",
+          "Costruisci più cucce per ottenere più energia ogni giorno."
+        ]
+      },
+      "dailyQuests": {
+        "title": "Missioni e classifiche",
+        "desc": "Completa le missioni giornaliere per ottenere ricompense. Scala le classifiche e vedi come ti piazzi rispetto agli altri giocatori.",
+        "hint": "Accedi ogni giorno per completare le tue missioni e mantenere la tua posizione.",
+        "howto": [
+          "Vai alla scheda Missioni giornaliere per vedere i tuoi compiti e ottenere le tue ricompense.",
+          "Vai alle Classifiche per vedere la tua posizione."
+        ]
+      },
+      "premiumShop": {
+        "title": "Premium e negozio",
+        "desc": "Con Premium, ottieni fantastiche icone per cani e rinomine illimitate. Nel Negozio, puoi usare gli Snack per acquistare più cucce, rinomine e riparazioni.",
+        "hint": "Il Premium è per l'estetica, e gli Snack ti aiutano a progredire più velocemente.",
+        "howto": [
+          "Vai al Negozio per vedere cosa c'è in vendita.",
+          "Acquista Premium for ottenere icone esclusive e rinomine illimitate.",
+          "Acquista Snack per ottenere più cucce, rinomine e riparazioni."
+        ]
+      }
+    },
+    "buttons": {
+      "back": "Indietro",
+      "next": "Avanti",
+      "done": "Fatto",
+      "close": "Chiudi"
+    }
+  },
   "signIn": {
     "heroEyebrow": "Join the pack",
     "heroHeadline": "Lead your dog to victory",

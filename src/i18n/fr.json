@@ -316,6 +316,76 @@
   "navMyDog": "Mon chien",
   "doghousesTitle": "Niches",
   "navProfile": "Profil",
+  "walkthrough": {
+    "ui": {
+      "levelUp": "Niveau supérieur !",
+      "plusOneSkillPoint": "+1 point de compétence",
+      "place": "Placer",
+      "healX3": "Soigner ×3",
+      "attackX3": "Attaquer ×3",
+      "addDoghouse": "Ajouter une niche",
+      "energyUsedAttackHeal": "-2 d'énergie utilisée pour attaquer • -1 pour soigner",
+      "energyPerDay": "+1 d'énergie/jour pour chaque niche que vous possédez",
+      "questPlaceDoghouse": "Placer 1 niche",
+      "questAttackEnemy": "Attaquer une niche ennemie",
+      "questHealOwn": "Soigner votre propre niche",
+      "premiumTitle": "Premium",
+      "premiumFeatures": "Icônes de chien premium • Renommages illimités",
+      "buy": "Acheter",
+      "extraDoghouse": "Niche supplémentaire",
+      "renameToken": "Jeton de renommage",
+      "repairPack": "Pack de réparation",
+      "snacks": "Friandises"
+    },
+    "steps": {
+      "gainingExperience": {
+        "title": "Gagner de l'XP",
+        "desc": "Placez vos niches et attaquez celles des ennemis pour obtenir de l'XP. Montez de niveau pour rendre votre chien plus fort.",
+        "hint": "Pour de meilleurs résultats, activez votre GPS. Placez les niches à l'écart des autres.",
+        "howto": [
+          "Appuyez sur l'icône de la niche pour en placer une à votre emplacement.",
+          "Appuyez sur une niche ennemie pour l'attaquer.",
+          "Appuyez sur votre propre niche pour la soigner.",
+          "Lorsque vous montez de niveau, réclamez vos récompenses et attribuez des points de compétence dans la vue Chien."
+        ]
+      },
+      "energyMechanics": {
+        "title": "Énergie",
+        "desc": "Vous avez besoin d'énergie pour attaquer et soigner. Votre énergie se recharge chaque jour, et plus vous avez de niches, plus vous obtenez d'énergie.",
+        "hint": "Plus de niches = plus d'énergie. Utilisez-la à bon escient.",
+        "howto": [
+          "Voyez votre énergie dans le coin supérieur droit.",
+          "Attaquer et soigner consomment tous deux de l'énergie.",
+          "Construisez plus de niches pour obtenir plus d'énergie chaque jour."
+        ]
+      },
+      "dailyQuests": {
+        "title": "Quêtes et classements",
+        "desc": "Terminez les quêtes quotidiennes pour obtenir des récompenses. Grimpez dans les classements et voyez votre classement par rapport aux autres joueurs.",
+        "hint": "Connectez-vous tous les jours pour faire vos quêtes et maintenir votre classement.",
+        "howto": [
+          "Allez dans l'onglet Quêtes quotidiennes pour voir vos tâches et obtenir vos récompenses.",
+          "Allez dans les Classements pour voir votre classement."
+        ]
+      },
+      "premiumShop": {
+        "title": "Premium et boutique",
+        "desc": "Avec Premium, vous obtenez des icônes de chien sympas et des renommages illimités. Dans la boutique, vous pouvez utiliser des friandises pour acheter plus de niches, de renommages et de réparations.",
+        "hint": "Le Premium est pour le style, et les friandises vous aident à progresser plus rapidement.",
+        "howto": [
+          "Allez dans la boutique pour voir ce qui est en vente.",
+          "Achetez Premium pour obtenir des icônes exclusives et des renommages illimités.",
+          "Achetez des friandises pour obtenir plus de niches, de renommages et de réparations."
+        ]
+      }
+    },
+    "buttons": {
+      "back": "Retour",
+      "next": "Suivant",
+      "done": "Terminé",
+      "close": "Fermer"
+    }
+  },
   "signIn": {
     "heroEyebrow": "Join the pack",
     "heroHeadline": "Lead your dog to victory",

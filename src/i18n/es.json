@@ -318,6 +318,76 @@
   "navMyDog": "Mi perro",
   "doghousesTitle": "Casetas",
   "navProfile": "Perfil",
+  "walkthrough": {
+    "ui": {
+      "levelUp": "¡Subida de nivel!",
+      "plusOneSkillPoint": "+1 punto de habilidad",
+      "place": "Colocar",
+      "healX3": "Curar ×3",
+      "attackX3": "Atacar ×3",
+      "addDoghouse": "Añadir caseta de perro",
+      "energyUsedAttackHeal": "-2 de energía utilizada para atacar • -1 para curar",
+      "energyPerDay": "+1 de energía/día por cada caseta de perro que poseas",
+      "questPlaceDoghouse": "Coloca 1 caseta de perro",
+      "questAttackEnemy": "Ataca una caseta de perro enemiga",
+      "questHealOwn": "Cura tu propia caseta de perro",
+      "premiumTitle": "Premium",
+      "premiumFeatures": "Iconos de perro premium • Renombres ilimitados",
+      "buy": "Comprar",
+      "extraDoghouse": "Caseta de perro extra",
+      "renameToken": "Token de renombre",
+      "repairPack": "Paquete de reparación",
+      "snacks": "Snacks"
+    },
+    "steps": {
+      "gainingExperience": {
+        "title": "Ganando XP",
+        "desc": "Coloca tus casetas de perro y ataca las de los enemigos para conseguir XP. Sube de nivel para hacer a tu perro más fuerte.",
+        "hint": "Para obtener los mejores resultados, activa tu GPS. Coloca las casetas de perro lejos de las demás.",
+        "howto": [
+          "Toca el icono de la caseta de perro para colocar una donde estás.",
+          "Toca una caseta de perro enemiga para atacarla.",
+          "Toca tu propia caseta de perro para curarla.",
+          "Cuando subas de nivel, reclama tus recompensas y asigna puntos de habilidad en la vista de Perro."
+        ]
+      },
+      "energyMechanics": {
+        "title": "Energía",
+        "desc": "Necesitas energía para atacar y curar. Tu energía se recarga cada día, y cuantas más casetas de perro tengas, más energía obtendrás.",
+        "hint": "Más casetas de perro = más energía. Úsala sabiamente.",
+        "howto": [
+          "Mira tu energía en la esquina superior derecha.",
+          "Atacar y curar consumen energía.",
+          "Construye más casetas de perro para obtener más energía cada día."
+        ]
+      },
+      "dailyQuests": {
+        "title": "Misiones y tablas de clasificación",
+        "desc": "Completa misiones diarias para obtener recompensas. Sube en las tablas de clasificación y comprueba tu posición frente a otros jugadores.",
+        "hint": "Inicia sesión todos los días para hacer tus misiones y mantener tu rango.",
+        "howto": [
+          "Ve a la pestaña Misiones diarias para ver tus tareas y obtener tus recompensas.",
+          "Ve a las Tablas de clasificación para ver tu posición."
+        ]
+      },
+      "premiumShop": {
+        "title": "Premium y Tienda",
+        "desc": "Con Premium, obtienes geniales iconos de perro y renombres ilimitados. En la Tienda, puedes usar Snacks para comprar más casetas de perro, renombres y reparaciones.",
+        "hint": "Premium es para la apariencia, y los Snacks te ayudan a progresar más rápido.",
+        "howto": [
+          "Ve a la Tienda para ver lo que está a la venta.",
+          "Compra Premium para obtener iconos exclusivos y renombres ilimitados.",
+          "Compra Snacks para conseguir más casetas de perro, renombres y reparaciones."
+        ]
+      }
+    },
+    "buttons": {
+      "back": "Atrás",
+      "next": "Siguiente",
+      "done": "Hecho",
+      "close": "Cerrar"
+    }
+  },
   "signIn": {
     "heroEyebrow": "Join the pack",
     "heroHeadline": "Lead your dog to victory",
