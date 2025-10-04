@@ -1798,7 +1798,9 @@ export class AppDogView extends LitElement {
                                       <div class="buff-item-tile">
                                         <div class="buff-icon">
                                           <icon-svg-badge
-                                            format="${buff.buffSku.includes('repair') ? 'svg' : 'png'}"
+                                            format="${buff.buffSku.includes('repair')
+                                              ? 'svg'
+                                              : 'png'}"
                                             name="${buff.buffSku.includes('repair')
                                               ? 'doghouse-hammer'
                                               : 'energy-drink'}"

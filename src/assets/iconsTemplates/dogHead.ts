@@ -13,7 +13,7 @@ export const dogHead = html`<svg
   clip-rule="evenodd"
   viewBox="0 0 512 449.317"
   fill="currentColor"
-    width="24px"
+  width="24px"
   height="24px"
 >
   <path

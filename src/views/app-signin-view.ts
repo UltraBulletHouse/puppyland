@@ -25,11 +25,7 @@ export class AppSignin extends LitElement {
         min-height: 100vh;
         padding: 32px 16px;
         background: var(--app-bg);
-        background-image: radial-gradient(
-          circle at top,
-          rgba(22, 195, 138, 0.18),
-          transparent 55%
-        );
+        background-image: radial-gradient(circle at top, rgba(22, 195, 138, 0.18), transparent 55%);
         overflow: hidden;
       }
       .ambient {

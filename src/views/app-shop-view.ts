@@ -570,9 +570,7 @@ export class AppShopView extends LitElement {
     const displayDesc = td === descKey ? item.description : td;
     return html`
       <div class="shop-item">
-        <div class="item-icon">
-          ${this.renderShopItemIcon(item)}
-        </div>
+        <div class="item-icon">${this.renderShopItemIcon(item)}</div>
         <div class="item-details">
           <div class="item-name">${displayName}</div>
           <div class="item-description">${displayDesc}</div>
@@ -601,9 +599,7 @@ export class AppShopView extends LitElement {
     const displayDesc = td === descKey ? item.description : td;
     return html`
       <div class="shop-item">
-        <div class="item-icon">
-          ${this.renderShopItemIcon(item)}
-        </div>
+        <div class="item-icon">${this.renderShopItemIcon(item)}</div>
         <div class="item-details">
           <div class="item-name">${displayName}</div>
           <div class="item-description">${displayDesc}</div>
@@ -640,10 +636,7 @@ export class AppShopView extends LitElement {
         : html`<sl-icon name=${icon}></sl-icon>`;
     return html`
       <div class="category-section">
-        <div class="category-title">
-          ${iconTemplate}
-          ${title}
-        </div>
+        <div class="category-title">${iconTemplate} ${title}</div>
         <div class="item-list">${parsedItems.map((item) => renderer(item as ShopItemLocal))}</div>
       </div>
     `;

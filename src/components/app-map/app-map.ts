@@ -31,9 +31,9 @@ import '../../utils/mapUtils';
 import { drawMarker, generatePulsatingMarker } from '../../utils/mapUtils';
 import { toastDanger, toastWarning } from '../../utils/toastUtils';
 import '../level-up-modal/level-up-modal';
+import '../walkthrough/walkthrough-overlay';
 import { AppMapStyles } from './app-map-styles';
 import './map-popup/map-popup';
-import '../walkthrough/walkthrough-overlay';
 
 /**
  * @fires updateDogInfo
@@ -500,11 +500,17 @@ export class AppMap extends LitElement {
 
         <div id="map" @closePopup=${this.closePopup}></div>
 
-       ${!this.isWalkthroughOpen
-         ? html`<button id="help-btn" class="help-btn" type="button" @click=${this.openWalkthrough} aria-label="Help and walkthrough">
-             <span class="help-icon">?</span>
-           </button>`
-         : null}
+        ${!this.isWalkthroughOpen
+          ? html`<button
+              id="help-btn"
+              class="help-btn"
+              type="button"
+              @click=${this.openWalkthrough}
+              aria-label="Help and walkthrough"
+            >
+              <span class="help-icon">?</span>
+            </button>`
+          : null}
 
         <div id="controls">
           <div id="left-side">

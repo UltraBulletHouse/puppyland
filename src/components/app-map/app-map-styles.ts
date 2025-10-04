@@ -154,7 +154,9 @@ export const AppMapStyles = [
       line-height: 1;
     }
     @media (max-width: 360px) {
-      .help-btn { top: calc(10px + 34px + 34px + 4px); }
+      .help-btn {
+        top: calc(10px + 34px + 34px + 4px);
+      }
     }
 
     .leaflet-control-zoom a,
