@@ -12,6 +12,7 @@
       "cannotChangeAnymore": "You can't change name anymore"
     },
     "doghouse": {
+      "tooClose": "Too close to another doghouse. Nearest: {minDistance} m. Move at least {requiredDistance} m farther.",
       "alreadyFullyHealed": "This doghouse is fully healed!"
     },
     "buff": {

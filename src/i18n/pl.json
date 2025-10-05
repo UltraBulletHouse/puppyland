@@ -12,6 +12,7 @@
       "cannotChangeAnymore": "Nie możesz już zmienić nazwy"
     },
     "doghouse": {
+      "tooClose": "Za blisko innej budy. Najbliższa: {minDistance} m. Przesuń się co najmniej o {requiredDistance} m.",
       "alreadyFullyHealed": "Ta buda jest już w pełni uleczona!"
     },
     "buff": {
