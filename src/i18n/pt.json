@@ -320,7 +320,7 @@
       "healX3": "Curar ×3",
       "attackX3": "Atacar ×3",
       "addDoghouse": "Adicionar casota",
-      "energyUsedAttackHeal": "-2 de energia usados para atacar • -1 para curar",
+      "energyUsedAttackHeal": "-5 de energia para atacar • -5 para curar",
       "energyPerDay": "+1 de energia/dia por cada casota que possui",
       "questPlaceDoghouse": "Coloque 1 casota",
       "questAttackEnemy": "Ataque uma casota inimiga",

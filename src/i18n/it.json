@@ -324,7 +324,7 @@
       "healX3": "Cura ×3",
       "attackX3": "Attacca ×3",
       "addDoghouse": "Aggiungi cuccia",
-      "energyUsedAttackHeal": "-2 energia usata per attaccare • -1 per curare",
+      "energyUsedAttackHeal": "-5 energia per attaccare • -5 per curare",
       "energyPerDay": "+1 energia/giorno per ogni cuccia che possiedi",
       "questPlaceDoghouse": "Piazza 1 cuccia",
       "questAttackEnemy": "Attacca una cuccia nemica",

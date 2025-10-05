@@ -324,7 +324,7 @@
       "healX3": "Soigner ×3",
       "attackX3": "Attaquer ×3",
       "addDoghouse": "Ajouter une niche",
-      "energyUsedAttackHeal": "-2 d'énergie utilisée pour attaquer • -1 pour soigner",
+      "energyUsedAttackHeal": "-5 d'énergie pour attaquer • -5 pour soigner",
       "energyPerDay": "+1 d'énergie/jour pour chaque niche que vous possédez",
       "questPlaceDoghouse": "Placer 1 niche",
       "questAttackEnemy": "Attaquer une niche ennemie",

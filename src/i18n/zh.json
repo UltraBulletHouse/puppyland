@@ -320,7 +320,7 @@
       "healX3": "治疗×3",
       "attackX3": "攻击×3",
       "addDoghouse": "添加狗屋",
-      "energyUsedAttackHeal": "攻击消耗2点能量 • 治疗消耗1点能量",
+      "energyUsedAttackHeal": "攻击消耗5点能量 • 治疗消耗5点能量",
       "energyPerDay": "每拥有一间狗屋，每天+1能量",
       "questPlaceDoghouse": "放置1个狗屋",
       "questAttackEnemy": "攻击敌方狗屋",

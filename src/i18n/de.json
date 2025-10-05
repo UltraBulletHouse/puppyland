@@ -320,7 +320,7 @@
       "healX3": "Heilen ×3",
       "attackX3": "Angreifen ×3",
       "addDoghouse": "Hundehütte hinzufügen",
-      "energyUsedAttackHeal": "-2 Energie für Angriff • -1 für Heilung",
+      "energyUsedAttackHeal": "-5 Energie für Angriff • -5 für Heilung",
       "energyPerDay": "+1 Energie/Tag für jede eigene Hundehütte",
       "questPlaceDoghouse": "1 Hundehütte platzieren",
       "questAttackEnemy": "Eine feindliche Hundehütte angreifen",

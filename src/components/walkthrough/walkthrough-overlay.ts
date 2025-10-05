@@ -371,7 +371,7 @@ export class WalkthroughOverlay extends LitElement {
                   <div class="zoom-btn">+</div>
                   <div class="zoom-btn">−</div>
                 </div>
-                <div class="energy-chip"><icon-svg name="energy-drink"></icon-svg>120</div>
+                <div class="energy-chip"><sl-icon name="lightning-charge"></sl-icon>120</div>
                 <span class="map-pin own"
                   ><icon-svg-badge name="doghouse-plus"-large></icon-svg-badge
                 ></span>
@@ -403,11 +403,11 @@ export class WalkthroughOverlay extends LitElement {
                 style="height: 80px; border: 1px solid #d3d9d4; border-radius: 8px; background: #fff; position: relative;"
               >
                 <div class="energy-chip" style="top: 6px; right: 6px;">
-                  <icon-svg name="energy-drink"></icon-svg>120
+                  <sl-icon name="lightning-charge"></sl-icon>120
                 </div>
               </div>
               <div class="energy-bar"><div class="energy-fill" style="--energy:58%"></div></div>
-              <div class="dh-note">${t('walkthrough.ui.energyUsedAttackHeal')}</div>
+              <div class="dh-note"><sl-icon name="lightning-charge"></sl-icon> ${t('walkthrough.ui.energyUsedAttackHeal')}</div>
               <div class="energy-note">${t('walkthrough.ui.energyPerDay')}</div>
             </div>
           </div>

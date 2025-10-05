@@ -320,7 +320,7 @@
       "healX3": "شفاء ×3",
       "attackX3": "هجوم ×3",
       "addDoghouse": "إضافة بيت كلب",
-      "energyUsedAttackHeal": "-2 طاقة مستخدمة للهجوم • -1 للشفاء",
+      "energyUsedAttackHeal": "-5 طاقة للهجوم • -5 للشفاء",
       "energyPerDay": "+1 طاقة/يوم لكل بيت كلب تملكه",
       "questPlaceDoghouse": "ضع بيت كلب واحد",
       "questAttackEnemy": "هاجم بيت كلب عدو",

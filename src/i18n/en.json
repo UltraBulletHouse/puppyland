@@ -326,7 +326,7 @@
       "healX3": "Heal ×3",
       "attackX3": "Attack ×3",
       "addDoghouse": "Add doghouse",
-      "energyUsedAttackHeal": "-2 energy used to Attack • -1 to Heal",
+      "energyUsedAttackHeal": "-5 energy to Attack • -5 to Repair",
       "energyPerDay": "+1 energy/day for each doghouse you own",
       "questPlaceDoghouse": "Place 1 doghouse",
       "questAttackEnemy": "Attack an enemy doghouse",
