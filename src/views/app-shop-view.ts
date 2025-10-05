@@ -53,6 +53,21 @@ const removeIdNameFromName = (name: string) => {
   return name.replace('(dogisland)', '');
 };
 
+const shorten = (text: string, max = 120): string => {
+  try {
+    if (!text) return text;
+    if (text.length <= max) return text;
+    // Prefer to cut on sentence or word boundary
+    const sentenceEnd = text.indexOf('.', 0);
+    if (sentenceEnd > 40 && sentenceEnd < max) return text.slice(0, sentenceEnd + 1);
+    const cut = text.slice(0, max);
+    const lastSpace = cut.lastIndexOf(' ');
+    return (lastSpace > 60 ? cut.slice(0, lastSpace) : cut) + '…';
+  } catch {
+    return text;
+  }
+};
+
 const parseShopItems = (items: ShopItemLocal[], googleItems: GoogleBillingItem[] | null) => {
   if (!googleItems) return items;
 
@@ -66,7 +81,7 @@ const parseShopItems = (items: ShopItemLocal[], googleItems: GoogleBillingItem[]
       badge: item.badge,
       name: removeIdNameFromName(googleItem.title) ?? removeIdNameFromName(item.name),
       price: parsePriceToFixed(googleItem.price) ?? parsePriceToFixed(item.price),
-      description: googleItem.description ?? item.description,
+      description: shorten(googleItem.description ?? item.description ?? ''),
     };
 
     return parsedItem;
@@ -359,9 +374,11 @@ export class AppShopView extends LitElement {
       .item-description {
         font-size: 14px;
         color: var(--color-black-medium);
-        white-space: nowrap;
+        white-space: normal;
         overflow: hidden;
-        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
       }
 
       .item-action {
