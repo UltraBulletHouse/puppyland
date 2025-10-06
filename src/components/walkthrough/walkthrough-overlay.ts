@@ -297,13 +297,17 @@ export class WalkthroughOverlay extends LitElement {
         height: 16px;
         border-radius: 10px;
         border: 1px solid #c8d1c9;
-        background: #fff;
+        background: #ddeee6;
         overflow: hidden;
       }
       .energy-fill {
         height: 100%;
         width: var(--energy, 75%);
-        background: linear-gradient(90deg, #86e1ff, #6bd6f9);
+        background: linear-gradient(
+          242deg,
+          var(--lav),
+          color-mix(in srgb, var(--lav) 39%, #ffffff)
+        );
       }
       .energy-note {
         font-size: 12px;
