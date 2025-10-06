@@ -20,7 +20,7 @@ import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
 import '../../app-modal/app-modal';
 import '../../app-spinner/app-spinner';
-import '../../icon-png/icon-png';
+import '../../icon-svg/icon-svg-badge';
 import '../../level-up-modal/level-up-modal';
 import { MapModalStyles } from './map-modal-styles';
 
@@ -841,10 +841,10 @@ export class MapModal extends LitElement {
                           `
                         : html``}
                       <div class="buff-icon">
-                        <icon-png-badge
-                          name="${buff.buffSku.includes('repair') ? 'toolkit' : 'energy-drink'}"
+                        <icon-svg-badge
+                          name="${buff.buffSku.includes('repair') ? 'doghouse-hammer' : 'energy-drink'}"
                           badge="${buff.quantity}"
-                        ></icon-png-badge>
+                        ></icon-svg-badge>
                       </div>
                       <div class="buff-details">
                         <span class="buff-name">${buff.name}</span>

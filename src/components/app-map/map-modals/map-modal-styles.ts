@@ -1139,6 +1139,11 @@ export const MapModalStyles = html`
       --icon-png-badge-height: 32px;
     }
 
+    .buff-item icon-svg-badge {
+      --icon-svg-badge-width: 32px;
+      --icon-svg-badge-height: 32px;
+    }
+
     /* Icon bubble like shop/dog view */
     .buff-icon {
       width: 48px;
