@@ -354,7 +354,9 @@
       "extraDoghouse": "Dodatkowa buda",
       "renameToken": "Token zmiany nazwy",
       "repairPack": "Pakiet naprawczy",
-      "snacks": "Smakołyki"
+      "snacks": "Smakołyki",
+      "questsTitle": "Misje",
+      "leaderboardsTitle": "Rankingi"
     },
     "steps": {
       "gainingExperience": {

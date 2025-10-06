@@ -322,6 +322,13 @@ export class WalkthroughOverlay extends LitElement {
         display: grid;
         gap: 6px;
       }
+      .list-title {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: var(--coral);
+      }
       .list-item {
         display: flex;
         align-items: center;
@@ -434,6 +441,7 @@ export class WalkthroughOverlay extends LitElement {
             <div class="status-bar"></div>
             <div class="phone-content" style="display:grid; gap:8px;">
               <div class="list">
+                <div class="list-title">${t('walkthrough.ui.questsTitle')}</div>
                 <div class="list-item">
                   <span>${t('walkthrough.ui.questPlaceDoghouse')}</span>
                   <span class="score">+50</span>
@@ -448,6 +456,7 @@ export class WalkthroughOverlay extends LitElement {
                 </div>
               </div>
               <div class="list">
+                <div class="list-title">${t('walkthrough.ui.leaderboardsTitle')}</div>
                 <div class="list-item">
                   <span class="rank">1</span>
                   <span class="name">AlphaPup</span>

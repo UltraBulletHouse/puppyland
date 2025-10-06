@@ -335,7 +335,9 @@
       "extraDoghouse": "Niche supplémentaire",
       "renameToken": "Jeton de renommage",
       "repairPack": "Pack de réparation",
-      "snacks": "Friandises"
+      "snacks": "Friandises",
+      "questsTitle": "Quêtes",
+      "leaderboardsTitle": "Classements"
     },
     "steps": {
       "gainingExperience": {

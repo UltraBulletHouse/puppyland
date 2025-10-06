@@ -331,7 +331,9 @@
       "extraDoghouse": "অতিরিক্ত কুকুর ঘর",
       "renameToken": "টোকেন পুনঃনামকরণ",
       "repairPack": "মেরামত প্যাক",
-      "snacks": "স্ন্যাকস"
+      "snacks": "স্ন্যাকস",
+      "questsTitle": "Quests",
+      "leaderboardsTitle": "Leaderboards"
     },
     "steps": {
       "gainingExperience": {

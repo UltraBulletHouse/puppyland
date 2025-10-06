@@ -331,7 +331,9 @@
       "extraDoghouse": "اضافی کتے کا گھر",
       "renameToken": "نام تبدیل کرنے کا ٹوکن",
       "repairPack": "مرمت کا پیک",
-      "snacks": "اسنیکس"
+      "snacks": "اسنیکس",
+      "questsTitle": "کوئیسٹس",
+      "leaderboardsTitle": "لیڈر بورڈز"
     },
     "steps": {
       "gainingExperience": {

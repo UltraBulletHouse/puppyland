@@ -338,7 +338,9 @@
       "extraDoghouse": "Extra doghouse",
       "renameToken": "Rename token",
       "repairPack": "Repair pack",
-      "snacks": "Snacks"
+      "snacks": "Snacks",
+      "questsTitle": "Quests",
+      "leaderboardsTitle": "Leaderboards"
     },
     "steps": {
       "gainingExperience": {

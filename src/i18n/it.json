@@ -335,7 +335,9 @@
       "extraDoghouse": "Cuccia extra",
       "renameToken": "Gettone per rinominare",
       "repairPack": "Pacco di riparazione",
-      "snacks": "Snack"
+      "snacks": "Snack",
+      "questsTitle": "Quests",
+      "leaderboardsTitle": "Leaderboards"
     },
     "steps": {
       "gainingExperience": {

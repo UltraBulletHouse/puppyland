@@ -331,7 +331,9 @@
       "extraDoghouse": "额外的狗屋",
       "renameToken": "重命名令牌",
       "repairPack": "修理包",
-      "snacks": "零食"
+      "snacks": "零食",
+      "questsTitle": "任务",
+      "leaderboardsTitle": "排行榜"
     },
     "steps": {
       "gainingExperience": {

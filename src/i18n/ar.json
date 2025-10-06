@@ -331,7 +331,9 @@
       "extraDoghouse": "بيت كلب إضافي",
       "renameToken": "رمز إعادة التسمية",
       "repairPack": "حزمة إصلاح",
-      "snacks": "وجبات خفيفة"
+      "snacks": "وجبات خفيفة",
+      "questsTitle": "Quests",
+      "leaderboardsTitle": "Leaderboards"
     },
     "steps": {
       "gainingExperience": {

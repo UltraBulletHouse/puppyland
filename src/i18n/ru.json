@@ -331,7 +331,9 @@
       "extraDoghouse": "Дополнительная будка",
       "renameToken": "Жетон переименования",
       "repairPack": "Ремонтный комплект",
-      "snacks": "Снеки"
+      "snacks": "Снеки",
+      "questsTitle": "Квесты",
+      "leaderboardsTitle": "Таблицы лидеров"
     },
     "steps": {
       "gainingExperience": {

@@ -335,7 +335,9 @@
       "extraDoghouse": "अतिरिक्त डॉगहाउस",
       "renameToken": "नाम बदलने का टोकन",
       "repairPack": "मरम्मत पैक",
-      "snacks": "स्नैक्स"
+      "snacks": "स्नैक्स",
+      "questsTitle": "Quests",
+      "leaderboardsTitle": "Leaderboards"
     },
     "steps": {
       "gainingExperience": {
