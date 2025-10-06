@@ -351,6 +351,16 @@ export class WalkthroughOverlay extends LitElement {
         color: #425247;
         font-weight: 700;
       }
+      .score.premium-icon,
+      .score.currency-icon {
+        display: inline-flex;
+        align-items: center;
+      }
+      .score.premium-icon icon-svg-badge,
+      .score.currency-icon icon-svg-badge {
+        --icon-svg-badge-width: 28px;
+        --icon-svg-badge-height: 28px;
+      }
     `,
   ];
 
@@ -496,7 +506,9 @@ export class WalkthroughOverlay extends LitElement {
                     <div class="dh-note">${t('walkthrough.ui.premiumFeatures')}</div>
                   </div>
                 </div>
-                <span class="score">${t('walkthrough.ui.buy')}</span>
+                <span class="score premium-icon">
+                  <icon-svg-badge name="premium-star"></icon-svg-badge>
+                </span>
               </div>
               <div class="list">
                 <div class="list-item">
@@ -504,21 +516,27 @@ export class WalkthroughOverlay extends LitElement {
                     <icon-svg-badge name="doghouse-plus"></icon-svg-badge>
                     <span>${t('walkthrough.ui.extraDoghouse')}</span>
                   </div>
-                  <span class="score">Snacks</span>
+                  <span class="score currency-icon" title="${t('walkthrough.ui.snacks')}">
+                    <icon-svg-badge name="coin"></icon-svg-badge>
+                  </span>
                 </div>
                 <div class="list-item">
                   <div style="display:flex; align-items:center; gap:8px;">
                     <icon-svg-badge name="dogface-pencil"></icon-svg-badge>
                     <span>${t('walkthrough.ui.renameToken')}</span>
                   </div>
-                  <span class="score">Snacks</span>
+                  <span class="score currency-icon" title="${t('walkthrough.ui.snacks')}">
+                    <icon-svg-badge name="coin"></icon-svg-badge>
+                  </span>
                 </div>
                 <div class="list-item">
                   <div style="display:flex; align-items:center; gap:8px;">
                     <icon-svg-badge name="doghouse-hammer"></icon-svg-badge>
                     <span>${t('walkthrough.ui.repairPack')}</span>
                   </div>
-                  <span class="score">Snacks</span>
+                  <span class="score currency-icon" title="${t('walkthrough.ui.snacks')}">
+                    <icon-svg-badge name="coin"></icon-svg-badge>
+                  </span>
                 </div>
               </div>
             </div>
