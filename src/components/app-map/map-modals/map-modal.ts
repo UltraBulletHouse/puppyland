@@ -842,7 +842,9 @@ export class MapModal extends LitElement {
                         : html``}
                       <div class="buff-icon">
                         <icon-svg-badge
-                          name="${buff.buffSku.includes('repair') ? 'doghouse-hammer' : 'energy-drink'}"
+                          name="${buff.buffSku.includes('repair')
+                            ? 'doghouse-hammer'
+                            : 'energy-drink'}"
                           badge="${buff.quantity}"
                         ></icon-svg-badge>
                       </div>

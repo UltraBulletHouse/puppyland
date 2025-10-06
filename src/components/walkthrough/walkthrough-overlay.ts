@@ -377,16 +377,17 @@ export class WalkthroughOverlay extends LitElement {
                 </div>
                 <div class="energy-chip"><sl-icon name="lightning-charge"></sl-icon>120</div>
                 <span class="map-pin own"
-                  ><icon-svg-badge name="doghouse-plus"-large></icon-svg-badge
+                  ><icon-svg-badge name="doghouse-plus" -large></icon-svg-badge
                 ></span>
                 <span class="map-pin enemy"
-                  ><icon-svg-badge name="doghouse-star"-large></icon-svg-badge
+                  ><icon-svg-badge name="doghouse-star" -large></icon-svg-badge
                 ></span>
 
                 <div class="levelup-popup">
                   <strong>${t('walkthrough.ui.levelUp')}</strong>
                   <div>${t('walkthrough.ui.plusOneSkillPoint')}</div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -411,7 +412,11 @@ export class WalkthroughOverlay extends LitElement {
                 </div>
               </div>
               <div class="energy-bar"><div class="energy-fill" style="--energy:58%"></div></div>
-              <div class="dh-note"><sl-icon name="lightning-charge"></sl-icon> ${t('walkthrough.ui.energyUsedAttackHeal')}</div>
+              <div class="dh-note">
+                <sl-icon name="lightning-charge"></sl-icon> ${t(
+                  'walkthrough.ui.energyUsedAttackHeal'
+                )}
+              </div>
               <div class="energy-note">${t('walkthrough.ui.energyPerDay')}</div>
             </div>
           </div>
@@ -458,6 +463,7 @@ export class WalkthroughOverlay extends LitElement {
                   <span class="name">ShibaPro</span>
                   <span class="score">990</span>
                 </div>
+              </div>
             </div>
           </div>
         </div>
@@ -505,6 +511,7 @@ export class WalkthroughOverlay extends LitElement {
                   </div>
                   <span class="score">Snacks</span>
                 </div>
+              </div>
             </div>
           </div>
         </div>
