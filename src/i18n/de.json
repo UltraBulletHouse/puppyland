@@ -331,7 +331,9 @@
       "extraDoghouse": "Zusätzliche Hundehütte",
       "renameToken": "Token umbenennen",
       "repairPack": "Reparaturpaket",
-      "snacks": "Snacks"
+      "snacks": "Snacks",
+      "questsTitle": "Quests",
+      "leaderboardsTitle": "Leaderboards"
     },
     "steps": {
       "gainingExperience": {

@@ -331,7 +331,9 @@
       "extraDoghouse": "额外的狗屋",
       "renameToken": "重命名令牌",
       "repairPack": "修理包",
-      "snacks": "零食"
+      "snacks": "零食",
+      "questsTitle": "任务",
+      "leaderboardsTitle": "排行榜"
     },
     "steps": {
       "gainingExperience": {
@@ -359,10 +361,7 @@
         "title": "任务和排行榜",
         "desc": "完成每日任务以获得奖励。攀登排行榜，看看您与其他玩家的排名如何。",
         "hint": "每天登录以完成任务并保持排名。",
-        "howto": [
-          "转到“每日任务”选项卡以查看您的任务并获得奖励。",
-          "转到排行榜查看您的排名。"
-        ]
+        "howto": ["转到“每日任务”选项卡以查看您的任务并获得奖励。", "转到排行榜查看您的排名。"]
       },
       "premiumShop": {
         "title": "高级会员和商店",

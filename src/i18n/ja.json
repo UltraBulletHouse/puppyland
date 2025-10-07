@@ -335,7 +335,9 @@
       "extraDoghouse": "追加の犬小屋",
       "renameToken": "名前変更トークン",
       "repairPack": "修理パック",
-      "snacks": "スナック"
+      "snacks": "スナック",
+      "questsTitle": "クエスト",
+      "leaderboardsTitle": "ランキング"
     },
     "steps": {
       "gainingExperience": {

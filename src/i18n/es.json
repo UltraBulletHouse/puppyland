@@ -337,7 +337,9 @@
       "extraDoghouse": "Extra doghouse",
       "renameToken": "Rename token",
       "repairPack": "Repair pack",
-      "snacks": "Snacks"
+      "snacks": "Snacks",
+      "questsTitle": "Quests",
+      "leaderboardsTitle": "Leaderboards"
     },
     "steps": {
       "gainingExperience": {
@@ -387,7 +389,7 @@
       "done": "Done",
       "close": "Close"
     }
-  }
+  },
   "walkthrough": {
     "ui": {
       "levelUp": "¡Subida de nivel!",
