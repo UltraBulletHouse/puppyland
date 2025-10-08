@@ -553,7 +553,10 @@ export class WalkthroughOverlay extends LitElement {
     if (this.step > 0) this.step -= 1;
   };
   private close = () => {
-    this.dispatchEvent(new CustomEvent('close'));
+    // Ensure event crosses shadow boundary so parent listeners receive it
+    this.dispatchEvent(
+      new CustomEvent('close', { bubbles: true, composed: true })
+    );
   };
 
   render() {

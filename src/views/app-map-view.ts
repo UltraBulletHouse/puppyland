@@ -18,6 +18,23 @@ export class AppMapView extends LitElement {
     try {
       const flag = await idbGet<boolean>('hasSeenMapWalkthrough');
       if (!flag?.value) {
+        // Trigger bootstrap once on first map enter (not tied to walkthrough lifecycle)
+        const sessionKey = 'puppyland_bootstrap_called';
+        if (!sessionStorage.getItem(sessionKey)) {
+          try {
+            getUserPosition(
+              (pos) => {
+                const lat = pos.coords.latitude;
+                const lng = pos.coords.longitude;
+                apiCall().post(API_DOGHOUSES_BOOTSTRAP, { lat, lng }).catch(() => {});
+                sessionStorage.setItem(sessionKey, '1');
+              },
+              () => {}
+            );
+          } catch {}
+        }
+
+        // Show walkthrough for first-time users
         this._showWalkthrough = true;
         this.requestUpdate();
       }
