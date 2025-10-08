@@ -16,6 +16,7 @@ export const API_DOGHOUSE_APPLY_BUFF = 'Doghouses/ApplyBuff';
 
 /* DOGHOUSES */
 export const API_DOGHOUSES_NEAR_USER = 'Doghouses/NearUser';
+export const API_DOGHOUSES_BOOTSTRAP = 'Doghouses/BootstrapArea';
 export const API_DOGHOUSE_UPDATE = 'Doghouses/Update';
 
 /* PURSHASE */
