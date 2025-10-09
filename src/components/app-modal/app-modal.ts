@@ -35,7 +35,7 @@ export class AppModal extends LitElement {
               height: 100vh;
               width: 100vw;
               background: #0000003e;
-              z-index: 1001;
+              z-index: 100050;
               padding: 20px 20px 80px 20px;
               box-sizing: border-box;
             }
