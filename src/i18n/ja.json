@@ -331,7 +331,7 @@
       "attackX3": "攻撃×3",
       "addDoghouse": "犬小屋を追加",
       "energyUsedAttackHeal": "攻撃に-5エネルギー • 回復に-5",
-      "energyPerDay": "所有する犬小屋1つにつき毎日+1エネルギー",
+      "energyPerDay": "所有する犬小屋1つにつき毎日+10エネルギー",
       "questPlaceDoghouse": "犬小屋を1つ配置する",
       "questAttackEnemy": "敵の犬小屋を攻撃する",
       "questHealOwn": "自分の犬小屋を回復する",
