@@ -43,7 +43,7 @@ export const shopItemsRename: ShopItemLocal[] = [
     name: 'Dog rename token',
     icon: 'dogface-pencil',
     badge: '1',
-    price: { currency: 'Treats', value: '100' },
+    price: { currency: 'Treats', value: '500' },
     description: 'Buy one rename for your dog',
   },
   {
