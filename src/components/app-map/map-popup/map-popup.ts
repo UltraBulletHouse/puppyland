@@ -12,6 +12,8 @@ import { View } from '../../../types/view';
 import { classNames } from '../../../utils/classNames';
 import { sendEvent } from '../../../utils/eventUtils';
 import { checkHowClose } from '../../../utils/mapUtils';
+import { ti } from '../../../i18n';
+import { toastWarning } from '../../../utils/toastUtils';
 import '../../icon-svg/svg-icon';
 import '../map-modals/map-modal';
 
@@ -74,6 +76,28 @@ export class MapPopup extends LitElement {
   @state()
   isOpen: boolean = false;
 
+  @state()
+  private lastDistanceMeters: number | null = null;
+
+  @state()
+  private currentReachMeters: number | null = null;
+
+  handleOpenClick = (event: Event) => {
+    if (this.isBlocked) {
+      event.preventDefault();
+      const distance = this.lastDistanceMeters ?? 0;
+      const reach = this.currentReachMeters ?? this.getReachMeters();
+      const roundedDistance = Math.max(0, Math.round(distance));
+      const roundedReach = Math.max(0, Math.round(reach));
+      toastWarning(
+        ti('errors.reach.outOfReach', { distanceMeters: roundedDistance, reachMeters: roundedReach })
+      );
+      return;
+    }
+
+    this.openMapModal();
+  };
+
   private static readonly BASE_REACH_DISTANCE = 200;
   private static readonly REACH_PER_POINT = 10;
 
@@ -119,11 +143,17 @@ export class MapPopup extends LitElement {
       if (!this.isBlocked) {
         this.isBlocked = true;
       }
+      this.lastDistanceMeters = null;
+      this.currentReachMeters = null;
       return;
     }
 
     const distance = checkHowClose(userCoords, doghouseCoords);
     const reachMeters = this.getReachMeters();
+
+    this.lastDistanceMeters = distance;
+    this.currentReachMeters = reachMeters;
+
     const isClose = distance <= reachMeters;
 
     if (this.isClose !== isClose) {
@@ -380,7 +410,7 @@ export class MapPopup extends LitElement {
         }
         #next-btn.next-btn-is-blocked {
           background-color: var(--color-black-light);
-          pointer-events: none;
+          cursor: not-allowed;
         }
         #close-btn {
           position: absolute;
@@ -452,7 +482,7 @@ export class MapPopup extends LitElement {
                 this.isOwn && 'next-btn-is-own',
                 this.isBlocked && 'next-btn-is-blocked'
               )}
-              @click=${this.openMapModal}
+              @click=${this.handleOpenClick}
             >
               <sl-icon name="arrow-right"></sl-icon>
             </div>
