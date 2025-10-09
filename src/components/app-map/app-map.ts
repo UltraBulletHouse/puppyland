@@ -95,12 +95,29 @@ export class AppMap extends LitElement {
 
   private lastFocusedDoghouse: Doghouse | null = null;
 
+  private handleDogInfoUpdate = (event: Event) => {
+    if (!(event instanceof CustomEvent)) return;
+    const detail = event.detail as DogInfo | null;
+    if (!detail) return;
+    this.dogInfo = detail;
+  };
+
   openPopup(id: string | null) {
     this.openPopupId = id;
   }
 
   closePopup() {
     this.map?.closePopup();
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    this.addEventListener('updateDogInfo', this.handleDogInfoUpdate as EventListener);
+  }
+
+  disconnectedCallback(): void {
+    this.removeEventListener('updateDogInfo', this.handleDogInfoUpdate as EventListener);
+    super.disconnectedCallback();
   }
 
   private ensureDoghousePresent(target: Doghouse) {

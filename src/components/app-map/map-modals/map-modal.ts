@@ -137,6 +137,40 @@ export class MapModal extends LitElement {
   // Lightweight tap throttle to avoid rapid reflows on mobile
   private lastTapAt: number = 0;
 
+  private updateDogInfoContext(dogInfo: DogInfo) {
+    const clonedDogInfo: DogInfo = {
+      ...dogInfo,
+      buffsForDoghouses: dogInfo.buffsForDoghouses
+        ? dogInfo.buffsForDoghouses.map((buff) => ({ ...buff }))
+        : null,
+      buffsForDog: dogInfo.buffsForDog ? dogInfo.buffsForDog.map((buff) => ({ ...buff })) : null,
+    };
+
+    this.dogInfo = clonedDogInfo;
+    updateDogInfoEvent(this, clonedDogInfo);
+
+    const appRoot = document.querySelector('app-index') as LitElement | null;
+    if (appRoot) {
+      (appRoot as any).dogInfo = clonedDogInfo;
+      appRoot.requestUpdate?.('dogInfo');
+    }
+  }
+
+  private adjustDogEnergy(delta: number) {
+    if (!this.dogInfo) return;
+    const energyMax = typeof this.dogInfo.energyMax === 'number' ? this.dogInfo.energyMax : undefined;
+    const nextEnergy = Math.max(
+      0,
+      Math.min(energyMax ?? Number.POSITIVE_INFINITY, this.dogInfo.energy + delta)
+    );
+    if (nextEnergy === this.dogInfo.energy) return;
+    const updatedDogInfo: DogInfo = {
+      ...this.dogInfo,
+      energy: nextEnergy,
+    };
+    this.updateDogInfoContext(updatedDogInfo);
+  }
+
   connectedCallback(): void {
     super.connectedCallback();
     try {
@@ -184,7 +218,9 @@ export class MapModal extends LitElement {
       const doghouseInfoResponse = applyBuffResponse?.data?.doghouse;
 
       if (dogInfoResponse) {
-        updateDogInfoEvent(this, dogInfoResponse);
+        this.updateDogInfoContext(dogInfoResponse);
+      } else {
+        this.adjustDogEnergy(-attackEnergy);
       }
 
       if (doghouseInfoResponse) {
@@ -513,7 +549,9 @@ export class MapModal extends LitElement {
       }
 
       if (dogInfoResponse) {
-        updateDogInfoEvent(this, dogInfoResponse);
+        this.updateDogInfoContext(dogInfoResponse);
+      } else {
+        this.adjustDogEnergy(-attackEnergy);
       }
       if (attackResult?.isDoghouseDestroyed) {
         this.dhHp = '0';
@@ -549,7 +587,9 @@ export class MapModal extends LitElement {
     const doghouseInfoResponse = repairDoghouseResponse?.data?.doghouse;
 
     if (dogInfoResponse) {
-      updateDogInfoEvent(this, dogInfoResponse);
+      this.updateDogInfoContext(dogInfoResponse);
+    } else {
+      this.adjustDogEnergy(-repairEnergy);
     }
 
     if (doghouseInfoResponse) {
@@ -593,7 +633,9 @@ export class MapModal extends LitElement {
       }
 
       if (dogInfoResponse) {
-        updateDogInfoEvent(this, dogInfoResponse);
+        this.updateDogInfoContext(dogInfoResponse);
+      } else {
+        this.adjustDogEnergy(-repairEnergy);
       }
 
       if (doghouseInfoResponse) {
