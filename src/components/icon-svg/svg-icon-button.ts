@@ -12,8 +12,9 @@ export class SvgIcon extends LitElement {
       .svg-wrapper {
         display: flex;
         align-items: center;
-        height: 1em;
-        width: 1em;
+        justify-content: center;
+        width: var(--svg-icon-width, var(--svg-icon-size, 1em));
+        height: var(--svg-icon-height, var(--svg-icon-size, 1em));
         box-sizing: content-box !important;
 
         background: none;
@@ -69,6 +70,6 @@ export class SvgIcon extends LitElement {
   }
 
   render() {
-    return html`<button class="svg-wrapper">${this.svgElement}</button>`;
+    return html`<button class="svg-wrapper" part="wrapper">${this.svgElement}</button>`;
   }
 }

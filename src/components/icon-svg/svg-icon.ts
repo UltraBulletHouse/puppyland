@@ -13,11 +13,19 @@ export class SvgIcon extends LitElement {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+        width: var(--svg-icon-width, var(--svg-icon-size, 1em));
+        height: var(--svg-icon-height, var(--svg-icon-size, 1em));
       }
-      .svg-wrapper {
+      .svg-wrapper,
+      .svg-wrapper svg {
         display: inline-flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+      .svg-wrapper svg {
+        flex: 1;
       }
     `,
   ];
@@ -33,7 +41,6 @@ export class SvgIcon extends LitElement {
       if (!this.name) {
         throw new Error('"name" is not defined for svg-icon element');
       }
-      this.svgElement = undefined;
       // First try a named template export from iconsTemplates/{name}.ts
       try {
         const svgIcon = await import(`../../assets/iconsTemplates/${this.name}.ts`);
@@ -66,7 +73,7 @@ export class SvgIcon extends LitElement {
   }
 
   render() {
-    if (!this.svgElement) return;
-    return html`<span class="svg-wrapper">${this.svgElement}</span>`;
+    if (!this.svgElement) return null;
+    return html`<span class="svg-wrapper" part="wrapper">${this.svgElement}</span>`;
   }
 }
