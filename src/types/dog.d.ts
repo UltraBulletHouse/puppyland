@@ -15,6 +15,7 @@ export interface DogInfo {
   experience: number;
   level: number;
   expForNextLevel: number;
+  reachMeters?: number;
   buffsForDoghouses: DogBuffs[] | null;
   buffsForDog: DogBuffs[] | null;
   iconKey?: string | null;

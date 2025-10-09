@@ -3,8 +3,10 @@ import { LitElement, PropertyValues, html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { customElement } from 'lit/decorators/custom-element.js';
 
+import { dogInfoContext } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { viewContext } from '../../../contexts/viewContext';
+import { DogInfo } from '../../../types/dog';
 import { Coords } from '../../../types/geolocation';
 import { View } from '../../../types/view';
 import { classNames } from '../../../utils/classNames';
@@ -25,6 +27,10 @@ export class MapPopup extends LitElement {
   @consume({ context: viewContext, subscribe: true })
   @property({ attribute: false })
   currentView: View = View.MAP_VIEW;
+
+  @consume({ context: dogInfoContext, subscribe: true })
+  @property({ attribute: false })
+  dogInfo: DogInfo | null = null;
 
   @property({ type: String })
   dhCoords?: string;
@@ -68,6 +74,68 @@ export class MapPopup extends LitElement {
   @state()
   isOpen: boolean = false;
 
+  private static readonly BASE_REACH_DISTANCE = 200;
+  private static readonly REACH_PER_POINT = 10;
+
+  private getReachMeters(): number {
+    const direct = this.dogInfo?.reachMeters;
+    if (typeof direct === 'number' && Number.isFinite(direct)) {
+      return direct;
+    }
+
+    const derivedReach =
+      (this.dogInfo as any)?.derived?.reachMeters ?? (this.dogInfo as any)?.derivedStats?.reachMeters;
+    if (typeof derivedReach === 'number' && Number.isFinite(derivedReach)) {
+      return derivedReach;
+    }
+
+    const attributeReach = (this.dogInfo as any)?.attributes?.reach;
+    if (typeof attributeReach === 'number' && Number.isFinite(attributeReach)) {
+      return (
+        MapPopup.BASE_REACH_DISTANCE + MapPopup.REACH_PER_POINT * Math.max(0, attributeReach)
+      );
+    }
+
+    return MapPopup.BASE_REACH_DISTANCE;
+  }
+
+  private parseCoords(value: string | undefined | null): Coords | null {
+    if (!value) return null;
+    const parts = value.split('/');
+    if (parts.length < 2) return null;
+    const lat = Number(parts[0]);
+    const lng = Number(parts[1]);
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+    return { lat, lng };
+  }
+
+  private updateProximity() {
+    const doghouseCoords = this.parseCoords(this.dhCoords);
+    const userCoords = this.parseCoords(this.userCoords);
+    if (!doghouseCoords || !userCoords) {
+      if (this.isClose) {
+        this.isClose = false;
+      }
+      if (!this.isBlocked) {
+        this.isBlocked = true;
+      }
+      return;
+    }
+
+    const distance = checkHowClose(userCoords, doghouseCoords);
+    const reachMeters = this.getReachMeters();
+    const isClose = distance <= reachMeters;
+
+    if (this.isClose !== isClose) {
+      this.isClose = isClose;
+    }
+
+    const shouldBlock = !isClose;
+    if (this.isBlocked !== shouldBlock) {
+      this.isBlocked = shouldBlock;
+    }
+  }
+
   private decodeValue(value: string | undefined | null, preferredPrefix?: string): string {
     if (!value) return '';
     const decoded = decodeURIComponent(value);
@@ -104,30 +172,19 @@ export class MapPopup extends LitElement {
   };
 
   firstUpdated() {
-    const CLOSEST_DISTANCE = 5000;
-
-    const dhCoordsArr = this.dhCoords?.split('/');
-    let dhCoordsObj: Coords = { lat: 0, lng: 0 };
-    if (dhCoordsArr?.[0] && dhCoordsArr?.[1]) {
-      dhCoordsObj = { lat: parseFloat(dhCoordsArr[0]), lng: parseFloat(dhCoordsArr[1]) };
-    }
-
-    const userCoordsArr = this.userCoords?.split('/');
-    let userCoordsObj: Coords = { lat: 0, lng: 0 };
-    if (userCoordsArr?.[0] && userCoordsArr?.[1]) {
-      userCoordsObj = { lat: parseFloat(userCoordsArr[0]), lng: parseFloat(userCoordsArr[1]) };
-    }
-
-    const dhProximity = checkHowClose(userCoordsObj, dhCoordsObj);
-    this.isClose = dhProximity < CLOSEST_DISTANCE;
+    this.updateProximity();
   }
 
   protected updated(changedProperties: PropertyValues): void {
     if (changedProperties.has('dhHp')) {
       this.dhHpLocal = this.dhHp;
     }
-    if (changedProperties.has('isClose')) {
-      this.isBlocked = !this.isClose;
+    if (
+      changedProperties.has('dhCoords') ||
+      changedProperties.has('userCoords') ||
+      changedProperties.has('dogInfo')
+    ) {
+      this.updateProximity();
     }
     // Close modal when view changes away from MAP_VIEW
     if (changedProperties.has('currentView')) {
