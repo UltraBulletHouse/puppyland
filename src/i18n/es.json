@@ -333,7 +333,7 @@
       "attackX3": "Attack ×3",
       "addDoghouse": "Add doghouse",
       "energyUsedAttackHeal": "-5 de energía para atacar • -5 para curar",
-      "energyPerDay": "+1 energy/day for each doghouse you own",
+      "energyPerDay": "+10 energy/day for each doghouse you own",
       "questPlaceDoghouse": "Place 1 doghouse",
       "questAttackEnemy": "Attack an enemy doghouse",
       "questHealOwn": "Heal your doghouse",
@@ -361,7 +361,7 @@
       },
       "energyMechanics": {
         "title": "Energy Mechanics",
-        "desc": "Attacking and healing cost energy. Energy refills automatically: +1 per doghouse you own, each day.",
+        "desc": "Attacking and healing cost energy. Energy refills automatically: +10 per doghouse you own, each day.",
         "hint": "Plan bigger battles when you have more energy or more owned doghouses.",
         "howto": [
           "Check your energy in the top-right lightning badge.",
