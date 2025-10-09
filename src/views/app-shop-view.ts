@@ -238,6 +238,15 @@ export class AppShopView extends LitElement {
         height: calc(100vh - 220px);
         -webkit-overflow-scrolling: touch;
       }
+      .shop-tabs sl-tab-panel::part(base) {
+        height: 100%;
+      }
+      .panel-loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
       .shop-tabs::part(nav) {
         justify-content: center;
         flex-wrap: wrap;
@@ -741,7 +750,7 @@ export class AppShopView extends LitElement {
                         this.shopGoogleItems
                       )}
                     `
-                  : html`<app-spinner></app-spinner>`}
+                  : html`<div class="panel-loader"><app-spinner></app-spinner></div>`}
               </sl-tab-panel>
 
               <sl-tab-panel name="premium">
@@ -753,7 +762,7 @@ export class AppShopView extends LitElement {
                       (i) => this.renderShopItemReal(i),
                       this.shopGoogleItems
                     )}`
-                  : html`<app-spinner></app-spinner>`}
+                  : html`<div class="panel-loader"><app-spinner></app-spinner></div>`}
               </sl-tab-panel>
             </sl-tab-group>
           </div>
