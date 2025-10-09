@@ -158,7 +158,8 @@ export class MapModal extends LitElement {
 
   private adjustDogEnergy(delta: number) {
     if (!this.dogInfo) return;
-    const energyMax = typeof this.dogInfo.energyMax === 'number' ? this.dogInfo.energyMax : undefined;
+    const energyMax =
+      typeof this.dogInfo.energyMax === 'number' ? this.dogInfo.energyMax : undefined;
     const nextEnergy = Math.max(
       0,
       Math.min(energyMax ?? Number.POSITIVE_INFINITY, this.dogInfo.energy + delta)

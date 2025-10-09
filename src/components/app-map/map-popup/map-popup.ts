@@ -6,13 +6,13 @@ import { customElement } from 'lit/decorators/custom-element.js';
 import { dogInfoContext } from '../../../contexts/dogInfoContext';
 import { accessTokenContext } from '../../../contexts/userFirebaseContext';
 import { viewContext } from '../../../contexts/viewContext';
+import { ti } from '../../../i18n';
 import { DogInfo } from '../../../types/dog';
 import { Coords } from '../../../types/geolocation';
 import { View } from '../../../types/view';
 import { classNames } from '../../../utils/classNames';
 import { sendEvent } from '../../../utils/eventUtils';
 import { checkHowClose } from '../../../utils/mapUtils';
-import { ti } from '../../../i18n';
 import { toastWarning } from '../../../utils/toastUtils';
 import '../../icon-svg/svg-icon';
 import '../map-modals/map-modal';
@@ -90,7 +90,10 @@ export class MapPopup extends LitElement {
       const roundedDistance = Math.max(0, Math.round(distance));
       const roundedReach = Math.max(0, Math.round(reach));
       toastWarning(
-        ti('errors.reach.outOfReach', { distanceMeters: roundedDistance, reachMeters: roundedReach })
+        ti('errors.reach.outOfReach', {
+          distanceMeters: roundedDistance,
+          reachMeters: roundedReach,
+        })
       );
       return;
     }
@@ -108,16 +111,15 @@ export class MapPopup extends LitElement {
     }
 
     const derivedReach =
-      (this.dogInfo as any)?.derived?.reachMeters ?? (this.dogInfo as any)?.derivedStats?.reachMeters;
+      (this.dogInfo as any)?.derived?.reachMeters ??
+      (this.dogInfo as any)?.derivedStats?.reachMeters;
     if (typeof derivedReach === 'number' && Number.isFinite(derivedReach)) {
       return derivedReach;
     }
 
     const attributeReach = (this.dogInfo as any)?.attributes?.reach;
     if (typeof attributeReach === 'number' && Number.isFinite(attributeReach)) {
-      return (
-        MapPopup.BASE_REACH_DISTANCE + MapPopup.REACH_PER_POINT * Math.max(0, attributeReach)
-      );
+      return MapPopup.BASE_REACH_DISTANCE + MapPopup.REACH_PER_POINT * Math.max(0, attributeReach);
     }
 
     return MapPopup.BASE_REACH_DISTANCE;
