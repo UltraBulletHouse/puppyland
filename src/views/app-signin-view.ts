@@ -4,7 +4,7 @@ import { customElement } from 'lit/decorators.js';
 
 import '../components/icon-svg/svg-icon';
 
-import { t } from '../i18n';
+import { t, translationsReady } from '../i18n';
 import { sharedStyles } from '../styles/shared-styles';
 import { alertNotifyDanger } from '../utils/alertsUtils';
 import { auth, googleProvider } from '../utils/firebase';
@@ -167,6 +167,19 @@ export class AppSignin extends LitElement {
     await signInWithPopup(auth, googleProvider).catch((err) => {
       alertNotifyDanger(err.message);
     });
+  }
+
+  private readonly handleLocaleChange = () => this.requestUpdate();
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    window.addEventListener('locale-changed', this.handleLocaleChange);
+    translationsReady.then(() => this.requestUpdate());
+  }
+
+  disconnectedCallback(): void {
+    window.removeEventListener('locale-changed', this.handleLocaleChange);
+    super.disconnectedCallback();
   }
 
   render() {
