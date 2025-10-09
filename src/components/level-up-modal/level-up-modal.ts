@@ -2,6 +2,7 @@ import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 
 import { DogInfo } from '../../types/dog';
+import { t } from '../../i18n';
 import { sendEvent } from '../../utils/eventUtils';
 import { LevelUpModalStyles } from './level-up-modal-styles';
 
@@ -15,18 +16,24 @@ export class LevelUpModal extends LitElement {
   };
 
   render() {
+    const levelTextTemplate = t('levelUp.reachedLevel');
+    const [levelTextBefore = '', levelTextAfter = ''] = levelTextTemplate.split('{level}');
+    const levelValue = this.dogInfo?.level ?? '';
+
     return html`
       ${LevelUpModalStyles}
       <div id="level-up-modal">
-        <h2>🎉 Level Up! 🎉</h2>
-        <h3>You reached level <strong>${this.dogInfo?.level}</strong>!</h3>
+        <h2>${t('levelUp.title')}</h2>
+        <h3>
+          ${levelTextBefore}<strong>${levelValue}</strong>${levelTextAfter}
+        </h3>
         <div>
           <ul>
-            <li><sl-icon name="plus-circle"></sl-icon>Skill point +1</li>
-            <li><sl-icon name="house-add"></sl-icon>Doghouse +1</li>
+            <li><sl-icon name="plus-circle"></sl-icon>${t('levelUp.skillPointReward')}</li>
+            <li><sl-icon name="house-add"></sl-icon>${t('levelUp.doghouseReward')}</li>
           </ul>
         </div>
-        <sl-button class="claim-btn" @click=${this.closeModal} pill>Claim</sl-button>
+        <sl-button class="claim-btn" @click=${this.closeModal} pill>${t('claim')}</sl-button>
       </div>
     `;
   }

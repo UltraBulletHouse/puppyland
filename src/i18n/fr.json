@@ -300,6 +300,12 @@
   "loading": "Chargement...",
   "loadingDailyQuests": "Chargement des quêtes quotidiennes...",
   "noQuestsToday": "Aucune quête aujourd’hui",
+  "levelUp": {
+    "title": "🎉 Niveau supérieur ! 🎉",
+    "reachedLevel": "Vous avez atteint le niveau {level} !",
+    "skillPointReward": "Point de compétence +1",
+    "doghouseReward": "Niche +1"
+  },
   "claim": "Réclamer",
   "claimed": "Réclamé",
   "leaderboardTopLevels": "Meilleurs niveaux",

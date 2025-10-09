@@ -303,6 +303,12 @@
   "loading": "Loading...",
   "loadingDailyQuests": "Loading daily quests...",
   "noQuestsToday": "No quests available today",
+  "levelUp": {
+    "title": "🎉 Level Up! 🎉",
+    "reachedLevel": "You reached level {level}!",
+    "skillPointReward": "Skill point +1",
+    "doghouseReward": "Doghouse +1"
+  },
   "claim": "Claim",
   "claimed": "Claimed",
   "leaderboardTopLevels": "Top Levels",

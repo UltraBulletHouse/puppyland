@@ -296,6 +296,12 @@
   "loading": "Carregando...",
   "loadingDailyQuests": "Carregando missões diárias...",
   "noQuestsToday": "Nenhuma missão disponível hoje",
+  "levelUp": {
+    "title": "🎉 Subiu de nível! 🎉",
+    "reachedLevel": "Você alcançou o nível {level}!",
+    "skillPointReward": "Ponto de habilidade +1",
+    "doghouseReward": "Canil +1"
+  },
   "claim": "Resgatar",
   "claimed": "Resgatado",
   "leaderboardTopLevels": "Maiores níveis",

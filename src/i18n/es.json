@@ -302,6 +302,12 @@
   "loading": "Cargando...",
   "loadingDailyQuests": "Cargando misiones diarias...",
   "noQuestsToday": "No hay misiones hoy",
+  "levelUp": {
+    "title": "🎉 ¡Subiste de nivel! 🎉",
+    "reachedLevel": "¡Alcanzaste el nivel {level}!",
+    "skillPointReward": "Punto de habilidad +1",
+    "doghouseReward": "Caseta +1"
+  },
   "claim": "Reclamar",
   "claimed": "Reclamado",
   "leaderboardTopLevels": "Mejores niveles",

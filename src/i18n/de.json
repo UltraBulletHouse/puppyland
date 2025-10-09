@@ -296,6 +296,12 @@
   "loading": "Laden...",
   "loadingDailyQuests": "Tägliche Quests werden geladen...",
   "noQuestsToday": "Heute keine Quests verfügbar",
+  "levelUp": {
+    "title": "🎉 Levelaufstieg! 🎉",
+    "reachedLevel": "Du hast Level {level} erreicht!",
+    "skillPointReward": "Fähigkeitspunkt +1",
+    "doghouseReward": "Hundehütte +1"
+  },
   "claim": "Einlösen",
   "claimed": "Eingelöst",
   "leaderboardTopLevels": "Top-Level",

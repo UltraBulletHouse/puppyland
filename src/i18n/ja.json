@@ -300,6 +300,12 @@
   "loading": "読み込み中...",
   "loadingDailyQuests": "デイリークエストを読み込み中...",
   "noQuestsToday": "今日は利用可能なクエストがありません",
+  "levelUp": {
+    "title": "🎉 レベルアップ！ 🎉",
+    "reachedLevel": "レベル{level}に到達しました！",
+    "skillPointReward": "スキルポイント +1",
+    "doghouseReward": "犬小屋 +1"
+  },
   "claim": "請求",
   "claimed": "請求済み",
   "leaderboardTopLevels": "トップレベル",

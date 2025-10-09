@@ -296,6 +296,12 @@
   "loading": "لوڈ ہو رہا ہے...",
   "loadingDailyQuests": "روزانہ کی تلاشیں لوڈ ہو رہی ہیں...",
   "noQuestsToday": "آج کوئی تلاش دستیاب نہیں ہے",
+  "levelUp": {
+    "title": "🎉 لیول اپ! 🎉",
+    "reachedLevel": "آپ {level} لیول تک پہنچ گئے ہیں!",
+    "skillPointReward": "ہنر پوائنٹ +1",
+    "doghouseReward": "ڈاگ ہاؤس +1"
+  },
   "claim": "دعوی کریں",
   "claimed": "دعوی کیا گیا",
   "leaderboardTopLevels": "اعلیٰ سطحیں",

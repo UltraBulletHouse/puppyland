@@ -300,6 +300,12 @@
   "loading": "Caricamento...",
   "loadingDailyQuests": "Caricamento missioni giornaliere...",
   "noQuestsToday": "Nessuna missione disponibile oggi",
+  "levelUp": {
+    "title": "🎉 Salto di livello! 🎉",
+    "reachedLevel": "Hai raggiunto il livello {level}!",
+    "skillPointReward": "Punto abilità +1",
+    "doghouseReward": "Cuccia +1"
+  },
   "claim": "Riscatta",
   "claimed": "Riscattato",
   "leaderboardTopLevels": "Migliori livelli",

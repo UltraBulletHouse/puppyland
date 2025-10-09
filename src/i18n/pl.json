@@ -319,6 +319,12 @@
   "loading": "Ładowanie...",
   "loadingDailyQuests": "Ładowanie zadań dziennych...",
   "noQuestsToday": "Brak zadań na dziś",
+  "levelUp": {
+    "title": "🎉 Poziom w górę! 🎉",
+    "reachedLevel": "Osiągnąłeś poziom {level}!",
+    "skillPointReward": "Punkt umiejętności +1",
+    "doghouseReward": "Psia buda +1"
+  },
   "claim": "Odbierz",
   "claimed": "Odebrano",
   "leaderboardTopLevels": "Najwyższe poziomy",

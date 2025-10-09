@@ -296,6 +296,12 @@
   "loading": "加载中...",
   "loadingDailyQuests": "正在加载每日任务...",
   "noQuestsToday": "今天没有可用的任务",
+  "levelUp": {
+    "title": "🎉 升级了！ 🎉",
+    "reachedLevel": "你达到{level}级啦！",
+    "skillPointReward": "技能点 +1",
+    "doghouseReward": "狗屋 +1"
+  },
   "claim": "领取",
   "claimed": "已领取",
   "leaderboardTopLevels": "最高等级",
