@@ -317,6 +317,11 @@
   "leaderboardUpdated": "Обновлено",
   "navMyDog": "Моя собака",
   "doghousesTitle": "Собачьи будки",
+  "dailyEnergyDetails": "Ежедневное восполнение энергии",
+  "dailyEnergyTitle": "Ежедневная энергия от будок",
+  "dailyEnergyPerDoghouse": "Каждая будка дает +10 энергии в день.",
+  "nextRefillIn": "Следующее восполнение через",
+  "details": "Подробнее",
   "navProfile": "Профиль",
   "walkthrough": {
     "ui": {

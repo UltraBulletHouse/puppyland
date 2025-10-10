@@ -321,6 +321,11 @@
   "leaderboardUpdated": "更新日",
   "navMyDog": "マイ ドッグ",
   "doghousesTitle": "犬小屋",
+  "dailyEnergyDetails": "毎日のエネルギー補充",
+  "dailyEnergyTitle": "犬小屋からの毎日のエネルギー",
+  "dailyEnergyPerDoghouse": "各犬小屋は1日あたり+10のエネルギーを付与します。",
+  "nextRefillIn": "次の補充まで",
+  "details": "詳細",
   "navProfile": "プロフィール",
   "walkthrough": {
     "ui": {

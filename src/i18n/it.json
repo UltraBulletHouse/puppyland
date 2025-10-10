@@ -321,6 +321,11 @@
   "leaderboardUpdated": "Aggiornato il",
   "navMyDog": "Il mio cane",
   "doghousesTitle": "Cuccie",
+  "dailyEnergyDetails": "Ricarica giornaliera di energia",
+  "dailyEnergyTitle": "Energia giornaliera dalle cucce",
+  "dailyEnergyPerDoghouse": "Ogni cuccia concede +10 energia al giorno.",
+  "nextRefillIn": "Prossima ricarica tra",
+  "details": "Dettagli",
   "navProfile": "Profilo",
   "walkthrough": {
     "ui": {

@@ -321,6 +321,11 @@
   "leaderboardUpdated": "Mis à jour le",
   "navMyDog": "Mon chien",
   "doghousesTitle": "Niches",
+  "dailyEnergyDetails": "Recharge d'énergie quotidienne",
+  "dailyEnergyTitle": "Énergie quotidienne des niches",
+  "dailyEnergyPerDoghouse": "Chaque niche accorde +10 d'énergie par jour.",
+  "nextRefillIn": "Prochaine recharge dans",
+  "details": "Détails",
   "navProfile": "Profil",
   "walkthrough": {
     "ui": {

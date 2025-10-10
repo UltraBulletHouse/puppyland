@@ -317,6 +317,11 @@
   "leaderboardUpdated": "اپ ڈیٹ کیا गया",
   "navMyDog": "میرا کتا",
   "doghousesTitle": "کتے کے گھر",
+  "dailyEnergyDetails": "روزانہ توانائی کی ریفل",
+  "dailyEnergyTitle": "ڈاگ ہاؤسز سے روزانہ توانائی",
+  "dailyEnergyPerDoghouse": "ہر ڈاگ ہاؤس روزانہ +10 توانائی دیتا ہے۔",
+  "nextRefillIn": "اگلی ریفل میں",
+  "details": "تفصیلات",
   "navProfile": "پروفائل",
   "walkthrough": {
     "ui": {

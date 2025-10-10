@@ -317,6 +317,11 @@
   "leaderboardUpdated": "আপডেট করা হয়েছে",
   "navMyDog": "আমার কুকুর",
   "doghousesTitle": "ডগহাউস",
+  "dailyEnergyDetails": "দৈনিক শক্তি রিফিল",
+  "dailyEnergyTitle": "ডগহাউস থেকে দৈনিক শক্তি",
+  "dailyEnergyPerDoghouse": "প্রতি ডগহাউস প্রতিদিন +10 শক্তি দেয়।",
+  "nextRefillIn": "পরবর্তী রিফিলে বাকি",
+  "details": "বিস্তারিত",
   "navProfile": "প্রোফাইল",
   "walkthrough": {
     "ui": {

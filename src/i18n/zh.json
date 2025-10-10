@@ -317,6 +317,11 @@
   "leaderboardUpdated": "已更新",
   "navMyDog": "我的狗",
   "doghousesTitle": "犬屋",
+  "dailyEnergyDetails": "每日能量补充",
+  "dailyEnergyTitle": "来自狗屋的每日能量",
+  "dailyEnergyPerDoghouse": "每个狗屋每天提供 +10 能量。",
+  "nextRefillIn": "下次补充还有",
+  "details": "详情",
   "navProfile": "个人资料",
   "walkthrough": {
     "ui": {

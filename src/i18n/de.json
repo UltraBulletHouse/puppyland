@@ -317,6 +317,11 @@
   "leaderboardUpdated": "Aktualisiert am",
   "navMyDog": "Mein Hund",
   "doghousesTitle": "Hundehütten",
+  "dailyEnergyDetails": "Tägliche Energieauffüllung",
+  "dailyEnergyTitle": "Tägliche Energie aus Hundehütten",
+  "dailyEnergyPerDoghouse": "Jede Hundehütte gewährt täglich +10 Energie.",
+  "nextRefillIn": "Nächste Auffüllung in",
+  "details": "Details",
   "navProfile": "Profil",
   "walkthrough": {
     "ui": {

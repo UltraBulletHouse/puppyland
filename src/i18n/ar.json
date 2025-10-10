@@ -317,6 +317,11 @@
   "leaderboardUpdated": "تم التحديث",
   "navMyDog": "كلبي",
   "doghousesTitle": "بيوت الكلاب",
+  "dailyEnergyDetails": "إعادة تعبئة الطاقة اليومية",
+  "dailyEnergyTitle": "الطاقة اليومية من بيوت الكلاب",
+  "dailyEnergyPerDoghouse": "كل بيت كلاب يمنح +10 طاقة يوميًا.",
+  "nextRefillIn": "إعادة التعبئة التالية خلال",
+  "details": "التفاصيل",
   "navProfile": "الملف الشخصي",
   "walkthrough": {
     "ui": {

@@ -340,6 +340,11 @@
   "leaderboardUpdated": "Aktualizacja",
   "navMyDog": "Mój pies",
   "doghousesTitle": "Budy",
+  "dailyEnergyDetails": "Dzienne odnawianie energii",
+  "dailyEnergyTitle": "Dzienna energia z bud",
+  "dailyEnergyPerDoghouse": "Każda buda daje +10 energii dziennie.",
+  "nextRefillIn": "Następne odnowienie za",
+  "details": "Szczegóły",
   "navProfile": "Profil",
   "walkthrough": {
     "ui": {

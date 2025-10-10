@@ -323,6 +323,11 @@
   "leaderboardUpdated": "Actualizado",
   "navMyDog": "Mi perro",
   "doghousesTitle": "Casetas",
+  "dailyEnergyDetails": "Recarga diaria de energía",
+  "dailyEnergyTitle": "Energía diaria de las casetas",
+  "dailyEnergyPerDoghouse": "Cada caseta otorga +10 de energía al día.",
+  "nextRefillIn": "Próxima recarga en",
+  "details": "Detalles",
   "navProfile": "Perfil",
   "walkthrough": {
     "ui": {

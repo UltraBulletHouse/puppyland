@@ -321,6 +321,11 @@
   "leaderboardUpdated": "अपडेट किया गया",
   "navMyDog": "मेरा कुत्ता",
   "doghousesTitle": "डॉगहाउस",
+  "dailyEnergyDetails": "दैनिक ऊर्जा रिफ़िल",
+  "dailyEnergyTitle": "डॉगहाउस से दैनिक ऊर्जा",
+  "dailyEnergyPerDoghouse": "हर डॉगहाउस प्रतिदिन +10 ऊर्जा देता है।",
+  "nextRefillIn": "अगली रिफ़िल में",
+  "details": "विवरण",
   "navProfile": "प्रोफ़ाइल",
   "walkthrough": {
     "ui": {

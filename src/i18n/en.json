@@ -324,6 +324,11 @@
   "leaderboardUpdated": "Updated",
   "navMyDog": "My Dog",
   "doghousesTitle": "Doghouses",
+  "dailyEnergyDetails": "Daily energy refill",
+  "dailyEnergyTitle": "Daily energy from doghouses",
+  "dailyEnergyPerDoghouse": "Each doghouse grants +10 energy per day.",
+  "nextRefillIn": "Next refill in",
+  "details": "Details",
   "navProfile": "Profile",
   "walkthrough": {
     "ui": {

@@ -317,6 +317,11 @@
   "leaderboardUpdated": "Atualizado em",
   "navMyDog": "Meu cão",
   "doghousesTitle": "Casotas",
+  "dailyEnergyDetails": "Recarga diária de energia",
+  "dailyEnergyTitle": "Energia diária das casotas",
+  "dailyEnergyPerDoghouse": "Cada casota concede +10 de energia por dia.",
+  "nextRefillIn": "Próxima recarga em",
+  "details": "Detalhes",
   "navProfile": "Perfil",
   "walkthrough": {
     "ui": {
