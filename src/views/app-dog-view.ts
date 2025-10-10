@@ -1816,11 +1816,14 @@ export class AppDogView extends LitElement {
                                         </div>
                                         <div class="buff-details">
                                           ${(() => {
-                                            const { name, description } = getLocalizedBuffCopy(buff);
+                                            const { name, description } =
+                                              getLocalizedBuffCopy(buff);
                                             return html`
                                               <div class="buff-name">${name}</div>
                                               ${description
-                                                ? html`<div class="buff-description">${description}</div>`
+                                                ? html`<div class="buff-description">
+                                                    ${description}
+                                                  </div>`
                                                 : ''}
                                             `;
                                           })()}
