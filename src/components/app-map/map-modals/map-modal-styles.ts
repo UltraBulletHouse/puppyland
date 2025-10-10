@@ -1133,6 +1133,13 @@ export const MapModalStyles = html`
       color: var(--color-black);
       margin: 0;
     }
+    .buff-item .buff-description {
+      display: block;
+      font-size: 12px;
+      color: var(--text-2);
+      margin-top: 4px;
+      line-height: 1.3;
+    }
 
     .buff-item icon-png-badge {
       --icon-png-badge-width: 32px;

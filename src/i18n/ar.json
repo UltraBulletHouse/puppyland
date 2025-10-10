@@ -269,6 +269,26 @@
   "signInWithGoogle": "تسجيل الدخول باستخدام جوجل",
   "health": "صحة",
   "availableBuffs": "التعزيزات المتاحة",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "إصلاح 50",
+        "description": "أصلِح 50 نقطة صحة لبيت الكلب."
+      },
+      "repair_max": {
+        "name": "إصلاح كامل",
+        "description": "أعد بيت الكلب إلى نقاط صحته كاملة."
+      },
+      "energy_10_boost": {
+        "name": "تعزيز طاقة 10",
+        "description": "احصل فورًا على 10 نقاط طاقة."
+      },
+      "energy_50_boost": {
+        "name": "تعزيز طاقة 50",
+        "description": "احصل فورًا على 50 نقطة طاقة."
+      }
+    }
+  },
   "confirm": "تأكيد",
   "cancel": "إلغاء",
   "tapTimesToAttack": "انقر {n} مرة (مرات) للهجوم!",

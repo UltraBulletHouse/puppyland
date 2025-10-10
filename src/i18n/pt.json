@@ -269,6 +269,26 @@
   "signInWithGoogle": "Entrar com Google",
   "health": "Saúde",
   "availableBuffs": "Aprimoramentos disponíveis",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "Reparo 50",
+        "description": "Restaura 50 HP da sua casinha."
+      },
+      "repair_max": {
+        "name": "Reparo completo",
+        "description": "Restaura totalmente o HP da casinha."
+      },
+      "energy_10_boost": {
+        "name": "Impulso de energia 10",
+        "description": "Receba instantaneamente 10 pontos de energia."
+      },
+      "energy_50_boost": {
+        "name": "Impulso de energia 50",
+        "description": "Receba instantaneamente 50 pontos de energia."
+      }
+    }
+  },
   "confirm": "Confirmar",
   "cancel": "Cancelar",
   "tapTimesToAttack": "Toque {n} vezes para atacar!",

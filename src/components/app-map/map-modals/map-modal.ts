@@ -18,6 +18,7 @@ import { DogInfo } from '../../../types/dog';
 import { AttackDoghouseResponse, RepairDoghouseResponse } from '../../../types/doghouse';
 import { apiCall } from '../../../utils/apiUtils';
 import { sendEvent } from '../../../utils/eventUtils';
+import { getLocalizedBuffCopy } from '../../../utils/buffLocalization';
 import '../../app-modal/app-modal';
 import '../../app-spinner/app-spinner';
 import '../../icon-svg/icon-svg-badge';
@@ -892,7 +893,15 @@ export class MapModal extends LitElement {
                         ></icon-svg-badge>
                       </div>
                       <div class="buff-details">
-                        <span class="buff-name">${buff.name}</span>
+                        ${(() => {
+                          const { name, description } = getLocalizedBuffCopy(buff);
+                          return html`
+                            <span class="buff-name">${name}</span>
+                            ${description
+                              ? html`<span class="buff-description">${description}</span>`
+                              : ''}
+                          `;
+                        })()}
                       </div>
                     </div>
                   `

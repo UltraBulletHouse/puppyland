@@ -273,6 +273,26 @@
   "signInWithGoogle": "Iniciar sesión con Google",
   "health": "Salud",
   "availableBuffs": "Mejoras disponibles",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "Reparar 50",
+        "description": "Repara 50 HP de tu caseta."
+      },
+      "repair_max": {
+        "name": "Reparación completa",
+        "description": "Restaura al máximo la HP de tu caseta."
+      },
+      "energy_10_boost": {
+        "name": "Impulso de energía 10",
+        "description": "Obtén 10 puntos de energía al instante."
+      },
+      "energy_50_boost": {
+        "name": "Impulso de energía 50",
+        "description": "Obtén 50 puntos de energía al instante."
+      }
+    }
+  },
   "confirm": "Confirmar",
   "cancel": "Cancelar",
   "tapTimesToAttack": "Toca {n} veces para atacar!",

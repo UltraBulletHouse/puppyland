@@ -1,6 +1,7 @@
 export interface DogBuffs {
   buffSku: string;
   name: string;
+  description?: string;
   quantity: number;
 }
 

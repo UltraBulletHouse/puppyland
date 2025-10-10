@@ -269,6 +269,26 @@
   "signInWithGoogle": "گوگل کے ساتھ سائن ان کریں",
   "health": "صحت",
   "availableBuffs": "دستیاب بفز",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "مرمت 50",
+        "description": "اپنے ڈاگ ہاؤس کی 50 ایچ پی بحال کریں۔"
+      },
+      "repair_max": {
+        "name": "مکمل مرمت",
+        "description": "ڈاگ ہاؤس کی ایچ پی مکمل طور پر بحال کریں۔"
+      },
+      "energy_10_boost": {
+        "name": "توانائی 10 بوسٹ",
+        "description": "فوراً 10 توانائی حاصل کریں۔"
+      },
+      "energy_50_boost": {
+        "name": "توانائی 50 بوسٹ",
+        "description": "فوراً 50 توانائی حاصل کریں۔"
+      }
+    }
+  },
   "confirm": "تصدیق کریں",
   "cancel": "منسوخ کریں",
   "tapTimesToAttack": "حملہ کرنے کے لیے {n} بار ٹیپ کریں!",

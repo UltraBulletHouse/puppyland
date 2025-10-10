@@ -273,6 +273,26 @@
   "signInWithGoogle": "Se connecter avec Google",
   "health": "Santé",
   "availableBuffs": "Améliorations disponibles",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "Réparation 50",
+        "description": "Répare 50 PV de votre niche."
+      },
+      "repair_max": {
+        "name": "Réparation complète",
+        "description": "Restaure entièrement les PV de votre niche."
+      },
+      "energy_10_boost": {
+        "name": "Boost énergie 10",
+        "description": "Gagnez immédiatement 10 points d'énergie."
+      },
+      "energy_50_boost": {
+        "name": "Boost énergie 50",
+        "description": "Gagnez immédiatement 50 points d'énergie."
+      }
+    }
+  },
   "confirm": "Confirmer",
   "cancel": "Annuler",
   "tapTimesToAttack": "Touchez {n} fois pour attaquer !",

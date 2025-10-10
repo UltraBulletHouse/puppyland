@@ -269,6 +269,26 @@
   "signInWithGoogle": "Google দিয়ে সাইন ইন করুন",
   "health": "স্বাস্থ্য",
   "availableBuffs": "উপলব্ধ বাফ",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "মেরামত ৫০",
+        "description": "আপনার কুকুরঘরের ৫০ এইচপি পুনরুদ্ধার করুন।"
+      },
+      "repair_max": {
+        "name": "সম্পূর্ণ মেরামত",
+        "description": "কুকুরঘরের এইচপি পুরোপুরি ফিরিয়ে আনুন।"
+      },
+      "energy_10_boost": {
+        "name": "শক্তি ১০ বুস্ট",
+        "description": "তাৎক্ষণিকভাবে ১০ শক্তি পান।"
+      },
+      "energy_50_boost": {
+        "name": "শক্তি ৫০ বুস্ট",
+        "description": "তাৎক্ষণিকভাবে ৫০ শক্তি পান।"
+      }
+    }
+  },
   "confirm": "নিশ্চিত করুন",
   "cancel": "বাতিল করুন",
   "tapTimesToAttack": "আক্রমণ করতে {n} বার আলতো চাপুন!",

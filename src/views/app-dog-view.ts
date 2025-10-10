@@ -30,6 +30,7 @@ import { t, ti } from '../i18n';
 import { sharedStyles } from '../styles/shared-styles';
 import { DogDerivedStats, DogInfo, DogInfoResponse, DogInfoUpdateResponse } from '../types/dog';
 import { apiCall } from '../utils/apiUtils';
+import { getLocalizedBuffCopy } from '../utils/buffLocalization';
 
 type IconKey =
   | 'dogface-basic'
@@ -543,6 +544,12 @@ export class AppDogView extends LitElement {
         font-size: 14px;
         font-weight: 600;
         color: var(--color-black);
+      }
+      .buff-item-tile .buff-description {
+        font-size: 12px;
+        color: var(--text-2);
+        margin-top: 4px;
+        line-height: 1.3;
       }
       icon-svg-badge {
         --icon-svg-badge-width: 32px;
@@ -1808,7 +1815,15 @@ export class AppDogView extends LitElement {
                                           ></icon-svg-badge>
                                         </div>
                                         <div class="buff-details">
-                                          <div class="buff-name">${buff.name}</div>
+                                          ${(() => {
+                                            const { name, description } = getLocalizedBuffCopy(buff);
+                                            return html`
+                                              <div class="buff-name">${name}</div>
+                                              ${description
+                                                ? html`<div class="buff-description">${description}</div>`
+                                                : ''}
+                                            `;
+                                          })()}
                                         </div>
                                       </div>
                                     `

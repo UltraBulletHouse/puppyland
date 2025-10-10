@@ -273,6 +273,26 @@
   "signInWithGoogle": "Accedi con Google",
   "health": "Salute",
   "availableBuffs": "Potenziamenti disponibili",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "Riparazione 50",
+        "description": "Ripara 50 HP della tua cuccia."
+      },
+      "repair_max": {
+        "name": "Riparazione completa",
+        "description": "Ripristina completamente gli HP della cuccia."
+      },
+      "energy_10_boost": {
+        "name": "Boost energia 10",
+        "description": "Ottieni subito 10 punti energia."
+      },
+      "energy_50_boost": {
+        "name": "Boost energia 50",
+        "description": "Ottieni subito 50 punti energia."
+      }
+    }
+  },
   "confirm": "Conferma",
   "cancel": "Annulla",
   "tapTimesToAttack": "Tocca {n} volte per attaccare!",
