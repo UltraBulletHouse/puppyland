@@ -273,6 +273,26 @@
   "signInWithGoogle": "Google से साइन-इन करें",
   "health": "स्वास्थ्य",
   "availableBuffs": "उपलब्ध बफ़्स",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "मरम्मत 50",
+        "description": "अपने डॉगहाउस के 50 HP बहाल करें।"
+      },
+      "repair_max": {
+        "name": "पूरी मरम्मत",
+        "description": "डॉगहाउस की HP पूरी तरह पुनर्स्थापित करें।"
+      },
+      "energy_10_boost": {
+        "name": "ऊर्जा 10 बूस्ट",
+        "description": "तुरंत 10 ऊर्जा प्राप्त करें।"
+      },
+      "energy_50_boost": {
+        "name": "ऊर्जा 50 बूस्ट",
+        "description": "तुरंत 50 ऊर्जा प्राप्त करें।"
+      }
+    }
+  },
   "confirm": "पुष्टि करें",
   "cancel": "रद्द करें",
   "tapTimesToAttack": "हमला करने के लिए {n} बार टैप करें!",

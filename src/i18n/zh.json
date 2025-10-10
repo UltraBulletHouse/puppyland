@@ -269,6 +269,26 @@
   "signInWithGoogle": "使用Google登录",
   "health": "生命值",
   "availableBuffs": "可用增益",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "修复 50",
+        "description": "为狗屋恢复 50 点生命值。"
+      },
+      "repair_max": {
+        "name": "完全修复",
+        "description": "将狗屋的生命值完全恢复。"
+      },
+      "energy_10_boost": {
+        "name": "能量提升 10",
+        "description": "立即获得 10 点能量。"
+      },
+      "energy_50_boost": {
+        "name": "能量提升 50",
+        "description": "立即获得 50 点能量。"
+      }
+    }
+  },
   "confirm": "确认",
   "cancel": "取消",
   "tapTimesToAttack": "点击{n}次进行攻击！",

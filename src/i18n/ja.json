@@ -273,6 +273,26 @@
   "signInWithGoogle": "Googleでサインイン",
   "health": "ヘルス",
   "availableBuffs": "利用可能なバフ",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "修理 50",
+        "description": "犬小屋のHPを50回復します。"
+      },
+      "repair_max": {
+        "name": "完全修理",
+        "description": "犬小屋のHPを完全に回復します。"
+      },
+      "energy_10_boost": {
+        "name": "エネルギー 10 ブースト",
+        "description": "エネルギーを10ポイント即時回復します。"
+      },
+      "energy_50_boost": {
+        "name": "エネルギー 50 ブースト",
+        "description": "エネルギーを50ポイント即時回復します。"
+      }
+    }
+  },
   "confirm": "確認",
   "cancel": "キャンセル",
   "tapTimesToAttack": "{n}回タップして攻撃！",

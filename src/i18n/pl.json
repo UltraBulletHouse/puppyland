@@ -290,6 +290,26 @@
   "signInWithGoogle": "Zaloguj się przez Google",
   "health": "Zdrowie",
   "availableBuffs": "Dostępne wzmocnienia",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "Naprawa 50",
+        "description": "Przywraca 50 HP twojej psiej budzie."
+      },
+      "repair_max": {
+        "name": "Pełna naprawa",
+        "description": "W pełni odnawia HP psiej budy."
+      },
+      "energy_10_boost": {
+        "name": "Dopalacz energii 10",
+        "description": "Natychmiast dodaje 10 punktów energii."
+      },
+      "energy_50_boost": {
+        "name": "Dopalacz energii 50",
+        "description": "Natychmiast dodaje 50 punktów energii."
+      }
+    }
+  },
   "confirm": "Potwierdź",
   "cancel": "Anuluj",
   "tapTimesToAttack": "Stuknij {n} razy, aby zaatakować!",

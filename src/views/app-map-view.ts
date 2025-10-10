@@ -1,10 +1,10 @@
 import { LitElement, css, html } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import '../components/walkthrough/walkthrough-overlay';
-import { apiCall } from '../utils/apiUtils';
 import { API_DOGHOUSES_BOOTSTRAP } from '../constants/apiConstants';
+import { apiCall } from '../utils/apiUtils';
 import { getUserPosition } from '../utils/geolocationUtils';
 import { idbGet, idbSet } from '../utils/idb';
-import { customElement, property } from 'lit/decorators.js';
 
 import '../components/app-map/app-map';
 import { sharedStyles } from '../styles/shared-styles';
@@ -26,7 +26,9 @@ export class AppMapView extends LitElement {
               (pos) => {
                 const lat = pos.coords.latitude;
                 const lng = pos.coords.longitude;
-                apiCall().post(API_DOGHOUSES_BOOTSTRAP, { lat, lng }).catch(() => {});
+                apiCall()
+                  .post(API_DOGHOUSES_BOOTSTRAP, { lat, lng })
+                  .catch(() => {});
                 sessionStorage.setItem(sessionKey, '1');
               },
               () => {}

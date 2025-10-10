@@ -269,6 +269,26 @@
   "signInWithGoogle": "Войти через Google",
   "health": "Здоровье",
   "availableBuffs": "Доступные баффы",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "Ремонт 50",
+        "description": "Восстанавливает 50 HP вашей будки."
+      },
+      "repair_max": {
+        "name": "Полный ремонт",
+        "description": "Полностью восстанавливает HP будки."
+      },
+      "energy_10_boost": {
+        "name": "Буст энергии 10",
+        "description": "Мгновенно получайте 10 энергии."
+      },
+      "energy_50_boost": {
+        "name": "Буст энергии 50",
+        "description": "Мгновенно получайте 50 энергии."
+      }
+    }
+  },
   "confirm": "Подтвердить",
   "cancel": "Отмена",
   "tapTimesToAttack": "Нажмите {n} раз, чтобы атаковать!",

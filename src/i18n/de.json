@@ -269,6 +269,26 @@
   "signInWithGoogle": "Mit Google anmelden",
   "health": "Gesundheit",
   "availableBuffs": "Verfügbare Buffs",
+  "buffs": {
+    "items": {
+      "repair_50": {
+        "name": "Reparatur 50",
+        "description": "Stellt 50 HP deiner Hundehütte wieder her."
+      },
+      "repair_max": {
+        "name": "Vollständige Reparatur",
+        "description": "Stellt die Hundehütte vollständig auf volle HP."
+      },
+      "energy_10_boost": {
+        "name": "Energie-Boost 10",
+        "description": "Erhalte sofort 10 Energiepunkte."
+      },
+      "energy_50_boost": {
+        "name": "Energie-Boost 50",
+        "description": "Erhalte sofort 50 Energiepunkte."
+      }
+    }
+  },
   "confirm": "Bestätigen",
   "cancel": "Abbrechen",
   "tapTimesToAttack": "Tippe {n}‑mal zum Angreifen!",
