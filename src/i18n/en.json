@@ -111,19 +111,19 @@
       },
       "tasty_handful": {
         "name": "Tasty Handful",
-        "description": "700 Treats"
+        "description": "600 Treats"
       },
       "snack_sack": {
         "name": "Snack Sack",
-        "description": "1600 Treats"
+        "description": "1300 Treats"
       },
       "mega_munch": {
         "name": "Mega munch bag",
-        "description": "3600 Treats"
+        "description": "2800 Treats"
       },
       "ultimate_treat": {
         "name": "Ultimate treat crate",
-        "description": "12500 Treats"
+        "description": "8000 Treats"
       },
       "premium": {
         "name": "Premium",

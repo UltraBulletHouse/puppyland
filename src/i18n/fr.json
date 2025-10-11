@@ -114,19 +114,19 @@
       },
       "tasty_handful": {
         "name": "Poignée savoureuse",
-        "description": "700 friandises"
+        "description": "600 friandises"
       },
       "snack_sack": {
         "name": "Sac de snacks",
-        "description": "1600 friandises"
+        "description": "1300 friandises"
       },
       "mega_munch": {
         "name": "Sac méga grignotage",
-        "description": "3600 friandises"
+        "description": "2800 friandises"
       },
       "ultimate_treat": {
         "name": "Caisse ultime de friandises",
-        "description": "12500 friandises"
+        "description": "8000 friandises"
       },
       "premium": {
         "name": "Premium",

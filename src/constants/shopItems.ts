@@ -120,7 +120,7 @@ export const shopItemsTreatPacks: ShopItemLocal[] = [
     icon: 'treats-pack',
     badge: 'M',
     price: { currency: 'EUR', value: '' },
-    description: '700 Treats',
+    description: '600 Treats',
   },
   {
     id: 'snack_sack',
@@ -128,7 +128,7 @@ export const shopItemsTreatPacks: ShopItemLocal[] = [
     icon: 'treats-pack',
     badge: 'L',
     price: { currency: 'EUR', value: '' },
-    description: '1600 Treats',
+    description: '1300 Treats',
   },
   {
     id: 'mega_munch',
@@ -136,7 +136,7 @@ export const shopItemsTreatPacks: ShopItemLocal[] = [
     icon: 'treats-pack',
     badge: 'XL',
     price: { currency: 'EUR', value: '' },
-    description: '3600 Treats',
+    description: '2800 Treats',
   },
   {
     id: 'ultimate_treat',
@@ -144,6 +144,6 @@ export const shopItemsTreatPacks: ShopItemLocal[] = [
     icon: 'treats-pack',
     badge: 'XXL',
     price: { currency: 'EUR', value: '' },
-    description: '12500 Treats',
+    description: '8000 Treats',
   },
 ];

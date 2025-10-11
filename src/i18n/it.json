@@ -114,19 +114,19 @@
       },
       "tasty_handful": {
         "name": "Manciata gustosa",
-        "description": "700 dolcetti"
+        "description": "600 dolcetti"
       },
       "snack_sack": {
         "name": "Sacco di snack",
-        "description": "1600 dolcetti"
+        "description": "1300 dolcetti"
       },
       "mega_munch": {
         "name": "Sacco mega boccone",
-        "description": "3600 dolcetti"
+        "description": "2800 dolcetti"
       },
       "ultimate_treat": {
         "name": "Cassa di dolcetti definitiva",
-        "description": "12500 dolcetti"
+        "description": "8000 dolcetti"
       },
       "premium": {
         "name": "Premium",

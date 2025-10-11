@@ -102,10 +102,10 @@ export class AppShopView extends LitElement {
     }
     const fallback: Record<string, number> = {
       small_treats: 100,
-      tasty_handful: 700,
-      snack_sack: 1600,
-      mega_munch: 3600,
-      ultimate_treat: 12500,
+      tasty_handful: 600,
+      snack_sack: 1300,
+      mega_munch: 2800,
+      ultimate_treat: 8000,
     };
     return fallback[id] ?? 0;
   }

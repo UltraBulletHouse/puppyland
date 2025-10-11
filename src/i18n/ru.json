@@ -110,19 +110,19 @@
       },
       "tasty_handful": {
         "name": "Вкусная горсть",
-        "description": "700 лакомств"
+        "description": "600 лакомств"
       },
       "snack_sack": {
         "name": "Мешок снеков",
-        "description": "1600 лакомств"
+        "description": "1300 лакомств"
       },
       "mega_munch": {
         "name": "Сумка мега-кусняшек",
-        "description": "3600 лакомств"
+        "description": "2800 лакомств"
       },
       "ultimate_treat": {
         "name": "Ящик ультимативных лакомств",
-        "description": "12500 лакомств"
+        "description": "8000 лакомств"
       },
       "premium": {
         "name": "Премиум",

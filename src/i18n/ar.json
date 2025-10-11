@@ -110,19 +110,19 @@
       },
       "tasty_handful": {
         "name": "قبضة لذيذة",
-        "description": "700 مكافأة"
+        "description": "600 مكافأة"
       },
       "snack_sack": {
         "name": "كيس وجبات خفيفة",
-        "description": "1600 مكافأة"
+        "description": "1300 مكافأة"
       },
       "mega_munch": {
         "name": "حقيبة قضمات عملاقة",
-        "description": "3600 مكافأة"
+        "description": "2800 مكافأة"
       },
       "ultimate_treat": {
         "name": "صندوق الحلويات النهائي",
-        "description": "12500 مكافأة"
+        "description": "8000 مكافأة"
       },
       "premium": {
         "name": "بريميوم",

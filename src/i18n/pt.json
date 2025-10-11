@@ -110,19 +110,19 @@
       },
       "tasty_handful": {
         "name": "Punhado saboroso",
-        "description": "700 guloseimas"
+        "description": "600 guloseimas"
       },
       "snack_sack": {
         "name": "Saco de snacks",
-        "description": "1600 guloseimas"
+        "description": "1300 guloseimas"
       },
       "mega_munch": {
         "name": "Saco mega mordida",
-        "description": "3600 guloseimas"
+        "description": "2800 guloseimas"
       },
       "ultimate_treat": {
         "name": "Caixa de guloseimas definitiva",
-        "description": "12500 guloseimas"
+        "description": "8000 guloseimas"
       },
       "premium": {
         "name": "Premium",

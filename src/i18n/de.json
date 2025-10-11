@@ -110,19 +110,19 @@
       },
       "tasty_handful": {
         "name": "Leckere Handvoll",
-        "description": "700 Leckerlis"
+        "description": "600 Leckerlis"
       },
       "snack_sack": {
         "name": "Snack-Sack",
-        "description": "1600 Leckerlis"
+        "description": "1300 Leckerlis"
       },
       "mega_munch": {
         "name": "Mega-Munch-Beutel",
-        "description": "3600 Leckerlis"
+        "description": "2800 Leckerlis"
       },
       "ultimate_treat": {
         "name": "Ultimative Leckerli-Kiste",
-        "description": "12500 Leckerlis"
+        "description": "8000 Leckerlis"
       },
       "premium": {
         "name": "Premium",

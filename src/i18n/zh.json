@@ -110,19 +110,19 @@
       },
       "tasty_handful": {
         "name": "美味一把",
-        "description": "700 个零食"
+        "description": "600 个零食"
       },
       "snack_sack": {
         "name": "零食袋",
-        "description": "1600 个零食"
+        "description": "1300 个零食"
       },
       "mega_munch": {
         "name": "超大零食袋",
-        "description": "3600 个零食"
+        "description": "2800 个零食"
       },
       "ultimate_treat": {
         "name": "终极零食箱",
-        "description": "12500 个零食"
+        "description": "8000 个零食"
       },
       "premium": {
         "name": "高级",

@@ -111,19 +111,19 @@
       },
       "tasty_handful": {
         "name": "Pyszna garść",
-        "description": "700 smakołyków"
+        "description": "600 smakołyków"
       },
       "snack_sack": {
         "name": "Worek przekąsek",
-        "description": "1600 smakołyków"
+        "description": "1300 smakołyków"
       },
       "mega_munch": {
         "name": "Mega worek przysmaków",
-        "description": "3600 smakołyków"
+        "description": "2800 smakołyków"
       },
       "ultimate_treat": {
         "name": "Skrzynia przysmaków",
-        "description": "12500 smakołyków"
+        "description": "8000 smakołyków"
       },
       "premium": {
         "name": "Premium",

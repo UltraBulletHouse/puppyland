@@ -114,19 +114,19 @@
       },
       "tasty_handful": {
         "name": "おいしいひとにぎり",
-        "description": "おやつ 700 個"
+        "description": "おやつ 600 個"
       },
       "snack_sack": {
         "name": "スナック袋",
-        "description": "おやつ 1600 個"
+        "description": "おやつ 1300 個"
       },
       "mega_munch": {
         "name": "メガむしゃむしゃ袋",
-        "description": "おやつ 3600 個"
+        "description": "おやつ 2800 個"
       },
       "ultimate_treat": {
         "name": "究極のごちそう箱",
-        "description": "おやつ 12500 個"
+        "description": "おやつ 8000 個"
       },
       "premium": {
         "name": "プレミアム",

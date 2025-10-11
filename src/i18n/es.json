@@ -114,19 +114,19 @@
       },
       "tasty_handful": {
         "name": "Puñado sabroso",
-        "description": "700 golosinas"
+        "description": "600 golosinas"
       },
       "snack_sack": {
         "name": "Saco de snacks",
-        "description": "1600 golosinas"
+        "description": "1300 golosinas"
       },
       "mega_munch": {
         "name": "Bolsa mega mordisco",
-        "description": "3600 golosinas"
+        "description": "2800 golosinas"
       },
       "ultimate_treat": {
         "name": "Caja de golosinas definitiva",
-        "description": "12500 golosinas"
+        "description": "8000 golosinas"
       },
       "premium": {
         "name": "Premium",
